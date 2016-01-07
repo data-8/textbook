@@ -134,7 +134,7 @@ everyone.
 Example: Plotting the Classics
 ------------------------------
 
-\example{Books}
+{% include "../notebooks/Books.html" %}
 
 Causality and Experiments
 ======================
