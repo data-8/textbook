@@ -1,0 +1,389 @@
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># HIDDEN</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Many experiments and data sets involve multiple values of the same type. An <em>array</em> is a collection of values that all have the same type. The <code>numpy</code> package, abbreviated <code>np</code> in programs, provides Python programmers with convenient and powerful functions for creating and manipulating arrays.</p>
+<p>An array is created using the <code>np.array</code> function, which takes a list or tuple as an argument.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">8.1</span><span class="p">,</span> <span class="mf">8.3</span><span class="p">,</span> <span class="mf">8.7</span><span class="p">,</span> <span class="mf">9.4</span><span class="p">])</span>
+<span class="n">temps</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 8.1,  8.3,  8.7,  9.4])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Arrays differ from lists and tuples because they can be used in arithmetic expressions to compute over their contents. When two arrays are combined together using an arithmetic operator, their individual values are combined.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">temps</span> <span class="o">+</span> <span class="n">temps</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 16.2,  16.6,  17.4,  18.8])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When an array is combined with a single number, that number is combined with each element of the array.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">temps</span> <span class="o">-</span> <span class="n">temps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 0. ,  0.2,  0.6,  1.3])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Arrays also have <em>methods</em>, which are functions that operate on the array values. The <code>mean</code> of a collection of numbers is its average value: the sum divided by the length. Each pair of parentheses in the example below is part of a call expression; it's calling a function with no arguments to perform a computation on the array called <code>temps</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">temps</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">temps</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">temps</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(4, 34.5, 8.625)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It's common that small rounding errors appear in arithmetic on a computer. For instance, if we compute the maximum value in <code>temps</code> using the <code>max</code> method, the result is a number very near (but not exactly) 9.4. Arithmetic rounding errors are an important topic in scientific computing, but won't be a focus of this text. Everyone who works with data must be aware that some operations will be approximated so that values can be stored and manipulated efficiently.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">temps</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>9.4000000000000004</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Functions-on-Arrays">Functions on Arrays<a class="anchor-link" href="#Functions-on-Arrays">&#182;</a></h4><p>In addition to basic arithmetic and methods such as <code>min</code> and <code>max</code>, manipulating arrays often involves calling functions that are part of the <code>np</code> package. For example, the <code>diff</code> function computes the difference between each adjacent pair of elements in an array. The first element of the <code>diff</code> is the second element minus the first.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">temps</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 0.2,  0.4,  0.7])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <a href="http://docs.scipy.org/doc/numpy/reference/">full Numpy reference</a> lists these functions exhaustively, but only a small subset are used commonly for data processing applications. These are grouped into different packages within <code>np</code>. Learning this vocabulary is an important part of learning the Python language, so refer back to this list often as you work through examples and problems.</p>
+<p>Each of these functions takes an array as an argument and returns a single value.</p>
+<table>
+<thead><tr>
+<th><strong>Function</strong></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.prod</code></td>
+<td>Multiply all elements together</td>
+</tr>
+<tr>
+<td><code>np.sum</code></td>
+<td>Add all elements together</td>
+</tr>
+<tr>
+<td><code>np.all</code></td>
+<td>Test whether all elements are true values (non-zero numbers are true)</td>
+</tr>
+<tr>
+<td><code>np.any</code></td>
+<td>Test whether any elements are true values (non-zero numbers are true)</td>
+</tr>
+<tr>
+<td><code>np.count_nonzero</code></td>
+<td>Count the number of non-zero elements</td>
+</tr>
+</tbody>
+</table>
+<p>Each of these functions takes an array as an argument and returns an array of values.</p>
+<table>
+<thead><tr>
+<th><strong>Function</strong></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.diff</code></td>
+<td>Difference between adjacent elements</td>
+</tr>
+<tr>
+<td><code>np.round</code></td>
+<td>Round each number to the nearest integer (whole number)</td>
+</tr>
+<tr>
+<td><code>np.cumprod</code></td>
+<td>A cumulative product: for each element, multiply all elements so far</td>
+</tr>
+<tr>
+<td><code>np.cumsum</code></td>
+<td>A cumulative sum: for each element, add all elements so far</td>
+</tr>
+<tr>
+<td><code>np.exp</code></td>
+<td>Exponentiate each element</td>
+</tr>
+<tr>
+<td><code>np.log</code></td>
+<td>Take the natural logarithm of each element</td>
+</tr>
+<tr>
+<td><code>np.sqrt</code></td>
+<td>Take the square root of each element</td>
+</tr>
+<tr>
+<td><code>np.sort</code></td>
+<td>Sort the elements</td>
+</tr>
+</tbody>
+</table>
+<p>Each of these functions takes an array of strings and returns an array.</p>
+<table>
+<thead><tr>
+<th><strong>Function</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.char.lower</code></td>
+<td>Lowercase each element</td>
+</tr>
+<tr>
+<td><code>np.char.upper</code></td>
+<td>Uppercase each element</td>
+</tr>
+<tr>
+<td><code>np.char.strip</code></td>
+<td>Remove spaces at the beginning or end of each element</td>
+</tr>
+<tr>
+<td><code>np.char.isalpha</code></td>
+<td>Whether each element is only letters (no numbers or symbols)</td>
+</tr>
+<tr>
+<td><code>np.char.isnumeric</code></td>
+<td>Whether each element is only numeric (no letters)  </td>
+</tr>
+</tbody>
+</table>
+<p>Each of these functions takes both an array of strings and a <em>search string</em>; each returns an array.</p>
+<table>
+<thead><tr>
+<th><strong>Function</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.char.count</code></td>
+<td>Count the number of times a search string appears among the elements of an array</td>
+</tr>
+<tr>
+<td><code>np.char.find</code></td>
+<td>The position within each element that a search string is found first</td>
+</tr>
+<tr>
+<td><code>np.char.rfind</code></td>
+<td>The position within each element that a search string is found last</td>
+</tr>
+<tr>
+<td><code>np.char.startswith</code></td>
+<td>Whether each element starts with the search string  </td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>

@@ -1,0 +1,77 @@
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Values can be grouped together into collections, which allows programmers to organize those values and refer to all of them with a single name. The most common way to group together values is by placing them in a list, which is expessed by separating elements using commas within square brackets. After a comma, it's okay to start a new line. Below, we collect four different <code>years</code> and the corresponding average world temperature over land (in degrees Celsius) in the decade leading up to each year. \footnote{<a href="http://berkeleyearth.lbl.gov/regions/global-land}">http://berkeleyearth.lbl.gov/regions/global-land}</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1850</span><span class="p">,</span> <span class="mi">1900</span><span class="p">,</span> 
+         <span class="mi">1950</span><span class="p">,</span> <span class="mi">2000</span><span class="p">]</span>
+<span class="n">temps</span> <span class="o">=</span> <span class="p">[</span><span class="mf">8.1</span><span class="p">,</span> <span class="mf">8.3</span><span class="p">,</span> <span class="mf">8.7</span><span class="p">,</span> <span class="mf">9.4</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The elements of these lists can be accessed within expressions, also using square brackets. Each element has an index, starting at 0. Once accessed, these values can be placed into other lists. The expression below gives us a list of the growth rates for each 50 year period. Not only is the world land temperature increasing, but its growth rate is increasing as well.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="p">[(</span><span class="n">temps</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">temps</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">temps</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+ <span class="p">(</span><span class="n">temps</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">temps</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">temps</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+ <span class="p">(</span><span class="n">temps</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">temps</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">temps</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0.024691358024691492, 0.04819277108433717, 0.08045977011494265]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Tuples.</strong> Values can also be grouped together into <em>tuples</em> in addition to <em>lists</em>. A tuple is expressed by separating elements using commas within parentheses: <code>(1, 2, 3)</code>. In many cases, lists and tuples are interchangeable.</p>
+
+</div>
+</div>
+</div>

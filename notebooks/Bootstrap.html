@@ -1,0 +1,952 @@
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># HIDDEN</span>
+<span class="kn">from</span> <span class="nn">datascience</span> <span class="k">import</span> <span class="o">*</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plots</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># HIDDEN</span>
+<span class="n">baby</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">&#39;baby.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the last chapter, we learned how to estimate an unknown numerical <em>parameter</em> such as a population mean or proportion. Our estimate was derived from a large random sample drawn from the population.</p>
+<p>The method of estimation was based on a fundamental observation: While one sample provides a single estimate of the parameter, we know that the sample could have come out differently, and hence <em>the estimate could have been different</em>. The estimate varies, depending on the sample.</p>
+<p>To quantify the amount of variability in the estimate, we need a measure of how different the estimate could be across all possible samples. That measure is the standard error of the estimate. If the estimate is a sample mean or sample proportion, mathematical theory provides us with a good approximation to the standard error, using just the one sample that we have.</p>
+<p>But what if the estimate were a statistic other than a mean or a proportion?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is an example where this question arises. The table <code>baby</code> contains data on a random sample of 1,174 pairs of mothers and their newborn infants. Birth weight is an important factor in the health of a newborn infant – smaller babies tend to need more medical care in their first days than larger newborns. It is therefore helpful to have an estimate of birth weight before the baby is born. One way to do this is to examine the relationship between birth weight and the number of gestational days.</p>
+<p>We will begin by constructing a measure of this relationship. For each baby, we will calculate the ratio of birth weight to the number of gestational days. Below, the original table <code>baby</code> has been augmented by the column <code>r_bwt_gd</code> containing the values of this ratio. The first entry in that column was calcualted as follows:</p>
+$$
+\frac{120~\mbox{ounces}}{284~\mbox{days}} ~\approx ~ 0.4225~ \mbox{ounces per day}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="p">[</span><span class="s">&#39;r_bwt_gd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baby</span><span class="p">[</span><span class="s">&#39;birthwt&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">baby</span><span class="p">[</span><span class="s">&#39;gest_days&#39;</span><span class="p">]</span>
+<span class="n">baby</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>birthwt</th> <th>gest_days</th> <th>mat_age</th> <th>mat_ht</th> <th>mat_pw</th> <th>m_smoker</th> <th>r_bwt_gd</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>120    </td> <td>284      </td> <td>27     </td> <td>62    </td> <td>100   </td> <td>0       </td> <td>0.422535</td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>113    </td> <td>282      </td> <td>33     </td> <td>64    </td> <td>135   </td> <td>0       </td> <td>0.400709</td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>128    </td> <td>279      </td> <td>28     </td> <td>64    </td> <td>115   </td> <td>1       </td> <td>0.458781</td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>108    </td> <td>282      </td> <td>23     </td> <td>67    </td> <td>125   </td> <td>1       </td> <td>0.382979</td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>136    </td> <td>286      </td> <td>25     </td> <td>62    </td> <td>93    </td> <td>0       </td> <td>0.475524</td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>138    </td> <td>244      </td> <td>33     </td> <td>62    </td> <td>178   </td> <td>0       </td> <td>0.565574</td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>132    </td> <td>245      </td> <td>23     </td> <td>65    </td> <td>140   </td> <td>0       </td> <td>0.538776</td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>120    </td> <td>289      </td> <td>25     </td> <td>62    </td> <td>125   </td> <td>0       </td> <td>0.415225</td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>143    </td> <td>299      </td> <td>30     </td> <td>66    </td> <td>136   </td> <td>1       </td> <td>0.478261</td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>140    </td> <td>351      </td> <td>27     </td> <td>68    </td> <td>120   </td> <td>0       </td> <td>0.39886 </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (1164 rows omitted)</p
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is a histogram of the 1,174 ratios.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[308]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;r_bwt_gd&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;BirthWt/GestationalDays (ounces per day)&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[308]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.text.Text at 0x10dfd52b0&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+Cfd/9BcLgEiVq78AAAAASUVORK5CYII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At a first glance the histogram looks quite symmetric, with the density at its maximum over the interval 4 ounces per day to 4.5 ounces per day. But a closer look reveals that some of the ratios were quite large by comparison. The maximum value of the ratios was just over 0.78 ounces per day, almost double the typical value.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[309]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">&#39;r_bwt_gd&#39;</span><span class="p">])</span>            
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[309]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.78378378378378377</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a situation in which the median of the distribution is more informative about the typical value than the mean, as the median is unaffected by outliers. The median in the sample is just over 0.429.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[310]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">&#39;r_bwt_gd&#39;</span><span class="p">])</span>         
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[310]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.42907801418439717</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To estimate the median of the ratios in the population, we have to figure out how different the median might have been in another sample. But there is no helpful mathematical formula that tells us how to estimate this variability based on our sample alone.</p>
+<p>If we knew the distribution of the population, we could replicate the sampling procedure and generate the empirical distribution of the sample median. But we don't know the distribution of the population – we don't even know its median. That's what we are trying to estimate in the first place.</p>
+<p>What we do have is a large random sample. As we know, a large random sample is likely to resemeble the population from which it is drawn. This observation allows data scientists to <em>lift themselves up by their own bootstraps</em>: the sampling procedure can be replicated by <em>sampling from the sample</em>.</p>
+<h2 id="Resampling-from-the-Sample">Resampling from the Sample<a class="anchor-link" href="#Resampling-from-the-Sample">&#182;</a></h2><p>Here are the steps of <em>the bootstrap method</em> for generating an empirical histogram of the sample median.</p>
+<ul>
+<li><strong>Treat the sample as if it is the population.</strong></li>
+<li><strong>Draw from the sample</strong>, at random <strong>with</strong> replacement, <strong>the same number as the sample size</strong>. Calculate the median.</li>
+<li>Do this repeatedly. You will get as many medians as the number of repetitions.</li>
+<li>Draw the histogram of all these medians. This is called a bootstrap empirical distribution of the sample median. It is an approximation to the probability distribution of the sample median.</li>
+</ul>
+<p>It is important to resample the same number of times as the original sample size. The reason is that the estimate is based on the original sample. In order to see how much the estimate could vary, we have to compare it to estimates computed from samples of the same size. For example, the median of about 0.429 ounces per day in our sample of 1,174 babies must be compared to the medians of other samples of size 1,174.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The code below uses the method <code>sample</code> to draw at random with replacement from all the ratios in the original sample. Notice that the sample size does not have to be specified. By default, <code>sample</code> draws as many times as the number of rows in the table from which it is sampling. Since <code>baby</code> has one row for each baby, the default sample size of <code>sample</code> is exactly the number required for the bootstrap method.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">resample</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;r_bwt_gd&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The median of the resampled ratios can be computed in two ways. One way is to extract the array that is the <code>r_bwt_gd</code> column of the table <code>resample</code>, and then use <code>np.median</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s">&#39;r_bwt_gd&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.43003412969283278</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The other way is to use the Table method called <code>percentile</code> on the table <code>resample</code>. This method takes as it argument the percentile rank that is desired; the median is the 50th percentile.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">resample</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>r_bwt_gd</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0.430034</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To generate a bootstrap empirical distribution of the sample medians, it is necessary to replicate the sampling procedure many times. To do this easily, we will define a function called <code>bootstrap_median</code> that takes as its arguments the name of the table containing the original sample, the label of the column containing the variable of interest, and the number of repetitions of the resampling process. The code pertaining to the bootstrap is the same as the two lines of code used above, apart from the generic names of the arguments.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="sd">&quot;&quot;&quot;Bootstrap mpirical distribution of random sample medians, resampling from a sample</span>
+<span class="sd">Arguments: table of original sample data, column label, number of repetitions&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">bootstrap_median</span><span class="p">(</span><span class="n">samp_table</span><span class="p">,</span> <span class="n">column_label</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+    
+    <span class="c"># Set up an empty table to collect all the replicated medians</span>
+    <span class="n">medians</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="n">column_label</span><span class="p">])</span>
+    
+    <span class="c"># Run the bootstrap and place all the medians in the table</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">resample</span> <span class="o">=</span> <span class="n">samp_table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">column_label</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">resample</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+        <span class="n">medians</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        
+    <span class="c"># Display results</span>
+    <span class="n">medians</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;resampled medians&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&quot;Original sample median:&quot;</span><span class="p">,</span> <span class="n">samp_table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">column_label</span><span class="p">)</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s">&quot;2.5 percent point of resampled medians:&quot;</span><span class="p">,</span> <span class="n">medians</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&quot;97.5 percent point of resampled medians:&quot;</span><span class="p">,</span> <span class="n">medians</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="mf">97.5</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us run 10,000 replications of the sampling procedure and look at a disribution of the resulting resampled medians.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_median</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">&#39;r_bwt_gd&#39;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Original sample median: 0.429078014184
+2.5 percent point of resampled medians: 0.425454545455
+97.5 percent point of resampled medians: 0.432727272727
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+A9YqeppifWVQAAAAAElFTkSuQmCC
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The histogram of resampled medians is roughly bell shaped. An approximate 95%-confidence interval for the popualation median can therefore be constructed by analogy with normal confidence intervals for the sample mean:</p>
+<p>Eliminate the lowest 2.5% and the highest 2.5% of the resampled medians. Retain the central 95% of the resampled medians as the confidence interval.</p>
+<h3 id="Confidence-Intervals:-the-Bootstrap-Percentile-Method">Confidence Intervals: the Bootstrap Percentile Method<a class="anchor-link" href="#Confidence-Intervals:-the-Bootstrap-Percentile-Method">&#182;</a></h3><p>In other words, the left endpoint of the confidence interval is the 2.5th percentile of the resampled medians. The right endpoint has 2.5% of the resampled medians to the right of it, and so it is the 97.5th percentile of the resampled medians.</p>
+<p>These two endpoints are provided in the display above. An approximate 95% bootstrap confidence interval for the population median is 0.4255 ounces per day to 0.4327 ounces per day.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Notes-on-Using-the-Bootstrap">Notes on Using the Bootstrap<a class="anchor-link" href="#Notes-on-Using-the-Bootstrap">&#182;</a></h3><ul>
+<li><p>We used the bootstrap in the previous section without giving the method a name. When we approximated the SE of the sample mean by replacing the population SD with the sample SD, we were letting the large random sample play the role of the population – that is the essence of the bootstrap method.</p>
+</li>
+<li><p>To approximate the probability distribution of a statistic, it is a good idea to replicate the resampling procedure as many times as possible. A few thousand replications will result in decent approximations to the distribution of sample median, especially if the distribution of the population has one peak and is not very asymmetric. We used 10,000 replications in the example above.</p>
+</li>
+<li><p>The bootstrap percentile method works well for estimating the population median based on a large random sample. However, it has limitations, as do all methods of estimation. For example, it is not expected to do well in of the following situations.</p>
+<ul>
+<li>The goal is to estimate the minimum or maximum value in the population, or a very low or very high percentile, or most parameters that are greatly influenced by rare elements of the population.</li>
+<li>The probability distribution of the statistic is not roughly normal.</li>
+<li>The original sample is small.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
