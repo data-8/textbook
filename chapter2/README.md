@@ -12,7 +12,7 @@ worth a thousand numbers.
 We saw an example of this earlier in the text, when we examined John Snow's map
 of cholera deaths in London in 1854.
 
-![Snow's Cholera Map](assets/images/snow_map.jpg)
+![Snow's Cholera Map](../images/snow_map.jpg)
 
 Snow showed each death as a black mark at the location where the death
 occurred. In doing so, he plotted three variables — the number of deaths, as
@@ -32,7 +32,7 @@ shelter as the brutal Russian winter began to set in. The French army turned
 back without a decisive victory in Moscow. The weather got colder, and more men
 died. Only 10,000 returned.
 
-![Minard's Graphic](assets/images/minard.png)
+![Minard's Graphic](../images/minard.png)
 
 The graph is drawn over a map of eastern Europe. It starts at the
 Polish-Russian border at the left end. The light brown band represents
@@ -81,7 +81,7 @@ each bar? Tufts coined the term "chartjunk" for such unnecessary
 embellishments. He also deplores the "low data-to-ink ratio" which this graph
 unfortunately possesses.
 
-![Washington Post Doctors](assets/images/post_bad_graph.png)
+![Washington Post Doctors](../images/post_bad_graph.png)
 
 Most importantly, the horizontal axis of the graph is is not drawn to scale.
 This has a significant effect on the shape of the bar graphs. When drawn to
@@ -89,12 +89,12 @@ scale and shorn of decoration, the graphs reveal trends that are quite
 different from the apparently linear growth in the original. The elegant graph
 below is due to Ross Ihaka, one of the originators of the statistical system R.
 
-![Ihaka's correction](assets/images/ihaka_fixed_post_graph.png)
+![Ihaka's correction](../images/ihaka_fixed_post_graph.png)
 
 Here is a graphic from Statistics Canada, a website produced by the Government
 of Canada.
 
-![Canada incomes](assets/images/canada_incomes.png)
+![Canada incomes](../images/canada_incomes.png)
 
 The graphs represent the distribution of after-tax income, in Canadian dollars,
 of families in Canada. The blue graph uses figures from the 2006 Census while
