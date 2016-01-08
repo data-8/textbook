@@ -43,10 +43,8 @@ def convert_notebooks_to_html_partial(notebook_paths):
 
         html = _extract_cells(raw_html)
 
-        with_wrapper = """<div class="ipython-notebook">
-            <div>
-                <a class="interact-button" href="{interact_link}">Interact</a>
-            </div>
+        with_wrapper = """<div id="ipython-notebook">
+            <a class="interact-button" href="{interact_link}">Interact</a>
             {html}
         </div>""".format(interact_link = INTERACT_LINK_PREFIX + filename, html = html)
 

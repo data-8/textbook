@@ -1,9 +1,9 @@
-.interact-button {
+#ipython-notebook .interact-button {
   background-color: #477DCA;
   border-radius: 3px;
 
   display: inline-block;
-  margin: 0 0 20px;
+  margin: 0 0 1.2em;
   padding: 0.4em 1em;
 
   font-size: 1.5em;
@@ -11,7 +11,7 @@
   font-weight: 700;
 }
 
-.interact-button:hover,
-.interact-button:focus {
+#ipython-notebook .interact-button:hover,
+#ipython-notebook .interact-button:focus {
   text-decoration: none;
 }
