@@ -40,6 +40,7 @@ def convert_notebooks_to_html_partial(notebook_paths):
 
         # Computes <name>.html from notebooks/<name>.ipynb
         outfile_name = notebook_path.split('/')[-1].split('.')[0] + '.html'
+
         outfile_path = os.path.join(os.curdir, NOTEBOOK_HTML_DIR, outfile_name)
 
         with open(outfile_path, 'w') as outfile:

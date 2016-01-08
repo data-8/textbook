@@ -13,14 +13,8 @@ help:
 notebooks:
 	@echo "${BLUE}Converting notebooks to HTML.${NOCOLOR}"
 	@echo "${BLUE}=============================${NOCOLOR}"
-	# Convert notebooks to HTML
-	cd notebooks && \
-		ipython nbconvert *.ipynb --to html --template basic && \
-		find . -name '*.html' -exec mv {} ../notebooks-html \;
 
-	# Remove newlines
-	cd notebooks-html && \
-		find . -name '*.html' -exec sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' -i "" {} \;
+	python convert_notebooks_to_html_partial.py
 
 	@echo ""
 	@echo "${BLUE}    Done, output is in notebooks-html${NOCOLOR}"

@@ -1,1 +1,709 @@
- <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[37]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="c"># HIDDEN</span>  <span class="kn">from</span> <span class="nn">datascience</span> <span class="k">import</span> <span class="o">*</span> <span class="o">%</span><span class="k">matplotlib</span> inline <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plots</span> <span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s">&#39;fivethirtyeight&#39;</span><span class="p">)</span> <span class="n">p</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> </pre></div>  </div> </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>We've seen how data is represented as a sequence of values.  What if we want to do something once for each value in the sequence?  For instance, maybe we want to compute the sum of a sequence of numbers.  How can we do that?  The answer is to use iteration: in particular, we use a Python construct called a <code>for</code>-loop.  Check it out:</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[38]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">tbl</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">]],</span> <span class="p">[</span><span class="s">&#39;num&#39;</span><span class="p">])</span> </pre></div>  </div> </div> </div>  </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[39]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">tbl</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[39]:</div>  <div class="output_html rendered_html output_subarea output_execute_result"> <table border="1" class="dataframe">     <thead>         <tr>             <th>num</th>         </tr>     </thead>     <tbody>         <tr>             <td>2   </td>         </tr>     </tbody>         <tr>             <td>3   </td>         </tr>     </tbody>         <tr>             <td>10  </td>         </tr>     </tbody> </table> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[40]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">tbl</span><span class="p">[</span><span class="s">&#39;num&#39;</span><span class="p">]</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[40]:</div>   <div class="output_text output_subarea output_execute_result"> <pre>array([ 2,  3, 10])</pre> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>OK, so that gives us a sequence of numbers (the sequence 5, 6, 11).</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[41]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tbl</span><span class="p">[</span><span class="s">&#39;num&#39;</span><span class="p">]:</span>     <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">i</span> <span class="n">total</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[41]:</div>   <div class="output_text output_subarea output_execute_result"> <pre>15</pre> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>Notice how this works.  We start out by setting <code>total</code> to hold the number 0.  Then, we go through the sequence, one by one.  For each number in the sequence, we temporarily set <code>i</code> to hold that number, and then we execute the statement <code>total = total + i</code>.  This statement replaces the previous value of <code>total</code> with <code>total + i</code>.  In other words, it adds <code>i</code> to the current running total.  Once we've gone through the entire sequence, <code>total</code> holds the sum of all of the numbers in the sequence.</p> <p>In short, a <code>for</code>-loop lets you do something once for each item in a sequence.  It <em>iterates</em> through the sequence, examining each value one at a time, and does something for each.</p> <p>In this case, we could have accomplished the same task without a <code>for</code>-loop: there is a <code>numpy</code> function we could have used (<code>np.sum</code>) to do this for us.  That's not unusual; it's not unusual that there might be multiple ways to accomplish the same task.  But sometimes there is no existing Python function that does exactly what we want, and that's when it is good to have tools we can use to do what we want.</p>  </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h2 id="Repetition">Repetition<a class="anchor-link" href="#Repetition">&#182;</a></h2> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>A special case of iteration is where we want to do some simple task multiple times: say, 10 times.  You could copy-paste the code 10 times, but that gets a little tedious, and if you wanted to do it a thousand times (or a million times), forget it.  Also, copy-pasting code is usually a bad idea: what if you realize you want to change some piece of it?  Then you'll need to laboriously change each copy of it.  Boooring!</p> <p>A better solution is to use a <code>for</code>-loop for this purpose.  The trick is to choose a sequence of length 10, and then iterate over the sequence: do the task once for each item in the sequence.  It doesn't really matter what we put in the sequence; any sequence will do.</p> <p>However, there is a standard idiom for what to put in the sequence.  The typical solution is to create a sequence of consecutive integers, starting at 0, and iterate over it.  If we wanted to do something 1000 times, we'd create a sequence holding the values 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.  Why 9? (and not 10?)  Because that's where we need to end, if we want the list to have 10 items.  (Why not use 1, 2, .., 10?  I'm tempted to say, because computer scientists are just a tad odd.  Actually, there are good reasons for this idiom, but don't worry about it right now.)</p> <p>How do we create a sequence 0, 1, .., 9?  It turns out we've already seen how to do that: use <code>np.arange()</code>.</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[42]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[42]:</div>   <div class="output_text output_subarea output_execute_result"> <pre>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</pre> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>So, now I'm ready to show you how to do something 10 times:</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[43]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>     <span class="nb">print</span><span class="p">(</span><span class="s">&#39;Go Bears!&#39;</span><span class="p">)</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt"></div> <div class="output_subarea output_stream output_stdout output_text"> <pre>Go Bears! Go Bears! Go Bears! Go Bears! Go Bears! Go Bears! Go Bears! Go Bears! Go Bears! Go Bears! </pre> </div> </div>  </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>Strings are sequences, too:</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[44]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s">&#39;CAL&#39;</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="s">&#39;Give me a &#39;</span><span class="o">+</span><span class="n">c</span><span class="p">)</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt"></div> <div class="output_subarea output_stream output_stdout output_text"> <pre>Give me a C Give me a A Give me a L </pre> </div> </div>  </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>In this class, you're going to use this a lot for simulation.  For instance, you might code up a way to simulate one round of some gambling game; then you can use a <code>for</code>-loop to repeat the simulation thousands of times and see how often we win.  The great thing about computers is that they're incredibly good at doing a small task repeatedly many times, so this is a perfect match for what they're good at.</p>  </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h2 id="Randomized-response">Randomized response<a class="anchor-link" href="#Randomized-response">&#182;</a></h2> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>Next, we'll look at a technique that was designed several decades ago to help conduct surveys of sensitive subjects.  Researchers wanted to ask participants a few questions: Have you ever had an affair?  Do you secretly think you are gay?  Have you ever shoplifted?  Have you ever sung a Justin Bieber song in the shower?  They figured that some people might not respond honestly, because of the social stigma associated with answering "yes".  So, they came up with a clever way to estimate the fraction of the population who are in the "yes" camp, without violating anyone's privacy.</p> <p>Here's the idea.  We'll instruct the respondent to roll a fair 6-sided die, secretly, where no one else can see it.  If the die comes up 1, 2, 3, or 4, then respondent is supposed to answer honestly.  If it comes up 5 or 6, the respondent is supposed to answer the <em>opposite</em> of what their true answer would be.  But, they shouldn't reveal what came up on their die.</p> <p>Notice how clever this is.  Even if the person says "yes", that doesn't necessarily mean their true answer is "yes" -- they might very well have just rolled a 5 or 6.  So the responses to the survey don't reveal any one individual's true answer.  Yet, in aggregate, the responses give enough information that we can get a pretty good estimate of the fraction of people whose true answer is "yes".</p> <p>Let's try a simulation, so we can see how this works.  We'll write some code to perform this operation.  First, a function to simulate rolling one die:</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[45]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">dicetbl</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="p">[</span><span class="s">&#39;roll&#39;</span><span class="p">])</span> <span class="n">dicetbl</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[45]:</div>  <div class="output_html rendered_html output_subarea output_execute_result"> <table border="1" class="dataframe">     <thead>         <tr>             <th>roll</th>         </tr>     </thead>     <tbody>         <tr>             <td>1   </td>         </tr>     </tbody>         <tr>             <td>2   </td>         </tr>     </tbody>         <tr>             <td>3   </td>         </tr>     </tbody>         <tr>             <td>4   </td>         </tr>     </tbody>         <tr>             <td>5   </td>         </tr>     </tbody>         <tr>             <td>6   </td>         </tr>     </tbody> </table> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[46]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">rollonedie</span><span class="p">():</span>     <span class="n">tbl</span> <span class="o">=</span> <span class="n">dicetbl</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c"># Make a table with one row, chosen at random from dicetbl</span>     <span class="n">roll</span> <span class="o">=</span> <span class="n">tbl</span><span class="p">[</span><span class="s">&#39;roll&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>     <span class="k">return</span> <span class="n">roll</span> </pre></div>  </div> </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>Now we'll use this to write a function to simulate how someone is supposed to respond to the survey.  The argument to the function is their true answer; the function returns what they're supposed to tell the interview.</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[47]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="c"># 1 stands for &#39;yes&#39;, 0 stands for &#39;no&#39;</span> <span class="k">def</span> <span class="nf">respond</span><span class="p">(</span><span class="n">trueanswer</span><span class="p">):</span>     <span class="n">roll</span> <span class="o">=</span> <span class="n">rollonedie</span><span class="p">()</span>     <span class="k">if</span> <span class="n">roll</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>         <span class="k">return</span> <span class="mi">1</span><span class="o">-</span><span class="n">trueanswer</span>     <span class="k">else</span><span class="p">:</span>         <span class="k">return</span> <span class="n">trueanswer</span> </pre></div>  </div> </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>We can try it.  Assume our true answer is 'no'; let's see what happens this time:</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[48]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[48]:</div>   <div class="output_text output_subarea output_execute_result"> <pre>1</pre> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>Of course, if you were to run it again, you might get a different result next time.</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[49]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[49]:</div>   <div class="output_text output_subarea output_execute_result"> <pre>0</pre> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[50]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[50]:</div>   <div class="output_text output_subarea output_execute_result"> <pre>1</pre> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[51]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[51]:</div>   <div class="output_text output_subarea output_execute_result"> <pre>0</pre> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>OK, so this lets us simulate the behavior of one participant, using randomized response.  Let's simulate what happens if we do this with 10,000 respondents.  We're going to imagine asking 10,000 people whether they've ever sung a Justin Bieber song in teh shower.  We'll imagine there are <code>10000 * p</code> people whose true answer is "yes" and <code>10000 * (1-p)</code> whose true answer is "no", so we'll use one <code>for</code>-loop to simulate the behavior each of the first <code>10000 * p</code> people, and a second <code>for</code>-loop to simulate the behavior of the remaining <code>10000 * (1-p)</code>.  We'll collect all the responses in a table, appending each response to the table as we receive it.</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[52]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">responses</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="s">&#39;response&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="mi">10000</span><span class="p">)):</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">respond</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">r</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="mi">10000</span><span class="p">)):</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">r</span><span class="p">])</span> </pre></div>  </div> </div> </div>  </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[53]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">responses</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[53]:</div>  <div class="output_html rendered_html output_subarea output_execute_result"> <table border="1" class="dataframe">     <thead>         <tr>             <th>response</th>         </tr>     </thead>     <tbody>         <tr>             <td>0       </td>         </tr>     </tbody>         <tr>             <td>1       </td>         </tr>     </tbody>         <tr>             <td>1       </td>         </tr>     </tbody>         <tr>             <td>0       </td>         </tr>     </tbody>         <tr>             <td>1       </td>         </tr>     </tbody>         <tr>             <td>1       </td>         </tr>     </tbody>         <tr>             <td>1       </td>         </tr>     </tbody>         <tr>             <td>1       </td>         </tr>     </tbody>         <tr>             <td>0       </td>         </tr>     </tbody>         <tr>             <td>1       </td>         </tr>     </tbody> </table> <p>... (9990 rows omitted)</p </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>We get a giant table with 10,000 rows, one per simulated participant.  Let's build a histogram and look at how many "yes"s we got and how many "no"s.</p>  </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[54]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt"></div>   <div class="output_png output_subarea "> <img src="data:image/png;base64,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 fT3ffvstxcXFdOvWjaioKObPn8+qVauw2+3YbDays7MJCgoyrnQMDg5m5syZLF++HKvVSkhICEuX LiUuLo5Ro0YBEBMTw5gxY1i0aBFr167F6/WSlpbG2LFjsdlsl2/2IiJiKg1e0r9r1y5+9atf/bXY YjHOhU2fPp1169YB8O///u+8+OKLeDweEhISyM7OJjY21hjj559/5tFHH2Xr1q3U1NQwcuRIVq1a Rc+ePY0aj8dDRkYGO3bsACAlJYWsrCyuvvrq/7c3XdIvZqdL+qU9uRSX9Dfpc2ptjUJNzE6hJu1J q39OTUREpC1RqImIiGko1ERExDQUaiIiYhoKNRERMQ2FmoiImIZCTURETEOhJiIipqFQExER01Co iYiIaSjURETENBRqIiJiGgo1ERExDYWaiIiYhkJNRERMQ6EmIiKmoVATERHTUKiJiIhpKNRERMQ0 FGoiImIaCjURETENhZqIiJiGQk1EREyjzYXac889x4ABA+jevTujRo1iz549rd2SiIhcIdpUqOXn 57N48WIeeughdu3aRWJiInfffTdHjx5t7dZEROQK0KZCbd26dcyYMYN77rkHu91OZmYmERER5Obm tnZrIiJyBWgzofbzzz+zf/9+Ro8e7bM9OTmZvXv3tlJXIiJyJWkzoVZeXk5dXR3h4eE+28PCwnC7 3a3UlYiIXEk6tHYDF8PjqWjtFkRahP5fF2mcNvNOLTQ0FD8/v3PelZWVlREREdFKXYmIyJWkzYRa x44diY+P57333vPZ/t5775GUlNRKXYmIyJWkTR1+XLBgAQ6HgxtuuIGkpCRyc3Nxu93Mnj27tVsT EZErQJsKtQkTJnDq1Cmys7M5ceIE/fr149VXXyUqKqq1WxMRkSuAxePxeFu7CRERkUuhzZxT+3tN vVXWZ599xu23306PHj3o168fmZmZLdRp62vKWu3atYvU1FRiY2Pp2bMnw4cPZ/PmzS3Ybetq7i3Y vvzyS6KiotrVEYPmrFVOTg6DBw8mIiKC2NhYVqxY0QKdtg1NXa933nmHMWPGcM0112Cz2Zg+fTpf fvllC3XbOnbv3s20adPo168fXbt2ZcuWLQ0+pzmv7W0u1Jp6q6wff/yRCRMm0L17d9577z2cTie/ /e1vefbZZ1u485bX1LUqKioiLi6Ol19+mT179nDvvfeyaNEitm7d2sKdt7zm3oLt559/Zs6cOQwf PhyLxdJC3bau5qzVkiVLyM3N5fHHH8flcvHaa68xfPjwFuy69TR1vb766itmzJjBjTfeyK5du3jj jTeora2NxQD+AAALqklEQVTl7rvvbuHOW9ZPP/1EXFwcTqeTzp07N/j71NzX9jZ3+PHmm2+mf//+ rFmzxtg2aNAgxo8fz7Jly86pf/7551mxYgUlJSV06tQJgOzsbHJzc/nLX/7SYn23hqau1fnMnj2b uro6Xn755cvVZpvQ3LVavHgxp0+fZtiwYWRkZLSL+5A2da1KSkoYNmwYH3/8MXa7vSVbbROaul5v vvkmc+bM4eTJk8YL+4cffsj48eP56quv6Nq1a4v13lqioqLIysoiNTX1/61p7mt7m3qn1pxbZblc LoYOHWpM+m/13333Hd98881l7bc1Xarbiv3444+m/yVq7lrt3LmTd955h8zMTLzeNvW332XTnLXa vn07vXv35p133mHgwIEMGDCA+fPnc/LkyZZouVU1Z72SkpIIDAzkpZdeoq6ujtOnT7NlyxYGDRpk +t/Fpmjua3ubCrXm3CrL7XafU2+1Wo19ZnUpbiu2Y8cOPvzwQ2bNmnUZOmw7mrNW3333HYsWLWLT pk106dKlJdpsE5qzVkeOHOHbb7/ljTfe4He/+x0bNmygpKSEadOmmf6PgeasV/fu3Xnttdd44okn iIiIoFevXhw8eJDf//73LdHyFaO5r+1tKtSao72c57jUCgsLmTdvHpmZmVx//fWt3U6b43A4mDNn DjfccENrt9Lm1dfXU1tby4YNGxg6dChDhw5lw4YN/O///i9//vOfW7u9NufIkSPMmDGDGTNm8N57 77Ft2zaCgoKYNWuW6f8IaIrmvra3qVBrzq2ywsPDz1v/t31mdTG3FduzZw9TpkxhyZIl7eKD7c1Z q127dvHUU08RFhZGWFgY//qv/0pVVRVhYWGmPv/YnLWKiIigQ4cOXHvttca2a6+9Fj8/P7799tvL 2m9ra856vfDCC0RGRrJixQr69+/PsGHD2LhxI7t378blcrVE21eE5r62t6lQa86tshITE9mzZw+1 tbU+9T179iQ6Ovqy9tuamntbsd27dzNlyhQeeeQR7r///svdZpvQnLXas2cPH330kfFYsmQJnTt3 5qOPPuJXv/pVS7TdKpqzVkOHDuXs2bMcOXLE2HbkyBHq6upM/TsIzVsvr9fLVVf5vvT+7d/r6+sv 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 " > </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[55]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;response&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[55]:</div>   <div class="output_text output_subarea output_execute_result"> <pre>6345</pre> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="prompt input_prompt">In&nbsp;[56]:</div> <div class="inner_cell">     <div class="input_area"> <div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;response&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span> </pre></div>  </div> </div> </div>  <div class="output_wrapper"> <div class="output">   <div class="output_area"><div class="prompt output_prompt">Out[56]:</div>   <div class="output_text output_subarea output_execute_result"> <pre>3655</pre> </div>  </div>  </div> </div>  </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>So we polled 10,000 people, and got back 3644 yes responses.</p> <p><strong>Exercise for you:</strong> Based on these results, approximately what fraction of the population has truly sung a Justin Bieber song in the shower?</p> <p>Take a moment with your partner and work out the answer.</p>  </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h2 id="Summing-up">Summing up<a class="anchor-link" href="#Summing-up">&#182;</a></h2> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"> <div class="prompt input_prompt"> </div> <div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>This method is called "randomized response".  It is one way to poll people about sensitive subjects, while still protecting their privacy.  You can see how it is a nice example of randomness at work.</p> <p>It turns out that randomized response has beautiful generalizations.  For instance, your Chrome web browser uses it to anonymously report feedback to Google, in a way that won't violate your privacy.  That's all we'll say about it for this semester, but if you take an upper-division course, maybe you'll get to see some generalizations of this beautiful technique.</p>  </div> </div> </div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We've seen how data is represented as a sequence of values.  What if we want to do something once for each value in the sequence?  For instance, maybe we want to compute the sum of a sequence of numbers.  How can we do that?  The answer is to use iteration: in particular, we use a Python construct called a <code>for</code>-loop.  Check it out:</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">tbl</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">]],</span> <span class="p">[</span><span class="s">&#39;num&#39;</span><span class="p">])</span>
+</pre></div></div></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">tbl</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>num</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>2   </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>3   </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>10  </td>
+        </tr>
+    </tbody>
+</table></div></div></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">tbl</span><span class="p">[</span><span class="s">&#39;num&#39;</span><span class="p">]</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 2,  3, 10])</pre></div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OK, so that gives us a sequence of numbers (the sequence 5, 6, 11).</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tbl</span><span class="p">[</span><span class="s">&#39;num&#39;</span><span class="p">]:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">i</span>
+<span class="n">total</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[41]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>15</pre></div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice how this works.  We start out by setting <code>total</code> to hold the number 0.  Then, we go through the sequence, one by one.  For each number in the sequence, we temporarily set <code>i</code> to hold that number, and then we execute the statement <code>total = total + i</code>.  This statement replaces the previous value of <code>total</code> with <code>total + i</code>.  In other words, it adds <code>i</code> to the current running total.  Once we've gone through the entire sequence, <code>total</code> holds the sum of all of the numbers in the sequence.</p>
+<p>In short, a <code>for</code>-loop lets you do something once for each item in a sequence.  It <em>iterates</em> through the sequence, examining each value one at a time, and does something for each.</p>
+<p>In this case, we could have accomplished the same task without a <code>for</code>-loop: there is a <code>numpy</code> function we could have used (<code>np.sum</code>) to do this for us.  That's not unusual; it's not unusual that there might be multiple ways to accomplish the same task.  But sometimes there is no existing Python function that does exactly what we want, and that's when it is good to have tools we can use to do what we want.</p></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Repetition">Repetition<a class="anchor-link" href="#Repetition">&#182;</a></h2></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A special case of iteration is where we want to do some simple task multiple times: say, 10 times.  You could copy-paste the code 10 times, but that gets a little tedious, and if you wanted to do it a thousand times (or a million times), forget it.  Also, copy-pasting code is usually a bad idea: what if you realize you want to change some piece of it?  Then you'll need to laboriously change each copy of it.  Boooring!</p>
+<p>A better solution is to use a <code>for</code>-loop for this purpose.  The trick is to choose a sequence of length 10, and then iterate over the sequence: do the task once for each item in the sequence.  It doesn't really matter what we put in the sequence; any sequence will do.</p>
+<p>However, there is a standard idiom for what to put in the sequence.  The typical solution is to create a sequence of consecutive integers, starting at 0, and iterate over it.  If we wanted to do something 1000 times, we'd create a sequence holding the values 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.  Why 9? (and not 10?)  Because that's where we need to end, if we want the list to have 10 items.  (Why not use 1, 2, .., 10?  I'm tempted to say, because computer scientists are just a tad odd.  Actually, there are good reasons for this idiom, but don't worry about it right now.)</p>
+<p>How do we create a sequence 0, 1, .., 9?  It turns out we've already seen how to do that: use <code>np.arange()</code>.</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</pre></div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, now I'm ready to show you how to do something 10 times:</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&#39;Go Bears!&#39;</span><span class="p">)</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Go Bears!
+Go Bears!
+Go Bears!
+Go Bears!
+Go Bears!
+Go Bears!
+Go Bears!
+Go Bears!
+Go Bears!
+Go Bears!
+</pre></div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Strings are sequences, too:</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s">&#39;CAL&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&#39;Give me a &#39;</span><span class="o">+</span><span class="n">c</span><span class="p">)</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Give me a C
+Give me a A
+Give me a L
+</pre></div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this class, you're going to use this a lot for simulation.  For instance, you might code up a way to simulate one round of some gambling game; then you can use a <code>for</code>-loop to repeat the simulation thousands of times and see how often we win.  The great thing about computers is that they're incredibly good at doing a small task repeatedly many times, so this is a perfect match for what they're good at.</p></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Randomized-response">Randomized response<a class="anchor-link" href="#Randomized-response">&#182;</a></h2></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, we'll look at a technique that was designed several decades ago to help conduct surveys of sensitive subjects.  Researchers wanted to ask participants a few questions: Have you ever had an affair?  Do you secretly think you are gay?  Have you ever shoplifted?  Have you ever sung a Justin Bieber song in the shower?  They figured that some people might not respond honestly, because of the social stigma associated with answering "yes".  So, they came up with a clever way to estimate the fraction of the population who are in the "yes" camp, without violating anyone's privacy.</p>
+<p>Here's the idea.  We'll instruct the respondent to roll a fair 6-sided die, secretly, where no one else can see it.  If the die comes up 1, 2, 3, or 4, then respondent is supposed to answer honestly.  If it comes up 5 or 6, the respondent is supposed to answer the <em>opposite</em> of what their true answer would be.  But, they shouldn't reveal what came up on their die.</p>
+<p>Notice how clever this is.  Even if the person says "yes", that doesn't necessarily mean their true answer is "yes" -- they might very well have just rolled a 5 or 6.  So the responses to the survey don't reveal any one individual's true answer.  Yet, in aggregate, the responses give enough information that we can get a pretty good estimate of the fraction of people whose true answer is "yes".</p>
+<p>Let's try a simulation, so we can see how this works.  We'll write some code to perform this operation.  First, a function to simulate rolling one die:</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">dicetbl</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="p">[</span><span class="s">&#39;roll&#39;</span><span class="p">])</span>
+<span class="n">dicetbl</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>roll</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1   </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>2   </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>3   </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>4   </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>5   </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>6   </td>
+        </tr>
+    </tbody>
+</table></div></div></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">rollonedie</span><span class="p">():</span>
+    <span class="n">tbl</span> <span class="o">=</span> <span class="n">dicetbl</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c"># Make a table with one row, chosen at random from dicetbl</span>
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">tbl</span><span class="p">[</span><span class="s">&#39;roll&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">roll</span>
+</pre></div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we'll use this to write a function to simulate how someone is supposed to respond to the survey.  The argument to the function is their true answer; the function returns what they're supposed to tell the interview.</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># 1 stands for &#39;yes&#39;, 0 stands for &#39;no&#39;</span>
+<span class="k">def</span> <span class="nf">respond</span><span class="p">(</span><span class="n">trueanswer</span><span class="p">):</span>
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">rollonedie</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">roll</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="o">-</span><span class="n">trueanswer</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">trueanswer</span>
+</pre></div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can try it.  Assume our true answer is 'no'; let's see what happens this time:</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[48]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre></div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Of course, if you were to run it again, you might get a different result next time.</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[49]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre></div></div></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[50]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre></div></div></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[51]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre></div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OK, so this lets us simulate the behavior of one participant, using randomized response.  Let's simulate what happens if we do this with 10,000 respondents.  We're going to imagine asking 10,000 people whether they've ever sung a Justin Bieber song in teh shower.  We'll imagine there are <code>10000 * p</code> people whose true answer is "yes" and <code>10000 * (1-p)</code> whose true answer is "no", so we'll use one <code>for</code>-loop to simulate the behavior each of the first <code>10000 * p</code> people, and a second <code>for</code>-loop to simulate the behavior of the remaining <code>10000 * (1-p)</code>.  We'll collect all the responses in a table, appending each response to the table as we receive it.</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">responses</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="s">&#39;response&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="mi">10000</span><span class="p">)):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">respond</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">r</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="mi">10000</span><span class="p">)):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">r</span><span class="p">])</span>
+</pre></div></div></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">responses</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[53]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>response</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0       </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>1       </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>1       </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>0       </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>1       </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>1       </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>1       </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>1       </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>0       </td>
+        </tr>
+    </tbody>
+        <tr>
+            <td>1       </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (9990 rows omitted)</p</div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We get a giant table with 10,000 rows, one per simulated participant.  Let's build a histogram and look at how many "yes"s we got and how many "no"s.</p></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+fT3ffvstxcXFdOvWjaioKObPn8+qVauw2+3YbDays7MJCgoyrnQMDg5m5syZLF++HKvVSkhICEuX
+LiUuLo5Ro0YBEBMTw5gxY1i0aBFr167F6/WSlpbG2LFjsdlsl2/2IiJiKg1e0r9r1y5+9atf/bXY
+YjHOhU2fPp1169YB8O///u+8+OKLeDweEhISyM7OJjY21hjj559/5tFHH2Xr1q3U1NQwcuRIVq1a
+Rc+ePY0aj8dDRkYGO3bsACAlJYWsrCyuvvrq/7c3XdIvZqdL+qU9uRSX9Dfpc2ptjUJNzE6hJu1J
+q39OTUREpC1RqImIiGko1ERExDQUaiIiYhoKNRERMQ2FmoiImIZCTURETEOhJiIipqFQExER01Co
+iYiIaSjURETENBRqIiJiGgo1ERExDYWaiIiYhkJNRERMQ6EmIiKmoVATERHTUKiJiIhpKNRERMQ0
+FGoiImIaCjURETENhZqIiJiGQk1EREyjzYXac889x4ABA+jevTujRo1iz549rd2SiIhcIdpUqOXn
+57N48WIeeughdu3aRWJiInfffTdHjx5t7dZEROQK0KZCbd26dcyYMYN77rkHu91OZmYmERER5Obm
+tnZrIiJyBWgzofbzzz+zf/9+Ro8e7bM9OTmZvXv3tlJXIiJyJWkzoVZeXk5dXR3h4eE+28PCwnC7
+3a3UlYiIXEk6tHYDF8PjqWjtFkRahP5fF2mcNvNOLTQ0FD8/v3PelZWVlREREdFKXYmIyJWkzYRa
+x44diY+P57333vPZ/t5775GUlNRKXYmIyJWkTR1+XLBgAQ6HgxtuuIGkpCRyc3Nxu93Mnj27tVsT
+EZErQJsKtQkTJnDq1Cmys7M5ceIE/fr149VXXyUqKqq1WxMRkSuAxePxeFu7CRERkUuhzZxT+3tN
+vVXWZ599xu23306PHj3o168fmZmZLdRp62vKWu3atYvU1FRiY2Pp2bMnw4cPZ/PmzS3Ybetq7i3Y
+vvzyS6KiotrVEYPmrFVOTg6DBw8mIiKC2NhYVqxY0QKdtg1NXa933nmHMWPGcM0112Cz2Zg+fTpf
+fvllC3XbOnbv3s20adPo168fXbt2ZcuWLQ0+pzmv7W0u1Jp6q6wff/yRCRMm0L17d9577z2cTie/
+/e1vefbZZ1u485bX1LUqKioiLi6Ol19+mT179nDvvfeyaNEitm7d2sKdt7zm3oLt559/Zs6cOQwf
+PhyLxdJC3bau5qzVkiVLyM3N5fHHH8flcvHaa68xfPjwFuy69TR1vb766itmzJjBjTfeyK5du3jj
+jTeora2NxQD+AAALqklEQVTl7rvvbuHOW9ZPP/1EXFwcTqeTzp07N/j71NzX9jZ3+PHmm2+mf//+
+rFmzxtg2aNAgxo8fz7Jly86pf/7551mxYgUlJSV06tQJgOzsbHJzc/nLX/7SYn23hqau1fnMnj2b
+uro6Xn755cvVZpvQ3LVavHgxp0+fZtiwYWRkZLSL+5A2da1KSkoYNmwYH3/8MXa7vSVbbROaul5v
+vvkmc+bM4eTJk8YL+4cffsj48eP56quv6Nq1a4v13lqioqLIysoiNTX1/61p7mt7m3qn1pxbZblc
+LoYOHWpM+m/13333Hd98881l7bc1Xarbiv3444+m/yVq7lrt3LmTd955h8zMTLzeNvW332XTnLXa
+vn07vXv35p133mHgwIEMGDCA+fPnc/LkyZZouVU1Z72SkpIIDAzkpZdeoq6ujtOnT7NlyxYGDRpk
++t/Fpmjua3ubCrXm3CrL7XafU2+1Wo19ZnUpbiu2Y8cOPvzwQ2bNmnUZOmw7mrNW3333HYsWLWLT
+pk106dKlJdpsE5qzVkeOHOHbb7/ljTfe4He/+x0bNmygpKSEadOmmf6PgeasV/fu3Xnttdd44okn
+iIiIoFevXhw8eJDf//73LdHyFaO5r+1tKtSao72c57jUCgsLmTdvHpmZmVx//fWt3U6b43A4mDNn
+DjfccENrt9Lm1dfXU1tby4YNGxg6dChDhw5lw4YN/O///i9//vOfW7u9NufIkSPMmDGDGTNm8N57
+77Ft2zaCgoKYNWuW6f8IaIrmvra3qVBrzq2ywsPDz1v/t31mdTG3FduzZw9TpkxhyZIl7eKD7c1Z
+q127dvHUU08RFhZGWFgY//qv/0pVVRVhYWGmPv/YnLWKiIigQ4cOXHvttca2a6+9Fj8/P7799tvL
+2m9ra856vfDCC0RGRrJixQr69+/PsGHD2LhxI7t378blcrVE21eE5r62t6lQa86tshITE9mzZw+1
+tbU+9T179iQ6Ovqy9tuamntbsd27dzNlyhQeeeQR7r///svdZpvQnLXas2cPH330kfFYsmQJnTt3
+5qOPPuJXv/pVS7TdKpqzVkOHDuXs2bMcOXLE2HbkyBHq6upM/TsIzVsvr9fLVVf5vvT+7d/r6+sv
+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
+"
+></div></div></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;response&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[55]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6345</pre></div></div></div></div></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;response&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div></div></div></div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[56]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3655</pre></div></div></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So we polled 10,000 people, and got back 3644 yes responses.</p>
+<p><strong>Exercise for you:</strong> Based on these results, approximately what fraction of the population has truly sung a Justin Bieber song in the shower?</p>
+<p>Take a moment with your partner and work out the answer.</p></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Summing-up">Summing up<a class="anchor-link" href="#Summing-up">&#182;</a></h2></div></div></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This method is called "randomized response".  It is one way to poll people about sensitive subjects, while still protecting their privacy.  You can see how it is a nice example of randomness at work.</p>
+<p>It turns out that randomized response has beautiful generalizations.  For instance, your Chrome web browser uses it to anonymously report feedback to Google, in a way that won't violate your privacy.  That's all we'll say about it for this semester, but if you take an upper-division course, maybe you'll get to see some generalizations of this beautiful technique.</p></div></div></div>
