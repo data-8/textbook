@@ -1,7 +1,7 @@
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
-<div class="inner_cell">
+<div class="ipython-notebook">
+            <div>
+                <a class="interact-button" href="http://ds8.berkeley.edu/hub/interact?file=http://data8.org/text/examples/Classification.ipynb">Interact</a></div>
+            <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This section will discuss machine learning.  Machine learning is a class of techniques for automatically finding patterns in data and using it to draw inferences or make predictions.  We're going to focus on a particular kind of machine learning, namely, <em>classification</em>.</p>
 <p>Classification is about learning how to make predictions from past examples: we're given some examples where we have been told what the correct prediction was, and we want to learn from those examples how to make good predictions in the future.  Here are a few applications where classification is used in practice:</p>
@@ -18,28 +18,16 @@
 <p>All of these are classification tasks.  Notice that in each of these examples, the prediction is a yes/no question -- we call this <em>binary classification</em>, because there are only two possible predictions.  In a classification task, we have a bunch of <em>observations</em>.  Each observation represents a single individual or a single situation where we'd like to make a prediction.  Each observation has multiple <em>attributes</em>, which are known (e.g., the total value of the order; voter's annual salary; and so on).  Also, each observation has a <em>class</em>, which is the answer to the question we care about (e.g., yes or no; fraudulent or not; etc.).</p>
 <p>For instance, with the Amazon example, each order corresponds to a single observation.  Each observation has several attributes (e.g., the total value of the order, whether the order is being shipped to an address this customer has used before, and so on).  The class of the observation is either 0 or 1, where 0 means that the order is not fraudulent and 1 means that the order is fraudulent.  Given the attributes of some new order, we are trying to predict its class.</p>
 <p>Classification requires data.  It involves looking for patterns, and to find patterns, you need data.  That's where the data science comes in.  In particular, we're going to assume that we have access to <em>training data</em>: a bunch of observations, where we know the class of each observation.  The collection of these pre-classified observations is also called a training set.  A classification algorithm is going to analyze the training set, and then come up with a classifier: an algorithm for predicting the class of future observations.</p>
-<p>Note that classifiers do not need to be perfect to be useful.  They can be useful even if their accuracy is less than 100%.  For instance, if the online dating site occasionally makes a bad recommendation, that's OK; their customers already expect to have to meet many people before they'll find someone they hit it off with.  Of course, you don't want the classifier to make too many errors -- but it doesn't have to get the right answer every single time.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Note that classifiers do not need to be perfect to be useful.  They can be useful even if their accuracy is less than 100%.  For instance, if the online dating site occasionally makes a bad recommendation, that's OK; their customers already expect to have to meet many people before they'll find someone they hit it off with.  Of course, you don't want the classifier to make too many errors -- but it doesn't have to get the right answer every single time.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Chronic-kidney-disease">Chronic kidney disease<a class="anchor-link" href="#Chronic-kidney-disease">&#182;</a></h3><p>Let's work through an example.  We're going to work with a data set that was collected to help doctors diagnose chronic kidney disease (CKD).  Each row in the data set represents a single patient who was treated in the past and whose diagnosis is known.  For each patient, we have a bunch of measurements from a blood test.  We'd like to find which measurements are most useful for diagnosing CKD, and develop a way to classify future patients as "has CKD" or "doesn't have CKD" based on their blood test results.</p>
-<p>Let's load the data set into a table and look at it.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[145]:</div>
+<h3 id="Chronic-kidney-disease">Chronic kidney disease<a class="anchor-link" href="#Chronic-kidney-disease">¶</a></h3><p>Let's work through an example.  We're going to work with a data set that was collected to help doctors diagnose chronic kidney disease (CKD).  Each row in the data set represents a single patient who was treated in the past and whose diagnosis is known.  For each patient, we have a bunch of measurements from a blood test.  We'd like to find which measurements are most useful for diagnosing CKD, and develop a way to classify future patients as "has CKD" or "doesn't have CKD" based on their blood test results.</p>
+<p>Let's load the data set into a table and look at it.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ckd</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">&#39;ckd.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">ckd</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'ckd.csv'</span><span class="p">)</span>
 <span class="n">ckd</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[145]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -52,74 +40,57 @@
             <td>48  </td> <td>70            </td> <td>1.005           </td> <td>4      </td> <td>0    </td> <td>normal         </td> <td>abnormal</td> <td>present        </td> <td>notpresent</td> <td>117                 </td> <td>56        </td> <td>3.8             </td> <td>111   </td> <td>2.5      </td> <td>11.2      </td> <td>32                </td> <td>6700                  </td> <td>3.9                 </td> <td>yes         </td> <td>no               </td> <td>no                     </td> <td>poor    </td> <td>yes        </td> <td>yes   </td> <td>1    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>53  </td> <td>90            </td> <td>1.02            </td> <td>2      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>present        </td> <td>notpresent</td> <td>70                  </td> <td>107       </td> <td>7.2             </td> <td>114   </td> <td>3.7      </td> <td>9.5       </td> <td>29                </td> <td>12100                 </td> <td>3.7                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>poor    </td> <td>no         </td> <td>yes   </td> <td>1    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>63  </td> <td>70            </td> <td>1.01            </td> <td>3      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>present        </td> <td>notpresent</td> <td>380                 </td> <td>60        </td> <td>2.7             </td> <td>131   </td> <td>4.2      </td> <td>10.8      </td> <td>32                </td> <td>4500                  </td> <td>3.8                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>poor    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>68  </td> <td>80            </td> <td>1.01            </td> <td>3      </td> <td>2    </td> <td>normal         </td> <td>abnormal</td> <td>present        </td> <td>present   </td> <td>157                 </td> <td>90        </td> <td>4.1             </td> <td>130   </td> <td>6.4      </td> <td>5.6       </td> <td>16                </td> <td>11000                 </td> <td>2.6                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>poor    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>61  </td> <td>80            </td> <td>1.015           </td> <td>2      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>173                 </td> <td>148       </td> <td>3.9             </td> <td>135   </td> <td>5.2      </td> <td>7.7       </td> <td>24                </td> <td>9200                  </td> <td>3.2                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>poor    </td> <td>yes        </td> <td>yes   </td> <td>1    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>48  </td> <td>80            </td> <td>1.025           </td> <td>4      </td> <td>0    </td> <td>normal         </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>95                  </td> <td>163       </td> <td>7.7             </td> <td>136   </td> <td>3.8      </td> <td>9.8       </td> <td>32                </td> <td>6900                  </td> <td>3.4                 </td> <td>yes         </td> <td>no               </td> <td>no                     </td> <td>good    </td> <td>no         </td> <td>yes   </td> <td>1    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>69  </td> <td>70            </td> <td>1.01            </td> <td>3      </td> <td>4    </td> <td>normal         </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>264                 </td> <td>87        </td> <td>2.7             </td> <td>130   </td> <td>4        </td> <td>12.5      </td> <td>37                </td> <td>9600                  </td> <td>4.1                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>good    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>73  </td> <td>70            </td> <td>1.005           </td> <td>0      </td> <td>0    </td> <td>normal         </td> <td>normal  </td> <td>notpresent     </td> <td>notpresent</td> <td>70                  </td> <td>32        </td> <td>0.9             </td> <td>125   </td> <td>4        </td> <td>10        </td> <td>29                </td> <td>18900                 </td> <td>3.5                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>good    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>73  </td> <td>80            </td> <td>1.02            </td> <td>2      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>253                 </td> <td>142       </td> <td>4.6             </td> <td>138   </td> <td>5.8      </td> <td>10.5      </td> <td>33                </td> <td>7200                  </td> <td>4.3                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>good    </td> <td>no         </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>46  </td> <td>60            </td> <td>1.01            </td> <td>1      </td> <td>0    </td> <td>normal         </td> <td>normal  </td> <td>notpresent     </td> <td>notpresent</td> <td>163                 </td> <td>92        </td> <td>3.3             </td> <td>141   </td> <td>4        </td> <td>9.8       </td> <td>28                </td> <td>14600                 </td> <td>3.2                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>good    </td> <td>no         </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
 </table>
-<p>... (148 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (148 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We have data on 158 patients.  There are an awful lot of attributes here.  The column labelled "Class" indicates whether the patient was diagnosed with CKD: 1 means they have CKD, 0 means they do not have CKD.</p>
-<p>Let's look at two columns in particular: the hemoglobin level (in the patient's blood), and the blood glucose level (at a random time in the day; without fasting specially for the blood test).  We'll draw a scatter plot, to make it easy to visualize this.  Red dots are patients with CKD; blue dots are patients without CKD.  What test results seem to indicate CKD?</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[146]:</div>
+<p>Let's look at two columns in particular: the hemoglobin level (in the patient's blood), and the blood glucose level (at a random time in the day; without fasting specially for the blood test).  We'll draw a scatter plot, to make it easy to visualize this.  Red dots are patients with CKD; blue dots are patients without CKD.  What test results seem to indicate CKD?</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ckd</span><span class="p">[</span><span class="s">&#39;Hemoglobin&#39;</span><span class="p">],</span> <span class="n">ckd</span><span class="p">[</span><span class="s">&#39;Blood Glucose Random&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="p">[</span><span class="s">&#39;Class&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Hemoglobin&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Glucose&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[146]:</div>
-
-
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ckd</span><span class="p">[</span><span class="s">'Hemoglobin'</span><span class="p">],</span> <span class="n">ckd</span><span class="p">[</span><span class="s">'Blood Glucose Random'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="p">[</span><span class="s">'Class'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Hemoglobin'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Glucose'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7f0ef64efc50&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;matplotlib.text.Text at 0x7f0ef64efc50&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAj8AAAIcCAYAAAAZlM+vAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcVmX+//HXzc0OsiiLeCuCgIq5ZS6luWZpLqWllZVN
@@ -674,41 +645,23 @@ vvoqZ86c4aOPPiIzM5Pw8HDmzZunVdSwomup7Gcs+4AJce8pMjMz5SuGEKLOKy0txdfXl379+rFo
 HOG7774jODiYvn376rp5Qggdk/AjhKhzgoKCMDc3Z+nSpWRlZWFvb89TTz3FtGnTUCrlbU+I+k7m
 /AghhBCiXpE5P0IIIYSoVyT8CCGEEKJekfAjhBBCiHpFwo8QQggh6hUJP0IIIYSoVyT8CCGEEKJe
 +X/GTLh9NHxzWQAAAABJRU5ErkJggg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Suppose Alice is a new patient who is not in the data set.  If I tell you Alice's hemoglobin level and blood glucose level, could you predict whether she has CKD?  It sure looks like it!  You can see a very clear pattern here: points in the lower-right tend to represent people who don't have CKD, and the rest tend to be folks with CKD.  To a human, the pattern is obvious.  But how can we program a computer to automatically detect patterns such as this one?</p>
 <p>Well, there are lots of kinds of patterns one might look for, and lots of algorithms for classification.  But I'm going to tell you about one that turns out to be surprisingly effective.  It is called <em>nearest neighbor classification</em>.  Here's the idea.  If we have Alice's hemoglobin and glucose numbers, we can put her somewhere on this scatterplot; the hemoglobin is her x-coordinate, and the glucose is her y-coordinate.  Now, to predict whether she has CKD or not, we find the nearest point in the scatterplot and check whether it is red or blue; we predict that Alice should receive the same diagnosis as that patient.</p>
 <p>In other words, to classify Alice as CKD or not, we find the patient in the training set who is "nearest" to Alice, and then use that patient's diagnosis as our prediction for Alice.  The intuition is that if two points are near each other in the scatterplot, then the corresponding measurements are pretty similar, so we might expect them to receive the same diagnosis (more likely than not).  We don't know Alice's diagnosis, but we do know the diagnosis of all the patients in the training set, so we find the patient in the training set who is most similar to Alice, and use that patient's diagnosis to predict Alice's diagnosis.</p>
 <p>The scatterplot suggests that this <em>nearest neighbor classifier</em> should be pretty accurate.  Points in the lower-right will tend to receive a "no CKD" diagnosis, as their nearest neighbor will be a blue point.  The rest of the points will tend to receive a "CKD" diagnosis, as their nearest neighbor will be a red point.  So the nearest neighbor strategy seems to capture our intuition pretty well, for this example.</p>
-<p>However, the separation between the two classes won't always be quite so clean.  For instance, suppose that instead of hemoglobin levels we were to look at white blood cell count.  Look at what happens:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[147]:</div>
+<p>However, the separation between the two classes won't always be quite so clean.  For instance, suppose that instead of hemoglobin levels we were to look at white blood cell count.  Look at what happens:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ckd</span><span class="p">[</span><span class="s">&#39;White Blood Cell Count&#39;</span><span class="p">],</span> <span class="n">ckd</span><span class="p">[</span><span class="s">&#39;Blood Glucose Random&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="p">[</span><span class="s">&#39;Class&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;White Blood Cell Count&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Glucose&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[147]:</div>
-
-
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ckd</span><span class="p">[</span><span class="s">'White Blood Cell Count'</span><span class="p">],</span> <span class="n">ckd</span><span class="p">[</span><span class="s">'Blood Glucose Random'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="p">[</span><span class="s">'Class'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'White Blood Cell Count'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Glucose'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7f0ef64964a8&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;matplotlib.text.Text at 0x7f0ef64964a8&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkwAAAIcCAYAAAAE6vE0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlclWX+//H34QCyyX4ARXEBRBTXLAszl6y0zDQttUZH
@@ -1248,42 +1201,25 @@ VW0rpVLJmjVrCA4OZv78+VhbWzNu3Dg6depU5kGAiu6z8o4vX76c6dOnM2PGDPLy8nj66aclMIl6
 R5GWlibr2QshhBBCVELmMAkhhBBCaCGBSQghhBBCCwlMQgghhBBaSGASQgghhNBCApMQQgghhBYS
 mIQQQgghtJDAJIQQQgihhQQmIYQQQggtJDAJIYQQQmghgUkIIYQQQov/B+B+hsRnUA6AAAAAAElF
 TkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you can see, non-CKD individuals are all clustered in the lower-left.  Most of the patients with CKD are above or to the right of that cluster... but not all.  There are some patients with CKD who are in the lower left of the above figure (as indicated by the handful of red dots scattered among the blue cluster).  What this means is that you can't tell for certain whether someone has CKD from just these two blood test measurements.</p>
 <p>If we are given Alice's glucose level and white blood cell count, can we predict whether she has CKD?  Yes, we can make a prediction, but we shouldn't expect it to be 100% accurate.  Intuitively, it seems like there's a natural strategy for predicting: plot where Alice lands in the scatter plot; if she is in the lower-left, predict that she doesn't have CKD, otherwise predict she has CKD.  This isn't perfect -- our predictions will sometimes be wrong.  (Take a minute and think it through: for which patients will it make a mistake?)  As the scatterplot above indicates, sometimes people with CKD have glucose and white blood cell levels that look identical to those of someone without CKD, so any classifier is inevitably going to make the wrong prediction for them.</p>
 <p>Can we automate this on a computer?  Well, the nearest neighbor classifier would be a reasonable choice here too.  Take a minute and think it through: how will its predictions compare to those from the intuitive strategy above?  When will they differ?  Its predictions will be pretty similar to our intuitive strategy, but occasionally it will make a different prediction.  In particular, if Alice's blood test results happen to put her right near one of the red dots in the lower-left, the intuitive strategy would predict "not CKD", whereas the nearest neighbor classifier will predict "CKD".</p>
 <p>There is a simple generalization of the nearest neighbor classifier that fixes this anomaly.  It is called the <em>k-nearest neighbor classifier</em>.  To predict Alice's diagnosis, rather than looking at just the one neighbor closest to her, we can look at the 3 points that are closest to her, and use the diagnosis for each of those 3 points to predict Alice's diagnosis.  In particular, we'll use the majority value among those 3 diagnoses as our prediction for Alice's diagnosis.  Of course, there's nothing special about the number 3: we could use 4, or 5, or more.  (It's often convenient to pick an odd number, so that we don't have to deal with ties.)  In general, we pick a number $k$, and our predicted diagnosis for Alice is based on the $k$ patients in the training set who are closest to Alice.  Intuitively, these are the $k$ patients whose blood test results were most similar to Alice, so it seems reasonable to use their diagnoses to predict Alice's diagnosis.</p>
-<p>The $k$-nearest neighbor classifier will now behave just like our intuitive strategy above.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>The $k$-nearest neighbor classifier will now behave just like our intuitive strategy above.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Decision-boundary">Decision boundary<a class="anchor-link" href="#Decision-boundary">&#182;</a></h3><p>Sometimes a helpful way to visualize a classifier is to map the region of space where the classifier would predict 'CKD', and the region of space where it would predict 'not CKD'.  We end up with some boundary between the two, where points on one side of the boundary will be classified 'CKD' and points on the other side will be classified 'not CKD'.  This boundary is called the <em>decision boundary</em>.  Each different classifier will have a different decision boundary; the decision boundary is just a way to visualize what criteria the classifier is using to classify points.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<h3 id="Decision-boundary">Decision boundary<a class="anchor-link" href="#Decision-boundary">¶</a></h3><p>Sometimes a helpful way to visualize a classifier is to map the region of space where the classifier would predict 'CKD', and the region of space where it would predict 'not CKD'.  We end up with some boundary between the two, where points on one side of the boundary will be classified 'CKD' and points on the other side will be classified 'not CKD'.  This boundary is called the <em>decision boundary</em>.  Each different classifier will have a different decision boundary; the decision boundary is just a way to visualize what criteria the classifier is using to classify points.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Banknote-authentication">Banknote authentication<a class="anchor-link" href="#Banknote-authentication">&#182;</a></h3><p>Let's do another example.  This time we'll look at predicting whether a banknote (e.g., a \$20 bill) is counterfeit or legitimate.  Researchers have put together a data set for us, based on photographs of many individual banknotes: some counterfeit, some legitimate.  They computed a few numbers from each image, using techniques that we won't worry about for this course.  So, for each banknote, we know a few numbers that were computed from a photograph of it as well as its class (whether it is counterfeit or not).  Let's load it into a table and take a look.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[148]:</div>
+<h3 id="Banknote-authentication">Banknote authentication<a class="anchor-link" href="#Banknote-authentication">¶</a></h3><p>Let's do another example.  This time we'll look at predicting whether a banknote (e.g., a \$20 bill) is counterfeit or legitimate.  Researchers have put together a data set for us, based on photographs of many individual banknotes: some counterfeit, some legitimate.  They computed a few numbers from each image, using techniques that we won't worry about for this course.  So, for each banknote, we know a few numbers that were computed from a photograph of it as well as its class (whether it is counterfeit or not).  Let's load it into a table and take a look.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">banknotes</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">&#39;banknote.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">banknotes</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'banknote.csv'</span><span class="p">)</span>
 <span class="n">banknotes</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[148]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -1296,71 +1232,54 @@ TkSuQmCC
             <td>3.6216    </td> <td>8.6661     </td> <td>-2.8073    </td> <td>-0.44699</td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4.5459    </td> <td>8.1674     </td> <td>-2.4586    </td> <td>-1.4621 </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3.866     </td> <td>-2.6383    </td> <td>1.9242     </td> <td>0.10645 </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3.4566    </td> <td>9.5228     </td> <td>-4.0112    </td> <td>-3.5944 </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>0.32924   </td> <td>-4.4552    </td> <td>4.5718     </td> <td>-0.9888 </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4.3684    </td> <td>9.6718     </td> <td>-3.9606    </td> <td>-3.1625 </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3.5912    </td> <td>3.0129     </td> <td>0.72888    </td> <td>0.56421 </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2.0922    </td> <td>-6.81      </td> <td>8.4636     </td> <td>-0.60216</td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3.2032    </td> <td>5.7588     </td> <td>-0.75345   </td> <td>-0.61251</td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1.5356    </td> <td>9.1772     </td> <td>-2.2718    </td> <td>-0.73535</td> <td>0    </td>
         </tr>
     </tbody>
 </table>
-<p>... (1362 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (1362 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's look at whether the first two numbers tell us anything about whether the banknote is counterfeit or not.  Here's a scatterplot:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[149]:</div>
+<p>Let's look at whether the first two numbers tell us anything about whether the banknote is counterfeit or not.  Here's a scatterplot:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s">&#39;WaveletVar&#39;</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">&#39;WaveletCurt&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="p">[</span><span class="s">&#39;Class&#39;</span><span class="p">])</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[149]:</div>
-
-
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletVar'</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletCurt'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'Class'</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.collections.PathCollection at 0x7f0ef6434470&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;matplotlib.collections.PathCollection at 0x7f0ef6434470&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAiYAAAIFCAYAAADm9jbeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd8U/X+x/FX0iRNm6R7bzqgpaXsKXvvoYLg4HLVK+LW
@@ -3047,37 +2966,19 @@ DcqDrmfPnmRlZfHZZ5+RlpZG/fr1WbZsGd7e3jU9tPtq/vz5KBSKcleKQL8I9saCyEeFQqF46NfW
 ADRp0oTFixczefJkZsyYgY+PDx988MFDWZ/or6ZOnYqtrS1jx441TNW+8MILvPPOO3d8ntHXMRFC
 CCHEo+Ph2YMohBBCiAeeBBMhhBBCGA0JJkIIIYQwGhJMhBBCCGE0JJgIIYQQwmhIMBFCCCGE0ZBg
 IoQQQgijIcFECCGEEEZDgokQQgghjMb/A/dEUJrPIWCuAAAAAElFTkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pretty interesting!  Those two measurements do seem helpful for predicting whether the banknote is counterfeit or not.  However, in this example you can now see that there is some overlap between the blue cluster and the red cluster.  This indicates that there will be some images where it's hard to tell whether the banknote is legitimate based on just these two numbers.  Still, you could use a $k$-nearest neighbor classifier to predict the legitimacy of a banknote.</p>
 <p>Take a minute and think it through: Suppose we used $k=11$ (say).  What parts of the plot would the classifier get right, and what parts would it make errors on?  What would the decision boundary look like?</p>
-<p>The patterns that show up in the data can get pretty wild.  For instance, here's what we'd get if used a different pair of measurements from the images:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[150]:</div>
+<p>The patterns that show up in the data can get pretty wild.  For instance, here's what we'd get if used a different pair of measurements from the images:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s">&#39;WaveletSkew&#39;</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">&#39;Entropy&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="p">[</span><span class="s">&#39;Class&#39;</span><span class="p">])</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[150]:</div>
-
-
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletSkew'</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">'Entropy'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'Class'</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.collections.PathCollection at 0x7f0ef639f1d0&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;matplotlib.collections.PathCollection at 0x7f0ef639f1d0&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAioAAAIFCAYAAAD8ytZQAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4k2Xbx/FvkqZNR5ruvReFMsseMhUEZCsgIrgHCuIC
@@ -4597,43 +4498,23 @@ sLBQMTExevnllzVw4ECjYxlu8uTJ2rp1q0pLSxUQEKD+/fsrLS1NkZGRRkdzuO9/R0mNfwY/9NBD
 Wrp0qSTpT3/6k959912Vl5erX79+euWVV1rNDfKaGp9Fixbp4Ycf1t69e3XhwgUFBwdryJAhSktL
 U0hISJPrNVVRAQAA+CHT30cFAAC0XhQVAABgWhQVAABgWhQVAABgWhQVAABgWhQVAABgWhQVAABg
 WhQVAABgWhQVAABgWv8HzGmE5pRQtsIAAAAASUVORK5CYII=
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There does seem to be a pattern, but it's a pretty complex one.  Nonetheless, the $k$-nearest neighbors classifier can still be used and will effectively "discover" patterns out of this.  This illustrates how powerful machine learning can be: it can effectively take advantage of even patterns that we would not have anticipated, or that we would have thought to "program into" the computer.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>There does seem to be a pattern, but it's a pretty complex one.  Nonetheless, the $k$-nearest neighbors classifier can still be used and will effectively "discover" patterns out of this.  This illustrates how powerful machine learning can be: it can effectively take advantage of even patterns that we would not have anticipated, or that we would have thought to "program into" the computer.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Multiple-attributes">Multiple attributes<a class="anchor-link" href="#Multiple-attributes">&#182;</a></h3><p>So far I've been assuming that we have exactly 2 attributes that we can use to help us make our prediction.  What if we have more than 2?  For instance, what if we have 3 attributes?</p>
+<h3 id="Multiple-attributes">Multiple attributes<a class="anchor-link" href="#Multiple-attributes">¶</a></h3><p>So far I've been assuming that we have exactly 2 attributes that we can use to help us make our prediction.  What if we have more than 2?  For instance, what if we have 3 attributes?</p>
 <p>Here's the cool part: you can use the same ideas for this case, too.  All you have to do is make a 3-dimensional scatterplot, instead of a 2-dimensional plot.  You can still use the $k$-nearest neighbors classifier, but now computing distances in 3 dimensions instead of just 2.  It just works.  Very cool!</p>
 <p>In fact, there's nothing special about 2 or 3.  If you have 4 attributes, you can use the $k$-nearest neighbors classifier in 4 dimensions.  5 attributes?  Work in 5-dimensional space.  And no need to stop there!  This all works for arbitrarily many attributes; you just work in a very high dimensional space.  It gets wicked-impossible to visualize, but that's OK.  The computer algorithm generalizes very nicely: all you need is the ability to compute the distance, and that's not hard.  Mind-blowing stuff!</p>
-<p>For instance, let's see what happens if we try to predict whether a banknote is counterfeit or not using 3 of the measurements, instead of just 2.  Here's what you get:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[151]:</div>
+<p>For instance, let's see what happens if we try to predict whether a banknote is counterfeit or not using 3 of the measurements, instead of just 2.  Here's what you get:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s">&#39;3d&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s">&#39;WaveletSkew&#39;</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">&#39;WaveletVar&#39;</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">&#39;WaveletCurt&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="p">[</span><span class="s">&#39;Class&#39;</span><span class="p">])</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[151]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s">'3d'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletSkew'</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletVar'</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletCurt'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'Class'</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;mpl_toolkits.mplot3d.art3d.Path3DCollection at 0x7f0ef63f9e80&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;mpl_toolkits.mplot3d.art3d.Path3DCollection at 0x7f0ef63f9e80&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgMAAAHsCAYAAABPIa6dAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmUXGWd9z+39uq9O72ml+x7JwSSQAgkSEhABYksjoA4
@@ -6010,10 +5891,7 @@ MHDgQHC5XFy6dAmTJk2S67M1NTURHR2Nn3/+GT4+PigrK4O5uTn27t0LNzc3uT6bEFmiZIAQ8lXp
 HByMyZMnw8DAAC9fvkRgYCAMDAxoz54QKdDRQkKIUmuuNfKOHTswZ84cZGVl4cOHDzA0NISTkxM2
 btwIY2NjJsMmRKVQMkAIIYSoOaoZIIQQQtQcJQOEEEKImqNkgBBCCFFzlAwQQgghao6SAUIIIUTN
 /R8PricoGeCm2gAAAABJRU5ErkJggg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Awesome!  With just 2 attributes, there was some overlap between the two clusters (which means that the classifier was bound to make some mistakes for pointers in the overlap).  But when we use these 3 attributes, the two clusters have almost no overlap.  In other words, a classifier that uses these 3 attributes will be more accurate than one that only uses the 2 attributes.</p>
@@ -6023,36 +5901,24 @@ btwIY2NjJsMmRKVQMkAIIYSoOaoZIIQQQtQcJQOEEEKImqNkgBBCCFFzlAwQQgghao6SAUIIIUTN
 <li>identify some attributes that you think might help you predict the answer to the question;</li>
 <li>gather a training set of examples where you know the values of the attributes as well as the correct prediction;</li>
 <li>to make predictions in the future, measure the value of the attributes and then use $k$-nearest neighbor classification to predict the answer to the question.</li>
-</ol></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</ol></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Breast-cancer-diagnosis">Breast cancer diagnosis<a class="anchor-link" href="#Breast-cancer-diagnosis">&#182;</a></h2><p>Now I want to do a more extended example based on diagnosing breast cancer.  I was inspired by Brittany Wenger, who won the Google national science fair three years ago as a 17-year old high school student.  Here's Brittany:</p>
-<p><img src="http://i.huffpost.com/gen/701499/thumbs/o-GSF83-570.jpg?3" alt="Brittany Wenger"></p>
+<h2 id="Breast-cancer-diagnosis">Breast cancer diagnosis<a class="anchor-link" href="#Breast-cancer-diagnosis">¶</a></h2><p>Now I want to do a more extended example based on diagnosing breast cancer.  I was inspired by Brittany Wenger, who won the Google national science fair three years ago as a 17-year old high school student.  Here's Brittany:</p>
+<p><img alt="Brittany Wenger" src="http://i.huffpost.com/gen/701499/thumbs/o-GSF83-570.jpg?3"/></p>
 <p>Brittany's science fair project was to build a classification algorithm to diagnose breast cancer.  She won grand prize for building an algorithm whose accuracy was almost 99%.</p>
 <p>Let's see how well we can do, with the ideas we've learned in this course.</p>
 <p>So, let me tell you a little bit about the data set.  Basically, if a woman has a lump in her breast, the doctors may want to take a biopsy to see if it is cancerous.  There are several different procedures for doing that.  Brittany focused on fine needle aspiration (FNA), because it is less invasive than the alternatives.  The doctor gets a sample of the mass, puts it under a microscope, takes a picture, and a trained lab tech analyzes the picture to determine whether it is cancer or not.  We get a picture like one of the following:</p>
-<p><img src="https://lh5.googleusercontent.com/sYFBBiw6XB2uEkQBTLCDqQvfi1vzId7q-EFvGIkeEqgaq-c7Q7HEaT5tdUIM8rU7l5-a9E_8gZzqDhnFEu7xV8MnXAeez41Ckq9DN0wO_S8nEY0rqek" alt="benign"></p>
-<p><img src="https://lh5.googleusercontent.com/OpQSE0LmsWmYTahY3XAwb0RTPUluMhwT_FEbKhF7OU27iVxHk6on9VTruCW2loeks6HICe3Chjg4zXZxp9ko0rQhC3X_QeThTZFyaQc87RTZaGzoc7Y" alt="cancer"></p>
+<p><img alt="benign" src="https://lh5.googleusercontent.com/sYFBBiw6XB2uEkQBTLCDqQvfi1vzId7q-EFvGIkeEqgaq-c7Q7HEaT5tdUIM8rU7l5-a9E_8gZzqDhnFEu7xV8MnXAeez41Ckq9DN0wO_S8nEY0rqek"/></p>
+<p><img alt="cancer" src="https://lh5.googleusercontent.com/OpQSE0LmsWmYTahY3XAwb0RTPUluMhwT_FEbKhF7OU27iVxHk6on9VTruCW2loeks6HICe3Chjg4zXZxp9ko0rQhC3X_QeThTZFyaQc87RTZaGzoc7Y"/></p>
 <p>Unfortunately, distinguishing between benign vs malignant can be tricky.  So, researchers have studied using machine learning to help with this task.  The idea is that we'll ask the lab tech to analyze the image and compute various attributes: things like the typical size of a cell, how much variation there is among the cell sizes, and so on.  Then, we'll try to use this information to predict (classify) whether the sample is malignant or not.  We have a training set of past samples from women where the correct diagnosis is known, and we'll hope that our machine learning algorithm can use those to learn how to predict the diagnosis for future samples.</p>
-<p>We end up with the following data set.  For the "Class" column, 1 means malignant (cancer); 0 means benign (not cancer).</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[152]:</div>
+<p>We end up with the following data set.  For the "Class" column, 1 means malignant (cancer); 0 means benign (not cancer).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">patients</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">&#39;breast-cancer.csv&#39;</span><span class="p">)</span>
-<span class="n">patients</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">&#39;ID&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">patients</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'breast-cancer.csv'</span><span class="p">)</span>
+<span class="n">patients</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'ID'</span><span class="p">)</span>
 <span class="n">patients</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[152]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -6065,73 +5931,56 @@ btwIY2NjJsMmRKVQMkAIIYSoOaoZIIQQQtQcJQOEEEKImqNkgBBCCFFzlAwQQgghao6SAUIIIUTN
             <td>5              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5              </td> <td>4                      </td> <td>4                       </td> <td>5                </td> <td>7                          </td> <td>10         </td> <td>3              </td> <td>2              </td> <td>1      </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>2          </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6              </td> <td>8                      </td> <td>8                       </td> <td>1                </td> <td>3                          </td> <td>4          </td> <td>3              </td> <td>7              </td> <td>1      </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4              </td> <td>1                      </td> <td>1                       </td> <td>3                </td> <td>2                          </td> <td>1          </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>8              </td> <td>10                     </td> <td>10                      </td> <td>8                </td> <td>7                          </td> <td>10         </td> <td>9              </td> <td>7              </td> <td>1      </td> <td>1    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>10         </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2              </td> <td>1                      </td> <td>2                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>1              </td> <td>1              </td> <td>5      </td> <td>0    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4              </td> <td>2                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>2              </td> <td>1              </td> <td>1      </td> <td>0    </td>
         </tr>
     </tbody>
 </table>
-<p>... (673 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (673 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So we have 9 different attributes.  I don't know how to make a 9-dimensional scatterplot of all of them, so I'm going to pick two and plot them:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[153]:</div>
+<p>So we have 9 different attributes.  I don't know how to make a 9-dimensional scatterplot of all of them, so I'm going to pick two and plot them:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">patients</span><span class="p">[</span><span class="s">&#39;Bland Chromatin&#39;</span><span class="p">],</span> <span class="n">patients</span><span class="p">[</span><span class="s">&#39;Single Epithelial Cell Size&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="p">[</span><span class="s">&#39;Class&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Bland Chromatin&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Single Epithelial Cell Size&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[153]:</div>
-
-
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">patients</span><span class="p">[</span><span class="s">'Bland Chromatin'</span><span class="p">],</span> <span class="n">patients</span><span class="p">[</span><span class="s">'Single Epithelial Cell Size'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="p">[</span><span class="s">'Class'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Bland Chromatin'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Single Epithelial Cell Size'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7f0ef62fc7f0&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;matplotlib.text.Text at 0x7f0ef62fc7f0&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjUAAAIcCAYAAAAOtl9mAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FHXiBvB303vvpBcIBEIL0kEQUCBwShdPRZAmWE5F
@@ -6569,39 +6418,21 @@ SUk4ePAgGhsb0bNnT4SFhWHhwoVt3n97j7ctjo6O+OWXX/Dee+9hy5YtqK2thUKhwIYNGzB9+vQO
 6gAAAGRJREFUyXB2dn6g737iMhaRLiOVSsWqT0RERAaPe2qIiIhIElhqiIiISBJYaoiIiEgSWGqI
 iIhIElhqiIiISBJYaoiIiEgSWGqIiIhIElhqiIiISBJYaoiIiEgSWGqIiIhIEv4/wyW89lrZnkcA
 AAAASUVORK5CYII=
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Oops.  That plot is utterly misleading, because there are a bunch of points that have identical values for both the x- and y-coordinates.  To make it easier to see all the data points, I'm going to add a little bit of random jitter to the x- and y-values.  Here's how that looks:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[154]:</div>
+<p>Oops.  That plot is utterly misleading, because there are a bunch of points that have identical values for both the x- and y-coordinates.  To make it easier to see all the data points, I'm going to add a little bit of random jitter to the x- and y-values.  Here's how that looks:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">randomize_column</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">randomize_column</span><span class="p">(</span><span class="n">patients</span><span class="p">[</span><span class="s">&#39;Bland Chromatin&#39;</span><span class="p">]),</span> <span class="n">randomize_column</span><span class="p">(</span><span class="n">patients</span><span class="p">[</span><span class="s">&#39;Single Epithelial Cell Size&#39;</span><span class="p">]),</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="p">[</span><span class="s">&#39;Class&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Bland Chromatin (jittered)&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Single Epithelial Cell Size (jittered)&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[154]:</div>
-
-
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">randomize_column</span><span class="p">(</span><span class="n">patients</span><span class="p">[</span><span class="s">'Bland Chromatin'</span><span class="p">]),</span> <span class="n">randomize_column</span><span class="p">(</span><span class="n">patients</span><span class="p">[</span><span class="s">'Single Epithelial Cell Size'</span><span class="p">]),</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="p">[</span><span class="s">'Class'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Bland Chromatin (jittered)'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Single Epithelial Cell Size (jittered)'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7f0ef62657b8&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;matplotlib.text.Text at 0x7f0ef62657b8&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjUAAAIcCAYAAAAOtl9mAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VGXCxuHfJJPeGz0JJYHQm/QmGLHQpKq4VgQUP92m
@@ -7458,27 +7289,19 @@ L0IIYQCffPIJX3zxBadOndKNmFu3bh2vv/4658+fx83NzcARlo8TJ07QuXNnwsLC8Pf3N3Q44j9E
 CE9PzxLXAxNClC6pqRFCiDIQERHBrFmz8PLyYvny5YYOR4j/BKmpEUIIIUSVIDU1QgghhKgSJKkR
 QgghRJUgSY0QQgghqgRJaoQQQghRJUhSI4QQQogqQZIaIYQQQlQJ/wdMz9cZXWMchwAAAABJRU5E
 rkJggg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For instance, you can see there are lots of samples with chromatin = 2 and epithelial cell size = 2; all non-cancerous.</p>
-<p>Keep in mind that the jittering is just for visualization purposes, to make it easier to get a feeling for the data.  When we want to work with the data, we'll use the original (unjittered) data.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Keep in mind that the jittering is just for visualization purposes, to make it easier to get a feeling for the data.  When we want to work with the data, we'll use the original (unjittered) data.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Applying-the-k-nearest-neighbor-classifier-to-breast-cancer-diagnosis">Applying the k-nearest neighbor classifier to breast cancer diagnosis<a class="anchor-link" href="#Applying-the-k-nearest-neighbor-classifier-to-breast-cancer-diagnosis">&#182;</a></h3><p>We've got a data set.  Let's try out the $k$-nearest neighbor classifier and see how it does.  This is going to be great.</p>
+<h3 id="Applying-the-k-nearest-neighbor-classifier-to-breast-cancer-diagnosis">Applying the k-nearest neighbor classifier to breast cancer diagnosis<a class="anchor-link" href="#Applying-the-k-nearest-neighbor-classifier-to-breast-cancer-diagnosis">¶</a></h3><p>We've got a data set.  Let's try out the $k$-nearest neighbor classifier and see how it does.  This is going to be great.</p>
 <p>We're going to need an implementation of the $k$-nearest neighbor classifier.  In practice you would probably use an existing library, but it's simple enough that I'm going to imeplment it myself.</p>
 <p>The first thing we need is a way to compute the distance between two points.  How do we do this?  In 2-dimensional space, it's pretty easy.  If we have a point at coordinates $(x_0,y_0)$ and another at $(x_1,y_1)$, the distance between them is</p>
 $$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}.$$<p>(Where did this come from?  It comes from the Pythogorean theorem: we have a right triangle with side lengths $x_0-x_1$ and $y_0-y_1$, and we want to find the length of the diagonal.)</p>
 <p>In 3-dimensional space, the formula is</p>
-$$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional space, things are a bit harder to visualize, but I think you can see how the formula generalized: we sum up the squares of the differences between each individual coordinate, and then take the square root of that.  Let's implement a function to compute this distance function for us:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[155]:</div>
+$$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional space, things are a bit harder to visualize, but I think you can see how the formula generalized: we sum up the squares of the differences between each individual coordinate, and then take the square root of that.  Let's implement a function to compute this distance function for us:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">):</span>
@@ -7486,9 +7309,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pt1</span><span class="p">)):</span>
         <span class="n">tot</span> <span class="o">=</span> <span class="n">tot</span> <span class="o">+</span> <span class="p">(</span><span class="n">pt1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">pt2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
     <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">tot</span><span class="p">)</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we're going to write some code to implement the classifier.  The input is a patient <code>p</code> who we want to diagnose.  The classifier works by finding the $k$ nearest neighbors of <code>p</code> from the training set.  So, our approach will go like this:</p>
@@ -7499,10 +7320,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 </li>
 </ol>
 <p>So that will guide the structure of our Python code.</p>
-<p>To implement the first step, we will compute the distance from each patient in the training set to <code>p</code>, sort them by distance, and take the $k$ closest patients in the training set.  The code will make a copy of the table, compute the distance from each patient to <code>p</code>, add a new column to the table with those distances, and then sort the table by distance and take the first $k$ rows.  That leads to the following Python code:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[156]:</div>
+<p>To implement the first step, we will compute the distance from each patient in the training set to <code>p</code>, sort them by distance, and take the $k$ closest patients in the training set.  The code will make a copy of the table, compute the distance from each patient to <code>p</code>, add a new column to the table with those distances, and then sort the table by distance and take the first $k$ rows.  That leads to the following Python code:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">closest</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -7513,59 +7331,44 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 
 <span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">kclosest</span> <span class="o">=</span> <span class="n">closest</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-    <span class="n">kclosest</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">kclosest</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;Class&#39;</span><span class="p">)</span>
+    <span class="n">kclosest</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">kclosest</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">majority</span><span class="p">(</span><span class="n">kclosest</span><span class="p">)</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[157]:</div>
+</pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">computetablewithdists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
     <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>
-    <span class="n">attributes</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">&#39;Class&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">num_rows</span><span class="p">):</span>
         <span class="n">dists</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">attributes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
     <span class="n">withdists</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">withdists</span><span class="o">.</span><span class="n">append_column</span><span class="p">(</span><span class="s">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">dists</span><span class="p">)</span>
+    <span class="n">withdists</span><span class="o">.</span><span class="n">append_column</span><span class="p">(</span><span class="s">'Distance'</span><span class="p">,</span> <span class="n">dists</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">withdists</span>
 
 <span class="k">def</span> <span class="nf">closest</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">withdists</span> <span class="o">=</span> <span class="n">computetablewithdists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-    <span class="n">sortedbydist</span> <span class="o">=</span> <span class="n">withdists</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;Distance&#39;</span><span class="p">)</span>
+    <span class="n">sortedbydist</span> <span class="o">=</span> <span class="n">withdists</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">'Distance'</span><span class="p">)</span>
     <span class="n">topk</span> <span class="o">=</span> <span class="n">sortedbydist</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">topk</span>
 
 <span class="k">def</span> <span class="nf">majority</span><span class="p">(</span><span class="n">topkclasses</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">topkclasses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;Class&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span> <span class="o">&gt;</span> <span class="n">topkclasses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;Class&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">topkclasses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Class'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span> <span class="o">&gt;</span> <span class="n">topkclasses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Class'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
 
 <span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">closestk</span> <span class="o">=</span> <span class="n">closest</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-    <span class="n">topkclasses</span> <span class="o">=</span> <span class="n">closestk</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;Class&#39;</span><span class="p">)</span>
+    <span class="n">topkclasses</span> <span class="o">=</span> <span class="n">closestk</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">majority</span><span class="p">(</span><span class="n">topkclasses</span><span class="p">)</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's see how this works, with our data set.  We'll take patient 12 and imagine we're going to try to diagnose them:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[158]:</div>
+<p>Let's see how this works, with our data set.  We'll take patient 12 and imagine we're going to try to diagnose them:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">patients</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[158]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -7578,48 +7381,23 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
             <td>5              </td> <td>3                      </td> <td>3                       </td> <td>3                </td> <td>2                          </td> <td>3          </td> <td>4              </td> <td>4              </td> <td>1      </td> <td>1    </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can pull out just their attributes (excluding the class), like this:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[159]:</div>
+<p>We can pull out just their attributes (excluding the class), like this:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">&#39;Class&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[159]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>Row(Clump Thickness=5, Uniformity of Cell Size=3, Uniformity of Cell Shape=3, Marginal Adhesion=3, Single Epithelial Cell Size=2, Bare Nuclei=3, Bland Chromatin=4, Normal Nucleoli=4, Mitoses=1)</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>Row(Clump Thickness=5, Uniformity of Cell Size=3, Uniformity of Cell Shape=3, Marginal Adhesion=3, Single Epithelial Cell Size=2, Bare Nuclei=3, Bland Chromatin=4, Normal Nucleoli=4, Mitoses=1)</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's take $k=5$.  We can find the 5 nearest neighbors:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[160]:</div>
+<p>Let's take $k=5$.  We can find the 5 nearest neighbors:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">closest</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">&#39;Class&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[160]:</div>
-
+<div class=" highlight hl-ipython3"><pre><span class="n">closest</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -7632,58 +7410,41 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
             <td>5              </td> <td>3                      </td> <td>3                       </td> <td>3                </td> <td>2                          </td> <td>3          </td> <td>4              </td> <td>4              </td> <td>1      </td> <td>1    </td> <td>0       </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5              </td> <td>3                      </td> <td>3                       </td> <td>4                </td> <td>2                          </td> <td>4          </td> <td>3              </td> <td>4              </td> <td>1      </td> <td>1    </td> <td>1.73205 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5              </td> <td>1                      </td> <td>3                       </td> <td>3                </td> <td>2                          </td> <td>2          </td> <td>2              </td> <td>3              </td> <td>1      </td> <td>0    </td> <td>3.16228 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5              </td> <td>2                      </td> <td>2                       </td> <td>2                </td> <td>2                          </td> <td>2          </td> <td>3              </td> <td>2              </td> <td>2      </td> <td>0    </td> <td>3.16228 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5              </td> <td>3                      </td> <td>3                       </td> <td>1                </td> <td>3                          </td> <td>3          </td> <td>3              </td> <td>3              </td> <td>3      </td> <td>1    </td> <td>3.31662 </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>3 out of the 5 nearest neighbors have class 1, so the majority is 1 (has cancer) -- and that is the output of our classifier for this patient:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[161]:</div>
+<p>3 out of the 5 nearest neighbors have class 1, so the majority is 1 (has cancer) -- and that is the output of our classifier for this patient:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">classify</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">&#39;Class&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[161]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="n">classify</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>1</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>1</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Awesome!  We now have a classification algorithm for diagnosing whether a patient has breast cancer or not, based on the measurements from the lab.  Are we done?  Shall we give this to doctors to use?</p>
 <p>Hold on: we're not done yet.  There's an obvious question to answer, before we start using this in practice:</p>
 <p><em>How accurate is this method, at diagnosing breast cancer?</em></p>
-<p>And that raises a more fundamental issue.  How can we measure the accuracy of a classification algorithm?</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>And that raises a more fundamental issue.  How can we measure the accuracy of a classification algorithm?</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Measuring-accuracy-of-a-classifier">Measuring accuracy of a classifier<a class="anchor-link" href="#Measuring-accuracy-of-a-classifier">&#182;</a></h3><p>We've got a classifier, and we'd like to determine how accurate it will be.  How can we measure that?</p>
+<h3 id="Measuring-accuracy-of-a-classifier">Measuring accuracy of a classifier<a class="anchor-link" href="#Measuring-accuracy-of-a-classifier">¶</a></h3><p>We've got a classifier, and we'd like to determine how accurate it will be.  How can we measure that?</p>
 <p><strong>Try it out.</strong>  One natural idea is to just try it on patients for a year, keep records on it, and see how accurate it is.  However, this has some disadvantages: (a) we're trying something on patients without knowing how accurate it is, which might be unethical; (b) we have to wait a year to find out whether our classifier is any good.  If it's not good enough and we get an idea for an improvement, we'll have to wait another year to find out whether our improvement was better.</p>
 <p><strong>Get some more data.</strong> We could try to get some more data from other patients whose diagnosis is known, and measure how accurate our classifier's predictions are on those additional patients.  We can compare what the classifier outputs against what we know to be true.</p>
 <p><strong>Use the data we already have.</strong> Another natural idea is to re-use the data we already have: we have a training set that we used to train our classifier, so we could just run our classifier on every patient in the data set and compare what it outputs to what we know to be true.  This is sometimes known as testing the classifier on your training set.</p>
@@ -7696,70 +7457,45 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>It turns out there is.  The approach comes down to: get more data.  More specifically, the right solution is to use one data set for training, and a different data set for testing, with no overlap between the two data sets.  We call these a <em>training set</em> and a <em>test set</em>.</p>
 <p>Where do we get these two data sets from?  Typically, we'll start out with some data, e.g., the data set on 683 patients, and before we do anything else with it, we'll split it up into a training set and a test set.  We might put 50% of the data into the training set and the other 50% into the test set.  Basically, we are setting aside some data for later use, so we can use it to measure the accuracy of our classifier.  Sometimes people will call the data that you set aside for testing a <em>hold-out set</em>, and they'll call this strategy for estimating accuracy the <em>hold-out method</em>.</p>
 <p>Note that this approach requires great discipline.  Before you start applying machine learning methods, you have to take some of your data and set it aside for testing.  You must avoid using the test set for developing your classifier: you shouldn't use it to help train your classifier or tweak its settings or for brainstorming ways to improve your classifier.  Instead, you should use it only once, at the very end, after you've finalized your classifier, when you want an unbiased estimate of its accuracy.</p>
-<h2 id="The-effectiveness-of-our-classifier,-for-breast-cancer">The effectiveness of our classifier, for breast cancer<a class="anchor-link" href="#The-effectiveness-of-our-classifier,-for-breast-cancer">&#182;</a></h2><p>OK, so let's apply the hold-out method to evaluate the effectiveness of the $k$-nearest neighbor classifier for breast cancer diagnosis.  The data set has 683 patients, so we'll randomly permute the data set and put 342 of them in the training set and the remaining 341 in the test set.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[162]:</div>
+<h2 id="The-effectiveness-of-our-classifier,-for-breast-cancer">The effectiveness of our classifier, for breast cancer<a class="anchor-link" href="#The-effectiveness-of-our-classifier,-for-breast-cancer">¶</a></h2><p>OK, so let's apply the hold-out method to evaluate the effectiveness of the $k$-nearest neighbor classifier for breast cancer diagnosis.  The data set has 683 patients, so we'll randomly permute the data set and put 342 of them in the training set and the remaining 341 in the test set.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">patients</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">683</span><span class="p">)</span> <span class="c"># Randomly permute the rows</span>
 <span class="n">trainset</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">342</span><span class="p">))</span>
 <span class="n">testset</span>  <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">342</span><span class="p">,</span> <span class="mi">683</span><span class="p">))</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We'll train the classifier using the 342 patients in the training set, and evaluate how well it performs on the test set.  To make our lives easier, we'll write a function to evaluate a classifier on every patient in the test set:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[163]:</div>
+<p>We'll train the classifier using the 342 patients in the training set, and evaluate how well it performs on the test set.  To make our lives easier, we'll write a function to evaluate a classifier on every patient in the test set:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">evaluate_accuracy</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="n">testattrs</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">&#39;Class&#39;</span><span class="p">)</span>
+    <span class="n">testattrs</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span>
     <span class="n">numcorrect</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">num_rows</span><span class="p">):</span>
         <span class="c"># Run the classifier on the ith patient in the test set</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">classify</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">testattrs</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">k</span><span class="p">)</span>
-        <span class="c"># Was the classifier&#39;s prediction correct?</span>
-        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">test</span><span class="p">[</span><span class="s">&#39;Class&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+        <span class="c"># Was the classifier's prediction correct?</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">test</span><span class="p">[</span><span class="s">'Class'</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
             <span class="n">numcorrect</span> <span class="o">=</span> <span class="n">numcorrect</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">numcorrect</span> <span class="o">/</span> <span class="n">test</span><span class="o">.</span><span class="n">num_rows</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now for the grand reveal -- let's see how we did.  We'll arbitrarily use $k=5$.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[164]:</div>
+<p>Now for the grand reveal -- let's see how we did.  We'll arbitrarily use $k=5$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">evaluate_accuracy</span><span class="p">(</span><span class="n">trainset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[164]:</div>
-
-
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>0.9706744868035191</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>0.9706744868035191</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>About 96% accuracy.  Not bad!  Pretty darn good for such a simple technique.</p>
-<p>As a footnote, you might have noticed that Brittany Wenger did even better.  What techniques did she use? One key innovation is that she incorporated a confidence score into her results: her algorithm had a way to determine when it was not able to make a confident prediction, and for those patients, it didn't even try to predict their diagnosis.  Her algorithm was 99% accurate on the patients where it made a prediction -- so that extension seemed to help quite a bit.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>As a footnote, you might have noticed that Brittany Wenger did even better.  What techniques did she use? One key innovation is that she incorporated a confidence score into her results: her algorithm had a way to determine when it was not able to make a confident prediction, and for those patients, it didn't even try to predict their diagnosis.  Her algorithm was 99% accurate on the patients where it made a prediction -- so that extension seemed to help quite a bit.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Important-takeaways">Important takeaways<a class="anchor-link" href="#Important-takeaways">&#182;</a></h3><p>Here are a few lessons we want you to learn from this.</p>
+<h3 id="Important-takeaways">Important takeaways<a class="anchor-link" href="#Important-takeaways">¶</a></h3><p>Here are a few lessons we want you to learn from this.</p>
 <p>First, machine learning is powerful.  If you had to try to write code to make a diagnosis without knowing about machine learning, you might spend a lot of time by trial-and-error trying to come up with some complicated set of rules that seem to work, and the result might not be very accurate.  The $k$-nearest neighbors algorithm automates the entire task for you.  And machine learning often lets them make predictions far more accurately than anything you'd come up with by trial-and-error.</p>
 <p>Second, you can do it.  Yes, you.  You can use machine learning in your own work to make predictions based on data.  You now know enough to start applying these ideas to new data sets and help others make useful predictions.  The techniques are very powerful, but you don't have to have a Ph.D. in statistics to use them.</p>
 <p>Third, be careful about how to evaluate accuracy.  Use a hold-out set.</p>

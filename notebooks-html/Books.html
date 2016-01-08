@@ -1,45 +1,30 @@
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
-<div class="inner_cell">
+<div class="ipython-notebook">
+            <div>
+                <a class="interact-button" href="http://ds8.berkeley.edu/hub/interact?file=http://data8.org/text/examples/Books.ipynb">Interact</a></div>
+            <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this example, we will explore statistics for two classic novels: <em>The Adventures of Huckleberry Finn</em> by Mark Twain, and <em>Little Women</em> by Louisa May Alcott. The text of any book can be read by a computer at great speed. Books published before 1923 are currently in the <em>public domain</em>, meaning that everyone has the right to copy or use the text in any way. <a href="http://www.gutenberg.org/">Project Gutenberg</a> is a website that publishes public domain books online. Using Python, we can load the text of these books directly from the web.</p>
 <p>The features of Python used in this example will be explained in detail later in the course. This example is meant to illustrate some of the broad themes of this text. Don't worry if the details of the program don't yet make sense. Instead, focus on interpreting the images generated below. The "Expressions" section later in this chapter will describe most of the features of the Python programming language used below.</p>
-<p>First, we read the text of both books into lists of chapters, called <code>huck_finn_chapters</code> and <code>little_women_chapters</code>. In Python, a name cannot contain any spaces, and so we will of often use an underscore <code>_</code> to stand in for a space. The <code>=</code> in the lines below give a name on the left to the result of some computation described on the right. A <em>uniform resource locator</em> or <em>URL</em> is an address on the Internet for some content; in this case, the text of a book.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<p>First, we read the text of both books into lists of chapters, called <code>huck_finn_chapters</code> and <code>little_women_chapters</code>. In Python, a name cannot contain any spaces, and so we will of often use an underscore <code>_</code> to stand in for a space. The <code>=</code> in the lines below give a name on the left to the result of some computation described on the right. A <em>uniform resource locator</em> or <em>URL</em> is an address on the Internet for some content; in this case, the text of a book.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="c"># Read two books, fast!</span>
 
-<span class="n">huck_finn_url</span> <span class="o">=</span> <span class="s">&#39;http://www.gutenberg.org/cache/epub/76/pg76.txt&#39;</span>
+<span class="n">huck_finn_url</span> <span class="o">=</span> <span class="s">'http://www.gutenberg.org/cache/epub/76/pg76.txt'</span>
 <span class="n">huck_finn_text</span> <span class="o">=</span> <span class="n">read_url</span><span class="p">(</span><span class="n">huck_finn_url</span><span class="p">)</span>
-<span class="n">huck_finn_chapters</span> <span class="o">=</span> <span class="n">huck_finn_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;CHAPTER &#39;</span><span class="p">)[</span><span class="mi">44</span><span class="p">:]</span>
+<span class="n">huck_finn_chapters</span> <span class="o">=</span> <span class="n">huck_finn_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'CHAPTER '</span><span class="p">)[</span><span class="mi">44</span><span class="p">:]</span>
 
-<span class="n">little_women_url</span> <span class="o">=</span> <span class="s">&#39;http://www.gutenberg.org/cache/epub/514/pg514.txt&#39;</span>
+<span class="n">little_women_url</span> <span class="o">=</span> <span class="s">'http://www.gutenberg.org/cache/epub/514/pg514.txt'</span>
 <span class="n">little_women_text</span> <span class="o">=</span> <span class="n">read_url</span><span class="p">(</span><span class="n">little_women_url</span><span class="p">)</span>
-<span class="n">little_women_chapters</span> <span class="o">=</span> <span class="n">little_women_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;CHAPTER &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<span class="n">little_women_chapters</span> <span class="o">=</span> <span class="n">little_women_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'CHAPTER '</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>While a computer cannot understand the text of a book, we can still use it to provide us with some insight into the structure of the text. The name <code>huck_finn_chapters</code> is currently bound to a list of all the chapters in the book. We can place those chapters into a table to see how each begins.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<p>While a computer cannot understand the text of a book, we can still use it to provide us with some insight into the structure of the text. The name <code>huck_finn_chapters</code> is currently bound to a list of all the chapters in the book. We can place those chapters into a table to see how each begins.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">([</span><span class="n">huck_finn_chapters</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;Chapters&#39;</span><span class="p">])</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
-
+<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">([</span><span class="n">huck_finn_chapters</span><span class="p">],</span> <span class="p">[</span><span class="s">'Chapters'</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -52,69 +37,56 @@
             <td>I. YOU don't know about me without you have read a book  ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>II. WE went tiptoeing along a path amongst the trees bac ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>III. WELL, I got a good going-over in the morning from o ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>IV. WELL, three or four months run along, and it was wel ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>V. I had shut the door to. Then I turned around and ther ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>VI. WELL, pretty soon the old man was up and around agai ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>VII. "GIT up! What you 'bout?" I opened my eyes and look ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>VIII. THE sun was up so high when I waked that I judged  ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>IX. I wanted to go and look at a place right about the m ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>X. AFTER breakfast I wanted to talk about the dead man a ...</td>
         </tr>
     </tbody>
 </table>
-<p>... (33 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (33 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Each chapter begins with a chapter number in Roman numerals. That is followed by the first sentence of the chapter. Project Gutenberg has printed the first word of each chapter in upper case.</p>
-<p>The book describes a journey that Huck and Jim take along the Mississippi River. Tom Sawyer joins them towards the end as the action heats up. We can quickly visualize how many times these characters have each been mentioned at any point in the book.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<p>The book describes a journey that Huck and Jim take along the Mississippi River. Tom Sawyer joins them towards the end as the action heats up. We can quickly visualize how many times these characters have each been mentioned at any point in the book.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">counts</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">&quot;Jim&quot;</span><span class="p">),</span> 
-                <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">&quot;Tom&quot;</span><span class="p">),</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">&quot;Huck&quot;</span><span class="p">)],</span> 
-               <span class="p">[</span><span class="s">&quot;Jim&quot;</span><span class="p">,</span> <span class="s">&quot;Tom&quot;</span><span class="p">,</span> <span class="s">&quot;Huck&quot;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">counts</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">"Jim"</span><span class="p">),</span> 
+                <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">"Tom"</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">"Huck"</span><span class="p">)],</span> 
+               <span class="p">[</span><span class="s">"Jim"</span><span class="p">,</span> <span class="s">"Tom"</span><span class="p">,</span> <span class="s">"Huck"</span><span class="p">])</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlYAAAEWCAYAAACkFdnuAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XtcVGX+B/DPzDDDcL/IcHEULETEINEsDVPUvHRBTLPU
@@ -499,32 +471,17 @@ bNky8vPzefrpp2lubub555+nvr6eqVOnsmvXLoKDg1WTc+PGjZw+fZoPPvgAm81GbGwss2bNYvv2
 aqjlQDlbWlpUUcveaDQaj/lTaqlnd7/NqdfrVVtPIbxFtrQRQgghhPASVcyxEkIIIYS4EUhjJYQQ
 QgjhJdJYCSGEEEJ4iTRWQgghhBBeIo2VEEIIIYSXSGMlhBBCCOEl0lgJIYQQQniJNFZCCCGEEF4i
 jZUQQgghhJf8PwIYcjO4054zAAAAAElFTkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In the plot above, the horizontal axis shows chapter numbers and the vertical axis shows how many times each character has been mentioned so far. You can see that Jim is a central character, by the large number of times his name appears. Notice how Tom is hardly mentioned for much of the book until after Chapter 30. His curve and Jim's rise sharply at that point, as the action involving both of them intensifies. As for Huck, his name hardly appears at all, because he is the narrator.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>In the plot above, the horizontal axis shows chapter numbers and the vertical axis shows how many times each character has been mentioned so far. You can see that Jim is a central character, by the large number of times his name appears. Notice how Tom is hardly mentioned for much of the book until after Chapter 30. His curve and Jim's rise sharply at that point, as the action involving both of them intensifies. As for Huck, his name hardly appears at all, because he is the narrator.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Little Women</em> is a story of four sisters growing up together during the civil war. In this book, chapter numbers are spelled out and chapter titles are written in all capital letters.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<p><em>Little Women</em> is a story of four sisters growing up together during the civil war. In this book, chapter numbers are spelled out and chapter titles are written in all capital letters.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">({</span><span class="s">&#39;Chapters&#39;</span><span class="p">:</span> <span class="n">little_women_chapters</span><span class="p">})</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
-
+<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">({</span><span class="s">'Chapters'</span><span class="p">:</span> <span class="n">little_women_chapters</span><span class="p">})</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -537,66 +494,53 @@ jZUQQgghhJf8PwIYcjO4054zAAAAAElFTkSuQmCC
             <td>ONE PLAYING PILGRIMS "Christmas won't be Christmas witho ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>TWO A MERRY CHRISTMAS Jo was the first to wake in the gr ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>THREE THE LAURENCE BOY "Jo! Jo! Where are you?" cried Me ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>FOUR BURDENS "Oh, dear, how hard it does seem to take up ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>FIVE BEING NEIGHBORLY "What in the world are you going t ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>SIX BETH FINDS THE PALACE BEAUTIFUL The big house did pr ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>SEVEN AMY'S VALLEY OF HUMILIATION "That boy is a perfect ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>EIGHT JO MEETS APOLLYON "Girls, where are you going?" as ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>NINE MEG GOES TO VANITY FAIR "I do think it was the most ...</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>TEN THE P.C. AND P.O. As spring came on, a new set of am ...</td>
         </tr>
     </tbody>
 </table>
-<p>... (37 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (37 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can track the mentions of main characters to learn about the plot of this book as well.  The protagonist Jo interacts with her sisters Meg, Beth, and Amy regularly, up until Chapter 27 when she moves to New York alone.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<p>We can track the mentions of main characters to learn about the plot of this book as well.  The protagonist Jo interacts with her sisters Meg, Beth, and Amy regularly, up until Chapter 27 when she moves to New York alone.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">people</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Meg&quot;</span><span class="p">,</span> <span class="s">&quot;Jo&quot;</span><span class="p">,</span> <span class="s">&quot;Beth&quot;</span><span class="p">,</span> <span class="s">&quot;Amy&quot;</span><span class="p">,</span> <span class="s">&quot;Laurie&quot;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">people</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Meg"</span><span class="p">,</span> <span class="s">"Jo"</span><span class="p">,</span> <span class="s">"Beth"</span><span class="p">,</span> <span class="s">"Amy"</span><span class="p">,</span> <span class="s">"Laurie"</span><span class="p">]</span>
 <span class="n">people_counts</span> <span class="o">=</span> <span class="n">Table</span><span class="p">({</span><span class="n">pp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="n">pp</span><span class="p">)</span> <span class="k">for</span> <span class="n">pp</span> <span class="ow">in</span> <span class="n">people</span><span class="p">})</span>
 <span class="n">people_counts</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAl4AAAEWCAYAAAC3wpkaAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FXX2+PH33J4CqTcJBEIJIeLCAoqAoAYRFiJWQCEI
@@ -1132,42 +1076,25 @@ Brjn/e/xxx9HkiSuuOKKrPY777yTO+64A0CMV7u6ujq+9a1vUVdXRzgcZvr06TzzzDMddxaLcTo+
 SZKy9iWJ8co4dOgQ3/jGN2hsbKSgoIAFCxbw6quvdvw7LsZJGAmGTB4vQRAEQRCEoW5I7PESBEEQ
 BEEYDkTgJQiCIAiC0E9E4CUIgiAIgtBPROAlCIIgCILQT0TgJQiCIAiC0E9E4CUIgiAIgtBPROAl
 CIIgCILQT0TgJQiCIAiC0E9E4CUIgiAIgtBP/j9XAFFojc34EAAAAABJRU5ErkJggg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Laurie is a young man who marries one of the girls in the end. See if you can use the plots to guess which one.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Laurie is a young man who marries one of the girls in the end. See if you can use the plots to guess which one.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Investigating data using visualizations, such as these cumulative count plots, is the central theme of Chapter 2 of this text. One of the central goals of this text is to provide you with the tools to visualize a wide range of data — numbers, text, and structures — while learning to interpret the resulting images.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Investigating data using visualizations, such as these cumulative count plots, is the central theme of Chapter 2 of this text. One of the central goals of this text is to provide you with the tools to visualize a wide range of data — numbers, text, and structures — while learning to interpret the resulting images.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Chapter 3 investigates the problem of determining whether two similar patterns are really the same or different. For example, in the context of novels, the word "character" has a second meaning: a printed symbol such as a letter or number. Below, we compare the counts of this type of character in the first chapter of Little Women.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<p>Chapter 3 investigates the problem of determining whether two similar patterns are really the same or different. For example, in the context of novels, the word "character" has a second meaning: a printed symbol such as a letter or number. Below, we compare the counts of this type of character in the first chapter of Little Women.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
 
 <span class="n">chapter_one</span> <span class="o">=</span> <span class="n">little_women_chapters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">chapter_one</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-<span class="n">letters</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="p">[</span><span class="s">&#39;Letters&#39;</span><span class="p">,</span> <span class="s">&#39;Chapter 1 Count&#39;</span><span class="p">])</span>
-<span class="n">letters</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;Letters&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
+<span class="n">letters</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="p">[</span><span class="s">'Letters'</span><span class="p">,</span> <span class="s">'Chapter 1 Count'</span><span class="p">])</span>
+<span class="n">letters</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">'Letters'</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
     <thead>
@@ -1180,107 +1107,94 @@ CIIgCILQT0TgJQiCIAiC0E9E4CUIgiAIgtBP/j9XAFFojc34EAAAAABJRU5ErkJggg==
             <td>       </td> <td>4102           </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>!      </td> <td>28             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>"      </td> <td>190            </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>'      </td> <td>125            </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>,      </td> <td>423            </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>-      </td> <td>21             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>.      </td> <td>189            </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>;      </td> <td>4              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>?      </td> <td>16             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>_      </td> <td>6              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>a      </td> <td>1352           </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>b      </td> <td>290            </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>c      </td> <td>366            </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>d      </td> <td>788            </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>e      </td> <td>1981           </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>f      </td> <td>339            </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>g      </td> <td>446            </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>h      </td> <td>1069           </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>i      </td> <td>1071           </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>j      </td> <td>51             </td>
         </tr>
     </tbody>
 </table>
-<p>... (16 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (16 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>How do these counts compare with the character counts in Chapter 2? By plotting both sets of counts in one chart, we can see slight variations for every character. Is that difference meaningful? These questions will be addressed precisely in this text.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<p>How do these counts compare with the character counts in Chapter 2? By plotting both sets of counts in one chart, we can see slight variations for every character. Is that difference meaningful? These questions will be addressed precisely in this text.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-<span class="n">two_letters</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="p">[</span><span class="s">&#39;Letters&#39;</span><span class="p">,</span> <span class="s">&#39;Chapter 2 Count&#39;</span><span class="p">])</span>
-<span class="n">compare</span> <span class="o">=</span> <span class="n">letters</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;Letters&#39;</span><span class="p">,</span> <span class="n">two_letters</span><span class="p">)</span>
-<span class="n">compare</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">&#39;Letters&#39;</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<span class="n">two_letters</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="p">[</span><span class="s">'Letters'</span><span class="p">,</span> <span class="s">'Chapter 2 Count'</span><span class="p">])</span>
+<span class="n">compare</span> <span class="o">=</span> <span class="n">letters</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">'Letters'</span><span class="p">,</span> <span class="n">two_letters</span><span class="p">)</span>
+<span class="n">compare</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">'Letters'</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkgAAAQ2CAYAAADI5kIkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt0FOXh//HPJqwEwiURAhINN1ku8QLSUCFyUYt6ECtU
@@ -1714,45 +1628,27 @@ nHMiIuKss86KVatWZZLzmmuuiV/96ldx5513xvbt22P8+PExf/78uP3224c85/e///0oFApx9tln
 93l82bJl0dTUFBHZ/X8eaNYDZayoqCiJ+WxtbY3FixdHa2trjB49OmbNmhX33HNP7ztRiz2PB5Oz
 q6urJOZyXwqFQp8xSmVO95Vx2LBhJT2fMFQy/xwkAIBy515sAAAJBQkAIKEgAQAkFCQAgISCBACQ
 UJAAABIKEgBAQkECAEgoSAAAif8H7SWGrf0ODCgAAAAASUVORK5CYII=
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this text, we will learn to describe the relationships between quantities and use that information to make predictions. First, we will explore how to make accurate predictions based on incomplete information. Later, we will develop methods that will allow us to integrate multiple sources of uncertain information to make decisions.</p>
-<p>As an example, let us first use the computer to get us some information that would be really tedious to acquire by hand: the number of characters and the number of periods in each chapter of both books.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<p>As an example, let us first use the computer to get us some information that would be really tedious to acquire by hand: the number of characters and the number of periods in each chapter of both books.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">chlen_per_hf</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">huck_finn_chapters</span><span class="p">],</span> 
-                      <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">)],</span>
-                     <span class="p">[</span><span class="s">&quot;HF Chapter Length&quot;</span><span class="p">,</span> <span class="s">&quot;Number of periods&quot;</span><span class="p">])</span>
+                      <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">'.'</span><span class="p">)],</span>
+                     <span class="p">[</span><span class="s">"HF Chapter Length"</span><span class="p">,</span> <span class="s">"Number of periods"</span><span class="p">])</span>
 <span class="n">chlen_per_lw</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">little_women_chapters</span><span class="p">],</span> 
-                      <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">)],</span>
-                     <span class="p">[</span><span class="s">&quot;LW Chapter Length&quot;</span><span class="p">,</span> <span class="s">&quot;Number of periods&quot;</span><span class="p">])</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+                      <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s">'.'</span><span class="p">)],</span>
+                     <span class="p">[</span><span class="s">"LW Chapter Length"</span><span class="p">,</span> <span class="s">"Number of periods"</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here are the data for <em>Huckleberry Finn</em>. Each row of the table below corresponds to one chapter of the novel, and displays the number of characters as well as the number of periods in the chapter. Not surprisingly, chapters with fewer characters also tend to have fewer periods, in general; the shorter the chapter, the fewer sentences there tend to be, and vice versa. The relation is not entirely predictable, however, as sentences are of varying lengths and can involve other punctuation such as question marks.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<p>Here are the data for <em>Huckleberry Finn</em>. Each row of the table below corresponds to one chapter of the novel, and displays the number of characters as well as the number of periods in the chapter. Not surprisingly, chapters with fewer characters also tend to have fewer periods, in general; the shorter the chapter, the fewer sentences there tend to be, and vice versa. The relation is not entirely predictable, however, as sentences are of varying lengths and can involve other punctuation such as question marks.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">chlen_per_hf</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -1765,63 +1661,51 @@ UJAAABIKEgBAQkECAEgoSAAAif8H7SWGrf0ODCgAAAAASUVORK5CYII=
             <td>7026             </td> <td>66               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>11982            </td> <td>117              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>8529             </td> <td>72               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6799             </td> <td>84               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>8166             </td> <td>91               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>14550            </td> <td>125              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>13218            </td> <td>127              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>22208            </td> <td>249              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>8081             </td> <td>71               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>7036             </td> <td>70               </td>
         </tr>
     </tbody>
 </table>
-<p>... (33 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (33 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here are the corresponding data for <em>Little Women</em>.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<p>Here are the corresponding data for <em>Little Women</em>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">chlen_per_lw</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -1834,73 +1718,56 @@ UJAAABIKEgBAQkECAEgoSAAAif8H7SWGrf0ODCgAAAAASUVORK5CYII=
             <td>21759            </td> <td>189              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>22148            </td> <td>188              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>20558            </td> <td>231              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>25526            </td> <td>195              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>23395            </td> <td>255              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>14622            </td> <td>140              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>14431            </td> <td>131              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>22476            </td> <td>214              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>33767            </td> <td>337              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>18508            </td> <td>185              </td>
         </tr>
     </tbody>
 </table>
-<p>... (37 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (37 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can see that the chapters of <em>Little Women</em> are in general longer than those of <em>Huckleberry Finn</em>. Let us see if these two simple variables – the length and number of periods in each chapter – can tell us anything more about the two authors. One way for us to do this is to plot both sets of data on the same axes.</p>
-<p>In the plot below, there is a dot for each chapter in each book. Blue dots correspond to <em>Huckleberry Finn</em> and yellow dots to <em>Little Women</em>. The horizontal axis represents the number of characters and the vertical axis represents the number of periods.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<p>In the plot below, there is a dot for each chapter in each book. Blue dots correspond to <em>Huckleberry Finn</em> and yellow dots to <em>Little Women</em>. The horizontal axis represents the number of characters and the vertical axis represents the number of periods.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">huck_finn_chapters</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">little_women_chapters</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;y&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
-
-
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">huck_finn_chapters</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">'.'</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">'b'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">little_women_chapters</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s">'.'</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">'y'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.collections.PathCollection at 0x1055f7828&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;matplotlib.collections.PathCollection at 0x1055f7828&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAArMAAAJ9CAYAAAAmBfrfAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X9s1Ned7//X3BnbZM0F7GHGiaeC3DU24xSKuyWl1+1i
@@ -2214,10 +2081,7 @@ chkwYIBDFm0yMjLYunWr8rna+tJVLg0NDarsy5o1azAajVgsFvz8/IiMjCQ9Pd3h7jhq60pnmai1
 J87MnTvX4TZUoL6+tPe/mbhLX1xqMiuEEEIIIcT/wyWumRVCCCGEEOJnyGRWCCGEEEK4LZnMCiGE
 EEIItyWTWSGEEEII4bZkMiuEEEIIIdyWTGaFEEIIIYTbksmsEEIIIYRwWzKZFUIIIYQQbksms0II
 IYQQwm39B9BVz3dIf1enAAAAAElFTkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The plot shows us that many but not all of the chapters of <em>Little Women</em> are longer than those of <em>Huckleberry Finn</em>, as we had observed by just looking at the numbers. But it also shows us something more. Notice how the blue points are roughly clustered around a straight line, as are the yellow points. Moreover, it looks as though both colors of points might be clustered around the <em>same</em> straight line.</p>

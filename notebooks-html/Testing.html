@@ -1,30 +1,20 @@
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
-<div class="inner_cell">
+<div class="ipython-notebook">
+            <div>
+                <a class="interact-button" href="http://ds8.berkeley.edu/hub/interact?file=http://data8.org/text/examples/Testing.ipynb">Interact</a></div>
+            <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="U.S.-Supreme-Court,-1965:-Swain-vs.-Alabama">U.S. Supreme Court, 1965: Swain vs. Alabama<a class="anchor-link" href="#U.S.-Supreme-Court,-1965:-Swain-vs.-Alabama">&#182;</a></h2><p>In the early 1960's, in Talladega County in Alabama, a black man called Robert Swain was convicted of raping a white woman and was sentenced to death. He appealed his sentence, citing among other factors the all-white jury. At the time, only men aged 21 or older were allowed to serve on juries in Talladega County. In the county, 26% of the eligible jurors were black, but there were only 8 black men among the 100 selected for the jury panel in Swain's trial. No black man was selected for the trial jury.</p>
+<h2 id="U.S.-Supreme-Court,-1965:-Swain-vs.-Alabama">U.S. Supreme Court, 1965: Swain vs. Alabama<a class="anchor-link" href="#U.S.-Supreme-Court,-1965:-Swain-vs.-Alabama">¶</a></h2><p>In the early 1960's, in Talladega County in Alabama, a black man called Robert Swain was convicted of raping a white woman and was sentenced to death. He appealed his sentence, citing among other factors the all-white jury. At the time, only men aged 21 or older were allowed to serve on juries in Talladega County. In the county, 26% of the eligible jurors were black, but there were only 8 black men among the 100 selected for the jury panel in Swain's trial. No black man was selected for the trial jury.</p>
 <p>In 1965, the Supreme Court of the United States denied Swain's appeal. In its ruling, the Court wrote "... the overall percentage disparity has been small and reflects no studied attempt to include or exclude a specified number of Negroes."</p>
-<p>Let us use the methods we have developed to examine the disparity between 8 out of 100 and 26 out of 100 black men in a panel drawn at random from among the eligible jurors.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<p>Let us use the methods we have developed to examine the disparity between 8 out of 100 and 26 out of 100 black men in a panel drawn at random from among the eligible jurors.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">AL_jury_rows</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s">&quot;Black&quot;</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">],</span>
-    <span class="p">[</span><span class="s">&quot;Other&quot;</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">]</span>
+    <span class="p">[</span><span class="s">"Black"</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"Other"</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">]</span>
 <span class="p">]</span>
-<span class="n">AL_jury</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">from_rows</span><span class="p">(</span><span class="n">AL_jury_rows</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;Race&quot;</span><span class="p">,</span> <span class="s">&quot;Eligible&quot;</span><span class="p">])</span>
+<span class="n">AL_jury</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">from_rows</span><span class="p">(</span><span class="n">AL_jury_rows</span><span class="p">,</span> <span class="p">[</span><span class="s">"Race"</span><span class="p">,</span> <span class="s">"Eligible"</span><span class="p">])</span>
 <span class="n">AL_jury</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -37,26 +27,18 @@
             <td>Black</td> <td>0.26    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Other</td> <td>0.74    </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+</table></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="c"># black men in panel of 100: 8</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As our test statistic, we will use the number of black men in a random sample of size 100. Here are the results of replicating the sampling procedure numerous times and counting the number of black men in each sample.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<p>As our test statistic, we will use the number of black men in a random sample of size 100. Here are the results of replicating the sampling procedure numerous times and counting the number of black men in each sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="c"># Statistic: number black in sample of size 100</span>
@@ -65,23 +47,16 @@
 
 <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">repetitions</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">eligible</span> <span class="o">=</span> <span class="n">AL_jury</span><span class="p">[</span><span class="s">&quot;Eligible&quot;</span><span class="p">]</span>
+<span class="n">eligible</span> <span class="o">=</span> <span class="n">AL_jury</span><span class="p">[</span><span class="s">"Eligible"</span><span class="p">]</span>
 
-<span class="n">black_in_sample</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="s">&quot;Number black in a random sample&quot;</span><span class="p">])</span>
+<span class="n">black_in_sample</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="s">"Number black in a random sample"</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
     <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">eligible</span><span class="p">)</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">black_in_sample</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">b</span><span class="p">])</span>
 
 <span class="n">black_in_sample</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -94,64 +69,51 @@
             <td>19                             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>27                             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>34                             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>23                             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>27                             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>24                             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>16                             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>19                             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>22                             </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>29                             </td>
         </tr>
     </tbody>
 </table>
-<p>... (490 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (490 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The numbers of black men in the first 10 repetitions were quite a bit larger than 8. The empirical histogram below shows the distribution of the test statistic over all the repetitions.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<p>The numbers of black men in the first 10 repetitions were quite a bit larger than 8. The empirical histogram below shows the distribution of the test statistic over all the repetitions.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">black_in_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbMAAAEqCAYAAACfhL4MAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtYVPXaPvB7GBIJPCDnsyVTNCmxzRDPgJmZJlKgqakR
@@ -387,55 +349,35 @@ fPjwB3o/G1t2/fr1uHDhAsaMGYO0tDSMGzcOK1as0Lv+AQMGYP/+/aisrMSUKVMQHh6OOXPm4Pr1
 6498F/jjTlJWVibeSy8QET3mtm7diri4OPz8888ax4TJtLhlRkREoscwIyJ6yHjx4IePuxmJiEj0
 uGVGRESixzAjIiLRY5gREZHoMcyIiEj0GGZERCR6DDMiIhK9/w/hEFubFHIKrwAAAABJRU5ErkJg
 gg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If the 100 men in Swain's jury panel had been chosen at random, it would have been extremely unlikely for the number of black men on the panel to be as small as 8. We must conclude that the percentage disparity was larger than the disparity expected due to chance variation.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>If the 100 men in Swain's jury panel had been chosen at random, it would have been extremely unlikely for the number of black men on the panel to be as small as 8. We must conclude that the percentage disparity was larger than the disparity expected due to chance variation.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Method-and-Terminology-of-Statistical-Tests-of-Hypotheses">Method and Terminology of Statistical Tests of Hypotheses<a class="anchor-link" href="#Method-and-Terminology-of-Statistical-Tests-of-Hypotheses">&#182;</a></h2><p>We have developed some of the fundamental concepts of statistical tests of hypotheses, in the context of examples about jury selection. Using statistical tests as a way of making decisions is standard in many fields and has a standard terminology. Here is the sequence of the steps in most statistical tests, along with some terminology and examples.</p>
+<h2 id="Method-and-Terminology-of-Statistical-Tests-of-Hypotheses">Method and Terminology of Statistical Tests of Hypotheses<a class="anchor-link" href="#Method-and-Terminology-of-Statistical-Tests-of-Hypotheses">¶</a></h2><p>We have developed some of the fundamental concepts of statistical tests of hypotheses, in the context of examples about jury selection. Using statistical tests as a way of making decisions is standard in many fields and has a standard terminology. Here is the sequence of the steps in most statistical tests, along with some terminology and examples.</p>
 <p><strong>STEP 1: THE HYPOTHESES</strong></p>
 <p>All statistical tests attempt to choose between two views of how the data were generated. These two views are called <em>hypotheses</em>.</p>
 <p><strong>The null hypothesis.</strong> This says that the data were generated at random under clearly specified assumptions that make it possible to compute chances. The word "null" reinforces the idea that if the data look different from what the null hypothesis predicts, the difference is due to nothing but chance.</p>
 <p>In both of our examples about jury selection, the null hypothesis is that the panels were selected at random from the population of eligible jurors. Though the racial composition of the panels was different from that of the populations of eligible jurors, there was no reason for the difference other than chance variation.</p>
 <p><strong>The alternative hypothesis.</strong> This says that some reason other than chance made the data differ from what was predicted by the null hypothesis. Informally, the alternative hypothesis says that the observed difference is "real."</p>
-<p>In both of our examples about jury selection, the alternative hypothesis is that the panels were not selected at random. Something other than chance led to the differences between the racial composition of the panels and the racial composition of the populations of eligible jurors.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>In both of our examples about jury selection, the alternative hypothesis is that the panels were not selected at random. Something other than chance led to the differences between the racial composition of the panels and the racial composition of the populations of eligible jurors.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>STEP 2: THE TEST STATISTIC</strong></p>
 <p>In order to decide between the two hypothesis, we must choose a statistic upon which we will base our decision. This is called the <strong>test statistic</strong>.</p>
 <p>In the example about jury panels in Alameda County, the test statistic we used was the total variation distance between the racial distributions in the panels and in the population of eligible jurors. In the example about Swain versus the State of Alabama, the test statistic was the number of black men on the jury panel.</p>
-<p>Calculating the observed value of the test statistic is often the first computational step in a statistical test. In the case of jury panels in Alameda County, the observed value of the total variation distance between the distributions in the panels and the population was 0.14. In the example about Swain, the number of black men on his jury panel was 8.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Calculating the observed value of the test statistic is often the first computational step in a statistical test. In the case of jury panels in Alameda County, the observed value of the total variation distance between the distributions in the panels and the population was 0.14. In the example about Swain, the number of black men on his jury panel was 8.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>STEP 3: THE PROBABILITY DISTRIBUTION OF THE TEST STATISTIC, UNDER THE NULL HYPOTHESIS</strong></p>
 <p>This step sets aside the observed value of the test statistic, and instead focuses on <em>what the value might be if the null hypothesis were true</em>. Under the null hypothesis, the sample could have come out differently due to chance. So the test statistic could have come out differently. This step consists of figuring out all possible values of the test statistic and all their probabilities, under the null hypothesis of randomness.</p>
 <p>In other words, in this step we calculate the probability distribution of the test statistic pretending that the null hypothesis is true. For many test statistics, this can be a daunting task both mathematically and computationally. Therefore, we approximate the probability distribution of the test statistic by the empirical distribution of the statistic based on a large number of repetitions of the sampling procedure.</p>
-<p>This was the empirical distribution of the test statistic – the number of black men on the jury panel – in the example about Swain and the Supreme Court:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<p>This was the empirical distribution of the test statistic – the number of black men on the jury panel – in the example about Swain and the Supreme Court:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">black_in_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbMAAAEqCAYAAACfhL4MAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtYVPXaPvB7GBIJPCDnsyVTNCmxzRDPgJmZJlKgqakR
@@ -671,18 +613,13 @@ fPjwB3o/G1t2/fr1uHDhAsaMGYO0tDSMGzcOK1as0Lv+AQMGYP/+/aisrMSUKVMQHh6OOXPm4Pr1
 6498F/jjTlJWVibeSy8QET3mtm7diri4OPz8888ax4TJtLhlRkREoscwIyJ6yHjx4IePuxmJiEj0
 uGVGRESixzAjIiLRY5gREZHoMcyIiEj0GGZERCR6DDMiIhK9/w/hEFubFHIKrwAAAABJRU5ErkJg
 gg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>STEP 4. THE CONCLUSION OF THE TEST</strong></p>
 <p>The choice between the null and alternative hypotheses depends on the comparison between the results of Steps 2 and 3: the observed test statistic and its distribution as predicted by the null hypothesis.</p>
 <p>If the two are consistent with each other, then the observed test statistic is in line with what the null hypothesis predicts. In other words, the test does not point towards the alternative hypothesis; the null hypothesis is better supported by the data.</p>
-<p>But if the two are not consistent with each other, as is the case in both of our examples about jury panels, then the data do not support the null hypothesis. In both our examples we concluded that the jury panels were not selected at random. Something other than chance affected their composition.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>But if the two are not consistent with each other, as is the case in both of our examples about jury panels, then the data do not support the null hypothesis. In both our examples we concluded that the jury panels were not selected at random. Something other than chance affected their composition.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>How is "consistent" defined?</strong> Whether the observed test statistic is consistent with its predicted distribution under the null hypothesis is a matter of judgment. We recommend that you provide your judgment along with the value of the test statistic and a graph of its predicted distribution. That will allow your reader to make his or her own judgment about whether the two are consistent.</p>
@@ -696,9 +633,7 @@ gg==
 </li>
 </ul>
 <p><strong>More formal definition of P-value.</strong> The P-value is the chance, under the null hypothesis, that the test statistic is equal to the value that was observed or is even further in the direction of the alternative.</p>
-<p>The P-value is based on comparing the observed test statistic and what the null hypothesis predicts. A small P-value implies that under the null hypothesis, the value of the test statistic is unlikely to be near the one we observed. When a hypothesis and the data are not in accord, the hypothesis has to go. That is why we reject the null hypothesis if the P-value is small.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>The P-value is based on comparing the observed test statistic and what the null hypothesis predicts. A small P-value implies that under the null hypothesis, the value of the test statistic is unlikely to be near the one we observed. When a hypothesis and the data are not in accord, the hypothesis has to go. That is why we reject the null hypothesis if the P-value is small.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>HISTORICAL NOTE ON THE CONVENTIONS</strong></p>

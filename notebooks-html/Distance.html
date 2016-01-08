@@ -1,36 +1,26 @@
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
-<div class="inner_cell">
+<div class="ipython-notebook">
+            <div>
+                <a class="interact-button" href="http://ds8.berkeley.edu/hub/interact?file=http://data8.org/text/examples/Distance.ipynb">Interact</a></div>
+            <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By now we have seen many examples of situations in which one distribution appears to be quite close to another. The goal of this section is to quantify the difference between two distributions. This will allow our analyses to be based on more than the assessements that we are able to make by eye.</p>
 <p>For this, we need a measure of the distance between two distributions. We will develop such a measure in the context of a <a href="https://www.aclunc.org/sites/default/files/racial_and_ethnic_disparities_in_alameda_county_jury_pools.pdf" title="ACLU_NC report">study</a> conducted in 2010 by the Americal Civil Liberties Union (ACLU) of Northern California.</p>
 <p>The focus of the study was the racial composition of jury panels in Alameda County. A jury panel is a group of people chosen to be prospective jurors; the final trial jury is selected from among them. Jury panels can consist of a few dozen people or several thousand, depending on the trial. By law, a jury panel is supposed to be representative of the community in which the trial is taking place. Section 197 of California's Code of Civil Procedure says, "All persons selected for jury service shall be selected at random, from a source or sources inclusive of a representative cross section of the population of the area served by the court."</p>
 <p>The final jury is selected from the panel by deliberate inclusion or exclusion:  the law allows potential jurors to be excused for medical reasons; lawyers on both sides may strike a certain number of potential jurors from the list in what are called "peremptory challenges"; the trial judge might make a selection based on questionnaires filled out by the panel; and so on. But the initial panel is supposed to resemble a random sample of the population of eligible jurors.</p>
 <p>The ACLU of Northern California compiled data on the racial composition of the jury panels in 11 felony trials in Alameda County in the years 2009 and 2010. In those panels, the total number of poeple who reported for jury service was 1453. The ACLU gathered demographic data on all of these prosepctive jurors, and compared those data with the composition of all eligible jurors in the county.</p>
-<p>The data are tabulated below in a table called <code>jury</code>. For each race, the first value is the percentage of all eligible juror candidates of that race. The second value is the percentage of people of that race among those who appeared for the process of selection into the jury.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<p>The data are tabulated below in a table called <code>jury</code>. For each race, the first value is the percentage of all eligible juror candidates of that race. The second value is the percentage of people of that race among those who appeared for the process of selection into the jury.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">jury_rows</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s">&quot;Asian&quot;</span><span class="p">,</span>  <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">],</span>
-    <span class="p">[</span><span class="s">&quot;Black&quot;</span><span class="p">,</span>  <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">],</span>
-    <span class="p">[</span><span class="s">&quot;Latino&quot;</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">],</span>
-    <span class="p">[</span><span class="s">&quot;White&quot;</span><span class="p">,</span>  <span class="mf">0.54</span><span class="p">,</span> <span class="mf">0.54</span><span class="p">],</span>
-    <span class="p">[</span><span class="s">&quot;Other&quot;</span><span class="p">,</span>  <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"Asian"</span><span class="p">,</span>  <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"Black"</span><span class="p">,</span>  <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"Latino"</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"White"</span><span class="p">,</span>  <span class="mf">0.54</span><span class="p">,</span> <span class="mf">0.54</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"Other"</span><span class="p">,</span>  <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">],</span>
 <span class="p">]</span>
-<span class="n">jury</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">from_rows</span><span class="p">(</span><span class="n">jury_rows</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;Race&quot;</span><span class="p">,</span> <span class="s">&quot;Eligible&quot;</span><span class="p">,</span> <span class="s">&quot;Panel&quot;</span><span class="p">])</span>
+<span class="n">jury</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">from_rows</span><span class="p">(</span><span class="n">jury_rows</span><span class="p">,</span> <span class="p">[</span><span class="s">"Race"</span><span class="p">,</span> <span class="s">"Eligible"</span><span class="p">,</span> <span class="s">"Panel"</span><span class="p">])</span>
 <span class="n">jury</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -43,43 +33,30 @@
             <td>Asian </td> <td>0.15    </td> <td>0.26 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Black </td> <td>0.18    </td> <td>0.08 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Latino</td> <td>0.12    </td> <td>0.08 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>White </td> <td>0.54    </td> <td>0.54 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Other </td> <td>0.01    </td> <td>0.04 </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Some races are overrepresented and some are underrepresented on the jury panels in the study. A bar graph is helpful for visualizing the differences.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<p>Some races are overrepresented and some are underrepresented on the jury panels in the study. A bar graph is helpful for visualizing the differences.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">jury</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">&#39;Race&#39;</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="n">jury</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">'Race'</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmYAAAEPCAYAAADoPwiFAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4Tfe+x/HPFpn0GILIJBFDzJGYjiHEWEepllIUPTel
@@ -272,37 +249,21 @@ PRUrVkxr1qzRsGHD1KJFC/n4+GjQoEEZ7snIK2ztXZK6du1qPaVvMpkUHR0tk8mkq1evOrv8HLG1
 wH72/H3/s7x4j6mtfZtMJk2dOlUpKSlyc3NTpUqVNGfOHL366qsu6sB+9vS+cuVKjRw5Uu3bt5eX
 l5datGihCRMmuKgDIHfkqeeYAQAA5Gd55h4zAACA/I5gBgAAYBAEMwAAAIMgmAEAABgEwQwAAMAg
 CGYAAAAGQTADAAAwCIIZAACAQRDMAAAADOL/ADIDVeTmxdECAAAAAElFTkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre> 
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Total-Variation-Distance">Total Variation Distance<a class="anchor-link" href="#Total-Variation-Distance">&#182;</a></h2><p>To measure the difference between the two distributions, we will compute a quantity called the <em>total variation distance</em> between them. To compute the total variation distance, take the difference between the two proportions in each category, add up the absolute values of all the differences, and then divide the sum by 2.</p>
-<p>Here are the differences and the absolute differences:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<h2 id="Total-Variation-Distance">Total Variation Distance<a class="anchor-link" href="#Total-Variation-Distance">¶</a></h2><p>To measure the difference between the two distributions, we will compute a quantity called the <em>total variation distance</em> between them. To compute the total variation distance, take the difference between the two proportions in each category, add up the absolute values of all the differences, and then divide the sum by 2.</p>
+<p>Here are the differences and the absolute differences:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">jury</span><span class="p">[</span><span class="s">&quot;diff&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jury</span><span class="p">[</span><span class="s">&quot;Panel&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">jury</span><span class="p">[</span><span class="s">&quot;Eligible&quot;</span><span class="p">]</span>
-<span class="n">jury</span><span class="p">[</span><span class="s">&quot;diff_abs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">jury</span><span class="p">[</span><span class="s">&quot;diff&quot;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">jury</span><span class="p">[</span><span class="s">"diff"</span><span class="p">]</span> <span class="o">=</span> <span class="n">jury</span><span class="p">[</span><span class="s">"Panel"</span><span class="p">]</span> <span class="o">-</span> <span class="n">jury</span><span class="p">[</span><span class="s">"Eligible"</span><span class="p">]</span>
+<span class="n">jury</span><span class="p">[</span><span class="s">"diff_abs"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">jury</span><span class="p">[</span><span class="s">"diff"</span><span class="p">])</span>
 <span class="n">jury</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -315,105 +276,63 @@ CGYAAAAGQTADAAAwCIIZAACAQRDMAAAADOL/ADIDVeTmxdECAAAAAElFTkSuQmCC
             <td>Asian </td> <td>0.15    </td> <td>0.26 </td> <td>0.11 </td> <td>0.11    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Black </td> <td>0.18    </td> <td>0.08 </td> <td>-0.1 </td> <td>0.1     </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Latino</td> <td>0.12    </td> <td>0.08 </td> <td>-0.04</td> <td>0.04    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>White </td> <td>0.54    </td> <td>0.54 </td> <td>0    </td> <td>0       </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Other </td> <td>0.01    </td> <td>0.04 </td> <td>0.03 </td> <td>0.03    </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And here is the sum of the absolute differences, divided by 2:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<p>And here is the sum of the absolute differences, divided by 2:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">jury</span><span class="p">[</span><span class="s">&#39;diff_abs&#39;</span><span class="p">])</span><span class="o">*</span><span class="mf">0.5</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">jury</span><span class="p">[</span><span class="s">'diff_abs'</span><span class="p">])</span><span class="o">*</span><span class="mf">0.5</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>0.14000000000000001</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>0.14000000000000001</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The total variation distance between the distribution of eligible jurors and the distribution of the panels is 0.14. Before we examine the numercial value, let us examine the reasons behind the steps in the calculation.</p>
 <p>It is quite natural to compute the difference between the proportions in each category. Now take a look at the column <code>diff</code> and notice that the sum of its entries is 0: the positive entries add up to 0.14, exactly canceling the total of the negative entries which is -0.14. The proportions in each of the two columns <code>Panel</code> and <code>Eligible</code> add up to 1, and so the give-and-take between their entries must add up to 0.</p>
 <p>To avoid the cancellation, we drop the negative signs and then add all the entries. But this gives us two times the total of the positive entries (equivalently, two times the total of the negative entries, with the sign removed). So we divide the sum by 2.</p>
-<p>We would have obtained the same result by just adding the positive differences. But our method of including all the absolute differences eliminates the need to keep track of which differences are positive and which are not.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>We would have obtained the same result by just adding the positive differences. But our method of including all the absolute differences eliminates the need to keep track of which differences are positive and which are not.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Are-the-panels-representative-of-the-population?">Are the panels representative of the population?<a class="anchor-link" href="#Are-the-panels-representative-of-the-population?">&#182;</a></h2><p>We will now turn to the numerical value of the total variation distance between the eligible jurors and the panel. How can we interpret the distance of 0.14? To answer this, let us recall that the panels are supposed to be selected at random. It will therefore be informative to compare the value of 0.14 with the total variation distance between the eligible jurors and a randomly selected panel.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<h2 id="Are-the-panels-representative-of-the-population?">Are the panels representative of the population?<a class="anchor-link" href="#Are-the-panels-representative-of-the-population?">¶</a></h2><p>We will now turn to the numerical value of the total variation distance between the eligible jurors and the panel. How can we interpret the distance of 0.14? To answer this, let us recall that the panels are supposed to be selected at random. It will therefore be informative to compare the value of 0.14 with the total variation distance between the eligible jurors and a randomly selected panel.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To do this, we will employ our skills at simulation. There were 1453 prosepective jurors in the panels in the study. So let us take a random sample of size 1453 from the population of eligible jurors.</p>
 <p>[<strong>Technical note.</strong> Random samples of prospective jurors would be selected without replacement. However, when the size of a sample is small relative to the size of the population, sampling without replacement resembles sampling with replacement; the proportions in the population don't change much between draws. The population of eligible jurors in Alameda County is over a million, and compared to that, a sample size of about 1500 is quite small. We will therefore sample with replacement.]</p>
-<p>The <code>np.random.multinomial</code> function draws a random sample uniformly with replacement from a population whose distribution is categorical.  Specifically, <code>np.random.multinomial</code> takes as its input a sample size and an array consisting of the probabilities of choosing different categories. It returns the count of the number of times each category was chosen.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<p>The <code>np.random.multinomial</code> function draws a random sample uniformly with replacement from a population whose distribution is categorical.  Specifically, <code>np.random.multinomial</code> takes as its input a sample size and an array consisting of the probabilities of choosing different categories. It returns the count of the number of times each category was chosen.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1453</span>
 
-<span class="n">random_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">jury</span><span class="p">[</span><span class="s">&quot;Eligible&quot;</span><span class="p">])</span>
+<span class="n">random_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">jury</span><span class="p">[</span><span class="s">"Eligible"</span><span class="p">])</span>
 <span class="n">random_sample</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
-
-
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([222, 276, 173, 767,  15])</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>array([222, 276, 173, 767,  15])</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can compare this distribution with the distribution of eligible jurors, by converting the counts to proportions. To do this, we will divide the counts by the sample size. It is clear from the results that the two distributions are quite similar.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<p>We can compare this distribution with the distribution of eligible jurors, by converting the counts to proportions. To do this, we will divide the counts by the sample size. It is clear from the results that the two distributions are quite similar.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">jury</span><span class="p">[</span><span class="s">&#39;Random Sample&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">random_sample</span><span class="o">/</span><span class="n">sample_size</span>
-<span class="n">jury</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">&#39;Race&#39;</span><span class="p">,</span><span class="s">&#39;Eligible&#39;</span><span class="p">,</span><span class="s">&#39;Random Sample&#39;</span><span class="p">,</span><span class="s">&#39;Panel&#39;</span><span class="p">])</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
-
+<div class=" highlight hl-ipython3"><pre><span class="n">jury</span><span class="p">[</span><span class="s">'Random Sample'</span><span class="p">]</span> <span class="o">=</span> <span class="n">random_sample</span><span class="o">/</span><span class="n">sample_size</span>
+<span class="n">jury</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'Race'</span><span class="p">,</span><span class="s">'Eligible'</span><span class="p">,</span><span class="s">'Random Sample'</span><span class="p">,</span><span class="s">'Panel'</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -426,43 +345,30 @@ CGYAAAAGQTADAAAwCIIZAACAQRDMAAAADOL/ADIDVeTmxdECAAAAAElFTkSuQmCC
             <td>Asian </td> <td>0.15    </td> <td>0.152787     </td> <td>0.26 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Black </td> <td>0.18    </td> <td>0.189952     </td> <td>0.08 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Latino</td> <td>0.12    </td> <td>0.119064     </td> <td>0.08 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>White </td> <td>0.54    </td> <td>0.527873     </td> <td>0.54 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Other </td> <td>0.01    </td> <td>0.0103235    </td> <td>0.04 </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As always, it helps to visualize:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<p>As always, it helps to visualize:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">jury</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">&#39;Race&#39;</span><span class="p">,</span> <span class="s">&#39;Eligible&#39;</span><span class="p">,</span> <span class="s">&#39;Random Sample&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">&#39;Race&#39;</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="n">jury</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'Race'</span><span class="p">,</span> <span class="s">'Eligible'</span><span class="p">,</span> <span class="s">'Random Sample'</span><span class="p">])</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">'Race'</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmYAAAEPCAYAAADoPwiFAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlYlGXfPvBzGAHRUEZB9j3cEMEtBQTc9x23QoskNdzt
@@ -688,68 +594,40 @@ iRMnYsqUKUbqQHva/Hn/p9q4xlTTvkUiEZYvX47CwkKIxWK8+eabSE1NxahRo4zUgfa06X3Hjh2Y
 N28eBg4ciPr166N79+6Ij483UgdEulGrnmNGREREZMpqzRozIiIiIlPHYEZEREQkEAxmRERERALB
 YEZEREQkEAxmRERERALBYEZEREQkEAxmRERERALBYEZEREQkEAxmRERERALx/wECrQK37rkn+QAA
 AABJRU5ErkJggg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The total variation distance between these distributions is quite small.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<p>The total variation distance between these distributions is quite small.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mf">0.5</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">jury</span><span class="p">[</span><span class="s">&#39;Eligible&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">jury</span><span class="p">[</span><span class="s">&#39;Random Sample&#39;</span><span class="p">]))</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="mf">0.5</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">jury</span><span class="p">[</span><span class="s">'Eligible'</span><span class="p">]</span><span class="o">-</span><span class="n">jury</span><span class="p">[</span><span class="s">'Random Sample'</span><span class="p">]))</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>0.013062629043358601</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>0.013062629043358601</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Comparing this to the distance of 0.14 for the panel quantifies our observation that the random sample is closer to the distribution of eligible jurors than the panel is.</p>
-<p>However, the distance between the random sample and the eligible jurors depends on the sample; sampling again might give a different result.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>However, the distance between the random sample and the eligible jurors depends on the sample; sampling again might give a different result.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>How would random samples behave?</strong></p>
-<p>The total variation distance between the distribution of the random sample and the distribution of the eligible jurors is the statistic that we are using to measure the distance between the two distributions. By repeating the process of sampling, we can measure how much the statistic varies across different random samples. The code below computes the empirical distribution of the statistic based on a large number of replications of the sampling process.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<p>The total variation distance between the distribution of the random sample and the distribution of the eligible jurors is the statistic that we are using to measure the distance between the two distributions. By repeating the process of sampling, we can measure how much the statistic varies across different random samples. The code below computes the empirical distribution of the statistic based on a large number of replications of the sampling process.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="c"># Compute empirical distribution of TVDs</span>
 
 <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1453</span>
 <span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">eligible</span> <span class="o">=</span> <span class="n">jury</span><span class="p">[</span><span class="s">&quot;Eligible&quot;</span><span class="p">]</span>
+<span class="n">eligible</span> <span class="o">=</span> <span class="n">jury</span><span class="p">[</span><span class="s">"Eligible"</span><span class="p">]</span>
 
-<span class="n">tvd_from_sample</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="s">&quot;TVD from a random sample&quot;</span><span class="p">])</span>
+<span class="n">tvd_from_sample</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="s">"TVD from a random sample"</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
     <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">eligible</span><span class="p">)</span><span class="o">/</span><span class="n">sample_size</span>
     <span class="n">tvd</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">sample</span> <span class="o">-</span> <span class="n">eligible</span><span class="p">))</span>
     <span class="n">tvd_from_sample</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">tvd</span><span class="p">])</span>
 
 <span class="n">tvd_from_sample</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -762,65 +640,52 @@ AABJRU5ErkJggg==
             <td>0.0102478               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>0.0123193               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>0.0116311               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>0.0267309               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>0.00860977              </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>0.0193393               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>0.0294838               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>0.0129663               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>0.0113696               </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>0.0176462               </td>
         </tr>
     </tbody>
 </table>
-<p>... (990 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (990 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Each row of the column above contains the total variation distance between a random sample and the population of eligible jurors.</p>
-<p>The histogram of this column shows that drawing 1453 jurors at random from the pool of eligible candidates results in a distribution that rarely deviates from the eligible jurors' race distribution by more than 0.05.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<p>The histogram of this column shows that drawing 1453 jurors at random from the pool of eligible candidates results in a distribution that rarely deviates from the eligible jurors' race distribution by more than 0.05.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">tvd_from_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAagAAAEqCAYAAABAysQTAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X1czff/P/DHUfpEx+rQKaeI4SCXjSLlqgxDjQwTY2gu
@@ -1000,20 +865,15 @@ MWfOnCLfr6Q+ytrbhx9+iCNHjmDSpEkoKCjAoEGDdLfzKknnzp2RkJCAVatWYcGCBXjw4AFsbW3R
 uXNnTJo0qdTPUvWRqNXq8v0KQ0QkgMTERLz++uuIj48v8XJyerHxHBQREQmJAUVELyxeEm7aeIiP
 iIiExD0oIiISEgOKiIiExIAiIiIhMaCIiEhIDCgiIhISA4qIiIT0/wDyMLruGnnlGgAAAABJRU5E
 rkJggg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>How do the panels compare with random samples?</strong></p>
 <p>The panels in the study, however, were not quite so similar to the eligible population. The total variation distance between the panels and the population was 0.14, which is far out in the tail of the histogram above. It does not look like a typical distance between a random sample and the eligible population.</p>
-<p>Our analysis supports the ACLU's conclusion that the panels were not representative of the population. The ACLU report discusses several reasons for the discrepancies. For example, some minority groups were underrepresented on the records of voter registration and of the Department of Motor Vehicles, the two main sources from which jurors are selected; at the time of the study, the county did not have an effective process for following up on prospective jurors who had been called but had failed to appear; and so on. Whatever the reasons, it seems clear that the composition of the jury panels was different from what we would have expected in a random sample.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Our analysis supports the ACLU's conclusion that the panels were not representative of the population. The ACLU report discusses several reasons for the discrepancies. For example, some minority groups were underrepresented on the records of voter registration and of the Department of Motor Vehicles, the two main sources from which jurors are selected; at the time of the study, the county did not have an effective process for following up on prospective jurors who had been called but had failed to appear; and so on. Whatever the reasons, it seems clear that the composition of the jury panels was different from what we would have expected in a random sample.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="A-Classical-Interlude:-the-Chi-Squared-Statistic">A Classical Interlude: the Chi-Squared Statistic<a class="anchor-link" href="#A-Classical-Interlude:-the-Chi-Squared-Statistic">&#182;</a></h2><p>"Do the data look like a random sample?" is a question that has been asked in many contexts for many years. In classical data analysis, the statistic most commonly used in answering this question is called the $\chi^2$ ("chi squared") statistic, and is calculated as follows:</p>
+<h2 id="A-Classical-Interlude:-the-Chi-Squared-Statistic">A Classical Interlude: the Chi-Squared Statistic<a class="anchor-link" href="#A-Classical-Interlude:-the-Chi-Squared-Statistic">¶</a></h2><p>"Do the data look like a random sample?" is a question that has been asked in many contexts for many years. In classical data analysis, the statistic most commonly used in answering this question is called the $\chi^2$ ("chi squared") statistic, and is calculated as follows:</p>
 <p><strong>Step 1.</strong> For each category, define the "expected count" as follows:
 $$
 \mbox{expected count} ~=~ \mbox{sample size} \times \mbox{proportion in population}
@@ -1031,62 +891,37 @@ $$
 $$</p>
 <p><strong>Alternative Method, Step 2.</strong> Add up all the numbers you computed in the step above, and multiply the sum by the sample size.</p>
 <p>It makes sense that the statistic should be based on the difference between proportions in each category, just as the total variation distance is. The remaining steps of the method are not very easy to explain without getting deeper into mathematics.</p>
-<p>The reason for choosing this statistic over any other was that statisticians were able to come up a formula for its approximate probability distribution when the sample size is large. The distribution has an impressive name: it is called the <em>$\chi^2$ distribution with degrees of freedom equal to 4</em> (one fewer than the number of categories). Data analysts would compute the $\chi^2$ statistic for their sample, and then compare it with tabulated numerical values of the $\chi^2$ distributions.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>The reason for choosing this statistic over any other was that statisticians were able to come up a formula for its approximate probability distribution when the sample size is large. The distribution has an impressive name: it is called the <em>$\chi^2$ distribution with degrees of freedom equal to 4</em> (one fewer than the number of categories). Data analysts would compute the $\chi^2$ statistic for their sample, and then compare it with tabulated numerical values of the $\chi^2$ distributions.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Simulating the $\chi^2$ statistic.</strong></p>
 <p>The $\chi^2$ statistic is just a statistic like any other. We can use the computer to simulate its behavior even if we have not studied all the underlying mathematics.</p>
-<p>For the panels in the ACLU study, the $\chi^2$ statistic is about 348:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<p>For the panels in the ACLU study, the $\chi^2$ statistic is about 348:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(((</span><span class="n">jury</span><span class="p">[</span><span class="s">&quot;Panel&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">jury</span><span class="p">[</span><span class="s">&quot;Eligible&quot;</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">jury</span><span class="p">[</span><span class="s">&quot;Eligible&quot;</span><span class="p">])</span><span class="o">*</span><span class="n">sample_size</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(((</span><span class="n">jury</span><span class="p">[</span><span class="s">"Panel"</span><span class="p">]</span> <span class="o">-</span> <span class="n">jury</span><span class="p">[</span><span class="s">"Eligible"</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">jury</span><span class="p">[</span><span class="s">"Eligible"</span><span class="p">])</span><span class="o">*</span><span class="n">sample_size</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>348.07422222222226</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>348.07422222222226</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To generate the empirical distribution of the statistic, all we need is a small modification of the code we used for simulating total variation distance:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<p>To generate the empirical distribution of the statistic, all we need is a small modification of the code we used for simulating total variation distance:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="c"># Compute empirical distribution of chi-squared statistic</span>
 
 <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1453</span>
 <span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">eligible</span> <span class="o">=</span> <span class="n">jury</span><span class="p">[</span><span class="s">&quot;Eligible&quot;</span><span class="p">]</span>
+<span class="n">eligible</span> <span class="o">=</span> <span class="n">jury</span><span class="p">[</span><span class="s">"Eligible"</span><span class="p">]</span>
 
-<span class="n">classical_from_sample</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="s">&quot;&#39;Chi-squared&#39; statistic, from a random sample&quot;</span><span class="p">])</span>
+<span class="n">classical_from_sample</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="s">"'Chi-squared' statistic, from a random sample"</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
     <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">eligible</span><span class="p">)</span><span class="o">/</span><span class="n">sample_size</span>
     <span class="n">chisq</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(((</span><span class="n">sample</span> <span class="o">-</span> <span class="n">eligible</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">eligible</span><span class="p">)</span><span class="o">*</span><span class="n">sample_size</span>
     <span class="n">classical_from_sample</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">chisq</span><span class="p">])</span>
 
 <span class="n">classical_from_sample</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -1099,64 +934,51 @@ $$</p>
             <td>1.94966                                      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1.80424                                      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2.47411                                      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1.59216                                      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6.51747                                      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4.61337                                      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2.8557                                       </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>8.36971                                      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1.94125                                      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4.87451                                      </td>
         </tr>
     </tbody>
 </table>
-<p>... (990 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (990 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here is a histogram of the empirical distribution of the $\chi^2$ statistic. The simulated values of $\chi^2$ based on random samples are considerably smaller than the value of 348 that we got from the jury panels.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<p>Here is a histogram of the empirical distribution of the $\chi^2$ statistic. The simulated values of $\chi^2$ based on random samples are considerably smaller than the value of 348 that we got from the jury panels.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">classical_from_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAa8AAAEqCAYAAACiFt9qAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xtcj/f/P/BHSiZh6XxQNr1XorQQyaFy2uaQmsxhmpCQ
@@ -1399,27 +1221,14 @@ Dxw4gHfffbfa9WhoaCA+Ph7r1q3Drl27cOvWLWhpaeHdd9/F4MGDa/yZSV2o5efn8+flTWjFihUI
 DQ2t95OZpJqsra3h7++Pzz//vKlLIZLLzs4OTk5O1Q6JVxWvzTkvIlX3559/oqSkBJMnT27qUoiq
 JZbLZb1W3YZi1FAXtyXV07Fjxzr9Ho2oMYnl84jdhkREJDrsNiQiItFheBERkegwvIiISHQYXkRE
 JDoMLyIiEh2GFxERic7/ByA7zVTOmXKVAAAAAElFTkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In fact, the long run average value of $\chi^2$ statistics is equal to the degrees of freedom. And indeed, the average of the simulated values of $\chi^2$ is close to 4, the degrees of freedom in this case.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<p>In fact, the long run average value of $\chi^2$ statistics is equal to the degrees of freedom. And indeed, the average of the simulated values of $\chi^2$ is close to 4, the degrees of freedom in this case.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">classical_from_sample</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -1432,9 +1241,7 @@ JDoMLyIiEh2GFxERic7/ByA7zVTOmXKVAAAAAElFTkSuQmCC
             <td>3.87841                                      </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this situation, random samples are expected to produce a $\chi^2$ statistic of about 4. The panels, on the other hand, produced a $\chi^2$ statistic of 348. This is yet more confirmation of the conclusion  that the panels do not resemble a random sample from the population of eligible jurors.</p></div></div></div>

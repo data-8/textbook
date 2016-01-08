@@ -1,43 +1,26 @@
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
-<div class="inner_cell">
+<div class="ipython-notebook">
+            <div>
+                <a class="interact-button" href="http://ds8.berkeley.edu/hub/interact?file=http://data8.org/text/examples/Sampling.ipynb">Interact</a></div>
+            <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this section, we will continue to use the <code><a href="imdb.csv">imdb.csv</a></code> data set.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<p>In this section, we will continue to use the <code><a href="imdb.csv">imdb.csv</a></code> data set.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">&#39;imdb.csv&#39;</span><span class="p">)</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'imdb.csv'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Sampling-rows-of-a-table">Sampling rows of a table<a class="anchor-link" href="#Sampling-rows-of-a-table">&#182;</a></h2></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<h2 id="Sampling-rows-of-a-table">Sampling rows of a table<a class="anchor-link" href="#Sampling-rows-of-a-table">¶</a></h2></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Deterministic Samples</strong></p>
 <p>When you simply specify which elements of a set you want to choose, without any chances involved, you create a <em>deterministic sample</em>.</p>
 <p>A determinsitic sample from the rows of a table can be constructed using the <code>take</code> method. Its argument is a sequence of integers, and it returns a table containing the corresponding rows of the original table.</p>
-<p>The code below returns a table consisting of the rows indexed 3, 18, and 100 in the table <code>imdb</code>. Since the original table is sorted by <code>rank</code>, which begins at 1, the zero-indexed rows always have a rank that is one greater than the index. However, the <code>take</code> method does not inspect the information in the rows to construct its sample.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<p>The code below returns a table consisting of the rows indexed 3, 18, and 100 in the table <code>imdb</code>. Since the original table is sorted by <code>rank</code>, which begins at 1, the zero-indexed rows always have a rank that is one greater than the index. However, the <code>take</code> method does not inspect the information in the rows to construct its sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">imdb</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span> 
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[44]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -50,34 +33,22 @@
             <td>4   </td> <td>The Avengers (2012)            </td> <td>623279547</td> <td>623.28     </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>19  </td> <td>Jurassic Park (1993)           </td> <td>402348347</td> <td>402.348    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>101 </td> <td>My Big Fat Greek Wedding (2002)</td> <td>241437427</td> <td>241.437    </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can select evenly spaced rows by calling <code>np.arange</code> and passing the result to <code>take</code>. In the example below, we start with the first row (index 0) of <code>imdb</code>, and choose every 100th row after that until we reach the end of the table. The expressions <code>imdb.num_rows</code> and <code>len(imdb.rows)</code> could be used interchangeably to indicate that the range should extend to the end of the table.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<p>We can select evenly spaced rows by calling <code>np.arange</code> and passing the result to <code>take</code>. In the example below, we start with the first row (index 0) of <code>imdb</code>, and choose every 100th row after that until we reach the end of the table. The expressions <code>imdb.num_rows</code> and <code>len(imdb.rows)</code> could be used interchangeably to indicate that the range should extend to the end of the table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">imdb</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">imdb</span><span class="o">.</span><span class="n">num_rows</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -90,38 +61,34 @@
             <td>1   </td> <td>Avatar (2009)                              </td> <td>760505847</td> <td>760.506    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>101 </td> <td>My Big Fat Greek Wedding (2002)            </td> <td>241437427</td> <td>241.437    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>201 </td> <td>Indiana Jones and the Temple of Doom (1984)</td> <td>179870271</td> <td>179.87     </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>301 </td> <td>X-Men: First Class (2011)                  </td> <td>146405371</td> <td>146.405    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>401 </td> <td>Sweet Home Alabama (2002)                  </td> <td>127214072</td> <td>127.214    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>501 </td> <td>Dr. Dolittle 2 (2001)                      </td> <td>112950721</td> <td>112.951    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>601 </td> <td>Unforgiven (1992)                          </td> <td>101157447</td> <td>101.157    </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Probability-Samples">Probability Samples<a class="anchor-link" href="#Probability-Samples">&#182;</a></h2></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<h2 id="Probability-Samples">Probability Samples<a class="anchor-link" href="#Probability-Samples">¶</a></h2></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Much of data science consists of making conclusions based on the data in random samples. Correctly interpreting analyses based on random samples requires data scientists to examine exactly what random samples are.</p>
@@ -143,59 +110,32 @@ BC: 0
 ABC: 0
 
 </code></pre>
-<p>Person A has a higher chance of being selected than Persons B or C; indeed, Person A is certain to be selected. Since these differences are known and quantified, they can be taken into account when working with the sample.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Person A has a higher chance of being selected than Persons B or C; indeed, Person A is certain to be selected. Since these differences are known and quantified, they can be taken into account when working with the sample.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To draw a probability sample, we need to be able to choose elements according to a process that involves chance. A basic tool for this purpose is a <em>random number generator</em>. There are several in Python. Here we will use one that is part of the module <code>random</code>, which in turn is part of the module <code>numpy</code>.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>To draw a probability sample, we need to be able to choose elements according to a process that involves chance. A basic tool for this purpose is a <em>random number generator</em>. There are several in Python. Here we will use one that is part of the module <code>random</code>, which in turn is part of the module <code>numpy</code>.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The method <code>randint</code>, when given two arguments <code>low</code> and <code>high</code>, returns an integer picked uniformly at random between <code>low</code> and <code>high</code>, including <code>low</code> but excluding <code>high</code>. Run the code below several times to see the variability in the integers that are returned.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<p>The method <code>randint</code>, when given two arguments <code>low</code> and <code>high</code>, returns an integer picked uniformly at random between <code>low</code> and <code>high</code>, including <code>low</code> but excluding <code>high</code>. Run the code below several times to see the variability in the integers that are returned.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>  <span class="c"># select once at random from 3, 4, 5, 6, 7</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
-
-
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>4</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>4</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>A Systematic Sample</strong></p>
 <p>Imagine all the elements of the population listed in a sequence. One method of sampling starts by choosing a random position early in the list, and then evenly spaced positions after that. The sample consists of the elements in those positions. Such a sample is called a <em>systematic sample</em>.</p>
-<p>Here we will choose a systematic sample of the rows of <code>imdb</code>. We will start by picking one of the first 10 rows at random, and then we will pick every 10th row after that.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<p>Here we will choose a systematic sample of the rows of <code>imdb</code>. We will start by picking one of the first 10 rows at random, and then we will pick every 10th row after that.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="sd">&quot;&quot;&quot;Choose a random start among rows 0 through 9;</span>
-<span class="sd">then take every 10th row.&quot;&quot;&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span class="sd">"""Choose a random start among rows 0 through 9;</span>
+<span class="sd">then take every 10th row."""</span>
 
 <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">imdb</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">imdb</span><span class="o">.</span><span class="n">num_rows</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[47]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -208,53 +148,49 @@ ABC: 0
             <td>1   </td> <td>Avatar (2009)                                               </td> <td>760505847</td> <td>760.506    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>11  </td> <td>E.T. the Extra-Terrestrial (1982)                           </td> <td>434949459</td> <td>434.949    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>21  </td> <td>Frozen (2013)                                               </td> <td>400736600</td> <td>400.737    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>31  </td> <td>Furious 7 (2015)                                            </td> <td>350034110</td> <td>350.034    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>41  </td> <td>Transformers (2007)                                         </td> <td>318759914</td> <td>318.76     </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>51  </td> <td>Pirates of the Caribbean: The Curse of the Black Pearl ( ...</td> <td>305388685</td> <td>305.389    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>61  </td> <td>The Twilight Saga: Breaking Dawn - Part 2 (2012)            </td> <td>292298923</td> <td>292.299    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>71  </td> <td>Meet the Fockers (2004)                                     </td> <td>279167575</td> <td>279.168    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>81  </td> <td>Captain America: The Winter Soldier (2014)                  </td> <td>259746958</td> <td>259.747    </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>91  </td> <td>Night at the Museum (2006)                                  </td> <td>250863268</td> <td>250.863    </td>
         </tr>
     </tbody>
 </table>
-<p>... (53 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (53 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Run the code a few times to see how the output varies. Notice how the numbers in the <strong>rank</strong> column all have the same ending digit. That is because the first row has a random index between 0 and 9, and hence a random rank between 1 and 10; then the code just adds 10 successively to each selected row index, leaving the ending digit unchanged.</p>
 <p>This systematic sample is a probability sample. To find the chance that a particular row is selected, look at the ending digit in the <strong>rank</strong> column of the row. If that is 7, for example, then the row will be selected if and only if the row corresponding to movie rank 7 (Star Wars) is selected. The chance of that is 1/10.</p>
-<p>In this scheme, all rows do have the same chance of being chosen. But that is not true of other subsets of the rows. Because the selected rows are evenly spaced, most subsets of rows have no chance of being chosen. The only subsets that are possible are those in which all the ranks have the same ending digit. Those are selected with chance 1/10.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>In this scheme, all rows do have the same chance of being chosen. But that is not true of other subsets of the rows. Because the selected rows are evenly spaced, most subsets of rows have no chance of being chosen. The only subsets that are possible are those in which all the ranks have the same ending digit. Those are selected with chance 1/10.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Random sample with replacement</strong></p>
@@ -268,22 +204,12 @@ ABC: 0
 </li>
 </ul>
 <p>The second of these areas will be covered later in the course. For now, let us study some long-run properties of probabilities.</p>
-<p>We will start with the table <code>die</code> which contains the numbers of spots on the faces of a die. All the numbers appear exactly once, as we are assuming that the die is fair.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<p>We will start with the table <code>die</code> which contains the numbers of spots on the faces of a die. All the numbers appear exactly once, as we are assuming that the die is fair.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">die</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],[</span><span class="s">&#39;Face&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">die</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],[</span><span class="s">'Face'</span><span class="p">])</span>
 <span class="n">die</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[48]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -296,47 +222,34 @@ ABC: 0
             <td>1   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6   </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Drawing the histogram of this simple set of numbers yields an unsettling figure as <code>hist</code> makes a default choice of bins:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<p>Drawing the histogram of this simple set of numbers yields an unsettling figure as <code>hist</code> makes a default choice of bins:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">die</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZsAAAEUCAYAAAD9fpv1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAEMFJREFUeJzt3X+s3XV9x/Hnq7eyFqdliqKjHTi9WyCZikxEDYjOYSUT
@@ -415,28 +328,14 @@ Bh6sqq+OflRpvBgbaXi30zvieHeSh+lF5/fpheYHpytX1R1J3g+c3/+I4WuBh+l9lv3mqvoH4KP0
 PtXw00neB9wKHELv6OlVwJlVNfuY/c6kxoyNtLD9TtOsqt1JzqR32vOHgW/TO2ttB/NOBqiqtyXZ
 Cvw28Bv0TpO+hd4RDVW1J8krgLfTOwJ6Rn/NVuATwENtfltSNzz1WZLUnFcQkCQ1Z2wkSc0ZG0lS
 c8ZGktScsZEkNWdsJEnNGRtJUnPGRpLUnLGRJDX3f5USJNCrpezKAAAAAElFTkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The numbers 1, 2, 3, 4, 5, 6 are integers, so the bins chosen by <code>hist</code> only have entries at the edges. In such a situation, it is a better idea to select bins so that they are centered on the integers. This is often true of histograms of data that are <em>discrete</em>, that is, variables whose successive values are separated by the same fixed amount. The real advantage of this method of bin selection will become more clear when we start imagining smooth curves drawn over histograms.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<p>The numbers 1, 2, 3, 4, 5, 6 are integers, so the bins chosen by <code>hist</code> only have entries at the edges. In such a situation, it is a better idea to select bins so that they are centered on the integers. This is often true of histograms of data that are <em>discrete</em>, that is, variables whose successive values are separated by the same fixed amount. The real advantage of this method of bin selection will become more clear when we start imagining smooth curves drawn over histograms.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">die</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaEAAAEUCAYAAACCr4kEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGRxJREFUeJzt3X+MZWd93/H3Z+5gZpwNtkIbHOwJa4VxsatUMUksh4gU
@@ -553,35 +452,20 @@ gP7fZdVV9fUkHwDe2X9U9d3AKnAFcLiq/itwB70na/5Zkt8CvgScQ2+29XrgDVW1tGMjk7aZISSd
 nu+5nLSqTiR5A73Ls28HnqJ3Fd1RBi5CqKp3JTkC/Avgn9O7nPshejOgk4+9/8fAu+nNmC7u9zkC
 /Anwt9szLKkNL9GWJDXjHRMkSc0YQpKkZgwhSVIzhpAkqRlDSJLUjCEkSWrGEJIkNWMISZKaMYQk
 Sc38X+cGeKlYzs8xAAAAAElFTkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice how each bin has width 1 and is centered on an integer. Notice also that because the width of each bin is 1, the height of each bar is $0.16666 \ldots /1 = 1/6$, the chance that the corresponding face appears.</p>
-<p>The histogram shows the probability with which each face appears. It is called a <em>probability histogram</em> of the result of one roll of a die.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>The histogram shows the probability with which each face appears. It is called a <em>probability histogram</em> of the result of one roll of a die.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The histogram was drawn without rolling any dice or generating any random numbers. We will now use the computer to mimic actually rolling a die. The process of using a computer program to produce the results of a chance experiment is called <em>simulation</em>.</p>
 <p>To roll the die, we will use a method called <code>sample</code>. This method returns a new table consisting of rows selected uniformly at random from a table. Its first argument is the number of rows to be returned. Its second argument is whether or not the sampling should be done with replacement.</p>
-<p>The code below simulates 10 rolls of the die. As with all simulations of chance experiments, you should run the code several times and notice the variability in what is returned.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<p>The code below simulates 10 rolls of the die. As with all simulations of chance experiments, you should run the code several times and notice the variability in what is returned.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">die</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[51]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -594,72 +478,56 @@ Sc38X+cGeKlYzs8xAAAAAElFTkSuQmCC
             <td>1   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4   </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5   </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We will now roll the die several times and draw the histogram of the observed results. The histogram of observed results is called an <em>empirical histogram</em>.</p>
-<p>The results of rolling the die will all be integers in the range 1 through 6, so we will want to use the same bins as we used for the probability histogram. To avoid writing out the same bin argument every time we draw a histogram, let us define a function called <code>hist_1to6</code> that will perform the task for us. The function will take one argument: the name of a table that contains the results of the rolls.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<p>The results of rolling the die will all be integers in the range 1 through 6, so we will want to use the same bins as we used for the probability histogram. To avoid writing out the same bin argument every time we draw a histogram, let us define a function called <code>hist_1to6</code> that will perform the task for us. The function will take one argument: the name of a table that contains the results of the rolls.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">hist_1to6</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+</pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">hist_1to6</span><span class="p">(</span><span class="n">die</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">))</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaEAAAEUCAYAAACCr4kEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAEpdJREFUeJzt3X+sZeVd7/H3Z84wdIAK6m2lZUao9qgluU1rdaRyqdVw
@@ -747,28 +615,14 @@ gbcAV1fVHyyuTHL5kn7/1P3cAvz9Ms/1T8CjwA8t0/7YKuqUTjqGkLR6p3U/jy6u6L4O/V28/Evl
 mv5ZdAdZchJCVf1ckv3ATwL/jf7p3A/SnwEtfu39fwF+nv6M6XVdn/3AnwIvrs2wpDY8RVuS1Ix3
 TJAkNWMISZKaMYQkSc0YQpKkZgwhSVIzhpAkqRlDSJLUjCEkSWrGEJIkNfOvWLou1YBgxBEAAAAA
 SUVORK5CYII=
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Below, for comparison, is the probability histogram for the roll of a die. Based on that, we expect each face to appear about on $1/6$ of the rolls. But if you run the simulation above a few times, you will see that with just 20 rolls, the proportion of times each face appears can be quite far from $1/6$.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<p>Below, for comparison, is the probability histogram for the roll of a die. Based on that, we expect each face to appear about on $1/6$ of the rolls. But if you run the simulation above a few times, you will see that with just 20 rolls, the proportion of times each face appears can be quite far from $1/6$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">hist_1to6</span><span class="p">(</span><span class="n">die</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaEAAAEUCAYAAACCr4kEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGRxJREFUeJzt3X+MZWd93/H3Z+5gZpwNtkIbHOwJa4VxsatUMUksh4gU
@@ -885,28 +739,14 @@ gP7fZdVV9fUkHwDe2X9U9d3AKnAFcLiq/itwB70na/5Zkt8CvgScQ2+29XrgDVW1tGMjk7aZISSd
 nu+5nLSqTiR5A73Ls28HnqJ3Fd1RBi5CqKp3JTkC/Avgn9O7nPshejOgk4+9/8fAu+nNmC7u9zkC
 /Anwt9szLKkNL9GWJDXjHRMkSc0YQpKkZgwhSVIzhpAkqRlDSJLUjCEkSWrGEJIkNWMISZKaMYQk
 Sc38X+cGeKlYzs8xAAAAAElFTkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As we increase the number of rolls in the simulation, the proportions get closer to $1/6$.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<p>As we increase the number of rolls in the simulation, the proportions get closer to $1/6$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">hist_1to6</span><span class="p">(</span><span class="n">die</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">))</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaEAAAEUCAYAAACCr4kEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGWZJREFUeJzt3X+MZeV93/H3Z+6YzBBiUNLGxDBhkRlqqFIHJ6HEkVMr
@@ -1024,21 +864,16 @@ CEmb9zC9Gcp/SrJML4zeQS+A/u6y6qr6WpIPAO/s/1T1XcAycDlwoKr+O3A7vV/W/PMkvwl8ETiD
 3mzrtcDrqmph20YmbTFDSDo533U5aVUdS/I6epdn3wY8Re8qukOsuQihqt6V5CDwr4FfpHc594P0
 ZkDHf/b+nwHvpjdjurDf5yDwp8B3tmZYUhteoi1JasYnJkiSmjGEJEnNGEKSpGYMIUlSM4aQJKkZ
 Q0iS1IwhJElqxhCSJDVjCEmSmvl/UhuO44FL0uwAAAAASUVORK5CYII=
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The behavior we have observed is an instance of a general rule.</p>
-<h2 id="The-Law-of-Averages">The Law of Averages<a class="anchor-link" href="#The-Law-of-Averages">&#182;</a></h2><p>If a chance experiment is repeated independently and under identical conditions, then, in the long run, the proportion of times that an event occurs gets closer and closer to the theoretical probability of the event.</p>
+<h2 id="The-Law-of-Averages">The Law of Averages<a class="anchor-link" href="#The-Law-of-Averages">¶</a></h2><p>If a chance experiment is repeated independently and under identical conditions, then, in the long run, the proportion of times that an event occurs gets closer and closer to the theoretical probability of the event.</p>
 <p>For example, in the long run, the proportion of times the face with four spots appears gets closer and closer to 1/6.</p>
-<p>Here "independently and under identical conditions" means that every repetition is performed in the same way regardless of the results of all the other repetitions.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Here "independently and under identical conditions" means that every repetition is performed in the same way regardless of the results of all the other repetitions.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Convergence-of-empirical-histograms">Convergence of empirical histograms<a class="anchor-link" href="#Convergence-of-empirical-histograms">&#182;</a></h2><p>We have also observed that a random quantity (such as the number of spots on one roll of a die) is associated with two histograms:</p>
+<h2 id="Convergence-of-empirical-histograms">Convergence of empirical histograms<a class="anchor-link" href="#Convergence-of-empirical-histograms">¶</a></h2><p>We have also observed that a random quantity (such as the number of spots on one roll of a die) is associated with two histograms:</p>
 <ul>
 <li><p>a probability histogram, that shows all the possible values of the quantity and all their chances</p>
 </li>
@@ -1046,37 +881,23 @@ Q0iS1IwhJElqxhCSJDVjCEmSmvl/UhuO44FL0uwAAAAASUVORK5CYII=
 </li>
 </ul>
 <p>We have seen an example of the long-run behavior of empirical histograms:</p>
-<p>As the number of repetitions increases, the empirical histogram of a random quantity looks more and more like the probability histogram.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>As the number of repetitions increases, the empirical histogram of a random quantity looks more and more like the probability histogram.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="At-the-Roulette-Table">At the Roulette Table<a class="anchor-link" href="#At-the-Roulette-Table">&#182;</a></h2><p>Equipped with our new knowledge about the long-run behavior of chances, let us explore a gambling game. Betting on roulette is popular in gambling centers such as Las Vegas and Monte Carlo, and we will simulate one of the bets here.</p>
-<p>The main randomizer in roulette in Nevada is a wheel that has 38 pockets on its rim. Two of the pockets are green, eighteen black, and eighteen red. The wheel is on a spindle, and there is a small ball on it. When the wheel is spun, the ball ricochets around and finally comes to rest in one of the pockets. That is declared to be the winning pocket.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<h2 id="At-the-Roulette-Table">At the Roulette Table<a class="anchor-link" href="#At-the-Roulette-Table">¶</a></h2><p>Equipped with our new knowledge about the long-run behavior of chances, let us explore a gambling game. Betting on roulette is popular in gambling centers such as Las Vegas and Monte Carlo, and we will simulate one of the bets here.</p>
+<p>The main randomizer in roulette in Nevada is a wheel that has 38 pockets on its rim. Two of the pockets are green, eighteen black, and eighteen red. The wheel is on a spindle, and there is a small ball on it. When the wheel is spun, the ball ricochets around and finally comes to rest in one of the pockets. That is declared to be the winning pocket.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You are allowed to bet on several pre-specified collections of pockets. If you bet on "red," you win if the ball comes to rest in one of the red pockets.</p>
 <p>The bet even money. That is, it pays 1 to 1. To understand what that means, assume you are going to bet \$1 on "red." The first thing that happens, even before the wheel is spun, is that you have to hand over your \$1. If the ball lands in a green or black pocket, you never see that dollar again. If the ball lands in a red pocket, you get your dollar back (to bring you back to even), plus another \$1 in winnings.</p>
-<p>The table <code>wheel</code> represents the pockets of a Nevada roulette wheel. It has 38 rows labeled 1 through 38, one row per pocket.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<p>The table <code>wheel</code> represents the pockets of a Nevada roulette wheel. It has 38 rows labeled 1 through 38, one row per pocket.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">pockets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">39</span><span class="p">)</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">([</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;black&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;green&#39;</span><span class="p">,</span> <span class="s">&#39;green&#39;</span><span class="p">]</span>
-<span class="n">wheel</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">pockets</span><span class="p">,</span> <span class="n">colors</span><span class="p">],[</span><span class="s">&#39;pocket&#39;</span><span class="p">,</span> <span class="s">&#39;color&#39;</span><span class="p">])</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">([</span><span class="s">'red'</span><span class="p">,</span> <span class="s">'black'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="p">[</span><span class="s">'black'</span><span class="p">,</span> <span class="s">'red'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">[</span><span class="s">'green'</span><span class="p">,</span> <span class="s">'green'</span><span class="p">]</span>
+<span class="n">wheel</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">pockets</span><span class="p">,</span> <span class="n">colors</span><span class="p">],[</span><span class="s">'pocket'</span><span class="p">,</span> <span class="s">'color'</span><span class="p">])</span>
 <span class="n">wheel</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[56]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -1089,113 +910,80 @@ Q0iS1IwhJElqxhCSJDVjCEmSmvl/UhuO44FL0uwAAAAASUVORK5CYII=
             <td>1     </td> <td>red  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2     </td> <td>black</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3     </td> <td>red  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4     </td> <td>black</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5     </td> <td>red  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6     </td> <td>black</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>7     </td> <td>red  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>8     </td> <td>black</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>9     </td> <td>red  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>10    </td> <td>black</td>
         </tr>
     </tbody>
 </table>
-<p>... (28 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (28 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The function <code>bet_on_red</code> takes a numerical argument <code>x</code> and returns the net winnings on a \$1 bet on "red," provided <code>x</code> is the number of a pocket.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<p>The function <code>bet_on_red</code> takes a numerical argument <code>x</code> and returns the net winnings on a \$1 bet on "red," provided <code>x</code> is the number of a pocket.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">bet_on_red</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The net winnings of betting on red for outcome x.&quot;&quot;&quot;</span>
-    <span class="n">pockets</span> <span class="o">=</span> <span class="n">wheel</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;pocket&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">pockets</span><span class="p">[</span><span class="s">&#39;color&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;red&#39;</span><span class="p">:</span>
+    <span class="sd">"""The net winnings of betting on red for outcome x."""</span>
+    <span class="n">pockets</span> <span class="o">=</span> <span class="n">wheel</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'pocket'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pockets</span><span class="p">[</span><span class="s">'color'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'red'</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+</pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">bet_on_red</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[58]:</div>
-
-
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>-1</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>-1</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The function <code>spins</code> takes a numerical argument <code>n</code> and returns a new table consisting of <code>n</code> rows of <code>wheel</code> sampled at random with replacement. In other words, it simulates the results of <code>n</code> spins of the roulette wheel.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<p>The function <code>spins</code> takes a numerical argument <code>n</code> and returns a new table consisting of <code>n</code> rows of <code>wheel</code> sampled at random with replacement. In other words, it simulates the results of <code>n</code> spins of the roulette wheel.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">spins</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">wheel</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We will create a table called <code>play</code> consisting of the results of 10 spins, and add a column that shows the net winnings on \$1 placed on "red." Recall that the <code>apply</code> method applies a function to each element in a column of a table.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<p>We will create a table called <code>play</code> consisting of the results of 10 spins, and add a column that shows the net winnings on \$1 placed on "red." Recall that the <code>apply</code> method applies a function to each element in a column of a table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">play</span> <span class="o">=</span> <span class="n">spins</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">play</span><span class="p">[</span><span class="s">&#39;winnings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">play</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">bet_on_red</span><span class="p">,</span> <span class="s">&#39;pocket&#39;</span><span class="p">)</span>
+<span class="n">play</span><span class="p">[</span><span class="s">'winnings'</span><span class="p">]</span> <span class="o">=</span> <span class="n">play</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">bet_on_red</span><span class="p">,</span> <span class="s">'pocket'</span><span class="p">)</span>
 <span class="n">play</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[60]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -1208,108 +996,75 @@ Q0iS1IwhJElqxhCSJDVjCEmSmvl/UhuO44FL0uwAAAAASUVORK5CYII=
             <td>33    </td> <td>black</td> <td>-1      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>17    </td> <td>black</td> <td>-1      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>12    </td> <td>red  </td> <td>1       </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>30    </td> <td>red  </td> <td>1       </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>7     </td> <td>red  </td> <td>1       </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>12    </td> <td>red  </td> <td>1       </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>16    </td> <td>red  </td> <td>1       </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>7     </td> <td>red  </td> <td>1       </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>24    </td> <td>black</td> <td>-1      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>28    </td> <td>black</td> <td>-1      </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And here is the net gain on all 10 bets:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<p>And here is the net gain on all 10 bets:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">play</span><span class="p">[</span><span class="s">&#39;winnings&#39;</span><span class="p">])</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[61]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">play</span><span class="p">[</span><span class="s">'winnings'</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>2</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>2</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can put all this together in a single function called <code>fate_red</code> that takes as its argument the number of bets and returns the net gain on that many \$1 bets placed on "red." Try running <code>fate_red</code> several times with an argument of 500.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<p>We can put all this together in a single function called <code>fate_red</code> that takes as its argument the number of bets and returns the net gain on that many \$1 bets placed on "red." Try running <code>fate_red</code> several times with an argument of 500.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">fate_red</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">net_gain</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">spins</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">bet_on_red</span><span class="p">,</span> <span class="s">&#39;pocket&#39;</span><span class="p">))</span>
+    <span class="n">net_gain</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">spins</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">bet_on_red</span><span class="p">,</span> <span class="s">'pocket'</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">net_gain</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&#39;You made &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">net_gain</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; dollars. Lucky!&quot;</span>
+        <span class="k">return</span> <span class="s">'You made '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">net_gain</span><span class="p">)</span> <span class="o">+</span> <span class="s">" dollars. Lucky!"</span>
     <span class="k">elif</span> <span class="n">net_gain</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&quot;Whew! Broke even.&quot;</span>
+        <span class="k">return</span> <span class="s">"Whew! Broke even."</span>
     <span class="k">elif</span> <span class="n">net_gain</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&#39;You made &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">net_gain</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; dollars. The casino thanks you for making it richer.&quot;</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+        <span class="k">return</span> <span class="s">'You made '</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">net_gain</span><span class="p">)</span> <span class="o">+</span> <span class="s">" dollars. The casino thanks you for making it richer."</span>
+</pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">fate_red</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[63]:</div>
-
-
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&apos;You made -30 dollars. The casino thanks you for making it richer.&apos;</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>'You made -30 dollars. The casino thanks you for making it richer.'</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Betting \$1 on red hundreds of times seems like a bad idea from a gambler's perspective. But from the casinos' perspective it is excellent. Casinos rely on large numbers of bets being placed. The payoff odds are set so that the more bets that are placed, the more money the casinos are likely to make, even though a few people are likely to go home with winnings.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Betting \$1 on red hundreds of times seems like a bad idea from a gambler's perspective. But from the casinos' perspective it is excellent. Casinos rely on large numbers of bets being placed. The payoff odds are set so that the more bets that are placed, the more money the casinos are likely to make, even though a few people are likely to go home with winnings.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Simple Random Sample – a Random Sample without Replacement</strong></p>
@@ -1319,27 +1074,17 @@ Q0iS1IwhJElqxhCSJDVjCEmSmvl/UhuO44FL0uwAAAAASUVORK5CYII=
 <p>A <em>standard deck</em> deck consists of 13 ranks of cards in each of four suits. The suits are called spades, clubs, diamonds, and hearts. The ranks are Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, and King. Spades and clubs are black; diamonds and hearts are red. The Jacks, Queens, and Kings are called 'face cards.'</p>
 <p>The table <code>deck</code> contains all 52 cards in a column labeled <code>cards</code>. The abbreviations are:</p>
 <p>Spades: s $~~$ Clubs: c $~~$ Diamonds: d $~~$ Hearts: h</p>
-<p>Ace: A $~~$ Jack: J $~~$ Queen: Q $~~$ King: K</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<p>Ace: A $~~$ Jack: J $~~$ Queen: Q $~~$ King: K</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
 
-<span class="n">suits</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;♠︎&#39;</span><span class="p">,</span> <span class="s">&#39;♥︎&#39;</span><span class="p">,</span> <span class="s">&#39;♦︎&#39;</span><span class="p">,</span> <span class="s">&#39;♣︎&#39;</span><span class="p">]</span>
-<span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="s">&#39;3&#39;</span><span class="p">,</span> <span class="s">&#39;4&#39;</span><span class="p">,</span> <span class="s">&#39;5&#39;</span><span class="p">,</span> <span class="s">&#39;6&#39;</span><span class="p">,</span> <span class="s">&#39;7&#39;</span><span class="p">,</span> <span class="s">&#39;8&#39;</span><span class="p">,</span> <span class="s">&#39;9&#39;</span><span class="p">,</span> <span class="s">&#39;10&#39;</span><span class="p">,</span> <span class="s">&#39;J&#39;</span><span class="p">,</span> <span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="s">&#39;K&#39;</span><span class="p">]</span>
+<span class="n">suits</span> <span class="o">=</span> <span class="p">[</span><span class="s">'♠︎'</span><span class="p">,</span> <span class="s">'♥︎'</span><span class="p">,</span> <span class="s">'♦︎'</span><span class="p">,</span> <span class="s">'♣︎'</span><span class="p">]</span>
+<span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'2'</span><span class="p">,</span> <span class="s">'3'</span><span class="p">,</span> <span class="s">'4'</span><span class="p">,</span> <span class="s">'5'</span><span class="p">,</span> <span class="s">'6'</span><span class="p">,</span> <span class="s">'7'</span><span class="p">,</span> <span class="s">'8'</span><span class="p">,</span> <span class="s">'9'</span><span class="p">,</span> <span class="s">'10'</span><span class="p">,</span> <span class="s">'J'</span><span class="p">,</span> <span class="s">'Q'</span><span class="p">,</span> <span class="s">'K'</span><span class="p">]</span>
 
-<span class="n">deck</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">from_rows</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="n">ranks</span><span class="p">,</span> <span class="n">suits</span><span class="p">),</span> <span class="p">[</span><span class="s">&#39;rank&#39;</span><span class="p">,</span> <span class="s">&#39;suit&#39;</span><span class="p">])</span>
+<span class="n">deck</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">from_rows</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="n">ranks</span><span class="p">,</span> <span class="n">suits</span><span class="p">),</span> <span class="p">[</span><span class="s">'rank'</span><span class="p">,</span> <span class="s">'suit'</span><span class="p">])</span>
 <span class="n">deck</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[64]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -1352,63 +1097,51 @@ Q0iS1IwhJElqxhCSJDVjCEmSmvl/UhuO44FL0uwAAAAASUVORK5CYII=
             <td>A   </td> <td>♠︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>A   </td> <td>♥︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>A   </td> <td>♦︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>A   </td> <td>♣︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2   </td> <td>♠︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2   </td> <td>♥︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2   </td> <td>♦︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2   </td> <td>♣︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3   </td> <td>♠︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3   </td> <td>♥︎  </td>
         </tr>
     </tbody>
 </table>
-<p>... (42 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (42 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A <em>poker hand</em> is five cards dealt at random from the deck. The code below deals a poker hand. Deal a few hands to see if you can get a <em>flush</em>: a hand that contains only one suit. How many aces do you typically get?</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<p>A <em>poker hand</em> is five cards dealt at random from the deck. The code below deals a poker hand. Deal a few hands to see if you can get a <em>flush</em>: a hand that contains only one suit. How many aces do you typically get?</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">deck</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[65]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -1421,25 +1154,23 @@ Q0iS1IwhJElqxhCSJDVjCEmSmvl/UhuO44FL0uwAAAAASUVORK5CYII=
             <td>5   </td> <td>♠︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>Q   </td> <td>♣︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5   </td> <td>♣︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>9   </td> <td>♥︎  </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>7   </td> <td>♠︎  </td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note that the hand is the set of five cards, regardless of the order in which they appeared. For example, the hand <code>['9♣︎', '9♥︎', 'Q♣︎', '7♣︎', '8♥︎']</code> is the same as the hand <code>['7♣︎', '9♣︎', '8♥︎', '9♥︎', 'Q♣︎']</code>.</p>

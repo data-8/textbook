@@ -1,108 +1,54 @@
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
-<div class="inner_cell">
+<div class="ipython-notebook">
+            <div>
+                <a class="interact-button" href="http://ds8.berkeley.edu/hub/interact?file=http://data8.org/text/examples/Categories.ipynb">Interact</a></div>
+            <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this section, we will continue to use the <code><a href="imdb.csv">imdb.csv</a></code> data set.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<p>In this section, we will continue to use the <code><a href="imdb.csv">imdb.csv</a></code> data set.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">&#39;imdb.csv&#39;</span><span class="p">)</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'imdb.csv'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Functions can be used to compute new columns in a table based on existing column values. For example, the IMDb dataset of top grossing movies placed the year of each movie in the title. To categorize the data by year, we first must separate the title from the date.</p>
-<p><strong>Slicing</strong>. Titles are strings, and a string is a sequence. Any sequence can be <em>sliced</em>, creating a new sequence of the same type that has only a range of the original elements. To slice a sequence, place two indices separated by a colon within square brackets. While slicing has a new syntax, slices have the same behavior as the arguments to <code>np.arange</code>: the first number is an inclusive lower bound and the second argument is an exclusive upper bound.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<p><strong>Slicing</strong>. Titles are strings, and a string is a sequence. Any sequence can be <em>sliced</em>, creating a new sequence of the same type that has only a range of the original elements. To slice a sequence, place two indices separated by a colon within square brackets. While slicing has a new syntax, slices have the same behavior as the arguments to <code>np.arange</code>: the first number is an inclusive lower bound and the second argument is an exclusive upper bound.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Terminator 2: Judgment Day (1991)&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">title</span> <span class="o">=</span> <span class="s">"Terminator 2: Judgment Day (1991)"</span>
 <span class="n">title</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
-
-
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&apos;minator&apos;</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>'minator'</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Negative indices in a slice (or in element selection) count from the end of the sequence. Since years of movies in this data set always contain exactly 4 numbers, we can separate the date from the title using a slice and negative constants.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<p>Negative indices in a slice (or in element selection) count from the end of the sequence. Since years of movies in this data set always contain exactly 4 numbers, we can separate the date from the title using a slice and negative constants.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">title</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
-
-
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&apos;1991&apos;</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>'1991'</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>year</code> function below takes in a movie title with the year at the end, slices out the year, and converts the result to an integer by calling <code>int</code>.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<p>The <code>year</code> function below takes in a movie title with the year at the end, slices out the year, and converts the result to an integer by calling <code>int</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">year</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the year of a movie, assuming it appears at the end of the title.&quot;&quot;&quot;</span>
+    <span class="sd">"""Return the year of a movie, assuming it appears at the end of the title."""</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">title</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="n">year</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
-
-
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>1991</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>1991</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Apply.</strong> The <code>apply</code> method of a table calls a function on each element of a column, forming a new array of return values. To indicate which function to call, just name it (without quotation marks). The name of the column of input values must still appear within quotation marks.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<p><strong>Apply.</strong> The <code>apply</code> method of a table calls a function on each element of a column, forming a new array of return values. To indicate which function to call, just name it (without quotation marks). The name of the column of input values must still appear within quotation marks.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span><span class="p">[</span><span class="s">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imdb</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="s">&#39;movie&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span><span class="p">[</span><span class="s">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">imdb</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="s">'movie'</span><span class="p">)</span>
 <span class="n">imdb</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -115,75 +61,63 @@
             <td>1   </td> <td>Avatar (2009)                                   </td> <td>760505847</td> <td>760.506    </td> <td>2009</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2   </td> <td>Titanic (1997)                                  </td> <td>658672302</td> <td>658.672    </td> <td>1997</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3   </td> <td>Jurassic World (2015)                           </td> <td>642978555</td> <td>642.979    </td> <td>2015</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4   </td> <td>The Avengers (2012)                             </td> <td>623279547</td> <td>623.28     </td> <td>2012</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5   </td> <td>The Dark Knight (2008)                          </td> <td>533316061</td> <td>533.316    </td> <td>2008</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6   </td> <td>Star Wars: Episode I - The Phantom Menace (1999)</td> <td>474544677</td> <td>474.545    </td> <td>1999</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>7   </td> <td>Star Wars (1977)                                </td> <td>460935665</td> <td>460.936    </td> <td>1977</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>8   </td> <td>Avengers: Age of Ultron (2015)                  </td> <td>457744064</td> <td>457.744    </td> <td>2015</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>9   </td> <td>The Dark Knight Rises (2012)                    </td> <td>448130642</td> <td>448.131    </td> <td>2012</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>10  </td> <td>Shrek 2 (2004)                                  </td> <td>436471036</td> <td>436.471    </td> <td>2004</td>
         </tr>
     </tbody>
 </table>
-<p>... (617 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (617 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Computing-Categories">Computing Categories<a class="anchor-link" href="#Computing-Categories">&#182;</a></h2><p>Functions can also be used to create categories based on existing columns. The first step in categorizing data is to write a function that can take existing column values as arguments and return a category label. Then, a new column for that category can be added using <code>apply</code>, as in the example above.</p>
-<p>Certain science fiction films have pushed the limits of special effects technology. The movie E.T., released in 1982, made audiences believe in aliens. Jurassic Park, released in 1993, delivered the most convincing images of dinosaurs ever created. Avatar, released in 2009, created realistic humanoid aliens in immersive 3-dimensional films. We can use these landmarks of special effects technology to categorize the history of cinema.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<h2 id="Computing-Categories">Computing Categories<a class="anchor-link" href="#Computing-Categories">¶</a></h2><p>Functions can also be used to create categories based on existing columns. The first step in categorizing data is to write a function that can take existing column values as arguments and return a category label. Then, a new column for that category can be added using <code>apply</code>, as in the example above.</p>
+<p>Certain science fiction films have pushed the limits of special effects technology. The movie E.T., released in 1982, made audiences believe in aliens. Jurassic Park, released in 1993, delivered the most convincing images of dinosaurs ever created. Avatar, released in 2009, created realistic humanoid aliens in immersive 3-dimensional films. We can use these landmarks of special effects technology to categorize the history of cinema.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">age</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="mi">1982</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&#39;old&#39;</span>
+        <span class="k">return</span> <span class="s">'old'</span>
     <span class="k">elif</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="mi">1993</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&#39;modern&#39;</span>
+        <span class="k">return</span> <span class="s">'modern'</span>
     <span class="k">elif</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="mi">2009</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&#39;recent&#39;</span>
+        <span class="k">return</span> <span class="s">'recent'</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&#39;contemporary&#39;</span>
+        <span class="k">return</span> <span class="s">'contemporary'</span>
     
-<span class="n">imdb</span><span class="p">[</span><span class="s">&#39;era&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imdb</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="s">&#39;year&#39;</span><span class="p">)</span>
+<span class="n">imdb</span><span class="p">[</span><span class="s">'era'</span><span class="p">]</span> <span class="o">=</span> <span class="n">imdb</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="s">'year'</span><span class="p">)</span>
 <span class="n">imdb</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -196,64 +130,51 @@
             <td>1   </td> <td>Avatar (2009)                                   </td> <td>760505847</td> <td>760.506    </td> <td>2009</td> <td>contemporary</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>2   </td> <td>Titanic (1997)                                  </td> <td>658672302</td> <td>658.672    </td> <td>1997</td> <td>recent      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>3   </td> <td>Jurassic World (2015)                           </td> <td>642978555</td> <td>642.979    </td> <td>2015</td> <td>contemporary</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>4   </td> <td>The Avengers (2012)                             </td> <td>623279547</td> <td>623.28     </td> <td>2012</td> <td>contemporary</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>5   </td> <td>The Dark Knight (2008)                          </td> <td>533316061</td> <td>533.316    </td> <td>2008</td> <td>recent      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6   </td> <td>Star Wars: Episode I - The Phantom Menace (1999)</td> <td>474544677</td> <td>474.545    </td> <td>1999</td> <td>recent      </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>7   </td> <td>Star Wars (1977)                                </td> <td>460935665</td> <td>460.936    </td> <td>1977</td> <td>old         </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>8   </td> <td>Avengers: Age of Ultron (2015)                  </td> <td>457744064</td> <td>457.744    </td> <td>2015</td> <td>contemporary</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>9   </td> <td>The Dark Knight Rises (2012)                    </td> <td>448130642</td> <td>448.131    </td> <td>2012</td> <td>contemporary</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>10  </td> <td>Shrek 2 (2004)                                  </td> <td>436471036</td> <td>436.471    </td> <td>2004</td> <td>recent      </td>
         </tr>
     </tbody>
 </table>
-<p>... (617 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (617 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once a new category column is introduced, it can be used to perform any sort of further processing. For instance, we could count how many movies come from each era.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<p>Once a new category column is introduced, it can be used to perform any sort of further processing. For instance, we could count how many movies come from each era.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">&#39;era&#39;</span><span class="p">,</span> <span class="s">&#39;year&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">&#39;era&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">)</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">&#39;era&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'era'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">])</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'era'</span><span class="p">,</span> <span class="nb">len</span><span class="p">)</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">'era'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdgAAAEPCAYAAADh4tUOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAFl5JREFUeJzt3XuUZXV55vHvgygIdrcwBE1rI0YLxUSUeBtBWGDUaDIm
@@ -358,36 +279,22 @@ vB64nsFnsVTVOcAJwJHAPwDrgVcy+Kx07ungXT09fJ/lq+okBlc7H83gauezGRxl3wZM7+K2pWUv
 VYv9SEXSOCV5DfA+YKqqvjHueiTdl6eIpZ7pvtHoUcBbgbMMV2l58ghW6pkkFzC4sOli4GVVtctf
 WSipPQNWkqQGvMhJkqQGDFhJkhowYCVJasCAlSSpAQNWkqQGDFhJkhr4/zJl/ZCFXn8MAAAAAElF
 TkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Functions can also be used to generate visualizations from tables. Histograms of the eras show quite a contrast in the distribution of movie proceeds over the years. What changes might explain the trend you observe? How might you investigate whether that change accounts for the trend?</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<p>Functions can also be used to generate visualizations from tables. Histograms of the eras show quite a contrast in the distribution of movie proceeds over the years. What changes might explain the trend you observe? How might you investigate whether that change accounts for the trend?</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">age_hist</span><span class="p">(</span><span class="n">age</span><span class="p">):</span>
-    <span class="n">imdb</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;era&#39;</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">&#39;in_millions&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">imdb</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'era'</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'in_millions'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
         <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> 
         <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
     
-<span class="n">age_hist</span><span class="p">(</span><span class="s">&#39;old&#39;</span><span class="p">)</span>
-<span class="n">age_hist</span><span class="p">(</span><span class="s">&#39;modern&#39;</span><span class="p">)</span>
-<span class="n">age_hist</span><span class="p">(</span><span class="s">&#39;recent&#39;</span><span class="p">)</span>
-<span class="n">age_hist</span><span class="p">(</span><span class="s">&#39;contemporary&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<span class="n">age_hist</span><span class="p">(</span><span class="s">'old'</span><span class="p">)</span>
+<span class="n">age_hist</span><span class="p">(</span><span class="s">'modern'</span><span class="p">)</span>
+<span class="n">age_hist</span><span class="p">(</span><span class="s">'recent'</span><span class="p">)</span>
+<span class="n">age_hist</span><span class="p">(</span><span class="s">'contemporary'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbEAAAEVCAYAAABuXdtJAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGx9JREFUeJzt3X+wXGd93/H3x7Jl8SuSTSjGthIZ+zqxcRNEgqw0AQox
@@ -513,12 +420,7 @@ LMlvAV+nf3HLV4Bz6V/JeUubRUttMcS0GBQLc8Q013nH9Z1kvif0qapqPpf2DmAz/VOA9wL/rqre
 PeH2B9s/AVwBXAYsB74IvA+Y0+fZpKMl87/aV5KkY8P3xCRJneXpROkwDnO13xMc5pJ2SceAR2LS
 kCSvof+5rtn+PDLrYElHle+JSUOSnAqsGtWnqj59dKqRNIohJknqLE8nSpI6yxCTJHWWISZJ6ixD
 TJLUWf8fD/mfVqz5NFAAAAAASUVORK5CYII=
-"
-></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+"/></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbEAAAEVCAYAAABuXdtJAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGGlJREFUeJzt3X20ZXV93/H3h4FhQMjwECtPw0PkkoC0ig/DpIlaDdrp
@@ -632,12 +534,7 @@ TlxVD1XVNfReKzx1V+eRdicv7JDmZ28fia0DvgD8QZJnA9+gd7HHrwC/VVVzOhJL8ofAj+hd3PJ9
 TcBS4D7gE8Cc3s8m7SmZ/9W+kiTtHb4mJklqlqcTpR3YwdV+T7GDS9ol7QUeiUkDkpxH731dO/t6
 dKeDJe1RviYmDUhyGHD8sD5V9ZU9U42kYQwxSVKzPJ0oSWqWISZJapYhJklqliEmSWrW/wfNblCK
 tqCb+wAAAABJRU5ErkJggg==
-"
-></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+"/></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbEAAAEVCAYAAABuXdtJAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGINJREFUeJzt3Xu0pXV93/H3h+EyKDqAsXIbB5VDArGNGIVJE2M1mE6n
@@ -751,12 +648,7 @@ V5InAl9icLHHrwG/W1UL2hNL8ifAtxlc3HIvcCKDKzmv6rNoqS+GmJaDYmn2mBY676S+08z3qD5V
 Vd370n4XuIDBIcDbgf9QVe+c8vmH2z8JnAe8DFgFfBV4H7Cg97NJe0sWf7WvJEn7hufEJEnN8nCi
 tAu7uNrvUXZxSbukfcA9MWlEknMZvK9rd18P7nawpL3Kc2LSiCRHAseP61NVn9s71UgaxxCTJDXL
 w4mSpGYZYpKkZhlikqRmGWKSpGb9f0qWbFJQFa7kAAAAAElFTkSuQmCC
-"
-></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+"/></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbEAAAEVCAYAAABuXdtJAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAHNFJREFUeJzt3X+cVXd95/HXmwkwxKSQGFcCTCCVqybN1pAqodtGN260
@@ -890,5 +782,4 @@ M2PqdtyitmXGO65NRET+ubTfB1aRHQJ8CPjPEfGJks/fuv5rwArgBmA68CjwaaCrz7OZnSoa/9m+
 ZmZmp4ffEzMzs2T5cKLZCZzgbL/jnOCUdjM7DTwTM2sj6Uayz3WN9XV4zM5mdkr5PTGzNpLOB+Z1
 ahMR3zo11ZhZJw4xMzNLlg8nmplZshxiZmaWLIeYmZklyyFmZmbJ+v9eUd7U4aFB3wAAAABJRU5E
 rkJggg==
-"
-></div></div></div></div></div>
+"/></div></div>

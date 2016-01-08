@@ -1,69 +1,37 @@
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<div class="ipython-notebook">
+            <div>
+                <a class="interact-button" href="http://ds8.berkeley.edu/hub/interact?file=http://data8.org/text/examples/Privacy.ipynb">Interact</a></div>
+            <div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="License-plates">License plates<a class="anchor-link" href="#License-plates">¶</a></h2></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="License-plates">License plates<a class="anchor-link" href="#License-plates">&#182;</a></h2></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>We're going to look at some data collected by the Oakland Police Department. They have automated license plate readers on their police cars, and they've built up a database of license plates that they've seen -- and where and when they saw each one.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We're going to look at some data collected by the Oakland Police Department. They have automated license plate readers on their police cars, and they've built up a database of license plates that they've seen -- and where and when they saw each one.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<h2 id="Data-collection">Data collection<a class="anchor-link" href="#Data-collection">¶</a></h2></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Data-collection">Data collection<a class="anchor-link" href="#Data-collection">&#182;</a></h2></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>First, we'll gather the data.  It turns out the data is publicly available on the Oakland public records site.  I downloaded it and combined it into a single CSV file by myself before lecture.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<p>First, we'll gather the data.  It turns out the data is publicly available on the Oakland public records site.  I downloaded it and combined it into a single CSV file by myself before lecture.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">&#39;./all-lprs.csv.gz&#39;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s">&#39;gzip&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;,&#39;</span><span class="p">)</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[82]:</div>
+<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'./all-lprs.csv.gz'</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s">'gzip'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="o">.</span><span class="n">column_labels</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[82]:</div>
-
-
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>(&apos;red_VRM&apos;, &apos;red_Timestamp&apos;, &apos;Location&apos;)</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>('red_VRM', 'red_Timestamp', 'Location')</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's start by renaming some columns, and then take a look at it.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[83]:</div>
+<p>Let's start by renaming some columns, and then take a look at it.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s">&#39;red_VRM&#39;</span><span class="p">,</span> <span class="s">&#39;Plate&#39;</span><span class="p">)</span>
-<span class="n">lprs</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s">&#39;red_Timestamp&#39;</span><span class="p">,</span> <span class="s">&#39;Timestamp&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s">'red_VRM'</span><span class="p">,</span> <span class="s">'Plate'</span><span class="p">)</span>
+<span class="n">lprs</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s">'red_Timestamp'</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">)</span>
 <span class="n">lprs</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[83]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -76,74 +44,58 @@
             <td>1275226</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798304999999999, -122.27574799999999)</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>27529C </td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798304999999999, -122.27574799999999)</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1158423</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798304999999999, -122.27574799999999)</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1273718</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798304999999999, -122.27574799999999)</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1077682</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798304999999999, -122.27574799999999)</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1214195</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798281000000003, -122.27575299999999)</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1062420</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.79833, -122.27574300000001)          </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1319726</td> <td>01/19/2011 02:05:00 AM</td> <td>(37.798475000000003, -122.27571500000001)</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1214196</td> <td>01/19/2011 02:05:00 AM</td> <td>(37.798499999999997, -122.27571)         </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>75227  </td> <td>01/19/2011 02:05:00 AM</td> <td>(37.798596000000003, -122.27569)         </td>
         </tr>
     </tbody>
 </table>
-<p>... (2742091 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (2742091 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Phew, that's a lot of data: we can see about 2.7 million license plate reads here.</p>
-<p>Let's start by seeing what can be learned about someone, using this data -- assuming you know their license plate.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Let's start by seeing what can be learned about someone, using this data -- assuming you know their license plate.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stalking-Jean-Quan">Stalking Jean Quan<a class="anchor-link" href="#Stalking-Jean-Quan">&#182;</a></h2></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<h2 id="Stalking-Jean-Quan">Stalking Jean Quan<a class="anchor-link" href="#Stalking-Jean-Quan">¶</a></h2></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As a warmup, we'll take a look at ex-Mayor Jean Quan's car, and where it has been seen.  Her license plate number is 6FCH845.  (How did I learn that?  Turns out she was in the news for getting $1000 of parking tickets, and <a href="http://www.sfgate.com/bayarea/matier-ross/article/Jean-Quan-Oakland-s-new-mayor-gets-car-booted-3164530.php">the news article</a> included a picture of her car, with the license plate visible.  You'd be amazed by what's out there on the Internet...)</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<p>As a warmup, we'll take a look at ex-Mayor Jean Quan's car, and where it has been seen.  Her license plate number is 6FCH845.  (How did I learn that?  Turns out she was in the news for getting $1000 of parking tickets, and <a href="http://www.sfgate.com/bayarea/matier-ross/article/Jean-Quan-Oakland-s-new-mayor-gets-car-booted-3164530.php">the news article</a> included a picture of her car, with the license plate visible.  You'd be amazed by what's out there on the Internet...)</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;Plate&#39;</span><span class="p">,</span> <span class="s">&#39;6FCH845&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[84]:</div>
-
+<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'6FCH845'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -156,108 +108,67 @@
             <td>6FCH845</td> <td>11/01/2012 09:04:00 AM</td> <td>(37.79871, -122.276221) </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6FCH845</td> <td>10/24/2012 11:15:00 AM</td> <td>(37.799695, -122.274868)</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6FCH845</td> <td>10/24/2012 11:01:00 AM</td> <td>(37.799693, -122.274806)</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6FCH845</td> <td>10/24/2012 10:20:00 AM</td> <td>(37.799735, -122.274893)</td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6FCH845</td> <td>05/08/2014 07:30:00 PM</td> <td>(37.797558, -122.26935) </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>6FCH845</td> <td>12/31/2013 10:09:00 AM</td> <td>(37.807556, -122.278485)</td>
         </tr>
     </tbody>
-</table></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>OK, so her car shows up 6 times in this data set.  However, it's hard to make sense of those coordinates.  I don't know about you, but I can't read GPS so well.</p>
-<p>So, let's work out a way to show where her car has been seen on a map.  We'll need to extract the latitude and longitude, as the data isn't quite in the format that the mapping software expects: the mapping software expects the latitude to be in one column and the longitude in another.  Let's write some Python code to do that, by splitting the Location string into two pieces: the stuff before the comma (the latitude) and the stuff after (the longitude).</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[85]:</div>
+<p>So, let's work out a way to show where her car has been seen on a map.  We'll need to extract the latitude and longitude, as the data isn't quite in the format that the mapping software expects: the mapping software expects the latitude to be in one column and the longitude in another.  Let's write some Python code to do that, by splitting the Location string into two pieces: the stuff before the comma (the latitude) and the stuff after (the longitude).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">getlatitude</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span> <span class="c"># Break it into two parts</span>
-    <span class="n">latstring</span> <span class="o">=</span> <span class="n">before</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c"># Get rid of the annoying &#39;(&#39;</span>
+    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span> <span class="c"># Break it into two parts</span>
+    <span class="n">latstring</span> <span class="o">=</span> <span class="n">before</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c"># Get rid of the annoying '('</span>
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">latstring</span><span class="p">)</span> <span class="c"># Convert the string to a number</span>
 <span class="k">def</span> <span class="nf">getlongitude</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span> <span class="c"># Break it into two parts</span>
-    <span class="n">longstring</span> <span class="o">=</span> <span class="n">after</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c"># Get rid of the &#39; &#39; and the &#39;)&#39;</span>
+    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span> <span class="c"># Break it into two parts</span>
+    <span class="n">longstring</span> <span class="o">=</span> <span class="n">after</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c"># Get rid of the ' ' and the ')'</span>
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">longstring</span><span class="p">)</span> <span class="c"># Convert the string to a number</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's test it to make sure it works correctly.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[86]:</div>
+<p>Let's test it to make sure it works correctly.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">getlatitude</span><span class="p">(</span><span class="s">&#39;(37.797558, -122.26935)&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[86]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="n">getlatitude</span><span class="p">(</span><span class="s">'(37.797558, -122.26935)'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>37.797558</pre></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[87]:</div>
+<pre>37.797558</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">getlongitude</span><span class="p">(</span><span class="s">&#39;(37.797558, -122.26935)&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[87]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="n">getlongitude</span><span class="p">(</span><span class="s">'(37.797558, -122.26935)'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>-122.26935</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>-122.26935</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Good, now we're ready to add these as extra columns to the table.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<p>Good, now we're ready to add these as extra columns to the table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="p">[</span><span class="s">&#39;Latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getlatitude</span><span class="p">,</span> <span class="s">&#39;Location&#39;</span><span class="p">)</span>
-<span class="n">lprs</span><span class="p">[</span><span class="s">&#39;Longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getlongitude</span><span class="p">,</span> <span class="s">&#39;Location&#39;</span><span class="p">)</span>
-<span class="n">lprs</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">&#39;Location&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="p">[</span><span class="s">'Latitude'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getlatitude</span><span class="p">,</span> <span class="s">'Location'</span><span class="p">)</span>
+<span class="n">lprs</span><span class="p">[</span><span class="s">'Longitude'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getlongitude</span><span class="p">,</span> <span class="s">'Location'</span><span class="p">)</span>
+<span class="n">lprs</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Location'</span><span class="p">)</span>
 <span class="n">lprs</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[88]:</div>
-
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
@@ -270,96 +181,84 @@
             <td>1275226</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>27529C </td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1158423</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1273718</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1077682</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1214195</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1062420</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1319726</td> <td>01/19/2011 02:05:00 AM</td> <td>37.7985 </td> <td>-122.276 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>1214196</td> <td>01/19/2011 02:05:00 AM</td> <td>37.7985 </td> <td>-122.276 </td>
         </tr>
     </tbody>
-        <tr>
+        <tbody><tr>
             <td>75227  </td> <td>01/19/2011 02:05:00 AM</td> <td>37.7986 </td> <td>-122.276 </td>
         </tr>
     </tbody>
 </table>
-<p>... (2742091 rows omitted)</p</div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>... (2742091 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And at last, we can draw a map with a marker everywhere that her car has been seen.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[89]:</div>
+<p>And at last, we can draw a map with a marker everywhere that her car has been seen.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">jeanquan</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;Plate&#39;</span><span class="p">,</span> <span class="s">&#39;6FCH845&#39;</span><span class="p">)</span>
-<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">jeanquan</span><span class="p">[</span><span class="s">&#39;Latitude&#39;</span><span class="p">],</span> <span class="n">jeanquan</span><span class="p">[</span><span class="s">&#39;Longitude&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">jeanquan</span><span class="p">[</span><span class="s">&#39;Timestamp&#39;</span><span class="p">])</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[89]:</div>
-
+<div class=" highlight hl-ipython3"><pre><span class="n">jeanquan</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'6FCH845'</span><span class="p">)</span>
+<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">jeanquan</span><span class="p">[</span><span class="s">'Latitude'</span><span class="p">],</span> <span class="n">jeanquan</span><span class="p">[</span><span class="s">'Longitude'</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">jeanquan</span><span class="p">[</span><span class="s">'Timestamp'</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
-<iframe srcdoc="<!DOCTYPE html>
-<head>
-   <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css&quot; />
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js&quot;></script>
+<iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+   &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css&quot; /&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js&quot;&gt;&lt;/script&gt;
 
-   <script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js&quot;></script>
+   &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;>
-   <link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css&quot;>
-   <script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css&quot;&gt;
+   &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
 
-   <link href=&quot;https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;>
+   &lt;link href=&quot;https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css&quot;>
-   <script src=&quot;https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css&quot;&gt;
+   &lt;script src=&quot;https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
 
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css&quot;>
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css&quot;>
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js&quot;></script>
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css&quot;&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css&quot;&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js&quot;&gt;&lt;/script&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js&quot;&gt;&lt;/script&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css&quot;>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css&quot;&gt;
 
    
    
    
    
 
-   <style>
+   &lt;style&gt;
 
       html, body {
         width: 100%;
@@ -376,21 +275,21 @@
         left:0;
       }
 
-   </style>
-</head>
+   &lt;/style&gt;
+&lt;/head&gt;
 
-<body>
+&lt;body&gt;
 
-   <div class=&quot;folium-map&quot; id=&quot;folium_5d64be6801f04377a21df2da73625808&quot; style=&quot;width: 960px; height: 500px&quot;></div>
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_5d64be6801f04377a21df2da73625808&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
-   <script>
+   &lt;script&gt;
 
       
 
       var base_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 19,
           minZoom: 10,
-          attribution: 'Map data (c) <a href=&quot;http://openstreetmap.org&quot;>OpenStreetMap</a> contributors'
+          attribution: 'Map data (c) &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
       });
 
       var baseLayer = {
@@ -509,91 +408,70 @@
 
 
 
-   </script>
+   &lt;/script&gt;
 
-</body>" style="width: 960px; height: 500px"; border: none"></iframe></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+&lt;/body&gt;" style="width: 960px; height: 500px"></iframe></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>OK, so it's been seen near the Oakland police department.  This should make you suspect we might be getting a bit of a biased sample.  Why might the Oakland PD be the most common place where her car is seen?  Can you come up with a plausible explanation for this?</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>OK, so it's been seen near the Oakland police department.  This should make you suspect we might be getting a bit of a biased sample.  Why might the Oakland PD be the most common place where her car is seen?  Can you come up with a plausible explanation for this?</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Poking-around">Poking around<a class="anchor-link" href="#Poking-around">&#182;</a></h2></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<h2 id="Poking-around">Poking around<a class="anchor-link" href="#Poking-around">¶</a></h2></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's try another.  And let's see if we can make the map a little more fancy.  It'd be nice to distinguish between license plate reads that are seen during the daytime (on a weekday), vs the evening (on a weekday), vs on a weekend.  So we'll color-code the markers.  To do this, we'll write some Python code to analyze the Timestamp and choose an appropriate color.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<p>Let's try another.  And let's see if we can make the map a little more fancy.  It'd be nice to distinguish between license plate reads that are seen during the daytime (on a weekday), vs the evening (on a weekday), vs on a weekend.  So we'll color-code the markers.  To do this, we'll write some Python code to analyze the Timestamp and choose an appropriate color.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="k">def</span> <span class="nf">getcolor</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="s">&#39;%m/%d/%Y %I:%M:%S %p&#39;</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="s">'%m/%d/%Y %I:%M:%S %p'</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&#39;green&#39;</span> <span class="c"># Weekend</span>
+        <span class="k">return</span> <span class="s">'green'</span> <span class="c"># Weekend</span>
     <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="ow">and</span> <span class="n">t</span><span class="o">.</span><span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">17</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&#39;blue&#39;</span> <span class="c"># Weekday daytime</span>
-    <span class="k">return</span> <span class="s">&#39;red&#39;</span> <span class="c"># Weekday evening</span>
-<span class="n">lprs</span><span class="p">[</span><span class="s">&#39;Color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getcolor</span><span class="p">,</span> <span class="s">&#39;Timestamp&#39;</span><span class="p">)</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+        <span class="k">return</span> <span class="s">'blue'</span> <span class="c"># Weekday daytime</span>
+    <span class="k">return</span> <span class="s">'red'</span> <span class="c"># Weekday evening</span>
+<span class="n">lprs</span><span class="p">[</span><span class="s">'Color'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getcolor</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we can check out another license plate, this time with our spiffy color-coding.  This one happens to be the car that the city issues to the Fire Chief.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[91]:</div>
+<p>Now we can check out another license plate, this time with our spiffy color-coding.  This one happens to be the car that the city issues to the Fire Chief.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;Plate&#39;</span><span class="p">,</span> <span class="s">&#39;1328354&#39;</span><span class="p">)</span>
-<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Latitude&#39;</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;Longitude&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Timestamp&#39;</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Color&#39;</span><span class="p">])</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[91]:</div>
-
+<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'1328354'</span><span class="p">)</span>
+<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">'Latitude'</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">'Longitude'</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Timestamp'</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Color'</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
-<iframe srcdoc="<!DOCTYPE html>
-<head>
-   <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css&quot; />
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js&quot;></script>
+<iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+   &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css&quot; /&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js&quot;&gt;&lt;/script&gt;
 
-   <script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js&quot;></script>
+   &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;>
-   <link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css&quot;>
-   <script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css&quot;&gt;
+   &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
 
-   <link href=&quot;https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;>
+   &lt;link href=&quot;https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css&quot;>
-   <script src=&quot;https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css&quot;&gt;
+   &lt;script src=&quot;https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
 
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css&quot;>
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css&quot;>
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js&quot;></script>
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css&quot;&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css&quot;&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js&quot;&gt;&lt;/script&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js&quot;&gt;&lt;/script&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css&quot;>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css&quot;&gt;
 
    
    
    
    
 
-   <style>
+   &lt;style&gt;
 
       html, body {
         width: 100%;
@@ -610,21 +488,21 @@
         left:0;
       }
 
-   </style>
-</head>
+   &lt;/style&gt;
+&lt;/head&gt;
 
-<body>
+&lt;body&gt;
 
-   <div class=&quot;folium-map&quot; id=&quot;folium_f55608d7741a4788b5085c9e3db9b73a&quot; style=&quot;width: 960px; height: 500px&quot;></div>
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_f55608d7741a4788b5085c9e3db9b73a&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
-   <script>
+   &lt;script&gt;
 
       
 
       var base_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 17,
           minZoom: 10,
-          attribution: 'Map data (c) <a href=&quot;http://openstreetmap.org&quot;>OpenStreetMap</a> contributors'
+          attribution: 'Map data (c) &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
       });
 
       var baseLayer = {
@@ -779,66 +657,52 @@
 
 
 
-   </script>
+   &lt;/script&gt;
 
-</body>" style="width: 960px; height: 500px"; border: none"></iframe></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+&lt;/body&gt;" style="width: 960px; height: 500px"></iframe></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Hmm.  We can see a blue cluster in downtown Oakland, where the Fire Chief's car was seen on weekdays during business hours.  I bet we've found her office.  In fact, if you happen to know downtown Oakland, those are mostly clustered right near City Hall.  Also, her car was seen twice in northern Oakland on weekday evenings.  One can only speculate what that indicates.  Maybe dinner with a friend?  Or running errands?  Off to the scene of a fire?  Who knows.  And then the car has been seen once more, late at night on a weekend, in a residential area in the hills.  Her home address, maybe?</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Hmm.  We can see a blue cluster in downtown Oakland, where the Fire Chief's car was seen on weekdays during business hours.  I bet we've found her office.  In fact, if you happen to know downtown Oakland, those are mostly clustered right near City Hall.  Also, her car was seen twice in northern Oakland on weekday evenings.  One can only speculate what that indicates.  Maybe dinner with a friend?  Or running errands?  Off to the scene of a fire?  Who knows.  And then the car has been seen once more, late at night on a weekend, in a residential area in the hills.  Her home address, maybe?</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's look at another.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[92]:</div>
+<p>Let's look at another.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;Plate&#39;</span><span class="p">,</span> <span class="s">&#39;5AJG153&#39;</span><span class="p">)</span>
-<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Latitude&#39;</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;Longitude&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Timestamp&#39;</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Color&#39;</span><span class="p">])</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[92]:</div>
-
+<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'5AJG153'</span><span class="p">)</span>
+<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">'Latitude'</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">'Longitude'</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Timestamp'</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Color'</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
-<iframe srcdoc="<!DOCTYPE html>
-<head>
-   <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css&quot; />
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js&quot;></script>
+<iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+   &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css&quot; /&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js&quot;&gt;&lt;/script&gt;
 
-   <script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js&quot;></script>
+   &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;>
-   <link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css&quot;>
-   <script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css&quot;&gt;
+   &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
 
-   <link href=&quot;https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;>
+   &lt;link href=&quot;https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css&quot;>
-   <script src=&quot;https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css&quot;&gt;
+   &lt;script src=&quot;https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
 
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css&quot;>
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css&quot;>
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js&quot;></script>
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css&quot;&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css&quot;&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js&quot;&gt;&lt;/script&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js&quot;&gt;&lt;/script&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css&quot;>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css&quot;&gt;
 
    
    
    
    
 
-   <style>
+   &lt;style&gt;
 
       html, body {
         width: 100%;
@@ -855,21 +719,21 @@
         left:0;
       }
 
-   </style>
-</head>
+   &lt;/style&gt;
+&lt;/head&gt;
 
-<body>
+&lt;body&gt;
 
-   <div class=&quot;folium-map&quot; id=&quot;folium_ad53b60f13dc4519af7c78c8cada353e&quot; style=&quot;width: 960px; height: 500px&quot;></div>
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_ad53b60f13dc4519af7c78c8cada353e&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
-   <script>
+   &lt;script&gt;
 
       
 
       var base_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 17,
           minZoom: 10,
-          attribution: 'Map data (c) <a href=&quot;http://openstreetmap.org&quot;>OpenStreetMap</a> contributors'
+          attribution: 'Map data (c) &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
       });
 
       var baseLayer = {
@@ -2842,62 +2706,50 @@
 
 
 
-   </script>
+   &lt;/script&gt;
 
-</body>" style="width: 960px; height: 500px"; border: none"></iframe></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+&lt;/body&gt;" style="width: 960px; height: 500px"></iframe></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>What can we tell from this?  Looks to me like this person lives on International Blvd and 9th, roughly.  On weekdays they've seen in a variety of locations in west Oakland.  It's fun to imagine what this might indicate -- delivery person? taxi driver? someone running errands all over the place in west Oakland?</p>
-<p>We can look at another:</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[93]:</div>
+<p>We can look at another:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">&#39;Plate&#39;</span><span class="p">,</span> <span class="s">&#39;6UZA652&#39;</span><span class="p">)</span>
-<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Latitude&#39;</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;Longitude&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Timestamp&#39;</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Color&#39;</span><span class="p">])</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[93]:</div>
-
+<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'6UZA652'</span><span class="p">)</span>
+<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">'Latitude'</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">'Longitude'</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Timestamp'</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Color'</span><span class="p">])</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
-<iframe srcdoc="<!DOCTYPE html>
-<head>
-   <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css&quot; />
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js&quot;></script>
+<iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+   &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css&quot; /&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js&quot;&gt;&lt;/script&gt;
 
-   <script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js&quot;></script>
+   &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;>
-   <link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css&quot;>
-   <script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css&quot;&gt;
+   &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
 
-   <link href=&quot;https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;>
+   &lt;link href=&quot;https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css&quot;>
-   <script src=&quot;https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css&quot;&gt;
+   &lt;script src=&quot;https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
 
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css&quot;>
-   <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css&quot;>
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js&quot;></script>
-   <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js&quot;></script>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css&quot;&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css&quot;&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js&quot;&gt;&lt;/script&gt;
+   &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js&quot;&gt;&lt;/script&gt;
 
-   <link rel=&quot;stylesheet&quot; href=&quot;https://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css&quot;>
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css&quot;&gt;
 
    
    
    
    
 
-   <style>
+   &lt;style&gt;
 
       html, body {
         width: 100%;
@@ -2914,21 +2766,21 @@
         left:0;
       }
 
-   </style>
-</head>
+   &lt;/style&gt;
+&lt;/head&gt;
 
-<body>
+&lt;body&gt;
 
-   <div class=&quot;folium-map&quot; id=&quot;folium_ff6a9f6cd04a40ad97f6c1ec0c8734c0&quot; style=&quot;width: 960px; height: 500px&quot;></div>
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_ff6a9f6cd04a40ad97f6c1ec0c8734c0&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
-   <script>
+   &lt;script&gt;
 
       
 
       var base_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 17,
           minZoom: 10,
-          attribution: 'Map data (c) <a href=&quot;http://openstreetmap.org&quot;>OpenStreetMap</a> contributors'
+          attribution: 'Map data (c) &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
       });
 
       var baseLayer = {
@@ -4604,39 +4456,27 @@
 
 
 
-   </script>
+   &lt;/script&gt;
 
-</body>" style="width: 960px; height: 500px"; border: none"></iframe></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+&lt;/body&gt;" style="width: 960px; height: 500px"></iframe></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>What can we learn from this map?  First, it's pretty easy to guess where this person lives: 16th and International, or pretty near there.  And then we can see them spending some nights and a weekend near Laney College.  Did they have an apartment there briefly?  A relationship with someone who lived there?</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>What can we learn from this map?  First, it's pretty easy to guess where this person lives: 16th and International, or pretty near there.  And then we can see them spending some nights and a weekend near Laney College.  Did they have an apartment there briefly?  A relationship with someone who lived there?</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Is anyone else getting a little bit creeped out about this?  I think I've had enough of looking at individual people's data.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Is anyone else getting a little bit creeped out about this?  I think I've had enough of looking at individual people's data.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Inference">Inference<a class="anchor-link" href="#Inference">&#182;</a></h2></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<h2 id="Inference">Inference<a class="anchor-link" href="#Inference">¶</a></h2></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As we can see, this kind of data can potentially reveal a fair bit about people.  Someone with access to the data can draw inferences.  Take a moment to think about what someone might be able to infer from this kind of data.</p>
 <p>As we've seen here, it's not too hard to make a pretty good guess at roughly where some lives, from this kind of information: their car is probably parked near their home most nights.  Also, it will often be possible to guess where someone works: if they commute into work by car, then on weekdays during business hours, their car is probably parked near their office, so we'll see a clear cluster that indicates where they work.</p>
 <p>But it doesn't stop there.  If we have enough data, it might also be possible to get a sense of what they like to do during their downtime (do they spend time at the park?).  And in some cases the data might reveal that someone is in a relationship and spending nights at someone else's house.  That's arguably pretty sensitive stuff.</p>
-<p>This gets at one of the challenges with privacy.  Data that's collected for one purpose (fighting crime, or something like that) can potentially reveal a lot more.  It can allow the owner of the data to draw inferences -- sometimes about things that people would prefer to keep private.  And that means that, in a world of "big data", if we're not careful, privacy can be collateral damage.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>This gets at one of the challenges with privacy.  Data that's collected for one purpose (fighting crime, or something like that) can potentially reveal a lot more.  It can allow the owner of the data to draw inferences -- sometimes about things that people would prefer to keep private.  And that means that, in a world of "big data", if we're not careful, privacy can be collateral damage.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mitigation">Mitigation<a class="anchor-link" href="#Mitigation">&#182;</a></h2></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<h2 id="Mitigation">Mitigation<a class="anchor-link" href="#Mitigation">¶</a></h2></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If we want to protect people's privacy, what can be done about this?  That's a lengthy subject.  But at risk of over-simplifying, there are a few simple strategies that data owners can take:</p>

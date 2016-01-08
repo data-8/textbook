@@ -1,14 +1,14 @@
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
-<div class="inner_cell">
+<div class="ipython-notebook">
+            <div>
+                <a class="interact-button" href="http://ds8.berkeley.edu/hub/interact?file=http://data8.org/text/examples/Accuracy.ipynb">Interact</a></div>
+            <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Notes-on-accuracy">Notes on accuracy<a class="anchor-link" href="#Notes-on-accuracy">&#182;</a></h3><p>A crucial factor in determining the accuracy of an estimate is the method by which the sample is drawn. All of our samples have been drawn at random either with or without replacement. As noted earlier, the probabilities involved in sampling without replacement are essentially the same as those in sampling with replacement, provided the sample is small relative to the population. That is because drawing out a small portion of a population typically has no appreciable effect on the composition of the population, so the draws are made from essentially the same population each time.</p>
+<h3 id="Notes-on-accuracy">Notes on accuracy<a class="anchor-link" href="#Notes-on-accuracy">¶</a></h3><p>A crucial factor in determining the accuracy of an estimate is the method by which the sample is drawn. All of our samples have been drawn at random either with or without replacement. As noted earlier, the probabilities involved in sampling without replacement are essentially the same as those in sampling with replacement, provided the sample is small relative to the population. That is because drawing out a small portion of a population typically has no appreciable effect on the composition of the population, so the draws are made from essentially the same population each time.</p>
 <p>The discussion about accuracy below applies to random samples drawn with replacement. By the observations above, it also applies to random samples without replacement, provided the samples are small relative to the population.</p>
-<h3 id="Accuracy-and-Standard-Error">Accuracy and Standard Error<a class="anchor-link" href="#Accuracy-and-Standard-Error">&#182;</a></h3><p>The accuracy of an estimate can be measured by its typical distance from the quantity being estimated. In the case of sample means and proportions, that distance is measured by the standard error; the smaller the standard error, the more accurate the estimate.</p>
-<h3 id="1.-Accuracy-increases-with-sample-size.">1. Accuracy increases with sample size.<a class="anchor-link" href="#1.-Accuracy-increases-with-sample-size.">&#182;</a></h3><p>The sample size is in the denominator of the formula for the standard error of the sample mean. So for predicting means (or proportions, in the case of a population of 0's and 1's), larger random samples are more accurate.</p>
-<h3 id="2.-The-Square-Root-Law">2. The Square Root Law<a class="anchor-link" href="#2.-The-Square-Root-Law">&#182;</a></h3><p>The denominator of the standard error formula is the square root of the sample size. Therefore, if the sample size is multiplied by a factor bigger than 1, the accuracy increases by the square root of the factor.</p>
-<h3 id="3.-A-bound-for-the-standard-error-of-the-sample-proportion">3. A bound for the standard error of the sample proportion<a class="anchor-link" href="#3.-A-bound-for-the-standard-error-of-the-sample-proportion">&#182;</a></h3><p>The standard error of a sample mean or proportion does not depend only on the sample size; it depends also on the population SD. When the population consists of 0's and 1's – that is, when the quanity being estimated is a population proportion – there is a simple bound for the population SD.</p>
+<h3 id="Accuracy-and-Standard-Error">Accuracy and Standard Error<a class="anchor-link" href="#Accuracy-and-Standard-Error">¶</a></h3><p>The accuracy of an estimate can be measured by its typical distance from the quantity being estimated. In the case of sample means and proportions, that distance is measured by the standard error; the smaller the standard error, the more accurate the estimate.</p>
+<h3 id="1.-Accuracy-increases-with-sample-size.">1. Accuracy increases with sample size.<a class="anchor-link" href="#1.-Accuracy-increases-with-sample-size.">¶</a></h3><p>The sample size is in the denominator of the formula for the standard error of the sample mean. So for predicting means (or proportions, in the case of a population of 0's and 1's), larger random samples are more accurate.</p>
+<h3 id="2.-The-Square-Root-Law">2. The Square Root Law<a class="anchor-link" href="#2.-The-Square-Root-Law">¶</a></h3><p>The denominator of the standard error formula is the square root of the sample size. Therefore, if the sample size is multiplied by a factor bigger than 1, the accuracy increases by the square root of the factor.</p>
+<h3 id="3.-A-bound-for-the-standard-error-of-the-sample-proportion">3. A bound for the standard error of the sample proportion<a class="anchor-link" href="#3.-A-bound-for-the-standard-error-of-the-sample-proportion">¶</a></h3><p>The standard error of a sample mean or proportion does not depend only on the sample size; it depends also on the population SD. When the population consists of 0's and 1's – that is, when the quanity being estimated is a population proportion – there is a simple bound for the population SD.</p>
 $$
 \mbox{For}~p~\mbox{between}~0~\mbox{and}~1,
 \sqrt{p(1-p)} ~\mbox{is}~ \mathbf{\mbox{at most}} ~ 0.5, ~
@@ -18,32 +18,17 @@ $$
 \mbox{The SE of sample proportion is} ~ \mathbf{\mbox{at most}} ~~
 \frac{0.5}{\sqrt{\mbox{sample size}}}.
 $$</p>
-<p>The figure below shows why $\sqrt{p(1-p)}$ has a maximum value of $0.5$ at $p = 0.5$.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<p>The figure below shows why $\sqrt{p(1-p)}$ has a maximum value of $0.5$ at $p = 0.5$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)))</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.51</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;$p$&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;$\sqrt{p(1-p)}$&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
-
-
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'$p$'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'$\sqrt{p(1-p)}$'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x109c32860&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;matplotlib.text.Text at 0x109c32860&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdAAAAEoCAYAAADonKB0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4VOWhP/DvmX2ybyQhBFAgCGELIIRNBbRYWmtKS3DB
@@ -316,10 +301,7 @@ VwcAeO+992AymfD4448HuGREwY+zcInC2PLly9HS0oLY2FjodDrU1NRgxYoVSEhICHTRiIIeJxER
 hbG9e/diwYIFuOOOOwJdFCLZYRcuUZiyWCwoLS3F6NGjA10UIlligBKFqYMHD0KlUiEjIyPQRSGS
 JQYoURj67LPPsHjxYlitVuTl5cFoNAa6SESyw0lEREREHmALlIiIyAMMUCIiIg8wQImIiDzAACUi
 IvIAA5SIiMgDDFAiIiIPMECJiIg88P8BH5uml0ED4KMAAAAASUVORK5CYII=
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Example: How to find a sample size that achieves a desired accuracy</strong></p>
@@ -329,18 +311,13 @@ $$
 \mbox{"worst-case" SE of the sample proportion} ~\le~
 \frac{0.5}{\sqrt{\mbox{sample size}}} ~\le~ 0.005, ~~ \mbox{so} ~~
 \mbox{sample size} ~\ge ~ \big{(}\frac{0.5}{0.005}\big{)}^2 ~=~10,000
-$$</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+$$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Concluding-note">Concluding note<a class="anchor-link" href="#Concluding-note">&#182;</a></h3><p>In news reports about opinion polls, the focus is typically on the estimates; any mention of error is often relegated to the final sentence of the report and might say something like this:</p>
+<h3 id="Concluding-note">Concluding note<a class="anchor-link" href="#Concluding-note">¶</a></h3><p>In news reports about opinion polls, the focus is typically on the estimates; any mention of error is often relegated to the final sentence of the report and might say something like this:</p>
 <p>"The margin of error in such surveys is about 3 percentage points."</p>
-<p>Usually, this means that 0.03 is close to the largest possible "plus or minus" number in the polling organization's construction of confidence intervals for proportions. Most polling organizations use sampling schemes that are more complex than those in our course. However, regardless of exactly how the samples are drawn, it is important to remember that it is possible for estimates based on random samples to be off by more than the expected amounts. A better ending for the news report would be, "The margin of error in most such surveys is about 3 percentage points. However, sometimes the error might be larger."</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<p>Usually, this means that 0.03 is close to the largest possible "plus or minus" number in the polling organization's construction of confidence intervals for proportions. Most polling organizations use sampling schemes that are more complex than those in our course. However, regardless of exactly how the samples are drawn, it is important to remember that it is possible for estimates based on random samples to be off by more than the expected amounts. A better ending for the news report would be, "The margin of error in most such surveys is about 3 percentage points. However, sometimes the error might be larger."</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre> 
-</pre></div></div></div></div></div>
+</pre></div></div></div></div>

@@ -1,72 +1,33 @@
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
-<div class="inner_cell">
+<div class="ipython-notebook">
+            <div>
+                <a class="interact-button" href="http://ds8.berkeley.edu/hub/interact?file=http://data8.org/text/examples/AB.ipynb">Interact</a></div>
+            <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Using-the-Bootstrap-Method-to-Test-Hypotheses">Using the Bootstrap Method to Test Hypotheses<a class="anchor-link" href="#Using-the-Bootstrap-Method-to-Test-Hypotheses">&#182;</a></h2><p>In the previous section we used the bootstrap method to estimate an unknown parameter. The bootstrap can also be used in statistical tests of hypotheses.</p>
-<p>For example, suppose we want to compare the mothers who smoke and the mothers who are non-smokers. Do they differ in any way other than smoking? A key variable of interest is the birth weight of their babies. To study this variable, we begin by noting that there are 715 non-smokers among the women in the sample, and 459 smokers.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<h2 id="Using-the-Bootstrap-Method-to-Test-Hypotheses">Using the Bootstrap Method to Test Hypotheses<a class="anchor-link" href="#Using-the-Bootstrap-Method-to-Test-Hypotheses">¶</a></h2><p>In the previous section we used the bootstrap method to estimate an unknown parameter. The bootstrap can also be used in statistical tests of hypotheses.</p>
+<p>For example, suppose we want to compare the mothers who smoke and the mothers who are non-smokers. Do they differ in any way other than smoking? A key variable of interest is the birth weight of their babies. To study this variable, we begin by noting that there are 715 non-smokers among the women in the sample, and 459 smokers.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">&#39;m_smoker&#39;</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">'m_smoker'</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>715</pre></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[103]:</div>
+<pre>715</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">&#39;m_smoker&#39;</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[103]:</div>
-
-
+<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">'m_smoker'</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>459</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>459</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The first histogram below displays the distribution of birth weights, in ounces, of the babies of the non-smokers in the sample. The second displays the birth weights of the babies of the smokers.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<p>The first histogram below displays the distribution of birth weights, in ounces, of the babies of the non-smokers in the sample. The second displays the birth weights of the babies of the smokers.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="c"># birth weights of babies of non-smokers</span>
-<span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;birthwt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">&#39;m_smoker&#39;</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;birth weight (babies of non-smokers)&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
-
-
+<span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'birthwt'</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">'m_smoker'</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'birth weight (babies of non-smokers)'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x10a1f14a8&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;matplotlib.text.Text at 0x10a1f14a8&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAEqCAYAAABuj+WBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X1czff/P/BHF8t1ObpOchk5RmGlEGq2YZu0Zc1cfCSM
@@ -345,32 +306,16 @@ DhKNjRs3Yvny5fj111/RtWvXv3173t7eqKysxLZt2/72bRE9T//5z38wa9Ys/PTTT7VOFmvteIRH
 z913332HCxcuYODAgdDW1sapU6cQGxuLt95665kUO+Dxhd2Ojo61rpsjam3Cw8MREBAgumIH8AiP
 WoCTJ09ixYoVuHTpEu7duwcLCwu89dZbCAkJEU49JyJqKhY8IiISBV6WQEREosCCR0REosCCR0RE
 osCCR0REosCCR0REosCCR0REovD/ADdHVOgIAJTPAAAAAElFTkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="c"># birth weights of babies of smokers</span>
-<span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;birthwt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">&#39;m_smoker&#39;</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'birthwt'</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">'m_smoker'</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;birth weight (babies of smokers)&#39;</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
-
-
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'birth weight (babies of smokers)'</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x10a769cf8&gt;</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+<pre>&lt;matplotlib.text.Text at 0x10a769cf8&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAEqCAYAAABuj+WBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3WtYVWX6P/AvhyBSwS1nRDyBISngAQQTFbJSa0QKYszD
@@ -642,62 +587,41 @@ xx9//IEhQ4YgICAAQUFBHfajzO/XyMgIX375JTZs2IDAwEA0NDTA2tq6TXG/v525uTm++OILmaLn
 l7h06RLGjh0LVVVVnDt3DjExMXjllVceSbED7t7Y7eDg0Oa+OaIHtWXLFqxatYrF7gHwCI/6jLNn
 z2Ljxo0oKirC7du3YWJigldeeQWhoaHQ0NB43MMjoseMBY+IiESBtyUQEZEosOAREZEosOAREZEo
 sOAREZEosOAREZEosOAREZEo/D984VvN2LExfwAAAABJRU5ErkJggg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Both distributions are approximately bell shaped and centered near 120 ounces. The distributions are not identical, of course, which raises the question of whether the difference reflects just chance variation or a difference in the distributions in the population.</p>
-<p>This question can be answered by a test of the null and alternative hypotheses below.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>This question can be answered by a test of the null and alternative hypotheses below.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Null hypothesis.</strong> In the population, the distribution of birth weights of babies is the same for mothers who don't smoke as for mothers who do. The difference in the sample is due to chance.</p>
 <p><strong>Alternative hypothesis.</strong> The two distributions are different in the population.</p>
 <p>Birth weight is a quantitative variable, so it is reasonable to start the analysis by using the difference in means as the test statistic.</p>
-<p>The observed difference in the means of the two groups in the sample is about 9.27 ounces, as shown in the calculation below. It starts by extracting just the two columns needed for the test – the label of smoker or non-smoker, and the birth weight of the baby. It then computes the mean birth weight of the babies of the non-smokers and the mean of the babies of the smokers, and takes the difference of the two means.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<p>The observed difference in the means of the two groups in the sample is about 9.27 ounces, as shown in the calculation below. It starts by extracting just the two columns needed for the test – the label of smoker or non-smoker, and the birth weight of the baby. It then computes the mean birth weight of the babies of the non-smokers and the mean of the babies of the smokers, and takes the difference of the two means.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sm_bwt</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">&#39;m_smoker&#39;</span><span class="p">,</span><span class="s">&#39;birthwt&#39;</span><span class="p">])</span>
-<span class="n">nonsmokers_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sm_bwt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sm_bwt</span><span class="p">[</span><span class="s">&#39;m_smoker&#39;</span><span class="p">],</span><span class="mi">0</span><span class="p">)[</span><span class="s">&#39;birthwt&#39;</span><span class="p">])</span>
-<span class="n">smokers_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sm_bwt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sm_bwt</span><span class="p">[</span><span class="s">&#39;m_smoker&#39;</span><span class="p">],</span><span class="mi">1</span><span class="p">)[</span><span class="s">&#39;birthwt&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">sm_bwt</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'m_smoker'</span><span class="p">,</span><span class="s">'birthwt'</span><span class="p">])</span>
+<span class="n">nonsmokers_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sm_bwt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sm_bwt</span><span class="p">[</span><span class="s">'m_smoker'</span><span class="p">],</span><span class="mi">0</span><span class="p">)[</span><span class="s">'birthwt'</span><span class="p">])</span>
+<span class="n">smokers_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sm_bwt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sm_bwt</span><span class="p">[</span><span class="s">'m_smoker'</span><span class="p">],</span><span class="mi">1</span><span class="p">)[</span><span class="s">'birthwt'</span><span class="p">])</span>
 <span class="n">nonsmokers_mean</span> <span class="o">-</span> <span class="n">smokers_mean</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
-
-
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>9.2661425720249184</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<pre>9.2661425720249184</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Method-1:-Permutation-Test">Method 1: Permutation Test<a class="anchor-link" href="#Method-1:-Permutation-Test">&#182;</a></h3><p>To see whether such a difference could have arisen due to chance under the null hypothesis, we could use a permutation test just as we did in Chapter 3. Let us perform that test first, and then see how the bootstrap method compares with it.</p>
+<h3 id="Method-1:-Permutation-Test">Method 1: Permutation Test<a class="anchor-link" href="#Method-1:-Permutation-Test">¶</a></h3><p>To see whether such a difference could have arisen due to chance under the null hypothesis, we could use a permutation test just as we did in Chapter 3. Let us perform that test first, and then see how the bootstrap method compares with it.</p>
 <p>The code below performs the permutation test based on 10,000 random permutations. Note that as before, no sample size is provided to the method <code>sample</code>, because the default sample size is equal to the total number of rows in the table. The default sampling method of <code>sample</code> is to draw without replacement, which is exactly what is needed to create random permutations. This point will be important to recall when we switch to the bootstrap method.</p>
-<p>Note also that the code starts by sorting the rows so that the rows corresponding to the 715 non-smokers appear first. This eliminates the need to use conditional expressions to identify the rows corresponding to smokers and non-smokers in each replication of the sampling process.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<p>Note also that the code starts by sorting the rows so that the rows corresponding to the 715 non-smokers appear first. This eliminates the need to use conditional expressions to identify the rows corresponding to smokers and non-smokers in each replication of the sampling process.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="sd">&quot;&quot;&quot;Permutation test for the difference in mean birthweight</span>
-<span class="sd">Category A: non-smoker      Category B: smoker&quot;&quot;&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span class="sd">"""Permutation test for the difference in mean birthweight</span>
+<span class="sd">Category A: non-smoker      Category B: smoker"""</span>
 
-<span class="n">bwt_sorted</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">&#39;m_smoker&#39;</span><span class="p">,</span> <span class="s">&#39;birthwt&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;m_smoker&#39;</span><span class="p">)</span>
+<span class="n">bwt_sorted</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'m_smoker'</span><span class="p">,</span> <span class="s">'birthwt'</span><span class="p">])</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">'m_smoker'</span><span class="p">)</span>
 
 <span class="c"># calculate the observed difference in means</span>
-<span class="n">meanA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bwt_sorted</span><span class="p">[</span><span class="s">&#39;birthwt&#39;</span><span class="p">][:</span><span class="mi">715</span><span class="p">])</span>
-<span class="n">meanB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bwt_sorted</span><span class="p">[</span><span class="s">&#39;birthwt&#39;</span><span class="p">][</span><span class="mi">715</span><span class="p">:])</span>
+<span class="n">meanA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bwt_sorted</span><span class="p">[</span><span class="s">'birthwt'</span><span class="p">][:</span><span class="mi">715</span><span class="p">])</span>
+<span class="n">meanB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bwt_sorted</span><span class="p">[</span><span class="s">'birthwt'</span><span class="p">][</span><span class="mi">715</span><span class="p">:])</span>
 <span class="n">obs_diff</span> <span class="o">=</span> <span class="n">meanA</span> <span class="o">-</span> <span class="n">meanB</span>
 
 <span class="n">repetitions</span><span class="o">=</span><span class="mi">10000</span>
@@ -709,31 +633,21 @@ sOAREZEosOAREZEosOAREZEo/D984VvN2LExfwAAAABJRU5ErkJggg==
     <span class="n">resample</span> <span class="o">=</span> <span class="n">bwt_sorted</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
     
     <span class="c"># Compute the difference of the means of the resampled values, between Categories A and B</span>
-    <span class="n">dd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s">&#39;birthwt&#39;</span><span class="p">][:</span><span class="mi">715</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s">&#39;birthwt&#39;</span><span class="p">][</span><span class="mi">715</span><span class="p">:])</span>
+    <span class="n">dd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s">'birthwt'</span><span class="p">][:</span><span class="mi">715</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s">'birthwt'</span><span class="p">][</span><span class="mi">715</span><span class="p">:])</span>
     <span class="n">diffs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">dd</span><span class="p">])</span>
 
 <span class="c"># Display results   </span>
-<span class="n">diffs</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">diffs</span><span class="p">],[</span><span class="s">&#39;diff_in_means&#39;</span><span class="p">])</span>
+<span class="n">diffs</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">diffs</span><span class="p">],[</span><span class="s">'diff_in_means'</span><span class="p">])</span>
 <span class="n">diffs</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Approx null distribution of difference in means&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Permutation Test&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Approx null distribution of difference in means'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Permutation Test'</span><span class="p">)</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s">&#39;Observed difference in means: &#39;</span><span class="p">,</span> <span class="n">obs_diff</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
+<span class="nb">print</span><span class="p">(</span><span class="s">'Observed difference in means: '</span><span class="p">,</span> <span class="n">obs_diff</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observed difference in means:  9.26614257202
-</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAasAAAE3CAYAAAAUtW5VAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcVPX+P/DXCKImLiPbgAiajCIJIiaEpgJumQvgntwo
@@ -1066,32 +980,24 @@ RKL3vS+5XA6PxwOr1YqFhQUUFRVhdXUVMpks5BoS7HuFQiG2t7dhsVjw+PgIPp+Pnp4eKJXKsK/l
 fey7u7voCP2/2fj4OKampuD1ehEb+3m2863xc2trK2hemhBCyJ/31+xZEUII+f/6ssHqdz+CE0II
 +XO+bBqQEELI1/Fln6wIIYR8HRSsCCGERD0KVoQQQqIeBStCCCFRj4IVIYSQqEfBihBCSNT7ASC4
 U4wgGEJQAAAAAElFTkSuQmCC
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The figure test shows that under the null hypothesis of equal distributions in the population, the empirical distribution of the difference between the sample means of the two groups is roughly bell shaped, centered at 0, stretching from about $-4$ ounces to $4$ ounces. The observed difference in the original sample is about 9.27 ounces, which is inconsistent with this distribution. So the conclusion of the test is that in the population, the distributions of birth weights of the babies of non-smokers and smokers are different.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>The figure test shows that under the null hypothesis of equal distributions in the population, the empirical distribution of the difference between the sample means of the two groups is roughly bell shaped, centered at 0, stretching from about $-4$ ounces to $4$ ounces. The observed difference in the original sample is about 9.27 ounces, which is inconsistent with this distribution. So the conclusion of the test is that in the population, the distributions of birth weights of the babies of non-smokers and smokers are different.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Method-2:-Bootstrap-Test">Method 2: Bootstrap Test<a class="anchor-link" href="#Method-2:-Bootstrap-Test">&#182;</a></h3><p>The bootstrap test is identical to the permutation test in all but one respect: it samples <em>with</em> replacement instead of without.</p>
-<p>Compare the code for the bootstrap test below to see that it differs from the code for the permutation test only in that the option <code>with_replacement=True</code> has been used in the call to <code>sample</code>, and the output has been labeled <code>Bootstrap Test</code>.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<h3 id="Method-2:-Bootstrap-Test">Method 2: Bootstrap Test<a class="anchor-link" href="#Method-2:-Bootstrap-Test">¶</a></h3><p>The bootstrap test is identical to the permutation test in all but one respect: it samples <em>with</em> replacement instead of without.</p>
+<p>Compare the code for the bootstrap test below to see that it differs from the code for the permutation test only in that the option <code>with_replacement=True</code> has been used in the call to <code>sample</code>, and the output has been labeled <code>Bootstrap Test</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="sd">&quot;&quot;&quot;Bootstrap test for the difference in mean birthweight</span>
-<span class="sd">Category A: non-smoker      Category B: smoker&quot;&quot;&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span class="sd">"""Bootstrap test for the difference in mean birthweight</span>
+<span class="sd">Category A: non-smoker      Category B: smoker"""</span>
 
-<span class="n">bwt_sorted</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">&#39;m_smoker&#39;</span><span class="p">,</span> <span class="s">&#39;birthwt&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;m_smoker&#39;</span><span class="p">)</span>
+<span class="n">bwt_sorted</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'m_smoker'</span><span class="p">,</span> <span class="s">'birthwt'</span><span class="p">])</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">'m_smoker'</span><span class="p">)</span>
 
 <span class="c"># calculate the observed difference in means</span>
-<span class="n">meanA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bwt_sorted</span><span class="p">[</span><span class="s">&#39;birthwt&#39;</span><span class="p">][:</span><span class="mi">715</span><span class="p">])</span>
-<span class="n">meanB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bwt_sorted</span><span class="p">[</span><span class="s">&#39;birthwt&#39;</span><span class="p">][</span><span class="mi">715</span><span class="p">:])</span>
+<span class="n">meanA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bwt_sorted</span><span class="p">[</span><span class="s">'birthwt'</span><span class="p">][:</span><span class="mi">715</span><span class="p">])</span>
+<span class="n">meanB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bwt_sorted</span><span class="p">[</span><span class="s">'birthwt'</span><span class="p">][</span><span class="mi">715</span><span class="p">:])</span>
 <span class="n">obs_diff</span> <span class="o">=</span> <span class="n">meanA</span> <span class="o">-</span> <span class="n">meanB</span>
 
 <span class="n">repetitions</span><span class="o">=</span><span class="mi">10000</span>
@@ -1103,31 +1009,21 @@ U4wgGEJQAAAAAElFTkSuQmCC
     <span class="n">resample</span> <span class="o">=</span> <span class="n">bwt_sorted</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
     
     <span class="c"># Compute the difference of the means of the resampled values, between Categories A and B</span>
-    <span class="n">dd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s">&#39;birthwt&#39;</span><span class="p">][:</span><span class="mi">715</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s">&#39;birthwt&#39;</span><span class="p">][</span><span class="mi">715</span><span class="p">:])</span>
+    <span class="n">dd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s">'birthwt'</span><span class="p">][:</span><span class="mi">715</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s">'birthwt'</span><span class="p">][</span><span class="mi">715</span><span class="p">:])</span>
     <span class="n">diffs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">dd</span><span class="p">])</span>
 
 <span class="c"># Display results   </span>
-<span class="n">diffs</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">diffs</span><span class="p">],[</span><span class="s">&#39;diff_in_means&#39;</span><span class="p">])</span>
+<span class="n">diffs</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">diffs</span><span class="p">],[</span><span class="s">'diff_in_means'</span><span class="p">])</span>
 <span class="n">diffs</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Approx null distribution of difference in means&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Bootstrap Test&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Approx null distribution of difference in means'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Bootstrap Test'</span><span class="p">)</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s">&#39;Observed difference in means: &#39;</span><span class="p">,</span> <span class="n">obs_diff</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
+<span class="nb">print</span><span class="p">(</span><span class="s">'Observed difference in means: '</span><span class="p">,</span> <span class="n">obs_diff</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observed difference in means:  9.26614257202
-</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAasAAAE3CAYAAAAUtW5VAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcVHX7P/7XCOKC28g2IIImKKIiYUKIKeCeC5C7fKKQ
@@ -1463,18 +1359,13 @@ m5tpb2/n9evX5OTkUFBQgNlsjq19VVdXMz4+TmdnJ7du3WLDhg3cuXMHq9Wa8hqS7H1NJhM9PT20
 tbXx+fNn8vPzcTgcOJ3OtM8l1vfk5OTcCP1/2Llz57h48SKyLKNQzJ7tjG78fPDgQdK8tCAIgvD3
 /TNrVoIgCML/17wNVn/6FlwQBEH4e+ZtGlAQBEGYP+btnZUgCIIwf4hgJQiCIMx5IlgJgiAIc54I
 VoIgCMKcJ4KVIAiCMOeJYCUIgiDMed8BzRanVmRpUT4AAAAASUVORK5CYII=
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Not surprisingly, the bootstrap empirical distribution of the difference in sample means under the null hypothesis is almost identical to that produced by random permutations, and the conclusion of the test is the same.</p></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+<p>Not surprisingly, the bootstrap empirical distribution of the difference in sample means under the null hypothesis is almost identical to that produced by random permutations, and the conclusion of the test is the same.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Bootstrap-A-B-testing">Bootstrap A-B testing<a class="anchor-link" href="#Bootstrap-A-B-testing">&#182;</a></h3><p>As we have seen, bootstrap resampling methods can be used in the same way as random permutations to test the equality of two distributions, one from Category A and the other from Category B of a population. This is a version of what is rather unimanginatively known as <em>A-B testing</em>.</p>
+<h3 id="Bootstrap-A-B-testing">Bootstrap A-B testing<a class="anchor-link" href="#Bootstrap-A-B-testing">¶</a></h3><p>As we have seen, bootstrap resampling methods can be used in the same way as random permutations to test the equality of two distributions, one from Category A and the other from Category B of a population. This is a version of what is rather unimanginatively known as <em>A-B testing</em>.</p>
 <p>Let us define a function <code>bootstrap_ab_test</code> that performs A-B testing using the bootstrap method and the difference in sample means as the test statistic. The null hypothesis is that the two underlying distributions in the population are equal; the alternative is that they are not.</p>
 <p>The arguments of the function are:</p>
 <ul>
@@ -1483,14 +1374,11 @@ VoIgCMKcJ4KVIAiCMOeJYCUIgiDMed8BzRanVmRpUT4AAAAASUVORK5CYII=
 <li>the label of the column containing the code 0 for Category A and 1 for Category B</li>
 <li>the number of repetitions of the resampling procedure</li>
 </ul>
-<p>The function returns the observed difference in means, the bootstrap empirical distribution of the difference in means, and the bootstrap empirical $P$-value. Because the alternative simply says that the two underlying distributions are different, the $P$-value is computed as the proportion of sampled differences that are at least as large in absolute value as the absolute value of the observed difference.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<p>The function returns the observed difference in means, the bootstrap empirical distribution of the difference in means, and the bootstrap empirical $P$-value. Because the alternative simply says that the two underlying distributions are different, the $P$-value is computed as the proportion of sampled differences that are at least as large in absolute value as the absolute value of the observed difference.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="sd">&quot;&quot;&quot;Bootstrap A/B test for the difference in the mean response</span>
-<span class="sd">Assumes A=0, B=1&quot;&quot;&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span class="sd">"""Bootstrap A/B test for the difference in the mean response</span>
+<span class="sd">Assumes A=0, B=1"""</span>
 
 <span class="k">def</span> <span class="nf">bootstrap_AB_test</span><span class="p">(</span><span class="n">samp_table</span><span class="p">,</span> <span class="n">response_label</span><span class="p">,</span> <span class="n">ab_label</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
     
@@ -1518,39 +1406,24 @@ VoIgCMKcJ4KVIAiCMOeJYCUIgiDMed8BzRanVmRpUT4AAAAASUVORK5CYII=
     <span class="n">p_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">diff_array</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">obs_diff</span><span class="p">))</span><span class="o">/</span><span class="n">repetitions</span>
     
     <span class="c"># Display results</span>
-    <span class="n">diffs</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">diffs</span><span class="p">],[</span><span class="s">&#39;diff_in_means&#39;</span><span class="p">])</span>
+    <span class="n">diffs</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">diffs</span><span class="p">],[</span><span class="s">'diff_in_means'</span><span class="p">])</span>
     <span class="n">diffs</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Approx null distribution of difference in means&#39;</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Bootstrap A-B Test&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s">&quot;Observed difference in means: &quot;</span><span class="p">,</span> <span class="n">obs_diff</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s">&quot;Bootstrap empirical P-value: &quot;</span><span class="p">,</span> <span class="n">p_value</span><span class="p">)</span>
-</pre></div></div></div></div></div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt"></div>
+    <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Approx null distribution of difference in means'</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Bootstrap A-B Test'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">"Observed difference in means: "</span><span class="p">,</span> <span class="n">obs_diff</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">"Bootstrap empirical P-value: "</span><span class="p">,</span> <span class="n">p_value</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can now use the function <code>bootstrap_AB_test</code> to compare the smokers and non-smokers with respect to several different response variables. The tests show a significant difference between the two groups in birth weight (as shown earlier), gestational days, maternal age, and maternal pregnancy weight. It comes as no surprise that the two groups do not differ significantly in their mean heights.</p></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<p>We can now use the function <code>bootstrap_AB_test</code> to compare the smokers and non-smokers with respect to several different response variables. The tests show a significant difference between the two groups in birth weight (as shown earlier), gestational days, maternal age, and maternal pregnancy weight. It comes as no surprise that the two groups do not differ significantly in their mean heights.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">&#39;birthwt&#39;</span><span class="p">,</span> <span class="s">&#39;m_smoker&#39;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
+<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">'birthwt'</span><span class="p">,</span> <span class="s">'m_smoker'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observed difference in means:  9.26614257202
 Bootstrap empirical P-value:  0.0
-</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaoAAAE3CAYAAAD7dwVrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlclFX/P/7XCOK+jGzDIkQxiqREmOCWAu65ICkucUch
@@ -1894,29 +1767,15 @@ GzZsmPf6zFn6sG/fPlxcXCguLqahoYGvX7/i7OzMpk2b9NYbzXU8uVxOX1+fbqH/u3fvcHJyQi6X
 3meIsfMqFApaW1spLS1lcnISmUyGUqkkNTXV5HsBWDQxMbEwQv5vdurUKc6ePYtarcbCYu4Mp3ZR
 Z0tLi9E8tCAIgvDf+mPGqARBEIT/T39toPrd3W5BEAThv/HXpv4EQRCEv8Nf26MSBEEQ/g4iUAmC
 IAgLmghUgiAIwoImApUgCIKwoIlAJQiCICxoIlAJgiAIC9o/LnMLx7bgfN4AAAAASUVORK5CYII=
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">&#39;gest_days&#39;</span><span class="p">,</span> <span class="s">&#39;m_smoker&#39;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
+<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">'gest_days'</span><span class="p">,</span> <span class="s">'m_smoker'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observed difference in means:  1.97652238829
 Bootstrap empirical P-value:  0.0376
-</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAasAAAE3CAYAAAAUtW5VAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XtcVNX++P/XCOEF00YQBlSIEkVTIkwMtQRS0+MFSfHG
@@ -2278,29 +2137,15 @@ cCorK0lNTbU7h9h6b1RUFA0NDZSWltLX14deryczM5OsrCyH6yLmbTabHwzRf5/ZuHEjBQUFmEwm
 VKqRtZ3Cwc/6+nqbemkFBQUFhf89D43NSkFBQUHh/5dHVljd7y24goKCgsL/jkdWDaigoKCg8Ojw
 yO6sFBQUFBQeHRRhpaCgoKDwwKMIKwUFBQWFBx5FWCkoKCgoPPAowkpBQUFB4YFHEVYKCgoKCg88
 /wLQbEfUxuLbqQAAAABJRU5ErkJggg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">&#39;mat_age&#39;</span><span class="p">,</span> <span class="s">&#39;m_smoker&#39;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
+<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">'mat_age'</span><span class="p">,</span> <span class="s">'m_smoker'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observed difference in means:  0.80767250179
 Bootstrap empirical P-value:  0.0203
-</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAagAAAE3CAYAAAD/gtVWAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtcTWn/P/7XFjmEbKVSlFMkOjDImXK+GWlGRMagL6Yy
@@ -2599,29 +2444,15 @@ R48eoU6dOmjRogUGDhwoXMv6/PPPkZiYiN27dyM0NBQdO3ZEREQExo0bV+pniLL99ujRA0ePHkVI
 SAhevXqFpk2bYvr06Zg1a5bKbSm1renp6eL4GqAGX19f+Pv7IzU1FdWqFT9KKbsZ88iRI0rHmYmI
 SLxEcQ2KiIioqAoZoLR9ek1EROJTIYf4iIio8quQZ1BERFT5MUAREZEoMUAREZEoMUAREZEoMUAR
 EZEoMUAREZEo/X9ZtxfSQzr3hwAAAABJRU5ErkJggg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">&#39;mat_pw&#39;</span><span class="p">,</span> <span class="s">&#39;m_smoker&#39;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
+<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">'mat_pw'</span><span class="p">,</span> <span class="s">'m_smoker'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observed difference in means:  2.56033030151
 Bootstrap empirical P-value:  0.041
-</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaoAAAE3CAYAAAD7dwVrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XdYFNf+P/D3CmLBttKLECOraBQRI4od7NeCJGIjISJX
@@ -2956,29 +2787,15 @@ nz8nNzeXV69eUVFREfQeEui4er2e8fFxBgcH+f79OykpKZhMJsxmc8jXAhCxubl5PEL+L9bZ2Ul3
 dzdut5vIyKMznN6mznfv3gXMQwshhPi9/pg9KiGEEP9PJzZQ/erHbiGEEL/HiU39CSGEOBlO7BOV
 EEKIk0EClRBCiGNNApUQQohjTQKVEEKIY00ClRBCiGNNApUQQohj7S+/BTunyyisfwAAAABJRU5E
 rkJggg==
-"
-></div></div></div></div></div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">&#39;mat_ht&#39;</span><span class="p">,</span> <span class="s">&#39;m_smoker&#39;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
-</pre></div></div></div></div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
+<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s">'mat_ht'</span><span class="p">,</span> <span class="s">'m_smoker'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observed difference in means:  -0.0905891494127
 Bootstrap empirical P-value:  0.5519
-</pre></div></div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
+</pre></div>
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAagAAAE3CAYAAAD/gtVWAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XdYFNf+P/D3CqKIlFWkKmgEURQkxl7iBWOLiUgUxZLE
@@ -3286,5 +3103,4 @@ rKwQFxeHgIAA+Pv7Iz8/H+bm5nI3Hct22MHBwZg5cyaePXsGExMTdO/eXe015Kqsm8qkq+rv4OX0
 YYLafYiy5fbp0wcxMTHYuHEj/vnnH7Rq1QozZ86Ej49Ppduitq05OTniOAyogsDAQAQFBSErKwsN
 GlTcSym7GTM6OlppPzMREYmXKK5BERERlfdaBqiaPr0mIiLxeS27+IiIqP57Lc+giIio/mOAIiIi
 UWKAIiIiUWKAIiIiUWKAIiIiUWKAIiIiUfp/UkvfDARcU8IAAAAASUVORK5CYII=
-"
-></div></div></div></div></div>
+"/></div></div>
