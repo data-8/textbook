@@ -1,0 +1,19 @@
+#ipython-notebook {
+  .interact-button {
+    background-color: #477DCA;
+    border-radius: 3px;
+
+    display: inline-block;
+    margin-bottom: 1.2em;
+    padding: 0.4em 1em;
+
+    font-size: 1.2em;
+    color: white;
+    font-weight: 700;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
