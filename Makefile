@@ -13,7 +13,17 @@ help:
 notebooks:
 	@echo "${BLUE}Converting notebooks to HTML.${NOCOLOR}"
 	@echo "${BLUE}=============================${NOCOLOR}"
-	cd notebooks && ipython nbconvert *.ipynb --to html --template basic
+	# Convert notebooks to HTML
+	cd notebooks && \
+		ipython nbconvert *.ipynb --to html --template basic && \
+		find . -name '*.html' -exec mv {} ../notebooks-html \;
+
+	# Remove newlines
+	cd notebooks-html && \
+		find . -name '*.html' -exec sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' -i "" {} \;
+
+	@echo ""
+	@echo "${BLUE}    Done, output is in notebooks-html${NOCOLOR}"
 
 deploy:
 	git pull
@@ -24,4 +34,4 @@ deploy:
 	@echo "${BLUE}=========================${NOCOLOR}"
 	git push
 	@echo ""
-	@echo "${BLUE}Done, see book at ${BOOK_URL}.${NOCOLOR}"
+	@echo "${BLUE}    Done, see book at ${BOOK_URL}.${NOCOLOR}"
