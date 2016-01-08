@@ -67,6 +67,11 @@ def _extract_cells(html):
     divs = doc.find_all('div', class_=is_cell)
     visible = [div for div in divs if '# HIDDEN' not in str(div)]
 
+    def remove_empty_spans_and_prompts(tag):
+        map(lambda t: t.decompose(), tag.find_all('div', class_='prompt'))
+        map(lambda t: t.decompose(), tag.find_all('span', text='None'))
+    [remove_empty_spans_and_prompts(div) for div in visible]
+
     return '\n'.join(map(str, visible))
 
 if __name__ == '__main__':
