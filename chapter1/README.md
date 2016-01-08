@@ -134,7 +134,7 @@ everyone.
 Example: Plotting the Classics
 ------------------------------
 
-{% include "../notebooks/Books.html" %}
+{% include "../notebooks-html/Books.html" %}
 
 Causality and Experiments
 ======================
@@ -517,45 +517,45 @@ PROGRESA example in this section.
 Expressions
 ===========
 
-\example{Expressions}
+{% include "../notebooks-html/Expressions.html" %}
 
 Names
 -----
 
-\example{Names}
+{% include "../notebooks-html/Names.html" %}
 
 Example: Growth Rates
 ---------------------
 
-\example{Growth}
+{% include "../notebooks-html/Growth.html" %}
 
 Call Expressions
 ----------------
 
-\example{Calls}
+{% include "../notebooks-html/Calls.html" %}
 
 Data Types
 ----------
 
-\example{Types}
+{% include "../notebooks-html/Types.html" %}
 
 Comparisons
 -----------
 
-\example{Comparison}
+{% include "../notebooks-html/Comparison.html" %}
 
 Collections
 -----------
 
-\example{Collections}
+{% include "../notebooks-html/Collections.html" %}
 
 Arrays
 ------
 
-\example{Arrays}
+{% include "../notebooks-html/Arrays.html" %}
 
 Tables
 ======
 
-\example{Tables}
+{% include "../notebooks-html/Tables.html" %}
 

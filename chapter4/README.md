@@ -4,38 +4,38 @@ Chapter 4
 Correlation
 ===========
 
-\example{Correlation}
+{% include "../notebooks-html/Correlation.html" %}
 
 Regression
 ==========
 
-\example{Regression}
+{% include "../notebooks-html/Regression.html" %}
 
 Bootstrap for Regression
 ========================
 
-\example{Regression2}
+{% include "../notebooks-html/Regression2.html" %}
 
 Classification
 ==============
 
-\example{Classification}
+{% include "../notebooks-html/Classification.html" %}
 
-\example{Models}
+{% include "../notebooks-html/Models.html" %}
 
 Multiple Regression
 ===================
 
-\example{Multiple}
+{% include "../notebooks-html/Multiple.html" %}
 
-\example{Multiple2}
+{% include "../notebooks-html/Multiple2.html" %}
 
-\example{T}
+{% include "../notebooks-html/T.html" %}
 
 Chance Models
 =============
 
-\example{Binomial}
+{% include "../notebooks-html/Binomial.html" %}
 
-\example{Bayes}
+{% include "../notebooks-html/Bayes.html" %}
 

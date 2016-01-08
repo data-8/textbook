@@ -4,46 +4,46 @@ Chapter 3
 Iteration
 =========
 
-\example{Iteration}
+{% include "../notebooks-html/Iteration.html" %}
 
 Distributions
 =============
 
-\example{Distribution}
+{% include "../notebooks-html/Distribution.html" %}
 
-\example{Distribution2}
+{% include "../notebooks-html/Distribution2.html" %}
 
 How close are two distributions?
 ================================
 
-\example{Distance}
+{% include "../notebooks-html/Distance.html" %}
 
-\example{Testing}
+{% include "../notebooks-html/Testing.html" %}
 
 Permutation Tests
 =================
 
-\example{Permutation}
+{% include "../notebooks-html/Permutation.html" %}
 
-\example{Statistics}
+{% include "../notebooks-html/Statistics.html" %}
 
-\example{Means}
+{% include "../notebooks-html/Means.html" %}
 
 Confidence Intervals
 ====================
 
-\example{Normal}
+{% include "../notebooks-html/Normal.html" %}
 
-\example{CLT}
+{% include "../notebooks-html/CLT.html" %}
 
-\example{Confidence}
+{% include "../notebooks-html/Confidence.html" %}
 
-\example{Accuracy}
+{% include "../notebooks-html/Accuracy.html" %}
 
 The Bootstrap
 =============
 
-\example{Bootstrap}
+{% include "../notebooks-html/Bootstrap.html" %}
 
-\example{AB}
+{% include "../notebooks-html/AB.html" %}
 

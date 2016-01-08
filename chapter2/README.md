@@ -107,7 +107,7 @@ assessment of this graphic?
 Bar Charts and Histograms
 =========================
 
-\example{Charts}
+{% include "../notebooks-html/Charts.html" %}
 
 Functions
 =========
@@ -140,24 +140,24 @@ function is called, its body is executed. Whenever a `return` statement within
 the body is executed, the call to the function completes and the value of the
 expression directly following `return` is returned.
 
-\example{Functions}
+{% include "../notebooks-html/Functions.html" %}
 
 Functions and Tables
 --------------------
 
-\example{Categories}
+{% include "../notebooks-html/Categories.html" %}
 
 Sampling
 ========
 
-\example{Sampling}
+{% include "../notebooks-html/Sampling.html" %}
 
 Explorations: Privacy
 =====================
 
-\example{Privacy}
+{% include "../notebooks-html/Privacy.html" %}
 
 Appendix: Statements
 ====================
 
-\example{Statements}
+{% include "../notebooks-html/Statements.html" %}
