@@ -6,4 +6,4 @@ The Foundations of Data Science
 
 **By Ani Adhikari and John DeNero**
 
-TODO: Add an introduction to this file.
+This is the textbook for the Data 8 class at UC Berkeley.
