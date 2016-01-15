@@ -4,9 +4,9 @@ Chapter 1: Introduction
 Data are descriptions of the world around us, collected through observation and
 stored on computers. Computers enable us to infer properties of the world from
 these descriptions. Data science is the discipline of drawing conclusions from
-data using computation. There are four core aspects of effective data analysis:
-visualization, inference, prediction, and modeling. This text develops a
-consistent approach to all four, introducing statistical ideas and fundamental
+data using computation. There are three core aspects of effective data
+analysis: exploration, prediction, and inference. This text develops a
+consistent approach to all three, introducing statistical ideas and fundamental
 ideas in computer science concurrently. We focus on a minimal set of core
 techniques, but demonstrate that they apply to a vast range of real-world
 applications. A foundation in data science requires not only understanding

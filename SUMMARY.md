@@ -1,6 +1,6 @@
 # Summary
 
-* [Data Science and Computing](chapter1/intro.md)
+* [Data Science](chapter1/what-is-data-science.md)
   * [Introduction](chapter1/intro.md)
     * [Computational Tools](chapter1/computational-tools.md)
     * [Statistical Techniques](chapter1/statistical-techniques.md)
