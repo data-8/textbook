@@ -1,0 +1,9 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# OSX file
+.DS_Store
+
+# IPython checkpoints
+.ipynb_checkpoints

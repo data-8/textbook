@@ -19,16 +19,35 @@ from nbconvert import HTMLExporter
 html_exporter = HTMLExporter()
 html_exporter.template_file = 'basic'
 
-# Output notebook file into this directory
+# Output notebook HTML partials into this directory
 NOTEBOOK_HTML_DIR = 'notebooks-html'
 
-INTERACT_LINK_PREFIX = 'http://ds8.berkeley.edu/hub/interact?file=http://data8.org/text/examples/'
+# The prefix for the interact button links. The path format string gets filled
+# in with the notebook as well as any datasets the notebook requires.
+INTERACT_LINK = 'http://ds8.berkeley.edu/hub/interact?repo=textbook&{paths}'
+
+# The prefix for each notebook + its dependencies
+PATH_PREFIX = 'path=notebooks/{}'
+
+# The regex used to find file dependencies for notebooks. I could have used
+# triple quotes here but it messes up Python syntax highlighting :(
+DATASET_REGEX = re.compile(
+    r"read_table\("        # We look for a line containing read_table(
+    r"('|\")"              # Then either a single or double quote
+    r"(?P<dataset>"        # Start our named match -- dataset
+    r"    (?!https?://)"   # Don't match http(s) since those aren't local files
+    r"    \w+.csv\w*"      # It has to have .csv in there (might end in .gz)
+    r")"                   # Finish our match
+    r"\1\)"                # Make sure the quotes match
+, re.VERBOSE)
+
+# Used to ensure all the closing div tags are on the same line for Markdown to
+# parse them properly
+CLOSING_DIV_REGEX = re.compile('\s+</div>')
 
 import pdb
 
 def convert_notebooks_to_html_partial(notebook_paths):
-    # Match any whitespace before a </div>
-    CLOSING_DIV_REGEX = re.compile('\s+</div>')
     """
     Converts notebooks in notebook_paths to HTML partials in NOTEBOOK_HTML_DIR
     """
@@ -43,10 +62,19 @@ def convert_notebooks_to_html_partial(notebook_paths):
 
         html = _extract_cells(raw_html)
 
+        # Get dependencies from notebook
+        matches = list(DATASET_REGEX.finditer(
+            '\n'.join([cell['source'] for cell in notebook.cells])
+        ))
+        dependencies = [filename] + \
+                       [match.group('dataset') for match in matches]
+        paths = '&'.join([PATH_PREFIX.format(dep) for dep in dependencies])
+
         with_wrapper = """<div id="ipython-notebook">
             <a class="interact-button" href="{interact_link}">Interact</a>
             {html}
-        </div>""".format(interact_link = INTERACT_LINK_PREFIX + filename, html = html)
+        </div>""".format(interact_link=INTERACT_LINK.format(paths=paths),
+                         html=html)
 
         final_output = CLOSING_DIV_REGEX.sub('</div>', with_wrapper)
 
