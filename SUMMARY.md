@@ -17,6 +17,7 @@
     * [Example: Growth Rates](chapter1/example-growth-rates.md)
     * [Call Expressions](chapter1/call-expressions.md)
     * [Data Types](chapter1/data-types.md)
+    * [Strings](chapter1/strings.md)
     * [Comparisons](chapter1/comparisons.md)
   * [Sequences](chapter1/collections.md)
     * [Arrays](chapter1/arrays.md)
