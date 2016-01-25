@@ -24,7 +24,7 @@ NOTEBOOK_HTML_DIR = 'notebooks-html'
 
 # The prefix for the interact button links. The path format string gets filled
 # in with the notebook as well as any datasets the notebook requires.
-INTERACT_LINK = 'http://ds8.berkeley.edu/hub/interact?repo=textbook&{paths}'
+INTERACT_LINK = 'http://data8.berkeley.edu/hub/interact?repo=textbook&{paths}'
 
 # The prefix for each notebook + its dependencies
 PATH_PREFIX = 'path=notebooks/{}'
