@@ -66,8 +66,8 @@ def convert_notebooks_to_html_partial(notebook_paths):
         matches = list(DATASET_REGEX.finditer(
             '\n'.join([cell['source'] for cell in notebook.cells])
         ))
-        dependencies = [filename] + \
-                       [match.group('dataset') for match in matches]
+        dependencies = [match.group('dataset') for match in matches] + \
+                       [filename]
         paths = '&'.join([PATH_PREFIX.format(dep) for dep in dependencies])
 
         with_wrapper = """<div id="ipython-notebook">
