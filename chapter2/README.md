@@ -155,7 +155,8 @@ Sampling
 Explorations: Privacy
 =====================
 
-{% include "../notebooks-html/Privacy.html" %}
+Coming soon...
+{# include "../notebooks-html/Privacy.html" #}
 
 Appendix: Statements
 ====================
