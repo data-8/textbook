@@ -69,7 +69,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="n">tableA</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">'GENRE'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Charts_6_0.png"/></div>
+<img src="../notebooks-images/Charts_6_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A different table called <code>tableB</code> also consists of movie genre data, in columns labled <code>GENRE</code> and <code>COUNT</code> just as in <code>tableA</code>. Here is a bar chart of the data in <code>tableB</code>.</p></div></div>
@@ -78,7 +78,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="n">tableB</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">'GENRE'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Charts_8_0.png"/></div>
+<img src="../notebooks-images/Charts_8_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>At first glance, it applears that the two bar charts are quite different. One of them shows a distribution that looks like a smooth curve, while the other is quite irregular. However, closer inspection reveals that the two bar charts are in fact representations of exactly the same set of data. The only difference is in the order in which the categories appear. As we have seen before with graphs that involve two axes, it is important to study <em>both</em> axes carefully before making conclusions.</p>
@@ -157,7 +157,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="n">mill</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Charts_14_0.png"/></div>
+<img src="../notebooks-images/Charts_14_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The figure above shows the distribution of the amounts grossed, in millions of dollars. The amounts have been grouped into contiguous intervals called <em>bins</em>. Although in this dataset no movie grossed an amount that is exactly on the edge between two bins, it is worth noting that <em>hist</em> has an <em>endpoint convention</em>: bins include the data at their left endpoint, but not the data at their right endpoint. Sometimes, adjustments have to be made in the first or last bin, to ensure that the smallest and largest values of the variable are included. You saw an example of such an adjustment in the Census data used in the Tables section, where an age of "100" years actually meant "100 years old or older."</p>
@@ -168,7 +168,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="n">mill</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">810</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Charts_16_0.png"/></div>
+<img src="../notebooks-images/Charts_16_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This figure is easier to read. On the horizontal axis, the labels 100, 200, 300, and so on are centered at the corresponding values. The number of movies that grossed between 100 million and 150 million dollars appears to be around 340; the number that grossed between 150 million and 200 million dollars appears to be around 125; and so on.</p>
@@ -227,7 +227,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="n">mill</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">800</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Charts_21_0.png"/></div>
+<img src="../notebooks-images/Charts_21_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Even though the method used is called <em>hist</em>, <strong>the figure above is NOT A HISTOGRAM.</strong> It gives the impression that there are many more movies in the 250-800 bin than in the 100-150 bin, and indeed more than in the entire range 100-250. The height of each bar is simply plotted the number of movies in the bin, <em>without accounting for the difference in the widths of the bins</em>.</p>
@@ -256,7 +256,7 @@ $$<p>For <em>hist</em> to draw a histogram on the density scale, the Boolean opt
 <div class=" highlight hl-ipython3"><pre><span class="n">mill</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">800</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Charts_23_0.png"/></div>
+<img src="../notebooks-images/Charts_23_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is a reasonable representation of the data, though of course some detail has been lost. The level of detail in a histogram depends on the level of detail in the data as well as on the choices made by the user. Before we explore this idea further, let us first check that the numbers on the vertical axis above are consistent with the heights that we would calculate.</p>
@@ -271,7 +271,7 @@ $$<p>That agrees with the height of the bar as shown in the figure. You might wa
 <div class=" highlight hl-ipython3"><pre><span class="n">mill</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">800</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Charts_25_0.png"/></div>
+<img src="../notebooks-images/Charts_25_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Some of the skinny bars are taller than 0.004 and others are shorter. By putting a flat top at 0.004 over the whole bin, we are deciding to ignore the finer detail and use the flat level as a rough approximation. Often, though not always, this is sufficient for understanding the general shape of the distribution.</p>
@@ -286,7 +286,7 @@ $$<p>That agrees with the height of the bar as shown in the figure. You might wa
 <div class=" highlight hl-ipython3"><pre><span class="n">imdb</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'in_millions'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">800</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Charts_28_0.png"/></div>
+<img src="../notebooks-images/Charts_28_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Density Q&amp;A</strong></p>

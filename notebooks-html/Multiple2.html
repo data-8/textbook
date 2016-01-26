@@ -120,7 +120,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="n">scatter_fit</span><span class="p">(</span><span class="n">birds</span><span class="p">,</span> <span class="s">'e_weight'</span><span class="p">,</span> <span class="s">'b_weight'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Multiple2_7_0.png"/></div>
+<img src="../notebooks-images/Multiple2_7_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The summary statistics confirm this assessment. For example $R^2$ is quite high: 0.718. The 95% confidence interval for the slope does not contain 0. All of this points to a genuine linear trend in the relation between the weight of the egg and the weight of the bird that hatches from the egg.</p></div></div>
@@ -254,7 +254,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The problem of collinearity can be mitigated by choosing the predictors more carefully. The correlation matrix shows that egg weight is highly correlated with both egg length and egg breadth. However, the correlation between egg length and egg breadth is much smaller. So it is a reasonable to regress bird weight on just the two linear dimensions of the egg.</p></div></div>
 <div class="output_png output_subarea ">
-<img src="Multiple2_14_0.png"/></div>
+<img src="../notebooks-images/Multiple2_14_0.png"/></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table class="simpletable">
 <caption>OLS Regression Results</caption>
@@ -382,4 +382,4 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice the extremely high value of $R^2$. This indicates that egg weight is very close to a linear function of egg length and egg breadth. Therefore, the information in egg weight as a predictor of bird weight is essentially the same as the information in a linear function of egg length and breadth. For confirmation, here is the scatter plot of the three variables. As you can see, the points are closely clustered about a plane.</p></div></div>
 <div class="output_png output_subarea ">
-<img src="Multiple2_19_0.png"/></div></div>
+<img src="../notebooks-images/Multiple2_19_0.png"/></div></div>

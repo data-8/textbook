@@ -63,7 +63,7 @@
 Empirical P value: 0.041875
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="Means_5_1.png"/></div>
+<img src="../notebooks-images/Means_5_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To explore this observation further, we will run the permutation test again, this time using the difference between the means (without the absolute value) as our test statistic. To be consistent about the sign of the difference, we will compute the difference as "mean age of Group 1 - mean age of Group 2," where Group 1 comprises the people who give the highest rating and Group 2 the people who don't. The observed value of this new test statistic is still about 1.07 (the sign is positive), because Group 1 in the sample is on average older than Group 2.</p>
@@ -77,7 +77,7 @@ Empirical P value: 0.041875
 Empirical P value: 0.02
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="Means_7_1.png"/></div>
+<img src="../notebooks-images/Means_7_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The bell curve, formally known as the <em>normal curve</em>, is one of the fundamental distributions of probability theory and statistics. It arises principally in connection with probability distributions of the means of large random samples. We will discuss this more fully in later sections.</p>
@@ -215,7 +215,7 @@ Empirical P value: 0.02
 <div class=" highlight hl-ipython3"><pre><span class="n">x_dist</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'value'</span><span class="p">,</span> <span class="s">'prop'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Means_25_0.png"/></div>
+<img src="../notebooks-images/Means_25_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Summary-of-Basic-Properties-of-the-Mean">Summary of Basic Properties of the Mean<a class="anchor-link" href="#Summary-of-Basic-Properties-of-the-Mean">¶</a></h3><p>These properties follow from the calculation; we have observed most of them in our examples above.</p>
@@ -267,7 +267,7 @@ Empirical P value: 0.02
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x1081447f0&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="Means_30_1.png"/></div>
+<img src="../notebooks-images/Means_30_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In general, for <strong>symmetric distributions</strong>, the mean and the median are equal.</p>
@@ -311,7 +311,7 @@ Empirical P value: 0.02
 <div class=" highlight hl-ipython3"><pre><span class="n">slide</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s">'x'</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">10.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Means_33_0.png"/></div>
+<img src="../notebooks-images/Means_33_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The yellow histogram represents the original distribution; the blue histogram starts out the same as the yellow at the left end, but its rightmost bar has slid over to the value 10.</p>
@@ -340,7 +340,7 @@ Empirical P value: 0.02
 <div class=" highlight hl-ipython3"><pre><span class="n">box_office</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Means_39_0.png"/></div>
+<img src="../notebooks-images/Means_39_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The mean gets pulled away from the median in the direction of the tail. So we expect the mean to be larger than the median, and that is indeed the case:</p></div></div>
@@ -537,7 +537,7 @@ Empirical P value: 0.02
 <div class=" highlight hl-ipython3"><pre><span class="n">box_office</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Means_61_0.png"/></div>
+<img src="../notebooks-images/Means_61_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">box_office</span><span class="p">[</span><span class="s">'mill$'</span><span class="p">])</span>

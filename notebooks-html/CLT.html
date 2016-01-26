@@ -14,7 +14,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="n">box_office</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="CLT_3_0.png"/></div>
+<img src="../notebooks-images/CLT_3_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By the law of averages, the empirical histogram of a large random sample from this population should resemble the histogram of the population. This is demonstrated in the histogram of a random sample of size 400 taken with replacement:</p></div></div>
@@ -24,7 +24,7 @@
 <span class="n">samp400</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="CLT_5_0.png"/></div>
+<img src="../notebooks-images/CLT_5_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So it is reasonable to expect that if we use the mean of the sample as an estimate of the mean of the population, we will not be very far off. The mean of the population is about 174.29 million dollars:</p></div></div>
@@ -90,7 +90,7 @@ Average of sample averages:  174.216899608
 SD of sample averages 17.3178435552
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="CLT_13_1.png"/></div>
+<img src="../notebooks-images/CLT_13_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">samp_means</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
@@ -104,7 +104,7 @@ Average of sample averages:  174.273717283
 SD of sample averages 8.83871141281
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="CLT_14_1.png"/></div>
+<img src="../notebooks-images/CLT_14_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">samp_means</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
@@ -118,7 +118,7 @@ Average of sample averages:  174.351274505
 SD of sample averages 4.31007313615
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="CLT_15_1.png"/></div>
+<img src="../notebooks-images/CLT_15_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>All three histograms balance very close to 174.29, the population mean. The bigger the sample size, the closer the balance point is to the population mean. This leads to a restatement of the Law of Averages, this time in terms of sample averages instead of sample proportions.</p>
@@ -218,7 +218,7 @@ SD of sample averages 4.31007313615
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x108f42978&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="CLT_22_1.png"/></div>
+<img src="../notebooks-images/CLT_22_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Remember that the graph above is based on 4000 replications for each sample size. But there are many more than 4000 samples of sizes 25 or more.</p>
@@ -255,7 +255,7 @@ $$<p>This is the standard deviation of the list of averages of all possible samp
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x108bc0a20&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="CLT_27_1.png"/></div>
+<img src="../notebooks-images/CLT_27_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that some zipcodes have very few households that filed tax returns, while other zipcodes had tens of thousands of such households. The distribution has a large spike at the low end.</p>
@@ -295,7 +295,7 @@ Average of sample averages:  11.0951537333
 SD of sample averages 1.86010624165
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="CLT_30_1.png"/></div>
+<img src="../notebooks-images/CLT_30_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">samp_means</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
@@ -308,7 +308,7 @@ Average of sample averages:  11.0960138667
 SD of sample averages 0.949104459921
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="CLT_31_1.png"/></div>
+<img src="../notebooks-images/CLT_31_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">samp_means</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
@@ -321,7 +321,7 @@ Average of sample averages:  11.1290182167
 SD of sample averages 0.466610344135
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="CLT_32_1.png"/></div>
+<img src="../notebooks-images/CLT_32_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Once again, the empirical distributions of the sample means are roughly bell shaped; the approximation is better when the sample size is larger. The SDs of the empirical distributions follow the same square root law that we observed in the previous example.</p>

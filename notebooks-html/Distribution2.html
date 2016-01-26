@@ -117,7 +117,7 @@
 <span class="n">maxes</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Distribution2_7_0.png"/></div>
+<img src="../notebooks-images/Distribution2_7_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-empirical-distribution-of-a-statistic">The empirical distribution of a statistic<a class="anchor-link" href="#The-empirical-distribution-of-a-statistic">¶</a></h2><p>In the example above, the largest serial number is called a <em>statistic</em> (singular!). A <em>statistic</em> is any number computed using the data in a sample.</p>
@@ -224,7 +224,7 @@ $$</p></div></div>
 <div class=" highlight hl-ipython3"><pre><span class="n">probs</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s">'Chance'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Distribution2_18_0.png"/></div>
+<img src="../notebooks-images/Distribution2_18_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This histogram displays the exact probability distribution of the largest serial number in a sample of 30. For comparison, here again is the empirical distribution of the statistic based on 750 repetitions of the sampling process.</p></div></div>
@@ -233,7 +233,7 @@ $$</p></div></div>
 <div class=" highlight hl-ipython3"><pre><span class="n">maxes</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Distribution2_20_0.png"/></div>
+<img src="../notebooks-images/Distribution2_20_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The two histograms are extremely similar. Because of the large number of repetitions of the sampling process, the empirical distribution of the statistic looks very much like the probability distribution of the statistic.</p>
@@ -266,7 +266,7 @@ $$</p>
 <div class=" highlight hl-ipython3"><pre><span class="n">new_est</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Distribution2_25_0.png"/></div>
+<img src="../notebooks-images/Distribution2_25_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that unlike the earlier estimate, this one can overestimate the number of planes. This will happen when the average of the observed serial numbers is closer to $N$ than to 1.</p></div></div>
@@ -279,7 +279,7 @@ $$</p>
 <div class=" highlight hl-ipython3"><pre><span class="n">maxes</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Distribution2_28_0.png"/></div>
+<img src="../notebooks-images/Distribution2_28_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">new_est</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
@@ -288,7 +288,7 @@ $$</p>
 <div class="output_text output_subarea output_execute_result">
 <pre>(0, 0.06)</pre></div>
 <div class="output_png output_subarea ">
-<img src="Distribution2_29_1.png"/></div>
+<img src="../notebooks-images/Distribution2_29_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can see that the old method almost always underestimates; formally, we say that it is <em>biased</em>. But it has low variability, and is highly likely to be close to the true total number of planes.</p>

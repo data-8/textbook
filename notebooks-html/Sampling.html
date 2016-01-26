@@ -250,7 +250,7 @@ ABC: 0
 <div class=" highlight hl-ipython3"><pre><span class="n">die</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Sampling_19_0.png"/></div>
+<img src="../notebooks-images/Sampling_19_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The numbers 1, 2, 3, 4, 5, 6 are integers, so the bins chosen by <code>hist</code> only have entries at the edges. In such a situation, it is a better idea to select bins so that they are centered on the integers. This is often true of histograms of data that are <em>discrete</em>, that is, variables whose successive values are separated by the same fixed amount. The real advantage of this method of bin selection will become more clear when we start imagining smooth curves drawn over histograms.</p></div></div>
@@ -259,7 +259,7 @@ ABC: 0
 <div class=" highlight hl-ipython3"><pre><span class="n">die</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Sampling_21_0.png"/></div>
+<img src="../notebooks-images/Sampling_21_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice how each bin has width 1 and is centered on an integer. Notice also that because the width of each bin is 1, the height of each bar is $0.16666 \ldots /1 = 1/6$, the chance that the corresponding face appears.</p>
@@ -336,7 +336,7 @@ ABC: 0
 <div class=" highlight hl-ipython3"><pre><span class="n">hist_1to6</span><span class="p">(</span><span class="n">die</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Sampling_27_0.png"/></div>
+<img src="../notebooks-images/Sampling_27_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Below, for comparison, is the probability histogram for the roll of a die. Based on that, we expect each face to appear about on $1/6$ of the rolls. But if you run the simulation above a few times, you will see that with just 20 rolls, the proportion of times each face appears can be quite far from $1/6$.</p></div></div>
@@ -345,7 +345,7 @@ ABC: 0
 <div class=" highlight hl-ipython3"><pre><span class="n">hist_1to6</span><span class="p">(</span><span class="n">die</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Sampling_29_0.png"/></div>
+<img src="../notebooks-images/Sampling_29_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As we increase the number of rolls in the simulation, the proportions get closer to $1/6$.</p></div></div>
@@ -354,7 +354,7 @@ ABC: 0
 <div class=" highlight hl-ipython3"><pre><span class="n">hist_1to6</span><span class="p">(</span><span class="n">die</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Sampling_31_0.png"/></div>
+<img src="../notebooks-images/Sampling_31_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The behavior we have observed is an instance of a general rule.</p>

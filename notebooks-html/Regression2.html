@@ -63,7 +63,7 @@
 <span class="n">draw_and_compare</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Regression2_11_0.png"/></div>
+<img src="../notebooks-images/Regression2_11_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In reality, of course, we are not Tyche, and we will never see the true line. What the simulation shows that if the regression model looks plausible, and we have a large sample, then regression line is a good approximation to the true line.</p></div></div>
@@ -190,7 +190,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="n">scatter_fit</span><span class="p">(</span><span class="n">hodgkins</span><span class="p">,</span> <span class="s">'height'</span><span class="p">,</span> <span class="s">'month15'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Regression2_16_0.png"/></div>
+<img src="../notebooks-images/Regression2_16_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Prediction">Prediction<a class="anchor-link" href="#Prediction">¶</a></h3><p>The scatter plot looks roughly linear. Let us assume that the regression model holds. Under that assumption, the regression line can be used to predict the 15-month score of a new patient, based on the patient's height. The prediction will be good provided the assumptions of the regression model are justified for these data, and provided the new patient is similar to those in the study.</p>
@@ -259,7 +259,7 @@ $~=~$ slope$\;\times\;x ~+~$ intercept</p>
 <span class="k">None</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Regression2_22_0.png"/></div>
+<img src="../notebooks-images/Regression2_22_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The next step is to fit the regression line to the scatter plot in each replication, and make a prediction based on each line. The figure below shows 10 such lines, and the corresponding predicted 15-month scores for a patient whose height is 173 cm.</p></div></div>
@@ -286,7 +286,7 @@ $~=~$ slope$\;\times\;x ~+~$ intercept</p>
     <span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fit_x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Regression2_24_0.png"/></div>
+<img src="../notebooks-images/Regression2_24_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The table below shows the slope and intercept of each of the 10 lines, along with the prediction.</p></div></div>
@@ -388,7 +388,7 @@ Approximate 95%-confidence interval:
 (74.714778270509967, 91.42206150583246)
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="Regression2_30_1.png"/></div>
+<img src="../notebooks-images/Regression2_30_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The figure above shows a bootstrap empirical histogram of the predicted 15-month score of a patient who is 173 cm tall. The empirical distribution is roughly normal. An approximate 95% prediction interval of scores ranges from about 74.7 to about 91.4. The prediction based on the original sample was about 83.6, which is close to the center of the interval.</p>
@@ -403,7 +403,7 @@ Approximate 95%-confidence interval:
 (61.330870268521551, 82.356639766521468)
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="Regression2_32_1.png"/></div>
+<img src="../notebooks-images/Regression2_32_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The function <code>bootstrap_pred</code> returns an approximate 95% prediction interval and a bootstrap empirical distribution of the prediction. Its arguments are:</p>
@@ -450,7 +450,7 @@ Approximate 95%-confidence interval:
 (78.368435768539257, 99.266211225997026)
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="Regression2_35_1.png"/></div>
+<img src="../notebooks-images/Regression2_35_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Is-there-a-linear-trend-at-all?">Is there a linear trend at all?<a class="anchor-link" href="#Is-there-a-linear-trend-at-all?">¶</a></h2><p>The bootstrap method can also be used to see whether there is any correlation between two variables.</p>
@@ -460,7 +460,7 @@ Approximate 95%-confidence interval:
 <div class=" highlight hl-ipython3"><pre><span class="n">scatter_fit</span><span class="p">(</span><span class="n">hodgkins</span><span class="p">,</span> <span class="s">'rad'</span><span class="p">,</span> <span class="s">'month15'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="Regression2_37_0.png"/></div>
+<img src="../notebooks-images/Regression2_37_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To see whether this lack of linear relation is true, we can create a bootstrap confidence interval for the slope of the true line, analogously to the confidence intervals we constructed in earlier sections using the bootstrap percentile method.</p>
@@ -498,4 +498,4 @@ Approximate 95%-confidence interval:
 (-0.054477794919830333, 0.057351221017303319)
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="Regression2_40_1.png"/></div></div>
+<img src="../notebooks-images/Regression2_40_1.png"/></div></div>
