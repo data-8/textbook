@@ -5,6 +5,7 @@ resulting HTML partial can be embedded in a Gitbook page easily.
 
 For reference:
 https://nbconvert.readthedocs.org/en/latest/nbconvert_library.html
+http://nbconvert.readthedocs.org/en/latest/nbconvert_library.html#using-different-preprocessors
 """
 
 import glob
@@ -14,9 +15,16 @@ import os
 import bs4
 import nbformat
 from nbconvert import HTMLExporter
+from traitlets.config import Config
+
+# Use ExtractOutputPreprocessor to extract the images to separate files
+config = Config()
+config.HTMLExporter.preprocessors = [
+    'nbconvert.preprocessors.ExtractOutputPreprocessor',
+]
 
 # Output a HTML partial, not a complete page
-html_exporter = HTMLExporter()
+html_exporter = HTMLExporter(config=config)
 html_exporter.template_file = 'basic'
 
 # Output notebook HTML partials into this directory
@@ -51,14 +59,20 @@ def convert_notebooks_to_html_partial(notebook_paths):
     """
     Converts notebooks in notebook_paths to HTML partials in NOTEBOOK_HTML_DIR
     """
-    for notebook_path in notebook_paths:
+    for notebook_path in notebook_paths[:1]:
         # Computes <name>.ipynb from notebooks/<name>.ipynb
         filename = notebook_path.split('/')[-1]
+        # Computes <name> from <name>.ipynb
+        basename = filename.split('.')[0]
         # Computes <name>.html from notebooks/<name>.ipynb
-        outfile_name = filename.split('.')[0] + '.html'
+        outfile_name = basename + '.html'
+
+        # This results in images like AB_5_1.png for a notebook called AB.ipynb
+        unique_image_key = basename
 
         notebook = nbformat.read(notebook_path, 4)
-        raw_html, _  = html_exporter.from_notebook_node(notebook)
+        raw_html, resources = html_exporter.from_notebook_node(notebook,
+            resources={ 'unique_key': unique_image_key })
 
         html = _extract_cells(raw_html)
 
@@ -76,11 +90,19 @@ def convert_notebooks_to_html_partial(notebook_paths):
         </div>""".format(interact_link=INTERACT_LINK.format(paths=paths),
                          html=html)
 
+        # Remove newlines before closing div tags
         final_output = CLOSING_DIV_REGEX.sub('</div>', with_wrapper)
 
+        # Write out HTML
         outfile_path = os.path.join(os.curdir, NOTEBOOK_HTML_DIR, outfile_name)
         with open(outfile_path, 'w') as outfile:
             outfile.write(final_output)
+
+        # Write out images
+        for image_name, image_data in resources['outputs'].items():
+            final_image_path = '{}/{}'.format(NOTEBOOK_HTML_DIR, image_name)
+            with open(final_image_path, 'wb') as outimage:
+                outimage.write(image_data)
         print(outfile_path + " written.")
 
 def _extract_cells(html):
