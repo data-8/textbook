@@ -62,7 +62,7 @@ def convert_notebooks_to_html_partial(notebook_paths):
     """
     Converts notebooks in notebook_paths to HTML partials in NOTEBOOK_HTML_DIR
     """
-    for notebook_path in notebook_paths[:1]:
+    for notebook_path in notebook_paths:
         # Computes <name>.ipynb from notebooks/<name>.ipynb
         filename = notebook_path.split('/')[-1]
         # Computes <name> from <name>.ipynb
