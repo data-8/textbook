@@ -30,6 +30,9 @@ html_exporter.template_file = 'basic'
 # Output notebook HTML partials into this directory
 NOTEBOOK_HTML_DIR = 'notebooks-html'
 
+# Output notebook HTML images into this directory
+NOTEBOOK_IMAGE_DIR = 'notebooks-images'
+
 # The prefix for the interact button links. The path format string gets filled
 # in with the notebook as well as any datasets the notebook requires.
 INTERACT_LINK = 'http://data8.berkeley.edu/hub/interact?repo=textbook&{paths}'
@@ -69,10 +72,20 @@ def convert_notebooks_to_html_partial(notebook_paths):
 
         # This results in images like AB_5_1.png for a notebook called AB.ipynb
         unique_image_key = basename
+        # This sets the img tag URL in the rendered HTML. This restricts the
+        # the chapter markdown files to be one level deep. It isn't ideal, but
+        # the only way around it is to buy a domain for the staging textbook as
+        # well and we'd rather not have to do that.
+        output_files_dir = '../' + NOTEBOOK_IMAGE_DIR
+
+        extract_output_config = {
+            'unique_key': unique_image_key,
+            'output_files_dir': output_files_dir,
+        }
 
         notebook = nbformat.read(notebook_path, 4)
         raw_html, resources = html_exporter.from_notebook_node(notebook,
-            resources={ 'unique_key': unique_image_key })
+            resources=extract_output_config)
 
         html = _extract_cells(raw_html)
 
@@ -99,8 +112,9 @@ def convert_notebooks_to_html_partial(notebook_paths):
             outfile.write(final_output)
 
         # Write out images
-        for image_name, image_data in resources['outputs'].items():
-            final_image_path = '{}/{}'.format(NOTEBOOK_HTML_DIR, image_name)
+        for relative_path, image_data in resources['outputs'].items():
+            image_name = relative_path.split('/')[-1]
+            final_image_path = '{}/{}'.format(NOTEBOOK_IMAGE_DIR, image_name)
             with open(final_image_path, 'wb') as outimage:
                 outimage.write(image_data)
         print(outfile_path + " written.")
