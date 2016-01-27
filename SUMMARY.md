@@ -19,7 +19,7 @@
     * [Data Types](chapter1/data-types.md)
     * [Strings](chapter1/strings.md)
     * [Comparisons](chapter1/comparisons.md)
-  * [Sequences](chapter1/collections.md)
+  * [Sequences](chapter1/sequences.md)
     * [Arrays](chapter1/arrays.md)
   * [Tables](chapter1/tables.md)
 * [Chapter 2](chapter2/README.md)
