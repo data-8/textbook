@@ -1,0 +1,190 @@
+<div id="ipython-notebook">
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/Ranges.ipynb">Interact</a>
+            <div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <em>range</em> is an array of numbers in increasing or decreasing order, each separated by a regular interval. Ranges are defined  using the <code>np.arange</code> function, which takes either one, two, or three arguments.</p>
+
+<pre><code>np.arange(end): An array starting with 0 of increasing integers up to end
+np.arange(start, end): An array of increasing integers from start up to end
+np.arange(start, end, step): A range with step between each pair of consecutive values</code></pre></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A range always includes its <code>start</code> value, but does not include its <code>end</code> value. The <code>step</code> can be either positive or negative and may be a whole number or a fraction.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">by_two</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">by_four</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 1,  5,  9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65,
+       69, 73, 77, 81, 85, 89, 93, 97])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ranges have many uses. For instance, a range can be used to compute part of the Leibniz formula for π, which is typically written as</p>
+$$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} \dots\right)$$</div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="mi">4</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">by_four</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">by_four</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>3.1215946525910097</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Birthday-Problem">The Birthday Problem<a class="anchor-link" href="#The-Birthday-Problem">¶</a></h3></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are <code>k</code> students in a class. What is the chance that at least two of the students have the same birthday?</p>
+<p><em>Assumptions</em></p>
+<ol>
+<li>No leap years; every year has 365 days</li>
+<li>Births are distributed evenly throughout the year</li>
+<li>No student's birthday is affected by any other (e.g. twins)</li>
+</ol>
+<p>Let's start with an easy case: <code>k</code> is 4. We'll first find the chance that all four people have different birthdays.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">all_different</span> <span class="o">=</span> <span class="p">(</span><span class="mi">364</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">363</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">362</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The chance that there is at least one pair with the same birthday is equivalent to the chance that the birthdays are not all different. Given the chance of some event occurring, the chance that the event does not occur is one minus the chance that it does. With only 4 people, the chance that any two have the same birthday is less than 2%.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="mi">1</span> <span class="o">-</span> <span class="n">all_different</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.016355912466550215</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using a range, we can express this same computation compactly. We begin with the numerators of each factor.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">numerators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">364</span><span class="p">,</span> <span class="mi">365</span><span class="o">-</span><span class="n">k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">numerators</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([364, 363, 362])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then, we divide each numerator by 365 to form the factors, multiply them all together, and subtract from 1.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">numerators</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.016355912466550215</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If <code>k</code> is 40, the chance of two birthdays being the same is much higher: almost 90%!</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">k</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">numerators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">364</span><span class="p">,</span> <span class="mi">365</span><span class="o">-</span><span class="n">k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">numerators</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.89123180981794903</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using ranges, we can investigate how this chance changes as <code>k</code> increases. The <code>np.cumprod</code> function computes the cumulative product of an array. That is, it computes a new array that has the same length as its input, but the <code>i</code>th element is the product of the first <code>i</code> terms. Below, the fourth term of the result is <code>1 * 2 * 3 * 4</code>.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">ten</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="n">ten</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([      1,       2,       6,      24,     120,     720,    5040,
+         40320,  362880, 3628800])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The following cell computes the chance of matching birthdays for every class size from 2 up to 365. Scrolling through the result, you will see that as <code>k</code> increases, the chance of matching birthdays reaches 1 long before the end of the array. In fact, for any <code>k</code> smaller than 365, there is a chance that all <code>k</code> students in a class can have different birthdays. The chance is so small, however, that the difference from 1 is rounded away by the computer.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">numerators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">364</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">chances</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="n">numerators</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">chances</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 0.00273973,  0.00820417,  0.01635591,  0.02713557,  0.04046248,
+        0.0562357 ,  0.07433529,  0.09462383,  0.11694818,  0.14114138,
+        0.16702479,  0.19441028,  0.22310251,  0.25290132,  0.28360401,
+        0.31500767,  0.34691142,  0.37911853,  0.41143838,  0.44368834,
+        0.47569531,  0.50729723,  0.53834426,  0.5686997 ,  0.59824082,
+        0.62685928,  0.65446147,  0.68096854,  0.70631624,  0.73045463,
+        0.75334753,  0.77497185,  0.79531686,  0.81438324,  0.83218211,
+        0.84873401,  0.86406782,  0.87821966,  0.89123181,  0.90315161,
+        0.91403047,  0.92392286,  0.93288537,  0.9409759 ,  0.94825284,
+        0.9547744 ,  0.96059797,  0.96577961,  0.97037358,  0.97443199,
+        0.97800451,  0.98113811,  0.98387696,  0.98626229,  0.98833235,
+        0.99012246,  0.99166498,  0.99298945,  0.99412266,  0.9950888 ,
+        0.99590957,  0.99660439,  0.99719048,  0.99768311,  0.9980957 ,
+        0.99844004,  0.99872639,  0.99896367,  0.99915958,  0.99932075,
+        0.99945288,  0.99956081,  0.99964864,  0.99971988,  0.99977744,
+        0.99982378,  0.99986095,  0.99989067,  0.99991433,  0.99993311,
+        0.99994795,  0.99995965,  0.99996882,  0.999976  ,  0.99998159,
+        0.99998593,  0.99998928,  0.99999186,  0.99999385,  0.99999537,
+        0.99999652,  0.9999974 ,  0.99999806,  0.99999856,  0.99999893,
+        0.99999922,  0.99999942,  0.99999958,  0.99999969,  0.99999978,
+        0.99999984,  0.99999988,  0.99999992,  0.99999994,  0.99999996,
+        0.99999997,  0.99999998,  0.99999998,  0.99999999,  0.99999999,
+        0.99999999,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ,  1.        ,
+        1.        ,  1.        ,  1.        ,  1.        ])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>item</code> method of an array allows us to select a particular element from the array by its position. The starting position of an array is <code>item(0)</code>, so finding the chance of matching birthdays in a 40-person class involves extracting <code>item(40-2)</code> (because the starting item is for a 2-person class).</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">chances</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">40</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.891231809817949</pre></div></div>
