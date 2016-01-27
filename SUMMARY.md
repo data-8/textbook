@@ -21,6 +21,7 @@
     * [Comparisons](chapter1/comparisons.md)
   * [Sequences](chapter1/sequences.md)
     * [Arrays](chapter1/arrays.md)
+    * [Ranges](chapter1/ranges.md)
   * [Tables](chapter1/tables.md)
 * [Chapter 2](chapter2/README.md)
 * [Chapter 3](chapter3/README.md)
