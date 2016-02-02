@@ -23,6 +23,8 @@
     * [Arrays](chapter1/arrays.md)
     * [Ranges](chapter1/ranges.md)
   * [Tables](chapter1/tables.md)
+    * [Functions](chapter1/functions.md)
+    * [Functions](chapter1/categories.md)
 * [Chapter 2](chapter2/README.md)
 * [Chapter 3](chapter3/README.md)
 * [Chapter 4](chapter4/README.md)
