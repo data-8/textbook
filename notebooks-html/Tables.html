@@ -617,7 +617,8 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">both</span> <span class="o">=</span> <span class="n">census</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">census</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'SEX'</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">both</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'AGE'</span><span class="p">)</span><span class="o">==</span><span class="mi">18</span><span class="p">,</span> <span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'AGE'</span><span class="p">)</span><span class="o">==</span><span class="mi">19</span><span class="p">))</span>
+<span class="n">both</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'AGE'</span><span class="p">)</span> <span class="o">==</span> <span class="mi">18</span><span class="p">,</span> 
+                         <span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'AGE'</span><span class="p">)</span> <span class="o">==</span> <span class="mi">19</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -646,7 +647,8 @@
 </table></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">both</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'AGE'</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">18</span><span class="p">,</span> <span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'AGE'</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">19</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">both</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'AGE'</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">,</span> 
+                          <span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'AGE'</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">19</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -675,7 +677,7 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here, we observe a rather dramatic decrease in the number of 18 and 19 year olds in the United States; the children of the baby boom are now even older.</p></div></div>
+<p>Here, we observe a rather dramatic decrease in the number of 18 and 19 year olds in the United States; the children of the baby boom generation are now in their 20's, leaving fewer teenagers in America.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Aggregation and Grouping.</strong> This particular dataset includes entries for sums across all ages and sexes, using the special values <code>999</code> and <code>0</code> respectively. However, if these rows did not exist, we would be able to aggregate the remaining entries in order to compute those same results.</p></div></div>
@@ -704,7 +706,61 @@
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">no_sums</span> <span class="o">=</span> <span class="n">both</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'SEX'</span><span class="p">,</span> <span class="s">'AGE'</span><span class="p">,</span> <span class="s">'2014'</span><span class="p">])</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'AGE'</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">999</span><span class="p">)</span>
 <span class="n">females</span> <span class="o">=</span> <span class="n">no_sums</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'SEX'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'AGE'</span><span class="p">,</span> <span class="s">'2014'</span><span class="p">])</span>
-<span class="nb">sum</span><span class="p">(</span><span class="n">females</span><span class="p">[</span><span class="s">'2014'</span><span class="p">])</span>
+<span class="n">females</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>AGE</th> <th>2014</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0   </td> <td>1,930,493  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1   </td> <td>1,938,870  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>2   </td> <td>1,935,270  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>3   </td> <td>1,956,572  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>4   </td> <td>1,959,950  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5   </td> <td>1,961,391  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>6   </td> <td>2,024,024  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>7   </td> <td>2,031,760  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>8   </td> <td>2,014,402  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>9   </td> <td>2,009,560  </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (91 rows omitted)</p></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">females</span><span class="p">[</span><span class="s">'2014'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>161920569</pre></div>
@@ -769,7 +825,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Joining Tables.</strong> There are many situations in data analysis in which two different rows need to be considered together. Two tables can be joined into one, an operation that creates one long row out of two matching rows. These matching rows can be from the same table or different tables.</p>
-<p>For example, we might want to estimate which age categories are expected to change significantly in the future. Someone who is 14 years old in 2014 will be 20 years old in 2020. Therefore, one estimate of the number of 20 year olds in 2020 is the number of 14 year olds in 2014. Between the ages of 1 and 50, annual mortality rates are very low (less than 0.5% for men and less than 0.3% for women [<a href="http://www.ssa.gov/oact/STATS/table4c6.html">1</a>]). Immigration also affects population changes, but for now we will ignore this confounding factor. Let's consider just females in this analysis.</p></div></div>
+<p>For example, we might want to estimate which age categories are expected to change significantly in the future. Someone who is 14 years old in 2014 will be 20 years old in 2020. Therefore, one estimate of the number of 20 year olds in 2020 is the number of 14 year olds in 2014. Between the ages of 1 and 50, annual mortality rates are very low (less than 0.5% for men and less than 0.3% for women [<a href="http://www.ssa.gov/oact/STATS/table4c6.html">1</a>]). Immigration also affects population changes, but for now we will ignore its influence. Let's consider just females in this analysis.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">females</span><span class="p">[</span><span class="s">'AGE+6'</span><span class="p">]</span> <span class="o">=</span> <span class="n">females</span><span class="p">[</span><span class="s">'AGE'</span><span class="p">]</span> <span class="o">+</span> <span class="mi">6</span>
@@ -888,7 +944,7 @@
 <p>The resulting table has five columns. The first three are the same as before. The two new colums are the values for <code>AGE</code> and <code>2014</code> that appeared in a different row, the one in which that <code>AGE</code> appeared in the <code>AGE+6</code> column. For instance, the first row contains the number of 6 year olds in 2014 and an estimate of the number of 6 year olds in 2020 (who were 0 in 2014). Some relabeling and selecting makes this table more clear.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">future</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'AGE'</span><span class="p">,</span> <span class="s">'2014'</span><span class="p">,</span> <span class="s">'2014_2'</span><span class="p">])</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s">'2014_2'</span><span class="p">,</span> <span class="s">'2020 (est)'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">future</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'AGE'</span><span class="p">,</span> <span class="s">'2014'</span><span class="p">,</span> <span class="s">'2014_2'</span><span class="p">])</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s">'2014_2'</span><span class="p">,</span> <span class="s">'2020 (est)'</span><span class="p">)</span>
 <span class="n">future</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
