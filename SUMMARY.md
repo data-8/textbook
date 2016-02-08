@@ -25,6 +25,5 @@
   * [Tables](chapter1/tables.md)
     * [Functions](chapter1/functions.md)
     * [Functions and Tables](chapter1/categories.md)
-* [Chapter 2](chapter2/README.md)
-* [Chapter 3](chapter3/README.md)
-* [Chapter 4](chapter4/README.md)
+* [Chapter 2](chapter2/intro.md)
+  * [Bar Charts](chapter2/charts.md)
