@@ -27,3 +27,4 @@
     * [Functions and Tables](chapter1/categories.md)
 * [Chapter 2](chapter2/intro.md)
   * [Bar Charts](chapter2/charts.md)
+  * [Histograms](chapter2/histograms.md)
