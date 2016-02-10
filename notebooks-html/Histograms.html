@@ -1,58 +1,286 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/imdb.csv&path=notebooks/Histograms.ipynb">Interact</a>
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/top_movies.csv&path=notebooks/Histograms.ipynb">Interact</a>
             <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Quantitative-Data-and-Histograms">Quantitative Data and Histograms<a class="anchor-link" href="#Quantitative-Data-and-Histograms">¶</a></h2><p>Many of the variables that data scientists study are <em>quantitative</em>. These are measurements of numerical variables such as income, height, age, and so on. In keeping with the movie theme of this section, we will study the amount of money grossed by movies in recent decades. Our source is the <a href="http://www.imdb.com">Internet Movie Database</a>. The IMDb is an online database that consists of a vast repository of information about movies, television shows, video games, and so on.</p>
-<p>The table <code>imdb</code> consists of IMDb's data on <a href="http://www.imdb.com/boxoffice/alltimegross">U.S.A.'s top grossing movies</a> of all time. The first column contains the rank of the movie; <em>Avatar</em> has the top rank, with a box office gross amount of more than 760 million dollars in the United States. The second column contains the name of the movie; the third contains the U.S. box office gross in dollars; and the fourth contains the same gross amount, in millions of dollars.</p>
-<p>There are 627 movies on the list. Here are the top ten.</p></div></div>
+<h2 id="Quantitative-Data-and-Histograms">Quantitative Data and Histograms<a class="anchor-link" href="#Quantitative-Data-and-Histograms">¶</a></h2><p>Many of the variables that data scientists study are <em>quantitative</em>. For instance, we can study the amount of revenue earned by movies in recent decades. Our source is the <a href="http://www.imdb.com">Internet Movie Database</a>, an online database that contains information about movies, television shows, video games, and so on.</p>
+<p>The table <code>top</code> consists of [U.S.A.'s top grossing movies (<a href="http://www.boxofficemojo.com/alltime/adjusted.htm">http://www.boxofficemojo.com/alltime/adjusted.htm</a>) of all time. The first column contains the title of the movie; <em>Star Wars: The Force Awakens</em> has the top rank, with a box office gross amount of more than 900 million dollars in the United States. The second column contains the name of the studio; the third contains the U.S. box office gross in dollars; the fourth contains the same gross amount, adjusted for inflation to reflect 2015 dollars; and the fifth contains the release year of the movie.</p>
+<p>There are 200 movies on the list. Here are the top ten.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'imdb.csv'</span><span class="p">)</span>
-<span class="n">imdb</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">top</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'top_movies.csv'</span><span class="p">)</span>
+<span class="n">top</span><span class="o">.</span><span class="n">set_format</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">NumberFormatter</span><span class="p">)</span>
 </pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Title</th> <th>Studio</th> <th>Gross</th> <th>Gross (Adjusted to 2015 dollars)</th> <th>Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Star Wars: The Force Awakens             </td> <td>BV    </td> <td>906,723,418</td> <td>906,723,400                     </td> <td>2015</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Avatar                                   </td> <td>Fox   </td> <td>760,507,625</td> <td>846,120,800                     </td> <td>2009</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Titanic                                  </td> <td>Par.  </td> <td>658,672,302</td> <td>1,178,627,900                   </td> <td>1997</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Jurassic World                           </td> <td>Uni.  </td> <td>652,270,625</td> <td>687,728,000                     </td> <td>2015</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Marvel's The Avengers                    </td> <td>BV    </td> <td>623,357,910</td> <td>668,866,600                     </td> <td>2012</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>The Dark Knight                          </td> <td>WB    </td> <td>534,858,444</td> <td>647,761,600                     </td> <td>2008</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Star Wars: Episode I - The Phantom Menace</td> <td>Fox   </td> <td>474,544,677</td> <td>785,715,000                     </td> <td>1999</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Star Wars                                </td> <td>Fox   </td> <td>460,998,007</td> <td>1,549,640,500                   </td> <td>1977</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Avengers: Age of Ultron                  </td> <td>BV    </td> <td>459,005,868</td> <td>465,684,200                     </td> <td>2015</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>The Dark Knight Rises                    </td> <td>WB    </td> <td>448,139,099</td> <td>500,961,700                     </td> <td>2012</td>
+        </tr>
+    </tbody>
+</table>
+<p>... (190 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Three-digit numbers (even with a few decimal places) are easier to work with than nine-digit numbers. So we will work with a smaller table called <em>mill</em>, created by selecting just the fourth column of <em>imdb</em>.</p>
-<p>The method <em>hist</em> applied to one numerical column such as <em>mill</em> produces a figure called a <em>histogram</em> that looks very much like a bar chart. In this section, we will examine histograms and their properties.</p></div></div>
+<p>Three-digit numbers are easier to work with than nine-digit numbers. So, we will add an additional <em>millions</em> column containing the adjusted gross box office revenue in millions.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">mill</span> <span class="o">=</span> <span class="n">imdb</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'in_millions'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">millions</span>
 </pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Title</th> <th>Studio</th> <th>Gross</th> <th>Gross (Adjusted to 2015 dollars)</th> <th>Year</th> <th>Millions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Star Wars: The Force Awakens             </td> <td>BV    </td> <td>906,723,418</td> <td>906,723,400                     </td> <td>2015</td> <td>906.72  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Avatar                                   </td> <td>Fox   </td> <td>760,507,625</td> <td>846,120,800                     </td> <td>2009</td> <td>846.12  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Titanic                                  </td> <td>Par.  </td> <td>658,672,302</td> <td>1,178,627,900                   </td> <td>1997</td> <td>1178.63 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Jurassic World                           </td> <td>Uni.  </td> <td>652,270,625</td> <td>687,728,000                     </td> <td>2015</td> <td>687.73  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Marvel's The Avengers                    </td> <td>BV    </td> <td>623,357,910</td> <td>668,866,600                     </td> <td>2012</td> <td>668.87  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>The Dark Knight                          </td> <td>WB    </td> <td>534,858,444</td> <td>647,761,600                     </td> <td>2008</td> <td>647.76  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Star Wars: Episode I - The Phantom Menace</td> <td>Fox   </td> <td>474,544,677</td> <td>785,715,000                     </td> <td>1999</td> <td>785.72  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Star Wars                                </td> <td>Fox   </td> <td>460,998,007</td> <td>1,549,640,500                   </td> <td>1977</td> <td>1549.64 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Avengers: Age of Ultron                  </td> <td>BV    </td> <td>459,005,868</td> <td>465,684,200                     </td> <td>2015</td> <td>465.68  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>The Dark Knight Rises                    </td> <td>WB    </td> <td>448,139,099</td> <td>500,961,700                     </td> <td>2012</td> <td>500.96  </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (190 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>hist</code> method generates a <em>histogram</em> of the values in a column.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">mill</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">)</span>
 </pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Histograms_6_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The figure above shows the distribution of the amounts grossed, in millions of dollars. The amounts have been grouped into contiguous intervals called <em>bins</em>. Although in this dataset no movie grossed an amount that is exactly on the edge between two bins, it is worth noting that <em>hist</em> has an <em>endpoint convention</em>: bins include the data at their left endpoint, but not the data at their right endpoint. Sometimes, adjustments have to be made in the first or last bin, to ensure that the smallest and largest values of the variable are included. You saw an example of such an adjustment in the Census data used in the Tables section, where an age of "100" years actually meant "100 years old or older."</p>
-<p>We can see that there are 10 bins (some bars are so low that they are hard to see), and that they all have the same width. We can also see that there the list contains no movie that grossed fewer than 100 million dollars; that is because we are considering only the top grossing movies of all time. It is a little harder to see exactly where the edges of the bins are placed. For example, it is not clear exactly where the value 200 lies on the horizontal axis, and so it is hard to judge exactly where the first bar ends and the second begins.</p>
-<p>The optional argument <em>bins</em> can be used with <em>hist</em> to specify the edges of the bars. It must consist of a sequence of numbers that includes the left end of the first bar and the right end of the last bar. As the highest gross amount is somewhat over 760 on the horizontal scale, we will start by setting <em>bins</em> to be the array consisting of the numbers 100, 150, 200, 250, and so on, ending with 800.</p></div></div>
+<p>We can see that there are 10 bins (some bars are so low that they are hard to see), and that they all have the same width. We can also see that there the list contains no movie that grossed fewer than 300 million dollars; that is because we are considering only the top grossing movies of all time. It is a little harder to see exactly where the edges of the bins are placed. For example, it is not clear exactly where the value 500 lies on the horizontal axis, and so it is hard to judge exactly where the first bar ends and the second begins.</p>
+<p>The optional argument <em>bins</em> can be used with <em>hist</em> to specify the edges of the bars. It must consist of a sequence of numbers that includes the left end of the first bar and the right end of the last bar. As the highest gross amount is somewhat over 760 on the horizontal scale, we will start by setting <em>bins</em> to be the array consisting of the numbers 300, 400, 500, and so on, ending with 2000.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">mill</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">810</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
 </pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Histograms_8_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This figure is easier to read. On the horizontal axis, the labels 100, 200, 300, and so on are centered at the corresponding values. The number of movies that grossed between 100 million and 150 million dollars appears to be around 340; the number that grossed between 150 million and 200 million dollars appears to be around 125; and so on.</p>
-<p>A large majority of the movies grossed between 100 million and 250 million dollars. A very small number grossed more than 600 million dollars. This results in the figure being "skewed to the right,", or, less formally, having "a long right hand tail." Distributions of variables like income or rent often have this kind of shape.</p>
-<p>The exact counts are given below. The entries of 250 million dollars or more have been collected in a single bin. The total of the counts is 627, which is the number of movies on the list.</p></div></div>
+<p>This figure is easier to read. On the horizontal axis, the labels 200, 400, 600, and so on are centered at the corresponding values. The tallest bar is for movies that grossed between 300 and  million and 400 million (adjusted) dollars; the bar for 400 to 500 million is about 5/8th as high. The height of each bar is proportional to the number of movies that fall within the x-axis range of the bar.</p>
+<p>A very small number grossed more than 700 million dollars. This results in the figure being "skewed to the right,", or, less formally, having "a long right hand tail." Distributions of variables like income or rent often have this kind of shape.</p>
+<p>The counts of values in different ranges can be computed from a table using the <code>bin</code> method, which takes a column label or index and an optional sequence or number of bins. The result is a tabular form of a histogram; it lists the counts of all values in the <code>'Millions'</code> column that are greater than or equal to the indicated <code>bin</code>, but less than the next <code>bin</code>'s starting value.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">bins</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="s">"[100, 150)"</span><span class="p">,</span> <span class="s">"[150,200)"</span><span class="p">,</span> <span class="s">"[200, 250)"</span><span class="p">,</span> <span class="s">"[250, 800)"</span><span class="p">],[</span><span class="mi">338</span><span class="p">,</span><span class="mi">129</span><span class="p">,</span><span class="mi">68</span><span class="p">,</span><span class="mi">92</span><span class="p">]</span>
-<span class="n">bincounts</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">bins</span><span class="p">,</span> <span class="n">counts</span><span class="p">],</span> <span class="p">[</span><span class="s">'bins'</span><span class="p">,</span><span class="s">'counts'</span><span class="p">])</span>
-<span class="n">bincounts</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">bins</span> <span class="o">=</span> <span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">bins</span>
 </pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>bin</th> <th>Millions count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>300 </td> <td>81            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>400 </td> <td>52            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>500 </td> <td>28            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>600 </td> <td>16            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>700 </td> <td>7             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>800 </td> <td>5             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>900 </td> <td>3             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1000</td> <td>1             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1100</td> <td>3             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1200</td> <td>2             </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (8 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>What is wrong with this picture?</strong></p>
-<p>Let us try to redraw the histogram with just four bins: [100, 150), [150, 200), [200, 250), and [250, 800). As we saw in the table of counts, the [250, 800) bin contains 92 movies.</p></div></div>
+<p>The vertical axis of a histogram is the <em>density scale</em>. The height of each bar is the proportion of elements that fall into the corresponding bin, divided by the width of the bin. For example, the height of the bin from 300 to 400, which contains 81 of the 200 movies, is $\frac{81}{200} \cdot \frac{1}{400-300}$ = 0.405%.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">mill</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">800</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">starts</span> <span class="o">=</span> <span class="n">bins</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">bins</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">counts</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">starts</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">starts</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 </pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0040500000000000006</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Even though the method used is called <em>hist</em>, <strong>the figure above is NOT A HISTOGRAM.</strong> It gives the impression that there are many more movies in the 250-800 bin than in the 100-150 bin, and indeed more than in the entire range 100-250. The height of each bar is simply plotted the number of movies in the bin, <em>without accounting for the difference in the widths of the bins</em>.</p>
+<p>The total area of this bar is 0.405, 100 times greater because its width is 100. This area is the proportion of all values in the <code>Millions</code> column that fall into the 300-400 bin. The area of all bars in a histogram sums to 1.</p>
+<p>A histogram may contain bins of unequal size, but the area of all bars will still sum to 1. Below, the values in the <code>Millions</code> column are binned into four categories.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Histograms_14_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Although the ranges 300-400 and 400-600 have nearly identical counts, the former is twice as tall as the latter because it is only half as wide. The density of values in that range is twice as high. Histograms display in visual form where on the number line values are most concentrated.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>bin</th> <th>Millions count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>300 </td> <td>81            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>400 </td> <td>80            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>600 </td> <td>37            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1500</td> <td>0             </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Histogram of Counts.</strong> It is possible to display counts directly in a chart, using the <code>normed=False</code> option of the <code>hist</code> method. The resulting chart has the same shape when bins all have equal widths, but the bar areas do not sum to 1.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">False</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Histograms_18_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>While the count scale is perhaps more natural to interpret than the density scale, the chart becomes highly misleading when bins have different widths. Below, it appears (due to the count scale) that high-grossing movies are quite common, when in fact we have seen that they are relatively rare.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">False</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Histograms_20_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Even though the method used is called <em>hist</em>, <strong>the figure above is NOT A HISTOGRAM.</strong> It gives the impression that movies are evenly distributed in the 300-600 range, but they are not. Moreover, it exaggerates the density of movies grossing more than 600 million. The height of each bar is simply plotted the number of movies in the bin, <em>without accounting for the difference in the widths of the bins</em>. The picture becomes even more skewed if the last two bins are combined.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">False</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Histograms_22_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this count-based histogram, the shape of the distribution of movies is lost entirely.</p>
 <p><strong>So what is a histogram?</strong></p>
 <p>The figure above shows that what the eye perceives as "big" is area, not just height. This is particularly important when the bins are of different widths.</p>
 <p>That is why a histogram has two defining properties:</p>
@@ -72,27 +300,30 @@ $$
 \mbox{height of bar} ~=~ 
 \frac{\mbox{area of bar}}{\mbox{width of bin}} ~=~
 \frac{\mbox{proportion of entries in bin}}{\mbox{width of bin}}
-$$<p>For <em>hist</em> to draw a histogram on the density scale, the Boolean option <em>normed</em> must have the value <em>True</em>. You can think of "normed" as shorthand for "follows the norm of the density scale."</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">mill</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">800</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div>
+$$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is a reasonable representation of the data, though of course some detail has been lost. The level of detail in a histogram depends on the level of detail in the data as well as on the choices made by the user. Before we explore this idea further, let us first check that the numbers on the vertical axis above are consistent with the heights that we would calculate.</p>
-<p>There are 129 movies in the [150, 200) bin. The proportion of movies in the bin is therefore 129/627, and the width of the bin is 200-150. So the height of the bar above that bin should be</p>
-$$
-\frac{129/627}{200-150} ~=~ 0.0041148325358851675
-$$<p>That agrees with the height of the bar as shown in the figure. You might want to check that the other heights also agree with what you would calculate.</p>
 <p><strong>The level of detail, and the flat tops of the bars</strong></p>
-<p>Take another look at the [150, 200) bin in the figure above. The flat top of the bar, at the level 0.004, hides the fact that the movies are somewhat unevenly distributed across the bin. To see this, let us split the [150, 200) bin into five narrower bins of width 10 million dollars each:</p></div></div>
+<p>Even though the density scale correctly represents proportions using area, some detail is lost by placing different values into the same bins.</p>
+<p>Take another look at the [300, 400) bin in the figure below. The flat top of the bar, at a level near 0.4%, hides the fact that the movies are somewhat unevenly distributed across the bin.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">mill</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">800</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Histograms_25_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Some of the skinny bars are taller than 0.004 and others are shorter. By putting a flat top at 0.004 over the whole bin, we are deciding to ignore the finer detail and use the flat level as a rough approximation. Often, though not always, this is sufficient for understanding the general shape of the distribution.</p>
+<p>To see this, let us split the [150, 200) bin into ten narrower bins of width 10 million dollars each:</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">370</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span> <span class="p">])</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Histograms_27_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Some of the skinny bars are taller than 0.4% and others are shorter. By putting a flat top at 0.4% over the whole bin, we are deciding to ignore the finer detail and use the flat level as a rough approximation. Often, though not always, this is sufficient for understanding the general shape of the distribution.</p>
 <p>Notice that because we have the entire dataset, we can draw the histogram in as fine a level of detail as the data and our patience will allow. However, if you are looking at a histogram in a book or on a website, and you don't have access to the underlying dataset, then it becomes important to have a clear understanding of the "rough approximation" of the flat tops.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -101,20 +332,55 @@ $$<p>That agrees with the height of the bar as shown in the figure. You might wa
 <p>Thus the height of a histogram bar is a proportion per unit on the horizontal axis, and can be thought of as the <em>density</em> of entries per unit width.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'in_millions'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">800</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
 </pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Histograms_30_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Density Q&amp;A</strong></p>
-<p>Look again at the histogram, and this time compare the [200, 250) bin with the [250, 800) bin.</p>
+<p>Look again at the histogram, and this time compare the [400, 450) bin with the [450, 1500) bin.</p>
 <p><strong>Q</strong>: Which has more movies in it?</p>
-<p><strong>A</strong>: The [250, 800) bin. It has 92 movies, compared with 68 movies in the [200, 250) bin.</p>
-<p><strong>Q</strong>: Then why is the [250, 800) bar shorter than the [200, 250) bar?</p>
-<p><strong>A</strong>: Because height represents density per unit width, not the number of movies in the bin. The [250, 800) bin has more movies than the [200, 250) bin, but it is also a whole lot wider. So the density is much lower.</p></div></div>
+<p><strong>A</strong>: The [450, 1500) bin. It has 92 movies, compared with 25 movies in the [400, 450) bin.</p>
+<p><strong>Q</strong>: Then why is the [450, 1500) bar so much shorter than the [400, 450) bar?</p>
+<p><strong>A</strong>: Because height represents density per unit width, not the number of movies in the bin. The [450, 1500) bin has more movies than the [400, 450) bin, but it is also a whole lot wider. So the density is much lower.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>bin</th> <th>Millions count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>300 </td> <td>32            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>350 </td> <td>49            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>400 </td> <td>25            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>450 </td> <td>92            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1500</td> <td>0             </td>
+        </tr>
+    </tbody>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Bar chart or histogram?</strong></p>
 <p>Bar charts display the distributions of categorical variables. All the bars in a bar chart have the same width. The lengths (or heights, if the bars are drawn vertically) of the bars are proportional to the number of entries.</p>
 <p>Histograms display the distributions of quantitative variables. The bars can have different widths. The areas of the bars are proportional to the number of entries.</p>
-<p><strong>Multiple bar charts and histograms</strong></p>
-<p>In all the examples in this section, we have drawn a single bar chart or a single histogram. However, if a data table contains several columns, then <em>barh</em> and <em>hist</em> can be used to draw several graphs at once. We will cover this feature in a later section.</p></div></div></div>
+<p><strong>Multiple histograms</strong></p>
+<p>In all the examples in this section, we have drawn a single histogram. However, if a data table contains several columns, then <em>barh</em> and <em>hist</em> can be used to draw several charts at once. We will cover this feature in a later section.</p></div></div></div>
