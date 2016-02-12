@@ -1,0 +1,206 @@
+<div id="ipython-notebook">
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/Estimation.ipynb">Interact</a>
+            <div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Estimating-the-number-of-enemy-aircraft">Estimating the number of enemy aircraft<a class="anchor-link" href="#Estimating-the-number-of-enemy-aircraft">¶</a></h2><p>In World War II, data analysts working for the Allies were tasked with estimating the number of German warplanes. The data included the serial numbers of the German planes that had been observed by Allied forces. These serial numbers gave the data analysts a way to come up with an answer.</p>
+<p>To create an estimate of the total number of warplanes, the data analysts had to make some assumptions about the serial numbers. Here are two such assumptions, greatly simplified to make our calculations easier.</p>
+<ol>
+<li><p>There are N planes, numbered $1, 2, ... , N$.</p>
+</li>
+<li><p>The observed planes are drawn uniformly at random with replacement from the $N$ planes.</p>
+</li>
+</ol>
+<p>The goal is to estimate the number $N$.</p>
+<p>Suppose you observe some planes and note down their serial numbers. How might you use the data to guess the value of $N$? A natural and straightforward method would be to simply use the <strong>largest serial number observed</strong>.</p>
+<p>Let us see how well this method of estimation works. First, another simplification: Some historians now estimate that the German aircraft industry produced almost 100,000 warplanes of many different kinds, But here we will imagine just one kind. That makes Assumption 1 above easier to justify.</p>
+<p>Suppose there are in fact $N = 300$ planes of this kind, and that you observe 30 of them. We can construct a table called <code>serialno</code> that contains the serial numbers 1 through $N$. We can then sample 30 times with replacement (see Assumption 2) to get our sample of serial numbers. Our estimate is the maximum of these 30 numbers.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">N</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">serialno</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'serial number'</span><span class="p">,</span>
+                               <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">serialno</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>serial number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>2            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>3            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>4            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>6            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>7            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>8            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>9            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>10           </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (290 rows omitted)</p></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="nb">max</span><span class="p">(</span><span class="n">serialno</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>285</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As with all code involving random sampling, run it a few times to see the variation. You will observe that even with just 30 observations from among 300, the largest serial number is typically in the 250-300 range.</p>
+<p>In principle, the largest serial number could be as small as 1, if you were unlucky enough to see Plane Number 1 all 30 times. And it could be as large as 300 if you observe Plane Number 300 at least once. But usually, it seems to be in the very high 200's. It appears that if you use the largest observed serial number as your estimate of the total, you will not be very far wrong.</p>
+<p>Let us generate some data to see if we can confirm this. We will use <em>iteration</em> to repeat the sampling procedure numerous times, each time noting the largest serial number observed. These would be our estimates of $N$ from all the numerous samples. We will then draw a histogram of all these estimates, and examine by how much they differ from $N = 300$.</p>
+<p>In the code below, we will run 750 repetitions of the following process: Sample 30 times at random with replacement from 1 through 300 and note the largest number observed.</p>
+<p>To do this, we will use a <code>for</code> loop. As you have seen before, we will start by setting up an empty table that will eventually hold all the estimates that are generated. As each estimate is the largest number in its sample, we will call this table <code>maxes</code>.</p>
+<p>For each integer (called <code>i</code> in the code) in the range 0 through 749 (750 total), the <code>for</code> loop executes the code in the body of the loop. In this example, it generates a random sample of 30 serial numbers, computes the maximum value, and augments the rows of <code>maxes</code> with that value.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">sample_size</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">750</span>
+
+<span class="n">maxes</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'i'</span><span class="p">,</span> <span class="s">'max'</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">serialno</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+    <span class="n">maxes</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">))])</span>    
+<span class="n">maxes</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>i</th> <th>max</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0   </td> <td>286 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1   </td> <td>296 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>2   </td> <td>268 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>3   </td> <td>295 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>4   </td> <td>275 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5   </td> <td>294 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>6   </td> <td>274 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>7   </td> <td>279 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>8   </td> <td>292 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>9   </td> <td>289 </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (740 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is a histogram of the 750 estimates. First, notice that there is a bar to the right of 300. That is because intervals include the left end but not the right. The rightmost bar represents the samples for which the largest observed serial number was 300.</p>
+<p>As you can see, the estimates are all crowded up near 300, even though in theory they could be much smaller. The histogram indicates that as an estimate of the total number of planes, the largest serial number might be too low by about 10 to 25. But it is extremely unlikely to be underestimate the true number of planes by more than about 50.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">every_ten</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">maxes</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'max'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Estimation_7_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-empirical-distribution-of-a-statistic">The empirical distribution of a statistic<a class="anchor-link" href="#The-empirical-distribution-of-a-statistic">¶</a></h2><p>In the example above, the largest serial number is called a <em>statistic</em> (singular!). A <em>statistic</em> is any number computed using the data in a sample.</p>
+<p>The graph above is an empirical histogram. It displays the empirical or observed distribution of the statistic, based on 750 samples.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>The statistic could have been different.</strong></p>
+<p>A fundamental consideration in using any statistic based on a random sample is that <em>the sample could have come out differently</em>, and therefore the statistic could have come out differently too.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Just how different could the statistic have been?</strong></p>
+<p>The empirical distribution of the statistic gives an idea of how different the statistic could be, because it is based on recomputing the statistic for each one of many random samples.</p>
+<p>However, there might still be more samples that could be generated. If you generate <em>all</em> possible samples, and compute the statistic for each of them, then you will have a complete enumeration of all the possible values of the statistic and all their probabilities. The resulting distribution is called the <em>probability distribution</em> of the statistic, and its histogram is called the <em>probability histogram</em>.</p>
+<p>The probability distribution of a statistic is also called the <em>sampling distribution</em> of the statistic, because it is based on all possible samples.</p>
+<p>The probability distribution of a statistic contains more accurate information about the statistic than an empirical distribution does. So it is good to compute the probability distribution exactly when feasible. This becomes easier with some expertise in probability theory. In the case of the largest serial number in a random sample, we can calculate the probability distribution by methods used earlier in this class.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Another Estimate.</strong></p>
+<p>Here is an example to illustrate this point. Thus far, we have used the largest observed serial number as an estimate of the total number of planes. But there are other possible estimates, and we will now consider one of them.</p>
+<p>The idea underlying this estimate is that the <em>average</em> of the observed serial numbers is likely be about halfway between 1 and $N$. Thus, if $A$ is the average, then
+$$
+A ~ \approx ~ \frac{1+N}{2} ~~~ \mbox{and so} ~~~ N \approx 2A - 1
+$$</p>
+<p>Thus a new statistic can be used to estimate the total number of planes: take the average of the observed serial numbers, double it, and subtract 1.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>How does this method of estimation compare with using the largest number observed? Let's take a look at the empirical distribution based on repeated sampling. The number of repetitions is chosen to be the same as it was for the earlier estimate. This will allow us to compare the two empirical distributions.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">new_est</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'i'</span><span class="p">,</span> <span class="s">'2*avg-1'</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">serialno</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+    <span class="n">new_est</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    
+<span class="n">new_est</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'2*avg-1'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Estimation_13_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that unlike the earlier estimate, this one can overestimate the number of planes. This will happen when the average of the observed serial numbers is closer to $N$ than to 1.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can see that the old method almost always underestimates; formally, we say that it is <em>biased</em>. But it has low variability, and is highly likely to be close to the true total number of planes.</p>
+<p>The new method overestimates about as often as it underestimates, and thus is called <em>unbiased</em> on average in the long run. However, it is more variable than the old estimate, and thus is prone to larger absolute errors.</p>
+<p>This is an instance of a <em>bias-variance tradeoff</em> that is not uncommon among competing estimates. Which estimate you decide to use will depend on the kinds of errors that matter the most to you. In the case of enemy warplanes, underestimating the total number might have grim consequences, in which case you might choose to use the more variable method that overestimates about half the time. On the other hand, if overestimation leads to needlessly high costs of guarding against planes that don't exist, you might be satisfied with the method that underestimates by a modest amount.</p></div></div></div>

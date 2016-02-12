@@ -2,110 +2,152 @@
             <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/Iteration.ipynb">Interact</a>
             <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We've seen how data is represented as a sequence of values.  What if we want to do something once for each value in the sequence?  For instance, maybe we want to compute the sum of a sequence of numbers.  How can we do that?  The answer is to use iteration: in particular, we use a Python construct called a <code>for</code>-loop.  Check it out:</p></div></div>
+<h2 id="Repetition">Repetition<a class="anchor-link" href="#Repetition">¶</a></h2></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is often the case when programming that you will wish to repeat the same operation multiple times, perhaps with slightly different behavior each time.  You could copy-paste the code 10 times, but that's tedious and prone to typos, and if you wanted to do it a thousand times (or a million times), forget it.</p>
+<p>A better solution is to use a <code>for</code> statement to loop over the contents of a sequence. A <code>for</code> statement begins with the word <code>for</code>, followed by a name for the item in the sequence, followed by the word <code>in</code>, and ending with an expression that evaluates to a sequence. The indented body of the <code>for</code> statement is executed once <em>for each item in that sequence</em>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">tbl</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">]],</span> <span class="p">[</span><span class="s">'num'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0
+1
+2
+3
+4
+</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A typical use of a <code>for</code> statement is to build up a table by repeating a random computation many times and storing each result as a new row. The <code>append</code> method of a table takes a sequence and adds a new row. It's different from <code>with_row</code> because a new table is not created; instead, the original table is extended.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">tbl</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Up to ten'</span><span class="p">,</span> <span class="s">'Up to twenty'</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+<span class="n">t</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>num</th>
+            <th>Up to ten</th> <th>Up to twenty</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>2   </td>
+            <td>7        </td> <td>10          </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>3   </td>
+            <td>9        </td> <td>7           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>10  </td>
+            <td>5        </td> <td>19          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>8        </td> <td>3           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0        </td> <td>12          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>8        </td> <td>17          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>8        </td> <td>18          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1        </td> <td>17          </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This pattern can be used to track the results of repeated experiments. For example, perhaps we want to learn about the empirical properties of some randomly drawn poker hands. Below, we track whether the hand contains 2-, 3-, or 4-of-a-kind and whether all cards have the same suit.</p></div></div>
+<div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">tbl</span><span class="p">[</span><span class="s">'num'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">hands</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Pair'</span><span class="p">,</span> <span class="s">'Three-of-a-kind'</span><span class="p">,</span> <span class="s">'Four-of-a-kind'</span><span class="p">,</span> <span class="s">'Flush'</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">hand</span> <span class="o">=</span> <span class="n">deck</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">max_same</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">hand</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'rank'</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'count'</span><span class="p">))</span>
+    <span class="n">is_flush</span> <span class="o">=</span> <span class="n">hand</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'suit'</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="n">hands</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">max_same</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">max_same</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">max_same</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">is_flush</span><span class="p">])</span>
+<span class="n">hands</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>array([ 2,  3, 10])</pre></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Pair</th> <th>Three-of-a-kind</th> <th>Four-of-a-kind</th> <th>Flush</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>True </td> <td>False          </td> <td>False         </td> <td>False</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True </td> <td>False          </td> <td>False         </td> <td>False</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True </td> <td>False          </td> <td>False         </td> <td>False</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>False          </td> <td>False         </td> <td>False</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True </td> <td>False          </td> <td>False         </td> <td>False</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>False          </td> <td>False         </td> <td>False</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>False          </td> <td>False         </td> <td>False</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>False          </td> <td>False         </td> <td>False</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True </td> <td>False          </td> <td>False         </td> <td>False</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>False          </td> <td>False         </td> <td>False</td>
+        </tr>
+    </tbody>
+</table>
+<p>... (9990 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>OK, so that gives us a sequence of numbers (the sequence 5, 6, 11).</p></div></div>
+<p>A <code>for</code> statement can also iterate over a sequence of labels. We can use this feature to summarize the results of our experiment.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tbl</span><span class="p">[</span><span class="s">'num'</span><span class="p">]:</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">i</span>
-<span class="n">total</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>15</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice how this works.  We start out by setting <code>total</code> to hold the number 0.  Then, we go through the sequence, one by one.  For each number in the sequence, we temporarily set <code>i</code> to hold that number, and then we execute the statement <code>total = total + i</code>.  This statement replaces the previous value of <code>total</code> with <code>total + i</code>.  In other words, it adds <code>i</code> to the current running total.  Once we've gone through the entire sequence, <code>total</code> holds the sum of all of the numbers in the sequence.</p>
-<p>In short, a <code>for</code>-loop lets you do something once for each item in a sequence.  It <em>iterates</em> through the sequence, examining each value one at a time, and does something for each.</p>
-<p>In this case, we could have accomplished the same task without a <code>for</code>-loop: there is a <code>numpy</code> function we could have used (<code>np.sum</code>) to do this for us.  That's not unusual; it's not unusual that there might be multiple ways to accomplish the same task.  But sometimes there is no existing Python function that does exactly what we want, and that's when it is good to have tools we can use to do what we want.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Repetition">Repetition<a class="anchor-link" href="#Repetition">¶</a></h2></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>A special case of iteration is where we want to do some simple task multiple times: say, 10 times.  You could copy-paste the code 10 times, but that gets a little tedious, and if you wanted to do it a thousand times (or a million times), forget it.  Also, copy-pasting code is usually a bad idea: what if you realize you want to change some piece of it?  Then you'll need to laboriously change each copy of it.  Boooring!</p>
-<p>A better solution is to use a <code>for</code>-loop for this purpose.  The trick is to choose a sequence of length 10, and then iterate over the sequence: do the task once for each item in the sequence.  It doesn't really matter what we put in the sequence; any sequence will do.</p>
-<p>However, there is a standard idiom for what to put in the sequence.  The typical solution is to create a sequence of consecutive integers, starting at 0, and iterate over it.  If we wanted to do something 1000 times, we'd create a sequence holding the values 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.  Why 9? (and not 10?)  Because that's where we need to end, if we want the list to have 10 items.  (Why not use 1, 2, .., 10?  I'm tempted to say, because computer scientists are just a tad odd.  Actually, there are good reasons for this idiom, but don't worry about it right now.)</p>
-<p>How do we create a sequence 0, 1, .., 9?  It turns out we've already seen how to do that: use <code>np.arange()</code>.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So, now I'm ready to show you how to do something 10 times:</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s">'Go Bears!'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">hands</span><span class="o">.</span><span class="n">labels</span><span class="p">:</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">hands</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="s">'was drawn'</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="s">'of'</span><span class="p">,</span> <span class="n">hands</span><span class="o">.</span><span class="n">num_rows</span><span class="p">,</span> <span class="s">'times'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Go Bears!
-Go Bears!
-Go Bears!
-Go Bears!
-Go Bears!
-Go Bears!
-Go Bears!
-Go Bears!
-Go Bears!
-Go Bears!
+<pre>A Pair was drawn 4952 of 10000 times
+A Three-of-a-kind was drawn 250 of 10000 times
+A Four-of-a-kind was drawn 4 of 10000 times
+A Flush was drawn 18 of 10000 times
 </pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Strings are sequences, too:</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s">'CAL'</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s">'Give me a '</span><span class="o">+</span><span class="n">c</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Give me a C
-Give me a A
-Give me a L
-</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In this class, you're going to use this a lot for simulation.  For instance, you might code up a way to simulate one round of some gambling game; then you can use a <code>for</code>-loop to repeat the simulation thousands of times and see how often we win.  The great thing about computers is that they're incredibly good at doing a small task repeatedly many times, so this is a perfect match for what they're good at.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Randomized-response">Randomized response<a class="anchor-link" href="#Randomized-response">¶</a></h2></div></div>
@@ -117,189 +159,134 @@ Give me a L
 <p>Let's try a simulation, so we can see how this works.  We'll write some code to perform this operation.  First, a function to simulate rolling one die:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">dicetbl</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="p">[</span><span class="s">'roll'</span><span class="p">])</span>
-<span class="n">dicetbl</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>roll</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>3   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>4   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>5   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>6   </td>
-        </tr>
-    </tbody>
-</table></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">rollonedie</span><span class="p">():</span>
-    <span class="n">tbl</span> <span class="o">=</span> <span class="n">dicetbl</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c"># Make a table with one row, chosen at random from dicetbl</span>
-    <span class="n">roll</span> <span class="o">=</span> <span class="n">tbl</span><span class="p">[</span><span class="s">'roll'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">roll</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">roll_once</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we'll use this to write a function to simulate how someone is supposed to respond to the survey.  The argument to the function is their true answer; the function returns what they're supposed to tell the interview.</p></div></div>
+<p>Now we'll use this to write a function to simulate how someone is supposed to respond to the survey.  The argument to the function is their true answer (<code>True</code> or <code>False</code>); the function returns what they're supposed to tell the interview.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># 1 stands for 'yes', 0 stands for 'no'</span>
-<span class="k">def</span> <span class="nf">respond</span><span class="p">(</span><span class="n">trueanswer</span><span class="p">):</span>
-    <span class="n">roll</span> <span class="o">=</span> <span class="n">rollonedie</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">roll</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="o">-</span><span class="n">trueanswer</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">respond</span><span class="p">(</span><span class="n">true_answer</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">roll_once</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">true_answer</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">trueanswer</span>
+        <span class="k">return</span> <span class="n">true_answer</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can try it.  Assume our true answer is 'no'; let's see what happens this time:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="k">False</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>1</pre></div>
+<pre>True</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Of course, if you were to run it again, you might get a different result next time.</p></div></div>
+<p>Of course, if you were to run it many times, you might get a different result each time. Below, we build a table of the responses for many responses when the true answer is always <code>False</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>1</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>OK, so this lets us simulate the behavior of one participant, using randomized response.  Let's simulate what happens if we do this with 10,000 respondents.  We're going to imagine asking 10,000 people whether they've ever sung a Justin Bieber song in teh shower.  We'll imagine there are <code>10000 * p</code> people whose true answer is "yes" and <code>10000 * (1-p)</code> whose true answer is "no", so we'll use one <code>for</code>-loop to simulate the behavior each of the first <code>10000 * p</code> people, and a second <code>for</code>-loop to simulate the behavior of the remaining <code>10000 * (1-p)</code>.  We'll collect all the responses in a table, appending each response to the table as we receive it.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">responses</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="s">'response'</span><span class="p">])</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="mi">10000</span><span class="p">)):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">respond</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">r</span><span class="p">])</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="mi">10000</span><span class="p">)):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">respond</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">r</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">responses</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">responses</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Truth'</span><span class="p">,</span> <span class="s">'Response'</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="k">False</span><span class="p">,</span> <span class="n">respond</span><span class="p">(</span><span class="k">False</span><span class="p">)])</span>
+<span class="n">responses</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>response</th>
+            <th>Truth</th> <th>Response</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>0       </td>
+            <td>False</td> <td>False   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1       </td>
+            <td>False</td> <td>False   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1       </td>
+            <td>False</td> <td>True    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>0       </td>
+            <td>False</td> <td>True    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1       </td>
+            <td>False</td> <td>False   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1       </td>
+            <td>False</td> <td>True    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1       </td>
+            <td>False</td> <td>True    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1       </td>
+            <td>False</td> <td>True    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>0       </td>
+            <td>False</td> <td>False   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1       </td>
+            <td>False</td> <td>False   </td>
         </tr>
     </tbody>
 </table>
-<p>... (9990 rows omitted)</p></div>
+<p>... (990 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We get a giant table with 10,000 rows, one per simulated participant.  Let's build a histogram and look at how many "yes"s we got and how many "no"s.</p></div></div>
+<p>Let's build a bar chart and look at how many <code>True</code> and <code>False</code> responses we get.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'Response'</span><span class="p">)</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">'Response'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Iteration_32_0.png"/></div>
+<img src="../notebooks-images/Iteration_21_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'response'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Response'</span><span class="p">,</span> <span class="k">False</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>6345</pre></div>
+<pre>686</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'response'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Response'</span><span class="p">,</span> <span class="k">True</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>3655</pre></div>
+<pre>314</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So we polled 10,000 people, and got back 3644 yes responses.</p>
-<p><strong>Exercise for you:</strong> Based on these results, approximately what fraction of the population has truly sung a Justin Bieber song in the shower?</p>
-<p>Take a moment with your partner and work out the answer.</p></div></div>
+<p><strong>Exercise for you:</strong> If <code>N</code> out of 1000 responses are <code>True</code>, approximately what fraction of the population has truly sung a Justin Bieber song in the shower?</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Summing-up">Summing up<a class="anchor-link" href="#Summing-up">¶</a></h2></div></div>
+<h2 id="Analysis">Analysis<a class="anchor-link" href="#Analysis">¶</a></h2></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This method is called "randomized response".  It is one way to poll people about sensitive subjects, while still protecting their privacy.  You can see how it is a nice example of randomness at work.</p>
-<p>It turns out that randomized response has beautiful generalizations.  For instance, your Chrome web browser uses it to anonymously report feedback to Google, in a way that won't violate your privacy.  That's all we'll say about it for this semester, but if you take an upper-division course, maybe you'll get to see some generalizations of this beautiful technique.</p></div></div></div>
+<p>It turns out that randomized response has beautiful generalizations.  For instance, your Chrome web browser uses it to anonymously report feedback to Google, in a way that won't violate your privacy.  That's all we'll say about it for this semester, but if you take an upper-division course, maybe you'll get to see some generalizations of this beautiful technique.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The steps in the randomized response survey can be visualized using a <em>tree diagram</em>. The diagram partitions all the survey respondents according to their true and answer and the answer that they eventually give. It also displays the proportions of respondents whose true answers are 1 ("True") and 0 ("False"), as well as the chances that determine the answers that they give. As in the code above, we have used <em>p</em> to denote the proportion whose true answer is 1.</p>
+<p><img alt="Tree Diagram" src="../images/rand_response_tree.png"/></p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The respondents who answer 1 split into two groups. The first group consists of the respondents whose true answer and given answers are both 1. If the number of respondents is large, the proportion in this group is likely to be about 2/3 of <em>p</em>. The second group consists of the respondents whose true answer is 0 and given answer is 1. This proportion in this group is likely to be about 1/3 of <em>1-p</em>.</p>
+<p>We can observed $p^*$, the proportion of 1's among the given answers. Thus
+$$
+p^* ~\approx ~ \frac{2}{3} \times p ~+~ \frac{1}{3} \times (1-p)
+$$</p>
+<p>This allows us to solve for an approximate value of <em>p</em>:
+$$
+p ~ \approx ~ 3p^* - 1
+$$</p>
+<p>In this way we can use the observed proportion of 1's to "work backwards" and get an estimate of <em>p</em>, the proportion in which whe are interested.</p>
+<p><strong>Technical note.</strong> It is worth noting the conditions under which this estimate is valid. The calculation of the proportions in the two groups whose given answer is 1 relies on <em>each of the groups</em> being large enough so that the Law of Averages allows us to make estimates about how their dice are going to land. This means that it is not only the total number of respondents that has to be large – the number of respondents whose true answer is 1 has to be large, as does the number whose true answer is 0. For this to happen, <em>p</em> must be neither close to 0 nor close to 1. If the characteristic of interest is either extremely rare or extremely common in the population, the method of randomized response described in this example might not work well.</p></div></div></div>

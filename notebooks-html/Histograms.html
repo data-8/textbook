@@ -3,7 +3,7 @@
             <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Quantitative-Data-and-Histograms">Quantitative Data and Histograms<a class="anchor-link" href="#Quantitative-Data-and-Histograms">¶</a></h2><p>Many of the variables that data scientists study are <em>quantitative</em>. For instance, we can study the amount of revenue earned by movies in recent decades. Our source is the <a href="http://www.imdb.com">Internet Movie Database</a>, an online database that contains information about movies, television shows, video games, and so on.</p>
-<p>The table <code>top</code> consists of [U.S.A.'s top grossing movies (<a href="http://www.boxofficemojo.com/alltime/adjusted.htm">http://www.boxofficemojo.com/alltime/adjusted.htm</a>) of all time. The first column contains the title of the movie; <em>Star Wars: The Force Awakens</em> has the top rank, with a box office gross amount of more than 900 million dollars in the United States. The second column contains the name of the studio; the third contains the U.S. box office gross in dollars; the fourth contains the same gross amount, adjusted for inflation to reflect 2015 dollars; and the fifth contains the release year of the movie.</p>
+<p>The table <code>top</code> consists of [U.S.A.'s top grossing movies (<a href="http://www.boxofficemojo.com/alltime/adjusted.htm">http://www.boxofficemojo.com/alltime/adjusted.htm</a>) of all time. The first column contains the title of the movie; <em>Star Wars: The Force Awakens</em> has the top rank, with a box office gross amount of more than 900 million dollars in the United States. The second column contains the name of the studio; the third contains the U.S. box office gross in dollars; the fourth contains the  gross amount that would have been earned from ticket sales at 2016 prices; and the fifth contains the release year of the movie.</p>
 <p>There are 200 movies on the list. Here are the top ten.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -14,48 +14,48 @@
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Title</th> <th>Studio</th> <th>Gross</th> <th>Gross (Adjusted to 2015 dollars)</th> <th>Year</th>
+            <th>Title</th> <th>Studio</th> <th>Gross</th> <th>Gross (Adjusted)</th> <th>Year</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Star Wars: The Force Awakens             </td> <td>BV    </td> <td>906,723,418</td> <td>906,723,400                     </td> <td>2015</td>
+            <td>Star Wars: The Force Awakens             </td> <td>Buena Vista (Disney)</td> <td>906,723,418</td> <td>906,723,400     </td> <td>2015</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Avatar                                   </td> <td>Fox   </td> <td>760,507,625</td> <td>846,120,800                     </td> <td>2009</td>
+            <td>Avatar                                   </td> <td>Fox                 </td> <td>760,507,625</td> <td>846,120,800     </td> <td>2009</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Titanic                                  </td> <td>Par.  </td> <td>658,672,302</td> <td>1,178,627,900                   </td> <td>1997</td>
+            <td>Titanic                                  </td> <td>Paramount           </td> <td>658,672,302</td> <td>1,178,627,900   </td> <td>1997</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Jurassic World                           </td> <td>Uni.  </td> <td>652,270,625</td> <td>687,728,000                     </td> <td>2015</td>
+            <td>Jurassic World                           </td> <td>Universal           </td> <td>652,270,625</td> <td>687,728,000     </td> <td>2015</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Marvel's The Avengers                    </td> <td>BV    </td> <td>623,357,910</td> <td>668,866,600                     </td> <td>2012</td>
+            <td>Marvel's The Avengers                    </td> <td>Buena Vista (Disney)</td> <td>623,357,910</td> <td>668,866,600     </td> <td>2012</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>The Dark Knight                          </td> <td>WB    </td> <td>534,858,444</td> <td>647,761,600                     </td> <td>2008</td>
+            <td>The Dark Knight                          </td> <td>Warner Bros.        </td> <td>534,858,444</td> <td>647,761,600     </td> <td>2008</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Star Wars: Episode I - The Phantom Menace</td> <td>Fox   </td> <td>474,544,677</td> <td>785,715,000                     </td> <td>1999</td>
+            <td>Star Wars: Episode I - The Phantom Menace</td> <td>Fox                 </td> <td>474,544,677</td> <td>785,715,000     </td> <td>1999</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Star Wars                                </td> <td>Fox   </td> <td>460,998,007</td> <td>1,549,640,500                   </td> <td>1977</td>
+            <td>Star Wars                                </td> <td>Fox                 </td> <td>460,998,007</td> <td>1,549,640,500   </td> <td>1977</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Avengers: Age of Ultron                  </td> <td>BV    </td> <td>459,005,868</td> <td>465,684,200                     </td> <td>2015</td>
+            <td>Avengers: Age of Ultron                  </td> <td>Buena Vista (Disney)</td> <td>459,005,868</td> <td>465,684,200     </td> <td>2015</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>The Dark Knight Rises                    </td> <td>WB    </td> <td>448,139,099</td> <td>500,961,700                     </td> <td>2012</td>
+            <td>The Dark Knight Rises                    </td> <td>Warner Bros.        </td> <td>448,139,099</td> <td>500,961,700     </td> <td>2012</td>
         </tr>
     </tbody>
 </table>
@@ -72,48 +72,48 @@
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Title</th> <th>Studio</th> <th>Gross</th> <th>Gross (Adjusted to 2015 dollars)</th> <th>Year</th> <th>Millions</th>
+            <th>Title</th> <th>Studio</th> <th>Gross</th> <th>Gross (Adjusted)</th> <th>Year</th> <th>Millions</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Star Wars: The Force Awakens             </td> <td>BV    </td> <td>906,723,418</td> <td>906,723,400                     </td> <td>2015</td> <td>906.72  </td>
+            <td>Star Wars: The Force Awakens             </td> <td>Buena Vista (Disney)</td> <td>906,723,418</td> <td>906,723,400     </td> <td>2015</td> <td>906.72  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Avatar                                   </td> <td>Fox   </td> <td>760,507,625</td> <td>846,120,800                     </td> <td>2009</td> <td>846.12  </td>
+            <td>Avatar                                   </td> <td>Fox                 </td> <td>760,507,625</td> <td>846,120,800     </td> <td>2009</td> <td>846.12  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Titanic                                  </td> <td>Par.  </td> <td>658,672,302</td> <td>1,178,627,900                   </td> <td>1997</td> <td>1178.63 </td>
+            <td>Titanic                                  </td> <td>Paramount           </td> <td>658,672,302</td> <td>1,178,627,900   </td> <td>1997</td> <td>1178.63 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Jurassic World                           </td> <td>Uni.  </td> <td>652,270,625</td> <td>687,728,000                     </td> <td>2015</td> <td>687.73  </td>
+            <td>Jurassic World                           </td> <td>Universal           </td> <td>652,270,625</td> <td>687,728,000     </td> <td>2015</td> <td>687.73  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Marvel's The Avengers                    </td> <td>BV    </td> <td>623,357,910</td> <td>668,866,600                     </td> <td>2012</td> <td>668.87  </td>
+            <td>Marvel's The Avengers                    </td> <td>Buena Vista (Disney)</td> <td>623,357,910</td> <td>668,866,600     </td> <td>2012</td> <td>668.87  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>The Dark Knight                          </td> <td>WB    </td> <td>534,858,444</td> <td>647,761,600                     </td> <td>2008</td> <td>647.76  </td>
+            <td>The Dark Knight                          </td> <td>Warner Bros.        </td> <td>534,858,444</td> <td>647,761,600     </td> <td>2008</td> <td>647.76  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Star Wars: Episode I - The Phantom Menace</td> <td>Fox   </td> <td>474,544,677</td> <td>785,715,000                     </td> <td>1999</td> <td>785.72  </td>
+            <td>Star Wars: Episode I - The Phantom Menace</td> <td>Fox                 </td> <td>474,544,677</td> <td>785,715,000     </td> <td>1999</td> <td>785.72  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Star Wars                                </td> <td>Fox   </td> <td>460,998,007</td> <td>1,549,640,500                   </td> <td>1977</td> <td>1549.64 </td>
+            <td>Star Wars                                </td> <td>Fox                 </td> <td>460,998,007</td> <td>1,549,640,500   </td> <td>1977</td> <td>1549.64 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Avengers: Age of Ultron                  </td> <td>BV    </td> <td>459,005,868</td> <td>465,684,200                     </td> <td>2015</td> <td>465.68  </td>
+            <td>Avengers: Age of Ultron                  </td> <td>Buena Vista (Disney)</td> <td>459,005,868</td> <td>465,684,200     </td> <td>2015</td> <td>465.68  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>The Dark Knight Rises                    </td> <td>WB    </td> <td>448,139,099</td> <td>500,961,700                     </td> <td>2012</td> <td>500.96  </td>
+            <td>The Dark Knight Rises                    </td> <td>Warner Bros.        </td> <td>448,139,099</td> <td>500,961,700     </td> <td>2012</td> <td>500.96  </td>
         </tr>
     </tbody>
 </table>
@@ -265,7 +265,7 @@
 <p>While the count scale is perhaps more natural to interpret than the density scale, the chart becomes highly misleading when bins have different widths. Below, it appears (due to the count scale) that high-grossing movies are quite common, when in fact we have seen that they are relatively rare.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'Millions'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="k">False</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Histograms_20_0.png"/></div>
