@@ -28,6 +28,6 @@
 * [Chapter 2](chapter2/intro.md)
   * [Bar Charts](chapter2/charts.md)
   * [Histograms](chapter2/histograms.md)
-  * [Sampling](chapter2/histograms.md)
+  * [Sampling](chapter2/sampling.md)
   * [Iteration](chapter2/iteration.md)
   * [Estimation](chapter2/estimation.md)
