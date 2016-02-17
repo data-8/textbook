@@ -17,8 +17,7 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">N</span> <span class="o">=</span> <span class="mi">300</span>
-<span class="n">serialno</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'serial number'</span><span class="p">,</span>
-                               <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">serialno</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'serial number'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">serialno</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -76,7 +75,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="nb">max</span><span class="p">(</span><span class="n">serialno</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>285</pre></div>
+<pre>293</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As with all code involving random sampling, run it a few times to see the variation. You will observe that even with just 30 observations from among 300, the largest serial number is typically in the 250-300 range.</p>
@@ -105,43 +104,43 @@
     </thead>
     <tbody>
         <tr>
-            <td>0   </td> <td>286 </td>
+            <td>0   </td> <td>277 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1   </td> <td>296 </td>
+            <td>1   </td> <td>267 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>2   </td> <td>268 </td>
+            <td>2   </td> <td>280 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>3   </td> <td>295 </td>
+            <td>3   </td> <td>300 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>4   </td> <td>275 </td>
+            <td>4   </td> <td>297 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>5   </td> <td>294 </td>
+            <td>5   </td> <td>266 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>6   </td> <td>274 </td>
+            <td>6   </td> <td>289 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>7   </td> <td>279 </td>
+            <td>7   </td> <td>273 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>8   </td> <td>292 </td>
+            <td>8   </td> <td>300 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>9   </td> <td>289 </td>
+            <td>9   </td> <td>291 </td>
         </tr>
     </tbody>
 </table>
@@ -178,21 +177,21 @@
 <p>Here is an example to illustrate this point. Thus far, we have used the largest observed serial number as an estimate of the total number of planes. But there are other possible estimates, and we will now consider one of them.</p>
 <p>The idea underlying this estimate is that the <em>average</em> of the observed serial numbers is likely be about halfway between 1 and $N$. Thus, if $A$ is the average, then
 $$
-A ~ \approx ~ \frac{1+N}{2} ~~~ \mbox{and so} ~~~ N \approx 2A - 1
+A ~ \approx ~ \frac{N}{2} ~~~ \mbox{and so} ~~~ N \approx 2A
 $$</p>
-<p>Thus a new statistic can be used to estimate the total number of planes: take the average of the observed serial numbers, double it, and subtract 1.</p></div></div>
+<p>Thus a new statistic can be used to estimate the total number of planes: take the average of the observed serial numbers and double it.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>How does this method of estimation compare with using the largest number observed? Let's take a look at the empirical distribution based on repeated sampling. The number of repetitions is chosen to be the same as it was for the earlier estimate. This will allow us to compare the two empirical distributions.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">new_est</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'i'</span><span class="p">,</span> <span class="s">'2*avg-1'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">new_est</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'i'</span><span class="p">,</span> <span class="s">'2*avg'</span><span class="p">])</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
     <span class="n">sample</span> <span class="o">=</span> <span class="n">serialno</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-    <span class="n">new_est</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">new_est</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">))])</span>
     
-<span class="n">new_est</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'2*avg-1'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">)</span>
+<span class="n">new_est</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'2*avg'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Estimation_13_0.png"/></div>
@@ -203,4 +202,5 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can see that the old method almost always underestimates; formally, we say that it is <em>biased</em>. But it has low variability, and is highly likely to be close to the true total number of planes.</p>
 <p>The new method overestimates about as often as it underestimates, and thus is called <em>unbiased</em> on average in the long run. However, it is more variable than the old estimate, and thus is prone to larger absolute errors.</p>
-<p>This is an instance of a <em>bias-variance tradeoff</em> that is not uncommon among competing estimates. Which estimate you decide to use will depend on the kinds of errors that matter the most to you. In the case of enemy warplanes, underestimating the total number might have grim consequences, in which case you might choose to use the more variable method that overestimates about half the time. On the other hand, if overestimation leads to needlessly high costs of guarding against planes that don't exist, you might be satisfied with the method that underestimates by a modest amount.</p></div></div></div>
+<p>This is an instance of a <em>bias-variance tradeoff</em> that is not uncommon among competing estimates. Which estimate you decide to use will depend on the kinds of errors that matter the most to you. In the case of enemy warplanes, underestimating the total number might have grim consequences, in which case you might choose to use the more variable method that overestimates about half the time. On the other hand, if overestimation leads to needlessly high costs of guarding against planes that don't exist, you might be satisfied with the method that underestimates by a modest amount.</p>
+<p><strong>Technical note:</strong> In fact, twice the average is not unbiased. On average, it overestimates by exactly 1. For example, if <code>N</code> is 3, the average of draws from 1, 2, and 3 will be 2, and 2 times 2 is 4, which is one more than <code>N</code>. Twice the average minus 1 is an unbiased estimator of <code>N</code>.</p></div></div></div>

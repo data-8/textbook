@@ -164,7 +164,7 @@ ABC: 0
 <div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>  <span class="c"># select once at random from 3, 4, 5, 6, 7</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>4</pre></div>
+<pre>7</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>A Systematic Sample</strong></p>
@@ -298,7 +298,8 @@ ABC: 0
 <p>The numbers 1, 2, 3, 4, 5, 6 are integers, so the bins chosen by <code>hist</code> only have entries at the edges. In such a situation, it is a better idea to select bins so that they are centered on the integers. This is often true of histograms of data that are <em>discrete</em>, that is, variables whose successive values are separated by the same fixed amount. The real advantage of this method of bin selection will become more clear when we start imagining smooth curves drawn over histograms.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">die</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">dice_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">die</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">dice_bins</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Sampling_21_0.png"/></div>
@@ -372,7 +373,7 @@ ABC: 0
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">dice_hist</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">rolls</span> <span class="o">=</span> <span class="n">die</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-    <span class="n">rolls</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">rolls</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">dice_bins</span><span class="p">)</span>
     
 <span class="n">dice_hist</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div></div></div>
@@ -518,43 +519,43 @@ ABC: 0
     </thead>
     <tbody>
         <tr>
+            <td>13    </td> <td>black</td> <td>-1      </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>22    </td> <td>black</td> <td>-1      </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>38    </td> <td>green</td> <td>-1      </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>11    </td> <td>black</td> <td>-1      </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>29    </td> <td>black</td> <td>-1      </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>19    </td> <td>red  </td> <td>1       </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>38    </td> <td>green</td> <td>-1      </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>37    </td> <td>green</td> <td>-1      </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>19    </td> <td>red  </td> <td>1       </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
             <td>31    </td> <td>black</td> <td>-1      </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>9     </td> <td>red  </td> <td>1       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>9     </td> <td>red  </td> <td>1       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>15    </td> <td>black</td> <td>-1      </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>15    </td> <td>black</td> <td>-1      </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>25    </td> <td>red  </td> <td>1       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>18    </td> <td>red  </td> <td>1       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>21    </td> <td>red  </td> <td>1       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>3     </td> <td>red  </td> <td>1       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>30    </td> <td>red  </td> <td>1       </td>
         </tr>
     </tbody>
 </table>
@@ -567,7 +568,7 @@ ABC: 0
 <div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'winnings'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>-24</pre></div>
+<pre>-32</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Betting \$1 on red hundreds of times seems like a bad idea from a gambler's perspective. But from the casinos' perspective it is excellent. Casinos rely on large numbers of bets being placed. The payoff odds are set so that the more bets that are placed, the more money the casinos are likely to make, even though a few people are likely to go home with winnings.</p></div></div>
@@ -661,29 +662,29 @@ ABC: 0
     </thead>
     <tbody>
         <tr>
-            <td>K   </td> <td>♣︎  </td>
+            <td>5   </td> <td>♥︎  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Q   </td> <td>♦︎  </td>
+            <td>4   </td> <td>♣︎  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>J   </td> <td>♦︎  </td>
+            <td>9   </td> <td>♥︎  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>9   </td> <td>♦︎  </td>
+            <td>3   </td> <td>♣︎  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>9   </td> <td>♠︎  </td>
+            <td>10  </td> <td>♣︎  </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A hand is a set of five cards, regardless of the order in which they appeared. For example, the hand <code>['9♣︎', '9♥︎', 'Q♣︎', '7♣︎', '8♥︎']</code> is the same as the hand <code>['7♣︎', '9♣︎', '8♥︎', '9♥︎', 'Q♣︎']</code>.</p>
+<p>A hand is a set of five cards, regardless of the order in which they appeared. For example, the hand <code>9♣︎ 9♥︎ Q♣︎ 7♣︎ 8♥︎</code> is the same as the hand <code>7♣︎ 9♣︎ 8♥︎ 9♥︎ Q♣︎</code>.</p>
 <p>This fact can be used to show that simple random sampling can be thought of in two equivalent ways:</p>
 <ul>
 <li><p>drawing elements one by one at random without replacement</p>

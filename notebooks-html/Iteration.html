@@ -21,121 +21,117 @@
 </pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A typical use of a <code>for</code> statement is to build up a table by repeating a random computation many times and storing each result as a new row. The <code>append</code> method of a table takes a sequence and adds a new row. It's different from <code>with_row</code> because a new table is not created; instead, the original table is extended.</p></div></div>
+<p>A typical use of a <code>for</code> statement is to build up a table by repeating a random computation many times and storing each result as a new row. The <code>append</code> method of a table takes a sequence and adds a new row. It's different from <code>with_row</code> because a new table is not created; instead, the original table is extended. The cell below draws 100 cards, but keeps only the aces.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Up to ten'</span><span class="p">,</span> <span class="s">'Up to twenty'</span><span class="p">])</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
-    <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
-<span class="n">t</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">aces</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Rank'</span><span class="p">,</span> <span class="s">'Suit'</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">card</span> <span class="o">=</span> <span class="n">deck</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">deck</span><span class="o">.</span><span class="n">num_rows</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">card</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="s">'A'</span><span class="p">:</span>
+        <span class="n">aces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        
+<span class="n">aces</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Up to ten</th> <th>Up to twenty</th>
+            <th>Rank</th> <th>Suit</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>7        </td> <td>10          </td>
+            <td>A   </td> <td>♠︎  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>9        </td> <td>7           </td>
+            <td>A   </td> <td>♣︎  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>5        </td> <td>19          </td>
+            <td>A   </td> <td>♥︎  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>8        </td> <td>3           </td>
+            <td>A   </td> <td>♦︎  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>0        </td> <td>12          </td>
+            <td>A   </td> <td>♠︎  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>8        </td> <td>17          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>8        </td> <td>18          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1        </td> <td>17          </td>
+            <td>A   </td> <td>♦︎  </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This pattern can be used to track the results of repeated experiments. For example, perhaps we want to learn about the empirical properties of some randomly drawn poker hands. Below, we track whether the hand contains 2-, 3-, or 4-of-a-kind and whether all cards have the same suit.</p></div></div>
+<p>This pattern can be used to track the results of repeated experiments. For example, perhaps we want to learn about the empirical properties of some randomly drawn poker hands. Below, we track whether the hand contains four-of-a-kind or five cards of the same suit (called a <em>flush</em>).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">hands</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Pair'</span><span class="p">,</span> <span class="s">'Three-of-a-kind'</span><span class="p">,</span> <span class="s">'Four-of-a-kind'</span><span class="p">,</span> <span class="s">'Flush'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">hands</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Four-of-a-kind'</span><span class="p">,</span> <span class="s">'Flush'</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
     <span class="n">hand</span> <span class="o">=</span> <span class="n">deck</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">max_same</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">hand</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'rank'</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'count'</span><span class="p">))</span>
-    <span class="n">is_flush</span> <span class="o">=</span> <span class="n">hand</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'suit'</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span> <span class="o">==</span> <span class="mi">1</span>
-    <span class="n">hands</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">max_same</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">max_same</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">max_same</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">is_flush</span><span class="p">])</span>
+    <span class="n">four_of_a_kind</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">hand</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'rank'</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'count'</span><span class="p">))</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="n">flush</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">hand</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'suit'</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'count'</span><span class="p">))</span> <span class="o">==</span> <span class="mi">5</span>
+    <span class="n">hands</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">four_of_a_kind</span><span class="p">,</span> <span class="n">flush</span><span class="p">])</span>
+    
 <span class="n">hands</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Pair</th> <th>Three-of-a-kind</th> <th>Four-of-a-kind</th> <th>Flush</th>
+            <th>Four-of-a-kind</th> <th>Flush</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>True </td> <td>False          </td> <td>False         </td> <td>False</td>
+            <td>False         </td> <td>False</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>True </td> <td>False          </td> <td>False         </td> <td>False</td>
+            <td>False         </td> <td>False</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>True </td> <td>False          </td> <td>False         </td> <td>False</td>
+            <td>False         </td> <td>False</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>False</td> <td>False          </td> <td>False         </td> <td>False</td>
+            <td>False         </td> <td>False</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>True </td> <td>False          </td> <td>False         </td> <td>False</td>
+            <td>False         </td> <td>False</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>False</td> <td>False          </td> <td>False         </td> <td>False</td>
+            <td>False         </td> <td>False</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>False</td> <td>False          </td> <td>False         </td> <td>False</td>
+            <td>False         </td> <td>False</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>False</td> <td>False          </td> <td>False         </td> <td>False</td>
+            <td>False         </td> <td>False</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>True </td> <td>False          </td> <td>False         </td> <td>False</td>
+            <td>False         </td> <td>False</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>False</td> <td>False          </td> <td>False         </td> <td>False</td>
+            <td>False         </td> <td>False</td>
         </tr>
     </tbody>
 </table>
 <p>... (9990 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A <code>for</code> statement can also iterate over a sequence of labels. We can use this feature to summarize the results of our experiment.</p></div></div>
+<p>A <code>for</code> statement can also iterate over a sequence of labels. We can use this feature to summarize the results of our experiment. These are rare hands indeed!</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">hands</span><span class="o">.</span><span class="n">labels</span><span class="p">:</span>
@@ -143,10 +139,8 @@
     <span class="nb">print</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="s">'was drawn'</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="s">'of'</span><span class="p">,</span> <span class="n">hands</span><span class="o">.</span><span class="n">num_rows</span><span class="p">,</span> <span class="s">'times'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>A Pair was drawn 4952 of 10000 times
-A Three-of-a-kind was drawn 250 of 10000 times
-A Four-of-a-kind was drawn 4 of 10000 times
-A Flush was drawn 18 of 10000 times
+<pre>A Four-of-a-kind was drawn 2 of 10000 times
+A Flush was drawn 22 of 10000 times
 </pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -181,7 +175,7 @@ A Flush was drawn 18 of 10000 times
 <div class=" highlight hl-ipython3"><pre><span class="n">respond</span><span class="p">(</span><span class="k">False</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>True</pre></div>
+<pre>False</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Of course, if you were to run it many times, you might get a different result each time. Below, we build a table of the responses for many responses when the true answer is always <code>False</code>.</p></div></div>
@@ -209,7 +203,19 @@ A Flush was drawn 18 of 10000 times
         </tr>
     </tbody>
         <tbody><tr>
-            <td>False</td> <td>True    </td>
+            <td>False</td> <td>False   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>False   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>False   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>False   </td>
         </tr>
     </tbody>
         <tbody><tr>
@@ -222,18 +228,6 @@ A Flush was drawn 18 of 10000 times
     </tbody>
         <tbody><tr>
             <td>False</td> <td>True    </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>False</td> <td>True    </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>False</td> <td>True    </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>False</td> <td>False   </td>
         </tr>
     </tbody>
         <tbody><tr>
@@ -256,13 +250,13 @@ A Flush was drawn 18 of 10000 times
 <div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Response'</span><span class="p">,</span> <span class="k">False</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>686</pre></div>
+<pre>656</pre></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">responses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Response'</span><span class="p">,</span> <span class="k">True</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>314</pre></div>
+<pre>344</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Exercise for you:</strong> If <code>N</code> out of 1000 responses are <code>True</code>, approximately what fraction of the population has truly sung a Justin Bieber song in the shower?</p></div></div>
@@ -289,4 +283,85 @@ $$
 p ~ \approx ~ 3p^* - 1
 $$</p>
 <p>In this way we can use the observed proportion of 1's to "work backwards" and get an estimate of <em>p</em>, the proportion in which whe are interested.</p>
-<p><strong>Technical note.</strong> It is worth noting the conditions under which this estimate is valid. The calculation of the proportions in the two groups whose given answer is 1 relies on <em>each of the groups</em> being large enough so that the Law of Averages allows us to make estimates about how their dice are going to land. This means that it is not only the total number of respondents that has to be large – the number of respondents whose true answer is 1 has to be large, as does the number whose true answer is 0. For this to happen, <em>p</em> must be neither close to 0 nor close to 1. If the characteristic of interest is either extremely rare or extremely common in the population, the method of randomized response described in this example might not work well.</p></div></div></div>
+<p><strong>Technical note.</strong> It is worth noting the conditions under which this estimate is valid. The calculation of the proportions in the two groups whose given answer is 1 relies on <em>each of the groups</em> being large enough so that the Law of Averages allows us to make estimates about how their dice are going to land. This means that it is not only the total number of respondents that has to be large – the number of respondents whose true answer is 1 has to be large, as does the number whose true answer is 0. For this to happen, <em>p</em> must be neither close to 0 nor close to 1. If the characteristic of interest is either extremely rare or extremely common in the population, the method of randomized response described in this example might not work well.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's try out this method on some real data. The chance of drawing a poker hand with no aces is</p>
+$$\frac{48}{52} \times \frac{47}{51} \times \frac{46}{50} \times \frac{45}{49} \times \frac{44}{48}$$</div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">52</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.65884199833779666</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is quite embarassing indeed to draw a hand with no aces. The table below contains one column for the truth of whether a hand has no aces and another for the randomized response.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">ace_responses</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Truth'</span><span class="p">,</span> <span class="s">'Response'</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">hand</span> <span class="o">=</span> <span class="n">deck</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">no_aces</span> <span class="o">=</span> <span class="n">hand</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'rank'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">ace_responses</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">no_aces</span><span class="p">,</span> <span class="n">respond</span><span class="p">(</span><span class="n">no_aces</span><span class="p">)])</span>
+<span class="n">ace_responses</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Truth</th> <th>Response</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>False</td> <td>True    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True </td> <td>True    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>True    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True </td> <td>False   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True </td> <td>False   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True </td> <td>True    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>False   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True </td> <td>False   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>False</td> <td>False   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True </td> <td>True    </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (9990 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using our derived formula, we can estimate what fraction of hands have no aces.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">ace_responses</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Response'</span><span class="p">))</span> <span class="o">/</span> <span class="mi">10000</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.6644000000000001</pre></div></div>
