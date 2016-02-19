@@ -1,4 +1,4 @@
-Mean and Median
-===============
+Means
+=====
 
 {% include "../notebooks-html/Means.html" %}
