@@ -1,6 +1,15 @@
 <div id="ipython-notebook">
             <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/birds.csv&path=notebooks/Multiple2.ipynb">Interact</a>
-            <div class="inner_cell">
+            
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\(','\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Correlated-Predictors">Correlated Predictors<a class="anchor-link" href="#Correlated-Predictors">¶</a></h2><p>Correlations between predictor variables are important factors in selecting the set of predictors to use in a regression model. Here is an example that demonstrates some of the considerations that are involved in variable selection.</p>
 <p>The data consist of measurements on the eggs of a species of small bird, as recorded by Abrahams and Rizzardi in the BLSS statistical system. The goal is to use dimensions of an egg to estimate the weight of the bird that hatches from the egg; as bigger hatchlings are more likely to survive, the estimates can be used to help predict the population size of the species.</p>

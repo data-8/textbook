@@ -17,6 +17,17 @@ import nbformat
 from nbconvert import HTMLExporter
 from traitlets.config import Config
 
+preamble = """
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+"""
+
 # Use ExtractOutputPreprocessor to extract the images to separate files
 config = Config()
 config.HTMLExporter.preprocessors = [
@@ -87,7 +98,7 @@ def convert_notebooks_to_html_partial(notebook_paths):
         raw_html, resources = html_exporter.from_notebook_node(notebook,
             resources=extract_output_config)
 
-        html = _extract_cells(raw_html)
+        html = preamble + _extract_cells(raw_html)
 
         # Get dependencies from notebook
         matches = list(DATASET_REGEX.finditer(

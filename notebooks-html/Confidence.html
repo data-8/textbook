@@ -1,6 +1,15 @@
 <div id="ipython-notebook">
             <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/baby.csv&path=notebooks/Confidence.ipynb">Interact</a>
-            <div class="inner_cell">
+            
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\(','\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Inference-about-the-mean-of-an-unknown-population">Inference about the mean of an unknown population<a class="anchor-link" href="#Inference-about-the-mean-of-an-unknown-population">¶</a></h2><p>Data scientists often have to make inferences based on incomplete data. One such situation is when they are trying to make inferences about an unknown population based on one large random sample.</p>
 <p>Suppose the goal is to try to estimate the population mean. We know that the sample mean is a good estimate if the sample size is large. But we expect it to be away from the population mean by about an SE of the sample average. To calculate that SE exactly, we need the population SD. But if the population data are unknown, we don't know the population SD. After all, we don't even know the population mean – that's what we are trying to estimte!</p>

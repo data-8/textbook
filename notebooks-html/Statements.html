@@ -1,6 +1,15 @@
 <div id="ipython-notebook">
             <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/Statements.ipynb">Interact</a>
-            <div class="inner_cell">
+            
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\(','\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="0.-Introduction">0. Introduction<a class="anchor-link" href="#0.-Introduction">¶</a></h2><p>In this note, we'll go over the structure of Python code in a bit more detail than we have before.  When you've absorbed this material, you should be able to read Python code and decompose it into simple, understandable parts.  This note should be particularly useful if you've seen a lot of Python code, but you have a hard time interpreting complicated-looking code like <code>table['foo'] = np.array([1,2,3]) + table['bar']</code>.</p>
 <p>Decomposing Python into small parts is kind of like diagramming an English sentence.  While our brains are perfectly capable of generating and understanding English without explicitly identifying things like subjects and predicates, Python interprets code very literally according to its rules (its <em>syntax</em>).  So if you want to understand Python code, it's more important to have a precise model of Python's rules in your head.  On the flip side, Python's rules are much simpler than those of English (see, for example, <a href="https://en.wikipedia.org/wiki/Buffalo_buffalo_Buffalo_buffalo_buffalo_buffalo_Buffalo_buffalo">this amusingly complicated English sentence</a>).  They just seem complicated because we're less familiar with them.  That makes it possible to learn Python much faster than you learned English.</p>

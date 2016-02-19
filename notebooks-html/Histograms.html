@@ -1,6 +1,15 @@
 <div id="ipython-notebook">
             <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/top_movies.csv&path=notebooks/Histograms.ipynb">Interact</a>
-            <div class="inner_cell">
+            
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\(','\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Quantitative-Data-and-Histograms">Quantitative Data and Histograms<a class="anchor-link" href="#Quantitative-Data-and-Histograms">¶</a></h2><p>Many of the variables that data scientists study are <em>quantitative</em>. For instance, we can study the amount of revenue earned by movies in recent decades. Our source is the <a href="http://www.imdb.com">Internet Movie Database</a>, an online database that contains information about movies, television shows, video games, and so on.</p>
 <p>The table <code>top</code> consists of [U.S.A.'s top grossing movies (<a href="http://www.boxofficemojo.com/alltime/adjusted.htm">http://www.boxofficemojo.com/alltime/adjusted.htm</a>) of all time. The first column contains the title of the movie; <em>Star Wars: The Force Awakens</em> has the top rank, with a box office gross amount of more than 900 million dollars in the United States. The second column contains the name of the studio; the third contains the U.S. box office gross in dollars; the fourth contains the  gross amount that would have been earned from ticket sales at 2016 prices; and the fifth contains the release year of the movie.</p>
