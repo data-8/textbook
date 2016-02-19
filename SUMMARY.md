@@ -32,3 +32,4 @@
   * [Sampling](chapter3/sampling.md)
   * [Iteration](chapter3/iteration.md)
   * [Estimation](chapter3/estimation.md)
+  * [Means](chapter3/means.md)
