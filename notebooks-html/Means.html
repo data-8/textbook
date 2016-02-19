@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/married_couples.csv&path=notebooks/imdb.csv&path=notebooks/Means.ipynb">Interact</a>
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/airline_ontime.csv&path=notebooks/Means.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -9,176 +9,67 @@
     }
   });
 </script>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>mar_status_code</th> <th>gender_code</th> <th>rel_rating_code</th> <th>age</th> <th>mar_status</th> <th>gender</th> <th>rel_rating</th> <th>count</th> <th>high_rating</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1              </td> <td>1          </td> <td>1              </td> <td>51  </td> <td>married   </td> <td>male  </td> <td>very satisfied    </td> <td>1    </td> <td>True       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1              </td> <td>2          </td> <td>1              </td> <td>53  </td> <td>married   </td> <td>female</td> <td>very satisfied    </td> <td>1    </td> <td>True       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1              </td> <td>1          </td> <td>1              </td> <td>57  </td> <td>married   </td> <td>male  </td> <td>very satisfied    </td> <td>1    </td> <td>True       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1              </td> <td>2          </td> <td>1              </td> <td>57  </td> <td>married   </td> <td>female</td> <td>very satisfied    </td> <td>1    </td> <td>True       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1              </td> <td>1          </td> <td>1              </td> <td>60  </td> <td>married   </td> <td>male  </td> <td>very satisfied    </td> <td>1    </td> <td>True       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1              </td> <td>2          </td> <td>1              </td> <td>57  </td> <td>married   </td> <td>female</td> <td>very satisfied    </td> <td>1    </td> <td>True       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1              </td> <td>1          </td> <td>1              </td> <td>62  </td> <td>married   </td> <td>male  </td> <td>very satisfied    </td> <td>1    </td> <td>True       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1              </td> <td>2          </td> <td>1              </td> <td>59  </td> <td>married   </td> <td>female</td> <td>very satisfied    </td> <td>1    </td> <td>True       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1              </td> <td>1          </td> <td>2              </td> <td>53  </td> <td>married   </td> <td>male  </td> <td>somewhat satisfied</td> <td>1    </td> <td>False      </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1              </td> <td>2          </td> <td>2              </td> <td>61  </td> <td>married   </td> <td>female</td> <td>somewhat satisfied</td> <td>1    </td> <td>False      </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (2058 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The function <code>permutation_stat</code> performs the test, this time using <code>abs_diff_in_means</code> to compute the test statistic. The empirical P-value is in the 4% to 6% range. It is reasonable to conclude that the test gives no clear signal about whether the two underlying distributions are different; in such a situation, the conservative conclusion is that there is not enough justification to reject the null hypothesis in favor of the alternative.</p>
-<p>What the test does reveal, however, is that the empirical distribution of the test statistic – the absolute difference between the two sample means – has a recognizable shape. It resembles one half of a bell. If you reflect the histogram about the vertical axis, the two pieces together will look like a bell.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">permutation_stat</span><span class="p">(</span><span class="n">couples</span><span class="p">,</span> <span class="s">'high_rating'</span><span class="p">,</span> <span class="s">'age'</span><span class="p">,</span> <span class="n">abs_diff_in_means</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Observed value of test statistic: 1.07431900488
-Empirical P value: 0.041875
-</pre></div>
-<div class="output_png output_subarea ">
-<img src="../notebooks-images/Means_5_1.png"/></div>
+<p>We have seen that studying the variability of an estimate involves questions such as:</p>
+<ul>
+<li>Where is the empirical histogram centered?</li>
+<li>About how far away from center could the values be?</li>
+</ul>
+<p>In order to discuss estimates and their variability in greater detail, it will help to quantify some basic features of distributions.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To explore this observation further, we will run the permutation test again, this time using the difference between the means (without the absolute value) as our test statistic. To be consistent about the sign of the difference, we will compute the difference as "mean age of Group 1 - mean age of Group 2," where Group 1 comprises the people who give the highest rating and Group 2 the people who don't. The observed value of this new test statistic is still about 1.07 (the sign is positive), because Group 1 in the sample is on average older than Group 2.</p>
-<p>The empirical distribution of the new test statistic looks like a bell. The surface of the bell is a bit rough, and the bell has a few dents here and there, but it is recognizably a bell.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">permutation_stat</span><span class="p">(</span><span class="n">couples</span><span class="p">,</span> <span class="s">'high_rating'</span><span class="p">,</span> <span class="s">'age'</span><span class="p">,</span> <span class="n">diff_in_means</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Observed value of test statistic: 1.07431900488
-Empirical P value: 0.02
-</pre></div>
-<div class="output_png output_subarea ">
-<img src="../notebooks-images/Means_7_1.png"/></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The bell curve, formally known as the <em>normal curve</em>, is one of the fundamental distributions of probability theory and statistics. It arises principally in connection with probability distributions of the means of large random samples. We will discuss this more fully in later sections.</p>
-<p>For now, observe that because the empirical distribution of the difference in means is roughly symmetric, the proportion to the right of 1.07 is about the same as the proportion to the left of -1.07. Therefore, multiplying the P-value by 2 gives an answer that is very close to the P-value of the previous test – the one that used the absolute difference in means as its test statistic. Indeed, if you fold the bell about the vertical axis and stack each bar above its reflection, you will get a histogram that looks very much like the tall "half bell" of the previous test.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>One-tailed and two-tailed tests.</strong></p>
-<p>In classical statistics, tests of hypotheses using sample means typically involve calculating P-values using the bell shaped curve rather than the "folded over" version. If you read a classical analysis, you might see the term "one-tailed test" used to describe the situation in which the P-value is computed as the proportion in one tail of the bell. A "two-tailed test" uses the total proportion in two equal tails, and is thus equivalent to the test we conducted using the folded-over bell.</p>
-<p>But as you have seen, in practical terms the tests are essentially equivalent. If you know the P-value of one, you can calculate the P-value of the other. Just be aware that sometimes, as in our examples above, the one-tailed test might give a statistically significant result while the two-tailed test does not. Such results are not contradictory – they merely point out a difficulty in rigid adherence to a fixed cutoff determining "small" values of P.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Probability-Distribution-of-a-Sample-Mean">The Probability Distribution of a Sample Mean<a class="anchor-link" href="#The-Probability-Distribution-of-a-Sample-Mean">¶</a></h2><p>Means of large random samples have a wonderful property that is at the heart of much statistical inference: their probability distributions are roughly bell shaped. This property allows us to determine how variable a random sample mean could be, <em>based on just one sample</em>, without any simulation at all.</p>
-<p>To see why this is important, consider the basis on which we have been conducting our simulations of repeated sampling.</p>
-<p>For repeated sampling to be feasible, we need to know what to resample from. The null hypothesis specifies the chance model. In the jury panel examples, the populations of eligible jurors were known, and the null hypothesis said that the panels were drawn at random. So we simulated random sampling from the known distributions of eligible jurors. In the case of marital status and employment status, the null hypothesis allowed us to compare married and unmarried people by randomizing them into the different employment categories.</p>
-<p>But what if the situation does not allow either of these two options? For example, suppose we have just one random sample of California households this year, and are trying to see whether the average annual household income in California exceeds $61,000, which was roughly the average annual income in California last year. How can we replicate the sampling procedure? The underlying distribution of the population is unknown (indeed, its mean is what we're trying to get at), and there is no other sample to which we can compare ours.</p>
-<p>One way to solve this problem is to avoid replication entirely, and use other methods to approximate the probability distribution of the test statistic. If the test statistic is a sample mean, the theory of probability and statistics tells us that its probability distribution will be roughly bell shaped if the sample is large, no matter what the distribution of the underlying population looks like. This powerful result not only allows us to make inferences when replication is not straightforward, it also illuminates some important general properties of large random samples.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This chapter will help us understand all of this better. We will start by examining some fundamental properties of means.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Properties-of-the-mean">Properties of the mean<a class="anchor-link" href="#Properties-of-the-mean">¶</a></h3><p><strong>Definition</strong>: The <em>average</em> or <em>mean</em> of a list of numbers is the sum of all the numbers in the list, divided by the number of entries in the list.</p>
-<p>In this course, we will use the words "average" and "mean" interchangeably.</p>
-<p><strong>Computation</strong>: We have computed means in two different ways. One is the Table method <code>mean()</code>, and the other is the <code>numPy</code> function <code>np.mean</code>. Here we use these two ways to calculate the average age of the people in our random sample of couples.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># From a table</span>
-
-<span class="n">couples</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'age'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>age</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>43.1654</td>
-        </tr>
-    </tbody>
-</table></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># From an array</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">couples</span><span class="p">[</span><span class="s">'age'</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>43.165377176015475</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can, of course, just compute the mean by directly applying its definition. Let's do this for a list <code>x_list</code> consisting of 15 elements.</p></div></div>
+<h3 id="The-mean-of-a-list-of-numbers">The mean of a list of numbers<a class="anchor-link" href="#The-mean-of-a-list-of-numbers">¶</a></h3><p>In this course, we will use the words "average" and "mean" interchangeably.</p>
+<p><strong>Definition</strong>: The <em>average</em> or <em>mean</em> of a list of numbers is the sum of all the numbers in the list, divided by the number of entries in the list.</p>
+<p>Here is the definition applied to a list of 20 numbers.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="c"># The data: a list of numbers</span>
 
-<span class="n">x_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span>
+<span class="n">x_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
-<span class="c"># The average, computed from the list</span>
+<span class="c"># The average</span>
 
 <span class="nb">sum</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>3.3333333333333335</pre></div>
+<pre>3.15</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The calculation shows that the average of <code>x_list</code> is $3 \frac{1}{3}$. But it also makes us wonder whether the calculation can be simplified by using the fact that there are only four distinct values in the list: 4, 5, 2, and 3. When we add up all the entries to get the numerator of the average, we can collect all the terms correpsonding to each distinct value, and save ourselves some addition:</p></div></div>
+<p>The average of the list is 3.15.</p>
+<p>You can think of taking the mean as an "equalizing" or "smoothing" operation. For example, imagine the entries in <code>x_list</code> being the amounts of money (in dollars) in the pockets of 20 different people. To get the mean, you first put all of the money into one big pot, and then divide it evenly among all 20 people. They had started out with different amounts of money in their pockets, but now each person has $3.15, the average amount.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Computation:</strong> We could instead have found the mean by applying the function <code>np.mean</code> to the list <code>x_list</code>. Differences in rounding lead to answers that differ very slightly.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span><span class="o">/</span><span class="mi">15</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>3.3333333333333335</pre></div>
+<pre>3.1499999999999999</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Distributing the division by 15 across all the terms in the numerator shows that we can calculate the average in terms of the distinct values and the proportions in which they appear:</p></div></div>
+<p>Or we could have placed the list in a table, and used the Table method <code>mean</code>:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">15</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">15</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mi">15</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">x_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'value'</span><span class="p">,</span> <span class="n">x_list</span><span class="p">)</span>
+<span class="n">x_table</span><span class="p">[</span><span class="s">'value'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>3.3333333333333335</pre></div>
+<pre>3.1499999999999999</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-Average-and-the-Histogram">The Average and the Histogram<a class="anchor-link" href="#The-Average-and-the-Histogram">¶</a></h3><p>We have just seen that the average of a list depends only on the distinct values and their proportions. In other words, the average is a property of the distribution of distinct values in the list.</p>
-<p>Here is <code>x_list</code> represented as a distribution table <code>x_dist</code>. The average can be calculated by multiplying the <code>value</code> column by <code>prop</code> and then adding the results.</p></div></div>
+<h3 id="The-mean-and-the-histogram">The mean and the histogram<a class="anchor-link" href="#The-mean-and-the-histogram">¶</a></h3><p>Another way to calculate the mean is to first arrange the list in a distribution table. The columns contain the distinct values in the list, the count of each value, and the corresponding proportion. The sum of the column <code>count</code> is 20, the number of entries in the list.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">x_dist</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">from_rows</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="p">[</span><span class="s">'value'</span><span class="p">,</span> <span class="s">'count'</span><span class="p">])</span>
-<span class="n">x_dist</span><span class="p">[</span><span class="s">'prop'</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_dist</span><span class="p">[</span><span class="s">'count'</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="p">[</span><span class="s">'count'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">values</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'value'</span><span class="p">,</span> <span class="s">'count'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
+       <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> 
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> 
+       <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
+       <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="p">])</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'count'</span><span class="p">)</span> 
+<span class="n">x_dist</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'proportion'</span><span class="p">,</span> <span class="n">counts</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">))</span>
 
 <span class="c"># the distribution table</span>
 <span class="n">x_dist</span>
@@ -187,81 +78,92 @@ Empirical P value: 0.02
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>value</th> <th>count</th> <th>prop</th>
+            <th>value</th> <th>count</th> <th>proportion</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>2    </td> <td>4    </td> <td>0.266667</td>
+            <td>2    </td> <td>6    </td> <td>0.3       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>3    </td> <td>5    </td> <td>0.333333</td>
+            <td>3    </td> <td>8    </td> <td>0.4       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>4    </td> <td>3    </td> <td>0.2     </td>
+            <td>4    </td> <td>3    </td> <td>0.15      </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>5    </td> <td>3    </td> <td>0.2     </td>
+            <td>5    </td> <td>3    </td> <td>0.15      </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The sum of the numbers in the list can be calculated by multiplying the first two columns and adding up – four 2's, five 3's, and so on – and then dividing by 20:</p></div></div>
+<div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="p">[</span><span class="s">'value'</span><span class="p">]</span><span class="o">*</span><span class="n">x_dist</span><span class="p">[</span><span class="s">'prop'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'value'</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'count'</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'count'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>3.333333333333333</pre></div>
+<pre>3.1499999999999999</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Another way to think about the mean</strong>. The mean of a list is the <em>weighted</em> average of the <em>distinct</em> values, where the <em>weights are the proportions</em> in which those values appear.</p>
-<p>Physically, this implies that <strong>the average is the balance point of the histogram</strong>. Here is the histogram of the distribution. Imagine that it is made out of cardboard and that you are trying to balance the cardboard figure at a point on the horizontal axis. The average of $3 \frac{1}{3}$ is where the figure will balance.</p>
+<p>This is the same as multiplying the first and third columns – the values and their proportions – and adding up:</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'value'</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'proportion'</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>3.1500000000000004</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now have <strong>another way to think about the mean:</strong> The mean of a list is the <em>weighted</em> average of the <em>distinct</em> values, where the <em>weights are the proportions</em> in which those values appear.</p>
+<p>Physically, this implies that <strong>the average is the balance point of the histogram</strong>. Here is the histogram of the distribution. Imagine that it is made out of cardboard and that you are trying to balance the cardboard figure at a point on the horizontal axis. The average of 3.15 is where the figure will balance.</p>
 <p>To understand why that is, you will have to study some physics. Balance points, or centers of gravity, can be calculated in exactly the way we calculated the mean from the distribution table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">x_dist</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'value'</span><span class="p">,</span> <span class="s">'prop'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">x_dist</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'value'</span><span class="p">,</span> <span class="s">'proportion'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Means_25_0.png"/></div>
+<img src="../notebooks-images/Means_16_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Summary-of-Basic-Properties-of-the-Mean">Summary of Basic Properties of the Mean<a class="anchor-link" href="#Summary-of-Basic-Properties-of-the-Mean">¶</a></h3><p>These properties follow from the calculation; we have observed most of them in our examples above.</p>
-<ul>
-<li>The mean has the same units as the list. </li>
-<li>The mean is somewhere in between the smallest and largest value on the list. </li>
-<li>The mean depends only on the distribution (distinct values and proportions), not on the number of entries in the list.</li>
-<li>The mean is the balance point of the histogram.</li>
-</ul></div></div>
+<p>Notice that the mean of a list depends only on the distinct values and their proportions; you do not need to know how many entries there are in the list.</p>
+<p>In other words, the average is a property of the histogram. If two lists have the same histogram, they will also have the same average.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-Average-and-the-Median">The Average and the Median<a class="anchor-link" href="#The-Average-and-the-Median">¶</a></h3><p>Now that we know that the mean is the balance point of the histogram, it is interesting to look at how it is related to the median, which is the "half-way point" of the sorted data.</p>
-<p>In terms of the histogram, we would like to compare the balance point to the point that has 50% of the area of the histogram on either side of it.</p>
-<p>The relationship is easy to see in a simple example. Here is the list 1, 2, 2, 3, represented as a distribution table <code>sym</code> for "symmetric".</p></div></div>
+<h3 id="The-mean-and-the-median">The mean and the median<a class="anchor-link" href="#The-mean-and-the-median">¶</a></h3><p>If a student's score on a test is below average, does that imply that the student is in the bottom half of the class on that test?</p>
+<p>Happily for the student, the answer is, "Not necessarily." The reason has to do with the relation between the average, which is the balance point of the histogram, and the median, which is the "half-way point" of the data.</p>
+<p>Let's compare the balance point of the histogram to the point that has 50% of the area of the histogram on either side of it.</p>
+<p>The relationship is easy to see in a simple example. Here is the list 1, 2, 2, 3, represented as a distribution table called <code>sym</code> for "symmetric".</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sym</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">]],</span> <span class="p">[</span><span class="s">'x'</span><span class="p">,</span> <span class="s">'dist'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">sym</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s">'value'</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+        <span class="s">'dist'</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">]</span>
+        <span class="p">])</span>
 <span class="n">sym</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>x</th> <th>dist</th>
+            <th>value</th> <th>dist</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1   </td> <td>0.25</td>
+            <td>1    </td> <td>0.25</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>2   </td> <td>0.5 </td>
+            <td>2    </td> <td>0.5 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>3   </td> <td>0.25</td>
+            <td>3    </td> <td>0.25</td>
         </tr>
     </tbody>
 </table></div>
@@ -270,13 +172,10 @@ Empirical P value: 0.02
 <p>The histogram (or a calculation) shows that the average and median are both 2.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sym</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s">'x'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">10.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">,)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"value"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">sym</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">10.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x1081447f0&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Means_30_1.png"/></div>
+<img src="../notebooks-images/Means_21_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In general, for <strong>symmetric distributions</strong>, the mean and the median are equal.</p>
@@ -286,399 +185,140 @@ Empirical P value: 0.02
 <div class=" highlight hl-ipython3"><pre><span class="c"># Average versus median:</span>
 <span class="c"># Balance point versus 50% point</span>
 
-<span class="n">slide</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]],</span> 
-               <span class="p">[</span><span class="s">'x'</span><span class="p">,</span> <span class="s">'dist1'</span><span class="p">,</span> <span class="s">'dist2'</span><span class="p">])</span>
+<span class="n">slide</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s">'value'</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> 
+        <span class="s">'dist1'</span><span class="p">,[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+        <span class="s">'dist2'</span><span class="p">,[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]</span> 
+        <span class="p">])</span>
 <span class="n">slide</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>x</th> <th>dist1</th> <th>dist2</th>
+            <th>value</th> <th>dist1</th> <th>dist2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1   </td> <td>0.25 </td> <td>0.25 </td>
+            <td>1    </td> <td>0.25 </td> <td>0.25 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>2   </td> <td>0.5  </td> <td>0.5  </td>
+            <td>2    </td> <td>0.5  </td> <td>0.5  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>3   </td> <td>0.25 </td> <td>0    </td>
+            <td>3    </td> <td>0.25 </td> <td>0    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>10  </td> <td>0    </td> <td>0.25 </td>
+            <td>10   </td> <td>0    </td> <td>0.25 </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">slide</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s">'x'</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">10.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">slide</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">10.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Means_33_0.png"/></div>
+<img src="../notebooks-images/Means_24_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The yellow histogram represents the original distribution; the blue histogram starts out the same as the yellow at the left end, but its rightmost bar has slid over to the value 10.</p>
-<p>The median and mean of the yellow distribution are both equal to 2. The median of the blue distribution is also equal to 2; the area on either side of 2 is still 50%, though the right half is distributed differently from the left.</p>
-<p>But the mean of the blue distribution is not 2: the blue histogram would not balance at 2. The balance point has shifted to the right:</p></div></div>
+<p>The blue histogram represents the original distribution; the gold histogram starts out the same as the blue at the left end, but its rightmost bar has slid over to the value 10. The brown part is where the two histograms overlap.</p>
+<p>The median and mean of the blue distribution are both equal to 2. The median of the gold distribution is also equal to 2; the area on either side of 2 is still 50%, though the right half is distributed differently from the left.</p>
+<p>But the mean of the gold distribution is not 2: the gold histogram would not balance at 2. The balance point has shifted to the right, to 3.75.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">slide</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span><span class="o">*</span><span class="n">slide</span><span class="p">[</span><span class="s">'dist2'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">slide</span><span class="p">[</span><span class="s">'value'</span><span class="p">]</span><span class="o">*</span><span class="n">slide</span><span class="p">[</span><span class="s">'dist2'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>3.75</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In general, if the <strong>histogram has a tail on one side</strong> (the formal term is "skewed"), then the mean is pulled away from the median in the direction of the tail.</p>
-<p>We have seen an example of a distribution with a right-hand tail: the box office gross receipts (in millions of dollars) of the highest grossing movies over the past couple of decades:</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'imdb.csv'</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">box_office</span> <span class="o">=</span> <span class="n">imdb</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'in_millions'</span><span class="p">)</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s">'in_millions'</span><span class="p">,</span> <span class="s">'mill$'</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">box_office</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_png output_subarea ">
-<img src="../notebooks-images/Means_39_0.png"/></div>
+<p>In the gold distribution, 3 out of 4 entries (75%) are below average. The student with a below average score can therefore take heart. He or she might be in the majority of the class.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The mean gets pulled away from the median in the direction of the tail. So we expect the mean to be larger than the median, and that is indeed the case:</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">box_office</span><span class="p">[</span><span class="s">'mill$'</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>143.61838400000002</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">box_office</span><span class="p">[</span><span class="s">'mill$'</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>174.29050139234451</pre></div>
+<p><strong>The mean, the median, and skewed distributions:</strong> In general, if the histogram has a tail on one side (the formal term is "skewed"), then the mean is pulled away from the median in the direction of the tail.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Another example.</strong> Distributions of incomes often have right hand tails. For example, most households in the United States have low to moderate annual incomes, and a small number have extremely large annual incomes by comparison. In other words, the distribution of annual household incomes in the United States has a long right hand tail. So the mean income is greater than the median; the mean is affected by the small number of very large incomes, whereas the median is not. That is why the median is used more frequently than the mean in summaries of income distributions.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-Rough-Size-of-Deviations-from-Average">The Rough Size of Deviations from Average<a class="anchor-link" href="#The-Rough-Size-of-Deviations-from-Average">¶</a></h3><p>As we have seen, inferences based on test statistics depend on how those statistics vary across samples. It is therefore important to be able to quantify the variability in any list of numbers. One way is to create a measure of the difference between the values on a list and the average of the list.</p>
-<p>We will start by defining such a measure in the context of a simple list of just four numbers.</p></div></div>
+<p><strong>Example: Flight Delays.</strong> The Bureau of Transportation Statistics provides data on departures and arrivals of flights in the United States. The table <code>ua</code> contains the departure delay times, in minutes, of about 37,500 United Airlines flights over the past few years. A negative delay means that the flight left earlier than scheduled.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">toy</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span> <span class="p">[</span><span class="s">'values'</span><span class="p">])</span>
-<span class="n">toy</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">ontime</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'airline_ontime.csv'</span><span class="p">)</span>
+<span class="n">ontime</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
+<div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>values</th>
+            <th>Carrier</th> <th>Departure Delay</th> <th>Arrival Delay</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1     </td>
+            <td>AA     </td> <td>-1             </td> <td>-1           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>2     </td>
+            <td>AA     </td> <td>-1             </td> <td>-1           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>2     </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>10    </td>
-        </tr>
-    </tbody>
-</table></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The goal is to get a measure of roughly how far off the numbers in the list are from the average. To do this, we need the average, and all the deviations from the average. A "deviation from average" is just a value minus the average.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Step 1. The average.</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">toy</span><span class="p">[</span><span class="s">'values'</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>3.75</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Step 2. The deviations from average.</span>
-
-<span class="n">toy</span><span class="p">[</span><span class="s">'dev_from_ave'</span><span class="p">]</span> <span class="o">=</span> <span class="n">toy</span><span class="p">[</span><span class="s">'values'</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">toy</span><span class="p">[</span><span class="s">'values'</span><span class="p">])</span>
-<span class="n">toy</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>values</th> <th>dev_from_ave</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1     </td> <td>-2.75       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2     </td> <td>-1.75       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2     </td> <td>-1.75       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>10    </td> <td>6.25        </td>
-        </tr>
-    </tbody>
-</table></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Some of the deviations are negative; those correspond to values that are below average. Positive deviations correspond to above-average values.</p>
-<p>To calculate roughly how big the deviations are, it is natural to compute the mean of the deviations. But something interesting happens when all the deviations are added together:</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">toy</span><span class="p">[</span><span class="s">'dev_from_ave'</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.0</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The positive deviations exactly cancel out the negative ones. This is true of all lists of numbers: the sum of the deviations from average is zero. We saw this kind of property earlier, when we were defining total variation distance.</p>
-<p>Since the sum of the deviations is 0, the mean of the deviations will be 0 as well:</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">toy</span><span class="p">[</span><span class="s">'dev_from_ave'</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.0</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So the mean of the deviations is not a useful measure of the size of the deviations. What we want to know is roughly how big the deviations are, regardless of whether they are positive or negative. So we eliminate the signs by squaring all the deviations; then we take the mean of the squares:</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Step 3. The squared deviations from average</span>
-
-<span class="n">toy</span><span class="p">[</span><span class="s">'sq_dev_from_ave'</span><span class="p">]</span> <span class="o">=</span> <span class="n">toy</span><span class="p">[</span><span class="s">'dev_from_ave'</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">toy</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>values</th> <th>dev_from_ave</th> <th>sq_dev_from_ave</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1     </td> <td>-2.75       </td> <td>7.5625         </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2     </td> <td>-1.75       </td> <td>3.0625         </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2     </td> <td>-1.75       </td> <td>3.0625         </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>10    </td> <td>6.25        </td> <td>39.0625        </td>
-        </tr>
-    </tbody>
-</table></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Variance = the mean squared deviation from average</span>
-
-<span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">toy</span><span class="p">[</span><span class="s">'sq_dev_from_ave'</span><span class="p">])</span>
-<span class="n">var</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>13.1875</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The mean squared deviation is called the <em>variance</em> of the list. While it does give us an idea of spread, it is not on the same scale as the original variable and its units are the square of the original. This makes interpretation very difficult. So we return to the original scale by taking the positive square root of the variance:</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Standard Deviation:    root mean squared deviation from average</span>
-<span class="c"># Steps of calculation:   5    4      3       2             1</span>
-
-<span class="n">sd</span> <span class="o">=</span> <span class="n">var</span><span class="o">**</span><span class="mf">0.5</span>
-<span class="n">sd</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>3.6314597615834874</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Standard-Deviation">Standard Deviation<a class="anchor-link" href="#Standard-Deviation">¶</a></h3><p>The quantity that we have just computed is called the <em>standard deviation</em> of the list, and is abbreviated as SD. It measures roughly how far the numbers on the list are from their average.</p>
-<p><strong>Definition.</strong> The SD of a list is defined as the <em>root mean square of deviations from average</em>. That's a mouthful. But read it from right to left and you have the sequence of steps in the calculation.</p>
-<p><strong>Computation.</strong> The <code>numPy</code> function <code>np.std</code> computes the SD of values in an array:</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">toy</span><span class="p">[</span><span class="s">'values'</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>3.6314597615834874</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Why-use-the-SD-instead-of-some-other-measure-of-spread?-Answer-#1.">Why use the SD instead of some other measure of spread? Answer #1.<a class="anchor-link" href="#Why-use-the-SD-instead-of-some-other-measure-of-spread?-Answer-#1.">¶</a></h3><p>There are a few primary reasons the SD is used more than any other measure of spread. Here is one of them.</p>
-<p>If you know the average of a list, typically you can't infer much else about the spread in the list. You can't even infer that half the list is above average, because, as we have seen, the average and the median are typically different from each other.</p>
-<p>If you know both the average and the SD, however, you can learn a great deal about the values in the list.</p>
-<p><strong>Informal statement.</strong></p>
-<p>For all lists, the bulk of the entries are within the range "average $\pm$ a few SDs".</p>
-<p>Try to resist the desire to know exactly what fuzzy words like "bulk" and "few" mean. We wil make them precise later in this section. For now, let us examine the statement in the context of the example of box office receipts.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">box_office</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_png output_subarea ">
-<img src="../notebooks-images/Means_61_0.png"/></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">box_office</span><span class="p">[</span><span class="s">'mill$'</span><span class="p">])</span>
-<span class="n">m</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>174.29050139234451</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">box_office</span><span class="p">[</span><span class="s">'mill$'</span><span class="p">])</span>
-<span class="n">s</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>86.152264241676363</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The mean is \$174.29, and the SD is \$86.15. Notice that none of the entries on the list are below the amount "mean - SD". Indeed, none are below \$100 million. The large spread is due to the large positive deviations in the right hand tail.</p>
-<p>In the analysis of distributions, specially those that have been represented in a histogram, it is often useful to think of the average as the origin, and distances in units of SDs. For example, here is the interval "mean $\pm$ one SD"; about 87.5% of the movies have box office receipts in this range.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">m</span><span class="o">-</span><span class="n">s</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>88.138237150668147</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">m</span><span class="o">+</span><span class="n">s</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>260.44276563402087</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">((</span><span class="n">m</span><span class="o">-</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">box_office</span><span class="p">[</span><span class="s">'mill$'</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">box_office</span><span class="p">[</span><span class="s">'mill$'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">m</span><span class="o">+</span><span class="n">s</span><span class="p">)</span> <span class="p">)</span><span class="o">/</span><span class="n">box_office</span><span class="o">.</span><span class="n">num_rows</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.8755980861244019</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The table below contains intervals of the form "mean $\pm$ a few SD", and the proportions of entries in that range. The column <code>z</code> quantifies the expression "a few". As you can see, once <code>z</code> is about 4 or so, the interval "average $\pm z$ SD" contains almost all of the data.</p>
-<p>This kind of behavior is true of all lists, not just the ones in our examples.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">box_props</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)],</span> <span class="p">[</span><span class="s">'z'</span><span class="p">])</span>
-<span class="n">box_props</span><span class="p">[</span><span class="s">'m - z*s'</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="n">box_props</span><span class="p">[</span><span class="s">'z'</span><span class="p">]</span><span class="o">*</span><span class="n">s</span>
-<span class="n">box_props</span><span class="p">[</span><span class="s">'m + z*s'</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="n">box_props</span><span class="p">[</span><span class="s">'z'</span><span class="p">]</span><span class="o">*</span><span class="n">s</span>
-
-<span class="k">def</span> <span class="nf">count_intvl</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span> <span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">z</span><span class="o">*</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">box_office</span><span class="p">[</span><span class="s">'mill$'</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">box_office</span><span class="p">[</span><span class="s">'mill$'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">m</span><span class="o">+</span><span class="n">z</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">)</span><span class="o">/</span><span class="n">box_office</span><span class="o">.</span><span class="n">num_rows</span>
-
-<span class="n">box_props</span><span class="p">[</span><span class="s">'proportion'</span><span class="p">]</span> <span class="o">=</span> <span class="n">box_props</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">count_intvl</span><span class="p">,</span> <span class="s">'z'</span><span class="p">)</span>
-<span class="n">box_props</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>z</th> <th>m - z*s</th> <th>m + z*s</th> <th>proportion</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0.5 </td> <td>131.214 </td> <td>217.367</td> <td>0.395534  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>88.1382 </td> <td>260.443</td> <td>0.875598  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1.5 </td> <td>45.0621 </td> <td>303.519</td> <td>0.917065  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2   </td> <td>1.98597 </td> <td>346.595</td> <td>0.948963  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2.5 </td> <td>-41.0902</td> <td>389.671</td> <td>0.966507  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>3   </td> <td>-84.1663</td> <td>432.747</td> <td>0.982456  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>3.5 </td> <td>-127.242</td> <td>475.823</td> <td>0.992026  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>4   </td> <td>-170.319</td> <td>518.9  </td> <td>0.992026  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>4.5 </td> <td>-213.395</td> <td>561.976</td> <td>0.99362   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>5   </td> <td>-256.471</td> <td>605.052</td> <td>0.99362   </td>
+            <td>AA     </td> <td>-1             </td> <td>-1           </td>
         </tr>
     </tbody>
 </table>
-<p>... (2 rows omitted)</p></div>
+<p>... (457010 rows omitted)</p></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">ua</span> <span class="o">=</span> <span class="n">ontime</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Carrier'</span><span class="p">,</span> <span class="s">'UA'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ua</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Departure Delay</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>-1             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>-1             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>-1             </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (37360 rows omitted)</p></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">ua_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">121</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ua</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">ua_bins</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s">'minute'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Means_32_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Chebychev's-inequality">Chebychev's inequality<a class="anchor-link" href="#Chebychev's-inequality">¶</a></h2><p>This is the <strong>formal version</strong> of our rough statement above:</p>
-<p>For all lists, and all positive numbers <em>z</em>, the proportion of entries that are in the range
-"average $\pm z$ SDs" 
-is <strong>at least</strong> $1 - \frac{1}{z^2}$.</p></div></div>
+<p>The histogram of the delay times is right-skewed: it has a long right hand tail.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>What makes this result powerful is that it is true for all lists – all distributions, no matter how irregular, known or unknown. Specifically, Chebychev's inequality says that for every list:</p>
-<ul>
-<li><p>the proportion in the range "average $\pm$ 2 SDs" is at least 1 - 1/4 = 0.75</p>
-</li>
-<li><p>the proportion in the range "average $\pm$ 3 SDs" is at least 1 - 1/9 $\approx$ 0.89</p>
-</li>
-<li><p>the proportion in the range "average $\pm$ 4.5 SDs" is at least 1 - 1/$4.5^2$ $\approx$ 0.95</p>
-</li>
-</ul>
-<p>Chebychev's Inequality gives a lower bound, not an exact answer or an approximation. The proportion of entries in the range "average $\pm z$ SDs" might be quite a bit larger than $1 - 1/z^2$. But it cannot be smaller.</p></div></div>
+<p>The mean gets pulled away from the median in the direction of the tail. So we expect the mean delay to be larger than the median, and that is indeed the case:</p></div></div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Interpreting $z$</strong></p>
-<p>$z$ is the number of SDs above average, and is said to be on the <em>standard units</em> scale.</p>
-<p>Some values of standard units are negative, corresponding to original values that are below average. Other values of standard units are positive. But no matter what the distribution of the list looks like, Chebychev's Inequality says that standard units will typically be in the (-5, 5) range.</p>
-<p>Here are some examples of moving back and forth between the original scale and the standard units scale. Recall that the average box office amounts of our list of movies is $m = \$174.29$ and the SD is $s = \$86.15$.</p>
-<p><strong>Examples of converting from standard units to the original units.</strong>
-The calculation is straightforward if you remember that $z$ answers the question, "How many SDs above average is the original value?"</p>
-<p>If $z = 2.4$, then the movie made $z*s + m = 2.4*86.15 + 174.29 = 381.05$ million dollars.</p>
-<p>If $z = -0.3$, then the movie made $z*s + m = (-0.3)*86.15 + 174.29 = 148.45$ million dollars.</p>
-<p><strong>Examples of converting from the original units to standard units.</strong>
-First find how far above average the value is on the original scale, then compare the difference with the SD.</p>
-<p>If the movie made 220 million dollars, then $z = (220 - 174.29)/86.15 = 0.53$.</p>
-<p>If the movie made 120 million dollars, then $z = (120 - 174.29)/86.15 = -0.63$.</p>
-<p>In probability and statistics, $z$ is standard notation for values on the standard units scale. Converting to standard units is also known as "finding the $z$-score".</p></div></div></div>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ua</span><span class="p">[</span><span class="s">'Departure Delay'</span><span class="p">])</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>13.885555228434548</pre></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">ua</span><span class="p">[</span><span class="s">'Departure Delay'</span><span class="p">])</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>2.0</pre></div></div>
