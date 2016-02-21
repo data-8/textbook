@@ -32,4 +32,5 @@
   * [Sampling](chapter3/sampling.md)
   * [Iteration](chapter3/iteration.md)
   * [Estimation](chapter3/estimation.md)
-  * [Means](chapter3/means.md)
+  * [Center](chapter3/center.md)
+  * [Spread](chapter3/spread.md)
