@@ -34,3 +34,4 @@
   * [Estimation](chapter3/estimation.md)
   * [Center](chapter3/center.md)
   * [Spread](chapter3/spread.md)
+  * [The Normal Distribution](chapter3/normal.md)
