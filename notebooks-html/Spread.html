@@ -426,8 +426,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Chebychev's-inequality">Chebychev's inequality<a class="anchor-link" href="#Chebychev's-inequality">¶</a></h3><p>For all lists, and all positive numbers <em>z</em>, the proportion of entries that are in the range
-"average $\pm z$ SDs" 
-is <strong>at least</strong> $1 - \frac{1}{z^2}$.</p></div></div>
+"average $\pm z$ SDs" is <strong>at least</strong> $1 - \frac{1}{z^2}$.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>What makes this result powerful is that it is true for all lists – all distributions, no matter how irregular.</p>
@@ -587,7 +586,7 @@ $$</p>
 <p>The histogram of delay times is shown below, with the horizontal axis in standard units. By the table above, the right hand tail continues all the way out to 22 standard units (886 minutes). The area of the histogram outside the range $z=-2$ to $z=2$ is about 4%, put together in tiny little bits that are mostly invisible in a histogram.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ua</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'z'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s">'standard deviation'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">ua</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'z'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s">'standard unit'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Spread_58_0.png"/></div></div>
