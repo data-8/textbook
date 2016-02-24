@@ -35,3 +35,5 @@
   * [Center](chapter3/center.md)
   * [Spread](chapter3/spread.md)
   * [The Normal Distribution](chapter3/normal.md)
+* [Chapter 4](chapter4/intro.md)
+  * [Correlation](chapter4/correlation.md)
