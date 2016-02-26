@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/heights.csv&path=notebooks/little_women.csv&path=notebooks/sat2014.csv&path=notebooks/Regression.ipynb">Interact</a>
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/heights.csv&path=notebooks/sat2014.csv&path=notebooks/Regression.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -12,71 +12,115 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-regression-line">The regression line<a class="anchor-link" href="#The-regression-line">¶</a></h2><p>The concepts of correlation and the "best" straight line through a scatter plot were developed in the late 1800's and early 1900's. The pioneers in the field were Sir Francis Galton, who was a cousin of Charles Darwin, and Galton's protégé Karl Pearson. Galton was interested in eugenics, and was a meticulous observer of the physical traits of parents and their offspring. Pearson, who had greater expertise than Galton in mathematics, helped turn those observations into the foundations of mathematical statistics.</p>
-<p>The scatter plot below is of a famous dataset collected by Pearson and his colleagues in the early 1900's. It consists of the heights, in inches, of 1,078 pairs of fathers and sons.</p>
-<p>The data are contained in the table <code>heights</code>, in the columns <code>father</code> and <code>son</code> respectively. In the previous section, we saw how to use the table method <code>scatter</code> to draw scatter plots. Here, the method <code>scatter</code> in the <code>pyplot</code> module of <code>matplotlib</code> (imported as <code>plots</code>) is used for the same purpose. The first argument of <code>scatter</code> is a array containing the variable on the horizontal axis. The second argument contains the variable on the vertical axis. The optional argument <code>s=10</code> sets the size of the points; the default value is <code>s=20</code>.</p></div></div>
+<p>The scatter plot below is of a famous dataset collected by Pearson and his colleagues in the early 1900's. It consists of the heights, in inches, of 1,078 pairs of fathers and sons.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="c"># Scatter plot using matplotlib method</span>
 <span class="n">heights</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'heights.csv'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'father'</span><span class="p">],</span> <span class="n">heights</span><span class="p">[</span><span class="s">'son'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"father's height"</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"son's height"</span><span class="p">)</span>
-<span class="k">None</span>
+<span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Regression_3_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice the familiar football shape. This is characteristic of variable pairs that follow a <em>bivariate normal</em> distribution: the scatter plot is oval, the distribution of each variable is roughly normal, and the distribution of the variable in each vertical and horizontal strip is roughly normal as well.</p>
+<p>Notice the familiar football shape with a dense center and a few points on the perimeter. This shape results from two bell-shaped distributions that are correlated. The heights of both fathers and sons have a normal distribution.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">heights</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">55.5</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Regression_5_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On average, the sons are about an inch taller than the fathers (perhaps due to improved nutrition).</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'son'</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'father'</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.99740259740261195</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>The correlation between the heights of the fathers and sons is about 0.5.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">r</span> <span class="o">=</span> <span class="n">corr</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)</span>
 <span class="n">r</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.50116268080759108</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-regression-effect">The regression effect<a class="anchor-link" href="#The-regression-effect">¶</a></h3><p>The figure below shows the scatter plot of the data when both variables are measured in standard units. As we saw earlier, the red line of equal standard units is too steep to serve well as the line of estimates of $y$ based on $x$. Rather, the estimates are on the green line, which is flatter and picks off the centers of the vertical strips.</p>
-<p>This flattening was noticed by Galton, who had been hoping that exceptionally tall fathers would have sons who were just as exceptionally tall. However, the data were clear, and Galton realized that the tall fathers have sons who are not quite as exceptionally tall, on average. Frustrated, Galton called this phenomenon "regression to mediocrity." Because of this, the line of best fit through a scatter plot is called the <em>regression line</em>.</p>
-<p>Galton also noticed that exceptionally short fathers had sons who were somewhat taller relative to their generation, on average. In general, individuals who are away from average on one variable are expected to be not quite as far away from average on the other. This is called the <em>regression effect</em>.</p></div></div>
+<h3 id="The-regression-effect">The regression effect<a class="anchor-link" href="#The-regression-effect">¶</a></h3><p>For fathers around 72 inches in height, we might expect their sons to be tall as well. The histogram below shows the height of all sons of 72-inch fathers.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># The regression effect</span>
-
-<span class="n">f_su</span> <span class="o">=</span> <span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'father'</span><span class="p">]</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'father'</span><span class="p">]))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'father'</span><span class="p">])</span>
-<span class="n">s_su</span> <span class="o">=</span> <span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'son'</span><span class="p">]</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'son'</span><span class="p">]))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'son'</span><span class="p">])</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">f_su</span><span class="p">,</span> <span class="n">s_su</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">r</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'g'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s">'equal'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">tall_fathers</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'father'</span><span class="p">))</span> <span class="o">==</span> <span class="mi">72</span><span class="p">)</span>
+<span class="n">tall_fathers</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'son'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">55.5</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_7_0.png"/></div>
+<img src="../notebooks-images/Regression_11_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>Table</code> method <code>scatter</code> can be used with the option <code>fit_line=True</code> to draw the regression line through a scatter plot.</p></div></div>
+<p>Most (68%) of the sons of these 72-inch fathers are <em>less than</em> 72 inches tall, even though sons are an inch taller than fathers on average!</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Plotting the regression line, using Table</span>
-
-<span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'father'</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"father's height"</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"son's height"</span><span class="p">)</span>
-<span class="k">None</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">tall_fathers</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'son'</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">72</span><span class="p">)</span> <span class="o">/</span> <span class="n">tall_fathers</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.6842105263157895</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In fact, the average height of a son of a 72-inch father is less than 71 inches. The sons of tall fathers are simply not as tall in this sample.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tall_fathers</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'son'</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>70.728070175438603</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This fact was noticed by Galton, who had been hoping that exceptionally tall fathers would have sons who were just as exceptionally tall. However, the data were clear, and Galton realized that the tall fathers have sons who are not quite as exceptionally tall, on average. Frustrated, Galton called this phenomenon "regression to mediocrity."</p>
+<p>Galton also noticed that exceptionally short fathers had sons who were somewhat taller relative to their generation, on average. In general, individuals who are away from average on one variable are expected to be not quite as far away from average on the other. This is called the <em>regression effect</em>.</p>
+<p>The figure below shows the scatter plot of the data when both variables are measured in standard units. The red line shows equal standard units and has a slope of 1, but it does not match the angle of the cloud of points. The blue line, which does follow the angle of the cloud, is called the <em>regression line</em>, named for the "regression to mediocrity" it predicts.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">heights_standard</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s">'father (standard units)'</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'father'</span><span class="p">]),</span>
+        <span class="s">'son (standard units)'</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'son'</span><span class="p">])</span>
+        <span class="p">])</span>
+<span class="n">heights_standard</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="k">True</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_9_0.png"/></div>
+<img src="../notebooks-images/Regression_17_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>scatter</code> method of a <code>Table</code> draws this regression line for us when called with <code>fit_line=True</code>. This line passes through the result of multiplying father heights (in standard units) by $r$.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">father_standard</span> <span class="o">=</span> <span class="n">heights_standard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">heights_standard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'father (standard units) * r'</span><span class="p">,</span> <span class="n">father_standard</span> <span class="o">*</span> <span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Regression_19_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Another interpretation of this line is that it passes through average values for slices of the population of sons. To see this relationship, we can round the fathers each to the nearest unit, then average the heights of all sons associated with these rounded values. The green line is the regression line for these data, and it passes close to all of the yellow points, which are mean heights of sons (in standard units).</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">rounded</span> <span class="o">=</span> <span class="n">heights_standard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'father (standard units)'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">father_standard</span><span class="p">))</span>
+<span class="n">rounded</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">'father (standard units)'</span><span class="p">,</span> <span class="n">rounded</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">))</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span> <span class="o">*</span> <span class="n">r</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">r</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'g'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Regression_21_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Karl Pearson used the observation of the regression effect in the data above, as well as in other data provided by Galton, to develop the formal calculation of the correlation coefficient $r$. That is why $r$ is sometimes called <em>Pearson's correlation</em>.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-equation-of-the-regression-line">The equation of the regression line<a class="anchor-link" href="#The-equation-of-the-regression-line">¶</a></h3><p>As we saw in the last section for football shaped scatter plots, when the variables $x$ and $y$ are measured in standard units, the best straight line for estimating $y$ based on $x$ has slope $r$ and passes through the origin. Thus the equation of the regression line can be written as:</p>
-<p>$~~~~~~~~~~$ estimate of $y$, in $y$-standard units $~=~$ 
-$r ~ \times$ (the given $x$, in $x$-standard units)</p>
-<p>That is,
+<h3 id="The-regression-line-in-original-units">The regression line in original units<a class="anchor-link" href="#The-regression-line-in-original-units">¶</a></h3><p>As we saw in the last section for football shaped scatter plots, when the variables $x$ and $y$ are measured in standard units, the best straight line for estimating $y$ based on $x$ has slope $r$ and passes through the origin. Thus the equation of the regression line can be written as:</p>
+$$(\textit{y in standard units}) = r \times (\textit{x in standard units})$$<p>That is,
 $$
 \frac{\mbox{estimate of}~y ~-~\mbox{average of}~y}{\mbox{SD of}~y}
 ~=~ r \times 
@@ -85,70 +129,54 @@ $$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The equation can be converted into the original units of the data, either by rearranging this equation algebraically, or by labeling some important features of the line both in standard units and in the original units.</p>
-<p><img alt="regline" src="assets/images/regline.png"/></p></div></div>
+<p><img alt="regline" src="../images/regline.png"/></p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It is a remarkable fact of mathematics that what we have observed to be true for football shaped scatter plots turns out to be true for all scatter plots, no matter what they look like.</p>
-<p><strong>Regardless of the shape of the scatter plot</strong>:</p>
-$$
-\mbox{slope of the regression line} ~=~ \frac{r \cdot \mbox{SD of}~y}{\mbox{SD of}~x}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-$$$$
-\mbox{intercept of the regression line} ~=~
-\mbox{average of}~y ~-~ \mbox{slope} \cdot \mbox{(average of}~x\mbox{)}
-$$</div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Calculation-of-the-slope-and-intercept">Calculation of the slope and intercept<a class="anchor-link" href="#Calculation-of-the-slope-and-intercept">¶</a></h3><p>The NumPy method <code>np.polyfit</code> takes as its first argument an array consisiting of the values of the given variable; its second argument an array consisting of the variable to be estimated; its third argument <code>deg=1</code> specifies that we are fitting a straight line, that is, a polynomial of degree 1. It evaluates to an array consisting of the slope and the intercept of the regression line.</p></div></div>
+<h3 id="Calculation-of-the-slope-and-intercept">Calculation of the slope and intercept<a class="anchor-link" href="#Calculation-of-the-slope-and-intercept">¶</a></h3><p>The regression line is also commonly expressed as a slope and an intercept, where an estimate for y is computed from an x value using the equation</p>
+$$y = \textit{slope} \times x + \textit{intercept}$$<p>The calculations of the slope and intercept of the regression line can be derived from the equation above.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Slope and intercept by NumPy method</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
-<span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'father'</span><span class="p">],</span> <span class="n">heights</span><span class="p">[</span><span class="s">'son'</span><span class="p">],</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">intercept</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">-</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="p">[</span><span class="n">slope</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">),</span> <span class="n">intercept</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)]</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([  0.51400591,  33.89280054])</pre></div>
+<pre>[0.51400591254559247, 33.892800540661682]</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It is worth noting that the intercept of approximately 33.89 inches is <em>not</em> intended as an estimate of the height of a son whose father is 0 inches tall. There is no such son and no such father. The intercept is merely a geometric or algebraic quantity that helps define the line. In general, it is not a good idea to <em>extrapolate</em>, that is, to make estimates outside the range of the available data. It is certainly not a good idea to extrapolate as far away as 0 is from the heights of the fathers in the study.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The calculations of the slope and intercept of the regression line are straightforward, so we will set <code>np.polyfit</code> aside and write our own function to compute the two quantities. The function <code>regress</code> takes as its arguments the name of the table, the column label of the given variable, and the column label of the variable to be estimated; it evaluates to an array containing the slope and the intercept of the regression line.</p></div></div>
+<p>It is worth noting that the intercept of approximately 33.89 inches is <em>not</em> intended as an estimate of the height of a son whose father is 0 inches tall. There is no such son and no such father. The intercept is merely a geometric or algebraic quantity that helps define the line. In general, it is not a good idea to <em>extrapolate</em>, that is, to make estimates outside the range of the available data. It is certainly not a good idea to extrapolate as far away as 0 is from the heights of the fathers in the study.</p>
+<p>It is also worth noting that the slope <em>is not</em> <code>r</code>! Instead, it is <code>r</code> multiplied by the ratio of standard deviations.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Slope and intercept of regression line</span>
-
-<span class="k">def</span> <span class="nf">regress</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">corr</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">)</span>
-    <span class="n">reg_slope</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_y</span><span class="p">])</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_x</span><span class="p">])</span>
-    <span class="n">reg_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_y</span><span class="p">])</span> <span class="o">-</span> <span class="n">reg_slope</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_x</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">reg_slope</span><span class="p">,</span> <span class="n">reg_int</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>A call to <code>regress</code> yields the same results as the call to <code>np.polyfit</code> made above.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">slope_int_h</span> <span class="o">=</span> <span class="n">regress</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)</span>
-<span class="n">slope_int_h</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([  0.51400591,  33.89280054])</pre></div>
+<pre>0.50116268080759108</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Fitted-values">Fitted values<a class="anchor-link" href="#Fitted-values">¶</a></h2><p>We can use the regression line to get an estimate of the height of every son in the data. The estimated values of $y$ are called the <em>fitted values</em>. They all lie on a straight line. To calculate them, take a son's height, multiply it by the slope of the regression line, and add the intercept. In other words, calculate the height of the regression line at the given value of $x$.</p></div></div>
+<h2 id="Fitted-values">Fitted values<a class="anchor-link" href="#Fitted-values">¶</a></h2><p>We can also estimate every son in the data using the slope and intercept. The estimated values of $y$ are called the <em>fitted values</em>. They all lie on a straight line. To calculate them, take a son's height, multiply it by the slope of the regression line, and add the intercept. In other words, calculate the height of the regression line at the given value of $x$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Estimates of sons' heights are on the regression line</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">"""Return the height of the regression line at each x value."""</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">intercept</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
 
-<span class="n">heights</span><span class="p">[</span><span class="s">'fitted value'</span><span class="p">]</span> <span class="o">=</span> <span class="n">slope_int_h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">heights</span><span class="p">[</span><span class="s">'father'</span><span class="p">]</span> <span class="o">+</span> <span class="n">slope_int_h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">heights</span>
+<span class="n">fitted</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'son (fitted)'</span><span class="p">,</span> <span class="n">fit</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">))</span>
+<span class="n">fitted</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>father</th> <th>son</th> <th>fitted value</th>
+            <th>father</th> <th>son</th> <th>son (fitted)</th>
         </tr>
     </thead>
     <tbody>
@@ -202,17 +230,14 @@ $$</div></div>
 <p>The amount of error in each of these regression estimates is the difference between the son's height and its estimate. These errors are called <em>residuals</em>. Some residuals are positive. These correspond to points that are above the regression line – points for which the regression line under-estimates $y$. Negative residuals correspond to the line over-estimating values of $y$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Error in the regression estimate: Distance between observed value and fitted value</span>
-<span class="c"># "Residual" </span>
-
-<span class="n">heights</span><span class="p">[</span><span class="s">'residual'</span><span class="p">]</span> <span class="o">=</span> <span class="n">heights</span><span class="p">[</span><span class="s">'son'</span><span class="p">]</span> <span class="o">-</span> <span class="n">heights</span><span class="p">[</span><span class="s">'fitted value'</span><span class="p">]</span>
-<span class="n">heights</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">res</span> <span class="o">=</span> <span class="n">fitted</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'residual'</span><span class="p">,</span> <span class="n">fitted</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'son'</span><span class="p">)</span> <span class="o">-</span> <span class="n">fitted</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'son (fitted)'</span><span class="p">))</span>
+<span class="n">res</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>father</th> <th>son</th> <th>fitted value</th> <th>residual</th>
+            <th>father</th> <th>son</th> <th>son (fitted)</th> <th>residual</th>
         </tr>
     </thead>
     <tbody>
@@ -263,201 +288,30 @@ $$</div></div>
 <p>As with deviations from average, the positive and negative residuals exactly cancel each other out. So the average (and sum) of the residuals is 0.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Error-in-the-regression-estimate">Error in the regression estimate<a class="anchor-link" href="#Error-in-the-regression-estimate">¶</a></h3><p>Though the average residual is 0, each individual residual is not. Some residuals might be quite far from 0. To get a sense of the amount of error in the regression estimate, we will start with a graphical description of the sense in which the regression line is the "best".</p>
-<p>Our example is a dataset that has one point for every chapter of the novel "Little Women." The goal is to estimate the number of characters (that is, letters, punctuation marks, and so on) based on the number of periods. Recall that we attempted to do this in the very first lecture of this course.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lw</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'little_women.csv'</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># One point for each chapter</span>
-<span class="c"># Horizontal axis: number of periods</span>
-<span class="c"># Vertical axis: number of characters (as in a, b, ", ?, etc; not people in the book)</span>
-
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">lw</span><span class="p">[</span><span class="s">'Periods'</span><span class="p">],</span> <span class="n">lw</span><span class="p">[</span><span class="s">'Characters'</span><span class="p">])</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Periods'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Characters'</span><span class="p">)</span>
-<span class="k">None</span>
-</pre></div></div></div>
-<div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_29_0.png"/></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">corr</span><span class="p">(</span><span class="n">lw</span><span class="p">,</span> <span class="s">'Periods'</span><span class="p">,</span> <span class="s">'Characters'</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.92295768958548163</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The scatter plot is remarkably close to linear, and the correlation is more than 0.92.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">131</span><span class="p">,</span> <span class="mi">14431</span><span class="p">]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">231</span><span class="p">,</span> <span class="mi">20558</span><span class="p">]</span>
-<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">392</span><span class="p">,</span> <span class="mi">40935</span><span class="p">]</span>
-<span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">157</span><span class="p">,</span> <span class="mi">23524</span><span class="p">]</span>
-<span class="k">def</span> <span class="nf">lw_errors</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">):</span>
-    <span class="n">xlims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">450</span><span class="p">])</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">lw</span><span class="p">[</span><span class="s">'Periods'</span><span class="p">],</span> <span class="n">lw</span><span class="p">[</span><span class="s">'Characters'</span><span class="p">])</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlims</span><span class="p">,</span> <span class="n">slope</span><span class="o">*</span><span class="n">xlims</span> <span class="o">+</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">slope</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">intercept</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">slope</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">intercept</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">slope</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">intercept</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">slope</span><span class="o">*</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">intercept</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Periods'</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Characters'</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The figure below shows the scatter plot and regression line, with four of the errors marked in red.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Residuals: Deviations from the regression line</span>
-
-<span class="n">slope_int_lw</span> <span class="o">=</span> <span class="n">regress</span><span class="p">(</span><span class="n">lw</span><span class="p">,</span> <span class="s">'Periods'</span><span class="p">,</span> <span class="s">'Characters'</span><span class="p">)</span>
-<span class="n">lw_errors</span><span class="p">(</span><span class="n">slope_int_lw</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">slope_int_lw</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_34_0.png"/></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Had we used a different line to create our estimates, the errors would have been different. The picture below shows how big the errors would be if we were to use a particularly silly line for estimation.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Errors: Deviations from a different line</span>
-
-<span class="n">lw_errors</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_36_0.png"/></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Below is a line that we have used before without saying that we were using a line to create estimates. It is the horizontal line at the value "average of $y$." Suppose you were asked to estimate $y$ and <em>were not told the value of $x$</em>; then you would use the average of $y$ as your estimate, regardless of the chapter. In other words, you would use the flat line below.</p>
-<p>Each error that you would make would then be a deviation from average. The rough size of these deviations is the SD of $y$.</p>
-<p>In summary, if we use the flat line at the average of $y$ to make our estimates, the estimates will be off by the SD of $y$.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Errors: Deviations from the flat line at the average of y</span>
-
-<span class="n">lw_errors</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">lw</span><span class="p">[</span><span class="s">'Characters'</span><span class="p">]))</span>
-</pre></div></div></div>
-<div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_38_0.png"/></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-Method-of-Least-Squares">The Method of Least Squares<a class="anchor-link" href="#The-Method-of-Least-Squares">¶</a></h3><p>If you use any arbitrary line as your line of estimates, then some of your errors are likely to be positive and others negative. To avoid cancellation when measuring the rough size of the errors, we take the mean of the sqaured errors rather than the mean of the errors themselves. This is exactly analogous to our reason for looking at squared deviations from average, when we were learning how to calculate the SD.</p>
-<p>The mean squared error of estimation using a straight line is a measure of roughly how big the squared errors are; taking the square root yields the root mean square error, which is in the same units as $y$.</p>
-<p>Here is the second remarkable fact of mathematics in this section: the regression line minimizes the mean squared error of estimation (and hence also the root mean squared error) among all straight lines. That is why the regression line is sometimes called the "least squares line."</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Computing the "best" line.</strong></p>
-<ul>
-<li>To get estimates of $y$ based on $x$, you can use any line you want.</li>
-<li>Every line has a mean squared error of estimation.</li>
-<li>"Better" lines have smaller errors.</li>
-<li><strong>The regression line is the unique straight line that minimizes the mean squared error of estimation among all straight lines.</strong></li>
-</ul></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Regression-Functions">Regression Functions<a class="anchor-link" href="#Regression-Functions">¶</a></h3><p>Regression is one of the most commonly used methods in statistics, and we will be using it frequently in the next few sections. It will be helpful to be able to call functions to compute the various quantities connected with regression. The first two of the functions below have already been defined; the rest are defined below.</p>
-<ul>
-<li><code>corr</code>: the correlation coefficient</li>
-<li><code>regress</code>: the slope and intercept of the regression line </li>
-<li><code>fit</code>: the fitted value at one given value of $x$</li>
-<li><code>fitted_values</code>: the fitted values at all the values of $x$ in the data</li>
-<li><code>residuals</code>: the residuals</li>
-<li><code>scatter_fit</code>: scatter plot and regression line</li>
-<li><code>residual_plot</code>: plot of residuals versus $x$</li>
-</ul></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Correlation coefficient</span>
-
-<span class="k">def</span> <span class="nf">corr</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_A</span><span class="p">,</span> <span class="n">column_B</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">column_A</span><span class="p">]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">column_B</span><span class="p">]</span>
-    <span class="n">x_su</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">y_su</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_su</span><span class="o">*</span><span class="n">y_su</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Slope and intercept of regression line</span>
-
-<span class="k">def</span> <span class="nf">regress</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">corr</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">)</span>
-    <span class="n">reg_slope</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_y</span><span class="p">])</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_x</span><span class="p">])</span>
-    <span class="n">reg_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_y</span><span class="p">])</span> <span class="o">-</span> <span class="n">reg_slope</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_x</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">reg_slope</span><span class="p">,</span> <span class="n">reg_int</span><span class="p">])</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Fitted value; the regression estimate at x=new_x</span>
-
-<span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">,</span> <span class="n">new_x</span><span class="p">):</span>
-    <span class="n">slope_int</span> <span class="o">=</span> <span class="n">regress</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">slope_int</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">new_x</span> <span class="o">+</span> <span class="n">slope_int</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Fitted values; the regression estimates lie on a straight line</span>
-
-<span class="k">def</span> <span class="nf">fitted_values</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">):</span>
-    <span class="n">slope_int</span> <span class="o">=</span> <span class="n">regress</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">slope_int</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">table</span><span class="p">[</span><span class="n">column_x</span><span class="p">]</span> <span class="o">+</span> <span class="n">slope_int</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Residuals: Deviations from the regression line</span>
-
-<span class="k">def</span> <span class="nf">residuals</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">):</span>
-    <span class="n">fitted</span> <span class="o">=</span> <span class="n">fitted_values</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">table</span><span class="p">[</span><span class="n">column_y</span><span class="p">]</span> <span class="o">-</span> <span class="n">fitted</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Scatter plot with fitted (regression) line</span>
-
-<span class="k">def</span> <span class="nf">scatter_fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">):</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_x</span><span class="p">],</span> <span class="n">table</span><span class="p">[</span><span class="n">column_y</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_x</span><span class="p">],</span> <span class="n">fitted_values</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'green'</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">column_x</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">column_y</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># A residual plot</span>
-
-<span class="k">def</span> <span class="nf">residual_plot</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">):</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_x</span><span class="p">],</span> <span class="n">residuals</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">column_x</span><span class="p">,</span> <span class="n">column_y</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">xm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_x</span><span class="p">])</span>
-    <span class="n">xM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="n">column_x</span><span class="p">])</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xm</span><span class="p">,</span> <span class="n">xM</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">column_x</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'residual'</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Residual-plots">Residual plots<a class="anchor-link" href="#Residual-plots">¶</a></h2></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Suppose you have carried out the regression of sons' heights on fathers' heights.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">scatter_fit</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="k">True</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_51_0.png"/></div>
+<img src="../notebooks-images/Regression_37_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It is a good idea to then draw a residual plot. This is a scatter plot of the residuals versus the values of $x$. The residual plot of a good regression looks like the one below: a formless cloud with no pattern, centered around the horizontal axis. It shows that there is no discernible non-linear pattern in the original scatter plot.</p></div></div>
+<p>It is a good idea to then draw a residual plot, a scatter plot of the residuals versus the values of $x$. The residual plot of a good regression looks like the one below: a formless cloud with no pattern, centered around the horizontal axis. It shows that there is no discernible non-linear pattern in the original scatter plot.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">residual_plot</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span><span class="s">'son'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">residual_plot</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">"""Plot the residuals (errors) of regression."""</span>
+    <span class="n">residuals</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="n">fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'residuals'</span><span class="p">,</span> <span class="n">residuals</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="k">True</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    
+<span class="n">residual_plot</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_53_0.png"/></div>
+<img src="../notebooks-images/Regression_39_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Residual plots can be useful for spotting non-linearity in the data, or other features that weaken the regression analysis. For example, consider the SAT data of the previous section, and suppose you try to estimate the <code>Combined</code> score based on <code>Participation Rate</code>.</p></div></div>
@@ -518,62 +372,47 @@ $$</div></div>
 <p>... (41 rows omitted)</p></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sat2014</span><span class="p">[</span><span class="s">'Participation Rate'</span><span class="p">],</span> <span class="n">sat2014</span><span class="p">[</span><span class="s">'Combined'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Participation Rate'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Combined'</span><span class="p">)</span>
-<span class="k">None</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">sat2014</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'Participation Rate'</span><span class="p">,</span> <span class="s">'Combined'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_56_0.png"/></div>
+<img src="../notebooks-images/Regression_42_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The relation between the variables is clearly non-linear, but you might be tempted to fit a straight line anyway, especially if you did not first draw the scatter diagram of the data.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">scatter_fit</span><span class="p">(</span><span class="n">sat2014</span><span class="p">,</span> <span class="s">'Participation Rate'</span><span class="p">,</span> <span class="s">'Combined'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">"A bad idea"</span><span class="p">)</span>
-<span class="k">None</span>
-</pre></div></div></div>
-<div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_58_0.png"/></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<p>The relation between the variables is clearly non-linear, but you might be tempted to fit a straight line anyway, especially if you never looked at a scatter diagram of the data.</p>
 <p>The points in the scatter plot start out above the regression line, then are consistently below the line, then above, then below. This pattern of non-linearity is more clearly visible in the residual plot.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">residual_plot</span><span class="p">(</span><span class="n">sat2014</span><span class="p">,</span> <span class="s">'Participation Rate'</span><span class="p">,</span> <span class="s">'Combined'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Residual plot of the bad regression'</span><span class="p">)</span>
-<span class="k">None</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Residual plot of a bad regression'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_60_0.png"/></div>
+<img src="../notebooks-images/Regression_44_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This residual plot shows a non-linear pattern, and is a signal that linear regression should not have been used for these data.</p></div></div>
+<p>This residual plot is not a formless cloud; it shows a non-linear pattern, and is a signal that linear regression should not have been used for these data.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-rough-size-of-the-residuals">The rough size of the residuals<a class="anchor-link" href="#The-rough-size-of-the-residuals">¶</a></h3><p>Let us return to the heights of the fathers and sons, and compare the estimates based on using the regression line and the flat line (in yellow) at the average height of the sons. As noted above, the rough size of the errors made using the flat line is the SD of $y$. Clearly, the regression line does a better job of estimating sons' heights than the flat line does; indeed, it minimizes the mean squared error among all lines. Thus, the rough size of the errors made using the regression line must be smaller that that using the flat line. In other words, the SD of the residuals must be smaller than the overall SD of $y$.</p></div></div>
+<h3 id="The-rough-size-of-the-residuals">The rough size of the residuals<a class="anchor-link" href="#The-rough-size-of-the-residuals">¶</a></h3><p>Let us return to the heights of the fathers and sons, and investigate the estimates based on using the regression line and the flat line (in yellow) at the average height of the sons. As noted above, the rough size of the errors made using the flat line is the SD of $y$. The regression line appears to do a better job of estimating sons' heights than the flat line does. Thus, the rough size of the errors made using the regression line must be smaller that that using the flat line. In other words, the SD of the residuals must be smaller than the overall SD of $y$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ave_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'son'</span><span class="p">])</span>
-<span class="n">scatter_fit</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'father'</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'father'</span><span class="p">])],</span> <span class="p">[</span><span class="n">ave_y</span><span class="p">,</span> <span class="n">ave_y</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'gold'</span><span class="p">)</span>
-<span class="k">None</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<span class="n">average_son</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'son'</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span> <span class="p">[</span><span class="n">average_son</span><span class="p">,</span> <span class="n">average_son</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'gold'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_63_0.png"/></div>
+<img src="../notebooks-images/Regression_47_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Here, once again, are the residuals in the estimation of sons' heights based on fathers' heights. Each residual is the difference between the height of a son and his estimated (or "fitted") height.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">heights</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">res</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>father</th> <th>son</th> <th>fitted value</th> <th>residual</th>
+            <th>father</th> <th>son</th> <th>son (fitted)</th> <th>residual</th>
         </tr>
     </thead>
     <tbody>
@@ -622,26 +461,25 @@ $$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The average of the residuals is 0. All the negative errors exactly cancel out all the positive errors.</p>
-<p>The SD of the residuals is about 2.4 inches, while the overall SD of the sons' heights is about 2.7 inches. As expected, the SD of the residuals is smaller than the overall SD of $y$.</p></div></div>
+<p>The standard deviation of the residuals is about 2.4 inches, while the overall SD of the sons' heights is about 2.8 inches. As expected, the SD of the residuals is smaller than the overall SD of $y$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'residual'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'residual'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>2.4358716091393409</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'father'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'son'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>2.744553207672785</pre></div>
+<pre>2.8148875206879027</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Smaller by what factor? Another remarkable fact of mathematics is that no matter what the data look like, the SD of the residuals is $\sqrt{1-r^2}$
-times the SD of $y$.</p></div></div>
+<p>By what factor? Another remarkable fact of mathematics is that no matter what the data look like, the SD of the residuals is $\sqrt{1-r^2}$ times the SD of $y$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'residual'</span><span class="p">])</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'son'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'residual'</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'son'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.86535308826267487</pre></div>
@@ -658,27 +496,26 @@ times the SD of $y$.</p></div></div>
 <p>SD of the residuals $~=~ \sqrt{1 - r^2} \cdot \mbox{SD of}~y$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The residuals are equal to the values of $y$ minus the fitted values. Since the average of the residuals is 0, the average of the fitted values must be equal to the average of $y$.</p>
-<p>In the figure below, the fitted values are all on the green line segment. The center of that segment is at the point of averages, consistent with our calculation of the average of the fitted values.</p></div></div>
+<p>The residuals are equal to the values of $y$ minus the fitted values. Since the average of the residuals is 0, the average of the fitted values must be equal to the average of $y$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">scatter_fit</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="k">True</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Regression_74_0.png"/></div>
+<img src="../notebooks-images/Regression_58_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The SD of the fitted values is visibly smaller than the overall SD of $y$. The fitted values range from about 64 to about 73, whereas the values of $y$ range from about 58 to 77.</p>
+<p>The SD of the fitted values is smaller than the overall SD of $y$. The fitted values range from about 64 to about 73, whereas the values of $y$ range from about 58 to 77.</p>
 <p>So if we take the ratio of the SD of the fitted values to the SD of $y$, we expect to get a number between 0 and 1. And indeed we do: a very special number between 0 and 1.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'fitted value'</span><span class="p">])</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s">'son'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'son (fitted)'</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'son'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.50116268080759108</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">r</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.50116268080759108</pre></div>

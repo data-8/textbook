@@ -27,7 +27,7 @@
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="o">.</span><span class="n">column_labels</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="o">.</span><span class="n">labels</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>('red_VRM', 'red_Timestamp', 'Location')</pre></div>
@@ -143,27 +143,28 @@
 <p>So, let's work out a way to show where her car has been seen on a map.  We'll need to extract the latitude and longitude, as the data isn't quite in the format that the mapping software expects: the mapping software expects the latitude to be in one column and the longitude in another.  Let's write some Python code to do that, by splitting the Location string into two pieces: the stuff before the comma (the latitude) and the stuff after (the longitude).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">getlatitude</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span> <span class="c"># Break it into two parts</span>
-    <span class="n">latstring</span> <span class="o">=</span> <span class="n">before</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c"># Get rid of the annoying '('</span>
-    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">latstring</span><span class="p">)</span> <span class="c"># Convert the string to a number</span>
-<span class="k">def</span> <span class="nf">getlongitude</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span> <span class="c"># Break it into two parts</span>
-    <span class="n">longstring</span> <span class="o">=</span> <span class="n">after</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c"># Get rid of the ' ' and the ')'</span>
-    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">longstring</span><span class="p">)</span> <span class="c"># Convert the string to a number</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">get_latitude</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span>         <span class="c"># Break it into two parts</span>
+    <span class="n">lat_string</span> <span class="o">=</span> <span class="n">before</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'('</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span> <span class="c"># Get rid of the annoying '('</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">lat_string</span><span class="p">)</span>             <span class="c"># Convert the string to a number</span>
+
+<span class="k">def</span> <span class="nf">get_longitude</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span>                 <span class="c"># Break it into two parts</span>
+    <span class="n">long_string</span> <span class="o">=</span> <span class="n">after</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">')'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c"># Get rid of the ')' and spaces</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">long_string</span><span class="p">)</span>                    <span class="c"># Convert the string to a number</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's test it to make sure it works correctly.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">getlatitude</span><span class="p">(</span><span class="s">'(37.797558, -122.26935)'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">get_latitude</span><span class="p">(</span><span class="s">'(37.797558, -122.26935)'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>37.797558</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">getlongitude</span><span class="p">(</span><span class="s">'(37.797558, -122.26935)'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">get_longitude</span><span class="p">(</span><span class="s">'(37.797558, -122.26935)'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>-122.26935</pre></div>
@@ -172,57 +173,58 @@
 <p>Good, now we're ready to add these as extra columns to the table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="p">[</span><span class="s">'Latitude'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getlatitude</span><span class="p">,</span> <span class="s">'Location'</span><span class="p">)</span>
-<span class="n">lprs</span><span class="p">[</span><span class="s">'Longitude'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getlongitude</span><span class="p">,</span> <span class="s">'Location'</span><span class="p">)</span>
-<span class="n">lprs</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Location'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s">'Latitude'</span><span class="p">,</span>  <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_latitude</span><span class="p">,</span> <span class="s">'Location'</span><span class="p">),</span>
+        <span class="s">'Longitude'</span><span class="p">,</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_longitude</span><span class="p">,</span> <span class="s">'Location'</span><span class="p">)</span>
+        <span class="p">])</span>
 <span class="n">lprs</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Plate</th> <th>Timestamp</th> <th>Latitude</th> <th>Longitude</th>
+            <th>Plate</th> <th>Timestamp</th> <th>Location</th> <th>Latitude</th> <th>Longitude</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1275226</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
+            <td>1275226</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798304999999999, -122.27574799999999)</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>27529C </td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
+            <td>27529C </td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798304999999999, -122.27574799999999)</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1158423</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
+            <td>1158423</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798304999999999, -122.27574799999999)</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1273718</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
+            <td>1273718</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798304999999999, -122.27574799999999)</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1077682</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
+            <td>1077682</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798304999999999, -122.27574799999999)</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1214195</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
+            <td>1214195</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.798281000000003, -122.27575299999999)</td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1062420</td> <td>01/19/2011 02:06:00 AM</td> <td>37.7983 </td> <td>-122.276 </td>
+            <td>1062420</td> <td>01/19/2011 02:06:00 AM</td> <td>(37.79833, -122.27574300000001)          </td> <td>37.7983 </td> <td>-122.276 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1319726</td> <td>01/19/2011 02:05:00 AM</td> <td>37.7985 </td> <td>-122.276 </td>
+            <td>1319726</td> <td>01/19/2011 02:05:00 AM</td> <td>(37.798475000000003, -122.27571500000001)</td> <td>37.7985 </td> <td>-122.276 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1214196</td> <td>01/19/2011 02:05:00 AM</td> <td>37.7985 </td> <td>-122.276 </td>
+            <td>1214196</td> <td>01/19/2011 02:05:00 AM</td> <td>(37.798499999999997, -122.27571)         </td> <td>37.7985 </td> <td>-122.276 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>75227  </td> <td>01/19/2011 02:05:00 AM</td> <td>37.7986 </td> <td>-122.276 </td>
+            <td>75227  </td> <td>01/19/2011 02:05:00 AM</td> <td>(37.798596000000003, -122.27569)         </td> <td>37.7986 </td> <td>-122.276 </td>
         </tr>
     </tbody>
 </table>
@@ -232,8 +234,8 @@
 <p>And at last, we can draw a map with a marker everywhere that her car has been seen.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">jeanquan</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'6FCH845'</span><span class="p">)</span>
-<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">jeanquan</span><span class="p">[</span><span class="s">'Latitude'</span><span class="p">],</span> <span class="n">jeanquan</span><span class="p">[</span><span class="s">'Longitude'</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">jeanquan</span><span class="p">[</span><span class="s">'Timestamp'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">jean_quan</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'6FCH845'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'Latitude'</span><span class="p">,</span> <span class="s">'Longitude'</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">])</span>
+<span class="n">Marker</span><span class="o">.</span><span class="n">map_table</span><span class="p">(</span><span class="n">jean_quan</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;
@@ -288,14 +290,14 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_5d64be6801f04377a21df2da73625808&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_3d16bdc13b9d4cae9fa8dcd8eebddcf0&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
       
 
       var base_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 19,
+          maxZoom: 17,
           minZoom: 10,
           attribution: 'Map data (c) &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
       });
@@ -332,9 +334,9 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_5d64be6801f04377a21df2da73625808', {
+      var map = L.map('folium_3d16bdc13b9d4cae9fa8dcd8eebddcf0', {
                                        center:[37.802557, -122.2739175],
-                                       zoom: 17,
+                                       zoom: 13.0,
                                        maxBounds: bounds,
                                        layers: [base_tile]
                                      });
@@ -431,22 +433,25 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="k">def</span> <span class="nf">getcolor</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
+
+<span class="k">def</span> <span class="nf">get_color</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="s">'%m/%d/%Y %I:%M:%S %p'</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
         <span class="k">return</span> <span class="s">'green'</span> <span class="c"># Weekend</span>
-    <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="ow">and</span> <span class="n">t</span><span class="o">.</span><span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">17</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">t</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="ow">and</span> <span class="n">t</span><span class="o">.</span><span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">17</span><span class="p">:</span>
         <span class="k">return</span> <span class="s">'blue'</span> <span class="c"># Weekday daytime</span>
-    <span class="k">return</span> <span class="s">'red'</span> <span class="c"># Weekday evening</span>
-<span class="n">lprs</span><span class="p">[</span><span class="s">'Color'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getcolor</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">'red'</span> <span class="c"># Weekday evening</span>
+    
+<span class="n">lprs</span><span class="o">.</span><span class="n">append_column</span><span class="p">(</span><span class="s">'Color'</span><span class="p">,</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_color</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now we can check out another license plate, this time with our spiffy color-coding.  This one happens to be the car that the city issues to the Fire Chief.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'1328354'</span><span class="p">)</span>
-<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">'Latitude'</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">'Longitude'</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Timestamp'</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Color'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'1328354'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'Latitude'</span><span class="p">,</span> <span class="s">'Longitude'</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">,</span> <span class="s">'Color'</span><span class="p">])</span>
+<span class="n">Marker</span><span class="o">.</span><span class="n">map_table</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;
@@ -501,7 +506,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_f55608d7741a4788b5085c9e3db9b73a&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_cdd9ec8876194fb2b90f959dd0e57199&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -509,7 +514,7 @@
 
       var base_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 17,
-          minZoom: 10,
+          minZoom: 9.0,
           attribution: 'Map data (c) &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
       });
 
@@ -545,9 +550,9 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_f55608d7741a4788b5085c9e3db9b73a', {
+      var map = L.map('folium_cdd9ec8876194fb2b90f959dd0e57199', {
                                        center:[37.8053455, -122.2065145],
-                                       zoom: 13,
+                                       zoom: 11.0,
                                        maxBounds: bounds,
                                        layers: [base_tile]
                                      });
@@ -673,11 +678,15 @@
 <p>Hmm.  We can see a blue cluster in downtown Oakland, where the Fire Chief's car was seen on weekdays during business hours.  I bet we've found her office.  In fact, if you happen to know downtown Oakland, those are mostly clustered right near City Hall.  Also, her car was seen twice in northern Oakland on weekday evenings.  One can only speculate what that indicates.  Maybe dinner with a friend?  Or running errands?  Off to the scene of a fire?  Who knows.  And then the car has been seen once more, late at night on a weekend, in a residential area in the hills.  Her home address, maybe?</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's look at another.</p></div></div>
+<p>Let's look at another. This time, we'll make a function to display the map.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'5AJG153'</span><span class="p">)</span>
-<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">'Latitude'</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">'Longitude'</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Timestamp'</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Color'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">map_plate</span><span class="p">(</span><span class="n">plate</span><span class="p">):</span>
+    <span class="n">sightings</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="n">plate</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">sightings</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'Latitude'</span><span class="p">,</span> <span class="s">'Longitude'</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">,</span> <span class="s">'Color'</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">Marker</span><span class="o">.</span><span class="n">map_table</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    
+<span class="n">map_plate</span><span class="p">(</span><span class="s">'5AJG153'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;
@@ -732,7 +741,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_ad53b60f13dc4519af7c78c8cada353e&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_4904063c1ffd47e381361282002ddfc0&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -740,7 +749,7 @@
 
       var base_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 17,
-          minZoom: 10,
+          minZoom: 9.0,
           attribution: 'Map data (c) &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
       });
 
@@ -776,9 +785,9 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_ad53b60f13dc4519af7c78c8cada353e', {
+      var map = L.map('folium_4904063c1ffd47e381361282002ddfc0', {
                                        center:[37.798049, -122.2236545],
-                                       zoom: 13,
+                                       zoom: 11.0,
                                        maxBounds: bounds,
                                        layers: [base_tile]
                                      });
@@ -2723,8 +2732,7 @@
 <p>We can look at another:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'6UZA652'</span><span class="p">)</span>
-<span class="n">Marker</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">'Latitude'</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">'Longitude'</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Timestamp'</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s">'Color'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">map_plate</span><span class="p">(</span><span class="s">'6UZA652'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;
@@ -2779,7 +2787,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_ff6a9f6cd04a40ad97f6c1ec0c8734c0&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_b3f5defd41be47628f6072f54e020be9&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -2787,7 +2795,7 @@
 
       var base_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 17,
-          minZoom: 10,
+          minZoom: 10.0,
           attribution: 'Map data (c) &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
       });
 
@@ -2823,9 +2831,9 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_ff6a9f6cd04a40ad97f6c1ec0c8734c0', {
+      var map = L.map('folium_b3f5defd41be47628f6072f54e020be9', {
                                        center:[37.8037395, -122.258598],
-                                       zoom: 15,
+                                       zoom: 12.0,
                                        maxBounds: bounds,
                                        layers: [base_tile]
                                      });

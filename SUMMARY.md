@@ -35,5 +35,7 @@
   * [Center](chapter3/center.md)
   * [Spread](chapter3/spread.md)
   * [The Normal Distribution](chapter3/normal.md)
+  * [Exploration: Privacy](chapter3/privacy.md)
 * [Chapter 4](chapter4/intro.md)
   * [Correlation](chapter4/correlation.md)
+  * [Regression](chapter4/regression.md)
