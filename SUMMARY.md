@@ -39,3 +39,4 @@
 * [Chapter 4](chapter4/intro.md)
   * [Correlation](chapter4/correlation.md)
   * [Regression](chapter4/regression.md)
+  * [Prediction](chapter4/prediction.md)

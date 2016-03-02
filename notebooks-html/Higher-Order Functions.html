@@ -24,13 +24,13 @@
 <span class="k">def</span> <span class="nf">halve</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span>
 
-<span class="p">[</span><span class="n">double</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">triple</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">halve</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">double</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">triple</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">halve</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">double</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">triple</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">halve</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[8, 12, 2.0]</pre></div>
+<pre>[8, 12, 2.0, 10, 15, 2.5]</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Rather than defining each of these functions with a separate <code>def</code> statement, it is possible to generate each of them dynamically by passing in the constant to a generic <code>scale_by</code> function.</p></div></div>
+<p>Rather than defining each of these functions with a separate <code>def</code> statement, it is possible to generate each of them dynamically by passing in a constant to a generic <code>scale_by</code> function.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">scale_by</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
@@ -42,13 +42,13 @@
 <span class="n">triple</span> <span class="o">=</span> <span class="n">scale_by</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">halve</span> <span class="o">=</span> <span class="n">scale_by</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
         
-<span class="p">[</span><span class="n">double</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">triple</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">halve</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">double</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">triple</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">halve</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">double</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">triple</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">halve</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[8, 12, 2.0]</pre></div>
+<pre>[8, 12, 2.0, 10, 15, 2.5]</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The body of the <code>scale_by</code> function actually defines a new function, called <code>scale</code>, and then returns it. The return value of <code>scale_by</code> is a function that takes a number and scales it. Because <code>scale_by</code> is a function that returns a function, it is called a <em>higher-order function</em>.</p>
+<p>The body of the <code>scale_by</code> function actually defines a new function, called <code>scale</code>, and then returns it. The return value of <code>scale_by</code> is a function that takes a number <code>x</code> and multiplies it by <code>a</code>. Because <code>scale_by</code> is a function that returns a function, it is called a <em>higher-order function</em>.</p>
 <p>The purpose of higher-order functions is to create functions that combine data with behavior. Above, the <code>double</code> function is created by combining the data value <code>2</code> with the behavior of scaling by a constant.</p>
 <p>A <code>def</code> statement within another <code>def</code> statement behaves in the same way as any other <code>def</code> statement <em>except</em> that:</p>
 <ol>
@@ -112,7 +112,8 @@
 <p>Now, we can use the original list of numbers to create the conversion function. The mean and standard deviation are stored within the function that is returned, called <code>to_su</code> below. What's more, these numbers are only computed once, no matter how many times we call the function.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">to_su</span> <span class="o">=</span> <span class="n">converter_to_standard_units</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">observations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">to_su</span> <span class="o">=</span> <span class="n">converter_to_standard_units</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
 <span class="p">[</span><span class="n">to_su</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">to_su</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">to_su</span><span class="p">(</span><span class="mi">8</span><span class="p">)]</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -144,6 +145,44 @@
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>11.0</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-A-New-Value-for-X">Example: A New Value for X<a class="anchor-link" href="#Example:-A-New-Value-for-X">¶</a></h2></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Previously, in order to compute the fitted values for a regression, we first computed the slope and intercept of the regression line. The fitted values for a data set of (<code>x</code>, <code>y</code>) pairs are estimates of <code>y</code> that are based on the corresponding <code>x</code>. For each <code>x</code>, we convert <code>x</code> to standard units from the original units of <code>x</code> values, then multiply by <code>r</code>, then convert the result to the original units of <code>y</code> values. We can write down this process as a higher-order function.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">regression_estimator</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">"""Return an estimator for y as a function of x."""</span>
+    <span class="n">to_su</span> <span class="o">=</span> <span class="n">converter_to_standard_units</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">from_su</span> <span class="o">=</span> <span class="n">converter_from_standard_units</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">estimate</span><span class="p">(</span><span class="n">any_x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_su</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">to_su</span><span class="p">(</span><span class="n">any_x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">estimate</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">linear_error</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="c"># Draw scatter of x &amp; y with line a, b &amp; some example errors</span>
+        <span class="k">return</span> <span class="o">...</span> <span class="c"># squared error</span>
+    <span class="k">return</span> <span class="n">error</span>
+
+<span class="n">e</span> <span class="o">=</span> <span class="n">regress</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s">'father'</span><span class="p">,</span> <span class="s">'son'</span><span class="p">)</span>
+<span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">regression_estimator</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">"""Return an estimator for y as a function of x."""</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">intercept</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">estimate</span><span class="p">(</span><span class="n">any_x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">any_x</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">estimate</span>
+</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Higher-order functions appear often in the context of prediction because estimating a value often involves both data to inform the prediction and a procedure that makes the prediction itself.</p></div></div></div>
