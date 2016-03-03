@@ -1,4 +1,4 @@
-Multiple Regression
-===================
+Optimization
+============
 
-{% include "../notebooks-html/Multiple.html" %}
+{% include "../notebooks-html/Optimization.html" %}
