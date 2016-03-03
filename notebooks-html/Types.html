@@ -48,8 +48,10 @@
 </tbody>
 </table>
 <p>The first two types represent numbers. A "floating-point" number describes its <a href="https://en.wikipedia.org/wiki/Floating_point">representation by a computer</a>, which is a topic for another text. Practically, the difference between an integer and a floating-point number is that the latter can represent fractions in addition to whole values.</p>
-<p>Boolean values, named for the logician <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>, represent truth and take only two possible values: <code>True</code> and <code>False</code>.</p>
-<p>Strings are the most flexible type of all. They can contain arbitrary text. A string can describe a number or a truth value, as well as any word or sentence. Much of the world's data is text, and text is represented in computers as strings.</p>
+<p>Boolean values, named for the logician <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>, represent truth and take only two possible values: <code>True</code> and <code>False</code>.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Strings">Strings<a class="anchor-link" href="#Strings">¶</a></h2><p>Strings are the most flexible type of all. They can contain arbitrary text. A string can describe a number or a truth value, as well as any word or sentence. Much of the world's data is text, and text is represented in computers as strings.</p>
 <p>The meaning of an expression depends both upon its structure and the types of values that are being combined. So, for instance, adding two strings together produces another string. This expression is still an addition expression, but it is combining a different type of value.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -80,19 +82,41 @@
 <p>Why not? Try it out.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>str</code> function returns a string representation of any value.</p></div></div>
+<p>The <code>str</code> function returns a string representation of any value. Using this function, strings can be constructed that have embedded values.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">str</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="s">' '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="k">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="s">"That's "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">' '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>'5 True'</pre></div>
+<pre>"That's 2 True"</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There are also functions to transform strings that begin with <code>str.</code>, such as <code>str.upper</code> to create an upper-case string.</p></div></div>
+<h3 id="String-Methods">String Methods<a class="anchor-link" href="#String-Methods">¶</a></h3><p>From an existing string, related strings can be constructed using string methods, which are functions that operate on strings. These methods are called by placing a dot after the string, then calling the function.</p>
+<p>For example, the following method generates an uppercased version of a string.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="s">"That's "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="k">False</span><span class="p">))</span> <span class="o">+</span> <span class="s">'!'</span>
+<div class=" highlight hl-ipython3"><pre><span class="s">"loud"</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>"THAT'S FALSE!"</pre></div></div>
+<pre>'LOUD'</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Perhaps the most important method is <code>replace</code>, which replaces all instances of a substring within the string. The <code>replace</code> method takes two arguments, the text to be replaced and its replacement.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="s">'hitchhiker'</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'hi'</span><span class="p">,</span> <span class="s">'ma'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>'matchmaker'</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>String methods can also be invoked using variable names, as long as those names are bound to strings. So, for instance, the following two-step process generates the word "degrade" starting from "train" by first creating "ingrain" and then applying a second replacement.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">s</span> <span class="o">=</span> <span class="s">"train"</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'t'</span><span class="p">,</span> <span class="s">'ing'</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'in'</span><span class="p">,</span> <span class="s">'de'</span><span class="p">)</span>
+<span class="n">u</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>'degrade'</pre></div></div>
