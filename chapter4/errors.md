@@ -1,4 +1,4 @@
 Errors
 ======
 
-{% include "../notebooks-html/Errors.html" %}
+{% include "../notebooks-html/Error.html" %}
