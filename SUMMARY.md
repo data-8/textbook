@@ -40,7 +40,5 @@
   * [Regression](chapter4/regression.md)
   * [Prediction](chapter4/prediction.md)
   * [Higher-Order Functions](chapter4/hof.md)
-  * [Optimization](chapter4/optimization.md)
-  * [Multiple Regression](chapter4/multiple.md)
-  * [Classification](chapter4/classification.md)
-  * [Feature Selection](chapter4/features.md)
+  * [Errors](chapter4/errors.md)
+
