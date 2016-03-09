@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/hodgkins.csv&path=notebooks/Multiple.ipynb">Interact</a>
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/grades_and_piazza.csv&path=notebooks/Multiple.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -13,7 +13,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now that we have explored ways to use multiple features to predict a categorical variable, it is natural to study ways of using multiple predictor variables to predict a quantitative variable. A commonly used method to do this is called <em>multiple regression</em>.</p>
 <p>We will start with an example to review some fundamental aspects of <em>simple</em> regression, that is, regression based on one predictor variable.</p>
-<h3 id="Example:-Simple-Regression">Example: Simple Regression<a class="anchor-link" href="#Example:-Simple-Regression">¶</a></h3><p>Suppose that our goal is to use regression to estimate height based on weight, based on a sample that looks consistent with the regression model. Suppose the observed correlation $r$ is 0.5, and that the summary statistics for the two variables are as in the table below:</p>
+<h3 id="Example:-Simple-Regression">Example: Simple Regression<a class="anchor-link" href="#Example:-Simple-Regression">¶</a></h3><p>Suppose that our goal is to use regression to estimate the height of a basset hound based on its weight, using a sample that looks consistent with the regression model. Suppose the observed correlation $r$ is 0.5, and that the summary statistics for the two variables are as in the table below:</p>
 <table>
 <thead><tr>
 <th style="text-align:right"></th>
@@ -24,265 +24,316 @@
 <tbody>
 <tr>
 <td style="text-align:right">height</td>
-<td style="text-align:center">69 inches</td>
-<td style="text-align:center">3 inches</td>
+<td style="text-align:center">14 inches</td>
+<td style="text-align:center">2 inches</td>
 </tr>
 <tr>
 <td style="text-align:right">weight</td>
-<td style="text-align:center">150 pounds</td>
-<td style="text-align:center">20 pounds</td>
+<td style="text-align:center">50 pounds</td>
+<td style="text-align:center">5 pounds</td>
 </tr>
 </tbody>
 </table>
 <p>To calculate the equation of the regression line, we need the slope and the intercept.</p>
 $$
 \mbox{slope} ~=~ \frac{r \cdot \mbox{SD of }y}{\mbox{SD of }x} ~=~
-\frac{0.5 \cdot 3 \mbox{ inches}}{20 \mbox{ pounds}} ~=~ 0.075 ~\mbox{inches per pound}
+\frac{0.5 \cdot 2 \mbox{ inches}}{5 \mbox{ pounds}} ~=~ 0.2 ~\mbox{inches per pound}
 $$$$
 \mbox{intercept} ~=~ \mbox{average of }y - \mbox{slope}\cdot \mbox{average of } x
-~=~ 69 \mbox{ inches} ~-~ 0.075 \mbox{ inches per pound} \cdot 150 \mbox{ pounds}
-~=~ 57.75 \mbox{ inches}
+~=~ 14 \mbox{ inches} ~-~ 0.2 \mbox{ inches per pound} \cdot 50 \mbox{ pounds}
+~=~ 4 \mbox{ inches}
 $$<p>The equation of the regression line allows us to calculate the estimated height, in inches,
 based on a given weight in pounds:</p>
 $$
-\mbox{estimated height} ~=~ 0.075 \cdot \mbox{given weight} ~+~ 57.75
-$$<p>The slope of the line is measures the increase in the estimated height per unit increase in weight. The slope is positive, and it is important to note that this does not mean that we think people get taller if they put on weight. The slope reflects the difference in the average heights of two groups of people that are 1 pound apart in weight. Specifically, consider a group of people whose weight is $w$ pounds, and the group whose weight is $w+1$ pounds. The second group is estimated to be 0.075 inches taller, on average. This is true for all values of $w$ in the sample.</p>
+\mbox{estimated height} ~=~ 0.2 \cdot \mbox{given weight} ~+~ 4
+$$<p>The slope of the line is measures the increase in the estimated height per unit increase in weight. The slope is positive, and it is important to note that this does not mean that we think basset hounds get taller if they put on weight. The slope reflects the difference in the average heights of two groups of dogs that are 1 pound apart in weight. Specifically, consider a group of dogs whose weight is $w$ pounds, and the group whose weight is $w+1$ pounds. The second group is estimated to be 0.2 inches taller, on average. This is true for all values of $w$ in the sample.</p>
 <p>In general, the slope of the regression line can be interpreted as the average increase in $y$ per unit increase in $x$. Note that if the slope is negative, then for every unit increase in $x$, the average of $y$ decreases.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Multiple-Predictors">Multiple Predictors<a class="anchor-link" href="#Multiple-Predictors">¶</a></h3><p>In multiple regression, more than one predictor variable is used to estimate $y$. For example, we might want to estimate blood pressure based on both weight and age. Then the multiple regression model would involve two slopes, an intercept, and random errors as before:</p>
-<p>blood pressure $~=~ \mbox{slope}_w * \mbox{weight} ~+~ \mbox{slope}_a * \mbox{age} ~+~ \mbox{intercept} ~+~ \mbox{random error}$</p>
-<p>Our goal would be to find the estimated blood pressure using the best estimates of the two slopes and the intercept; as before, the "best" estimates are those that minimize the mean squared error of estimation.</p></div></div>
+<h3 id="Multiple-Predictors">Multiple Predictors<a class="anchor-link" href="#Multiple-Predictors">¶</a></h3><p>In multiple regression, more than one predictor variable is used to estimate $y$. For example, a Dartmouth study of undergraduates collected information about their use of an online course forum and their GPA. We might want to predict a student's GPA based on how often they visit the course forum and how often they answer someone else's question.  Then the multiple regression model would involve two slopes, an intercept, and random errors as before:</p>
+<p>GPA $~=~ \mbox{slope}_v * \mbox{visits} ~+~ \mbox{slope}_a * \mbox{answers} ~+~ \mbox{intercept} ~+~ \mbox{random error}$</p>
+<p>Our goal would be to find the estimated GPA using the best estimates of the two slopes and the intercept; as before, the "best" estimates are those that minimize the mean squared error of estimation.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The mathematics of multiple regression is complicated, and Python code for multiple regression requires knowledge of data structures that we have not covered in this course. Therefore we will just examine output to note some important parallels and differences between multiple regression and simple regression.</p>
-<p>To start off, we will revisit the Hodgkin's disease data that we explored in our introduction to inference in simple regression. The table consists of data for a random sample of 22 patients. The variables are height in centimeters, a measure of radiation, a measure of chemotherapy, a baseline score on a test of the health of the lungs, and the score on the test taken 15 months after the treatment. It is apparent from the data that the scores tend to go down after 15 months; our goal will be to try to predict the drop in scores from baseline to 15 months, using combinations of the other variables.</p></div></div>
+<p>To start off, we will investigate the data set, which is <a href="http://studentlife.cs.dartmouth.edu/">described online</a>. Each row represents a student. In addition to the student's GPA, the row tallies</p>
+<ul>
+<li><code>days online</code>: The number of days on which the student viewed the online forum</li>
+<li><code>views</code>: The number of posts viewed</li>
+<li><code>contributions</code>: The number of contributions, including posts and follow-up discussions</li>
+<li><code>questions</code>: The number of questions posted</li>
+<li><code>notes</code>: The number of notes posted</li>
+<li><code>answers</code>: The number of answers posted</li>
+</ul></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">hodgkins</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'hodgkins.csv'</span><span class="p">)</span>
-<span class="n">hodgkins</span><span class="p">[</span><span class="s">'drop'</span><span class="p">]</span> <span class="o">=</span> <span class="n">hodgkins</span><span class="p">[</span><span class="s">'base'</span><span class="p">]</span> <span class="o">-</span> <span class="n">hodgkins</span><span class="p">[</span><span class="s">'month15'</span><span class="p">]</span>  <span class="c"># drop in scores after treatment</span>
-<span class="n">hodgkins</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">grades</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'grades_and_piazza.csv'</span><span class="p">)</span>
+<span class="n">grades</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>height</th> <th>rad</th> <th>chemo</th> <th>base</th> <th>month15</th> <th>drop</th>
+            <th>GPA</th> <th>days online</th> <th>views</th> <th>contributions</th> <th>questions</th> <th>notes</th> <th>answers</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>164   </td> <td>679 </td> <td>180  </td> <td>160.57</td> <td>87.77  </td> <td>72.8  </td>
+            <td>2.863</td> <td>29         </td> <td>299  </td> <td>5            </td> <td>1        </td> <td>1    </td> <td>0      </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>168   </td> <td>311 </td> <td>180  </td> <td>98.24 </td> <td>67.62  </td> <td>30.62 </td>
+            <td>3.505</td> <td>57         </td> <td>299  </td> <td>0            </td> <td>0        </td> <td>0    </td> <td>0      </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>173   </td> <td>388 </td> <td>239  </td> <td>129.04</td> <td>133.33 </td> <td>-4.29 </td>
+            <td>3.029</td> <td>27         </td> <td>101  </td> <td>1            </td> <td>1        </td> <td>0    </td> <td>0      </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>157   </td> <td>370 </td> <td>168  </td> <td>85.41 </td> <td>81.28  </td> <td>4.13  </td>
+            <td>3.679</td> <td>67         </td> <td>301  </td> <td>1            </td> <td>0        </td> <td>0    </td> <td>0      </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>160   </td> <td>468 </td> <td>151  </td> <td>67.94 </td> <td>79.26  </td> <td>-11.32</td>
+            <td>3.474</td> <td>43         </td> <td>201  </td> <td>12           </td> <td>1        </td> <td>0    </td> <td>0      </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>170   </td> <td>341 </td> <td>96   </td> <td>150.51</td> <td>80.97  </td> <td>69.54 </td>
+            <td>3.705</td> <td>67         </td> <td>308  </td> <td>45           </td> <td>22       </td> <td>0    </td> <td>5      </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>163   </td> <td>453 </td> <td>134  </td> <td>129.88</td> <td>69.24  </td> <td>60.64 </td>
+            <td>3.806</td> <td>36         </td> <td>171  </td> <td>20           </td> <td>4        </td> <td>3    </td> <td>4      </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>175   </td> <td>529 </td> <td>264  </td> <td>87.45 </td> <td>56.48  </td> <td>30.97 </td>
+            <td>3.667</td> <td>82         </td> <td>300  </td> <td>26           </td> <td>11       </td> <td>0    </td> <td>3      </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>185   </td> <td>392 </td> <td>240  </td> <td>149.84</td> <td>106.99 </td> <td>42.85 </td>
+            <td>3.245</td> <td>44         </td> <td>127  </td> <td>6            </td> <td>1        </td> <td>1    </td> <td>0      </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>178   </td> <td>479 </td> <td>216  </td> <td>92.24 </td> <td>73.43  </td> <td>18.81 </td>
+            <td>3.293</td> <td>35         </td> <td>259  </td> <td>16           </td> <td>13       </td> <td>1    </td> <td>0      </td>
         </tr>
     </tbody>
 </table>
-<p>... (12 rows omitted)</p></div>
+<p>... (20 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Correlation-Matrix">Correlation Matrix<a class="anchor-link" href="#Correlation-Matrix">¶</a></h3><p>A natural first step is to see which variables are correlated with the drop. Here is the correlation matrix. It is apparent that <code>chemo</code> and <code>base</code> are most highly correlated with <code>drop</code>. Of course <code>month15</code> is correlated with <code>drop</code> as well, but we cannot use it for prediction because we will not have the value of that variable for a new patient.</p></div></div>
+<h3 id="Correlation-Matrix">Correlation Matrix<a class="anchor-link" href="#Correlation-Matrix">¶</a></h3><p>Perhaps we wish to predict GPA based on forum usage. A natural first step is to see which variables are correlated with the GPA. Here is the correlation matrix. The <code>to_df</code> method generates a <a href="http://pandas.pydata.org/">Pandas</a> dataframe containing the same data as the table, and its <code>corr</code> method generates a matrix of correlations for each pair of columns.</p>
+<p>All forum usage variables are correlated with GPA, but the <code>notes</code> correlation has a very small magnitude.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">grades</span><span class="o">.</span><span class="n">to_df</span><span class="p">()</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>height</th>
-      <th>rad</th>
-      <th>chemo</th>
-      <th>base</th>
-      <th>month15</th>
-      <th>drop</th>
+      <th>GPA</th>
+      <th>days online</th>
+      <th>views</th>
+      <th>contributions</th>
+      <th>questions</th>
+      <th>notes</th>
+      <th>answers</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>height</th>
+      <th>GPA</th>
       <td>1.000000</td>
-      <td>-0.305206</td>
-      <td>0.576825</td>
-      <td>0.354229</td>
-      <td>0.390527</td>
-      <td>0.043394</td>
+      <td>0.684905</td>
+      <td>0.444175</td>
+      <td>0.427897</td>
+      <td>0.409212</td>
+      <td>-0.160604</td>
+      <td>0.440382</td>
     </tr>
     <tr>
-      <th>rad</th>
-      <td>-0.305206</td>
+      <th>days online</th>
+      <td>0.684905</td>
       <td>1.000000</td>
-      <td>-0.003739</td>
-      <td>0.096432</td>
-      <td>0.040616</td>
-      <td>0.073453</td>
+      <td>0.654557</td>
+      <td>0.448319</td>
+      <td>0.435269</td>
+      <td>-0.230839</td>
+      <td>0.502810</td>
     </tr>
     <tr>
-      <th>chemo</th>
-      <td>0.576825</td>
-      <td>-0.003739</td>
+      <th>views</th>
+      <td>0.444175</td>
+      <td>0.654557</td>
       <td>1.000000</td>
-      <td>0.062187</td>
-      <td>0.445788</td>
-      <td>-0.346310</td>
+      <td>0.426406</td>
+      <td>0.361002</td>
+      <td>0.065627</td>
+      <td>0.365010</td>
     </tr>
     <tr>
-      <th>base</th>
-      <td>0.354229</td>
-      <td>0.096432</td>
-      <td>0.062187</td>
+      <th>contributions</th>
+      <td>0.427897</td>
+      <td>0.448319</td>
+      <td>0.426406</td>
       <td>1.000000</td>
-      <td>0.561371</td>
-      <td>0.630183</td>
+      <td>0.857981</td>
+      <td>0.295661</td>
+      <td>0.702679</td>
     </tr>
     <tr>
-      <th>month15</th>
-      <td>0.390527</td>
-      <td>0.040616</td>
-      <td>0.445788</td>
-      <td>0.561371</td>
+      <th>questions</th>
+      <td>0.409212</td>
+      <td>0.435269</td>
+      <td>0.361002</td>
+      <td>0.857981</td>
       <td>1.000000</td>
-      <td>-0.288794</td>
+      <td>-0.006365</td>
+      <td>0.515661</td>
     </tr>
     <tr>
-      <th>drop</th>
-      <td>0.043394</td>
-      <td>0.073453</td>
-      <td>-0.346310</td>
-      <td>0.630183</td>
-      <td>-0.288794</td>
+      <th>notes</th>
+      <td>-0.160604</td>
+      <td>-0.230839</td>
+      <td>0.065627</td>
+      <td>0.295661</td>
+      <td>-0.006365</td>
+      <td>1.000000</td>
+      <td>0.229599</td>
+    </tr>
+    <tr>
+      <th>answers</th>
+      <td>0.440382</td>
+      <td>0.502810</td>
+      <td>0.365010</td>
+      <td>0.702679</td>
+      <td>0.515661</td>
+      <td>0.229599</td>
       <td>1.000000</td>
     </tr>
   </tbody>
 </table></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To start off, let us perform the simple regression of <code>drop</code> on just <code>base</code>, the baseline score. Here is the scatter diagram and regression line, produced using the function <code>scatter_fit</code> that we defined earlier in the course. You can see that the regression model fits reasonably well.</p></div></div>
+<p>To start off, let us perform the simple regression of <code>GPA</code> on just <code>days online</code>, the count with the strongest correlation with an <code>r</code> of 0.68. Here is the scatter diagram and regression line.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">scatter_fit</span><span class="p">(</span><span class="n">hodgkins</span><span class="p">,</span> <span class="s">'base'</span><span class="p">,</span> <span class="s">'drop'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">grades</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'days online'</span><span class="p">,</span> <span class="s">'GPA'</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Multiple_9_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The regression output that we have seen thus far has been rather straightforward, based on code that we wrote as a collection of straightfoward functions. The output display below is produced by Python and is very similar to regression output produced by many statistical systems: they contain a large number of summary statistics, many of which are not needed for getting a solid initial grasp of the results.</p>
-<p>We will ignore the third display table altogether, and focus on the first two.</p>
-<p>In the top table, much of the left hand side is self-explanatory. "OLS" stands for "ordinary least squares," which is a name for our regression model. You can ignore "Df Residuals" for now, and also "Covariance Type," but note the "Df Model" simply gives the number of predictor variables. It is 1 because we have just one predictor, <code>base</code>.</p>
-<p>We will ignore all of the right hand side of the table other than "R-squared". According to the correlation matrix above, the correlation between <code>drop</code> and <code>base</code> is just over 0.63; square than number to get 0.397. We will come back to this quantity, to see how its definition can be extended in the case of multiple regression.</p></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tbody><tr>
-  <th>Dep. Variable:</th>          <td>drop</td>       <th>  R-squared:         </th> <td>   0.397</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.367</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   13.17</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Sat, 05 Dec 2015</td> <th>  Prob (F-statistic):</th>  <td>0.00167</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>14:47:05</td>     <th>  Log-Likelihood:    </th> <td> -92.947</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>    22</td>      <th>  AIC:               </th> <td>   189.9</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>    20</td>      <th>  BIC:               </th> <td>   192.1</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</tbody></table>
-<table class="simpletable">
-<tbody><tr>
-    <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P&gt;|t|</th> <th>[95.0% Conf. Int.]</th> 
-</tr>
-<tr>
-  <th>const</th> <td>  -32.1721</td> <td>   17.151</td> <td>   -1.876</td> <td> 0.075</td> <td>  -67.949     3.604</td>
-</tr>
-<tr>
-  <th>base</th>  <td>    0.5447</td> <td>    0.150</td> <td>    3.630</td> <td> 0.002</td> <td>    0.232     0.858</td>
-</tr>
-</tbody></table>
-<table class="simpletable">
-<tbody><tr>
-  <th>Omnibus:</th>       <td> 1.133</td> <th>  Durbin-Watson:     </th> <td>   1.774</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.568</td> <th>  Jarque-Bera (JB):  </th> <td>   0.484</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.362</td> <th>  Prob(JB):          </th> <td>   0.785</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 3.069</td> <th>  Cond. No.          </th> <td>    530.</td>
-</tr>
-</tbody></table></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The "coef" column of the second table provides the intercept and slope of the regression line:</p>
-$$
-\mbox{estimate of drop} ~=~ 0.5447 \cdot \mbox{base} ~-~ 32.1721
-$$<p>The results for the slope and intercept are the same as what we would get based on our familiar methods for calculating those quantities:</p></div></div>
+<p>We can immediately see that the relation is not entirely linear, and a residual plot highlights this fact. One issue is that the GPA is never above 4.0, so the model assumption that <code>y</code> values are bell shaped does not hold in this case.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">slope</span> <span class="o">=</span> <span class="mf">0.630183</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">hodgkins</span><span class="p">[</span><span class="s">'drop'</span><span class="p">])</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">hodgkins</span><span class="p">[</span><span class="s">'base'</span><span class="p">])</span>
-<span class="n">slope</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">residual_plot</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s">'days online'</span><span class="p">,</span> <span class="s">'GPA'</span><span class="p">)</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.54472722699276954</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">intercept</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">hodgkins</span><span class="p">[</span><span class="s">'drop'</span><span class="p">])</span> <span class="o">-</span> <span class="n">slope</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">hodgkins</span><span class="p">[</span><span class="s">'base'</span><span class="p">])</span>
-<span class="n">intercept</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>-32.172182995494026</pre></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Multiple_11_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice the interval (0.232, 0.858), which is labeled to be a 95% confidence interval for the slope. Our method for computing such an interval would be to bootstrap the scatter diagram many times, compute the slope of the regression line, each time, draw the empirical histogram of the slopes, and pick off the central 95% interval. The interval in the display above has been computed using mathematical formulae for the endpoints; our bootstrap intervals are likely to be very close.</p>
-<p>Note also that the interval does not contain 0. We can therefore conclude, at least with 95% confidence, that the slope of the true line is not 0; in other words, there is a genuine linear trend in the relation between <code>drop</code> and <code>base</code>.</p>
-<p>The other columns of the second table address the question of whether the true slope is 0. We will return to those later, but in practical terms they are essentially redundant because of the information in the confidence intervals.</p></div></div>
+<p>Nonetheless, the regression line does capture some of the patter in the data, and so we will continue to work with it, noting that our predictions may not be entirely justified by the regression model.</p>
+<p>The root mean squared error is a bit above 1/4 of a GPA point when predicting GPA from only the days online.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">grades_days_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s">'days online'</span><span class="p">,</span> <span class="s">'GPA'</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">grades_days_mse</span><span class="p">)</span>
+<span class="n">grades_days_mse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.28494512878662448</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Two-Predictors">Two Predictors<a class="anchor-link" href="#Two-Predictors">¶</a></h3></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Perhaps more information can improve our prediction. The number of <code>answers</code> is also correlated with GPA. When using it alone as a predictor, the root mean squared error is greater because the correlation has lower magnitude than <code>days online</code>.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">grades_answers_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s">'answers'</span><span class="p">,</span> <span class="s">'GPA'</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">grades_answers_mse</span><span class="p">)</span>
+<span class="n">grades_answers_mse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.35110518920562062</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, the two values can be used together. First, we define the mean squared error in terms of a line that has two slopes, one for each variable, as well as an intercept.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">grades_days_answers_mse</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">a_days</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'days online'</span><span class="p">)</span> <span class="o">+</span> \
+             <span class="n">a_answers</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'answers'</span><span class="p">)</span> <span class="o">+</span> \
+             <span class="n">b</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'GPA'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">minimize</span><span class="p">(</span><span class="n">grades_days_answers_mse</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 0.0157683,  0.0301254,  2.6031789])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>minimize</code> function returns three values, the slope for <code>days online</code>, the slope for <code>answers</code>, and the intercept. Together, these three values describe a linear prediction function. For example, someone who spent 50 days online and answered 5 questions is predicted to have a GPA of about 3.54.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">0.0157683</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="mf">0.0301254</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mf">2.6031789</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>3.54</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The root mean squared error of this predictor is a bit smaller than that of either single-variable predictor we had before!</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">a_days</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">grades_days_answers_mse</span><span class="p">)</span>
+<span class="n">grades_days_answers_mse</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.28161529539241298</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Combining-all-variables">Combining all variables<a class="anchor-link" href="#Combining-all-variables">¶</a></h3></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can combine all information about the course forum in order to attempt to find an even better predictor.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">fit_grades</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_views</span><span class="p">,</span> <span class="n">a_contributions</span><span class="p">,</span> <span class="n">a_questions</span><span class="p">,</span> <span class="n">a_notes</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a_days</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'days online'</span><span class="p">)</span> <span class="o">+</span> \
+           <span class="n">a_views</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'views'</span><span class="p">)</span> <span class="o">+</span> \
+           <span class="n">a_contributions</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'contributions'</span><span class="p">)</span> <span class="o">+</span> \
+           <span class="n">a_questions</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'questions'</span><span class="p">)</span> <span class="o">+</span> \
+           <span class="n">a_notes</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'notes'</span><span class="p">)</span> <span class="o">+</span> \
+           <span class="n">a_answers</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'answers'</span><span class="p">)</span> <span class="o">+</span> \
+           <span class="n">b</span>
+
+<span class="k">def</span> <span class="nf">grades_all_mse</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_views</span><span class="p">,</span> <span class="n">a_contributions</span><span class="p">,</span> <span class="n">a_questions</span><span class="p">,</span> <span class="n">a_notes</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">fit_grades</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_views</span><span class="p">,</span> <span class="n">a_contributions</span><span class="p">,</span> <span class="n">a_questions</span><span class="p">,</span> <span class="n">a_notes</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'GPA'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">minimize</span><span class="p">(</span><span class="n">grades_all_mse</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([  1.43703000e-02,  -8.15000000e-05,   6.50720000e-03,
+        -1.72780000e-03,  -4.04014000e-02,   1.59645000e-02,
+         2.65375470e+00])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using all of this information, we have constructed a predictor with an even smaller root mean squared error. The <code>*</code> below passes all of the return values of the <code>minimize</code> function as arguments to <code>grades_all_mse</code>.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">grades_all_mse</span><span class="p">(</span><span class="o">*</span><span class="n">minimize</span><span class="p">(</span><span class="n">grades_all_mse</span><span class="p">))</span> <span class="o">**</span> <span class="mf">0.5</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.27783237243108722</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>All of this information did not improve our predictor very much. The root mean squared error decreased from 2.82 for the best single-variable predictor to 2.78 when using all of the available information.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Definition of $R^2$, consistent with our old $r^2$</strong></p>
@@ -292,162 +343,40 @@ r ~=~ \frac{\mbox{SD of fitted values of }y}{\mbox{SD of observed values of } y}
 $$<p>Let us use our old functions to compute the fitted values and confirm that this is true for our example:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">fitted</span> <span class="o">=</span> <span class="n">fitted_values</span><span class="p">(</span><span class="n">hodgkins</span><span class="p">,</span> <span class="s">'base'</span><span class="p">,</span> <span class="s">'drop'</span><span class="p">)</span>
-<span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fitted</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">hodgkins</span><span class="p">[</span><span class="s">'drop'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s">'days online'</span><span class="p">,</span> <span class="s">'GPA'</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fitted</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'GPA'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>0.63018263544448383</pre></div>
+<pre>0.68490480299828194</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Because variance is the square of the standard deviation, we can say that</p>
 $$
-0.397 ~=~r^2 ~=~ \frac{\mbox{variance of fitted values of }y}{\mbox{variance of observed values of }y}
+0.469 ~=~r^2 ~=~ \frac{\mbox{variance of fitted values of }y}{\mbox{variance of observed values of }y}
 $$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that this way of thinking about $r^2$ involves only the estimated values and the observed values, <em>not the number of predictor variables</em>. Therefore, it motivates the definition of <em>multiple $R^2$</em>:</p>
 $$
 R^2 ~=~ \frac{\mbox{variance of fitted values of }y}{\mbox{variance of observed values of }y}
-$$<p>It is a fact of mathematics that this quantity is always between 0 and 1. With multiple predictor variables, there is no clear interpretation of a sign attached to the square root of $R^2$. Some of the predictors might be positively associated with $y$, others negatively. An overall measure of the fit is provided by $R^2$. In the examples below, we will address the question of whether or not it is a good idea to try to get the biggest possible value of $R^2$.</p></div></div>
+$$<p>It is a fact of mathematics that this quantity is always between 0 and 1. With multiple predictor variables, there is no clear interpretation of a sign attached to the square root of $R^2$. Some of the predictors might be positively associated with $y$, others negatively. An overall measure of the fit is provided by $R^2$.</p></div></div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Multiple-regression-of-the-drop-in-scores,-using-baseline-and-chemo-as-predictors">Multiple regression of the drop in scores, using baseline and chemo as predictors<a class="anchor-link" href="#Multiple-regression-of-the-drop-in-scores,-using-baseline-and-chemo-as-predictors">¶</a></h3><p>We are now well placed to peform and interpret the multiple regression of <code>drop</code> based on <code>chemo</code> and <code>base</code> as the predictors. Here is a graph that demonstrates the results. The scatter plot is now three dimensional, with the response variable <code>drop</code> plotted on the vertical axis. The fitted values all lie on the green plane. Some of the points are above the plane, some below. The mean squared distance between the points and this plane is the smallest among all planes.</p></div></div>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit_grades</span><span class="p">(</span><span class="o">*</span><span class="n">minimize</span><span class="p">(</span><span class="n">grades_all_mse</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">fitted</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'GPA'</span><span class="p">))</span>
+</pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x10a5d1898&gt;</pre></div>
+<pre>0.49525855565521787</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is not always wise to maximize $R^2$ by including many values, but we will address this concern later in the text.</p>
+<p>We can also view the residual plot of multiple regression, just as before. The horizontal axis shows fitted values and the vertical axis shows errors. Again, there is some structure to this plot.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s">'fitted'</span><span class="p">,</span> <span class="n">fitted</span><span class="p">,</span>
+        <span class="s">'errors'</span><span class="p">,</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'GPA'</span><span class="p">)</span> <span class="o">-</span> <span class="n">fitted</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Multiple_21_1.png"/></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The numerical results are displayed below. Notice the "Df Model", the number of predictors, has risen from 1 to 2. The regression equation, to be used for estimation and prediction, is</p>
-$$
-\mbox{estimated drop} ~=~ 0.5655 \cdot \mbox{base} ~-~ 0.1898 \cdot \mbox{chemo} ~+~ 0.992
-$$<p>There is now a 95% confidence interval for each of the two true slopes; neither of the intervals contains 0.</p>
-<p>To understand what the slope means when there are multiple predictors, keep in mind that the slope corresponding to a predictor is the estimated increase in $y$ per unit change in that predictor, <em>provided all the other predictors are held constant</em>. To see whether it is actually reasonable to consider increasing <code>base</code> by while holding <code>chemo</code> constant, it is necessary to examine the relation between <code>base</code> and <code>chemo</code>: if they are highly correlated, you can't change one without also changing the other. In fact, the correlation between <code>base</code> and <code>chemo</code> is only about 0.06, which is very small. So for example the slope of -0.1898 for <code>chemo</code> can be interpreted as the average increase (actually a decrease) in <code>drop</code> per unit change in <code>chemo</code> provided <code>base</code> is held constant.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As defined earlier in this section, the value of $R^2$ is the ratio of the variance of the fitted values and the variance of the observed values of <code>drop</code>. Now $R^2$ is almost 0.55, noticeably higher than its value of roughly 0.4 in the simple regression of <code>drop</code> on <code>base</code> alone.</p></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tbody><tr>
-  <th>Dep. Variable:</th>          <td>drop</td>       <th>  R-squared:         </th> <td>   0.546</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.499</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   11.44</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Sat, 05 Dec 2015</td> <th>  Prob (F-statistic):</th> <td>0.000548</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>14:51:00</td>     <th>  Log-Likelihood:    </th> <td> -89.820</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>    22</td>      <th>  AIC:               </th> <td>   185.6</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>    19</td>      <th>  BIC:               </th> <td>   188.9</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     2</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</tbody></table>
-<table class="simpletable">
-<tbody><tr>
-    <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P&gt;|t|</th> <th>[95.0% Conf. Int.]</th> 
-</tr>
-<tr>
-  <th>const</th> <td>    0.9992</td> <td>   20.227</td> <td>    0.049</td> <td> 0.961</td> <td>  -41.336    43.335</td>
-</tr>
-<tr>
-  <th>base</th>  <td>    0.5655</td> <td>    0.134</td> <td>    4.226</td> <td> 0.000</td> <td>    0.285     0.846</td>
-</tr>
-<tr>
-  <th>chemo</th> <td>   -0.1898</td> <td>    0.076</td> <td>   -2.500</td> <td> 0.022</td> <td>   -0.349    -0.031</td>
-</tr>
-</tbody></table>
-<table class="simpletable">
-<tbody><tr>
-  <th>Omnibus:</th>       <td> 0.853</td> <th>  Durbin-Watson:     </th> <td>   1.781</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.653</td> <th>  Jarque-Bera (JB):  </th> <td>   0.368</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.317</td> <th>  Prob(JB):          </th> <td>   0.832</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 2.987</td> <th>  Cond. No.          </th> <td>1.36e+03</td>
-</tr>
-</tbody></table></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>It is a fact of mathematics that $R^2$ will increase if you include more predictor variables (unless they are perfectly uncorrelated with $y$). It is tempting, therefore, to include as many predictors as possible. However, this is not always useful, as can be seen if we regress <code>drop</code> on <code>base</code>, <code>chemo</code>, and <code>height</code>. The value of $R^2$ does increase, but by a very small amount; the 95% confidence interval for the slope of <code>height</code> contains 0; in any case, since <code>height</code> is correlated with both <code>base</code> and <code>chemo</code>, it is hard to intrepret any of the individual slopes. Therefore it is not an overall gain to include <code>height</code> as a predictor.</p>
-<p>The quantity "Adj. R-squared" is a version of $R^2$ that has carries a penalty for using too many predictor variables. We will not go into the mathematics of this statistic. Just note that its value is 0.499 for the regression on the two predictors <code>base</code> and <code>chemo</code>, but it drops to 0.473 when <code>height</code> is included as well. A drop in the adjusted $R^2$ is often used as an indication that some of the predictors should not be used.</p></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tbody><tr>
-  <th>Dep. Variable:</th>          <td>drop</td>       <th>  R-squared:         </th> <td>   0.548</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.473</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   7.288</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Sat, 05 Dec 2015</td> <th>  Prob (F-statistic):</th>  <td>0.00212</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>14:51:10</td>     <th>  Log-Likelihood:    </th> <td> -89.768</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>    22</td>      <th>  AIC:               </th> <td>   187.5</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>    18</td>      <th>  BIC:               </th> <td>   191.9</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     3</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</tbody></table>
-<table class="simpletable">
-<tbody><tr>
-     <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P&gt;|t|</th> <th>[95.0% Conf. Int.]</th> 
-</tr>
-<tr>
-  <th>const</th>  <td>  -22.8397</td> <td>   84.026</td> <td>   -0.272</td> <td> 0.789</td> <td> -199.372   153.693</td>
-</tr>
-<tr>
-  <th>base</th>   <td>    0.5485</td> <td>    0.149</td> <td>    3.681</td> <td> 0.002</td> <td>    0.235     0.862</td>
-</tr>
-<tr>
-  <th>chemo</th>  <td>   -0.2066</td> <td>    0.097</td> <td>   -2.135</td> <td> 0.047</td> <td>   -0.410    -0.003</td>
-</tr>
-<tr>
-  <th>height</th> <td>    0.1677</td> <td>    0.573</td> <td>    0.293</td> <td> 0.773</td> <td>   -1.035     1.371</td>
-</tr>
-</tbody></table>
-<table class="simpletable">
-<tbody><tr>
-  <th>Omnibus:</th>       <td> 0.604</td> <th>  Durbin-Watson:     </th> <td>   1.766</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.739</td> <th>  Jarque-Bera (JB):  </th> <td>   0.227</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.248</td> <th>  Prob(JB):          </th> <td>   0.893</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 2.954</td> <th>  Cond. No.          </th> <td>6.97e+03</td>
-</tr>
-</tbody></table></div></div>
+<img src="../notebooks-images/Multiple_35_0.png"/></div></div>
