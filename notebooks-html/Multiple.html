@@ -50,8 +50,8 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>In general, the slope of the regression line can be interpreted as the average increase in $y$ per unit increase in $x$. Note that if the slope is negative, then for every unit increase in $x$, the average of $y$ decreases.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Multiple-Predictors">Multiple Predictors<a class="anchor-link" href="#Multiple-Predictors">¶</a></h3><p>In multiple regression, more than one predictor variable is used to estimate $y$. For example, a Dartmouth study of undergraduates collected information about their use of an online course forum and their GPA. We might want to predict a student's GPA based on how often they visit the course forum and how often they answer someone else's question.  Then the multiple regression model would involve two slopes, an intercept, and random errors as before:</p>
-<p>GPA $~=~ \mbox{slope}_v * \mbox{visits} ~+~ \mbox{slope}_a * \mbox{answers} ~+~ \mbox{intercept} ~+~ \mbox{random error}$</p>
+<h3 id="Multiple-Predictors">Multiple Predictors<a class="anchor-link" href="#Multiple-Predictors">¶</a></h3><p>In multiple regression, more than one predictor variable is used to estimate $y$. For example, a Dartmouth study of undergraduates collected information about their use of an online course forum and their GPA. We might want to predict a student's GPA based on the number of days that they visit the course forum and how many times they answer someone else's question.  Then the multiple regression model would involve two slopes, an intercept, and random errors as before:</p>
+<p>GPA $~=~ \mbox{slope}_d * \mbox{days} ~+~ \mbox{slope}_a * \mbox{answers} ~+~ \mbox{intercept} ~+~ \mbox{random error}$</p>
 <p>Our goal would be to find the estimated GPA using the best estimates of the two slopes and the intercept; as before, the "best" estimates are those that minimize the mean squared error of estimation.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
