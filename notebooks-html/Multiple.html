@@ -261,7 +261,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <pre>0.35110518920562062</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>However, the two values can be used together. First, we define the mean squared error in terms of a line that has two slopes, one for each variable, as well as an intercept.</p></div></div>
+<p>However, the two variables can be used together. First, we define the mean squared error in terms of a line that has two slopes, one for each variable, as well as an intercept.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">grades_days_answers_mse</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -339,7 +339,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p><strong>Definition of $R^2$, consistent with our old $r^2$</strong></p>
 <p>When we studied simple regression, we had noted that</p>
 $$
-r ~=~ \frac{\mbox{SD of fitted values of }y}{\mbox{SD of observed values of } y}
+|r| ~=~ \frac{\mbox{SD of fitted values of }y}{\mbox{SD of observed values of } y}
 $$<p>Let us use our old functions to compute the fitted values and confirm that this is true for our example:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -369,8 +369,8 @@ $$<p>It is a fact of mathematics that this quantity is always between 0 and 1. W
 <pre>0.49525855565521787</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It is not always wise to maximize $R^2$ by including many values, but we will address this concern later in the text.</p>
-<p>We can also view the residual plot of multiple regression, just as before. The horizontal axis shows fitted values and the vertical axis shows errors. Again, there is some structure to this plot.</p></div></div>
+<p>It is not always wise to maximize $R^2$ by including many variables, but we will address this concern later in the text.</p>
+<p>We can also view the residual plot of multiple regression, just as before. The horizontal axis shows fitted values and the vertical axis shows errors. Again, there is some structure to this plot, so perhaps the relation between these variables is not entirely linear. In this case, the structure is minor enough that the regression model is a reasonable choice of predictor.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
