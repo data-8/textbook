@@ -41,4 +41,5 @@
   * [Prediction](chapter4/prediction.md)
   * [Higher-Order Functions](chapter4/hof.md)
   * [Errors](chapter4/errors.md)
+  * [Multiple Regression](chapter4/multiple.md)
 
