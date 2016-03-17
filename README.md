@@ -10,5 +10,7 @@ This is the textbook for the [Foundations of Data Science class at UC Berkeley][
 
 [View this textbook online on Gitbooks.][gitbook]
 
+[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/data-8/textbook)
+
 [data8]: http://data8.org/
 [gitbook]: https://ds8.gitbooks.io/textbook/content/
