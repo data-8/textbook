@@ -33,55 +33,55 @@
 <p>Let's load the data set into a table and look at it.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ckd</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'ckd.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">ckd</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'ckd.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s">'Blood Glucose Random'</span><span class="p">,</span> <span class="s">'Glucose'</span><span class="p">)</span>
 <span class="n">ckd</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Age</th> <th>Blood Pressure</th> <th>Specific Gravity</th> <th>Albumin</th> <th>Sugar</th> <th>Red Blood Cells</th> <th>Pus Cell</th> <th>Pus Cell clumps</th> <th>Bacteria</th> <th>Blood Glucose Random</th> <th>Blood Urea</th> <th>Serum Creatinine</th> <th>Sodium</th> <th>Potassium</th> <th>Hemoglobin</th> <th>Packed Cell Volume</th> <th>White Blood Cell Count</th> <th>Red Blood Cell Count</th> <th>Hypertension</th> <th>Diabetes Mellitus</th> <th>Coronary Artery Disease</th> <th>Appetite</th> <th>Pedal Edema</th> <th>Anemia</th> <th>Class</th>
+            <th>Age</th> <th>Blood Pressure</th> <th>Specific Gravity</th> <th>Albumin</th> <th>Sugar</th> <th>Red Blood Cells</th> <th>Pus Cell</th> <th>Pus Cell clumps</th> <th>Bacteria</th> <th>Glucose</th> <th>Blood Urea</th> <th>Serum Creatinine</th> <th>Sodium</th> <th>Potassium</th> <th>Hemoglobin</th> <th>Packed Cell Volume</th> <th>White Blood Cell Count</th> <th>Red Blood Cell Count</th> <th>Hypertension</th> <th>Diabetes Mellitus</th> <th>Coronary Artery Disease</th> <th>Appetite</th> <th>Pedal Edema</th> <th>Anemia</th> <th>Class</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>48  </td> <td>70            </td> <td>1.005           </td> <td>4      </td> <td>0    </td> <td>normal         </td> <td>abnormal</td> <td>present        </td> <td>notpresent</td> <td>117                 </td> <td>56        </td> <td>3.8             </td> <td>111   </td> <td>2.5      </td> <td>11.2      </td> <td>32                </td> <td>6700                  </td> <td>3.9                 </td> <td>yes         </td> <td>no               </td> <td>no                     </td> <td>poor    </td> <td>yes        </td> <td>yes   </td> <td>1    </td>
+            <td>48  </td> <td>70            </td> <td>1.005           </td> <td>4      </td> <td>0    </td> <td>normal         </td> <td>abnormal</td> <td>present        </td> <td>notpresent</td> <td>117    </td> <td>56        </td> <td>3.8             </td> <td>111   </td> <td>2.5      </td> <td>11.2      </td> <td>32                </td> <td>6700                  </td> <td>3.9                 </td> <td>yes         </td> <td>no               </td> <td>no                     </td> <td>poor    </td> <td>yes        </td> <td>yes   </td> <td>1    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>53  </td> <td>90            </td> <td>1.02            </td> <td>2      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>present        </td> <td>notpresent</td> <td>70                  </td> <td>107       </td> <td>7.2             </td> <td>114   </td> <td>3.7      </td> <td>9.5       </td> <td>29                </td> <td>12100                 </td> <td>3.7                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>poor    </td> <td>no         </td> <td>yes   </td> <td>1    </td>
+            <td>53  </td> <td>90            </td> <td>1.02            </td> <td>2      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>present        </td> <td>notpresent</td> <td>70     </td> <td>107       </td> <td>7.2             </td> <td>114   </td> <td>3.7      </td> <td>9.5       </td> <td>29                </td> <td>12100                 </td> <td>3.7                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>poor    </td> <td>no         </td> <td>yes   </td> <td>1    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>63  </td> <td>70            </td> <td>1.01            </td> <td>3      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>present        </td> <td>notpresent</td> <td>380                 </td> <td>60        </td> <td>2.7             </td> <td>131   </td> <td>4.2      </td> <td>10.8      </td> <td>32                </td> <td>4500                  </td> <td>3.8                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>poor    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
+            <td>63  </td> <td>70            </td> <td>1.01            </td> <td>3      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>present        </td> <td>notpresent</td> <td>380    </td> <td>60        </td> <td>2.7             </td> <td>131   </td> <td>4.2      </td> <td>10.8      </td> <td>32                </td> <td>4500                  </td> <td>3.8                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>poor    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>68  </td> <td>80            </td> <td>1.01            </td> <td>3      </td> <td>2    </td> <td>normal         </td> <td>abnormal</td> <td>present        </td> <td>present   </td> <td>157                 </td> <td>90        </td> <td>4.1             </td> <td>130   </td> <td>6.4      </td> <td>5.6       </td> <td>16                </td> <td>11000                 </td> <td>2.6                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>poor    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
+            <td>68  </td> <td>80            </td> <td>1.01            </td> <td>3      </td> <td>2    </td> <td>normal         </td> <td>abnormal</td> <td>present        </td> <td>present   </td> <td>157    </td> <td>90        </td> <td>4.1             </td> <td>130   </td> <td>6.4      </td> <td>5.6       </td> <td>16                </td> <td>11000                 </td> <td>2.6                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>poor    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>61  </td> <td>80            </td> <td>1.015           </td> <td>2      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>173                 </td> <td>148       </td> <td>3.9             </td> <td>135   </td> <td>5.2      </td> <td>7.7       </td> <td>24                </td> <td>9200                  </td> <td>3.2                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>poor    </td> <td>yes        </td> <td>yes   </td> <td>1    </td>
+            <td>61  </td> <td>80            </td> <td>1.015           </td> <td>2      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>173    </td> <td>148       </td> <td>3.9             </td> <td>135   </td> <td>5.2      </td> <td>7.7       </td> <td>24                </td> <td>9200                  </td> <td>3.2                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>poor    </td> <td>yes        </td> <td>yes   </td> <td>1    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>48  </td> <td>80            </td> <td>1.025           </td> <td>4      </td> <td>0    </td> <td>normal         </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>95                  </td> <td>163       </td> <td>7.7             </td> <td>136   </td> <td>3.8      </td> <td>9.8       </td> <td>32                </td> <td>6900                  </td> <td>3.4                 </td> <td>yes         </td> <td>no               </td> <td>no                     </td> <td>good    </td> <td>no         </td> <td>yes   </td> <td>1    </td>
+            <td>48  </td> <td>80            </td> <td>1.025           </td> <td>4      </td> <td>0    </td> <td>normal         </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>95     </td> <td>163       </td> <td>7.7             </td> <td>136   </td> <td>3.8      </td> <td>9.8       </td> <td>32                </td> <td>6900                  </td> <td>3.4                 </td> <td>yes         </td> <td>no               </td> <td>no                     </td> <td>good    </td> <td>no         </td> <td>yes   </td> <td>1    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>69  </td> <td>70            </td> <td>1.01            </td> <td>3      </td> <td>4    </td> <td>normal         </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>264                 </td> <td>87        </td> <td>2.7             </td> <td>130   </td> <td>4        </td> <td>12.5      </td> <td>37                </td> <td>9600                  </td> <td>4.1                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>good    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
+            <td>69  </td> <td>70            </td> <td>1.01            </td> <td>3      </td> <td>4    </td> <td>normal         </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>264    </td> <td>87        </td> <td>2.7             </td> <td>130   </td> <td>4        </td> <td>12.5      </td> <td>37                </td> <td>9600                  </td> <td>4.1                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>good    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>73  </td> <td>70            </td> <td>1.005           </td> <td>0      </td> <td>0    </td> <td>normal         </td> <td>normal  </td> <td>notpresent     </td> <td>notpresent</td> <td>70                  </td> <td>32        </td> <td>0.9             </td> <td>125   </td> <td>4        </td> <td>10        </td> <td>29                </td> <td>18900                 </td> <td>3.5                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>good    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
+            <td>73  </td> <td>70            </td> <td>1.005           </td> <td>0      </td> <td>0    </td> <td>normal         </td> <td>normal  </td> <td>notpresent     </td> <td>notpresent</td> <td>70     </td> <td>32        </td> <td>0.9             </td> <td>125   </td> <td>4        </td> <td>10        </td> <td>29                </td> <td>18900                 </td> <td>3.5                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>good    </td> <td>yes        </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>73  </td> <td>80            </td> <td>1.02            </td> <td>2      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>253                 </td> <td>142       </td> <td>4.6             </td> <td>138   </td> <td>5.8      </td> <td>10.5      </td> <td>33                </td> <td>7200                  </td> <td>4.3                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>good    </td> <td>no         </td> <td>no    </td> <td>1    </td>
+            <td>73  </td> <td>80            </td> <td>1.02            </td> <td>2      </td> <td>0    </td> <td>abnormal       </td> <td>abnormal</td> <td>notpresent     </td> <td>notpresent</td> <td>253    </td> <td>142       </td> <td>4.6             </td> <td>138   </td> <td>5.8      </td> <td>10.5      </td> <td>33                </td> <td>7200                  </td> <td>4.3                 </td> <td>yes         </td> <td>yes              </td> <td>yes                    </td> <td>good    </td> <td>no         </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>46  </td> <td>60            </td> <td>1.01            </td> <td>1      </td> <td>0    </td> <td>normal         </td> <td>normal  </td> <td>notpresent     </td> <td>notpresent</td> <td>163                 </td> <td>92        </td> <td>3.3             </td> <td>141   </td> <td>4        </td> <td>9.8       </td> <td>28                </td> <td>14600                 </td> <td>3.2                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>good    </td> <td>no         </td> <td>no    </td> <td>1    </td>
+            <td>46  </td> <td>60            </td> <td>1.01            </td> <td>1      </td> <td>0    </td> <td>normal         </td> <td>normal  </td> <td>notpresent     </td> <td>notpresent</td> <td>163    </td> <td>92        </td> <td>3.3             </td> <td>141   </td> <td>4        </td> <td>9.8       </td> <td>28                </td> <td>14600                 </td> <td>3.2                 </td> <td>yes         </td> <td>yes              </td> <td>no                     </td> <td>good    </td> <td>no         </td> <td>no    </td> <td>1    </td>
         </tr>
     </tbody>
 </table>
@@ -92,15 +92,10 @@
 <p>Let's look at two columns in particular: the hemoglobin level (in the patient's blood), and the blood glucose level (at a random time in the day; without fasting specially for the blood test).  We'll draw a scatter plot, to make it easy to visualize this.  Red dots are patients with CKD; blue dots are patients without CKD.  What test results seem to indicate CKD?</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ckd</span><span class="p">[</span><span class="s">'Hemoglobin'</span><span class="p">],</span> <span class="n">ckd</span><span class="p">[</span><span class="s">'Blood Glucose Random'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="p">[</span><span class="s">'Class'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Hemoglobin'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Glucose'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">ckd</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'Hemoglobin'</span><span class="p">,</span> <span class="s">'Glucose'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7f0ef64efc50&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_5_1.png"/></div>
+<img src="../notebooks-images/Classification_5_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Suppose Alice is a new patient who is not in the data set.  If I tell you Alice's hemoglobin level and blood glucose level, could you predict whether she has CKD?  It sure looks like it!  You can see a very clear pattern here: points in the lower-right tend to represent people who don't have CKD, and the rest tend to be folks with CKD.  To a human, the pattern is obvious.  But how can we program a computer to automatically detect patterns such as this one?</p>
@@ -110,15 +105,10 @@
 <p>However, the separation between the two classes won't always be quite so clean.  For instance, suppose that instead of hemoglobin levels we were to look at white blood cell count.  Look at what happens:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ckd</span><span class="p">[</span><span class="s">'White Blood Cell Count'</span><span class="p">],</span> <span class="n">ckd</span><span class="p">[</span><span class="s">'Blood Glucose Random'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="p">[</span><span class="s">'Class'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'White Blood Cell Count'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Glucose'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">ckd</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'White Blood Cell Count'</span><span class="p">,</span> <span class="s">'Glucose'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7f0ef64964a8&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_7_1.png"/></div>
+<img src="../notebooks-images/Classification_7_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you can see, non-CKD individuals are all clustered in the lower-left.  Most of the patients with CKD are above or to the right of that cluster... but not all.  There are some patients with CKD who are in the lower left of the above figure (as indicated by the handful of red dots scattered among the blue cluster).  What this means is that you can't tell for certain whether someone has CKD from just these two blood test measurements.</p>
@@ -192,13 +182,10 @@
 <p>Let's look at whether the first two numbers tell us anything about whether the banknote is counterfeit or not.  Here's a scatterplot:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletVar'</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletCurt'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'Class'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">banknotes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'WaveletVar'</span><span class="p">,</span> <span class="s">'WaveletCurt'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.collections.PathCollection at 0x7f0ef6434470&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_13_1.png"/></div>
+<img src="../notebooks-images/Classification_13_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pretty interesting!  Those two measurements do seem helpful for predicting whether the banknote is counterfeit or not.  However, in this example you can now see that there is some overlap between the blue cluster and the red cluster.  This indicates that there will be some images where it's hard to tell whether the banknote is legitimate based on just these two numbers.  Still, you could use a $k$-nearest neighbor classifier to predict the legitimacy of a banknote.</p>
@@ -206,13 +193,10 @@
 <p>The patterns that show up in the data can get pretty wild.  For instance, here's what we'd get if used a different pair of measurements from the images:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletSkew'</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">'Entropy'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'Class'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">banknotes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'WaveletSkew'</span><span class="p">,</span> <span class="s">'Entropy'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.collections.PathCollection at 0x7f0ef639f1d0&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_15_1.png"/></div>
+<img src="../notebooks-images/Classification_15_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There does seem to be a pattern, but it's a pretty complex one.  Nonetheless, the $k$-nearest neighbors classifier can still be used and will effectively "discover" patterns out of this.  This illustrates how powerful machine learning can be: it can effectively take advantage of even patterns that we would not have anticipated, or that we would have thought to "program into" the computer.</p></div></div>
@@ -224,11 +208,14 @@
 <p>For instance, let's see what happens if we try to predict whether a banknote is counterfeit or not using 3 of the measurements, instead of just 2.  Here's what you get:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s">'3d'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletSkew'</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletVar'</span><span class="p">],</span> <span class="n">banknotes</span><span class="p">[</span><span class="s">'WaveletCurt'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="p">[</span><span class="s">'Class'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s">'3d'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'WaveletSkew'</span><span class="p">),</span> 
+           <span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'WaveletVar'</span><span class="p">),</span> 
+           <span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'WaveletCurt'</span><span class="p">),</span> 
+           <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;mpl_toolkits.mplot3d.art3d.Path3DCollection at 0x7f0ef63f9e80&gt;</pre></div>
+<pre>&lt;mpl_toolkits.mplot3d.art3d.Path3DCollection at 0x1093bdef0&gt;</pre></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Classification_18_1.png"/></div>
 <div class="inner_cell">
@@ -254,8 +241,7 @@
 <p>We end up with the following data set.  For the "Class" column, 1 means malignant (cancer); 0 means benign (not cancer).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">patients</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'breast-cancer.csv'</span><span class="p">)</span>
-<span class="n">patients</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'ID'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">patients</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'breast-cancer.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'ID'</span><span class="p">)</span>
 <span class="n">patients</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -313,15 +299,10 @@
 <p>So we have 9 different attributes.  I don't know how to make a 9-dimensional scatterplot of all of them, so I'm going to pick two and plot them:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">patients</span><span class="p">[</span><span class="s">'Bland Chromatin'</span><span class="p">],</span> <span class="n">patients</span><span class="p">[</span><span class="s">'Single Epithelial Cell Size'</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="p">[</span><span class="s">'Class'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Bland Chromatin'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Single Epithelial Cell Size'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">patients</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'Bland Chromatin'</span><span class="p">,</span> <span class="s">'Single Epithelial Cell Size'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="p">[</span><span class="s">'Class'</span><span class="p">])</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7f0ef62fc7f0&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_23_1.png"/></div>
+<img src="../notebooks-images/Classification_23_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oops.  That plot is utterly misleading, because there are a bunch of points that have identical values for both the x- and y-coordinates.  To make it easier to see all the data points, I'm going to add a little bit of random jitter to the x- and y-values.  Here's how that looks:</p></div></div>
@@ -329,15 +310,15 @@
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">randomize_column</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">randomize_column</span><span class="p">(</span><span class="n">patients</span><span class="p">[</span><span class="s">'Bland Chromatin'</span><span class="p">]),</span> <span class="n">randomize_column</span><span class="p">(</span><span class="n">patients</span><span class="p">[</span><span class="s">'Single Epithelial Cell Size'</span><span class="p">]),</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="p">[</span><span class="s">'Class'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Bland Chromatin (jittered)'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Single Epithelial Cell Size (jittered)'</span><span class="p">)</span>
+<span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s">'Bland Chromatin (jittered)'</span><span class="p">,</span> 
+        <span class="n">randomize_column</span><span class="p">(</span><span class="n">patients</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Bland Chromatin'</span><span class="p">)),</span>
+        <span class="s">'Single Epithelial Cell Size (jittered)'</span><span class="p">,</span> 
+        <span class="n">randomize_column</span><span class="p">(</span><span class="n">patients</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Single Epithelial Cell Size'</span><span class="p">)),</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7f0ef62657b8&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_25_1.png"/></div>
+<img src="../notebooks-images/Classification_25_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For instance, you can see there are lots of samples with chromatin = 2 and epithelial cell size = 2; all non-cancerous.</p>
@@ -353,10 +334,10 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">):</span>
-    <span class="n">tot</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pt1</span><span class="p">)):</span>
-        <span class="n">tot</span> <span class="o">=</span> <span class="n">tot</span> <span class="o">+</span> <span class="p">(</span><span class="n">pt1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">pt2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
-    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">tot</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pt1</span><span class="p">)):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="p">(</span><span class="n">pt1</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="n">pt2</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -386,17 +367,15 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">computetablewithdists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
     <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>
-    <span class="n">attributes</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">num_rows</span><span class="p">):</span>
-        <span class="n">dists</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">attributes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
-    <span class="n">withdists</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">withdists</span><span class="o">.</span><span class="n">append_column</span><span class="p">(</span><span class="s">'Distance'</span><span class="p">,</span> <span class="n">dists</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">withdists</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">num_rows</span><span class="p">):</span>
+        <span class="n">dists</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">attributes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">training</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'Distance'</span><span class="p">,</span> <span class="n">dists</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">closest</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">withdists</span> <span class="o">=</span> <span class="n">computetablewithdists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
     <span class="n">sortedbydist</span> <span class="o">=</span> <span class="n">withdists</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">'Distance'</span><span class="p">)</span>
-    <span class="n">topk</span> <span class="o">=</span> <span class="n">sortedbydist</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="n">topk</span> <span class="o">=</span> <span class="n">sortedbydist</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">topk</span>
 
 <span class="k">def</span> <span class="nf">majority</span><span class="p">(</span><span class="n">topkclasses</span><span class="p">):</span>
@@ -435,7 +414,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>We can pull out just their attributes (excluding the class), like this:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>Row(Clump Thickness=5, Uniformity of Cell Size=3, Uniformity of Cell Shape=3, Marginal Adhesion=3, Single Epithelial Cell Size=2, Bare Nuclei=3, Bland Chromatin=4, Normal Nucleoli=4, Mitoses=1)</pre></div>
@@ -444,7 +423,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>Let's take $k=5$.  We can find the 5 nearest neighbors:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">closest</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">closest</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -480,7 +459,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>3 out of the 5 nearest neighbors have class 1, so the majority is 1 (has cancer) -- and that is the output of our classifier for this patient:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">classify</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">classify</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>1</pre></div>
@@ -524,7 +503,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
         <span class="c"># Run the classifier on the ith patient in the test set</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">classify</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">testattrs</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">k</span><span class="p">)</span>
         <span class="c"># Was the classifier's prediction correct?</span>
-        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">test</span><span class="p">[</span><span class="s">'Class'</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">test</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
             <span class="n">numcorrect</span> <span class="o">=</span> <span class="n">numcorrect</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">numcorrect</span> <span class="o">/</span> <span class="n">test</span><span class="o">.</span><span class="n">num_rows</span>
 </pre></div></div></div>
@@ -536,7 +515,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <div class=" highlight hl-ipython3"><pre><span class="n">evaluate_accuracy</span><span class="p">(</span><span class="n">trainset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>0.9706744868035191</pre></div>
+<pre>0.967741935483871</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>About 96% accuracy.  Not bad!  Pretty darn good for such a simple technique.</p>
