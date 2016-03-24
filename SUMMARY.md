@@ -43,4 +43,5 @@
   * [Errors](chapter4/errors.md)
   * [Multiple Regression](chapter4/multiple.md)
   * [Classification](chapter4/classification.md)
+  * [Features](chapter4/features.md)
 

@@ -1,4 +1,4 @@
-Feature Selection
-=================
+Features
+========
 
 {% include "../notebooks-html/Features.html" %}
