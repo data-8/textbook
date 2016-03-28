@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/baby.csv&path=notebooks/Confidence.ipynb">Interact</a>
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/trip.csv&path=notebooks/Confidence.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -11,261 +11,392 @@
 </script>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Inference-about-the-mean-of-an-unknown-population">Inference about the mean of an unknown population<a class="anchor-link" href="#Inference-about-the-mean-of-an-unknown-population">¶</a></h2><p>Data scientists often have to make inferences based on incomplete data. One such situation is when they are trying to make inferences about an unknown population based on one large random sample.</p>
-<p>Suppose the goal is to try to estimate the population mean. We know that the sample mean is a good estimate if the sample size is large. But we expect it to be away from the population mean by about an SE of the sample average. To calculate that SE exactly, we need the population SD. But if the population data are unknown, we don't know the population SD. After all, we don't even know the population mean – that's what we are trying to estimte!</p>
-<p>Fortunately, a simple approximation takes care of this. In the place of the population SD, we can simply use the SD of the sample. It will not be equal to the population SD, but when we divide it by $\sqrt{\mbox{sample size}}$, the error is greatly reduced and the approximation works.</p></div></div>
+<p>Whenever we analyze a random sample of a population, our goal is to draw robust conclusions about the whole population, despite the fact that we can measure only part of it. We must guard against being misled by the inevitable random variations in a sample. It is possible that a sample has very different characteristics than the population itself, but those samples are unlikely. It is much more typical that a random sample, especially a large simple random sample, is representative of the population. More importantly, the chance that a sample resembles the population is something that we know in advance, based on how we selected our random sample. Statistical inference is the practice of using this information to make precise statements about a population based on a random sample.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-$$
-\mbox{SE of the sample average} ~=~
-\frac{\mbox{Population SD}}{\sqrt{\mbox{sample size}}}
-~~\approx~~ \frac{\mbox{sample SD}}{\sqrt{\mbox{sample size}}} ~~~
-\mbox{when the random sample is large}
-$$</div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Use-in-estimation">Use in estimation<a class="anchor-link" href="#Use-in-estimation">¶</a></h3><p>As a consequence of the Central Limit Theorem, we can use proportions derived from the normal curve in statements about the distance between the sample mean and the population mean.</p>
-<p>For example, in about 95% of the samples:</p>
-<ul>
-<li>the sample average is in the range "population average $~\pm~$ 2 $\times$ SE of sample average"</li>
-</ul>
-<p>This statement is equivalent to the following:</p>
-<p><strong> In about 95% of the samples:</strong></p>
-<ul>
-<li><strong>the population average is in the range "sample average $~\pm~$ 2 $\times$ SE of sample average"</strong></li>
-</ul>
-<p>This gives rise to a method of estimating the population mean.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="An-approximate-95%-confidence-interval-for-the-population-mean">An approximate 95%-confidence interval for the population mean<a class="anchor-link" href="#An-approximate-95%-confidence-interval-for-the-population-mean">¶</a></h3><p>A <em>confidence interval</em> is a range of estimates. An <em>approximate 95%-confidence interval for the population mean</em> is given by:</p>
-$$
-\mbox{sample average} ~\pm~ 2 \times \mbox{SE of sample average}
-$$<p>We estimate that the population mean will be in this range.</p>
-<p>The confidence is in the procedure.
-If we repeat this procedure many times, we will get many intervals, one for each repetition. About 95% of the intervals will contain the population average, which is what we are trying to estimate.</p>
-<p>The <em>level of confidence</em>, 95%, can be replaced by any percent. The number of SEs on either side of the sample average has to be adjusted accordingly, by using the normal curve.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The table <code>baby</code> contains data on a random sample of 1,174 mothers and their newborn babies. The column <code>birthwt</code> contains the birth weight of the baby, in ounces; <code>gest_days</code> is the number of gestational days, that is, the number of days the baby was in the womb. There is also data on maternal age, maternal height, maternal pregnancy weight, and whether or not the mother was a smoker.</p>
-<p>We will examine this datset in some detail in the following sections. For now, we will concentrate on the column <code>mat_age</code>. This is the age of the mother, in years, when she gave birth. The goal is to try to estimate the average age of the women giving birth in the population.</p></div></div>
+<h2 id="Statistics-and-Parameters">Statistics and Parameters<a class="anchor-link" href="#Statistics-and-Parameters">¶</a></h2><p>The <a href="http://www.bayareabikeshare.com/">Bay Area Bike Share</a> service published a <a href="http://www.bayareabikeshare.com/open-data">dataset</a> describing every bicycle rental from September 2014 to August 2015 in their system. This set of all trips is a population, and fortunately we have the data for each and every trip rather than just a sample. We'll focus only on the <em>free trips</em>, which are trips that last less than 1800 seconds (half an hour).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baby</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'baby.csv'</span><span class="p">)</span>
-<span class="n">baby</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">free_trips</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">"trip.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Duration'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">1800</span><span class="p">))</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">free_trips</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>birthwt</th> <th>gest_days</th> <th>mat_age</th> <th>mat_ht</th> <th>mat_pw</th> <th>m_smoker</th>
+            <th>Start Station</th> <th>End Station</th> <th>Duration</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>120    </td> <td>284      </td> <td>27     </td> <td>62    </td> <td>100   </td> <td>0       </td>
+            <td>Harry Bridges Plaza (Ferry Building)         </td> <td>San Francisco Caltrain (Townsend at 4th)     </td> <td>765     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>113    </td> <td>282      </td> <td>33     </td> <td>64    </td> <td>135   </td> <td>0       </td>
+            <td>San Antonio Shopping Center                  </td> <td>Mountain View City Hall                      </td> <td>1036    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>128    </td> <td>279      </td> <td>28     </td> <td>64    </td> <td>115   </td> <td>1       </td>
+            <td>Post at Kearny                               </td> <td>2nd at South Park                            </td> <td>307     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>108    </td> <td>282      </td> <td>23     </td> <td>67    </td> <td>125   </td> <td>1       </td>
+            <td>San Jose City Hall                           </td> <td>San Salvador at 1st                          </td> <td>409     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>136    </td> <td>286      </td> <td>25     </td> <td>62    </td> <td>93    </td> <td>0       </td>
+            <td>Embarcadero at Folsom                        </td> <td>Embarcadero at Sansome                       </td> <td>789     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>138    </td> <td>244      </td> <td>33     </td> <td>62    </td> <td>178   </td> <td>0       </td>
+            <td>Yerba Buena Center of the Arts (3rd @ Howard)</td> <td>San Francisco Caltrain (Townsend at 4th)     </td> <td>293     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>132    </td> <td>245      </td> <td>23     </td> <td>65    </td> <td>140   </td> <td>0       </td>
+            <td>Embarcadero at Folsom                        </td> <td>Embarcadero at Sansome                       </td> <td>896     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>120    </td> <td>289      </td> <td>25     </td> <td>62    </td> <td>125   </td> <td>0       </td>
+            <td>Embarcadero at Sansome                       </td> <td>Steuart at Market                            </td> <td>255     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>143    </td> <td>299      </td> <td>30     </td> <td>66    </td> <td>136   </td> <td>1       </td>
+            <td>Beale at Market                              </td> <td>Temporary Transbay Terminal (Howard at Beale)</td> <td>126     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>140    </td> <td>351      </td> <td>27     </td> <td>68    </td> <td>120   </td> <td>0       </td>
+            <td>Post at Kearny                               </td> <td>South Van Ness at Market                     </td> <td>932     </td>
         </tr>
     </tbody>
 </table>
-<p>... (1164 rows omitted)</p></div>
+<p>... (338333 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here is a histogram of the ages of the new mothers in the sample. Most of the women were in the mid-twenties to low thirties.</p></div></div>
+<p>A quantity measured for a whole population is called a <em>parameter</em>. For example, the average duration for any free trip between September 2014 to August 2015 can be computed exactly from these data: 550.00.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'mat_age'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'maternal age (sample)'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">free_trips</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Duration'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x1096bbcc0&gt;</pre></div>
+<pre>550.00143345658103</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Although we have information for the full population, we will investigate what we can learn from a simple random sample. Below, we sample 100 trips without replacement from <code>free_trips</code> not just once, but 40 different times. All 4000 trips are stored in a table called <code>samples</code>.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Sample #'</span><span class="p">,</span> <span class="s">'Duration'</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">trip</span> <span class="ow">in</span> <span class="n">free_trips</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
+        <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">trip</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="s">'Duration'</span><span class="p">)])</span>
+<span class="n">samples</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Sample #</th> <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0       </td> <td>269     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0       </td> <td>662     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0       </td> <td>247     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0       </td> <td>594     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0       </td> <td>756     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0       </td> <td>1085    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0       </td> <td>559     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0       </td> <td>143     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0       </td> <td>191     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0       </td> <td>227     </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (3990 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A quantity measured for a sample is called a <em>statistic</em>. For example, the average duration of a free trip in a sample is a statistic, and we find that there is some variation across samples.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">sample_average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Sample #'</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Duration'</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">"Average duration in sample"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">"is"</span><span class="p">,</span> <span class="n">sample_average</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Average duration in sample 0 is 577.79
+Average duration in sample 1 is 602.45
+Average duration in sample 2 is 575.95
+</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Often, the goal of analysis is to estimate parameters from statistics. Proper statistical inference involves more than just picking an estimate: we should also say something about how confident we should be in that estimate. A single guess is rarely sufficient to make a robust conclusion about a population. We also need to quantify in some way how precise we believe that guess to be.</p>
+<p>Already we can see from the example above that the average duration of a sample is around 550, the parameter. Our goal is to quantify this notion of <em>around</em>, and one way to do so is to state a range of values.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Error-in-Estimates">Error in Estimates<a class="anchor-link" href="#Error-in-Estimates">¶</a></h2></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can learn a great deal about the behavior of a statistic by computing it for many samples. In the scatter diagram below, the order in which the statistic was computed appears on the horizontal axis, and the value of the average duration for a sample of <code>n</code> trips appears on the vertical axis.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_8_1.png"/></div>
+<img src="../notebooks-images/Confidence_13_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Estimate-the-average-age-of-mothers-in-the-population">Estimate the average age of mothers in the population<a class="anchor-link" href="#Estimate-the-average-age-of-mothers-in-the-population">¶</a></h3></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The center of our interval is 27.23 years, the average age of the mothers in the sample.</p></div></div>
+<p>The sample number doesn't tell us anything beyond when the sample was selected, and we can see from this unstructured cloud of points that one sample does not affect the next in any consistent way. The sample averages are indeed all around 550. Some are above, and some are below.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samp_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">'mat_age'</span><span class="p">])</span>
-<span class="n">samp_mean</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">641</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>27.228279386712096</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The sample average differs from the population average (which we are trying to estimate) by about an SE of the sample average. That's about 0.17 years.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">SE_samp_ave</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">'mat_age'</span><span class="p">])</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">baby</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>   <span class="c"># approx</span>
-<span class="n">SE_samp_ave</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.16972373742299796</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So an approximate 95%-confidence interval for the average age of the mothers in the population is "27.23 years $\pm$ 2$\times$0.17 years". The final answer:</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>An approximate 95%-confidence interval for the average maternal age in the population:</strong></p>
-<p>26.89 years to 27.57 years</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Exercise.</strong>
-True or false: About 95% of the mothers in the population are between 26.89 and 27.57 years old.</p>
-<p>Answer: This cannot be right; 95% of women in the population are not all just around 27 years old. The interval simply estimates the average age of the women. In other words, it estimates that the histogram of the ages of all the women will balance somewhere in the range 26.89 years to 27.57 years.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">'gold'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'z'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'$\phi$(z)'</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x1090c3a20&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_17_1.png"/></div>
+<img src="../notebooks-images/Confidence_15_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h3><p>The colored area in the graph above is 95%. It is the area under the standard normal curve, over the interval $-2$ to 2. Here is a brief summary of how this figure is connected to the construction of confidence intervals.</p>
-<ul>
-<li>No matter what the shape of the distribution of the population, the probability histogram for the sample means looks roughly normal, provided the random sample is large.</li>
-<li>We don't know the value of the center in the original units; that's the population mean, and that's what we're trying to estimate. In standard units, it is 0.</li>
-<li>We are hoping that our sample average comes out in the yellow interval. That way, going 2 SEs on either side will cover the center. The population mean will lie in the interval that we have constructed.</li>
-<li>We know that 1 SE of the sample average is equal to 1 on the standard units scale above.</li>
-<li>Even though we don't know the value of 0 on the original scale, We <strong>can</strong> estimate the value of 1 on the original scale; that's the SE of the sample average, approximately $\mbox{SampleSD}/\sqrt{\mbox{SampleSize}}$</li>
-</ul></div></div>
+<p>There are 40 averages for 40 samples. If we find an interval that contains 38 out of 40, it will contain 95% of the samples. One such interval is bounded by the second smallest and the second largest sample averages among the 40 samples.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">averages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">lower</span> <span class="o">=</span> <span class="n">averages</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">upper</span> <span class="o">=</span> <span class="n">averages</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">38</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">'Empirically, 95% of sample averages fell within the interval'</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="s">'to'</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Empirically, 95% of sample averages fell within the interval 518.9 to 602.45
+</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Special-case:-0-1-variables">Special case: 0-1 variables<a class="anchor-link" href="#Special-case:-0-1-variables">¶</a></h3><p>Suppose the data consist entirely of 0's and 1's. For example, suppose they are answers to a yes/no question, such as, "Are you currently a smoker?" Lists of zeros and ones have properties that simplify computation.</p>
-<p>As an example, let us start with a list consisting of just one 0 and four 1's. Its average and SD can be computed as usual. Notice something interesting: the average of the list 0.8, is the proportion of 1's in it. And the SD of the list can be computed by a simple formula involving that proportion.</p></div></div>
+<p>Given that we know the true parameter is 550, we can make a related statement about this particular collection of 40 samples.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">zero_one</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">max_deviation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">550</span><span class="o">-</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="o">-</span><span class="mi">550</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">'Empirically, for 95% of samples, the sample average was within'</span><span class="p">,</span> 
+      <span class="n">max_deviation</span><span class="p">,</span> <span class="s">'of the true average'</span><span class="p">)</span>
 </pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># A proportion is a mean</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">zero_one</span><span class="p">)</span>           <span class="c"># p = 4/5 = proportion of 1's</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.80000000000000004</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">zero_one</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.40000000000000008</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>    
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.40000000000000002</pre></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Empirically, for 95% of samples, the sample average was within 53.0 of the true average
+</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Facts about lists of 0's and 1's</strong></p>
-<ul>
-<li>The average is $p$, the proportion of 1's in the list.</li>
-<li>The SD is $\sqrt{p(1-p)}$</li>
-</ul></div></div>
+<p>This statement gives us our first notion of a margin of error. If this statement were to hold up not just for our 40 samples, but for all samples, then a reasonable strategy for estimating the true population average would be to draw a 100-trip sample, compute its sample average, and guess that the true average was within <code>max_deviation</code> of this quantity. We would be right at least 95% of the time.</p>
+<p>The problem with this approach is that finding the <code>max_deviation</code> required drawing many different samples, and we would like to be able to say something similar after having collected only one 100-trip sample.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Estimate-the-proportion-of-smokers-among-mothers-in-the-population">Estimate the proportion of smokers among mothers in the population<a class="anchor-link" href="#Estimate-the-proportion-of-smokers-among-mothers-in-the-population">¶</a></h3></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To estimate the proportion of smokers among mothers in the population, we will start by finding the corresponding proportion in the sample. In the table, the code for "smoker" is 1 and the code for "non-smoker" is 0.</p></div></div>
+<h3 id="Variability-Within-Samples">Variability Within Samples<a class="anchor-link" href="#Variability-Within-Samples">¶</a></h3><p>By contrast, The individual durations in the samples themselves are not closely clustered around 550. Instead, they span the whole range from 0 to 1800. The durations for the first three 100-item samples are visualized below. All have somewhat similar shapes; they were drawn from the same population.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'m_smoker'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'smokers (0/1) in sample'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">samples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Sample #'</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1801</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
 </pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x10a463cf8&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_27_1.png"/></div>
+<img src="../notebooks-images/Confidence_22_0.png"/></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Confidence_22_1.png"/></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Confidence_22_2.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In the sample, about 39% of the mothers are smokers. This forms the center of our confidence interval.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># "One figure" estimate: the proportion of smokers in our sample</span>
-
-<span class="n">p_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">'m_smoker'</span><span class="p">])</span><span class="o">/</span><span class="n">baby</span><span class="o">.</span><span class="n">num_rows</span>
-<span class="n">p_est</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.3909710391822828</pre></div>
+<p>We have now observed two different ways in which the variation of a random sample can be observed: the statistics computed from those samples vary in magnitude, and the sampled quantities themselves vary in distribution. That is, there is variability <em>across samples</em>, which we see by comparing sample averages, and there is variability <em>within each sample</em>, which we see in the duration histograms above.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The "give or take" number is the SE of the sample proportion, which is the SE for the sample mean because a proportion is just a mean of 0's and 1's. We know how to approximate the SE of a sample mean: divide the SD of the sample by the square root of the sample size. The sample consists of 0's and 1's, so its SD is given by the formula that we just observed. This allows us to compute the SE of the sample proportion, approximately.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Give or take: SE of sample proportion</span>
-<span class="c"># That is, SE of sample mean where sample has only 0's and 1's</span>
-<span class="c"># SE of sample proportion approx equal to SampleSD/sqrt(SampleSize)</span>
-
-<span class="n">SE_samp_prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p_est</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_est</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">baby</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>         <span class="c"># approx</span>
-<span class="n">SE_samp_prop</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.014241548667026049</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">left</span> <span class="o">=</span> <span class="n">p_est</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">SE_samp_prop</span>
-<span class="n">left</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.36248794184823074</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">right</span> <span class="o">=</span> <span class="n">p_est</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">SE_samp_prop</span>
-<span class="n">right</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>0.4194541365163349</pre></div>
+<h2 id="Confidence-Intervals">Confidence Intervals<a class="anchor-link" href="#Confidence-Intervals">¶</a></h2><p>Inference begins with a population: a collection that you can describe but often cannot measure directly. One thing we can often do with a populuation is to draw a simple random sample. By measuring a statistic of the sample, we may hope to estimate a parameter of the population. In this process, the population is not random, nor are its parameters. The sample is random, and so is its statistic. The whole process of estimation therefore gives a random result. It starts from a population (fixed), draws a sample (random), computes a statistic (random), and then estimates the parameter from the statistic (random). By calling the process random, we mean that the final estimate could have been different because the sample could have been different.</p>
+<p>A confidence interval is one notion of a margin of error around an estimate. The margin of error acknowledges that the estimation process could have been misleading because of the variation in the sample. It gives a range that might contain the original parameter, along with a percentage of confidence. For example, a 95% confidence interval is one in which we would expect the interval to contain the true parameter for 95% of random samples. For any particular sample, any particular estimate, and any particular interval, the parameter is either contained or not; we never know for sure. The purpose of the confidence interval is to quantify how often our estimation process gives us a range containing the truth.</p>
+<p>There are many different ways to compute a confidence interval. The challenge in computing a confidence interval from a single sample is that we don't know the population, and so we don't know how its samples will vary. One way to make progress despite this limited information is to assume that the variability <em>within the sample</em> is similar to the variability within the population.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>An approximate 95%-confidence interval for proportion of smokers among women in the population</strong></p>
-<p>0.39 $\pm$ 2$\times$0.14 = 0.3625 to 0.4194</p>
-<p>That is, an approximate 95%-confidence interval for the percent of smokers among the mothers in the population is 36.25% to 41.95%.</p></div></div></div>
+<h3 id="Resampling-from-a-Sample">Resampling from a Sample<a class="anchor-link" href="#Resampling-from-a-Sample">¶</a></h3><p>Even though we happen to have the whole population of <code>free_trips</code>, let's imagine for a moment that we have only a single 100-trip sample from this population. That sample has 100 durations. Our goal now is to learn what we can about the population using just this sample.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">sample</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">"Sample #"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">sample_average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Duration'</span><span class="p">))</span>
+<span class="n">sample_average</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>577.78999999999996</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A technique called <em>bootstrap resampling</em> uses the variability of the sample as a proxy for the variability of the population. Instead of drawing many samples from the population, we will draw many samples from the sample. Since the original sample and the re-sampled sample have the same size, we must draw with replacement in order to see any variability at all.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">resamples</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Resample #'</span><span class="p">,</span> <span class="s">'Duration'</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">trip</span> <span class="ow">in</span> <span class="n">sample</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
+        <span class="n">resamples</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">trip</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="s">'Duration'</span><span class="p">)])</span>
+<span class="n">resamples</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Resample #</th> <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0         </td> <td>1085    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0         </td> <td>391     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0         </td> <td>199     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0         </td> <td>1216    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0         </td> <td>1050    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0         </td> <td>501     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0         </td> <td>227     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0         </td> <td>376     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0         </td> <td>560     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0         </td> <td>532     </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (3990 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using the <code>resamples</code>, we can investigate the variability of the corresponding sample averages.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">resamples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Confidence_30_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These sample averages are not necessarily clustered around the true average 550. Instead, they will be clustered around the average of the sample from which they were re-sampled.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">resamples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">641</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Confidence_32_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Although the center of this distribution is not the same as the true population average, the spread is similar. We use as our confidence interval around the sample average the max deviation among the 95% (38 out of 40) that exclude the most extreme values.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">averages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">resamples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">lower</span> <span class="o">=</span> <span class="n">averages</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">upper</span> <span class="o">=</span> <span class="n">averages</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">38</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">'A 95% confidence interval:'</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="s">'to'</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>A 95% confidence interval: 529.91 to 611.87
+</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is also reasonable to center the interval around the sample average by computing the max deviation within this interval.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">max_deviation</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">sample_average</span><span class="o">-</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="o">-</span><span class="n">sample_average</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">'Another 95% confidence interval:'</span><span class="p">,</span> <span class="n">sample_average</span><span class="p">,</span> <span class="s">'+/-'</span><span class="p">,</span> <span class="n">max_deviation</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Another 95% confidence interval: 577.79 +/- 47.88
+</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Evaluating-Confidence-Intervals">Evaluating Confidence Intervals<a class="anchor-link" href="#Evaluating-Confidence-Intervals">¶</a></h3><p>When given only a sample, it is not possible to check whether the parameter was estimated correctly. However, in the case of the Bay Area Bike Share, we have not only the sample, but many samples and the whole population. Therefore, we can check how often the confidence intervals we compute in this way do in fact contain the true parameter.</p>
+<p>Before measuring the accuracy of our technique, we can visualize the result of resampling each sample. The following scatter diagram has 40 vertical lines for 40 samples, and each line consists of 40 points for 40 resampled means.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">resample_averages</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Sample #'</span><span class="p">,</span> <span class="s">'Resample average'</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Sample #'</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+        <span class="n">resample</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+        <span class="n">resample_average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">resample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Duration'</span><span class="p">))</span>
+        <span class="n">resample_averages</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">resample_average</span><span class="p">])</span>
+<span class="n">resample_averages</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Confidence_38_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see from the plot above that for almost every sample, there are some resampled averages above 550 and some below. When we use these resampled averages to compute confidence intervals, many of those intervals contain 550 as a result. Below, the <code>Lower</code> bounds of the confidence intervals for almost all of the samples are below the true average 550. Likewise, the <code>Upper</code> bounds are almost always above 550. We have a process for computing confidence intervals that almost always finds an interval containing the truth.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">lowers</span> <span class="o">=</span> <span class="n">resample_averages</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'Sample #'</span><span class="p">,</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">2.5</span><span class="p">))</span>
+<span class="n">uppers</span> <span class="o">=</span> <span class="n">resample_averages</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'Sample #'</span><span class="p">,</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">97.5</span><span class="p">))</span>
+<span class="n">intervals</span> <span class="o">=</span> <span class="n">uppers</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">'Sample #'</span><span class="p">,</span> <span class="n">lowers</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">'Upper'</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">'Lower'</span><span class="p">)</span>
+<span class="n">intervals</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Confidence_40_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can compute precisely which intervals contain the truth, and we find that about 95% of them do. Since we resampled only a small number of times (10,000 resamples is much more typical than 40 for computing 95% confidence intervals) and began with fairly small samples of size 100, we may find that a few more than 2 out of the 40 confidence intervals failed to contain the truth.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Lower'</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">550</span><span class="p">,</span> 
+               <span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Upper'</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">550</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ True, False,  True,  True,  True,  True, False,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True, False,
+        True,  True,  True,  True], dtype=bool)</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each confidence interval is generated from only a single sample of 100 trips. As a result, the width of the interval varies quite a bit as well. Compared to the interval width we computed originally (which required multiple samples), we see that some of these intervals are much more narrow and some are much wider.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'Width'</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Upper'</span><span class="p">)</span><span class="o">-</span><span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Lower'</span><span class="p">))</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Confidence_44_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given a single sample, it is impossible to know whether you have correctly estimated the parameter or not. However, you can infer a precise notion of confidence by following a process based on random sampling.</p></div></div></div>

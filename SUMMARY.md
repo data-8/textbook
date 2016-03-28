@@ -44,4 +44,6 @@
   * [Multiple Regression](chapter4/multiple.md)
   * [Classification](chapter4/classification.md)
   * [Features](chapter4/features.md)
+* [Chapter 5](chapter5/intro.md)
+  * [Confidence Intervals](chapter5/confidence.md)
 
