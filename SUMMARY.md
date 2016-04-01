@@ -47,4 +47,5 @@
 * [Chapter 5](chapter5/intro.md)
   * [Confidence Intervals](chapter5/confidence.md)
   * [Distance Between Distributions](chapter5/distance.md)
+  * [Hypothesis Testing](chapter5/testing.md)
 
