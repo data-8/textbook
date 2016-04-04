@@ -11,18 +11,21 @@
 </script>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Our investigation of jury panels is an example of <em>hypothesis testing</em>. We wished to know the answer to a yes-or-no question about the world, and we reasoned about random samples in order to answer the question. In this section, we formalize the process.</p>
-<h2 id="U.S.-Supreme-Court,-1965:-Swain-vs.-Alabama">U.S. Supreme Court, 1965: Swain vs. Alabama<a class="anchor-link" href="#U.S.-Supreme-Court,-1965:-Swain-vs.-Alabama">¶</a></h2><p>In the early 1960's, in Talladega County in Alabama, a black man called Robert Swain was convicted of raping a white woman and was sentenced to death. He appealed his sentence, citing among other factors the all-white jury. At the time, only men aged 21 or older were allowed to serve on juries in Talladega County. In the county, 26% of the eligible jurors were black, but there were only 8 black men among the 100 selected for the jury panel in Swain's trial. No black man was selected for the trial jury.</p>
-<p>In 1965, the Supreme Court of the United States denied Swain's appeal. In its ruling, the Court wrote "... the overall percentage disparity has been small and reflects no studied attempt to include or exclude a specified number of Negroes."</p>
-<p>Let us use the methods we have developed to examine the disparity between 8 out of 100 and 26 out of 100 black men in a panel drawn at random from among the eligible jurors.</p></div></div>
+<p>Our investigation of jury panels is an example of <em>hypothesis testing</em>. We wished to know the answer to a yes-or-no question about the world, and we reasoned about random samples in order to answer the question. In this section, we formalize the process.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sampling-from-a-Distribution">Sampling from a Distribution<a class="anchor-link" href="#Sampling-from-a-Distribution">¶</a></h2><p>The rows of a table describe individual elements of a collection of data. In the previous section, we worked with a table that described a distribution over categories. Tables that describe the proportions or counts of different categories in a sample or population arise often in data analysis as a summary of a data collection process. The <code>sample_from_distribution</code> method draws a sample of counts for the categories. Its implementation uses the same <code>np.random.multinomial</code> method from the previous section.</p>
+<p>The table below describes the proportion of the eligible potential jurors in Alameda County (estimated from 2000 census data and other sources) for broad categories of race and ethnic background. This table was compiled by Professor Weeks, a demographer at San Diego State University, for the Alameda County trial <em>People v. Stuart Alexander</em> in 2002.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">AL_jury_rows</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s">"Black"</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">],</span>
-    <span class="p">[</span><span class="s">"Other"</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">]</span>
-<span class="p">]</span>
-<span class="n">AL_jury</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">from_rows</span><span class="p">(</span><span class="n">AL_jury_rows</span><span class="p">,</span> <span class="p">[</span><span class="s">"Race"</span><span class="p">,</span> <span class="s">"Eligible"</span><span class="p">])</span>
-<span class="n">AL_jury</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">population</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">"Race"</span><span class="p">,</span> <span class="s">"Eligible"</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
+    <span class="p">[</span><span class="s">"Asian"</span><span class="p">,</span>  <span class="mf">0.15</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"Black"</span><span class="p">,</span>  <span class="mf">0.18</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"Latino"</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"White"</span><span class="p">,</span>  <span class="mf">0.54</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"Other"</span><span class="p">,</span>  <span class="mf">0.01</span><span class="p">],</span>
+    <span class="p">])</span>
+<span class="n">population</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -33,98 +36,360 @@
     </thead>
     <tbody>
         <tr>
-            <td>Black</td> <td>0.26    </td>
+            <td>Asian </td> <td>0.15    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Other</td> <td>0.74    </td>
+            <td>Black </td> <td>0.18    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Latino</td> <td>0.12    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>White </td> <td>0.54    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Other </td> <td>0.01    </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>sample_from_distribution</code> method takes a number of samples and a column index or label. It returns a table in which the distribution column has been replaced by category counts of the sample.</p></div></div>
+<div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># black men in panel of 100: 8</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1453</span>
+<span class="n">population</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s">"Eligible"</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Race</th> <th>Eligible</th> <th>Eligible sample</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Asian </td> <td>0.15    </td> <td>233            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Black </td> <td>0.18    </td> <td>245            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Latino</td> <td>0.12    </td> <td>177            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>White </td> <td>0.54    </td> <td>787            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Other </td> <td>0.01    </td> <td>11             </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each count is selected randomly in such a way that the chance of each category is the corresponding proportion in the original <code>"Eligible"</code> column. Sampling again will give different counts, but again the <code>"White"</code> category is much more common than <code>"Other"</code> because of its much higher proportion.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">population</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s">"Eligible"</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Race</th> <th>Eligible</th> <th>Eligible sample</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Asian </td> <td>0.15    </td> <td>227            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Black </td> <td>0.18    </td> <td>247            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Latino</td> <td>0.12    </td> <td>155            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>White </td> <td>0.54    </td> <td>819            </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Other </td> <td>0.01    </td> <td>5              </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The option <code>proportions=True</code> draws sample counts and then divides each count by the total number of samples. The result is another distribution; one based on a sample.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">sample</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s">"Eligible"</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">proportions</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<span class="n">sample</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Race</th> <th>Eligible</th> <th>Eligible sample</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Asian </td> <td>0.15    </td> <td>0.140399       </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Black </td> <td>0.18    </td> <td>0.189264       </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Latino</td> <td>0.12    </td> <td>0.125258       </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>White </td> <td>0.54    </td> <td>0.532691       </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Other </td> <td>0.01    </td> <td>0.0123882      </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This ut sample can also be used to generate a sample. The sample of a sample is called a <em>resampled sample</em> or a <em>bootstrap sample</em>. It is not a random sample of the original distribution, but shares many characteristics with such a sample.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">sample</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s">'Eligible sample'</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Race</th> <th>Eligible</th> <th>Eligible sample</th> <th>Eligible sample sample</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Asian </td> <td>0.15    </td> <td>0.140399       </td> <td>204                   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Black </td> <td>0.18    </td> <td>0.189264       </td> <td>258                   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Latino</td> <td>0.12    </td> <td>0.125258       </td> <td>163                   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>White </td> <td>0.54    </td> <td>0.532691       </td> <td>810                   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Other </td> <td>0.01    </td> <td>0.0123882      </td> <td>18                    </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Empirical-Distributions">Empirical Distributions<a class="anchor-link" href="#Empirical-Distributions">¶</a></h2><p>An <em>empirical distribution</em> of a statistic is a table generated by computing the statistic for many samples. The previous section used empirical distributions to reason about whether or not a sample had a statistic that was typical of a random sample. The following function computes the empirical histogram of a statistic, which is expressed as a function that takes a sample.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">empirical_distribution</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Sample #'</span><span class="p">,</span> <span class="s">'Statistic'</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+        <span class="n">statistic</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="n">stats</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">statistic</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">stats</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As our test statistic, we will use the number of black men in a random sample of size 100. Here are the results of replicating the sampling procedure numerous times and counting the number of black men in each sample.</p></div></div>
+<p>This function can be used to compute an empirical distribution of the total variation distance from the population distribution.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Statistic: number black in sample of size 100</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">tvd_from_eligible</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Eligible sample'</span><span class="p">)</span>
+    <span class="n">distribution</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">total_variation_distance</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Eligible'</span><span class="p">),</span> <span class="n">distribution</span><span class="p">)</span>
 
-<span class="c"># Compute the empirical distribution of the statistic</span>
+<span class="n">empirical_distribution</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="s">'Eligible'</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">tvd_from_eligible</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Sample #</th> <th>Statistic</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0       </td> <td>0.0248796 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1       </td> <td>0.0195664 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>2       </td> <td>0.00401927</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>3       </td> <td>0.0165864 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>4       </td> <td>0.0207502 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5       </td> <td>0.013042  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>6       </td> <td>0.0297041 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>7       </td> <td>0.0153544 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>8       </td> <td>0.00830695</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>9       </td> <td>0.014384  </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (990 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The empirical distribution can be visualized using a histogram.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">empirical_distribution</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="s">'Eligible'</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">tvd_from_eligible</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="../notebooks-images/Testing_18_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="U.S.-Supreme-Court,-1965:-Swain-vs.-Alabama">U.S. Supreme Court, 1965: Swain vs. Alabama<a class="anchor-link" href="#U.S.-Supreme-Court,-1965:-Swain-vs.-Alabama">¶</a></h2><p>In the early 1960's, in Talladega County in Alabama, a black man called Robert Swain was convicted of raping a white woman and was sentenced to death. He appealed his sentence, citing among other factors the all-white jury. At the time, only men aged 21 or older were allowed to serve on juries in Talladega County. In the county, 26% of the eligible jurors were black, but there were only 8 black men among the 100 selected for the jury panel in Swain's trial. No black man was selected for the trial jury.</p>
+<p>In 1965, the Supreme Court of the United States denied Swain's appeal. In its ruling, the Court wrote "... the overall percentage disparity has been small and reflects no studied attempt to include or exclude a specified number of [black men]."</p>
+<p>Let us use the methods we have developed to examine the disparity between 8 out of 100 and 26 out of 100 black men in a panel of 100 drawn at random from among the eligible jurors.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">alabama</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s">'Race'</span><span class="p">,</span> <span class="s">'Eligible'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
+    <span class="p">[</span><span class="s">"Black"</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"Other"</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">alabama</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">PercentFormatter</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Race</th> <th>Eligible</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Black</td> <td>26%     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Other</td> <td>74%     </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As our test statistic, we will use the number of black men in a random sample of size 100. Here is an empirical distribution of this statistic.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">value_for</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">category_label</span><span class="p">,</span> <span class="n">value_label</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">in_table</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">sample</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">category_label</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">value_label</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">in_table</span>
 
-<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">eligible</span> <span class="o">=</span> <span class="n">AL_jury</span><span class="p">[</span><span class="s">"Eligible"</span><span class="p">]</span>
+<span class="n">num_black</span> <span class="o">=</span> <span class="n">value_for</span><span class="p">(</span><span class="s">'Black'</span><span class="p">,</span> <span class="s">'Race'</span><span class="p">,</span> <span class="s">'Eligible sample'</span><span class="p">)</span>
 
-<span class="n">black_in_sample</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[]],</span> <span class="p">[</span><span class="s">"Number black in a random sample"</span><span class="p">])</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
-    <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">eligible</span><span class="p">)</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">black_in_sample</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">b</span><span class="p">])</span>
-
+<span class="n">black_in_sample</span> <span class="o">=</span> <span class="n">empirical_distribution</span><span class="p">(</span><span class="n">alabama</span><span class="p">,</span> <span class="s">'Eligible'</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">num_black</span><span class="p">)</span>
 <span class="n">black_in_sample</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Number black in a random sample</th>
+            <th>Sample #</th> <th>Statistic</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>19                             </td>
+            <td>0       </td> <td>27       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>27                             </td>
+            <td>1       </td> <td>31       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>34                             </td>
+            <td>2       </td> <td>28       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>23                             </td>
+            <td>3       </td> <td>27       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>27                             </td>
+            <td>4       </td> <td>24       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>24                             </td>
+            <td>5       </td> <td>23       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>16                             </td>
+            <td>6       </td> <td>29       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>19                             </td>
+            <td>7       </td> <td>28       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>22                             </td>
+            <td>8       </td> <td>16       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>29                             </td>
+            <td>9       </td> <td>25       </td>
         </tr>
     </tbody>
 </table>
-<p>... (490 rows omitted)</p></div>
+<p>... (9990 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The numbers of black men in the first 10 repetitions were quite a bit larger than 8. The empirical histogram below shows the distribution of the test statistic over all the repetitions.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">black_in_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">black_in_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Testing_7_0.png"/></div>
+<img src="../notebooks-images/Testing_24_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If the 100 men in Swain's jury panel had been chosen at random, it would have been extremely unlikely for the number of black men on the panel to be as small as 8. We must conclude that the percentage disparity was larger than the disparity expected due to chance variation.</p></div></div>
@@ -151,10 +416,10 @@
 <p>This was the empirical distribution of the test statistic – the number of black men on the jury panel – in the example about Swain and the Supreme Court:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">black_in_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">black_in_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Testing_12_0.png"/></div>
+<img src="../notebooks-images/Testing_29_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>STEP 4. THE CONCLUSION OF THE TEST</strong></p>
@@ -174,7 +439,14 @@
 </li>
 </ul>
 <p><strong>More formal definition of P-value.</strong> The P-value is the chance, under the null hypothesis, that the test statistic is equal to the value that was observed or is even further in the direction of the alternative.</p>
-<p>The P-value is based on comparing the observed test statistic and what the null hypothesis predicts. A small P-value implies that under the null hypothesis, the value of the test statistic is unlikely to be near the one we observed. When a hypothesis and the data are not in accord, the hypothesis has to go. That is why we reject the null hypothesis if the P-value is small.</p></div></div>
+<p>The P-value is based on comparing the observed test statistic and what the null hypothesis predicts. A small P-value implies that under the null hypothesis, the value of the test statistic is unlikely to be near the one we observed. When a hypothesis and the data are not in accord, the hypothesis has to go. That is why we reject the null hypothesis if the P-value is small.</p>
+<p>The P-value for the null hypothesis that Swain's jury panel was selected at random from the population of Talladega is approximated using the empirical distribution as follows:</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">black_in_sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="n">black_in_sample</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>HISTORICAL NOTE ON THE CONVENTIONS</strong></p>
