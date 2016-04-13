@@ -49,4 +49,5 @@
   * [Distance Between Distributions](chapter5/distance.md)
   * [Hypothesis Testing](chapter5/testing.md)
   * [Permutation](chapter5/permutation.md)
+  * [A/B Testing](chapter5/ab.md)
 
