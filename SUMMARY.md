@@ -50,4 +50,5 @@
   * [Hypothesis Testing](chapter5/testing.md)
   * [Permutation](chapter5/permutation.md)
   * [A/B Testing](chapter5/ab.md)
+  * [Regression Inference](chapter5/regression.md)
 
