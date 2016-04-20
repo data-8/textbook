@@ -10,26 +10,6 @@
   });
 </script>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">from</span> <span class="nn">datascience</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s">'Agg'</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="k">False</span><span class="p">)</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plots</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s">'fivethirtyeight'</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s">"ignore"</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baby</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'baby.csv'</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Inference-in-Regression">Inference in Regression<a class="anchor-link" href="#Inference-in-Regression">¶</a></h1></div></div>
-<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Regression:-a-Review">Regression: a Review<a class="anchor-link" href="#Regression:-a-Review">¶</a></h2><p>Earlier in the course, we developed the concepts of correlation and regression as ways to describe relations between quantitative variables. We will now see how these concepts can become powerful tools for inference, when used appropriately.</p>
 <p>First, let us briefly review the main ideas of correlation and regression, along with code for calculations.</p></div></div>
@@ -67,7 +47,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'Gestational Days'</span><span class="p">,</span> <span class="s">'Birth Weight'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_10_0.png"/></div>
+<img src="../notebooks-images/RegressionInference_9_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>When <code>scatter</code> is called with the option <code>fit_line=True</code>, the regression line is drawn on the scatter plot.</p></div></div>
@@ -76,7 +56,7 @@
 <div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">'Gestational Days'</span><span class="p">,</span> <span class="s">'Birth Weight'</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_12_0.png"/></div>
+<img src="../notebooks-images/RegressionInference_11_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <strong>regression line</strong> is the best among all straight lines that could be used to estimate $y$ based on $x$, in the sense that it minimizes the mean squared error of estimation.</p>
@@ -179,7 +159,7 @@ $$</p></div></div>
 <span class="k">None</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_29_0.png"/></div>
+<img src="../notebooks-images/RegressionInference_28_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id='Assumptions-of-randomness:-a-"regression-model"'>Assumptions of randomness: a "regression model"<a class="anchor-link" href='#Assumptions-of-randomness:-a-"regression-model"'>¶</a></h2><p>Thus far in this section, our analysis has been purely descriptive. But recall that the data are a random sample of all the births in a system of hospitals. What do the data say about the whole population of births? What could they say about a new birth at one of the hospitals?</p>
@@ -246,7 +226,7 @@ $$</p></div></div>
 <span class="n">draw_and_compare</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_34_0.png"/></div>
+<img src="../notebooks-images/RegressionInference_33_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Prediction-using-Regression">Prediction using Regression<a class="anchor-link" href="#Prediction-using-Regression">¶</a></h2><p>In reality, of course, we are not Tyche, and we will never see the true line. What the simulation shows that if the regression model looks plausible, and if we have a large sample, then the regression line is a good approximation to the true line.</p>
@@ -271,7 +251,7 @@ $$</p></div></div>
 <span class="k">None</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_38_0.png"/></div>
+<img src="../notebooks-images/RegressionInference_37_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-Variability-of-the-Prediction">The Variability of the Prediction<a class="anchor-link" href="#The-Variability-of-the-Prediction">¶</a></h2><p>We have developed a method for predicting a new baby's birthweight based on the number of gestational days. But as data scientists, we know that the sample might have been different. Had the sample been different, the regression line would have been different too, and so would our prediction. To see how good our prediction is, we must get a sense of how variable the prediction can be.</p>
@@ -294,7 +274,7 @@ $$</p></div></div>
     <span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Bootstrap sample '</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_40_0.png"/></div>
+<img src="../notebooks-images/RegressionInference_39_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The next step is to fit the regression line to the scatter plot in each replication, and make a prediction based on each line. The figure below shows 10 such lines, and the corresponding predicted birth weight at 300 gestational days.</p></div></div>
@@ -321,7 +301,7 @@ $$</p></div></div>
     <span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fit_x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_42_0.png"/></div>
+<img src="../notebooks-images/RegressionInference_41_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The predictions vary from one line to the next. The table below shows the slope and intercept of each of the 10 lines, along with the prediction.</p></div></div>
@@ -431,7 +411,7 @@ Approximate 95%-confidence interval:
 (127.25683835787581, 131.33042912205815)
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_48_1.png"/></div>
+<img src="../notebooks-images/RegressionInference_47_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The figure above shows a bootstrap empirical histogram of the predicted birth weight of a baby at 300 gestational days, based on 5,000 repetitions of the bootstrap process. The empirical distribution is roughly normal.</p>
@@ -449,7 +429,7 @@ Approximate 95%-confidence interval:
 (121.17047827189757, 123.29506281889765)
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_51_1.png"/></div>
+<img src="../notebooks-images/RegressionInference_50_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that this interval is narrower than the prediction interval at 300 gestational days. Let us investigate the reason for this.</p>
@@ -489,7 +469,7 @@ Approximate 95%-confidence interval:
     <span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">fit_x2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_55_0.png"/></div>
+<img src="../notebooks-images/RegressionInference_54_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Is-the-observed-slope-real?">Is the observed slope real?<a class="anchor-link" href="#Is-the-observed-slope-real?">¶</a></h2><p>We have developed a method of predicting the birth weight of a new baby in the hospital system, based on the baby's number of gestational days. Our prediction makes use of the positive association that we observed between birth weight and gestational days.</p>
@@ -503,7 +483,7 @@ Approximate 95%-confidence interval:
 <div class=" highlight hl-ipython3"><pre><span class="n">draw_and_compare</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_58_0.png"/></div>
+<img src="../notebooks-images/RegressionInference_57_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Run the simulation a few times, keeping the slope of Tyche's line 0 each time. You will notice that while the slope of the true line is 0, the slope of the regression typically is not 0. The regression line sometimes slopes upwards, and sometimes downwards, each time giving us a false impression that the two variables are correlated.</p></div></div>
@@ -551,7 +531,7 @@ Approximate 95%-confidence interval for the true slope:
 (0.37981209488027268, 0.55753912103512426)
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_64_1.png"/></div>
+<img src="../notebooks-images/RegressionInference_63_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The approximate 95% confidence interval for the true slope runs from about 0.38 ounces per day to about 0.56 ounces per day. This interval does not contain 0. Therefore we can conclude, with about 95% confidence, that the slope of the true line is not 0.</p>
@@ -578,7 +558,7 @@ Approximate 95%-confidence interval for the true slope:
 (-0.10015674488514391, 0.26974979944992733)
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/RegressionInference_69_1.png"/></div>
+<img src="../notebooks-images/RegressionInference_68_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Using-confidence-intervals-to-test-hypotheses">Using confidence intervals to test hypotheses<a class="anchor-link" href="#Using-confidence-intervals-to-test-hypotheses">¶</a></h2><p>Notice how we have used confidence intervals for the true slope to test the hypothesis that the true slope is 0. Constructing a confidence interval for a parameter is one way to test the null hypothesis that the parameter has a specified value. If that value is not in the confidence interval, we can reject the null hypothesis that the parameter has that value. If the value is in the confidence interval, we do not have enough evidence to reject the null hypothesis.</p>
