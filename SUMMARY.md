@@ -51,4 +51,5 @@
   * [Permutation](chapter5/permutation.md)
   * [A/B Testing](chapter5/ab.md)
   * [Regression Inference](chapter5/regression.md)
+  * [Regression Diagnostics](chapter5/residuals.md)
 
