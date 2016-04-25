@@ -53,4 +53,4 @@
   * [Regression Inference](chapter5/regression.md)
   * [Regression Diagnostics](chapter5/residuals.md)
 * [Probability](chapter6/intro.md)
-  * [Conditional Probability](chapter5/conditional.md)
+  * [Conditional Probability](chapter6/conditional.md)
