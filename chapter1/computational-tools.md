@@ -10,10 +10,10 @@ million-person-strong community of software developers and data scientists.
 
 **Getting Started.** The easiest and recommended way to start writing programs
 in Python is to log into the companion site for this text,
-[program.dsten.org](http://program.dsten.org). If you are enrolled in a course
-offering that uses this text, you should have full access to the programming
-environment hosted on that site. The first time you log in, you will find a
-brief tutorial describing how to proceed.
+[data8.berkeley.edu](https://data8.berkeley.edu). If you are enrolled in a
+course offering that uses this text, you should have full access to the
+programming environment hosted on that site. The first time you log in, you will
+find a brief tutorial describing how to proceed.
 
 You are not at all restricted to using this web-based programming environment.
 A Python program can be executed by any computer, regardless of its
