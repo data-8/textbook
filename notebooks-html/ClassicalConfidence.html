@@ -4,7 +4,7 @@
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
-      inlineMath: [['$','$'], ['\(','\)']],
+      inlineMath: [['$','$']],
       processEscapes: true
     }
   });
@@ -50,7 +50,7 @@ If we repeat this procedure many times, we will get many intervals, one for each
 <p>We will examine this datset in some detail in the following sections. For now, we will concentrate on the column <code>mat_age</code>. This is the age of the mother, in years, when she gave birth. The goal is to try to estimate the average age of the women giving birth in the population.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baby</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'baby.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'baby.csv'</span><span class="p">)</span>
 <span class="n">baby</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -108,8 +108,8 @@ If we repeat this procedure many times, we will get many intervals, one for each
 <p>Here is a histogram of the ages of the new mothers in the sample. Most of the women were in the mid-twenties to low thirties.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'mat_age'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'maternal age (sample)'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'mat_age'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'maternal age (sample)'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x1096bbcc0&gt;</pre></div>
@@ -123,7 +123,7 @@ If we repeat this procedure many times, we will get many intervals, one for each
 <p>The center of our interval is 27.23 years, the average age of the mothers in the sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samp_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">'mat_age'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samp_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'mat_age'</span><span class="p">])</span>
 <span class="n">samp_mean</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -133,7 +133,7 @@ If we repeat this procedure many times, we will get many intervals, one for each
 <p>The sample average differs from the population average (which we are trying to estimate) by about an SE of the sample average. That's about 0.17 years.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">SE_samp_ave</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">'mat_age'</span><span class="p">])</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">baby</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>   <span class="c"># approx</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SE_samp_ave</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'mat_age'</span><span class="p">])</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">baby</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>   <span class="c1"># approx</span>
 <span class="n">SE_samp_ave</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -152,13 +152,13 @@ True or false: About 95% of the mothers in the population are between 26.89 and 
 <p>Answer: This cannot be right; 95% of women in the population are not all just around 27 years old. The interval simply estimates the average age of the women. In other words, it estimates that the histogram of the ages of all the women will balance somewhere in the range 26.89 years to 27.57 years.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">'gold'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'gold'</span><span class="p">)</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'z'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'$\phi$(z)'</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'z'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$\phi$(z)'</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x1090c3a20&gt;</pre></div>
@@ -180,25 +180,25 @@ True or false: About 95% of the mothers in the population are between 26.89 and 
 <p>As an example, let us start with a list consisting of just one 0 and four 1's. Its average and SD can be computed as usual. Notice something interesting: the average of the list 0.8, is the proportion of 1's in it. And the SD of the list can be computed by a simple formula involving that proportion.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">zero_one</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zero_one</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># A proportion is a mean</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># A proportion is a mean</span>
 
-<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">zero_one</span><span class="p">)</span>           <span class="c"># p = 4/5 = proportion of 1's</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">zero_one</span><span class="p">)</span>           <span class="c1"># p = 4/5 = proportion of 1's</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.80000000000000004</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">zero_one</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">zero_one</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.40000000000000008</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>    
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>    
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.40000000000000002</pre></div>
@@ -217,8 +217,8 @@ True or false: About 95% of the mothers in the population are between 26.89 and 
 <p>To estimate the proportion of smokers among mothers in the population, we will start by finding the corresponding proportion in the sample. In the table, the code for "smoker" is 1 and the code for "non-smoker" is 0.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'m_smoker'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'smokers (0/1) in sample'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'m_smoker'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'smokers (0/1) in sample'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x10a463cf8&gt;</pre></div>
@@ -229,9 +229,9 @@ True or false: About 95% of the mothers in the population are between 26.89 and 
 <p>In the sample, about 39% of the mothers are smokers. This forms the center of our confidence interval.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># "One figure" estimate: the proportion of smokers in our sample</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># "One figure" estimate: the proportion of smokers in our sample</span>
 
-<span class="n">p_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s">'m_smoker'</span><span class="p">])</span><span class="o">/</span><span class="n">baby</span><span class="o">.</span><span class="n">num_rows</span>
+<span class="n">p_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'m_smoker'</span><span class="p">])</span><span class="o">/</span><span class="n">baby</span><span class="o">.</span><span class="n">num_rows</span>
 <span class="n">p_est</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -241,25 +241,25 @@ True or false: About 95% of the mothers in the population are between 26.89 and 
 <p>The "give or take" number is the SE of the sample proportion, which is the SE for the sample mean because a proportion is just a mean of 0's and 1's. We know how to approximate the SE of a sample mean: divide the SD of the sample by the square root of the sample size. The sample consists of 0's and 1's, so its SD is given by the formula that we just observed. This allows us to compute the SE of the sample proportion, approximately.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Give or take: SE of sample proportion</span>
-<span class="c"># That is, SE of sample mean where sample has only 0's and 1's</span>
-<span class="c"># SE of sample proportion approx equal to SampleSD/sqrt(SampleSize)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Give or take: SE of sample proportion</span>
+<span class="c1"># That is, SE of sample mean where sample has only 0's and 1's</span>
+<span class="c1"># SE of sample proportion approx equal to SampleSD/sqrt(SampleSize)</span>
 
-<span class="n">SE_samp_prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p_est</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_est</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">baby</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>         <span class="c"># approx</span>
+<span class="n">SE_samp_prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p_est</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_est</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">baby</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>         <span class="c1"># approx</span>
 <span class="n">SE_samp_prop</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.014241548667026049</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">left</span> <span class="o">=</span> <span class="n">p_est</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">SE_samp_prop</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">left</span> <span class="o">=</span> <span class="n">p_est</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">SE_samp_prop</span>
 <span class="n">left</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.36248794184823074</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">right</span> <span class="o">=</span> <span class="n">p_est</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">SE_samp_prop</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">right</span> <span class="o">=</span> <span class="n">p_est</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">SE_samp_prop</span>
 <span class="n">right</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">

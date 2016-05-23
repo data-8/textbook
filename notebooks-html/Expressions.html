@@ -4,7 +4,7 @@
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
-      inlineMath: [['$','$'], ['\(','\)']],
+      inlineMath: [['$','$']],
       processEscapes: true
     }
   });
@@ -15,7 +15,7 @@
 <p>To learn to program, we will begin by learning some of the grammar rules of a programming language. Programs are made up of <em>expressions</em>, which describe to the computer how to combine pieces of data. For example, a multiplication expression consists of a <code>*</code> symbol between two numerical expressions. Expressions, such as <code>3 * 4</code>, are <em>evaluated</em> by the computer. The value (the result of <em>evaluation</em>) of the last expression in each cell, <code>12</code> in this case, is displayed below the cell.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>12</pre></div>
@@ -24,20 +24,20 @@
 <p>The rules of a programming language are rigid. In Python, the <code>*</code> symbol cannot appear twice in a row. The computer will not try to interpret an expression that differs from its prescribed expression structures. Instead, it will show a <code>SyntaxError</code> error. The <em>Syntax</em> of a language is its set of grammar rules, and a <code>SyntaxError</code> indicates that some rule has been violated.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">3</span> <span class="o">*</span> <span class="o">*</span> <span class="mi">4</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">3</span> <span class="o">*</span> <span class="o">*</span> <span class="mi">4</span>
 </pre></div></div></div>
 <div class="output_subarea output_text output_error">
-<pre><span class="ansicyan">  File </span><span class="ansigreen">"&lt;ipython-input-4-d90564f70db7&gt;"</span><span class="ansicyan">, line </span><span class="ansigreen">1</span>
-<span class="ansired">    3 * * 4</span>
+<pre><span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">"&lt;ipython-input-4-d90564f70db7&gt;"</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
+<span class="ansi-red-fg">    3 * * 4</span>
         ^
-<span class="ansired">SyntaxError</span><span class="ansired">:</span> invalid syntax
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
 </pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Small changes to an expression can change its meaning entirely. Below, the space between the <code>*</code>'s has been removed. Because <code>**</code> appears between two numerical expressions, the expression is a well-formed <em>exponentiation</em> expression (the first number raised to the power of the second: 3 times 3 times 3 times 3). The symbols <code>*</code> and <code>**</code> are called <em>operators</em>, and the values they combine are called <em>operands</em>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">3</span> <span class="o">**</span> <span class="mi">4</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">3</span> <span class="o">**</span> <span class="mi">4</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>81</pre></div>
@@ -96,13 +96,13 @@
 <p>Python expressions obey the same familiar rules of <em>precedence</em> as in algebra: multiplication and division occur before addition and subtraction. Parentheses can be used to group together smaller expressions within a larger expression.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>16.555555555555557</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">((</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">((</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>2016.0</pre></div>

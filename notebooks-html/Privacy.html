@@ -4,7 +4,7 @@
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
-      inlineMath: [['$','$'], ['\(','\)']],
+      inlineMath: [['$','$']],
       processEscapes: true
     }
   });
@@ -23,11 +23,11 @@
 <p>First, we'll gather the data.  It turns out the data is publicly available on the Oakland public records site.  I downloaded it and combined it into a single CSV file by myself before lecture.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'./all-lprs.csv.gz'</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s">'gzip'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lprs</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'./all-lprs.csv.gz'</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">'gzip'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">','</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="o">.</span><span class="n">labels</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lprs</span><span class="o">.</span><span class="n">labels</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>('red_VRM', 'red_Timestamp', 'Location')</pre></div>
@@ -36,8 +36,8 @@
 <p>Let's start by renaming some columns, and then take a look at it.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s">'red_VRM'</span><span class="p">,</span> <span class="s">'Plate'</span><span class="p">)</span>
-<span class="n">lprs</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s">'red_Timestamp'</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lprs</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s1">'red_VRM'</span><span class="p">,</span> <span class="s1">'Plate'</span><span class="p">)</span>
+<span class="n">lprs</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s1">'red_Timestamp'</span><span class="p">,</span> <span class="s1">'Timestamp'</span><span class="p">)</span>
 <span class="n">lprs</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -102,7 +102,7 @@
 <p>As a warmup, we'll take a look at ex-Mayor Jean Quan's car, and where it has been seen.  Her license plate number is 6FCH845.  (How did I learn that?  Turns out she was in the news for getting $1000 of parking tickets, and <a href="http://www.sfgate.com/bayarea/matier-ross/article/Jean-Quan-Oakland-s-new-mayor-gets-car-booted-3164530.php">the news article</a> included a picture of her car, with the license plate visible.  You'd be amazed by what's out there on the Internet...)</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'6FCH845'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Plate'</span><span class="p">,</span> <span class="s1">'6FCH845'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -143,28 +143,28 @@
 <p>So, let's work out a way to show where her car has been seen on a map.  We'll need to extract the latitude and longitude, as the data isn't quite in the format that the mapping software expects: the mapping software expects the latitude to be in one column and the longitude in another.  Let's write some Python code to do that, by splitting the Location string into two pieces: the stuff before the comma (the latitude) and the stuff after (the longitude).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">get_latitude</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span>         <span class="c"># Break it into two parts</span>
-    <span class="n">lat_string</span> <span class="o">=</span> <span class="n">before</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'('</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span> <span class="c"># Get rid of the annoying '('</span>
-    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">lat_string</span><span class="p">)</span>             <span class="c"># Convert the string to a number</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_latitude</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>         <span class="c1"># Break it into two parts</span>
+    <span class="n">lat_string</span> <span class="o">=</span> <span class="n">before</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'('</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span> <span class="c1"># Get rid of the annoying '('</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">lat_string</span><span class="p">)</span>             <span class="c1"># Convert the string to a number</span>
 
 <span class="k">def</span> <span class="nf">get_longitude</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span>                 <span class="c"># Break it into two parts</span>
-    <span class="n">long_string</span> <span class="o">=</span> <span class="n">after</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">')'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c"># Get rid of the ')' and spaces</span>
-    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">long_string</span><span class="p">)</span>                    <span class="c"># Convert the string to a number</span>
+    <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>                 <span class="c1"># Break it into two parts</span>
+    <span class="n">long_string</span> <span class="o">=</span> <span class="n">after</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">')'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c1"># Get rid of the ')' and spaces</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">long_string</span><span class="p">)</span>                    <span class="c1"># Convert the string to a number</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's test it to make sure it works correctly.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">get_latitude</span><span class="p">(</span><span class="s">'(37.797558, -122.26935)'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_latitude</span><span class="p">(</span><span class="s1">'(37.797558, -122.26935)'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>37.797558</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">get_longitude</span><span class="p">(</span><span class="s">'(37.797558, -122.26935)'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_longitude</span><span class="p">(</span><span class="s1">'(37.797558, -122.26935)'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>-122.26935</pre></div>
@@ -173,9 +173,9 @@
 <p>Good, now we're ready to add these as extra columns to the table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lprs</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
-        <span class="s">'Latitude'</span><span class="p">,</span>  <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_latitude</span><span class="p">,</span> <span class="s">'Location'</span><span class="p">),</span>
-        <span class="s">'Longitude'</span><span class="p">,</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_longitude</span><span class="p">,</span> <span class="s">'Location'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lprs</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s1">'Latitude'</span><span class="p">,</span>  <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_latitude</span><span class="p">,</span> <span class="s1">'Location'</span><span class="p">),</span>
+        <span class="s1">'Longitude'</span><span class="p">,</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_longitude</span><span class="p">,</span> <span class="s1">'Location'</span><span class="p">)</span>
         <span class="p">])</span>
 <span class="n">lprs</span>
 </pre></div></div></div>
@@ -234,7 +234,7 @@
 <p>And at last, we can draw a map with a marker everywhere that her car has been seen.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">jean_quan</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'6FCH845'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'Latitude'</span><span class="p">,</span> <span class="s">'Longitude'</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">jean_quan</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Plate'</span><span class="p">,</span> <span class="s1">'6FCH845'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Latitude'</span><span class="p">,</span> <span class="s1">'Longitude'</span><span class="p">,</span> <span class="s1">'Timestamp'</span><span class="p">])</span>
 <span class="n">Marker</span><span class="o">.</span><span class="n">map_table</span><span class="p">(</span><span class="n">jean_quan</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -432,25 +432,25 @@
 <p>Let's try another.  And let's see if we can make the map a little more fancy.  It'd be nice to distinguish between license plate reads that are seen during the daytime (on a weekday), vs the evening (on a weekday), vs on a weekend.  So we'll color-code the markers.  To do this, we'll write some Python code to analyze the Timestamp and choose an appropriate color.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">datetime</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
 
 <span class="k">def</span> <span class="nf">get_color</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="s">'%m/%d/%Y %I:%M:%S %p'</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="s1">'%m/</span><span class="si">%d</span><span class="s1">/%Y %I:%M:%S %p'</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">'green'</span> <span class="c"># Weekend</span>
+        <span class="k">return</span> <span class="s1">'green'</span> <span class="c1"># Weekend</span>
     <span class="k">elif</span> <span class="n">t</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="ow">and</span> <span class="n">t</span><span class="o">.</span><span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">17</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">'blue'</span> <span class="c"># Weekday daytime</span>
+        <span class="k">return</span> <span class="s1">'blue'</span> <span class="c1"># Weekday daytime</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">'red'</span> <span class="c"># Weekday evening</span>
+        <span class="k">return</span> <span class="s1">'red'</span> <span class="c1"># Weekday evening</span>
     
-<span class="n">lprs</span><span class="o">.</span><span class="n">append_column</span><span class="p">(</span><span class="s">'Color'</span><span class="p">,</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_color</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">))</span>
+<span class="n">lprs</span><span class="o">.</span><span class="n">append_column</span><span class="p">(</span><span class="s1">'Color'</span><span class="p">,</span> <span class="n">lprs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_color</span><span class="p">,</span> <span class="s1">'Timestamp'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now we can check out another license plate, this time with our spiffy color-coding.  This one happens to be the car that the city issues to the Fire Chief.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="s">'1328354'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'Latitude'</span><span class="p">,</span> <span class="s">'Longitude'</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">,</span> <span class="s">'Color'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Plate'</span><span class="p">,</span> <span class="s1">'1328354'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Latitude'</span><span class="p">,</span> <span class="s1">'Longitude'</span><span class="p">,</span> <span class="s1">'Timestamp'</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">])</span>
 <span class="n">Marker</span><span class="o">.</span><span class="n">map_table</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -681,12 +681,12 @@
 <p>Let's look at another. This time, we'll make a function to display the map.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">map_plate</span><span class="p">(</span><span class="n">plate</span><span class="p">):</span>
-    <span class="n">sightings</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s">'Plate'</span><span class="p">,</span> <span class="n">plate</span><span class="p">)</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">sightings</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'Latitude'</span><span class="p">,</span> <span class="s">'Longitude'</span><span class="p">,</span> <span class="s">'Timestamp'</span><span class="p">,</span> <span class="s">'Color'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">map_plate</span><span class="p">(</span><span class="n">plate</span><span class="p">):</span>
+    <span class="n">sightings</span> <span class="o">=</span> <span class="n">lprs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Plate'</span><span class="p">,</span> <span class="n">plate</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">sightings</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Latitude'</span><span class="p">,</span> <span class="s1">'Longitude'</span><span class="p">,</span> <span class="s1">'Timestamp'</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">Marker</span><span class="o">.</span><span class="n">map_table</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     
-<span class="n">map_plate</span><span class="p">(</span><span class="s">'5AJG153'</span><span class="p">)</span>
+<span class="n">map_plate</span><span class="p">(</span><span class="s1">'5AJG153'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;
@@ -2732,7 +2732,7 @@
 <p>We can look at another:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">map_plate</span><span class="p">(</span><span class="s">'6UZA652'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">map_plate</span><span class="p">(</span><span class="s1">'6UZA652'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;

@@ -4,7 +4,7 @@
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
-      inlineMath: [['$','$'], ['\(','\)']],
+      inlineMath: [['$','$']],
       processEscapes: true
     }
   });
@@ -21,7 +21,7 @@ np.arange(start, end, step): A range with step between each pair of consecutive 
 <p>A range always includes its <code>start</code> value, but does not include its <code>end</code> value. The <code>step</code> can be either positive or negative and may be a whole number or a fraction.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">by_four</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">by_four</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">by_four</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -33,7 +33,7 @@ np.arange(start, end, step): A range with step between each pair of consecutive 
 $$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} \dots\right)$$</div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">4</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">by_four</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">by_four</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">4</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">by_four</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">by_four</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>3.1215946525910097</pre></div>
@@ -52,14 +52,14 @@ $$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} 
 <p>Let's start with an easy case: <code>k</code> is 4. We'll first find the chance that all four people have different birthdays.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">all_different</span> <span class="o">=</span> <span class="p">(</span><span class="mi">364</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">363</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">362</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_different</span> <span class="o">=</span> <span class="p">(</span><span class="mi">364</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">363</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">362</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The chance that there is at least one pair with the same birthday is equivalent to the chance that the birthdays are not all different. Given the chance of some event occurring, the chance that the event does not occur is one minus the chance that it does. With only 4 people, the chance that any two have the same birthday is less than 2%.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">1</span> <span class="o">-</span> <span class="n">all_different</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="n">all_different</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.016355912466550215</pre></div>
@@ -68,7 +68,7 @@ $$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} 
 <p>Using a range, we can express this same computation compactly. We begin with the numerators of each factor.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">numerators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">364</span><span class="p">,</span> <span class="mi">365</span><span class="o">-</span><span class="n">k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">numerators</span>
 </pre></div></div></div>
@@ -79,7 +79,7 @@ $$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} 
 <p>Then, we divide each numerator by 365 to form the factors, multiply them all together, and subtract from 1.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">numerators</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">numerators</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.016355912466550215</pre></div>
@@ -88,7 +88,7 @@ $$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} 
 <p>If <code>k</code> is 40, the chance of two birthdays being the same is much higher: almost 90%!</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">k</span> <span class="o">=</span> <span class="mi">40</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="n">numerators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">364</span><span class="p">,</span> <span class="mi">365</span><span class="o">-</span><span class="n">k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">numerators</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
 </pre></div></div></div>
@@ -99,7 +99,7 @@ $$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} 
 <p>Using ranges, we can investigate how this chance changes as <code>k</code> increases. The <code>np.cumprod</code> function computes the cumulative product of an array. That is, it computes a new array that has the same length as its input, but the <code>i</code>th element is the product of the first <code>i</code> terms. Below, the fourth term of the result is <code>1 * 2 * 3 * 4</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ten</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ten</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="n">ten</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -109,7 +109,7 @@ $$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} 
 <p>The following cell computes the chance of matching birthdays for every class size from 2 up to 365. Scrolling through the result, you will see that as <code>k</code> increases, the chance of matching birthdays reaches 1 long before the end of the array. In fact, for any <code>k</code> smaller than 365, there is a chance that all <code>k</code> students in a class can have different birthdays. The chance is so small, however, that the difference from 1 is rounded away by the computer.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">numerators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">364</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">numerators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">364</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">chances</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="n">numerators</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
 <span class="n">chances</span>
 </pre></div></div></div>
@@ -192,7 +192,7 @@ $$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} 
 <p>The <code>item</code> method of an array allows us to select a particular element from the array by its position. The starting position of an array is <code>item(0)</code>, so finding the chance of matching birthdays in a 40-person class involves extracting <code>item(40-2)</code> (because the starting item is for a 2-person class).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">chances</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">40</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chances</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">40</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.891231809817949</pre></div></div>

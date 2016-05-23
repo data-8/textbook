@@ -4,7 +4,7 @@
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
-      inlineMath: [['$','$'], ['\(','\)']],
+      inlineMath: [['$','$']],
       processEscapes: true
     }
   });
@@ -16,22 +16,22 @@
 <p>First, we read the text of both books into lists of chapters, called <code>huck_finn_chapters</code> and <code>little_women_chapters</code>. In Python, a name cannot contain any spaces, and so we will of often use an underscore <code>_</code> to stand in for a space. The <code>=</code> in the lines below give a name on the left to the result of some computation described on the right. A <em>uniform resource locator</em> or <em>URL</em> is an address on the Internet for some content; in this case, the text of a book.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Read two books, fast!</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Read two books, fast!</span>
 
-<span class="n">huck_finn_url</span> <span class="o">=</span> <span class="s">'http://www.gutenberg.org/cache/epub/76/pg76.txt'</span>
+<span class="n">huck_finn_url</span> <span class="o">=</span> <span class="s1">'http://www.gutenberg.org/cache/epub/76/pg76.txt'</span>
 <span class="n">huck_finn_text</span> <span class="o">=</span> <span class="n">read_url</span><span class="p">(</span><span class="n">huck_finn_url</span><span class="p">)</span>
-<span class="n">huck_finn_chapters</span> <span class="o">=</span> <span class="n">huck_finn_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'CHAPTER '</span><span class="p">)[</span><span class="mi">44</span><span class="p">:]</span>
+<span class="n">huck_finn_chapters</span> <span class="o">=</span> <span class="n">huck_finn_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'CHAPTER '</span><span class="p">)[</span><span class="mi">44</span><span class="p">:]</span>
 
-<span class="n">little_women_url</span> <span class="o">=</span> <span class="s">'http://www.gutenberg.org/cache/epub/514/pg514.txt'</span>
+<span class="n">little_women_url</span> <span class="o">=</span> <span class="s1">'http://www.gutenberg.org/cache/epub/514/pg514.txt'</span>
 <span class="n">little_women_text</span> <span class="o">=</span> <span class="n">read_url</span><span class="p">(</span><span class="n">little_women_url</span><span class="p">)</span>
-<span class="n">little_women_chapters</span> <span class="o">=</span> <span class="n">little_women_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'CHAPTER '</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">little_women_chapters</span> <span class="o">=</span> <span class="n">little_women_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'CHAPTER '</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>While a computer cannot understand the text of a book, we can still use it to provide us with some insight into the structure of the text. The name <code>huck_finn_chapters</code> is currently bound to a list of all the chapters in the book. We can place those chapters into a table to see how each begins.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">([</span><span class="n">huck_finn_chapters</span><span class="p">],</span> <span class="p">[</span><span class="s">'Chapters'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">([</span><span class="n">huck_finn_chapters</span><span class="p">],</span> <span class="p">[</span><span class="s1">'Chapters'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -89,11 +89,11 @@
 <p>The book describes a journey that Huck and Jim take along the Mississippi River. Tom Sawyer joins them towards the end as the action heats up. We can quickly visualize how many times these characters have each been mentioned at any point in the book.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">counts</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">"Jim"</span><span class="p">),</span> 
-                <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">"Tom"</span><span class="p">),</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">"Huck"</span><span class="p">)],</span> 
-               <span class="p">[</span><span class="s">"Jim"</span><span class="p">,</span> <span class="s">"Tom"</span><span class="p">,</span> <span class="s">"Huck"</span><span class="p">])</span>
-<span class="n">counts</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s2">"Jim"</span><span class="p">),</span> 
+                <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s2">"Tom"</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s2">"Huck"</span><span class="p">)],</span> 
+               <span class="p">[</span><span class="s2">"Jim"</span><span class="p">,</span> <span class="s2">"Tom"</span><span class="p">,</span> <span class="s2">"Huck"</span><span class="p">])</span>
+<span class="n">counts</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Books_6_0.png"/></div>
@@ -105,7 +105,7 @@
 <p><em>Little Women</em> is a story of four sisters growing up together during the civil war. In this book, chapter numbers are spelled out and chapter titles are written in all capital letters.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">({</span><span class="s">'Chapters'</span><span class="p">:</span> <span class="n">little_women_chapters</span><span class="p">})</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">({</span><span class="s1">'Chapters'</span><span class="p">:</span> <span class="n">little_women_chapters</span><span class="p">})</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -162,9 +162,9 @@
 <p>We can track the mentions of main characters to learn about the plot of this book as well.  The protagonist Jo interacts with her sisters Meg, Beth, and Amy regularly, up until Chapter 27 when she moves to New York alone.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">people</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Meg"</span><span class="p">,</span> <span class="s">"Jo"</span><span class="p">,</span> <span class="s">"Beth"</span><span class="p">,</span> <span class="s">"Amy"</span><span class="p">,</span> <span class="s">"Laurie"</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Meg"</span><span class="p">,</span> <span class="s2">"Jo"</span><span class="p">,</span> <span class="s2">"Beth"</span><span class="p">,</span> <span class="s2">"Amy"</span><span class="p">,</span> <span class="s2">"Laurie"</span><span class="p">]</span>
 <span class="n">people_counts</span> <span class="o">=</span> <span class="n">Table</span><span class="p">({</span><span class="n">pp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="n">pp</span><span class="p">)</span> <span class="k">for</span> <span class="n">pp</span> <span class="ow">in</span> <span class="n">people</span><span class="p">})</span>
-<span class="n">people_counts</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<span class="n">people_counts</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Books_11_0.png"/></div>
@@ -176,12 +176,12 @@
 <p>In addition to visualizing data to find patterns, data science is often concerned with whether two similar patterns are really the same or different. In the context of novels, the word "character" has a second meaning: a printed symbol such as a letter or number. Below, we compare the counts of this type of character in the first chapter of Little Women.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
 
 <span class="n">chapter_one</span> <span class="o">=</span> <span class="n">little_women_chapters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">chapter_one</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-<span class="n">letters</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="p">[</span><span class="s">'Letters'</span><span class="p">,</span> <span class="s">'Chapter 1 Count'</span><span class="p">])</span>
-<span class="n">letters</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">'Letters'</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">letters</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="p">[</span><span class="s1">'Letters'</span><span class="p">,</span> <span class="s1">'Chapter 1 Count'</span><span class="p">])</span>
+<span class="n">letters</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'Letters'</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
@@ -278,10 +278,10 @@
 <p>How do these counts compare with the character counts in Chapter 2? By plotting both sets of counts together, we can see slight variations for every character. Is that difference meaningful? How sure can we be? Such questions will be addressed precisely in this text.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-<span class="n">two_letters</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="p">[</span><span class="s">'Letters'</span><span class="p">,</span> <span class="s">'Chapter 2 Count'</span><span class="p">])</span>
-<span class="n">compare</span> <span class="o">=</span> <span class="n">letters</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">'Letters'</span><span class="p">,</span> <span class="n">two_letters</span><span class="p">)</span>
-<span class="n">compare</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s">'Letters'</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="n">two_letters</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="p">[</span><span class="s1">'Letters'</span><span class="p">,</span> <span class="s1">'Chapter 2 Count'</span><span class="p">])</span>
+<span class="n">compare</span> <span class="o">=</span> <span class="n">letters</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'Letters'</span><span class="p">,</span> <span class="n">two_letters</span><span class="p">)</span>
+<span class="n">compare</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s1">'Letters'</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Books_16_0.png"/></div>
@@ -291,19 +291,19 @@
 <p>As an example, let us first use the computer to get us some information that would be really tedious to acquire by hand: the number of characters and the number of periods in each chapter of both books.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">chlen_per_hf</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">huck_finn_chapters</span><span class="p">],</span> 
-                      <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">'.'</span><span class="p">)],</span>
-                     <span class="p">[</span><span class="s">"HF Chapter Length"</span><span class="p">,</span> <span class="s">"Number of periods"</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chlen_per_hf</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">huck_finn_chapters</span><span class="p">],</span> 
+                      <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">)],</span>
+                     <span class="p">[</span><span class="s2">"HF Chapter Length"</span><span class="p">,</span> <span class="s2">"Number of periods"</span><span class="p">])</span>
 <span class="n">chlen_per_lw</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">little_women_chapters</span><span class="p">],</span> 
-                      <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s">'.'</span><span class="p">)],</span>
-                     <span class="p">[</span><span class="s">"LW Chapter Length"</span><span class="p">,</span> <span class="s">"Number of periods"</span><span class="p">])</span>
+                      <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">)],</span>
+                     <span class="p">[</span><span class="s2">"LW Chapter Length"</span><span class="p">,</span> <span class="s2">"Number of periods"</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Here are the data for <em>Huckleberry Finn</em>. Each row of the table below corresponds to one chapter of the novel and displays the number of characters as well as the number of periods in the chapter. Not surprisingly, chapters with fewer characters also tend to have fewer periods, in general; the shorter the chapter, the fewer sentences there tend to be, and vice versa. The relation is not entirely predictable, however, as sentences are of varying lengths and can involve other punctuation such as question marks.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">chlen_per_hf</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chlen_per_hf</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -360,7 +360,7 @@
 <p>Here are the corresponding data for <em>Little Women</em>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">chlen_per_lw</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chlen_per_lw</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -418,9 +418,9 @@
 <p>In the plot below, there is a dot for each chapter in each book. Blue dots correspond to <em>Huckleberry Finn</em> and yellow dots to <em>Little Women</em>. The horizontal axis represents the number of characters and the vertical axis represents the number of periods.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">huck_finn_chapters</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s">'.'</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">'b'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">little_women_chapters</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s">'.'</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">'y'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">huck_finn_chapters</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'b'</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">little_women_chapters</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'y'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.collections.PathCollection at 0x109ebee10&gt;</pre></div>

@@ -4,7 +4,7 @@
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
-      inlineMath: [['$','$'], ['\(','\)']],
+      inlineMath: [['$','$']],
       processEscapes: true
     }
   });
@@ -18,7 +18,7 @@
 <p>We will start by defining such a measure in the context of a simple array of just four <code>numbers</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 <span class="n">numbers</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -28,7 +28,7 @@
 <p>The goal is to get a measure of roughly how far off the numbers in the list are from the average. To do this, we need the average, and all the deviations from the average. A "deviation from average" is just a value minus the average.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Step 1. The average.</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Step 1. The average.</span>
 
 <span class="n">average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
 <span class="n">average</span>
@@ -37,12 +37,12 @@
 <pre>3.75</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Step 2. The deviations from average.</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Step 2. The deviations from average.</span>
 
 <span class="n">deviations</span> <span class="o">=</span> <span class="n">numbers</span> <span class="o">-</span> <span class="n">average</span>
 <span class="n">numbers_and_deviations</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
-        <span class="s">'value'</span><span class="p">,</span> <span class="n">numbers</span><span class="p">,</span>
-        <span class="s">'deviation from average'</span><span class="p">,</span> <span class="n">deviations</span>
+        <span class="s1">'value'</span><span class="p">,</span> <span class="n">numbers</span><span class="p">,</span>
+        <span class="s1">'deviation from average'</span><span class="p">,</span> <span class="n">deviations</span>
         <span class="p">])</span>
 <span class="n">numbers_and_deviations</span>
 </pre></div></div></div>
@@ -77,7 +77,7 @@
 <p>To calculate roughly how big the deviations are, it is natural to compute the mean of the deviations. But something interesting happens when all the deviations are added together:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">deviations</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">deviations</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.0</pre></div>
@@ -87,7 +87,7 @@
 <p>Since the sum of the deviations is 0, the mean of the deviations will be 0 as well:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">deviations</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">deviations</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.0</pre></div>
@@ -98,10 +98,10 @@
 <p>So let us eliminate the signs by squaring all the deviations. Then we will take the mean of the squares:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Step 3. The squared deviations from average</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Step 3. The squared deviations from average</span>
 
 <span class="n">squared_deviations</span> <span class="o">=</span> <span class="n">deviations</span> <span class="o">**</span> <span class="mi">2</span>
-<span class="n">numbers_and_deviations</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s">'squared deviations from average'</span><span class="p">,</span> <span class="n">squared_deviations</span><span class="p">)</span>
+<span class="n">numbers_and_deviations</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'squared deviations from average'</span><span class="p">,</span> <span class="n">squared_deviations</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -130,7 +130,7 @@
 </table></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Variance = the mean squared deviation from average</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Variance = the mean squared deviation from average</span>
 
 <span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">squared_deviations</span><span class="p">)</span>
 <span class="n">variance</span>
@@ -142,8 +142,8 @@
 <p><strong>Variance:</strong> The mean squared deviation is called the <em>variance</em> of a sequence of values. While it does give us an idea of spread, it is not on the same scale as the original variable and its units are the square of the original. This makes interpretation very difficult. So we return to the original scale by taking the positive square root of the variance:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Standard Deviation:    root mean squared deviation from average</span>
-<span class="c"># Steps of calculation:   5    4      3       2             1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Standard Deviation:    root mean squared deviation from average</span>
+<span class="c1"># Steps of calculation:   5    4      3       2             1</span>
 
 <span class="n">sd</span> <span class="o">=</span> <span class="n">variance</span> <span class="o">**</span> <span class="mf">0.5</span>
 <span class="n">sd</span>
@@ -157,7 +157,7 @@
 <p><strong>Computation.</strong> The <code>numPy</code> function <code>np.std</code> computes the SD of values in an array:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>3.6314597615834874</pre></div>
@@ -166,7 +166,7 @@
 <h3 id="Working-with-the-SD">Working with the SD<a class="anchor-link" href="#Working-with-the-SD">¶</a></h3><p>Let us now examine the SD in the context of a more interesting dataset. The table <code>nba</code> contains data on the players in the National Basketball Association (NBA) in 2013. For each player, the table records the position at which the player usually played, his height in inches, weight in pounds, and age in years.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">nba</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">"nba2013.csv"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">"nba2013.csv"</span><span class="p">)</span>
 <span class="n">nba</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -224,7 +224,7 @@
 <p>Here is a histogram of the players' heights.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">nba</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'Height'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">68</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Height'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">68</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Spread_22_0.png"/></div>
@@ -233,7 +233,7 @@
 <p>It is no surprise that NBA players are tall! Their average height is just over 79 inches (6'7"), about 10 inches taller than the average height of men in the United States.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">mean_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nba</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Height'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mean_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nba</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Height'</span><span class="p">))</span>
 <span class="n">mean_height</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -243,7 +243,7 @@
 <p>About far off are the players' heights from the average? This is measured by the SD of the heights, which is about 3.45 inches.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sd_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">nba</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Height'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sd_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">nba</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Height'</span><span class="p">))</span>
 <span class="n">sd_height</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -253,7 +253,7 @@
 <p>The towering center Hasheem Thabeet of the Oklahoma City Thunder was the tallest player at a height of 87 inches.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">'Height'</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="k">True</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'Height'</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
@@ -282,7 +282,7 @@
 <p>Thabeet was about 8 inches above the average height.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">87</span> <span class="o">-</span> <span class="n">mean_height</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">87</span> <span class="o">-</span> <span class="n">mean_height</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>7.9346534653465284</pre></div>
@@ -291,7 +291,7 @@
 <p>That's a deviation from average, and it is about 2.3 times the standard deviation:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="p">(</span><span class="mi">87</span> <span class="o">-</span> <span class="n">mean_height</span><span class="p">)</span><span class="o">/</span><span class="n">sd_height</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="mi">87</span> <span class="o">-</span> <span class="n">mean_height</span><span class="p">)</span><span class="o">/</span><span class="n">sd_height</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>2.2995015194397923</pre></div>
@@ -301,7 +301,7 @@
 <p>At 69 inches tall, Isaiah Thomas was one of the two shortest players in the NBA. His height was about 2.9 SDs below average.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">'Height'</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'Height'</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
@@ -327,7 +327,7 @@
 <p>... (502 rows omitted)</p></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="p">(</span><span class="mi">69</span> <span class="o">-</span> <span class="n">mean_height</span><span class="p">)</span><span class="o">/</span><span class="n">sd_height</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="mi">69</span> <span class="o">-</span> <span class="n">mean_height</span><span class="p">)</span><span class="o">/</span><span class="n">sd_height</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>-2.9169868288775844</pre></div>
@@ -344,7 +344,7 @@
 <p>What about the ages? Here is a histogram of the distribution. Yes, there was a 15-year-old player in the NBA in 2013.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">nba</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'Age in 2013'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Age in 2013'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Spread_39_0.png"/></div>
@@ -353,7 +353,7 @@
 <p>Juwan Howard was the oldest player, at 40. His age was about 3.2 SDs above average.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">'Age in 2013'</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="k">True</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'Age in 2013'</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
@@ -379,7 +379,7 @@
 <p>... (502 rows omitted)</p></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ages</span> <span class="o">=</span> <span class="n">nba</span><span class="p">[</span><span class="s">'Age in 2013'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span> <span class="o">=</span> <span class="n">nba</span><span class="p">[</span><span class="s1">'Age in 2013'</span><span class="p">]</span>
 <span class="p">(</span><span class="mi">40</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ages</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ages</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -389,7 +389,7 @@
 <p>The youngest was 15-year-old Jarvis Varnado, who won the NBA Championship that year with the Miami Heat. His age was about 2.6 SDs below average.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">'Age in 2013'</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'Age in 2013'</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
@@ -415,7 +415,7 @@
 <p>... (502 rows omitted)</p></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="p">(</span><span class="mi">15</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ages</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ages</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="mi">15</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ages</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ages</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>-2.5895811038670811</pre></div>
@@ -451,8 +451,8 @@ $$</p>
 <p>As we will see, standard units are frequently used in data analysis. So it is useful to define a function that converts an array of numbers to standard units.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">standard_units</span><span class="p">(</span><span class="n">any_numbers</span><span class="p">):</span>
-    <span class="s">"Convert any array of numbers to standard units."</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">standard_units</span><span class="p">(</span><span class="n">any_numbers</span><span class="p">):</span>
+    <span class="s2">"Convert any array of numbers to standard units."</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">any_numbers</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">any_numbers</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">any_numbers</span><span class="p">)</span>    
 </pre></div></div></div>
 <div class="inner_cell">
@@ -460,7 +460,7 @@ $$</p>
 <p>As we saw in an earlier section, the table <code>ua</code> contains a column <code>Departure Delay</code> consisting of the departure delay times, in minutes, of over 37,000 United Airlines flights. We can create a new column called <code>Delay_su</code> by applying the function <code>standard_units</code> to the column of delay times. This allows us to see all the delay times in minutes as well as their corresponding values in standard units.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ua</span><span class="o">.</span><span class="n">append_column</span><span class="p">(</span><span class="s">'z'</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">ua</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'Departure Delay'</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ua</span><span class="o">.</span><span class="n">append_column</span><span class="p">(</span><span class="s1">'z'</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">ua</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Departure Delay'</span><span class="p">)))</span>
 <span class="n">ua</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -518,7 +518,7 @@ $$</p>
 <p>Something rather alarming happens when we sort the delay times from highest to lowest. The standard units are extremely high!</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ua</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ua</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -576,7 +576,7 @@ $$</p>
 <p>However, the proportion of these extreme values is tiny, and the bounds in Chebychev's inequality still hold true. For example, let us calculate the percent of delay times that are in the range "average $\pm$ 2 SDs". This is the same as the percent of times for which the standard units are in the range (-2, 2). That is just about 96%, as computed below, consistent with Chebychev's bound of "at least 75%".</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">within_2_sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">ua</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'z'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">ua</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s">'z'</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">within_2_sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">ua</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'z'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">ua</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'z'</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">ua</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">within_2_sd</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span><span class="o">/</span><span class="n">ua</span><span class="o">.</span><span class="n">num_rows</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -586,7 +586,7 @@ $$</p>
 <p>The histogram of delay times is shown below, with the horizontal axis in standard units. By the table above, the right hand tail continues all the way out to 22 standard units (886 minutes). The area of the histogram outside the range $z=-2$ to $z=2$ is about 4%, put together in tiny little bits that are mostly invisible in a histogram.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ua</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s">'z'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s">'standard unit'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ua</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'z'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'standard unit'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Spread_58_0.png"/></div></div>
