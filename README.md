@@ -16,3 +16,5 @@ This is the textbook for the [Foundations of Data Science class at UC Berkeley][
 
 [data8]: http://data8.org/
 [gitbook]: https://ds8.gitbooks.io/textbook/content/
+
+The contents of this book are licensed for reuse under [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/)
