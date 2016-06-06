@@ -129,7 +129,8 @@
 <p>... (190 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>hist</code> method generates a <em>histogram</em> of the values in a column. The optional <code>unit</code> argument is used to label the axes.</p></div></div>
+<p><strong>How to draw a histogram.</strong>
+The <code>hist</code> method generates a <em>histogram</em> of the values in a column. The optional <code>unit</code> argument is used to label the axes.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">)</span>
@@ -209,7 +210,9 @@
 <p>... (8 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The vertical axis of a histogram is the <em>density scale</em>. The height of each bar is the proportion of elements that fall into the corresponding bin, divided by the width of the bin. For example, the height of the bin from 300 to 400, which contains 81 of the 200 movies, is $\frac{81}{200} \cdot \frac{1}{400-300}$ = 0.405%.</p></div></div>
+<p><strong>The vertical axis: Calculation.</strong>
+We will start by explaining how to calculate the numbers on the vertical axis of the histogram. If the calculation seems a little strange, have patience – the rest of the section will explain the reasoning behind the calculation.</p>
+<p>The vertical axis of the histogram above is drawn to the <em>density scale</em>. The height of each bar is the percent of elements that fall into the corresponding bin, divided by the width of the bin. For example, the height of the bin from 300 to 400, which contains 81 of the 200 movies, is $\frac{81}{200} \cdot \frac{1}{400-300}$ = 0.405% per million dollars.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">starts</span> <span class="o">=</span> <span class="n">bins</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -220,8 +223,10 @@
 <pre>0.0040500000000000006</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The total area of this bar is 0.405, 100 times greater because its width is 100. This area is the proportion of all values in the <code>Millions</code> column that fall into the 300-400 bin. The area of all bars in a histogram sums to 1.</p>
-<p>A histogram may contain bins of unequal size, but the area of all bars will still sum to 1. Below, the values in the <code>Millions</code> column are binned into four categories.</p></div></div>
+<p><strong>Areas are percents, heights are densities.</strong>
+The width of the bar is 100 million dollars, and its height is 0.405% per million dollars. So the total area of the bar is 40.5%. This area is the percent of all values in the <code>Millions</code> column that fall into the 300-400 bin. In other words, 40.5% of the movies grossed at least 300 million dollars but less than 400 million dollars.</p>
+<p>When a histogram is drawn to the density scale, the area of each bar is equal to the percent of data values that are in the corresponding bin. Thus, the total area of all the bars in a histogram is 100%. In terms of proportions, we can say that the area of all the bars in a histogram "sums to 1".</p>
+<p>An advantage of the histogram over a bar graph is that a histogram can contain bins of unequal width. The area of all the bars will still sum to 1. Below, the values in the <code>Millions</code> column are binned into three uneven categories.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
@@ -230,7 +235,7 @@
 <img src="../notebooks-images/Histograms_14_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Although the ranges 300-400 and 400-600 have nearly identical counts, the former is twice as tall as the latter because it is only half as wide. The density of values in that range is twice as high. Histograms display in visual form where on the number line values are most concentrated.</p></div></div>
+<p>Although the ranges 300-400 and 400-600 have nearly identical counts, the bar over the former is twice as tall as the latter because it is only half as wide. The density of values in that range is twice as much. Histograms help us visualize where on the number line the data are most concentrated.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
@@ -262,7 +267,7 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Histogram of Counts.</strong> It is possible to display counts directly in a chart, using the <code>normed=False</code> option of the <code>hist</code> method. The resulting chart has the same shape when bins all have equal widths, but the bar areas do not sum to 1.</p></div></div>
+<p><strong>A graph of counts.</strong> It is possible to display counts directly in a chart, using the <code>normed=False</code> option of the <code>hist</code> method. The resulting chart has the same shape when bins all have equal widths, but the bar areas do not sum to 1.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -280,7 +285,7 @@
 <img src="../notebooks-images/Histograms_20_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Even though the method used is called <em>hist</em>, <strong>the figure above is NOT A HISTOGRAM.</strong> It gives the impression that movies are evenly distributed in the 300-600 range, but they are not. Moreover, it exaggerates the density of movies grossing more than 600 million. The height of each bar is simply plotted the number of movies in the bin, <em>without accounting for the difference in the widths of the bins</em>. The picture becomes even more skewed if the last two bins are combined.</p></div></div>
+<p>Even though the method used is called <em>hist</em>, <strong>the figure above is NOT A HISTOGRAM.</strong> It misleadingly exaggerates the proportion of movies grossing at least 600 million dollars. The height of each bar is simply plotted the number of movies in the bin, <em>without accounting for the difference in the widths of the bins</em>. The picture becomes even more absurd if the last two bins are combined.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -289,9 +294,11 @@
 <img src="../notebooks-images/Histograms_22_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this count-based histogram, the shape of the distribution of movies is lost entirely.</p>
-<p><strong>So what is a histogram?</strong></p>
-<p>The figure above shows that what the eye perceives as "big" is area, not just height. This is particularly important when the bins are of different widths.</p>
+<p>In this count-based figure, the shape of the distribution of movies is lost entirely.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>So exactly what is a histogram?</strong></p>
+<p>The figure above shows that what the eye perceives as "big" is area, not just height. This is particularly important when the bins have different widths.</p>
 <p>That is why a histogram has two defining properties:</p>
 <ol>
 <li>The bins are contiguous (though some might be empty) and are drawn to scale.</li>
@@ -299,8 +306,8 @@
 </ol>
 <p>Property 2 is the key to drawing a histogram, and is usually achieved as follows:</p>
 $$
-\mbox{area of bar} ~=~ \mbox{proportion of entries in bin}
-$$<p>When drawn using this method, the histogram is said to be drawn <em>on the density scale</em>, and the total area of the bars is equal to 1.</p>
+\mbox{area of bar} ~=~ \mbox{percent of entries in bin}
+$$<p>When drawn using this method, the histogram is said to be drawn <em>on the density scale</em>, and the total area of the bars is equal to 100%.</p>
 <p>To calculate the height of each bar, use the fact that the bar is a rectangle:</p>
 $$
 \mbox{area of bar} = \mbox{height of bar} \times \mbox{width of bin}
@@ -308,51 +315,49 @@ $$<p>and so</p>
 $$
 \mbox{height of bar} ~=~ 
 \frac{\mbox{area of bar}}{\mbox{width of bin}} ~=~
-\frac{\mbox{proportion of entries in bin}}{\mbox{width of bin}}
+\frac{\mbox{percent of entries in bin}}{\mbox{width of bin}}
 $$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>The level of detail, and the flat tops of the bars</strong></p>
-<p>Even though the density scale correctly represents proportions using area, some detail is lost by placing different values into the same bins.</p>
-<p>Take another look at the [300, 400) bin in the figure below. The flat top of the bar, at a level near 0.4%, hides the fact that the movies are somewhat unevenly distributed across the bin.</p></div></div>
+<p>Even though the density scale correctly represents percents using area, some detail is lost by grouping values into bins.</p>
+<p>Take another look at the [300, 400) bin in the figure below. The flat top of the bar, at a level near 0.4% per million dollars, hides the fact that the movies are somewhat unevenly distributed across that bin.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Histograms_25_0.png"/></div>
+<img src="../notebooks-images/Histograms_26_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To see this, let us split the [150, 200) bin into ten narrower bins of width 10 million dollars each:</p></div></div>
+<p>To see this, let us split the [300, 400) bin into ten narrower bins of width 10 million dollars each:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">370</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span> <span class="p">])</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Histograms_27_0.png"/></div>
+<img src="../notebooks-images/Histograms_28_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Some of the skinny bars are taller than 0.4% and others are shorter. By putting a flat top at 0.4% over the whole bin, we are deciding to ignore the finer detail and use the flat level as a rough approximation. Often, though not always, this is sufficient for understanding the general shape of the distribution.</p>
-<p>Notice that because we have the entire dataset, we can draw the histogram in as fine a level of detail as the data and our patience will allow. However, if you are looking at a histogram in a book or on a website, and you don't have access to the underlying dataset, then it becomes important to have a clear understanding of the "rough approximation" of the flat tops.</p></div></div>
+<p>Some of the skinny bars are taller than 0.4 and others are shorter. By putting a flat top at 0.4 over the whole bin, we are deciding to ignore the finer detail and use the flat level as a rough approximation. Often, though not always, this is sufficient for understanding the general shape of the distribution.</p>
+<p>Notice that because we have the entire dataset, we can draw the histogram with as fine a level of detail as the data and our patience will allow. However, if you are looking at a histogram in a book or on a website, and you don't have access to the underlying dataset, then it becomes important to have a clear understanding of the "rough approximation" created by the flat tops.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>The density scale</strong></p>
-<p>The height of each bar is a proportion divided by a bin width. Thus, for this datset, the values on the vertical axis are "proportions per million dollars." To understand this better, look again at the [150, 200) bin. The bin is 50 million dollars wide. So we can think of it as consisting of 50 narrow bins that are each 1 million dollars wide. The bar's height of roughly "0.004 per million dollars" means that in each of those 50 skinny bins of width 1 million dollars, the proportion of movies is roughly 0.004.</p>
-<p>Thus the height of a histogram bar is a proportion per unit on the horizontal axis, and can be thought of as the <em>density</em> of entries per unit width.</p></div></div>
+<p><strong>The units of the density scale.</strong>
+The height of each bar is a percent divided by a bin width. Thus, for this datset, the values on the vertical axis are in units of "percent per million dollars." To understand this better, look again at the [300, 400) bin. The bin is 100 million dollars wide. So we can think of it as consisting of 100 narrow bins that are each 1 million dollars wide. The bar's height of roughly "0.4% per million dollars" means that roughly 0.4% of the movies are in each of those 100 skinny bins of width 1 million dollars.</p>
+<p>Because the height of a histogram bar is a percent per unit on the horizontal axis, it can be thought of as the <em>density</em> of entries per unit width.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Heights versus areas.</strong> To confirm our understanding of the density scale, let us draw the histogram again, this time with four bins.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'Million Dollars'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Histograms_30_0.png"/></div>
+<img src="../notebooks-images/Histograms_32_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Density Q&amp;A</strong></p>
-<p>Look again at the histogram, and this time compare the [400, 450) bin with the [450, 1500) bin.</p>
-<p><strong>Q</strong>: Which has more movies in it?</p>
-<p><strong>A</strong>: The [450, 1500) bin. It has 92 movies, compared with 25 movies in the [400, 450) bin.</p>
-<p><strong>Q</strong>: Then why is the [450, 1500) bar so much shorter than the [400, 450) bar?</p>
-<p><strong>A</strong>: Because height represents density per unit width, not the number of movies in the bin. The [450, 1500) bin has more movies than the [400, 450) bin, but it is also a whole lot wider. So the density is much lower.</p></div></div>
+<p>Here are the counts of movies in each of the bins.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
@@ -388,8 +393,20 @@ $$</div></div>
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Bar chart or histogram?</strong></p>
+<p><strong>Heights and Densities: Q&amp;A</strong></p>
+<p>Look again at the histogram, and compare the [400, 450) bin with the [450, 1500) bin.</p>
+<p><strong>Q</strong>: Which has more movies in it?</p>
+<p><strong>A</strong>: The [450, 1500) bin. It has 92 movies, compared with 25 movies in the [400, 450) bin.</p>
+<p><strong>Q</strong>: Then why is the [450, 1500) bar so much shorter than the [400, 450) bar?</p>
+<p><strong>A</strong>: Because height represents density per unit width, not the number of movies in the bin. The [450, 1500) bin does have more movies than the [400, 450) bin, but it is also a whole lot wider. So the density of movies in it is much lower.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Which to use: bar graph or histogram?</strong></p>
 <p>Bar charts display the distributions of categorical variables. All the bars in a bar chart have the same width. The lengths (or heights, if the bars are drawn vertically) of the bars are proportional to the number of entries.</p>
 <p>Histograms display the distributions of quantitative variables. The bars can have different widths. The areas of the bars are proportional to the number of entries.</p>
 <p><strong>Multiple histograms</strong></p>
-<p>In all the examples in this section, we have drawn a single histogram. However, if a data table contains several columns, then <em>barh</em> and <em>hist</em> can be used to draw several charts at once. We will cover this feature in a later section.</p></div></div></div>
+<p>In all the examples in this section, we have drawn a single histogram. However, if a data table contains several columns, then <em>barh</em> and <em>hist</em> can be used to draw several charts at once. We will cover this feature in a later section.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div></div></div></div>
