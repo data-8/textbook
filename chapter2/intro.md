@@ -6,7 +6,7 @@ Visualizations
 
 While we have been able to make several interesting observations about data by
 simply running our eyes down the numbers in a table, our task becomes much
-harder as tables been larger.  In data science, a picture can be worth a
+harder as tables become larger.  In data science, a picture can be worth a
 thousand numbers.
 
 We saw an example of this earlier in the text, when we examined John Snow's map
