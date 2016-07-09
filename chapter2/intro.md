@@ -6,7 +6,7 @@ Visualizations
 
 While we have been able to make several interesting observations about data by
 simply running our eyes down the numbers in a table, our task becomes much
-harder as tables been larger.  In data science, a picture can be worth a
+harder as tables become larger.  In data science, a picture can be worth a
 thousand numbers.
 
 We saw an example of this earlier in the text, when we examined John Snow's map
@@ -69,7 +69,7 @@ emissions than the United States. However, in the graph of per capita
 emissions, the US is higher than China, because China's population is much
 larger than that of the United States.
 
-Technology can be a help as well as a hindrance. Sometimes, the ability to
+Technology can be a hindrance as well as a help. Sometimes, the ability to
 create a fancy picture leads to a lack of clarity in what is being displayed.
 Inaccurate representation of numerical information, in particular, can lead to
 misleading messages.
