@@ -52,5 +52,6 @@
   * [A/B Testing](chapter5/ab.md)
   * [Regression Inference](chapter5/regression.md)
   * [Regression Diagnostics](chapter5/residuals.md)
+  * [Randomized Controlled Experiments](chapter5/experiments.md)
 * [Probability](chapter6/intro.md)
   * [Conditional Probability](chapter6/conditional.md)
