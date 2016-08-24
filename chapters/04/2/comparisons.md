@@ -1,5 +1,5 @@
 Comparisons
 -----------
 
-{% include "../notebooks-html/Comparison.html" %}
+{% include "../../../notebooks-html/Comparison.html" %}
 

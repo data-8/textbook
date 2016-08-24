@@ -1,5 +1,5 @@
 Sequences
 ---------
 
-{% include "../notebooks-html/Collections.html" %}
+{% include "../../../notebooks-html/Collections.html" %}
 

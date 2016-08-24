@@ -1,4 +1,4 @@
 Strings
 ----------
 
-{% include "../notebooks-html/Strings.html" %}
+{% include "../../../notebooks-html/Strings.html" %}

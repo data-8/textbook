@@ -1,4 +1,4 @@
 Data Types
 ----------
 
-{% include "../notebooks-html/Types.html" %}
+{% include "../../notebooks-html/Types.html" %}

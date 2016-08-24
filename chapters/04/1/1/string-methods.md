@@ -1,4 +1,4 @@
 String Methods
 --------------
 
-{% include "../notebooks-html/String_Methods.html" %}
+{% include "../../../../notebooks-html/String_Methods.html" %}

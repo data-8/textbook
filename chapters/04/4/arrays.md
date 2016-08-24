@@ -1,4 +1,4 @@
 Arrays
 ------
 
-{% include "../notebooks-html/Arrays.html" %}
+{% include "../../../notebooks-html/Arrays.html" %}
