@@ -39,7 +39,7 @@ the body is executed, the call to the function completes and the value of the
 <p>The definition of the <code>percent</code> function below multiplies a number by 100 and rounds the result to two decimal places.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percent</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">percent</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
@@ -47,19 +47,19 @@ the body is executed, the call to the function completes and the value of the
 <p>The primary difference between defining a <code>percent</code> function and simply evaluating its return expression, <code>round(100*x, 2)</code>, is that when a function is defined, its return expression is <em>not</em> immediately evaluated. It cannot be, because the value for <code>x</code> is not yet defined. Instead, the return expression is evaluated whenever this <code>percent</code> function is <em>called</em> by placing parentheses after the name <code>percent</code> and placing an expression to compute its argument in parentheses.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>16.67</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.02</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">60000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">60000</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.0</pre></div>
@@ -69,7 +69,7 @@ the body is executed, the call to the function completes and the value of the
 <p>The same result is computed by passing a named value as an argument. The <code>percent</code> function does not know or care how its argument is computed or stored; its only job is to execute its own body using the arguments passed to it.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sixth</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">sixth</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span>
 <span class="n">percent</span><span class="p">(</span><span class="n">sixth</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -81,26 +81,26 @@ the body is executed, the call to the function completes and the value of the
 <p>For example, we can improve our <code>percent</code> function so that it doesn't round very small numbers to zero so readily. The behavior of <code>percent(1/6)</code> is unchanged, but <code>percent(1/60000)</code> provides a more useful result.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percent</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">percent</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0.00005</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">x</span>
     <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>16.67</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.02</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">60000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">60000</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.0016666666666666668</pre></div>
@@ -123,7 +123,7 @@ else:
 <p>Let us continue to refine our <code>percent</code> function. Perhaps for some analysis, any value below $10^{-8}$ should be considered close enough to 0 that it can be ignored. The following function definition handles this case as well.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percent</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">percent</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">8</span><span class="p">:</span>
         <span class="k">return</span> <span class="mf">0.0</span>
     <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0.00005</span><span class="p">:</span>
@@ -133,25 +133,25 @@ else:
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>16.67</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.02</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">60000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">60000</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.0016666666666666668</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">60000000000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">percent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">60000000000</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.0</pre></div>
@@ -162,7 +162,7 @@ else:
 <p>A more complete definition of <code>percent</code> that includes a docstring appears below.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percent</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">percent</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">"""Convert x to a percentage by multiplying by 100.</span>
 <span class="sd">    </span>
 <span class="sd">    Percentages are conventionally rounded to two decimal places,</span>

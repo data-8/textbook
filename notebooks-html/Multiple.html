@@ -66,7 +66,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 </ul></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grades</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'grades_and_piazza.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">grades</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'grades_and_piazza.csv'</span><span class="p">)</span>
 <span class="n">grades</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -125,7 +125,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>All forum usage variables are correlated with GPA, but the <code>notes</code> correlation has a very small magnitude.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grades</span><span class="o">.</span><span class="n">to_df</span><span class="p">()</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">grades</span><span class="o">.</span><span class="n">to_df</span><span class="p">()</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -220,7 +220,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>To start off, let us perform the simple regression of <code>GPA</code> on just <code>days online</code>, the count with the strongest correlation with an <code>r</code> of 0.68. Here is the scatter diagram and regression line.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grades</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'days online'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">grades</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'days online'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Multiple_9_0.png"/></div>
@@ -229,7 +229,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>We can immediately see that the relation is not entirely linear, and a residual plot highlights this fact. One issue is that the GPA is never above 4.0, so the model assumption that <code>y</code> values are bell shaped does not hold in this case.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">residual_plot</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s1">'days online'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">residual_plot</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s1">'days online'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Multiple_11_0.png"/></div>
@@ -239,7 +239,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>The root mean squared error is a bit above 1/4 of a GPA point when predicting GPA from only the days online.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grades_days_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s1">'days online'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">grades_days_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s1">'days online'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">)</span>
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">grades_days_mse</span><span class="p">)</span>
 <span class="n">grades_days_mse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
 </pre></div></div></div>
@@ -253,7 +253,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>Perhaps more information can improve our prediction. The number of <code>answers</code> is also correlated with GPA. When using it alone as a predictor, the root mean squared error is greater because the correlation has lower magnitude than <code>days online</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grades_answers_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s1">'answers'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">grades_answers_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s1">'answers'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">)</span>
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">grades_answers_mse</span><span class="p">)</span>
 <span class="n">grades_answers_mse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
 </pre></div></div></div>
@@ -264,7 +264,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>However, the two variables can be used together. First, we define the mean squared error in terms of a line that has two slopes, one for each variable, as well as an intercept.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">grades_days_answers_mse</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">grades_days_answers_mse</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">fitted</span> <span class="o">=</span> <span class="n">a_days</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'days online'</span><span class="p">)</span> <span class="o">+</span> \
              <span class="n">a_answers</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'answers'</span><span class="p">)</span> <span class="o">+</span> \
              <span class="n">b</span>
@@ -280,7 +280,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>The <code>minimize</code> function returns three values, the slope for <code>days online</code>, the slope for <code>answers</code>, and the intercept. Together, these three values describe a linear prediction function. For example, someone who spent 50 days online and answered 5 questions is predicted to have a GPA of about 3.54.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">0.0157683</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="mf">0.0301254</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mf">2.6031789</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">0.0157683</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="mf">0.0301254</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mf">2.6031789</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>3.54</pre></div>
@@ -289,7 +289,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>The root mean squared error of this predictor is a bit smaller than that of either single-variable predictor we had before!</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">grades_days_answers_mse</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">a_days</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">grades_days_answers_mse</span><span class="p">)</span>
 <span class="n">grades_days_answers_mse</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -302,7 +302,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>We can combine all information about the course forum in order to attempt to find an even better predictor.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fit_grades</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_views</span><span class="p">,</span> <span class="n">a_contributions</span><span class="p">,</span> <span class="n">a_questions</span><span class="p">,</span> <span class="n">a_notes</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">fit_grades</span><span class="p">(</span><span class="n">a_days</span><span class="p">,</span> <span class="n">a_views</span><span class="p">,</span> <span class="n">a_contributions</span><span class="p">,</span> <span class="n">a_questions</span><span class="p">,</span> <span class="n">a_notes</span><span class="p">,</span> <span class="n">a_answers</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a_days</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'days online'</span><span class="p">)</span> <span class="o">+</span> \
            <span class="n">a_views</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'views'</span><span class="p">)</span> <span class="o">+</span> \
            <span class="n">a_contributions</span> <span class="o">*</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'contributions'</span><span class="p">)</span> <span class="o">+</span> \
@@ -327,7 +327,7 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <p>Using all of this information, we have constructed a predictor with an even smaller root mean squared error. The <code>*</code> below passes all of the return values of the <code>minimize</code> function as arguments to <code>grades_all_mse</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grades_all_mse</span><span class="p">(</span><span class="o">*</span><span class="n">minimize</span><span class="p">(</span><span class="n">grades_all_mse</span><span class="p">))</span> <span class="o">**</span> <span class="mf">0.5</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">grades_all_mse</span><span class="p">(</span><span class="o">*</span><span class="n">minimize</span><span class="p">(</span><span class="n">grades_all_mse</span><span class="p">))</span> <span class="o">**</span> <span class="mf">0.5</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.27783237243108722</pre></div>
@@ -343,7 +343,7 @@ $$
 $$<p>Let us use our old functions to compute the fitted values and confirm that this is true for our example:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s1">'days online'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s1">'days online'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fitted</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'GPA'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -362,7 +362,7 @@ R^2 ~=~ \frac{\mbox{variance of fitted values of }y}{\mbox{variance of observed 
 $$<p>It is a fact of mathematics that this quantity is always between 0 and 1. With multiple predictor variables, there is no clear interpretation of a sign attached to the square root of $R^2$. Some of the predictors might be positively associated with $y$, others negatively. An overall measure of the fit is provided by $R^2$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit_grades</span><span class="p">(</span><span class="o">*</span><span class="n">minimize</span><span class="p">(</span><span class="n">grades_all_mse</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit_grades</span><span class="p">(</span><span class="o">*</span><span class="n">minimize</span><span class="p">(</span><span class="n">grades_all_mse</span><span class="p">))</span>
 <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">fitted</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'GPA'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -373,7 +373,7 @@ $$<p>It is a fact of mathematics that this quantity is always between 0 and 1. W
 <p>We can also view the residual plot of multiple regression, just as before. The horizontal axis shows fitted values and the vertical axis shows errors. Again, there is some structure to this plot, so perhaps the relation between these variables is not entirely linear. In this case, the structure is minor enough that the regression model is a reasonable choice of predictor.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'fitted'</span><span class="p">,</span> <span class="n">fitted</span><span class="p">,</span>
         <span class="s1">'errors'</span><span class="p">,</span> <span class="n">grades</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'GPA'</span><span class="p">)</span> <span class="o">-</span> <span class="n">fitted</span>
     <span class="p">])</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

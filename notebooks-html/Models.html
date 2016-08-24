@@ -40,7 +40,7 @@
 <h3 id="Code-for-k-NN">Code for k-NN<a class="anchor-link" href="#Code-for-k-NN">¶</a></h3><p>First, some code from last time, to implement $k$-nearest neighbors.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">):</span>
     <span class="n">tot</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pt1</span><span class="p">)):</span>
         <span class="n">tot</span> <span class="o">=</span> <span class="n">tot</span> <span class="o">+</span> <span class="p">(</span><span class="n">pt1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">pt2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
@@ -48,7 +48,7 @@
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">computetablewithdists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">computetablewithdists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
     <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>
     <span class="n">attributes</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">num_rows</span><span class="p">):</span>
@@ -76,7 +76,7 @@
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_accuracy</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">evaluate_accuracy</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">validattrs</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span>
     <span class="n">numcorrect</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">valid</span><span class="o">.</span><span class="n">num_rows</span><span class="p">):</span>
@@ -92,7 +92,7 @@
 <h3 id="Code-for-feature-selection">Code for feature selection<a class="anchor-link" href="#Code-for-feature-selection">¶</a></h3><p>Now we'll implement the feature selection algorithm.  First, a subroutine to evaluate the accuracy when using a particular subset of features:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">tr</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Class'</span><span class="p">]</span><span class="o">+</span><span class="n">features</span><span class="p">)</span>
     <span class="n">va</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Class'</span><span class="p">]</span><span class="o">+</span><span class="n">features</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">evaluate_accuracy</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">va</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
@@ -102,7 +102,7 @@
 <p>Next, we'll implement a subroutine that, given a current subset of features, tries all possible ways to add one more feature to the subset, and evaluates the accuracy of each candidate.  This returns a table that summarizes the accuracy of each option it examined.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">try_one_more_feature</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">baseattrs</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">try_one_more_feature</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">baseattrs</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="s1">'Attribute'</span><span class="p">,</span> <span class="s1">'Accuracy'</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">training</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'Class'</span><span class="p">]</span><span class="o">+</span><span class="n">baseattrs</span><span class="p">)</span><span class="o">.</span><span class="n">column_labels</span><span class="p">:</span>
         <span class="n">acc</span> <span class="o">=</span> <span class="n">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="o">+</span><span class="n">baseattrs</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
@@ -114,7 +114,7 @@
 <p>Finally, we'll implement the greedy feature selection algorithm, using the above subroutines.  For our own purposes of understanding what's going on, I'm going to have it print out, at each iteration, all features it considered and the accuracy it got with each.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">select_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">maxfeatures</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">select_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">maxfeatures</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="s1">'NumAttrs'</span><span class="p">,</span> <span class="s1">'Attributes'</span><span class="p">,</span> <span class="s1">'Accuracy'</span><span class="p">])</span>
     <span class="n">curattrs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">iters</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">maxfeatures</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">column_labels</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -137,7 +137,7 @@
 <p>There are 500,000 records in this data set -- more than I can analyze with the software we're using.  So, I'll pick a random sample of just a fraction of these records, to let us do some experiments that will complete in a reasonable amount of time.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_trees</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'treecover2.csv.gz'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">','</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">all_trees</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'treecover2.csv.gz'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">','</span><span class="p">)</span>
 <span class="n">all_trees</span> <span class="o">=</span> <span class="n">all_trees</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">all_trees</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>
 <span class="n">training</span>   <span class="o">=</span> <span class="n">all_trees</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span>   <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
 <span class="n">validation</span> <span class="o">=</span> <span class="n">all_trees</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1500</span><span class="p">))</span>
@@ -145,7 +145,7 @@
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">training</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
@@ -170,7 +170,7 @@
 <p>Let's start by figuring out how accurate a classifier will be, if trained using this data.  I'm going to arbitrarily use $k=15$ for the $k$-nearest neighbor classifier.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluate_accuracy</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">validation</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">evaluate_accuracy</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">validation</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.722</pre></div>
@@ -179,7 +179,7 @@
 <p>Now we'll apply feature selection.  I wonder which characteristics have the biggest influence on whether Spruce vs Lodgepole Pine grows?  We'll look for the best 4 features.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">best_features</span> <span class="o">=</span> <span class="n">select_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">validation</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">best_features</span> <span class="o">=</span> <span class="n">select_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">validation</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>== Computing best feature to add to []
@@ -377,7 +377,7 @@
 <pre></pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">best_features</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">best_features</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -413,25 +413,25 @@
 <p>The way to get an unbiased estimate of performance is the same as last lecture: get some more data; or set some aside in the beginning so we have more when we need it.  In this case, I set aside two extra chunks of data, a <em>validation</em> data set and a <em>test</em> data set.  I used the validation set to select a few best features.  Now we're going to measure the performance of this on the test set, just to see what happens.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">validation</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Elevation'</span><span class="p">],</span> <span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">validation</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Elevation'</span><span class="p">],</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.746</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">validation</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Elevation'</span><span class="p">,</span> <span class="s1">'HorizDistToWater'</span><span class="p">],</span> <span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">validation</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Elevation'</span><span class="p">,</span> <span class="s1">'HorizDistToWater'</span><span class="p">],</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.778</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Elevation'</span><span class="p">],</span> <span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Elevation'</span><span class="p">],</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.724</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Elevation'</span><span class="p">,</span> <span class="s1">'HorizDistToWater'</span><span class="p">],</span> <span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">evaluate_features</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Elevation'</span><span class="p">,</span> <span class="s1">'HorizDistToWater'</span><span class="p">],</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.772</pre></div>

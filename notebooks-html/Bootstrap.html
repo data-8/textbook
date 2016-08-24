@@ -24,7 +24,7 @@ $$
 $$</div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">]</span> <span class="o">=</span> <span class="n">baby</span><span class="p">[</span><span class="s1">'birthwt'</span><span class="p">]</span><span class="o">/</span><span class="n">baby</span><span class="p">[</span><span class="s1">'gest_days'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">]</span> <span class="o">=</span> <span class="n">baby</span><span class="p">[</span><span class="s1">'birthwt'</span><span class="p">]</span><span class="o">/</span><span class="n">baby</span><span class="p">[</span><span class="s1">'gest_days'</span><span class="p">]</span>
 <span class="n">baby</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -82,7 +82,7 @@ $$</div></div>
 <p>Here is a histogram of the 1,174 ratios.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'r_bwt_gd'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'r_bwt_gd'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'BirthWt/GestationalDays (ounces per day)'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -94,7 +94,7 @@ $$</div></div>
 <p>At a first glance the histogram looks quite symmetric, with the density at its maximum over the interval 4 ounces per day to 4.5 ounces per day. But a closer look reveals that some of the ratios were quite large by comparison. The maximum value of the ratios was just over 0.78 ounces per day, almost double the typical value.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">])</span>            
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">])</span>            
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.78378378378378377</pre></div>
@@ -103,7 +103,7 @@ $$</div></div>
 <p>This is a situation in which the median of the distribution is more informative about the typical value than the mean, as the median is unaffected by outliers. The median in the sample is just over 0.429.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">])</span>         
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">])</span>         
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.42907801418439717</pre></div>
@@ -125,14 +125,14 @@ $$</div></div>
 <p>The code below uses the method <code>sample</code> to draw at random with replacement from all the ratios in the original sample. Notice that the sample size does not have to be specified. By default, <code>sample</code> draws as many times as the number of rows in the table from which it is sampling. Since <code>baby</code> has one row for each baby, the default sample size of <code>sample</code> is exactly the number required for the bootstrap method.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">resample</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'r_bwt_gd'</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">resample</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'r_bwt_gd'</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The median of the resampled ratios can be computed in two ways. One way is to extract the array that is the <code>r_bwt_gd</code> column of the table <code>resample</code>, and then use <code>np.median</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">resample</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.43003412969283278</pre></div>
@@ -141,7 +141,7 @@ $$</div></div>
 <p>The other way is to use the Table method called <code>percentile</code> on the table <code>resample</code>. This method takes as it argument the percentile rank that is desired; the median is the 50th percentile.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">resample</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">resample</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -161,7 +161,7 @@ $$</div></div>
 <p>To generate a bootstrap empirical distribution of the sample medians, it is necessary to replicate the sampling procedure many times. To do this easily, we will define a function called <code>bootstrap_median</code> that takes as its arguments the name of the table containing the original sample, the label of the column containing the variable of interest, and the number of repetitions of the resampling process. The code pertaining to the bootstrap is the same as the two lines of code used above, apart from the generic names of the arguments.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">"""Bootstrap mpirical distribution of random sample medians, resampling from a sample</span>
+<div class=" highlight hl-ipython3"><pre><span class="sd">"""Bootstrap mpirical distribution of random sample medians, resampling from a sample</span>
 <span class="sd">Arguments: table of original sample data, column label, number of repetitions"""</span>
 
 <span class="k">def</span> <span class="nf">bootstrap_median</span><span class="p">(</span><span class="n">samp_table</span><span class="p">,</span> <span class="n">column_label</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
@@ -188,7 +188,7 @@ $$</div></div>
 <p>Let us run 10,000 replications of the sampling procedure and look at a disribution of the resulting resampled medians.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_median</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'r_bwt_gd'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">bootstrap_median</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'r_bwt_gd'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Original sample median: 0.429078014184

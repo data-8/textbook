@@ -15,7 +15,7 @@
 <p>The scatter plot below is of a famous dataset collected by Pearson and his colleagues in the early 1900's. It consists of the heights, in inches, of 1,078 pairs of fathers and sons. The <code>scatter</code> method of a table takes an optional argument <code>s</code> to set the size of the dots.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'heights.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">heights</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'heights.csv'</span><span class="p">)</span>
 <span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'father'</span><span class="p">,</span> <span class="s1">'son'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
@@ -25,7 +25,7 @@
 <p>Notice the familiar football shape with a dense center and a few points on the perimeter. This shape results from two bell-shaped distributions that are correlated. The heights of both fathers and sons have a bell-shaped distribution.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">55.5</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'inch'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">heights</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">55.5</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'inch'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Regression_5_0.png"/></div>
@@ -34,7 +34,7 @@
 <p>The average height of sons is about an inch taller than the average of fathers.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'son'</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'father'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'son'</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'father'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.99740259740261195</pre></div>
@@ -43,7 +43,7 @@
 <p>The difference in height between a son and a father varies as well, with the bulk of the distribution between -5 inches and +7 inches.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">diffs</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'son-father difference'</span><span class="p">,</span> 
+<div class=" highlight hl-ipython3"><pre><span class="n">diffs</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'son-father difference'</span><span class="p">,</span> 
                             <span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'son'</span><span class="p">)</span> <span class="o">-</span> <span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'father'</span><span class="p">))</span>
 <span class="n">diffs</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">9.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'inch'</span><span class="p">)</span>
 </pre></div></div></div>
@@ -54,7 +54,7 @@
 <p>The correlation between the heights of the fathers and sons is about 0.5.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">'father'</span><span class="p">,</span> <span class="s1">'son'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">'father'</span><span class="p">,</span> <span class="s1">'son'</span><span class="p">)</span>
 <span class="n">r</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -64,7 +64,7 @@
 <h3 id="The-regression-effect">The regression effect<a class="anchor-link" href="#The-regression-effect">¶</a></h3><p>For fathers around 72 inches in height, we might expect their sons to be tall as well. The histogram below shows the height of all sons of 72-inch fathers.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">six_foot_fathers</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'father'</span><span class="p">))</span> <span class="o">==</span> <span class="mi">72</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">six_foot_fathers</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'father'</span><span class="p">))</span> <span class="o">==</span> <span class="mi">72</span><span class="p">)</span>
 <span class="n">six_foot_fathers</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'son'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">55.5</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
@@ -74,7 +74,7 @@
 <p>Most (68%) of the sons of these 72-inch fathers are <em>less than</em> 72 inches tall, even though sons are an inch taller than fathers on average!</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">six_foot_fathers</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'son'</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">72</span><span class="p">)</span> <span class="o">/</span> <span class="n">six_foot_fathers</span><span class="o">.</span><span class="n">num_rows</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">six_foot_fathers</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'son'</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">72</span><span class="p">)</span> <span class="o">/</span> <span class="n">six_foot_fathers</span><span class="o">.</span><span class="n">num_rows</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.6842105263157895</pre></div>
@@ -83,7 +83,7 @@
 <p>In fact, the average height of a son of a 72-inch father is less than 71 inches. The sons of tall fathers are simply not as tall in this sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">six_foot_fathers</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'son'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">six_foot_fathers</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'son'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>70.728070175438603</pre></div>
@@ -94,7 +94,7 @@
 <p>The figure below shows the scatter plot of the data when both variables are measured in standard units. The red line shows equal standard units and has a slope of 1, but it does not match the angle of the cloud of points. The blue line, which does follow the angle of the cloud, is called the <em>regression line</em>, named for the "regression to mediocrity" it predicts.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_standard</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">heights_standard</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'father (standard units)'</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s1">'father'</span><span class="p">]),</span>
         <span class="s1">'son (standard units)'</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="s1">'son'</span><span class="p">])</span>
         <span class="p">])</span>
@@ -108,7 +108,7 @@
 <p>The <code>scatter</code> method of a <code>Table</code> draws this regression line for us when called with <code>fit_line=True</code>. This line passes through the result of multiplying father heights (in standard units) by $r$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">father_standard</span> <span class="o">=</span> <span class="n">heights_standard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">father_standard</span> <span class="o">=</span> <span class="n">heights_standard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">heights_standard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'father (standard units) * r'</span><span class="p">,</span> <span class="n">father_standard</span> <span class="o">*</span> <span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
@@ -118,7 +118,7 @@
 <p>Another interpretation of this line is that it passes through average values for slices of the population of sons. To see this relationship, we can round the fathers each to the nearest unit, then average the heights of all sons associated with these rounded values. The green line is the regression line for these data, and it passes close to all of the yellow points, which are mean heights of sons (in standard units).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rounded</span> <span class="o">=</span> <span class="n">heights_standard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'father (standard units)'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">father_standard</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">rounded</span> <span class="o">=</span> <span class="n">heights_standard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'father (standard units)'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">father_standard</span><span class="p">))</span>
 <span class="n">rounded</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'father (standard units)'</span><span class="p">,</span> <span class="n">rounded</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">))</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span> <span class="o">*</span> <span class="n">r</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">r</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">'g'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>
@@ -146,7 +146,7 @@ $$</p></div></div>
 $$y = \mbox{slope} \times x + \mbox{intercept}$$<p>The calculations of the slope and intercept of the regression line can be derived from the equation above.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
@@ -164,7 +164,7 @@ $$y = \mbox{slope} \times x + \mbox{intercept}$$<p>The calculations of the slope
 <p>It is also worth noting that the slope <em>is not</em> <code>r</code>! Instead, it is <code>r</code> multiplied by the ratio of standard deviations.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">'father'</span><span class="p">,</span> <span class="s1">'son'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">'father'</span><span class="p">,</span> <span class="s1">'son'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.50116268080759108</pre></div>
@@ -173,7 +173,7 @@ $$y = \mbox{slope} \times x + \mbox{intercept}$$<p>The calculations of the slope
 <h2 id="Fitted-values">Fitted values<a class="anchor-link" href="#Fitted-values">¶</a></h2><p>We can also estimate every son in the data using the slope and intercept. The estimated values of $y$ are called the <em>fitted values</em>. They all lie on a straight line. To calculate them, take a son's height, multiply it by the slope of the regression line, and add the intercept. In other words, calculate the height of the regression line at the given value of $x$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="sd">"""Return the height of the regression line at each x value."""</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">intercept</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -237,7 +237,7 @@ $$y = \mbox{slope} \times x + \mbox{intercept}$$<p>The calculations of the slope
 <p>In original units, we can see that these fitted values fall on a line.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fitted</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">fitted</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Regression_34_0.png"/></div>
@@ -246,7 +246,7 @@ $$y = \mbox{slope} \times x + \mbox{intercept}$$<p>The calculations of the slope
 <p>Moreover, this line (in green below), passes near the average heights of sons for slices of the population. In this case, we round the heights of fathers to the nearest inch to construct the slices.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rounded</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'father'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'father'</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">rounded</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'father'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'father'</span><span class="p">)))</span>
 <span class="n">rounded</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'father'</span><span class="p">,</span> <span class="n">rounded</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">))</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fitted</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'father'</span><span class="p">),</span> <span class="n">fitted</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'son (fitted)'</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'g'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>

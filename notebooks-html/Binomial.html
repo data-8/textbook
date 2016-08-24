@@ -20,7 +20,7 @@
 <p>Let us use the methods we have developed to examine the disparity between 8 out of 100 and 26 out of 100 black men in a panel drawn at random from among the eligible jurors.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">AL_jury_rows</span> <span class="o">=</span> <span class="p">[</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">AL_jury_rows</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="s2">"Black"</span><span class="p">,</span>  <span class="mf">0.26</span><span class="p">],</span>
     <span class="p">[</span><span class="s2">"Other"</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">]</span>
 <span class="p">]</span>
@@ -50,7 +50,7 @@
 <p><strong>Alternative:</strong> Jury panel is not like a random sample from the population of eligible jurors.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Statistic: number black in sample of size 100</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Statistic: number black in sample of size 100</span>
 <span class="c1"># Observed value of statistic: 8</span>
 
 <span class="c1"># Compute the empirical distribution of the test statistic</span>
@@ -93,7 +93,7 @@
 <p>The binomial distribution has two <em>parameters</em>: the number of trials $n$, and the probability $p$ of success on each single trial. A parameter is a constant associated with a distribution. Here is a histogram of the distribution for $n = 100$ and $p = 0.26$. It is the exact distribution of probabilities for the number of black jurors in a panel of 100 jurors, drawn under the null hypothesis of random selection from an eligible population in which 26% are black. Notice that the distribution is a smooth version of its empirical approximation above.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">probs</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="o">.</span><span class="mi">26</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">probs</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="o">.</span><span class="mi">26</span><span class="p">)</span>
 <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">k</span><span class="p">,</span> <span class="n">probs</span><span class="p">],</span> <span class="p">[</span><span class="s1">'k'</span><span class="p">,</span> <span class="s1">'P(k black in 100)'</span><span class="p">])</span>
 <span class="n">dist</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">100.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -113,7 +113,7 @@
 <h4 id="Example-1.">Example 1.<a class="anchor-link" href="#Example-1.">¶</a></h4><p>To find the $P$-value of the test using the binomial distribution, we will start by finding the chance of 8 or fewer black men in the sample:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Chance of "8 or fewer black in sample"</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Chance of "8 or fewer black in sample"</span>
 <span class="c1"># = all the area in the bars 8 and below</span>
 
 <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">)</span>
@@ -135,7 +135,7 @@
 <p>If the null hypothesis were true, we would expect 32 "heads", that is, people who prefer Drink A. We got 38 heads. So to find the $P$-value, we will need to start with the chance of getting 38 or more heads in 64 tosses. We can calculate this using <code>stats.norm.cdf</code> after noting that the complement of "38 or more" is "37 or fewer".</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Chance of 38 or more heads in 64 tosses of a fair coin:</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Chance of 38 or more heads in 64 tosses of a fair coin:</span>
 
 <span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">37</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </pre></div></div></div>
@@ -150,7 +150,7 @@
 <p>This is the chance of 0 through 50 heads minus the chance of 0 through 49 heads:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">49</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">49</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.079589237387179379</pre></div>
@@ -159,7 +159,7 @@
 <p>Notice that the chance is only about 8%. The chance of 500 heads in 1000 tosses is even smaller, just about 2.5%.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">499</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">499</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.025225018177683411</pre></div>
@@ -171,7 +171,7 @@
 <p>The <code>stats</code> module contains a function that allows you to calculate the chance of exactly $k$ successes in a binomial model, without using <code>stats.binom.cdf</code> twice. The function is called <code>stats.binom.pmf</code>, for "probability mass function". Its arguments are the same as for <code>stats.binom.cdf</code>, but it evaluates to the probability of exactly $k$ successes.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Probability mass function at k</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Probability mass function at k</span>
 <span class="c1"># = chance of exactly k heads</span>
 
 <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
@@ -185,7 +185,7 @@
 <p>The number of bets won has the binomial distribution with parameters $n=5$ and $p=18/38$. Here is a histogram of the distribution, and the chance of exactly 3 wins.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">probs</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="o">/</span><span class="mi">38</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">probs</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="o">/</span><span class="mi">38</span><span class="p">)</span>
 <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">k</span><span class="p">,</span> <span class="n">probs</span><span class="p">],</span> <span class="p">[</span><span class="s1">'k'</span><span class="p">,</span> <span class="s1">'P(k wins in 5 bets on red)'</span><span class="p">])</span>
 <span class="n">dist</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -199,7 +199,7 @@
 <img src="../notebooks-images/Binomial_23_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># chance of exactly 3 wins</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># chance of exactly 3 wins</span>
 
 <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="o">/</span><span class="mi">38</span><span class="p">)</span>
 </pre></div></div></div>
@@ -228,7 +228,7 @@ P(\mbox{3 wins among 5 bets on red}) = 10 \cdot (18/38)^3(20/38)^2
 $$<p>This is calculated in the cell below, and agrees with the answer obtained earlier by using <code>stats.binom.pmf</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">10</span><span class="o">*</span><span class="p">((</span><span class="mi">18</span><span class="o">/</span><span class="mi">38</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">20</span><span class="o">/</span><span class="mi">38</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<div class=" highlight hl-ipython3"><pre><span class="mi">10</span><span class="o">*</span><span class="p">((</span><span class="mi">18</span><span class="o">/</span><span class="mi">38</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">20</span><span class="o">/</span><span class="mi">38</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.2944147225131143</pre></div>
@@ -270,7 +270,7 @@ $$</div></div>
 <p>According to the formulas above, the expected number of heads is $100 \times 0.5 = 50$ and the standard error is $\sqrt{100 \times 0.5 \times 0.5} = 5$. That the expected value should be 50 is easy to guess. To visualize the standard error, it helps to see the histogram of the binomial distribution with $n=100$ and $p=0.5$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">probs</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">probs</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">71</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">k</span><span class="p">,</span> <span class="n">probs</span><span class="p">],</span> <span class="p">[</span><span class="s1">'k'</span><span class="p">,</span> <span class="s1">'P(k heads in 100 tosses)'</span><span class="p">])</span>
 <span class="n">dist</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">29.5</span><span class="p">,</span> <span class="mf">70.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -294,7 +294,7 @@ $$</div></div>
 <p>We can answer both of these questions by using <code>stats.binom.cdf</code>. We do have to be consistent in our definition of "between". We will take it to mean "between 0.45 and 0.55, inclusive". That is, we will include both the endpoints in the interval.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#(a) 100 tosses; chance that the proportion of heads is between 0.45 and 0.55</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1">#(a) 100 tosses; chance that the proportion of heads is between 0.45 and 0.55</span>
 
 <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </pre></div></div></div>
@@ -302,7 +302,7 @@ $$</div></div>
 <pre>0.72874697592616577</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#(a) 1000 tosses; chance that the proportion of heads is between 0.45 and 0.55</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1">#(a) 1000 tosses; chance that the proportion of heads is between 0.45 and 0.55</span>
 
 <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">550</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">449</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </pre></div></div></div>
@@ -321,7 +321,7 @@ $$</div></div>
 <p>The corresponding normal curves give the following approximations. You can see that the approximation is better when the number of tosses is larger. Because the normal curve is continuous, we need not worry about including or excluding endpoints; each single point corresponds to an area of 0.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Normal approximation to the chance of between 0.45 and 0.55 heads in 100 tosses</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Normal approximation to the chance of between 0.45 and 0.55 heads in 100 tosses</span>
 
 <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
 </pre></div></div></div>
@@ -329,7 +329,7 @@ $$</div></div>
 <pre>0.68268949213708607</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Normal approximation to the chance of between 0.45 and 0.55 heads in 1000 tosses</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Normal approximation to the chance of between 0.45 and 0.55 heads in 1000 tosses</span>
 
 <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0158</span><span class="p">)</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0158</span><span class="p">)</span>
 </pre></div></div></div>

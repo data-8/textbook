@@ -14,7 +14,7 @@
 <p>In this section, we will continue to use the US Census dataset. We will focus only on the 2014 population estimate.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census_2014</span> <span class="o">=</span> <span class="n">census</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'SEX'</span><span class="p">,</span> <span class="s1">'AGE'</span><span class="p">,</span> <span class="s1">'2014'</span><span class="p">])</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">census</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">999</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">census_2014</span> <span class="o">=</span> <span class="n">census</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'SEX'</span><span class="p">,</span> <span class="s1">'AGE'</span><span class="p">,</span> <span class="s1">'2014'</span><span class="p">])</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">census</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">999</span><span class="p">)</span>
 <span class="n">census_2014</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -72,7 +72,7 @@
 <p>Functions can be used to compute new columns in a table based on existing column values. For example, we can transform the codes in the <code>SEX</code> column to strings that are easier to interpret.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">male_female</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">male_female</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">'Total'</span>
     <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -85,19 +85,19 @@
 <p>This function takes an individual code — 0, 1, or 2 — and returns a string that describes its meaning.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">male_female</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">male_female</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>'Total'</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">male_female</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">male_female</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>'Male'</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">male_female</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">male_female</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>'Female'</pre></div>
@@ -106,7 +106,7 @@
 <p>We could also transform ages into age categories.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">age_group</span><span class="p">(</span><span class="n">age</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">age_group</span><span class="p">(</span><span class="n">age</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">'Baby'</span>
     <span class="k">elif</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">13</span><span class="p">:</span>
@@ -125,7 +125,7 @@
 <p><strong>Apply.</strong> The <code>apply</code> method of a table calls a function on each element of a column, forming a new array of return values. To indicate which function to call, just name it (without quotation marks). The name of the column of input values must still appear within quotation marks.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census_2014</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">male_female</span><span class="p">,</span> <span class="s1">'SEX'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">census_2014</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">male_female</span><span class="p">,</span> <span class="s1">'SEX'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array(['Total', 'Total', 'Total', ..., 'Female', 'Female', 'Female'], 
@@ -135,7 +135,7 @@
 <p>This array, which has the same length as the original <code>SEX</code> column of the <code>population</code> table, can be used as the values in a new column called <code>Male/Female</code> alongside the existing <code>AGE</code> and <code>Population</code> columns.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">population</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">population</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'Male/Female'</span><span class="p">,</span> <span class="n">census_2014</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">male_female</span><span class="p">,</span> <span class="s1">'SEX'</span><span class="p">),</span>
         <span class="s1">'Age Group'</span><span class="p">,</span>   <span class="n">census_2014</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">age_group</span><span class="p">,</span> <span class="s1">'AGE'</span><span class="p">),</span>
         <span class="s1">'Population'</span><span class="p">,</span>  <span class="n">census_2014</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'2014'</span><span class="p">)</span>
@@ -197,7 +197,7 @@
 <p><strong>Groups.</strong> The <code>group</code> method with a single argument counts the number of rows for each category in a column. The result contains one row per unique value in the grouped column.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">population</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Age Group'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">population</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Age Group'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -229,7 +229,7 @@
 <p>The optional second argument names the function that will be used to aggregate values in other columns for all of those rows. For instance, <code>sum</code> will sum up the populations in all rows that match each category. This result also contains one row per unique value in the grouped column, but it has the same number of columns as the original table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">totals</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'Total'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Age Group'</span><span class="p">,</span> <span class="s1">'Population'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">totals</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'Total'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Age Group'</span><span class="p">,</span> <span class="s1">'Population'</span><span class="p">])</span>
 <span class="n">totals</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -284,7 +284,7 @@
 <p>... (91 rows omitted)</p></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">totals</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Age Group'</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">totals</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Age Group'</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -316,7 +316,7 @@
 <p>The <code>groups</code> method behaves in the same way, but accepts a list of columns as its first argument. The resulting table has one row for every <em>unique combination</em> of values that appear together in the grouped columns. Again, a single argument (a list, in this case) gives row counts.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">population</span><span class="o">.</span><span class="n">groups</span><span class="p">([</span><span class="s1">'Male/Female'</span><span class="p">,</span> <span class="s1">'Age Group'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">population</span><span class="o">.</span><span class="n">groups</span><span class="p">([</span><span class="s1">'Male/Female'</span><span class="p">,</span> <span class="s1">'Age Group'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -373,7 +373,7 @@
 <p>A second argument to <code>groups</code> aggregates all other columns that do not appear in the list of grouped columns.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">population</span><span class="o">.</span><span class="n">groups</span><span class="p">([</span><span class="s1">'Male/Female'</span><span class="p">,</span> <span class="s1">'Age Group'</span><span class="p">],</span> <span class="nb">sum</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">population</span><span class="o">.</span><span class="n">groups</span><span class="p">([</span><span class="s1">'Male/Female'</span><span class="p">,</span> <span class="s1">'Age Group'</span><span class="p">],</span> <span class="nb">sum</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -430,7 +430,7 @@
 <p><strong>Pivot.</strong> The <code>pivot</code> method is closely related to the <code>groups</code> method: it groups together rows that share a combination of values. It differs from <code>groups</code> because it organizes the resulting values in a grid. The first argument to <code>pivot</code> is a column that contains the values that will be used to form new columns in the result. The second argument is a column used for grouping rows. The result gives the count of all rows that share the combination of column and row values.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">population</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">'Male/Female'</span><span class="p">,</span> <span class="s1">'Age Group'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">population</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">'Male/Female'</span><span class="p">,</span> <span class="s1">'Age Group'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -462,7 +462,7 @@
 <p>An optional third argument indicates a column of values that will replace the counts in each cell of the grid. The fourth argument indicates how to aggregate all of the values that match the combination of column and row values.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pivoted</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">'Male/Female'</span><span class="p">,</span> <span class="s1">'Age Group'</span><span class="p">,</span> <span class="s1">'Population'</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">pivoted</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">'Male/Female'</span><span class="p">,</span> <span class="s1">'Age Group'</span><span class="p">,</span> <span class="s1">'Population'</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
 <span class="n">pivoted</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -495,7 +495,7 @@
 <p>The advantage of pivot is that it places grouped values into adjacent columns, so that they can be combined. For instance, this pivoted table allows us to compute the proportion of each age group that is male. We find the surprising result that younger age groups are predominantly male, but among adults there are substantially more females.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pivoted</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Male Percentage'</span><span class="p">,</span> <span class="n">pivoted</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Male'</span><span class="p">)</span><span class="o">/</span><span class="n">pivoted</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Total'</span><span class="p">))</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">PercentFormatter</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">pivoted</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Male Percentage'</span><span class="p">,</span> <span class="n">pivoted</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Male'</span><span class="p">)</span><span class="o">/</span><span class="n">pivoted</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Total'</span><span class="p">))</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">PercentFormatter</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">

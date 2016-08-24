@@ -34,7 +34,7 @@
 <p>For example, either the two dice come up <code>(2, 1)</code> or they come up <code>(4, 5)</code> in a single roll (but both cannot occur), and there are exactly 36 outcome possibilities that each occur with equal chance.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">two_dice</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'First'</span><span class="p">,</span> <span class="s1">'Second'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">two_dice</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'First'</span><span class="p">,</span> <span class="s1">'Second'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">first</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">second</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
         <span class="n">two_dice</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">36</span><span class="p">])</span>
@@ -95,7 +95,7 @@
 <p>The outcomes are not always equally likely. In the example of two dice rolled in sequence, there are 36 different outcomes that each have a <code>1/36</code> chance of occurring. If two dice are rolled together and only the sum of the result is observed, instead there are 11 outcomes that have various different chances.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">two_dice_sums</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">two_dice_sums</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
         <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span> <span class="p">[</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span> <span class="p">[</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span>
         <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="o">/</span><span class="mi">36</span><span class="p">],</span>
     <span class="p">])</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -158,7 +158,7 @@
 <p>Let's consider the event that the sum of the dice in two sequential rolls is 5. We can represent that event as the matching rows in the <code>two_dice</code> table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dice_sums</span> <span class="o">=</span> <span class="n">two_dice</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'First'</span><span class="p">)</span> <span class="o">+</span> <span class="n">two_dice</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Second'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">dice_sums</span> <span class="o">=</span> <span class="n">two_dice</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'First'</span><span class="p">)</span> <span class="o">+</span> <span class="n">two_dice</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Second'</span><span class="p">)</span>
 <span class="n">sum_of_5</span> <span class="o">=</span> <span class="n">two_dice</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dice_sums</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">sum_of_5</span>
 </pre></div></div></div>
@@ -192,7 +192,7 @@
 <p>The probability of the event is the sum of the resulting chances.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">sum_of_5</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">sum_of_5</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.1111111111111111</pre></div>
@@ -201,7 +201,7 @@
 <p>If we consistently store the probabilities of individual outcomes in a column called <code>Chance</code>, then we can define the probability of any event using the <code>P</code> function.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">P</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">P</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">))</span>
 
 <span class="n">P</span><span class="p">(</span><span class="n">sum_of_5</span><span class="p">)</span>
@@ -213,7 +213,7 @@
 <p>One distribution's events can be another distribution's outcomes, as is the case with the <code>two_dice</code> and <code>two_dice_sum</code> distributions. There are 11 different possible sums in the <code>two_dice</code> table, and these are 11 different mutually exclusive events.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">with_sums</span> <span class="o">=</span> <span class="n">two_dice</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="n">dice_sums</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">with_sums</span> <span class="o">=</span> <span class="n">two_dice</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="n">dice_sums</span><span class="p">)</span>
 <span class="n">with_sums</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -271,7 +271,7 @@
 <p>Grouping these outcomes by their sum shows how many different outcomes appear in each event.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">with_sums</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">with_sums</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -328,7 +328,7 @@
 <p>Finally, the chance of each sum event is the total chance of all outcomes that match the sum event. In this way, we can generate the <code>two_dice_sums</code> distribution via addition.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grouped</span> <span class="o">=</span> <span class="n">with_sums</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">grouped</span> <span class="o">=</span> <span class="n">with_sums</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
 <span class="n">grouped</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">)</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">,</span> <span class="n">PercentFormatter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -386,13 +386,13 @@
 <p>Both distributions will assign the same probability to certain events. For example, the probability of the event that the sum of the dice is above 8 can be computed from either distribution.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">with_sums</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">with_sums</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.1388888888888889</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">two_dice_sums</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">two_dice_sums</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.1388888888888889</pre></div>
@@ -402,7 +402,7 @@
 <p>More babies in the United States are born in the morning than the night. In 2013, the Center for Disease Control measured the following proportions of babies for each hour of the day. The <code>Time</code> column is a description of each hour, and the <code>Hour</code> column is its numeric equivalent.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">birth</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'birth_time.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Time'</span><span class="p">,</span> <span class="s1">'Hour'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">birth</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'birth_time.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Time'</span><span class="p">,</span> <span class="s1">'Hour'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span>
 <span class="n">birth</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">,</span> <span class="n">PercentFormatter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
@@ -515,7 +515,7 @@
 <p>If we assume that this distribution describes the world correctly, what is the chance that a baby will be born between 8 a.m. and 6 p.m.? It turns out that more than half of all babies are born during "business hours", even though this time interval only covers 5/12 of the day.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">business_hours</span> <span class="o">=</span> <span class="n">birth</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">business_hours</span> <span class="o">=</span> <span class="n">birth</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
 <span class="n">business_hours</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -569,7 +569,7 @@
 </table></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">business_hours</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">business_hours</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.52800000000000002</pre></div>
@@ -578,7 +578,7 @@
 <p>On the other hand, births late at night are uncommon. The chance of having a baby between midnight and 6 a.m. is much less than 25%, even though this time interval covers 1/4 of the day.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">birth</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">birth</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.16799999999999998</pre></div>
@@ -591,7 +591,7 @@
 <p>To scale up the chances, we divide the chance of each outcome in the event by the probability of the event. For example, if we condition on the event that the sum of two dice is above 8, we arrive at the following conditional distribution.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">above_8</span> <span class="o">=</span> <span class="n">two_dice_sums</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">above</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">above_8</span> <span class="o">=</span> <span class="n">two_dice_sums</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">above</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">given_8</span> <span class="o">=</span> <span class="n">above_8</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">,</span> <span class="n">above_8</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">)</span> <span class="o">/</span> <span class="n">P</span><span class="p">(</span><span class="n">above_8</span><span class="p">))</span>
 <span class="n">given_8</span>
 </pre></div></div></div>
@@ -626,7 +626,7 @@
 <p>The conditioning operation can be expressed by the <code>given</code> function, which takes an event table and returns the corresponding conditional distributon.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">given</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">given</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">event</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">)</span> <span class="o">/</span> <span class="n">P</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
 
 <span class="n">given</span><span class="p">(</span><span class="n">two_dice_sums</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Sum'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">above</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span>
@@ -661,7 +661,7 @@
 <p>Given that a baby is born in the US during business hours (between 8 a.m. and 6 p.m.), what are the chances that it is born before noon? To answer this question, we first form the conditional distribution given business hours, then compute the probability of the event that the baby is born before noon.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">given</span><span class="p">(</span><span class="n">business_hours</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">given</span><span class="p">(</span><span class="n">business_hours</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -714,7 +714,7 @@
 </table></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">given</span><span class="p">(</span><span class="n">business_hours</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">12</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">given</span><span class="p">(</span><span class="n">business_hours</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">12</span><span class="p">)))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.40340909090909094</pre></div>
@@ -723,7 +723,7 @@
 <p>This result is not the same as the chance that a baby is born between 8 a.m. and noon in general.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">morning</span> <span class="o">=</span> <span class="n">birth</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">morning</span> <span class="o">=</span> <span class="n">birth</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">P</span><span class="p">(</span><span class="n">morning</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -733,7 +733,7 @@
 <p>Nor is it the chance that a baby is born before noon in general.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">birth</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">12</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">birth</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">12</span><span class="p">)))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.45500000000000007</pre></div>
@@ -742,7 +742,7 @@
 <p>Instead, it is the probability that both the event and the conditioning event are true (i.e., that the birth is in the morning), divided by the probability of the conditioning event (i.e., that the birth is during business hours).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">morning</span><span class="p">)</span> <span class="o">/</span> <span class="n">P</span><span class="p">(</span><span class="n">business_hours</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">morning</span><span class="p">)</span> <span class="o">/</span> <span class="n">P</span><span class="p">(</span><span class="n">business_hours</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.40340909090909094</pre></div>
@@ -751,7 +751,7 @@
 <p>The <code>morning</code> event is a <em>joint</em> event that can be described as both during business hours and before noon. A joint event is just an event, but one that is described by the intersection of two other events.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">business_hours</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">business_hours</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -783,7 +783,7 @@
 <p>In general, the probability of an event B (e.g., before noon) conditioned on an event A (e.g., during business hours) is the probability of the joint event of A and B divided by the probability of the conditioning event A.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">business_hours</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">12</span><span class="p">)))</span> <span class="o">/</span> <span class="n">P</span><span class="p">(</span><span class="n">business_hours</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">business_hours</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">12</span><span class="p">)))</span> <span class="o">/</span> <span class="n">P</span><span class="p">(</span><span class="n">business_hours</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.40340909090909094</pre></div>
@@ -796,7 +796,7 @@ $$P(B | A) = \frac{P(A, B)}{P(A)}$$</div></div>
 <h2 id="Joint-Distributions">Joint Distributions<a class="anchor-link" href="#Joint-Distributions">¶</a></h2><p>A joint event is one in which two different events both occur. Similarly, a joint outcome is an outcome that is composed of two different outcomes. For example, the outcomes of the <code>two_dice</code> distribution are each joint outcomes of the first and second dice rolls.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">two_dice</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">two_dice</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -860,7 +860,7 @@ $$ P(B|A) \times P(A) = P(A, B) $$<p>The chance of each outcome of a joint distr
 <p>All of the proportions used to generate this chart appear in the <code>birth_day</code> table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">birth_day</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'birth_time.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">birth_day</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'birth_time.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">)</span>
 <span class="n">birth_day</span><span class="o">.</span><span class="n">set_format</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">PercentFormatter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -918,7 +918,7 @@ $$ P(B|A) \times P(A) = P(A, B) $$<p>The chance of each outcome of a joint distr
 <p>The <code>Weekday</code> and <code>Weekend</code> columns are the chances of two different conditional distributions.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">weekday</span> <span class="o">=</span> <span class="n">birth_day</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="s1">'Weekday'</span><span class="p">])</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">weekday</span> <span class="o">=</span> <span class="n">birth_day</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="s1">'Weekday'</span><span class="p">])</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">)</span>
 <span class="n">weekend</span> <span class="o">=</span> <span class="n">birth_day</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="s1">'Weekend'</span><span class="p">])</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
@@ -926,7 +926,7 @@ $$ P(B|A) \times P(A) = P(A, B) $$<p>The chance of each outcome of a joint distr
 <p>The joint distribution is created by multiplying each conditional chance column by the corresponding probability of the conditioning event. In this case, we multiply weekday chances by the chance that the baby was born on a weekday (78.25%); likewise, we multiply weekend chances by the chance that the baby was born on a weekend (21.75%).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">birth_joint</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Day'</span><span class="p">,</span> <span class="s1">'Hour'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">birth_joint</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Day'</span><span class="p">,</span> <span class="s1">'Hour'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">weekday</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
     <span class="n">birth_joint</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s1">'Weekday'</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">),</span> <span class="n">row</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="s1">'Chance'</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.7825</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">weekend</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
@@ -988,7 +988,7 @@ $$ P(B|A) \times P(A) = P(A, B) $$<p>The chance of each outcome of a joint distr
 <p>This joint distribution has 48 joint outcomes, and the total chance sums to 1.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">birth_joint</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">birth_joint</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>1.0</pre></div>
@@ -997,7 +997,7 @@ $$ P(B|A) \times P(A) = P(A, B) $$<p>The chance of each outcome of a joint distr
 <p>Now, we can compute the probability of any event that involves days and hours. For example, the chance of a weekday morning birth is quite high.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">birth_joint</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Day'</span><span class="p">,</span> <span class="s1">'Weekday'</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">birth_joint</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Day'</span><span class="p">,</span> <span class="s1">'Weekday'</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">)))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.17058499999999999</pre></div>
@@ -1006,7 +1006,7 @@ $$ P(B|A) \times P(A) = P(A, B) $$<p>The chance of each outcome of a joint distr
 <p>We have seen that less than 22% of babies are born on weekends. However, if we know that a baby was born between 5 a.m. and 6 a.m., then the chances that it is a weekend baby are quite a bit higher than 22%.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">early_morning</span> <span class="o">=</span> <span class="n">birth_joint</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">early_morning</span> <span class="o">=</span> <span class="n">birth_joint</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Hour'</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">early_morning</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -1028,7 +1028,7 @@ $$ P(B|A) \times P(A) = P(A, B) $$<p>The chance of each outcome of a joint distr
 </table></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span><span class="p">(</span><span class="n">given</span><span class="p">(</span><span class="n">early_morning</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Day'</span><span class="p">,</span> <span class="s1">'Weekend'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">P</span><span class="p">(</span><span class="n">given</span><span class="p">(</span><span class="n">early_morning</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Day'</span><span class="p">,</span> <span class="s1">'Weekend'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.28584466551063248</pre></div>
@@ -1064,7 +1064,7 @@ $$
 $$</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># The person is picked at random from the population.</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># The person is picked at random from the population.</span>
 
 <span class="c1"># By Bayes' Rule:</span>
 <span class="c1"># Chance that the person has the disease, given that test was +</span>
@@ -1080,7 +1080,7 @@ $$</p></div></div>
 <p>The same result can be computed using a table. Below, we begin with the joint distribution over true health and test results.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rare</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Health'</span><span class="p">,</span> <span class="s1">'Test'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">rare</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Health'</span><span class="p">,</span> <span class="s1">'Test'</span><span class="p">,</span> <span class="s1">'Chance'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
         <span class="p">[</span><span class="s1">'Diseased'</span><span class="p">,</span> <span class="s1">'Positive'</span><span class="p">,</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="mf">0.99</span><span class="p">],</span>
         <span class="p">[</span><span class="s1">'Diseased'</span><span class="p">,</span> <span class="s1">'Negative'</span><span class="p">,</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">],</span>
         <span class="p">[</span><span class="s1">'Not Diseased'</span><span class="p">,</span> <span class="s1">'Positive'</span><span class="p">,</span> <span class="mf">0.99</span> <span class="o">*</span> <span class="mf">0.005</span><span class="p">],</span>
@@ -1118,7 +1118,7 @@ $$</p></div></div>
 <p>The chance that a person selected at random is diseased, given that they tested positive, is computed from the following expression.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">positive</span> <span class="o">=</span> <span class="n">rare</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Test'</span><span class="p">,</span> <span class="s1">'Positive'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">positive</span> <span class="o">=</span> <span class="n">rare</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Test'</span><span class="p">,</span> <span class="s1">'Positive'</span><span class="p">)</span>
 <span class="n">P</span><span class="p">(</span><span class="n">given</span><span class="p">(</span><span class="n">positive</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Health'</span><span class="p">,</span> <span class="s1">'Diseased'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -1136,7 +1136,7 @@ $$</p></div></div>
 <p>The change has a noticeable effect on the answer, as you can see by running the cell below.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Subjective prior probability of 10% that the person has the disease</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Subjective prior probability of 10% that the person has the disease</span>
 
 <span class="c1"># By Bayes' Rule:</span>
 <span class="c1"># Chance that the person has the disease, given that test was +</span>
@@ -1152,7 +1152,7 @@ $$</p></div></div>
 <p><img src="disease50.png"/></p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Subjective prior probability of 50% that the person has the disease</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Subjective prior probability of 50% that the person has the disease</span>
 
 <span class="c1"># By Bayes' Rule: </span>
 <span class="c1"># Chance that the person has the disease, given that test was +</span>
@@ -1167,7 +1167,7 @@ $$</p></div></div>
 <p><strong>Computational Note</strong>. In the calculation above, the factor of 0.5 is common to all the terms and cancels out. Hence arithmetically it is the same as a calculation where the prior probabilities are apparently missing:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mf">0.99</span><span class="o">/</span><span class="p">(</span><span class="mf">0.99</span> <span class="o">+</span> <span class="mf">0.005</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="mf">0.99</span><span class="o">/</span><span class="p">(</span><span class="mf">0.99</span> <span class="o">+</span> <span class="mf">0.005</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.9949748743718593</pre></div>

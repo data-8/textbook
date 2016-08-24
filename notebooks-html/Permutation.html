@@ -25,7 +25,7 @@
 </ul></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">,</span> <span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">,</span> <span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="p">]</span>
 <span class="n">couples</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'couples.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
 <span class="n">couples</span>
 </pre></div></div></div>
@@ -84,7 +84,7 @@
 <p>Let us consider just the males first. There are 742 married couples and 292 unmarried couples, and all couples in this study had one male and one female, making 1,034 males in all.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Separate tables for married and cohabiting unmarried couples:</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Separate tables for married and cohabiting unmarried couples:</span>
 
 <span class="n">married_men</span> <span class="o">=</span> <span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'male'</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'married'</span><span class="p">)</span>
 <span class="n">partnered_men</span> <span class="o">=</span> <span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'male'</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'partner'</span><span class="p">)</span>
@@ -100,7 +100,7 @@
 <p>The histograms of the ages of the married and unmarried men show that this is indeed the case. We will draw these histograms and compare them. In order to compare two histograms, both should be drawn to the same scale. Let us write a function that does this for us.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_age</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">subject</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">plot_age</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">subject</span><span class="p">):</span>
     <span class="sd">"""</span>
 <span class="sd">    Draws a histogram of the Age column in the given table.</span>
 <span class="sd">    </span>
@@ -118,7 +118,7 @@
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Ages of men:</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Ages of men:</span>
 <span class="n">plot_age</span><span class="p">(</span><span class="n">married_men</span><span class="p">,</span> <span class="s2">"married men"</span><span class="p">)</span>
 <span class="n">plot_age</span><span class="p">(</span><span class="n">partnered_men</span><span class="p">,</span> <span class="s2">"cohabiting unmarried men"</span><span class="p">)</span>
 </pre></div></div></div>
@@ -131,7 +131,7 @@
 <p>The difference is even more marked when we compare the married and unmarried women.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">married_women</span> <span class="o">=</span> <span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'female'</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'married'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">married_women</span> <span class="o">=</span> <span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'female'</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'married'</span><span class="p">)</span>
 <span class="n">partnered_women</span> <span class="o">=</span> <span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'female'</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'partner'</span><span class="p">)</span>
 
 <span class="c1"># Ages of women:</span>
@@ -149,7 +149,7 @@
 <p>The table below shows the marital status and employment status of each man in the sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">males</span> <span class="o">=</span> <span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'male'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">males</span> <span class="o">=</span> <span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'male'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">])</span>
 <span class="n">males</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
@@ -191,7 +191,7 @@
 <p>Recall that the method <code>pivot</code> lets us do exactly that. It <em>cross-classifies</em> each man according to the two variables – marital status and employment status. Its output is a <em>contingency table</em> that contains the counts in each pair of categories.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">employment</span> <span class="o">=</span> <span class="n">males</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">employment</span> <span class="o">=</span> <span class="n">males</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">)</span>
 <span class="n">employment</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -239,7 +239,7 @@
 <p>The table shows that regardless of marital status, the men in the sample are most likely to be working as paid employees. But it is quite hard to compare the entire distributions based on this table, because the numbers of married and unmarried men in the sample are not the same. There are 742 married men but only 291 unmarried ones.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">employment</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">employment</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -259,7 +259,7 @@
 <p>To adjust for this difference in total numbers, we will convert the counts into proportions, by dividing all the <code>married</code> counts by 742 and all the <code>partner</code> counts by 291.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">proportions</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">proportions</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s2">"Employment Status"</span><span class="p">,</span> <span class="n">cc</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s2">"Employment Status"</span><span class="p">),</span>
         <span class="s2">"married"</span><span class="p">,</span> <span class="n">employment</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'married'</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">employment</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'married'</span><span class="p">)),</span>
         <span class="s2">"partner"</span><span class="p">,</span> <span class="n">employment</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'partner'</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">employment</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'partner'</span><span class="p">))</span>
@@ -309,7 +309,7 @@
 <p>The two distributions look different from each other in other ways too, as can be seen more clearly in the bar graphs below. It appears that a larger proportion of the married men in the sample work as paid employees, whereas a larger proportion of the unmarried men are not working but are looking for work.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">proportions</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s1">'Employment Status'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">proportions</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s1">'Employment Status'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Permutation_22_0.png"/></div>
@@ -334,7 +334,7 @@
 <p>The observed value of the test statistic is about 0.15:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TVD between the two distributions in the sample</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># TVD between the two distributions in the sample</span>
 <span class="n">married</span> <span class="o">=</span> <span class="n">proportions</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'married'</span><span class="p">)</span>
 <span class="n">partner</span> <span class="o">=</span> <span class="n">proportions</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'partner'</span><span class="p">)</span>
 <span class="n">observed_tvd</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">married</span> <span class="o">-</span> <span class="n">partner</span><span class="p">))</span>
@@ -356,7 +356,7 @@
 <p>Let's implement this plan. First, we will shuffle the column <code>empl_status</code> using the <code>sample</code> method, which just shuffles all the rows when provided with no arguments.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Randomly permute the employment status of all men</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Randomly permute the employment status of all men</span>
 
 <span class="n">shuffled</span> <span class="o">=</span> <span class="n">males</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Employment Status'</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
 <span class="n">shuffled</span>
@@ -416,7 +416,7 @@
 <p>The first two columns of the table below are taken from the original sample. The third has been created by randomly permuting the original <code>Employment Status</code> column.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Construct a table in which employment status has been shuffled</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Construct a table in which employment status has been shuffled</span>
 
 <span class="n">males_with_shuffled_empl</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s2">"Marital Status"</span><span class="p">,</span> <span class="n">males</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">),</span>
@@ -480,7 +480,7 @@
 <p>Once again, the <code>pivot</code> method computes the contingency table, which allows us to calculate the total variation distance between the distributions of the two groups of men after their employment status has been shuffled.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">employment_shuffled</span> <span class="o">=</span> <span class="n">males_with_shuffled_empl</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status (shuffled)'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">employment_shuffled</span> <span class="o">=</span> <span class="n">males_with_shuffled_empl</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status (shuffled)'</span><span class="p">)</span>
 <span class="n">employment_shuffled</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -522,7 +522,7 @@
 </table></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TVD between the two distributions in the contingency table above</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># TVD between the two distributions in the contingency table above</span>
 <span class="n">e_s</span> <span class="o">=</span> <span class="n">employment_shuffled</span>
 <span class="n">married</span> <span class="o">=</span> <span class="n">e_s</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'married'</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">e_s</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'married'</span><span class="p">))</span>
 <span class="n">partner</span> <span class="o">=</span> <span class="n">e_s</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'partner'</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">e_s</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'partner'</span><span class="p">))</span>
@@ -538,7 +538,7 @@
 <h3 id="A-Permutation-Test">A Permutation Test<a class="anchor-link" href="#A-Permutation-Test">¶</a></h3><p>Could this just be due to chance variation? We will only know if we run many more replications, by randomly permuting the <code>Employment Status</code> column repeatedly. This method of testing is known as a <strong>permutation test</strong>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Put it all together in a for loop to perform a permutation test</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Put it all together in a for loop to perform a permutation test</span>
 
 <span class="n">repetitions</span> <span class="o">=</span> <span class="mi">500</span>
 
@@ -580,7 +580,7 @@
 <p>Our simulation gives us an approximate empirical P-value, because it is based on just 500 random permutations instead of all the possible random permutations. We can compute this empirical P-value directly, without drawing the histogram:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">empirical_p_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">tvds</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">observed_tvd</span><span class="p">)</span> <span class="o">/</span> <span class="n">tvds</span><span class="o">.</span><span class="n">num_rows</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">empirical_p_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">tvds</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">observed_tvd</span><span class="p">)</span> <span class="o">/</span> <span class="n">tvds</span><span class="o">.</span><span class="n">num_rows</span>
 <span class="n">empirical_p_value</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -598,7 +598,7 @@
 <p>In our example, the total variation distance is computed over and over again. So we will begin with a generalized computation of total variation distance between the distribution of any column of values (such as employment status) when separated into any two conditions (such as marital status) for a collection of data described by any table. Our implementation includes the same statements as we used above, but uses generic names that are specified by the final function call.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TVD between the distributions of values under any two conditions</span>
+<div class=" highlight hl-ipython3"><pre><span class="c1"># TVD between the distributions of values under any two conditions</span>
 
 <span class="k">def</span> <span class="nf">tvd</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
     <span class="sd">"""Compute the total variation distance </span>
@@ -622,7 +622,7 @@
 <p>Next, we can write a function that performs a permutation test using this <code>tvd</code> function to compute the same statistic on shuffled variants of any table. It's worth reading through this implementation to understand its details.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">permutation_tvd</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">permutation_tvd</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
     <span class="sd">"""</span>
 <span class="sd">    Perform a permutation test of whether </span>
 <span class="sd">    the distribution of values for two conditions </span>
@@ -664,7 +664,7 @@
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">permutation_tvd</span><span class="p">(</span><span class="n">males</span><span class="p">,</span> <span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">permutation_tvd</span><span class="p">(</span><span class="n">males</span><span class="p">,</span> <span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observation: 0.152735710118
@@ -677,7 +677,7 @@ Empirical P-value: 0.0
 <p>Now that we have generalized our permutation test, we can apply it to other hypotheses. For example, we can compare the distribution over the employment status of women, grouping them by their marital status. In the case of men we found a difference, but what about with women? First, we can visualize the two distributions.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">compare_bar</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">compare_bar</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
     <span class="sd">"""Bargraphs of distributions of values for each of two conditions."""</span>
     <span class="n">e</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">labels</span><span class="p">:</span>
@@ -705,7 +705,7 @@ Empirical P-value: 0.0
 <h3 id="Another-permutation-test-to-compare-distributions">Another permutation test to compare distributions<a class="anchor-link" href="#Another-permutation-test-to-compare-distributions">¶</a></h3><p>We can test these hypotheses just as we did for men, by using the function <code>permuation_tvd</code> that we defined for this purpose.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">permutation_tvd</span><span class="p">(</span><span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'female'</span><span class="p">),</span> <span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">permutation_tvd</span><span class="p">(</span><span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'female'</span><span class="p">),</span> <span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observation: 0.194755513565
@@ -723,7 +723,7 @@ Empirical P-value: 0.0
 <p><strong>Alternative hypothesis.</strong> Among married and unmarried cohabiting people in the United States, gender and employment status are related.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">permutation_tvd</span><span class="p">(</span><span class="n">couples</span><span class="p">,</span> <span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">permutation_tvd</span><span class="p">(</span><span class="n">couples</span><span class="p">,</span> <span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observation: 0.185866408519
@@ -743,7 +743,7 @@ Empirical P-value: 0.0
 <p>At half-time, all the game balls were collected for inspection. Two officials, Clete Blakeman and Dyrol Prioleau, measured the pressure in each of the balls. Here are the data; pressure is measured in psi. The Patriots ball that had been intercepted by the Colts was not inspected at half-time. Nor were most of the Colts' balls – the officials simply ran out of time and had to relinquish the balls for the start of second half play.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">football</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'football.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">football</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'football.csv'</span><span class="p">)</span>
 <span class="n">football</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
@@ -820,7 +820,7 @@ Empirical P-value: 0.0
 <p>For each of the 15 balls that were inspected, the two officials got different results. It is not uncommon that repeated measurements on the same object yield different results, especially when the measurements are performed by different people. So we will assign to each the ball the average of the two measurements made on that ball.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">football</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">football</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
     <span class="s1">'Combined'</span><span class="p">,</span> <span class="p">(</span><span class="n">football</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Blakeman'</span><span class="p">)</span><span class="o">+</span><span class="n">football</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Prioleau'</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
     <span class="p">)</span>
 <span class="n">football</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -899,7 +899,7 @@ Empirical P-value: 0.0
 <p>At a glance, it seems apparent that the Patriots' footballs were at a lower pressure than the Colts' balls. Because some deflation is normal during the course of a game, the independent analysts decided to calculate the drop in pressure from the start of the game. Recall that the Patriots' balls had all started out at about 12.5 psi, and the Colts' balls at about 13.0 psi. Therefore the drop in pressure for the Patriots' balls was computed as 12.5 minus the pressure at half-time, and the drop in pressure for the Colts' balls was 13.0 minus the pressure at half-time.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">football</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">football</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
     <span class="s1">'Drop'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">12.5</span><span class="p">]</span><span class="o">*</span><span class="mi">11</span> <span class="o">+</span> <span class="p">[</span><span class="mf">13.0</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="n">football</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Combined'</span><span class="p">)</span>
     <span class="p">)</span>
 <span class="n">football</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -985,7 +985,7 @@ Empirical P-value: 0.0
 <p>The observed difference between the average drops in the two groups was about 0.7335 psi.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patriots</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Team'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Drop'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">patriots</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Team'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Drop'</span><span class="p">)</span>
 <span class="n">colts</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Team'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Drop'</span><span class="p">)</span>
 <span class="n">observed_difference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">patriots</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">colts</span><span class="p">)</span>
 <span class="n">observed_difference</span>
@@ -1000,7 +1000,7 @@ Empirical P-value: 0.0
 <p>To answer this, we will randomly permute the 15 drops, assign the first 11 permuted values to the Patriots and the last 4 to the Colts. Then we will find the difference in the means of the two permuted groups.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">drops_shuffled</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Drop'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">drops_shuffled</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Drop'</span><span class="p">)</span>
 <span class="n">patriots_shuffled</span> <span class="o">=</span> <span class="n">drops_shuffled</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">colts_shuffled</span> <span class="o">=</span> <span class="n">drops_shuffled</span><span class="p">[</span><span class="mi">11</span><span class="p">:]</span>
 <span class="n">shuffled_difference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">patriots_shuffled</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">colts_shuffled</span><span class="p">)</span>
@@ -1013,7 +1013,7 @@ Empirical P-value: 0.0
 <p>This is different from the observed value we calculated earlier. But to get a better sense of the variability under random sampling we must repeat the process many times. Let us try making 5000 repetitions and drawing a histogram of the 5000 differences between means.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repetitions</span> <span class="o">=</span> <span class="mi">5000</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">repetitions</span> <span class="o">=</span> <span class="mi">5000</span>
 
 <span class="n">test_stats</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
@@ -1049,5 +1049,5 @@ Empirical P-value: 0.0028
 <p>The all-important question in the football world was whether the excess drop of pressure in the Patriots' footballs was deliberate. To that question, the data have no answer. If you are curious about the answer given by the investigators, here is the <a href="https://nfllabor.files.wordpress.com/2015/05/investigative-and-expert-reports-re-footballs-used-during-afc-championsh.pdf">full report</a>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre> 
 </pre></div></div></div></div>

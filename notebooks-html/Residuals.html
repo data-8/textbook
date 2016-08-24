@@ -28,7 +28,7 @@
 <h3 id="First-Diagnostic:-The-Scatter-Plot">First Diagnostic: The Scatter Plot<a class="anchor-link" href="#First-Diagnostic:-The-Scatter-Plot">¶</a></h3><p>It is always helpful to start with a visualization. Continuing the example of estimating birth weight based on gestational days, let us look at a scatter plot of the two variables.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">baby</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Residuals_5_0.png"/></div>
@@ -38,7 +38,7 @@
 <p>A plot of the regression line through the scatter plot shows that about half the points are above the line and half are below the line almost symmetrically, supporting the model's assumption that Tyche is adding random errors that are normally distributed with mean 0.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scatter_fit</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">scatter_fit</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Residuals_7_0.png"/></div>
@@ -55,7 +55,7 @@ $$
 $$<p>The table <code>baby_regression</code> contains the data, the fitted values and the residuals:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby2</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">baby2</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">])</span>
 <span class="n">fitted</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
 <span class="n">residuals</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Birth Weight'</span><span class="p">)</span> <span class="o">-</span> <span class="n">fitted</span>
 <span class="n">baby_regression</span> <span class="o">=</span> <span class="n">baby2</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
@@ -119,7 +119,7 @@ $$<p>The table <code>baby_regression</code> contains the data, the fitted values
 <p>Once again, it helps to visualize. The figure below shows four of the residuals; for each of the four points, the length of the red segment is the residual for that point. There is one such residual for each of the other 1170 points as well.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">points</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="p">[</span><span class="mi">148</span><span class="p">,</span> <span class="mi">244</span><span class="p">,</span> <span class="mi">338</span><span class="p">,</span> <span class="mi">351</span><span class="p">],</span>
         <span class="s1">'Birth Weight'</span><span class="p">,</span> <span class="p">[</span><span class="mi">116</span><span class="p">,</span> <span class="mi">138</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">140</span><span class="p">]</span>
     <span class="p">])</span>
@@ -137,7 +137,7 @@ $$<p>The table <code>baby_regression</code> contains the data, the fitted values
 <p>A <em>residual plot</em> can be drawn by plotting the residuals against $x$. The function <code>residual_plot</code> does just that. The function <code>regression_diagnostic_plots</code> draws the origbinal scatter plot as well as the residual plot for ease of comparison.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">residual_plot</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">residual_plot</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">fitted</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="n">residuals</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">fitted</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
@@ -151,13 +151,13 @@ $$<p>The table <code>baby_regression</code> contains the data, the fitted values
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">regression_diagnostic_plots</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">regression_diagnostic_plots</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">scatter_fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="n">residual_plot</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Residuals_15_0.png"/></div>
@@ -169,7 +169,7 @@ $$<p>The table <code>baby_regression</code> contains the data, the fitted values
 <p>All of this is consistent with the model's assumptions that the errors are drawn at random with replacement from a normally distributed population with mean 0. Indeed, a histogram of the residuals is centered at 0 and looks roughly bell shaped.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby_regression</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Residual'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">baby_regression</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Residual'</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Residuals_17_0.png"/></div>
@@ -186,7 +186,7 @@ $$<p>The table <code>baby_regression</code> contains the data, the fitted values
 <p>As an example, we will study a <a href="http://www.statsci.org/data/oz/dugongs.html">dataset</a> on the age and length of dugongs, which are marine mammals related to manatees and sea cows. The data are in a table called <code>dugong</code>. Age is measured in years and length in meters. The ages are estimated; most dugongs don't keep track of their birthdays.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dugong</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'http://www.statsci.org/data/oz/dugongs.txt'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">dugong</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'http://www.statsci.org/data/oz/dugongs.txt'</span><span class="p">)</span>
 <span class="n">dugong</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -244,13 +244,13 @@ $$<p>The table <code>baby_regression</code> contains the data, the fitted values
 <p>Here is a regression of length (the response) on age (the predictor). The correlation between the two variables is about 0.83, which is quite high.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Length'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Length'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.82964745549057139</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scatter_fit</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Length'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">scatter_fit</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Length'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Residuals_24_0.png"/></div>
@@ -259,7 +259,7 @@ $$<p>The table <code>baby_regression</code> contains the data, the fitted values
 <p>High correlation notwithstanding, the plot shows a curved pattern that is much more visible in the residual plot.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Length'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Length'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Residuals_26_0.png"/></div>
@@ -273,7 +273,7 @@ $$<p>The table <code>baby_regression</code> contains the data, the fitted values
 <p>As another example, the dataset <code>us_women</code> contains the average weights of U.S. women of different heights in the 1970s. Weights are measured in pounds and heights in inches. The correlation is spectacularly high – more than 0.99.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">us_women</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'us_women.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">us_women</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'us_women.csv'</span><span class="p">)</span>
 <span class="n">correlation</span><span class="p">(</span><span class="n">us_women</span><span class="p">,</span> <span class="s1">'height'</span><span class="p">,</span> <span class="s1">'ave weight'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -283,7 +283,7 @@ $$<p>The table <code>baby_regression</code> contains the data, the fitted values
 <p>The points seem to hug the regression line pretty closely, but the residual plot flashes a warning sign: it is U-shaped, indicating that the relation between the two variables is not linear.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">us_women</span><span class="p">,</span> <span class="s1">'height'</span><span class="p">,</span> <span class="s1">'ave weight'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">us_women</span><span class="p">,</span> <span class="s1">'height'</span><span class="p">,</span> <span class="s1">'ave weight'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Residuals_31_0.png"/></div>
@@ -301,7 +301,7 @@ $$<p>The table <code>baby_regression</code> contains the data, the fitted values
 <p>Recall the table <code>hybrid</code> that contains data on hybrid cars in the U.S. Here is a regression of fuel efficiency on the rate of acceleration. The association is negative: cars that accelearate quickly tend to be less efficient.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'mpg'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'mpg'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Residuals_35_0.png"/></div>
@@ -320,7 +320,7 @@ No matter what the shape of the scatter diagram, the residuals have an average o
 <p>As a numerical example, here is the average of the residuals in the regression of birth weight on gestational days of babies:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baby_regression</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Residual'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baby_regression</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Residual'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>-6.3912532279613784e-15</pre></div>
@@ -330,7 +330,7 @@ No matter what the shape of the scatter diagram, the residuals have an average o
 <p>Here is the average of the residuals in the regression of the length of dugongs on their age:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dugong_residuals</span> <span class="o">=</span> <span class="n">dugong</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Length'</span><span class="p">)</span> <span class="o">-</span> <span class="n">fit</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Length'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">dugong_residuals</span> <span class="o">=</span> <span class="n">dugong</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Length'</span><span class="p">)</span> <span class="o">-</span> <span class="n">fit</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Length'</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dugong_residuals</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -345,7 +345,7 @@ No matter what the shape of the scatter diagram, the residuals have an average o
 <p>To understand this result, it is worth noting that the fitted values are all on the regression line whereas the observed values of $y$ are the heights of all the points in the scatter plot and are more variable.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scatter_fit</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">scatter_fit</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Residuals_43_0.png"/></div>
@@ -355,7 +355,7 @@ No matter what the shape of the scatter diagram, the residuals have an average o
 <p>The scatter plot shows a correlation of about 0.4:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.40754279338885108</pre></div>
@@ -364,7 +364,7 @@ No matter what the shape of the scatter diagram, the residuals have an average o
 <p>Here is ratio of the SD of the fitted values and the SD of the observed values of birth weight:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fitted_birth_weight</span> <span class="o">=</span> <span class="n">baby_regression</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Fitted Value'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">fitted_birth_weight</span> <span class="o">=</span> <span class="n">baby_regression</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Fitted Value'</span><span class="p">)</span>
 <span class="n">observed_birth_weight</span> <span class="o">=</span> <span class="n">baby_regression</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Birth Weight'</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fitted_birth_weight</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">observed_birth_weight</span><span class="p">)</span>
 </pre></div></div></div>
@@ -376,13 +376,13 @@ No matter what the shape of the scatter diagram, the residuals have an average o
 <p>The example of fuel efficiency and acceleration is one where the correlation is negative:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'mpg'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'mpg'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>-0.5060703843771186</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fitted_mpg</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'mpg'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">fitted_mpg</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'mpg'</span><span class="p">)</span>
 <span class="n">observed_mpg</span> <span class="o">=</span> <span class="n">hybrid</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fitted_mpg</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">observed_mpg</span><span class="p">)</span>
 </pre></div></div></div>
@@ -404,14 +404,14 @@ No matter what the shape of the scatter diagram, the residuals have an average o
 <p>Again, we will demonstrate this by example. In the case of gestational days and birth weights, $r$ is about 0.4 and $\sqrt{1-r^2}$ is about 0.91:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.91318611003278638</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">residuals</span> <span class="o">=</span> <span class="n">baby_regression</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Residual'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">residuals</span> <span class="o">=</span> <span class="n">baby_regression</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Residual'</span><span class="p">)</span>
 <span class="n">observed_birth_weight</span> <span class="o">=</span> <span class="n">baby_regression</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Birth Weight'</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">observed_birth_weight</span><span class="p">)</span>
 </pre></div></div></div>
@@ -423,14 +423,14 @@ No matter what the shape of the scatter diagram, the residuals have an average o
 <p>It will come as no surprise that the same relation is true for the regression of fuel efficiency on acceleration:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'mpg'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'mpg'</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.862492183185677</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">residuals</span> <span class="o">=</span> <span class="n">hybrid</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">)</span> <span class="o">-</span> <span class="n">fitted_mpg</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">residuals</span> <span class="o">=</span> <span class="n">hybrid</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">)</span> <span class="o">-</span> <span class="n">fitted_mpg</span>
 <span class="n">observed_mpg</span> <span class="o">=</span> <span class="n">hybrid</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">observed_mpg</span><span class="p">)</span>
 </pre></div></div></div>

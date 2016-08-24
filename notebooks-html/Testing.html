@@ -18,7 +18,7 @@
 <p>The table below describes the proportion of the eligible potential jurors in Alameda County (estimated from 2000 census data and other sources) for broad categories of race and ethnic background. This table was compiled by Professor Weeks, a demographer at San Diego State University, for the Alameda County trial <em>People v. Stuart Alexander</em> in 2002.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">population</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s2">"Race"</span><span class="p">,</span> <span class="s2">"Eligible"</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">population</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s2">"Race"</span><span class="p">,</span> <span class="s2">"Eligible"</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
     <span class="p">[</span><span class="s2">"Asian"</span><span class="p">,</span>  <span class="mf">0.15</span><span class="p">],</span>
     <span class="p">[</span><span class="s2">"Black"</span><span class="p">,</span>  <span class="mf">0.18</span><span class="p">],</span>
     <span class="p">[</span><span class="s2">"Latino"</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">],</span>
@@ -61,7 +61,7 @@
 <p>The <code>sample_from_distribution</code> method takes a number of samples and a column index or label. It returns a table in which the distribution column has been replaced by category counts of the sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1453</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1453</span>
 <span class="n">population</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s2">"Eligible"</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -98,7 +98,7 @@
 <p>Each count is selected randomly in such a way that the chance of each category is the corresponding proportion in the original <code>"Eligible"</code> column. Sampling again will give different counts, but again the <code>"White"</code> category is much more common than <code>"Other"</code> because of its much higher proportion.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">population</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s2">"Eligible"</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">population</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s2">"Eligible"</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -134,7 +134,7 @@
 <p>The option <code>proportions=True</code> draws sample counts and then divides each count by the total number of samples. The result is another distribution; one based on a sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s2">"Eligible"</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">proportions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">sample</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s2">"Eligible"</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">proportions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">sample</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -171,7 +171,7 @@
 <p>This ut sample can also be used to generate a sample. The sample of a sample is called a <em>resampled sample</em> or a <em>bootstrap sample</em>. It is not a random sample of the original distribution, but shares many characteristics with such a sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s1">'Eligible sample'</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">sample</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="s1">'Eligible sample'</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -207,7 +207,7 @@
 <h2 id="Empirical-Distributions">Empirical Distributions<a class="anchor-link" href="#Empirical-Distributions">¶</a></h2><p>An <em>empirical distribution</em> of a statistic is a table generated by computing the statistic for many samples. The previous section used empirical distributions to reason about whether or not a sample had a statistic that was typical of a random sample. The following function computes the empirical histogram of a statistic, which is expressed as a function that takes a sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">empirical_distribution</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">empirical_distribution</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
     <span class="n">stats</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Sample #'</span><span class="p">,</span> <span class="s1">'Statistic'</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
         <span class="n">sample</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">sample_from_distribution</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
@@ -220,7 +220,7 @@
 <p>This function can be used to compute an empirical distribution of the total variation distance from the population distribution.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">tvd_from_eligible</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">tvd_from_eligible</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Eligible sample'</span><span class="p">)</span>
     <span class="n">distribution</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">total_variation_distance</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Eligible'</span><span class="p">),</span> <span class="n">distribution</span><span class="p">)</span>
@@ -282,7 +282,7 @@
 <p>The empirical distribution can be visualized using a histogram.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">empirical_distribution</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="s1">'Eligible'</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">tvd_from_eligible</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">empirical_distribution</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="s1">'Eligible'</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">tvd_from_eligible</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Testing_18_0.png"/></div>
@@ -293,7 +293,7 @@
 <p>Let us use the methods we have developed to examine the disparity between 8 out of 100 and 26 out of 100 black men in a panel of 100 drawn at random from among the eligible jurors.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alabama</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Race'</span><span class="p">,</span> <span class="s1">'Eligible'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">alabama</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Race'</span><span class="p">,</span> <span class="s1">'Eligible'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
     <span class="p">[</span><span class="s2">"Black"</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">],</span>
     <span class="p">[</span><span class="s2">"Other"</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">]</span>
 <span class="p">])</span>
@@ -321,7 +321,7 @@
 <p>As our test statistic, we will use the number of black men in a random sample of size 100. Here is an empirical distribution of this statistic.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">value_for</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">category_label</span><span class="p">,</span> <span class="n">value_label</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">value_for</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">category_label</span><span class="p">,</span> <span class="n">value_label</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">in_table</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">sample</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">category_label</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">value_label</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">in_table</span>
@@ -386,7 +386,7 @@
 <p>The numbers of black men in the first 10 repetitions were quite a bit larger than 8. The empirical histogram below shows the distribution of the test statistic over all the repetitions.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">black_in_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">black_in_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Testing_24_0.png"/></div>
@@ -416,7 +416,7 @@
 <p>This was the empirical distribution of the test statistic – the number of black men on the jury panel – in the example about Swain and the Supreme Court:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">black_in_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">black_in_sample</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Testing_29_0.png"/></div>
@@ -443,7 +443,7 @@
 <p>The P-value for the null hypothesis that Swain's jury panel was selected at random from the population of Talladega is approximated using the empirical distribution as follows:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">black_in_sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="n">black_in_sample</span><span class="o">.</span><span class="n">num_rows</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">black_in_sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="n">black_in_sample</span><span class="o">.</span><span class="n">num_rows</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.0</pre></div>
