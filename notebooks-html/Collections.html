@@ -14,7 +14,7 @@
 <p>Values can be grouped together into collections, which allows programmers to organize those values and refer to all of them with a single name. Separating expressions by commas within square brackets places the values of those expressions into a <em>list</em>, which is a built-in sequential collection. After a comma, it's okay to start a new line. Below, we collect four different temperatures into a list called <code>temps</code>. These are the estimated average daily high temperatures over all land on Earth (in degrees Celsius) for the decades surrounding 1850, 1900, 1950, and 2000, respectively, expressed as deviations from the average absolute high temperature between 1951 and 1980, which was 14.48 degrees.\footnote{<a href="http://berkeleyearth.lbl.gov/regions/global-land}">http://berkeleyearth.lbl.gov/regions/global-land}</a></p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baseline_high</span> <span class="o">=</span> <span class="mf">14.48</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baseline_high</span> <span class="o">=</span> <span class="mf">14.48</span>
 <span class="n">highs</span> <span class="o">=</span> <span class="p">[</span><span class="n">baseline_high</span> <span class="o">-</span> <span class="mf">0.880</span><span class="p">,</span> <span class="n">baseline_high</span> <span class="o">-</span> <span class="mf">0.093</span><span class="p">,</span>
          <span class="n">baseline_high</span> <span class="o">+</span> <span class="mf">0.105</span><span class="p">,</span> <span class="n">baseline_high</span> <span class="o">+</span> <span class="mf">0.684</span><span class="p">]</span>
 <span class="n">highs</span>
@@ -26,7 +26,7 @@
 <p>Lists allow us to pass multiple values into a function using a single name. For instance, the <code>sum</code> function computes the sum of all values in a list, and the <code>len</code> function computes the length of the list. Using them together, we can compute the average of the list.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">highs</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">highs</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">highs</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">highs</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>14.434000000000001</pre></div>
@@ -35,7 +35,7 @@
 <p><strong>Tuples.</strong> Values can also be grouped together into <em>tuples</em> in addition to <em>lists</em>. A tuple is expressed by separating elements using commas within parentheses: <code>(1, 2, 3)</code>. In many cases, lists and tuples are interchangeable. We will use a tuple to hold the average daily low tempuratures for the same four time ranges. The only change in the code is the switch to parentheses instead of brackets.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baseline_low</span> <span class="o">=</span> <span class="mf">3.00</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baseline_low</span> <span class="o">=</span> <span class="mf">3.00</span>
 <span class="n">lows</span> <span class="o">=</span> <span class="p">(</span><span class="n">baseline_low</span> <span class="o">-</span> <span class="mf">0.872</span><span class="p">,</span> <span class="n">baseline_low</span> <span class="o">-</span> <span class="mf">0.629</span><span class="p">,</span>
         <span class="n">baseline_low</span> <span class="o">-</span> <span class="mf">0.126</span><span class="p">,</span> <span class="n">baseline_low</span> <span class="o">+</span> <span class="mf">0.728</span><span class="p">)</span>
 <span class="n">lows</span>

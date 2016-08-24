@@ -14,7 +14,7 @@
 <p>In this section, we will continue to use the <code><a href="imdb.csv">top_movies.csv</a></code> data set.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">top</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'top_movies.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">top</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'top_movies.csv'</span><span class="p">)</span>
 <span class="n">top</span><span class="o">.</span><span class="n">set_format</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">NumberFormatter</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -78,7 +78,7 @@
 <p>The code below returns a table consisting of the rows indexed 3, 18, and 100 in the table <code>top</code>. Since the original table is sorted by <code>rank</code>, which begins at 1, the zero-indexed rows always have a rank that is one greater than the index. However, the <code>take</code> method does not inspect the information in the rows to construct its sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">top</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">top</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span> 
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -106,7 +106,7 @@
 <p>We can select evenly spaced rows by calling <code>np.arange</code> and passing the result to <code>take</code>. In the example below, we start with the first row (index 0) of <code>top</code>, and choose every 40th row after that until we reach the end of the table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">top</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">.</span><span class="n">num_rows</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">top</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">.</span><span class="n">num_rows</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -170,7 +170,7 @@ ABC: 0
 <p>The method <code>randint</code>, when given two arguments <code>low</code> and <code>high</code>, returns an integer picked uniformly at random between <code>low</code> and <code>high</code>, including <code>low</code> but excluding <code>high</code>. Run the code below several times to see the variability in the integers that are returned.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>  <span class="c1"># select once at random from 3, 4, 5, 6, 7</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>  <span class="c1"># select once at random from 3, 4, 5, 6, 7</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>7</pre></div>
@@ -181,7 +181,7 @@ ABC: 0
 <p>Here we will choose a systematic sample of the rows of <code>top</code>. We will start by picking one of the first 10 rows at random, and then we will pick every 10th row after that.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="sd">"""Choose a random start among rows 0 through 9;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">"""Choose a random start among rows 0 through 9;</span>
 <span class="sd">then take every 10th row."""</span>
 
 <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -257,7 +257,7 @@ ABC: 0
 <p>We will start with the table <code>die</code> which contains the numbers of spots on the faces of a die. All the numbers appear exactly once, as we are assuming that the die is fair.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">die</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Face'</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">die</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Face'</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
 <span class="n">die</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -298,7 +298,7 @@ ABC: 0
 <p>Drawing the histogram of this simple set of numbers yields an unsettling figure as <code>hist</code> makes a default choice of bins:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">die</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">die</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Sampling_19_0.png"/></div>
@@ -307,7 +307,7 @@ ABC: 0
 <p>The numbers 1, 2, 3, 4, 5, 6 are integers, so the bins chosen by <code>hist</code> only have entries at the edges. In such a situation, it is a better idea to select bins so that they are centered on the integers. This is often true of histograms of data that are <em>discrete</em>, that is, variables whose successive values are separated by the same fixed amount. The real advantage of this method of bin selection will become more clear when we start imagining smooth curves drawn over histograms.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">dice_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dice_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">die</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">dice_bins</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
@@ -323,7 +323,7 @@ ABC: 0
 <p>The code below simulates 10 rolls of the die. As with all simulations of chance experiments, you should run the code several times and notice the variability in what is returned.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">die</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">die</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -380,7 +380,7 @@ ABC: 0
 <p>The results of rolling the die will all be integers in the range 1 through 6, so we will want to use the same bins as we used for the probability histogram. To avoid writing out the same bin argument every time we draw a histogram, let us define a function called <code>dice_hist</code> that will perform the task for us. The function will take one argument: the number <code>n</code> of dice to roll.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">dice_hist</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">dice_hist</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">rolls</span> <span class="o">=</span> <span class="n">die</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">rolls</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">dice_bins</span><span class="p">)</span>
     
@@ -393,7 +393,7 @@ ABC: 0
 <p>As we increase the number of rolls in the simulation, the proportions get closer to $1/6$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">dice_hist</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dice_hist</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Sampling_28_0.png"/></div>
@@ -425,7 +425,7 @@ ABC: 0
 <p>The table <code>wheel</code> represents the pockets of a Nevada roulette wheel. It has 38 rows labeled 1 through 38, one row per pocket.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">pockets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">39</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pockets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">39</span><span class="p">)</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="p">([</span><span class="s1">'red'</span><span class="p">,</span> <span class="s1">'black'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="p">[</span><span class="s1">'black'</span><span class="p">,</span> <span class="s1">'red'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">[</span><span class="s1">'green'</span><span class="p">,</span> <span class="s1">'green'</span><span class="p">]</span>
 <span class="n">wheel</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'pocket'</span><span class="p">,</span> <span class="n">pockets</span><span class="p">,</span>
@@ -487,7 +487,7 @@ ABC: 0
 <p>The function <code>bet_on_red</code> takes a numerical argument <code>x</code> and returns the net winnings on a \$1 bet on "red," provided <code>x</code> is the number of a pocket.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">bet_on_red</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">bet_on_red</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">"""The net winnings of betting on red for outcome x."""</span>
     <span class="n">pockets</span> <span class="o">=</span> <span class="n">wheel</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'pocket'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">pockets</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'color'</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="s1">'red'</span><span class="p">:</span>
@@ -497,7 +497,7 @@ ABC: 0
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">bet_on_red</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bet_on_red</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>-1</pre></div>
@@ -506,7 +506,7 @@ ABC: 0
 <p>The function <code>spins</code> takes a numerical argument <code>n</code> and returns a new table consisting of <code>n</code> rows of <code>wheel</code> sampled at random with replacement. In other words, it simulates the results of <code>n</code> spins of the roulette wheel.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">spins</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">spins</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">wheel</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
@@ -514,7 +514,7 @@ ABC: 0
 <p>We will create a table called <code>play</code> consisting of the results of 10 spins, and add a column that shows the net winnings on \$1 placed on "red." Recall that the <code>apply</code> method applies a function to each element in a column of a table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">outcomes</span> <span class="o">=</span> <span class="n">spins</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">outcomes</span> <span class="o">=</span> <span class="n">spins</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">outcomes</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
     <span class="s1">'winnings'</span><span class="p">,</span> <span class="n">outcomes</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">bet_on_red</span><span class="p">,</span> <span class="s1">'pocket'</span><span class="p">))</span>
 <span class="n">results</span>
@@ -574,7 +574,7 @@ ABC: 0
 <p>And here is the net gain on all 500 bets:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'winnings'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'winnings'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>-32</pre></div>
@@ -596,7 +596,7 @@ ABC: 0
 <p>Below, we use the <code>product</code> function to produce all possible pairs of a suit and a rank. The suits are represented by special characters used to print bridge and poker articles in newspapers.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
 
 <span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">,</span> <span class="s1">'4'</span><span class="p">,</span> <span class="s1">'5'</span><span class="p">,</span> <span class="s1">'6'</span><span class="p">,</span> <span class="s1">'7'</span><span class="p">,</span> <span class="s1">'8'</span><span class="p">,</span> <span class="s1">'9'</span><span class="p">,</span> <span class="s1">'10'</span><span class="p">,</span> <span class="s1">'J'</span><span class="p">,</span> <span class="s1">'Q'</span><span class="p">,</span> <span class="s1">'K'</span><span class="p">]</span>
 <span class="n">suits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'♠︎'</span><span class="p">,</span> <span class="s1">'♥︎'</span><span class="p">,</span> <span class="s1">'♦︎'</span><span class="p">,</span> <span class="s1">'♣︎'</span><span class="p">]</span>
@@ -660,7 +660,7 @@ ABC: 0
 <p>A <em>poker hand</em> is 5 cards dealt at random from the deck. The expression below deals a hand. Execute the cell a few times; how often are you dealt a pair?</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">deck</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deck</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">

@@ -37,7 +37,7 @@
 <p>Suppose there are in fact $N = 300$ planes of this kind, and that you observe 30 of them. We can construct a table called <code>serialno</code> that contains the serial numbers 1 through $N$. We can then sample 30 times with replacement (see Assumption 2) to get our sample of serial numbers. Our estimate is the maximum of these 30 numbers.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">N</span> <span class="o">=</span> <span class="mi">300</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="n">serialno</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'serial number'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">serialno</span>
 </pre></div></div></div>
@@ -93,7 +93,7 @@
 <p>... (290 rows omitted)</p></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">max</span><span class="p">(</span><span class="n">serialno</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">max</span><span class="p">(</span><span class="n">serialno</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>296</pre></div>
@@ -107,7 +107,7 @@
 <p>For each integer (called <code>i</code> in the code) in the range 0 through 749 (750 total), the <code>for</code> loop executes the code in the body of the loop. In this example, it generates a random sample of 30 serial numbers, computes the maximum value, and augments the rows of <code>maxes</code> with that value.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sample_size</span> <span class="o">=</span> <span class="mi">30</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_size</span> <span class="o">=</span> <span class="mi">30</span>
 <span class="n">repetitions</span> <span class="o">=</span> <span class="mi">750</span>
 
 <span class="n">maxes</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'i'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">])</span>
@@ -171,7 +171,7 @@
 <p>Here is a histogram of the 750 estimates. As you can see, the estimates are all crowded up near 300, even though in theory they could be much smaller. The histogram indicates that as an estimate of the total number of planes, the largest serial number might be too low by about 10 to 25. But it is extremely unlikely to be underestimate the true number of planes by more than about 50.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">every_ten</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">every_ten</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">maxes</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'max'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
@@ -192,7 +192,7 @@
 <p>The total number of possible samples is often very large. For example, the total number of possible sequences of 30 serial numbers that you could see if there were 300 aircraft is</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="mi">300</span><span class="o">**</span><span class="mi">30</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">300</span><span class="o">**</span><span class="mi">30</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>205891132094649000000000000000000000000000000000000000000000000000000000000</pre></div>
@@ -214,7 +214,7 @@ $$<p>Thus a new statistic can be used to estimate the total number of planes: ta
 <p>How does this method of estimation compare with using the largest number observed? It is not easy to calculate the probability distribution of the new statistic. But as before, we can simulate it to get the probabilities approximately. Let's take a look at the empirical distribution based on repeated sampling. The number of repetitions is chosen to be the same as it was for the earlier estimate. This will allow us to compare the two empirical distributions.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">new_est</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'i'</span><span class="p">,</span> <span class="s1">'2*avg'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_est</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'i'</span><span class="p">,</span> <span class="s1">'2*avg'</span><span class="p">])</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
     <span class="n">sample</span> <span class="o">=</span> <span class="n">serialno</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -232,7 +232,7 @@ $$<p>Thus a new statistic can be used to estimate the total number of planes: ta
 <p>For ease of comparison, let us run another set of 750 repetitions of the sampling process and calculate both estimates for each sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">new_est</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'i'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">,</span> <span class="s1">'2*avg'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_est</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'i'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">,</span> <span class="s1">'2*avg'</span><span class="p">])</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
     <span class="n">sample</span> <span class="o">=</span> <span class="n">serialno</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

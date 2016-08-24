@@ -14,14 +14,14 @@
 <p>Many experiments and data sets involve multiple values of the same type. An <em>array</em> is a collection of values that all have the same type. The <code>numpy</code> package, abbreviated <code>np</code> in programs, provides Python programmers with convenient and powerful functions for creating and manipulating arrays.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>An array is created using the <code>np.array</code> function, which takes a list or tuple as an argument. Here, we create arrays of average daily <a href="http://berkeleyearth.lbl.gov/auto/Regional/TMAX/Text/global-land-TMAX-Trend.txt">high</a> and <a href="http://berkeleyearth.lbl.gov/auto/Regional/TMIN/Text/global-land-TMIN-Trend.txt">low</a> temperatures for the decades surrounding 1850, 1900, 1950, and 2000.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baseline_high</span> <span class="o">=</span> <span class="mf">14.48</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baseline_high</span> <span class="o">=</span> <span class="mf">14.48</span>
 <span class="n">highs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">baseline_high</span> <span class="o">-</span> <span class="mf">0.880</span><span class="p">,</span> 
                   <span class="n">baseline_high</span> <span class="o">-</span> <span class="mf">0.093</span><span class="p">,</span>
                   <span class="n">baseline_high</span> <span class="o">+</span> <span class="mf">0.105</span><span class="p">,</span> 
@@ -32,7 +32,7 @@
 <pre>array([ 13.6  ,  14.387,  14.585,  15.164])</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">baseline_low</span> <span class="o">=</span> <span class="mf">3.00</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baseline_low</span> <span class="o">=</span> <span class="mf">3.00</span>
 <span class="n">lows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">baseline_low</span> <span class="o">-</span> <span class="mf">0.872</span><span class="p">,</span> <span class="n">baseline_low</span> <span class="o">-</span> <span class="mf">0.629</span><span class="p">,</span>
                  <span class="n">baseline_low</span> <span class="o">-</span> <span class="mf">0.126</span><span class="p">,</span> <span class="n">baseline_low</span> <span class="o">+</span> <span class="mf">0.728</span><span class="p">))</span>
 <span class="n">lows</span>
@@ -44,7 +44,7 @@
 <p>Arrays differ from lists and tuples because they can be used in arithmetic expressions to compute over their contents. When an array is combined with a single number, that number is combined with each element of the array. Therefore, we can convert all of these temperatures to Farenheit by writing the familiar conversion formula.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="p">(</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="n">highs</span> <span class="o">+</span> <span class="mi">32</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="n">highs</span> <span class="o">+</span> <span class="mi">32</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 56.48  ,  57.8966,  58.253 ,  59.2952])</pre></div>
@@ -53,7 +53,7 @@
 <p>When two arrays are combined together using an arithmetic operator, their individual values are combined. For example, we can compute the daily temperature ranges by subtracting.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">highs</span> <span class="o">-</span> <span class="n">lows</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">highs</span> <span class="o">-</span> <span class="n">lows</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 11.472,  12.016,  11.711,  11.436])</pre></div>
@@ -62,7 +62,7 @@
 <p>Arrays also have <em>methods</em>, which are functions that operate on the array values. The <code>mean</code> of a collection of numbers is its average value: the sum divided by the length. Each pair of parentheses in the example below is part of a call expression; it's calling a function with no arguments to perform a computation on the array called <code>temps</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="p">[</span><span class="n">highs</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">highs</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">highs</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">highs</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">highs</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">highs</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[4, 57.736000000000004, 14.434000000000001]</pre></div>
@@ -74,7 +74,7 @@
 <h4 id="Functions-on-Arrays">Functions on Arrays<a class="anchor-link" href="#Functions-on-Arrays">¶</a></h4><p>In addition to basic arithmetic and methods such as <code>min</code> and <code>max</code>, manipulating arrays often involves calling functions that are part of the <code>np</code> package. For example, the <code>diff</code> function computes the difference between each adjacent pair of elements in an array. The first element of the <code>diff</code> is the second element minus the first.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">highs</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">highs</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 0.787,  0.198,  0.579])</pre></div>

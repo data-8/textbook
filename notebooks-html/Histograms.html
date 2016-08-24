@@ -16,7 +16,7 @@
 <p>There are 200 movies on the list. Here are the top ten.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">top</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'top_movies.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">top</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'top_movies.csv'</span><span class="p">)</span>
 <span class="n">top</span><span class="o">.</span><span class="n">set_format</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">NumberFormatter</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -74,7 +74,7 @@
 <p>Three-digit numbers are easier to work with than nine-digit numbers. So, we will add an additional <em>millions</em> column containing the adjusted gross box office revenue in millions.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">millions</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -133,7 +133,7 @@
 The <code>hist</code> method generates a <em>histogram</em> of the values in a column. The optional <code>unit</code> argument is used to label the axes.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Histograms_6_0.png"/></div>
@@ -144,7 +144,7 @@ The <code>hist</code> method generates a <em>histogram</em> of the values in a c
 <p>The optional argument <em>bins</em> can be used with <em>hist</em> to specify the edges of the bars. It must consist of a sequence of numbers that includes the left end of the first bar and the right end of the last bar. As the highest gross amount is somewhat over 760 on the horizontal scale, we will start by setting <em>bins</em> to be the array consisting of the numbers 300, 400, 500, and so on, ending with 2000.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Histograms_8_0.png"/></div>
@@ -155,7 +155,7 @@ The <code>hist</code> method generates a <em>histogram</em> of the values in a c
 <p>The counts of values in different ranges can be computed from a table using the <code>bin</code> method, which takes a column label or index and an optional sequence or number of bins. The result is a tabular form of a histogram; it lists the counts of all values in the <code>'Millions'</code> column that are greater than or equal to the indicated <code>bin</code>, but less than the next <code>bin</code>'s starting value.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">bins</span> <span class="o">=</span> <span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
 <span class="n">bins</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -215,7 +215,7 @@ We will start by explaining how to calculate the numbers on the vertical axis of
 <p>The vertical axis of the histogram above is drawn to the <em>density scale</em>. The height of each bar is the percent of elements that fall into the corresponding bin, divided by the width of the bin. For example, the height of the bin from 300 to 400, which contains 81 of the 200 movies, is $\frac{81}{200} \cdot \frac{1}{400-300}$ = 0.405% per million dollars.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">starts</span> <span class="o">=</span> <span class="n">bins</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">starts</span> <span class="o">=</span> <span class="n">bins</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">bins</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">counts</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">starts</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">starts</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 </pre></div></div></div>
@@ -229,7 +229,7 @@ The width of the bar is 100 million dollars, and its height is 0.405% per millio
 <p>An advantage of the histogram over a bar graph is that a histogram can contain bins of unequal width. The area of all the bars will still sum to 1. Below, the values in the <code>Millions</code> column are binned into three uneven categories.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Histograms_14_0.png"/></div>
@@ -238,7 +238,7 @@ The width of the bar is 100 million dollars, and its height is 0.405% per millio
 <p>Although the ranges 300-400 and 400-600 have nearly identical counts, the bar over the former is twice as tall as the latter because it is only half as wide. The density of values in that range is twice as much. Histograms help us visualize where on the number line the data are most concentrated.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -270,7 +270,7 @@ The width of the bar is 100 million dollars, and its height is 0.405% per millio
 <p><strong>A graph of counts.</strong> It is possible to display counts directly in a chart, using the <code>normed=False</code> option of the <code>hist</code> method. The resulting chart has the same shape when bins all have equal widths, but the bar areas do not sum to 1.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">normed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Histograms_18_0.png"/></div>
@@ -279,7 +279,7 @@ The width of the bar is 100 million dollars, and its height is 0.405% per millio
 <p>While the count scale is perhaps more natural to interpret than the density scale, the chart becomes highly misleading when bins have different widths. Below, it appears (due to the count scale) that high-grossing movies are quite common, when in fact we have seen that they are relatively rare.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Histograms_20_0.png"/></div>
@@ -288,7 +288,7 @@ The width of the bar is 100 million dollars, and its height is 0.405% per millio
 <p>Even though the method used is called <em>hist</em>, <strong>the figure above is NOT A HISTOGRAM.</strong> It misleadingly exaggerates the proportion of movies grossing at least 600 million dollars. The height of each bar is simply plotted the number of movies in the bin, <em>without accounting for the difference in the widths of the bins</em>. The picture becomes even more absurd if the last two bins are combined.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Histograms_22_0.png"/></div>
@@ -324,7 +324,7 @@ $$</div></div>
 <p>Take another look at the [300, 400) bin in the figure below. The flat top of the bar, at a level near 0.4% per million dollars, hides the fact that the movies are somewhat unevenly distributed across that bin.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Histograms_26_0.png"/></div>
@@ -333,7 +333,7 @@ $$</div></div>
 <p>To see this, let us split the [300, 400) bin into ten narrower bins of width 10 million dollars each:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">370</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span> <span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">370</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1500</span> <span class="p">])</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Histograms_28_0.png"/></div>
@@ -351,7 +351,7 @@ The height of each bar is a percent divided by a bin width. Thus, for this datse
 <p><strong>Heights versus areas.</strong> To confirm our understanding of the density scale, let us draw the histogram again, this time with four bins.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'Million Dollars'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'Million Dollars'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Histograms_32_0.png"/></div>
@@ -360,7 +360,7 @@ The height of each bar is a percent divided by a bin width. Thus, for this datse
 <p>Here are the counts of movies in each of the bins.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="s1">'Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -408,5 +408,5 @@ The height of each bar is a percent divided by a bin width. Thus, for this datse
 <p>In all the examples in this section, we have drawn a single histogram. However, if a data table contains several columns, then <em>barh</em> and <em>hist</em> can be used to draw several charts at once. We will cover this feature in a later section.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre> 
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div></div></div></div>

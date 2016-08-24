@@ -17,7 +17,7 @@
 <h2 id="Statistics-and-Parameters">Statistics and Parameters<a class="anchor-link" href="#Statistics-and-Parameters">¶</a></h2><p>The <a href="http://www.bayareabikeshare.com/">Bay Area Bike Share</a> service published a <a href="http://www.bayareabikeshare.com/open-data">dataset</a> describing every bicycle rental from September 2014 to August 2015 in their system. This set of all trips is a population, and fortunately we have the data for each and every trip rather than just a sample. We'll focus only on the <em>free trips</em>, which are trips that last less than 1800 seconds (half an hour).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">free_trips</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">"trip.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Duration'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">1800</span><span class="p">))</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">free_trips</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">"trip.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Duration'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="mi">1800</span><span class="p">))</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">free_trips</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -75,7 +75,7 @@
 <p>A quantity measured for a whole population is called a <em>parameter</em>. For example, the average duration for any free trip between September 2014 to August 2015 can be computed exactly from these data: 550.00.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">free_trips</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Duration'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">free_trips</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Duration'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>550.00143345658103</pre></div>
@@ -84,7 +84,7 @@
 <p>Although we have information for the full population, we will investigate what we can learn from a simple random sample. Below, we sample 100 trips without replacement from <code>free_trips</code> not just once, but 40 different times. All 4000 trips are stored in a table called <code>samples</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">samples</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Sample #'</span><span class="p">,</span> <span class="s1">'Duration'</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">trip</span> <span class="ow">in</span> <span class="n">free_trips</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
@@ -146,7 +146,7 @@
 <p>A quantity measured for a sample is called a <em>statistic</em>. For example, the average duration of a free trip in a sample is a statistic, and we find that there is some variation across samples.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
     <span class="n">sample_average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Sample #'</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Duration'</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Average duration in sample"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">"is"</span><span class="p">,</span> <span class="n">sample_average</span><span class="p">)</span>
 </pre></div></div></div>
@@ -167,7 +167,7 @@ Average duration in sample 2 is 660.16
 <p>We can learn a great deal about the behavior of a statistic by computing it for many samples. In the scatter diagram below, the order in which the statistic was computed appears on the horizontal axis, and the value of the average duration for a sample of <code>n</code> trips appears on the vertical axis.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Confidence_13_0.png"/></div>
@@ -176,7 +176,7 @@ Average duration in sample 2 is 660.16
 <p>The sample number doesn't tell us anything beyond when the sample was selected, and we can see from this unstructured cloud of points that one sample does not affect the next in any consistent way. The sample averages are indeed all around 550. Some are above, and some are below.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">641</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">641</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Confidence_15_0.png"/></div>
@@ -185,7 +185,7 @@ Average duration in sample 2 is 660.16
 <p>There are 40 averages for 40 samples. If we find an interval that contains the middle 38 out of 40, it will contain 95% of the samples. One such interval is bounded by the second smallest and the second largest sample averages among the 40 samples.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">averages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">averages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">lower</span> <span class="o">=</span> <span class="n">averages</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">upper</span> <span class="o">=</span> <span class="n">averages</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">38</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Empirically, 95</span><span class="si">% o</span><span class="s1">f sample averages fell within the interval'</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="s1">'to'</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
@@ -202,7 +202,7 @@ Average duration in sample 2 is 660.16
 <h3 id="Variability-Within-Samples">Variability Within Samples<a class="anchor-link" href="#Variability-Within-Samples">¶</a></h3><p>By contrast, The individual durations in the samples themselves are not closely clustered around 550. Instead, they span the whole range from 0 to 1800. The durations for the first three 100-item samples are visualized below. All have somewhat similar shapes; they were drawn from the same population.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
     <span class="n">samples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Sample #'</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1801</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
@@ -220,14 +220,14 @@ Average duration in sample 2 is 660.16
 <p>For example, let's consider the sizes of the five largest continents: Africa, Antarctica, Asia, North America, and South America, rounded to the nearest million square miles.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The 20th percentile is the smallest value that is at least as large as 20% or one fifth of the elements.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">percentile</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">sizes</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percentile</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">sizes</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>6</pre></div>
@@ -236,7 +236,7 @@ Average duration in sample 2 is 660.16
 <p>The 60th percentile is at least as large as 60% or three fifths of the elements.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">percentile</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="n">sizes</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percentile</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="n">sizes</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>9</pre></div>
@@ -245,7 +245,7 @@ Average duration in sample 2 is 660.16
 <p>To find the element corresponding to a percentile $p$, sort the elements and take the $k$th element, where $k=\frac{p}{100} \times n$ where $n$ is the size of the collection. In general, any percentile from 0 to 100 can be computed for a collection of values, and it is always an element of the collection. If $k$ is not an integer, round it up to find the percentile element. For example, the 90th percentile of a five element set is the fifth element, because $\frac{90}{100} \times 5$ is 4.5, which rounds up to 5.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">percentile</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="n">sizes</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percentile</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="n">sizes</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>17</pre></div>
@@ -254,20 +254,20 @@ Average duration in sample 2 is 660.16
 <p>When the <code>percentile</code> function is called with a single argument, it returns a function that computes percentiles of collections.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">tenth</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tenth</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">tenth</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>6</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">tenth</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tenth</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>4</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">tenth</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5000</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tenth</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5000</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>499</pre></div>
@@ -281,7 +281,7 @@ Average duration in sample 2 is 660.16
 <h3 id="Resampling-from-a-Sample">Resampling from a Sample<a class="anchor-link" href="#Resampling-from-a-Sample">¶</a></h3><p>Even though we happen to have the whole population of <code>free_trips</code>, let's imagine for a moment that we have only a single 100-trip sample from this population. That sample has 100 durations. Our goal now is to learn what we can about the population using just this sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sample</span> <span class="o">=</span> <span class="n">free_trips</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">free_trips</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">sample</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -336,7 +336,7 @@ Average duration in sample 2 is 660.16
 <p>... (90 rows omitted)</p></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Duration'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Duration'</span><span class="p">))</span>
 <span class="n">average</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -346,7 +346,7 @@ Average duration in sample 2 is 660.16
 <p>A technique called <em>bootstrap resampling</em> uses the variability of the sample as a proxy for the variability of the population. Instead of drawing many samples from the population, we will draw many samples from the sample. Since the original sample and the re-sampled sample have the same size, we must draw with replacement in order to see any variability at all.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">resamples</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Resample #'</span><span class="p">,</span> <span class="s1">'Duration'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">resamples</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Resample #'</span><span class="p">,</span> <span class="s1">'Duration'</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
     <span class="n">resample</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">trip</span> <span class="ow">in</span> <span class="n">resample</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
@@ -408,7 +408,7 @@ Average duration in sample 2 is 660.16
 <p>Using the <code>resamples</code>, we can investigate the variability of the corresponding sample averages.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">resamples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">resamples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Confidence_41_0.png"/></div>
@@ -417,7 +417,7 @@ Average duration in sample 2 is 660.16
 <p>These sample averages are not necessarily clustered around the true average 550. Instead, they will be clustered around the average of the sample from which they were re-sampled.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">resamples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">641</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">resamples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">641</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Confidence_43_0.png"/></div>
@@ -430,7 +430,7 @@ Average duration in sample 2 is 660.16
 <p>To carry out the technique, we first compute the deviations from the sample statistic (in this case, the sample average) for many resampled samples. The number is arbitrary, and it doesn't require any collecting of new data; 1000 or more is typical.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">deviations</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Resample #'</span><span class="p">,</span> <span class="s1">'Deviation'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deviations</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Resample #'</span><span class="p">,</span> <span class="s1">'Deviation'</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
     <span class="n">resample</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">dev</span> <span class="o">=</span> <span class="n">average</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">resample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
@@ -492,7 +492,7 @@ Average duration in sample 2 is 660.16
 <p>A deviation of zero indicates that the resampled statistic is the same as the sampled statistic. That's evidence that the sample statistic is perhaps the same as the population parameter. A positive deviation is evidence that the sample statistic may be greater than the parameter. As we can see, for averages, the distribution of deviations is roughly symmetric.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">deviations</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deviations</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Confidence_48_0.png"/></div>
@@ -501,14 +501,14 @@ Average duration in sample 2 is 660.16
 <p>A 95% confidence interval is computed based on the middle 95% of this distribution of deviations. The max and min devations are computed by the 97.5th percentile and 2.5th percentile respectively, because the span between these contains 95% of the distribution.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">lower</span> <span class="o">=</span> <span class="n">average</span> <span class="o">-</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">97.5</span><span class="p">,</span> <span class="n">deviations</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lower</span> <span class="o">=</span> <span class="n">average</span> <span class="o">-</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">97.5</span><span class="p">,</span> <span class="n">deviations</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">lower</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>461.93000000000001</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">upper</span> <span class="o">=</span> <span class="n">average</span> <span class="o">-</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">deviations</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">upper</span> <span class="o">=</span> <span class="n">average</span> <span class="o">-</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">deviations</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">upper</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -518,7 +518,7 @@ Average duration in sample 2 is 660.16
 <p>Now, we have not only an estimate, but an interval around it that expresses our uncertainty about the value of the parameter.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">print</span><span class="p">(</span><span class="s1">'A 95</span><span class="si">% c</span><span class="s1">onfidence interval around'</span><span class="p">,</span> <span class="n">average</span><span class="p">,</span> <span class="s1">'is'</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="s1">'to'</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'A 95</span><span class="si">% c</span><span class="s1">onfidence interval around'</span><span class="p">,</span> <span class="n">average</span><span class="p">,</span> <span class="s1">'is'</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="s1">'to'</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>A 95% confidence interval around 518.56 is 461.93 to 576.3
@@ -529,7 +529,7 @@ Average duration in sample 2 is 660.16
 <p>The following function encapsulates the entire process of producing a confidence interval for the population average using a single sample.  Each time it is run, even for the same sample, the interval will be slightly different because of the random variation of resampling. However, the upper and lower bounds generated by 2000 samples for this problem are typically quite similar for multiple calls.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">average_ci</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">average_ci</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
     <span class="n">deviations</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Resample #'</span><span class="p">,</span> <span class="s1">'Deviation'</span><span class="p">])</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">num_rows</span>
     <span class="n">average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
@@ -546,7 +546,7 @@ Average duration in sample 2 is 660.16
 <pre>(457.43999999999994, 572.63999999999987)</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">average_ci</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="s1">'Duration'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">average_ci</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="s1">'Duration'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>(458.7399999999999, 575.50999999999988)</pre></div>
@@ -555,7 +555,7 @@ Average duration in sample 2 is 660.16
 <p>However, if we draw an entirely new sample, then the confidence interval will change.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">average_ci</span><span class="p">(</span><span class="n">free_trips</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="s1">'Duration'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">average_ci</span><span class="p">(</span><span class="n">free_trips</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="s1">'Duration'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>(530.18000000000006, 661.21000000000004)</pre></div>
@@ -564,7 +564,7 @@ Average duration in sample 2 is 660.16
 <p>The interval is about the same width, and that's typical of multiple samples of the same size drawn from the same population. However, if a much larger sample is drawn, then the confidence interval that results is typically going to be much smaller. We're not losing confidence in this case; we're just using more evidence to perform inference, and so we have less uncertainty about the full population.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">average_ci</span><span class="p">(</span><span class="n">free_trips</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="n">n</span><span class="p">),</span> <span class="s1">'Duration'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">average_ci</span><span class="p">(</span><span class="n">free_trips</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="n">n</span><span class="p">),</span> <span class="s1">'Duration'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>(527.18937499999993, 555.11437499999988)</pre></div>
@@ -574,7 +574,7 @@ Average duration in sample 2 is 660.16
 <p>Before measuring the accuracy of our technique, we can visualize the result of resampling each sample. The following scatter diagram has 6 vertical lines for 6 samples, and each line consists of 100 points that represent the statistics from resamples for that sample.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samples</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Sample #'</span><span class="p">,</span> <span class="s1">'Resample average'</span><span class="p">,</span> <span class="s1">'Sample Average'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samples</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Sample #'</span><span class="p">,</span> <span class="s1">'Resample average'</span><span class="p">,</span> <span class="s1">'Sample Average'</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
     <span class="n">sample</span> <span class="o">=</span> <span class="n">free_trips</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="n">average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Duration'</span><span class="p">))</span>
@@ -592,7 +592,7 @@ Average duration in sample 2 is 660.16
 <p>Below, we draw 100 more samples and show the upper and lower bounds of the confidence intervals computed from each one.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">intervals</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Sample #'</span><span class="p">,</span> <span class="s1">'Lower'</span><span class="p">,</span> <span class="s1">'Estimate'</span><span class="p">,</span> <span class="s1">'Upper'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intervals</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'Sample #'</span><span class="p">,</span> <span class="s1">'Lower'</span><span class="p">,</span> <span class="s1">'Estimate'</span><span class="p">,</span> <span class="s1">'Upper'</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">sample</span> <span class="o">=</span> <span class="n">free_trips</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="n">average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Duration'</span><span class="p">))</span>
@@ -604,7 +604,7 @@ Average duration in sample 2 is 660.16
 <p>We can compute precisely which intervals contain the truth, and we should find that about 95 of them do.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Lower'</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">550</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Upper'</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">550</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Lower'</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">550</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Upper'</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">550</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -614,7 +614,7 @@ Average duration in sample 2 is 660.16
 <p>Each confidence interval is generated from only a single sample of 100 trips. As a result, the width of the interval varies quite a bit as well. Compared to the interval width we computed originally (which required multiple samples), we see that some of these intervals are much more narrow and some are much wider.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Width'</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Upper'</span><span class="p">)</span><span class="o">-</span><span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Lower'</span><span class="p">))</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Width'</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Upper'</span><span class="p">)</span><span class="o">-</span><span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Lower'</span><span class="p">))</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Confidence_68_0.png"/></div>

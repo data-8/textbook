@@ -41,7 +41,7 @@ or matplotlib.backends is imported for the first time.
 <p>Let's load the data set into a table and look at it.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ckd</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'ckd.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s1">'Blood Glucose Random'</span><span class="p">,</span> <span class="s1">'Glucose'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'ckd.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s1">'Blood Glucose Random'</span><span class="p">,</span> <span class="s1">'Glucose'</span><span class="p">)</span>
 <span class="n">ckd</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -100,7 +100,7 @@ or matplotlib.backends is imported for the first time.
 <p>Let's look at two columns in particular: the hemoglobin level (in the patient's blood), and the blood glucose level (at a random time in the day; without fasting specially for the blood test).  We'll draw a scatter plot, to make it easy to visualize this.  Red dots are patients with CKD; blue dots are patients without CKD.  What test results seem to indicate CKD?</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ckd</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Hemoglobin'</span><span class="p">,</span> <span class="s1">'Glucose'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Hemoglobin'</span><span class="p">,</span> <span class="s1">'Glucose'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Classification_5_0.png"/></div>
@@ -113,7 +113,7 @@ or matplotlib.backends is imported for the first time.
 <p>However, the separation between the two classes won't always be quite so clean.  For instance, suppose that instead of hemoglobin levels we were to look at white blood cell count.  Look at what happens:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ckd</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'White Blood Cell Count'</span><span class="p">,</span> <span class="s1">'Glucose'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'White Blood Cell Count'</span><span class="p">,</span> <span class="s1">'Glucose'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Classification_7_0.png"/></div>
@@ -132,7 +132,7 @@ or matplotlib.backends is imported for the first time.
 <h3 id="Banknote-authentication">Banknote authentication<a class="anchor-link" href="#Banknote-authentication">¶</a></h3><p>Let's do another example.  This time we'll look at predicting whether a banknote (e.g., a \$20 bill) is counterfeit or legitimate.  Researchers have put together a data set for us, based on photographs of many individual banknotes: some counterfeit, some legitimate.  They computed a few numbers from each image, using techniques that we won't worry about for this course.  So, for each banknote, we know a few numbers that were computed from a photograph of it as well as its class (whether it is counterfeit or not).  Let's load it into a table and take a look.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">banknotes</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'banknote.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">banknotes</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'banknote.csv'</span><span class="p">)</span>
 <span class="n">banknotes</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -190,7 +190,7 @@ or matplotlib.backends is imported for the first time.
 <p>Let's look at whether the first two numbers tell us anything about whether the banknote is counterfeit or not.  Here's a scatterplot:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">banknotes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'WaveletVar'</span><span class="p">,</span> <span class="s1">'WaveletCurt'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'WaveletVar'</span><span class="p">,</span> <span class="s1">'WaveletCurt'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Classification_13_0.png"/></div>
@@ -201,7 +201,7 @@ or matplotlib.backends is imported for the first time.
 <p>The patterns that show up in the data can get pretty wild.  For instance, here's what we'd get if used a different pair of measurements from the images:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">banknotes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'WaveletSkew'</span><span class="p">,</span> <span class="s1">'Entropy'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'WaveletSkew'</span><span class="p">,</span> <span class="s1">'Entropy'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Classification_15_0.png"/></div>
@@ -216,7 +216,7 @@ or matplotlib.backends is imported for the first time.
 <p>For instance, let's see what happens if we try to predict whether a banknote is counterfeit or not using 3 of the measurements, instead of just 2.  Here's what you get:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">'3d'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">'3d'</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'WaveletSkew'</span><span class="p">),</span> 
            <span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'WaveletVar'</span><span class="p">),</span> 
            <span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'WaveletCurt'</span><span class="p">),</span> 
@@ -249,7 +249,7 @@ or matplotlib.backends is imported for the first time.
 <p>We end up with the following data set.  For the "Class" column, 1 means malignant (cancer); 0 means benign (not cancer).</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">patients</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'breast-cancer.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'ID'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patients</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'breast-cancer.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'ID'</span><span class="p">)</span>
 <span class="n">patients</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -307,7 +307,7 @@ or matplotlib.backends is imported for the first time.
 <p>So we have 9 different attributes.  I don't know how to make a 9-dimensional scatterplot of all of them, so I'm going to pick two and plot them:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">patients</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Bland Chromatin'</span><span class="p">,</span> <span class="s1">'Single Epithelial Cell Size'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="p">[</span><span class="s1">'Class'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patients</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Bland Chromatin'</span><span class="p">,</span> <span class="s1">'Single Epithelial Cell Size'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="p">[</span><span class="s1">'Class'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Classification_23_0.png"/></div>
@@ -316,7 +316,7 @@ or matplotlib.backends is imported for the first time.
 <p>Oops.  That plot is utterly misleading, because there are a bunch of points that have identical values for both the x- and y-coordinates.  To make it easier to see all the data points, I'm going to add a little bit of random jitter to the x- and y-values.  Here's how that looks:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">randomize_column</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">randomize_column</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
 <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'Bland Chromatin (jittered)'</span><span class="p">,</span> 
@@ -341,7 +341,7 @@ $$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}.$$<p>(Where did this come from?  It comes
 $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional space, things are a bit harder to visualize, but I think you can see how the formula generalized: we sum up the squares of the differences between each individual coordinate, and then take the square root of that.  Let's implement a function to compute this distance function for us:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">):</span>
     <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pt1</span><span class="p">)):</span>
         <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="p">(</span><span class="n">pt1</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="n">pt2</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
@@ -360,7 +360,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>To implement the first step, we will compute the distance from each patient in the training set to <code>p</code>, sort them by distance, and take the $k$ closest patients in the training set.  The code will make a copy of the table, compute the distance from each patient to <code>p</code>, add a new column to the table with those distances, and then sort the table by distance and take the first $k$ rows.  That leads to the following Python code:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">closest</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">closest</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="o">...</span>
 
 <span class="k">def</span> <span class="nf">majority</span><span class="p">(</span><span class="n">topkclasses</span><span class="p">):</span>
@@ -373,7 +373,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">computetablewithdists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">computetablewithdists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
     <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">num_rows</span><span class="p">)</span>
     <span class="n">attributes</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">num_rows</span><span class="p">):</span>
@@ -402,7 +402,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>Let's see how this works, with our data set.  We'll take patient 12 and imagine we're going to try to diagnose them:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">patients</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patients</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -422,7 +422,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>We can pull out just their attributes (excluding the class), like this:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>Row(Clump Thickness=5, Uniformity of Cell Size=3, Uniformity of Cell Shape=3, Marginal Adhesion=3, Single Epithelial Cell Size=2, Bare Nuclei=3, Bland Chromatin=4, Normal Nucleoli=4, Mitoses=1)</pre></div>
@@ -431,7 +431,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>Let's take $k=5$.  We can find the 5 nearest neighbors:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">closest</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">closest</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -467,7 +467,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>3 out of the 5 nearest neighbors have class 1, so the majority is 1 (has cancer) -- and that is the output of our classifier for this patient:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">classify</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classify</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>1</pre></div>
@@ -495,7 +495,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <h2 id="The-effectiveness-of-our-classifier,-for-breast-cancer">The effectiveness of our classifier, for breast cancer<a class="anchor-link" href="#The-effectiveness-of-our-classifier,-for-breast-cancer">¶</a></h2><p>OK, so let's apply the hold-out method to evaluate the effectiveness of the $k$-nearest neighbor classifier for breast cancer diagnosis.  The data set has 683 patients, so we'll randomly permute the data set and put 342 of them in the training set and the remaining 341 in the test set.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">patients</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">683</span><span class="p">)</span> <span class="c1"># Randomly permute the rows</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patients</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">683</span><span class="p">)</span> <span class="c1"># Randomly permute the rows</span>
 <span class="n">trainset</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">342</span><span class="p">))</span>
 <span class="n">testset</span>  <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">342</span><span class="p">,</span> <span class="mi">683</span><span class="p">))</span>
 </pre></div></div></div>
@@ -504,7 +504,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>We'll train the classifier using the 342 patients in the training set, and evaluate how well it performs on the test set.  To make our lives easier, we'll write a function to evaluate a classifier on every patient in the test set:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">evaluate_accuracy</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_accuracy</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">testattrs</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span>
     <span class="n">numcorrect</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">num_rows</span><span class="p">):</span>
@@ -520,7 +520,7 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <p>Now for the grand reveal -- let's see how we did.  We'll arbitrarily use $k=5$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">evaluate_accuracy</span><span class="p">(</span><span class="n">trainset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluate_accuracy</span><span class="p">(</span><span class="n">trainset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.9648093841642229</pre></div>

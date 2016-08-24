@@ -24,7 +24,7 @@
 <p>Here is the definition applied to a list of 20 numbers.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c1"># The data: a list of numbers</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># The data: a list of numbers</span>
 
 <span class="n">x_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
@@ -43,7 +43,7 @@
 <p><strong>Computation:</strong> We could instead have found the mean by applying the function <code>np.mean</code> to the list <code>x_list</code>. Differences in rounding lead to answers that differ very slightly.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>3.1499999999999999</pre></div>
@@ -52,7 +52,7 @@
 <p>Or we could have placed the list in a table, and used the Table method <code>mean</code>:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">x_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="n">x_list</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="n">x_list</span><span class="p">)</span>
 <span class="n">x_table</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -62,7 +62,7 @@
 <h3 id="The-mean-and-the-histogram">The mean and the histogram<a class="anchor-link" href="#The-mean-and-the-histogram">¶</a></h3><p>Another way to calculate the mean is to first arrange the list in a distribution table. The columns contain the distinct values in the list, the count of each value, and the corresponding proportion. The sum of the column <code>count</code> is 20, the number of entries in the list.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">values</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'count'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'count'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([</span>
        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> 
        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> 
        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
@@ -104,7 +104,7 @@
 <p>The sum of the numbers in the list can be calculated by multiplying the first two columns and adding up – four 2's, five 3's, and so on – and then dividing by 20:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'value'</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'count'</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'count'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'value'</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'count'</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'count'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>3.1499999999999999</pre></div>
@@ -113,7 +113,7 @@
 <p>This is the same as multiplying the first and third columns – the values and their proportions – and adding up:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'value'</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'proportion'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'value'</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_dist</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'proportion'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>3.1500000000000004</pre></div>
@@ -124,7 +124,7 @@
 <p>To understand why that is, you will have to study some physics. Balance points, or centers of gravity, can be calculated in exactly the way we calculated the mean from the distribution table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">x_dist</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'proportion'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s1">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x_dist</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'proportion'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s1">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Center_16_0.png"/></div>
@@ -140,7 +140,7 @@
 <p>The relationship is easy to see in a simple example. Here is the list 1, 2, 2, 3, represented as a distribution table called <code>sym</code> for "symmetric".</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sym</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sym</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'value'</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
         <span class="s1">'dist'</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">]</span>
         <span class="p">])</span>
@@ -172,7 +172,7 @@
 <p>The histogram (or a calculation) shows that the average and median are both 2.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sym</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s1">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">10.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s1">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">10.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Center_21_0.png"/></div>
@@ -182,7 +182,7 @@
 <p>What if the distribution is not symmetric? We will explore this by making a change in the histogram above: we will take the bar at the value 3 and slide it over to the value 10.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c1"># Average versus median:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Average versus median:</span>
 <span class="c1"># Balance point versus 50% point</span>
 
 <span class="n">slide</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
@@ -219,7 +219,7 @@
 </table></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">slide</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s1">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">10.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slide</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="o">=</span><span class="s1">'value'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">10.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Center_24_0.png"/></div>
@@ -230,7 +230,7 @@
 <p>But the mean of the gold distribution is not 2: the gold histogram would not balance at 2. The balance point has shifted to the right, to 3.75.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="nb">sum</span><span class="p">(</span><span class="n">slide</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span><span class="o">*</span><span class="n">slide</span><span class="p">[</span><span class="s1">'dist2'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">slide</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span><span class="o">*</span><span class="n">slide</span><span class="p">[</span><span class="s1">'dist2'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>3.75</pre></div>
@@ -245,7 +245,7 @@
 <p><strong>Example: Flight Delays.</strong> The Bureau of Transportation Statistics provides data on departures and arrivals of flights in the United States. The table <code>ua</code> contains the departure delay times, in minutes, of about 37,500 United Airlines flights over the past few years. A negative delay means that the flight left earlier than scheduled.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ontime</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'airline_ontime.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ontime</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'airline_ontime.csv'</span><span class="p">)</span>
 <span class="n">ontime</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
@@ -272,7 +272,7 @@
 <p>... (457010 rows omitted)</p></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ua</span> <span class="o">=</span> <span class="n">ontime</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Carrier'</span><span class="p">,</span> <span class="s1">'UA'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ua</span> <span class="o">=</span> <span class="n">ontime</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Carrier'</span><span class="p">,</span> <span class="s1">'UA'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ua</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea ">
@@ -299,7 +299,7 @@
 <p>... (37360 rows omitted)</p></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ua_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">121</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ua_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">121</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">ua</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">ua_bins</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'minute'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
@@ -312,13 +312,13 @@
 <p>The mean gets pulled away from the median in the direction of the tail. So we expect the mean delay to be larger than the median, and that is indeed the case:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ua</span><span class="p">[</span><span class="s1">'Departure Delay'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ua</span><span class="p">[</span><span class="s1">'Departure Delay'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>13.885555228434548</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">ua</span><span class="p">[</span><span class="s1">'Departure Delay'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">ua</span><span class="p">[</span><span class="s1">'Departure Delay'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>2.0</pre></div></div>

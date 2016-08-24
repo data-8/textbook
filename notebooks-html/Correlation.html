@@ -18,7 +18,7 @@
 <p>The table <code>hybrid</code> contains data on hybrid passenger cars sold in the United States from 1997 to 2013. The data were obtained from the online data archive of <a href="http://www.stat.ufl.edu/%7Ewinner/">Prof. Larry Winner</a> of the University of Florida. The columns include the model of the car, year of manufacture, the MSRP (manufacturer's suggested retail price) in 2013 dollars, the acceleration rate in km per hour per second, fuel econonmy in miles per gallon, and the model's class.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">hybrid</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hybrid</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -75,7 +75,7 @@
 <p>The Table method <code>scatter</code> can be used to plot <code>acceleration</code> on the horizontal axis (the first argument) and <code>msrp</code> on the vertical (the second argument). There are 153 points in the scatter, one for each car in the table.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">hybrid</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hybrid</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_9_0.png"/></div>
@@ -86,7 +86,7 @@
 <p>The scatter diagram of MSRP (vertical axis) versus mileage (horizontal axis) shows a <em>negative association</em>. The scatter has a clear downward trend. Hybrid cars with higher mileage tended to cost less, on average. This seems surprising till you consider that cars that accelerate fast tend to be less fuel efficient and have lower mileage. As the previous scatter showed, those were also the cars that tended to cost more.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">hybrid</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hybrid</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_11_0.png"/></div>
@@ -96,14 +96,14 @@
 <p>If we restrict the data just to the SUV class, however, the association between price and efficiency is still negative but the relation appears to be more linear. The relation between the price and acceleration of SUV's also shows a linear trend, but with a positive slope.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">suv</span> <span class="o">=</span> <span class="n">hybrid</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span> <span class="s1">'SUV'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">suv</span> <span class="o">=</span> <span class="n">hybrid</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span> <span class="s1">'SUV'</span><span class="p">)</span>
 <span class="n">suv</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_13_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">suv</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">suv</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_14_0.png"/></div>
@@ -114,7 +114,7 @@
 <p>Here are the two scatter diagrams for SUVs, with all the variables measured in standard units.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
     <span class="s1">'mpg (standard units)'</span><span class="p">,</span>  <span class="n">standard_units</span><span class="p">(</span><span class="n">suv</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">)),</span> 
     <span class="s1">'msrp (standard units)'</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">suv</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'msrp'</span><span class="p">))</span>
 <span class="p">])</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -126,7 +126,7 @@
 <img src="../notebooks-images/Correlation_16_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
     <span class="s1">'acceleration (standard units)'</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">suv</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'acceleration'</span><span class="p">)),</span> 
     <span class="s1">'msrp (standard units)'</span><span class="p">,</span>         <span class="n">standard_units</span><span class="p">(</span><span class="n">suv</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'msrp'</span><span class="p">))</span>
 <span class="p">])</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -157,25 +157,25 @@
 <p>When $r=1$ the scatter plot is perfectly linear and slopes upward. When $r=-1$, the scatter plot is perfectly linear and slopes downward. When $r=0$, the scatter plot is a formless cloud around the horizontal axis, and the variables are said to be <em>uncorrelated</em>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">r_scatter</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_scatter</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_21_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">r_scatter</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_scatter</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_22_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">r_scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_23_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">r_scatter</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_scatter</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_24_0.png"/></div>
@@ -189,7 +189,7 @@
 <p>Here are the steps in the calculation. We will apply the steps to a simple table of values of $x$ and $y$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span>
@@ -235,7 +235,7 @@
 <p>Based on the scatter diagram, we expect that $r$ will be positive but not equal to 1.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_28_0.png"/></div>
@@ -244,7 +244,7 @@
 <p><strong>Step 1.</strong> Convert each variable to standard units.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t_su</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t_su</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'x (standard units)'</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
         <span class="s1">'y (standard units)'</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
     <span class="p">])</span>
@@ -288,7 +288,7 @@
 <p><strong>Step 2.</strong> Multiply each pair of standard units.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t_product</span> <span class="o">=</span> <span class="n">t_su</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'product of standard units'</span><span class="p">,</span> <span class="n">t_su</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">t_su</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t_product</span> <span class="o">=</span> <span class="n">t_su</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'product of standard units'</span><span class="p">,</span> <span class="n">t_su</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">t_su</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">t_product</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -329,7 +329,7 @@
 <p><strong>Step 3.</strong> $r$ is the average of the products computed in Step 2.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c1"># r is the average of the products of standard units</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># r is the average of the products of standard units</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">t_product</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">r</span>
@@ -349,7 +349,7 @@
 </ul></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">t</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'y'</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'y'</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_37_0.png"/></div>
@@ -358,7 +358,7 @@
 <p>We can define a function <code>correlation</code> to compute $r$, based on the formula that we used above. The arguments are a table and two labels of columns in the table. The function returns the mean of the products of those column values in standard units, which is $r$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">correlation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">correlation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">standard_units</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="n">standard_units</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
 </pre></div></div></div>
 <div class="inner_cell">
@@ -366,7 +366,7 @@
 <p>Let's call the function on the <code>x</code> and <code>y</code> columns of <code>t</code>. The function returns the same answer to the correlation between $x$ and $y$ as we got by direct application of the formula for $r$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.61741639718977093</pre></div>
@@ -375,13 +375,13 @@
 <p>Calling <code>correlation</code> on columns of the table <code>suv</code> gives us the correlation between price and mileage as well as the correlation between price and acceleration.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">suv</span><span class="p">,</span> <span class="s1">'mpg'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">suv</span><span class="p">,</span> <span class="s1">'mpg'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>-0.6667143635709919</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">suv</span><span class="p">,</span> <span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">suv</span><span class="p">,</span> <span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.48699799279959155</pre></div>
@@ -403,7 +403,7 @@
 </ul></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">nonlinear</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nonlinear</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'x'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
         <span class="s1">'y'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
     <span class="p">])</span>
@@ -413,7 +413,7 @@
 <img src="../notebooks-images/Correlation_47_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">nonlinear</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">nonlinear</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.0</pre></div>
@@ -424,7 +424,7 @@
 </ul></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">line</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'x'</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
         <span class="s1">'y'</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
     <span class="p">])</span>
@@ -434,13 +434,13 @@
 <img src="../notebooks-images/Correlation_50_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>1.0</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">outlier</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">outlier</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
         <span class="s1">'x'</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
         <span class="s1">'y'</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="p">])</span>
@@ -450,7 +450,7 @@
 <img src="../notebooks-images/Correlation_52_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">outlier</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">outlier</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.0</pre></div>
@@ -461,7 +461,7 @@
 </ul></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sat2014</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'sat2014.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'State'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sat2014</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'sat2014.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'State'</span><span class="p">)</span>
 <span class="n">sat2014</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -519,13 +519,13 @@
 <p>The scatter diagram of Math scores versus Critical Reading scores is very tightly clustered around a straight line; the correlation is close to 0.985.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">sat2014</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Critical Reading'</span><span class="p">,</span> <span class="s1">'Math'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sat2014</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Critical Reading'</span><span class="p">,</span> <span class="s1">'Math'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/Correlation_57_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">correlation</span><span class="p">(</span><span class="n">sat2014</span><span class="p">,</span> <span class="s1">'Critical Reading'</span><span class="p">,</span> <span class="s1">'Math'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">sat2014</span><span class="p">,</span> <span class="s1">'Critical Reading'</span><span class="p">,</span> <span class="s1">'Math'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.98475584110674341</pre></div>

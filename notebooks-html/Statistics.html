@@ -24,7 +24,7 @@
 <p>The answers given by the sampled people are in the column <code>rel_rating</code> of the table <code>couples</code>. More than 63% of the sampled people gave their satisfaction the highest possible rating:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'mar_status'</span><span class="p">,</span> <span class="s1">'gender'</span><span class="p">,</span> <span class="s1">'rel_rating'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'mar_status'</span><span class="p">,</span> <span class="s1">'gender'</span><span class="p">,</span> <span class="s1">'rel_rating'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">]</span>
 <span class="n">couples</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'married_couples.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">descriptions</span><span class="p">):</span>
@@ -97,7 +97,7 @@
 <p>... (2058 rows omitted)</p></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'rel_rating'</span><span class="p">,</span> <span class="s1">'very satisfied'</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span><span class="o">/</span><span class="n">couples</span><span class="o">.</span><span class="n">num_rows</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'rel_rating'</span><span class="p">,</span> <span class="s1">'very satisfied'</span><span class="p">)</span><span class="o">.</span><span class="n">num_rows</span><span class="o">/</span><span class="n">couples</span><span class="o">.</span><span class="n">num_rows</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.6353965183752418</pre></div>
@@ -106,7 +106,7 @@
 <p>Let us examine whether this rating is related to age. Perhaps older people are more appreciative of their relationships, or more frustrated; or perhaps high satisfaction with the spouse or partner has nothing to do with age. As a first step, here are the histograms of the ages of sampled people who gave the highest rating, and those who did not.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c1"># Compare ages of those who rate satisfaction highly and those who don't</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compare ages of those who rate satisfaction highly and those who don't</span>
 
 <span class="n">couples</span><span class="p">[</span><span class="s1">'high_rating'</span><span class="p">]</span> <span class="o">=</span> <span class="n">couples</span><span class="p">[</span><span class="s1">'rel_rating'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'very satisfied'</span>
 
@@ -128,13 +128,13 @@
 <p>Formally, the <strong>test statistic</strong> will be the absolute difference between the medians of the ages of the two groups.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'high_rating'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)[</span><span class="s1">'age'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'high_rating'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)[</span><span class="s1">'age'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>44.0</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'high_rating'</span><span class="p">,</span> <span class="kc">False</span><span class="p">)[</span><span class="s1">'age'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'high_rating'</span><span class="p">,</span> <span class="kc">False</span><span class="p">)[</span><span class="s1">'age'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>43.0</pre></div>
@@ -145,7 +145,7 @@
 <p>Like the function <code>tvd</code>, the function <code>abs_diff_in_medians</code> takes as its arguments the table of data, the name of a column of conditions that come in two categories, and the name of the column of values to be compared. It returns the absolute difference between the median values under the two conditions. By applying this function to the original sample, we can see that it returns the observed value of our test statistic.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">abs_diff_in_medians</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">abs_diff_in_medians</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
     <span class="sd">"""Compute the difference in the median of values for conditions 1 &amp; 2."""</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="kc">True</span><span class="p">)[</span><span class="n">values</span><span class="p">]</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="kc">False</span><span class="p">)[</span><span class="n">values</span><span class="p">]</span>
@@ -153,7 +153,7 @@
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">abs_diff_in_medians</span><span class="p">(</span><span class="n">couples</span><span class="p">,</span> <span class="s1">'high_rating'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">abs_diff_in_medians</span><span class="p">(</span><span class="n">couples</span><span class="p">,</span> <span class="s1">'high_rating'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>1.0</pre></div>
@@ -163,7 +163,7 @@
 <p>Because <code>permutation_test</code> takes a function as an argument, it is called a <em>higher order function</em>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">permutation_stat</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">stat</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">permutation_stat</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">stat</span><span class="p">):</span>
     <span class="n">repetitions</span><span class="o">=</span><span class="mi">1600</span>
     <span class="n">test_stats</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -186,7 +186,7 @@
 <p>Let us run the permutation test using <code>abs_diff_in_medians</code> to compute the test statistic. The empirical histogram of the test statistic shows that our observed value of 1 is typical under the null hypothesis.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">permutation_stat</span><span class="p">(</span><span class="n">couples</span><span class="p">,</span> <span class="s1">'high_rating'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">,</span> <span class="n">abs_diff_in_medians</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">permutation_stat</span><span class="p">(</span><span class="n">couples</span><span class="p">,</span> <span class="s1">'high_rating'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">,</span> <span class="n">abs_diff_in_medians</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Observed value of test statistic: 1.0
@@ -202,7 +202,7 @@ Empirical P value: 0.7025
 <p>As before, we will define a function that computes the test statistic based on a sample. Applying this function to the orignial sample shows that the observed means of the two groups differ by about 1.07 years.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">abs_diff_in_means</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">abs_diff_in_means</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
     <span class="sd">"""Compute the difference in the mean of values for conditions 1 &amp; 2."""</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="kc">True</span><span class="p">)[</span><span class="n">values</span><span class="p">]</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="kc">False</span><span class="p">)[</span><span class="n">values</span><span class="p">]</span>
@@ -210,7 +210,7 @@ Empirical P value: 0.7025
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">abs_diff_in_means</span><span class="p">(</span><span class="n">couples</span><span class="p">,</span> <span class="s1">'high_rating'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">abs_diff_in_means</span><span class="p">(</span><span class="n">couples</span><span class="p">,</span> <span class="s1">'high_rating'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>1.0743190048811186</pre></div></div>

@@ -15,12 +15,12 @@
 <p>We will start by revisiting the data on the highest grossing movies of the past couple of decades. There are over 600 movies on our list. The histogram below shows their box office gross amounts in millions of dollars.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">imdb</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'imdb.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">imdb</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'imdb.csv'</span><span class="p">)</span>
 <span class="n">box_office</span> <span class="o">=</span> <span class="n">imdb</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'in_millions'</span><span class="p">)</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="s1">'in_millions'</span><span class="p">,</span> <span class="s1">'mill$'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">box_office</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">box_office</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="../notebooks-images/CLT_3_0.png"/></div>
@@ -29,7 +29,7 @@
 <p>By the law of averages, the empirical histogram of a large random sample from this population should resemble the histogram of the population. This is demonstrated in the histogram of a random sample of size 400 taken with replacement:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samp400</span> <span class="o">=</span> <span class="n">box_office</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samp400</span> <span class="o">=</span> <span class="n">box_office</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">samp400</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
@@ -39,7 +39,7 @@
 <p>So it is reasonable to expect that if we use the mean of the sample as an estimate of the mean of the population, we will not be very far off. The mean of the population is about 174.29 million dollars:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">box_office</span><span class="p">[</span><span class="s1">'mill$'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">box_office</span><span class="p">[</span><span class="s1">'mill$'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>174.29050139234451</pre></div>
@@ -48,7 +48,7 @@
 <p>And the mean of the sample is about 177 million dollars:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">samp400</span><span class="p">[</span><span class="s1">'mill$'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">samp400</span><span class="p">[</span><span class="s1">'mill$'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>171.24183459</pre></div>
@@ -61,7 +61,7 @@
 <p>Once it has computed all 4000 sample means, it draws their histogram and provides some summary statistics.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="sd">"""Empirical distribution of random sample means"""</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">"""Empirical distribution of random sample means"""</span>
 
 <span class="k">def</span> <span class="nf">samp_means</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">sample_size</span> <span class="o">=</span> <span class="n">n</span>
@@ -88,7 +88,7 @@
 <p>Let us call <code>samp_means</code> with sample sizes of 25, 100, and 400.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samp_means</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samp_means</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Sample size:  25
@@ -102,7 +102,7 @@ SD of sample averages 17.3178435552
 <img src="../notebooks-images/CLT_13_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samp_means</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samp_means</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Sample size:  100
@@ -116,7 +116,7 @@ SD of sample averages 8.83871141281
 <img src="../notebooks-images/CLT_14_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samp_means</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samp_means</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Sample size:  400
@@ -150,7 +150,7 @@ SD of sample averages 4.31007313615
 <p>Here are the numerical values. For each sample size in the first column, 4000 sample means were simulated; the second column contains the SD of those 4000 means. The third column contains the result of the calculation "population SD divided by the square root of the sample size."</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">repetitions</span> <span class="o">=</span> <span class="mi">4000</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repetitions</span> <span class="o">=</span> <span class="mi">4000</span>
 <span class="n">samp_sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">626</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
 
 <span class="n">se</span> <span class="o">=</span> <span class="p">[]</span>
@@ -221,7 +221,7 @@ SD of sample averages 4.31007313615
 <p>If we plot the second and third columns with the first column on the horizontal axis, the two graphs are essentially indistinguishable:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">SEs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">'sample size n'</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SEs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">'sample size n'</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'sample size n'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
@@ -254,7 +254,7 @@ $$<p>This is the standard deviation of the list of averages of all possible samp
 <p>Let us carry out the steps above using a different population. The new population consists of one value for each zipcode in California: the value is the number of household tax returns filed in that zipcode in 2013. The returns are measured in thousands. Here is a histogram of the population.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">irs</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'income_small.csv'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">irs</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'income_small.csv'</span><span class="p">)</span>
 <span class="n">CA_hh</span> <span class="o">=</span> <span class="n">irs</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'zipcode'</span><span class="p">,</span><span class="s1">'N1'</span><span class="p">])</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'zipcode'</span><span class="p">,</span><span class="nb">sum</span><span class="p">)</span>
 <span class="n">CA_hh</span> <span class="o">=</span> <span class="n">CA_hh</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">CA_hh</span><span class="p">[</span><span class="s1">'zipcode'</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">99999</span><span class="p">)</span>
 <span class="n">CA_hh</span><span class="p">[</span><span class="s1">'returns'</span><span class="p">]</span> <span class="o">=</span> <span class="n">CA_hh</span><span class="p">[</span><span class="s1">'N1 sum'</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
@@ -271,7 +271,7 @@ $$<p>This is the standard deviation of the list of averages of all possible samp
 <p>If we run our simulations starting with this population, the results are comparable to those obtained when we started with the box office receipts.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="sd">"""Empirical distribution of random sample means"""</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">"""Empirical distribution of random sample means"""</span>
 
 <span class="k">def</span> <span class="nf">samp_means</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">sample_size</span> <span class="o">=</span> <span class="n">n</span>
@@ -294,7 +294,7 @@ $$<p>This is the standard deviation of the list of averages of all possible samp
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samp_means</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samp_means</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Sample size:  25
@@ -307,7 +307,7 @@ SD of sample averages 1.86010624165
 <img src="../notebooks-images/CLT_30_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samp_means</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samp_means</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Sample size:  100
@@ -320,7 +320,7 @@ SD of sample averages 0.949104459921
 <img src="../notebooks-images/CLT_31_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">samp_means</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samp_means</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Sample size:  400
