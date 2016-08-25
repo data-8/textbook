@@ -103,7 +103,7 @@ or matplotlib.backends is imported for the first time.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Hemoglobin'</span><span class="p">,</span> <span class="s1">'Glucose'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_5_0.png"/></div>
+<img src="/notebooks-images/Classification_5_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Suppose Alice is a new patient who is not in the data set.  If I tell you Alice's hemoglobin level and blood glucose level, could you predict whether she has CKD?  It sure looks like it!  You can see a very clear pattern here: points in the lower-right tend to represent people who don't have CKD, and the rest tend to be folks with CKD.  To a human, the pattern is obvious.  But how can we program a computer to automatically detect patterns such as this one?</p>
@@ -116,7 +116,7 @@ or matplotlib.backends is imported for the first time.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'White Blood Cell Count'</span><span class="p">,</span> <span class="s1">'Glucose'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_7_0.png"/></div>
+<img src="/notebooks-images/Classification_7_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you can see, non-CKD individuals are all clustered in the lower-left.  Most of the patients with CKD are above or to the right of that cluster... but not all.  There are some patients with CKD who are in the lower left of the above figure (as indicated by the handful of red dots scattered among the blue cluster).  What this means is that you can't tell for certain whether someone has CKD from just these two blood test measurements.</p>
@@ -193,7 +193,7 @@ or matplotlib.backends is imported for the first time.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'WaveletVar'</span><span class="p">,</span> <span class="s1">'WaveletCurt'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_13_0.png"/></div>
+<img src="/notebooks-images/Classification_13_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pretty interesting!  Those two measurements do seem helpful for predicting whether the banknote is counterfeit or not.  However, in this example you can now see that there is some overlap between the blue cluster and the red cluster.  This indicates that there will be some images where it's hard to tell whether the banknote is legitimate based on just these two numbers.  Still, you could use a $k$-nearest neighbor classifier to predict the legitimacy of a banknote.</p>
@@ -204,7 +204,7 @@ or matplotlib.backends is imported for the first time.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'WaveletSkew'</span><span class="p">,</span> <span class="s1">'Entropy'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">banknotes</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_15_0.png"/></div>
+<img src="/notebooks-images/Classification_15_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There does seem to be a pattern, but it's a pretty complex one.  Nonetheless, the $k$-nearest neighbors classifier can still be used and will effectively "discover" patterns out of this.  This illustrates how powerful machine learning can be: it can effectively take advantage of even patterns that we would not have anticipated, or that we would have thought to "program into" the computer.</p></div></div>
@@ -225,7 +225,7 @@ or matplotlib.backends is imported for the first time.
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;mpl_toolkits.mplot3d.art3d.Path3DCollection at 0x109dd9470&gt;</pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_18_1.png"/></div>
+<img src="/notebooks-images/Classification_18_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Awesome!  With just 2 attributes, there was some overlap between the two clusters (which means that the classifier was bound to make some mistakes for pointers in the overlap).  But when we use these 3 attributes, the two clusters have almost no overlap.  In other words, a classifier that uses these 3 attributes will be more accurate than one that only uses the 2 attributes.</p>
@@ -310,7 +310,7 @@ or matplotlib.backends is imported for the first time.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">patients</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Bland Chromatin'</span><span class="p">,</span> <span class="s1">'Single Epithelial Cell Size'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="p">[</span><span class="s1">'Class'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_23_0.png"/></div>
+<img src="/notebooks-images/Classification_23_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oops.  That plot is utterly misleading, because there are a bunch of points that have identical values for both the x- and y-coordinates.  To make it easier to see all the data points, I'm going to add a little bit of random jitter to the x- and y-values.  Here's how that looks:</p></div></div>
@@ -326,7 +326,7 @@ or matplotlib.backends is imported for the first time.
     <span class="p">])</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">patients</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Classification_25_0.png"/></div>
+<img src="/notebooks-images/Classification_25_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For instance, you can see there are lots of samples with chromatin = 2 and epithelial cell size = 2; all non-cancerous.</p>

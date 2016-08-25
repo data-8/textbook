@@ -170,7 +170,7 @@ Average duration in sample 2 is 660.16
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_13_0.png"/></div>
+<img src="/notebooks-images/Confidence_13_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The sample number doesn't tell us anything beyond when the sample was selected, and we can see from this unstructured cloud of points that one sample does not affect the next in any consistent way. The sample averages are indeed all around 550. Some are above, and some are below.</p></div></div>
@@ -179,7 +179,7 @@ Average duration in sample 2 is 660.16
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">samples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">641</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_15_0.png"/></div>
+<img src="/notebooks-images/Confidence_15_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There are 40 averages for 40 samples. If we find an interval that contains the middle 38 out of 40, it will contain 95% of the samples. One such interval is bounded by the second smallest and the second largest sample averages among the 40 samples.</p></div></div>
@@ -206,11 +206,11 @@ Average duration in sample 2 is 660.16
     <span class="n">samples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Sample #'</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1801</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_20_0.png"/></div>
+<img src="/notebooks-images/Confidence_20_0.png"/></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_20_1.png"/></div>
+<img src="/notebooks-images/Confidence_20_1.png"/></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_20_2.png"/></div>
+<img src="/notebooks-images/Confidence_20_2.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We have now observed two different ways in which the variation of a random sample can be observed: the statistics computed from those samples vary in magnitude, and the sampled quantities themselves vary in distribution. That is, there is variability <em>across samples</em>, which we see by comparing sample averages, and there is variability <em>within each sample</em>, which we see in the duration histograms above.</p></div></div>
@@ -411,7 +411,7 @@ Average duration in sample 2 is 660.16
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">resamples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_41_0.png"/></div>
+<img src="/notebooks-images/Confidence_41_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>These sample averages are not necessarily clustered around the true average 550. Instead, they will be clustered around the average of the sample from which they were re-sampled.</p></div></div>
@@ -420,7 +420,7 @@ Average duration in sample 2 is 660.16
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">resamples</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">641</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_43_0.png"/></div>
+<img src="/notebooks-images/Confidence_43_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Although the center of this distribution is not the same as the true population average, its variability is similar.</p></div></div>
@@ -495,7 +495,7 @@ Average duration in sample 2 is 660.16
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deviations</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_48_0.png"/></div>
+<img src="/notebooks-images/Confidence_48_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A 95% confidence interval is computed based on the middle 95% of this distribution of deviations. The max and min devations are computed by the 97.5th percentile and 2.5th percentile respectively, because the span between these contains 95% of the distribution.</p></div></div>
@@ -585,7 +585,7 @@ Average duration in sample 2 is 660.16
 <span class="n">samples</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_62_0.png"/></div>
+<img src="/notebooks-images/Confidence_62_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see from the plot above that for almost every sample, there are some resampled averages above 550 and some below. When we use these resampled averages to compute confidence intervals, many of those intervals contain 550 as a result.</p>
@@ -617,7 +617,7 @@ Average duration in sample 2 is 660.16
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Width'</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Upper'</span><span class="p">)</span><span class="o">-</span><span class="n">intervals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Lower'</span><span class="p">))</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Confidence_68_0.png"/></div>
+<img src="/notebooks-images/Confidence_68_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Given a single sample, it is impossible to know whether you have correctly estimated the parameter or not. However, you can infer a precise notion of confidence by following a process based on random sampling.</p></div></div></div>

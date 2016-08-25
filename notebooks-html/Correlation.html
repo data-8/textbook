@@ -78,7 +78,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hybrid</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_9_0.png"/></div>
+<img src="/notebooks-images/Correlation_9_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The scatter of points is sloping upwards, indicating that cars with greater acceleration tended to cost more, on average; conversely, the cars that cost more tended to have greater acceleration on average.</p>
@@ -89,7 +89,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hybrid</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_11_0.png"/></div>
+<img src="/notebooks-images/Correlation_11_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Along with the negative association, the scatter diagram of price versus efficiency shows a non-linear relation between the two variables. The points appear to be clustered around a curve.</p>
@@ -100,13 +100,13 @@
 <span class="n">suv</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_13_0.png"/></div>
+<img src="/notebooks-images/Correlation_13_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">suv</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'acceleration'</span><span class="p">,</span> <span class="s1">'msrp'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_14_0.png"/></div>
+<img src="/notebooks-images/Correlation_14_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You will have noticed that we can derive useful information from the general orientation and shape of a scatter diagram even without paying attention to the units in which the variables were measured.</p>
@@ -123,7 +123,7 @@
 <span class="kc">None</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_16_0.png"/></div>
+<img src="/notebooks-images/Correlation_16_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
@@ -135,7 +135,7 @@
 <span class="kc">None</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_17_0.png"/></div>
+<img src="/notebooks-images/Correlation_17_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The associations that we see in these figures are the same as those we saw before. Also, because the two scatter diagrams are drawn on exactly the same scale, we can see that the linear relation in the second diagram is a little more fuzzy than in the first.</p>
@@ -160,25 +160,25 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_scatter</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_21_0.png"/></div>
+<img src="/notebooks-images/Correlation_21_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_scatter</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_22_0.png"/></div>
+<img src="/notebooks-images/Correlation_22_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_23_0.png"/></div>
+<img src="/notebooks-images/Correlation_23_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_scatter</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_24_0.png"/></div>
+<img src="/notebooks-images/Correlation_24_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Calculating-$r$">Calculating $r$<a class="anchor-link" href="#Calculating-$r$">¶</a></h3><p>The formula for $r$ is not apparent from our observations so far, and it has a mathematical basis that is outside the scope of this class. However, the calculation is straightforward and helps us understand several of the properties of $r$.</p>
@@ -238,7 +238,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_28_0.png"/></div>
+<img src="/notebooks-images/Correlation_28_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Step 1.</strong> Convert each variable to standard units.</p></div></div>
@@ -352,7 +352,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'y'</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_37_0.png"/></div>
+<img src="/notebooks-images/Correlation_37_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can define a function <code>correlation</code> to compute $r$, based on the formula that we used above. The arguments are a table and two labels of columns in the table. The function returns the mean of the products of those column values in standard units, which is $r$.</p></div></div>
@@ -410,7 +410,7 @@
 <span class="n">nonlinear</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_47_0.png"/></div>
+<img src="/notebooks-images/Correlation_47_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">nonlinear</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
@@ -431,7 +431,7 @@
 <span class="n">line</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_50_0.png"/></div>
+<img src="/notebooks-images/Correlation_50_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
@@ -447,7 +447,7 @@
 <span class="n">outlier</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_52_0.png"/></div>
+<img src="/notebooks-images/Correlation_52_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">outlier</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">)</span>
@@ -522,7 +522,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sat2014</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Critical Reading'</span><span class="p">,</span> <span class="s1">'Math'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Correlation_57_0.png"/></div>
+<img src="/notebooks-images/Correlation_57_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">sat2014</span><span class="p">,</span> <span class="s1">'Critical Reading'</span><span class="p">,</span> <span class="s1">'Math'</span><span class="p">)</span>

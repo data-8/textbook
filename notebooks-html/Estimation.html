@@ -175,7 +175,7 @@
 <span class="n">maxes</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'max'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Estimation_8_0.png"/></div>
+<img src="/notebooks-images/Estimation_8_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-empirical-distribution-of-a-statistic">The empirical distribution of a statistic<a class="anchor-link" href="#The-empirical-distribution-of-a-statistic">¶</a></h2><p>In the example above, the largest serial number is called a <em>statistic</em> (singular!). A <em>statistic</em> is any number computed using the data in a sample.</p>
@@ -223,7 +223,7 @@ $$<p>Thus a new statistic can be used to estimate the total number of planes: ta
 <span class="n">new_est</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'2*avg'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Estimation_16_0.png"/></div>
+<img src="/notebooks-images/Estimation_16_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that unlike the earlier estimate, this one can overestimate the number of planes. This will happen when the average of the observed serial numbers is closer to $N$ than to 1.</p></div></div>
@@ -241,7 +241,7 @@ $$<p>Thus a new statistic can be used to estimate the total number of planes: ta
 <span class="n">new_est</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'max'</span><span class="p">,</span> <span class="s1">'2*avg'</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">every_ten</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Estimation_19_0.png"/></div>
+<img src="/notebooks-images/Estimation_19_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can see that the old method almost always underestimates; formally, we say that it is <em>biased</em>. But it has low variability, and is highly likely to be close to the true total number of planes.</p>

@@ -108,13 +108,13 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Birth Weight'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'ounce'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/AB_6_0.png"/></div>
+<img src="/notebooks-images/AB_6_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Birth Weight'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'ounce'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/AB_7_0.png"/></div>
+<img src="/notebooks-images/AB_7_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Both distributions are approximately bell shaped and centered near 120 ounces. The distributions are not identical, of course, which raises the question of whether the difference reflects just chance variation or a difference in the distributions in the population.</p>
@@ -176,7 +176,7 @@
 <pre>Observed difference in means:  9.26614257202
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/AB_12_1.png"/></div>
+<img src="/notebooks-images/AB_12_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The figure shows that under the null hypothesis of equal distributions in the population, the bootstrap empirical distribution of the difference between the sample means of the two groups is roughly bell shaped, centered at 0, stretching from about $-4$ ounces to $4$ ounces. The observed difference in the original sample is about 9.27 ounces, which is inconsistent with this distribution. So the conclusion of the test is that in the population, the distributions of birth weights of the babies of non-smokers and smokers are different.</p></div></div>
@@ -241,7 +241,7 @@
 Bootstrap empirical P-value:  0.0
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/AB_17_1.png"/></div>
+<img src="/notebooks-images/AB_17_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
@@ -251,7 +251,7 @@ Bootstrap empirical P-value:  0.0
 Bootstrap empirical P-value:  0.0367
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/AB_18_1.png"/></div>
+<img src="/notebooks-images/AB_18_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="s1">'Maternal Age'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
@@ -261,7 +261,7 @@ Bootstrap empirical P-value:  0.0367
 Bootstrap empirical P-value:  0.0192
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/AB_19_1.png"/></div>
+<img src="/notebooks-images/AB_19_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="s1">'Maternal Pregnancy Weight'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
@@ -271,7 +271,7 @@ Bootstrap empirical P-value:  0.0192
 Bootstrap empirical P-value:  0.0374
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/AB_20_1.png"/></div>
+<img src="/notebooks-images/AB_20_1.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_AB_test</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="s1">'Maternal Height'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
@@ -281,4 +281,4 @@ Bootstrap empirical P-value:  0.0374
 Bootstrap empirical P-value:  0.5411
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/AB_21_1.png"/></div></div>
+<img src="/notebooks-images/AB_21_1.png"/></div></div>

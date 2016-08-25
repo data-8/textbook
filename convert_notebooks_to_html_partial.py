@@ -87,7 +87,7 @@ def convert_notebooks_to_html_partial(notebook_paths):
         # the chapter markdown files to be one level deep. It isn't ideal, but
         # the only way around it is to buy a domain for the staging textbook as
         # well and we'd rather not have to do that.
-        output_files_dir = '../' + NOTEBOOK_IMAGE_DIR
+        output_files_dir = '/' + NOTEBOOK_IMAGE_DIR
 
         extract_output_config = {
             'unique_key': unique_image_key,

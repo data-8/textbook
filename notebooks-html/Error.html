@@ -49,7 +49,7 @@
 <span class="n">little_women</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Periods'</span><span class="p">,</span> <span class="s1">'Characters'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_4_0.png"/></div>
+<img src="/notebooks-images/Error_4_0.png"/></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">little_women</span><span class="p">,</span> <span class="s1">'Periods'</span><span class="p">,</span> <span class="s1">'Characters'</span><span class="p">)</span>
@@ -76,7 +76,7 @@
 Intercept: 4745.0
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_9_1.png"/></div>
+<img src="/notebooks-images/Error_9_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Had we used a different line to create our estimates, the errors would have been different. The picture below shows how big the errors would be if we were to use a particularly silly line for estimation.</p></div></div>
@@ -87,7 +87,7 @@ Intercept: 4745.0
 <span class="n">lw_errors</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_11_0.png"/></div>
+<img src="/notebooks-images/Error_11_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Below is a line that we have used before without saying that we were using a line to create estimates. It is the horizontal line at the value "average of $y$." Suppose you were asked to estimate $y$ and <em>were not told the value of $x$</em>; then you would use the average of $y$ as your estimate, regardless of the chapter. In other words, you would use the flat line below.</p>
@@ -101,7 +101,7 @@ Intercept: 4745.0
 <span class="n">lw_errors</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">characters_average</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_13_0.png"/></div>
+<img src="/notebooks-images/Error_13_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Least-Squares">Least Squares<a class="anchor-link" href="#Least-Squares">¶</a></h3><p>If you use any arbitrary line as your line of estimates, then some of your errors are likely to be positive and others negative. To avoid cancellation when measuring the rough size of the errors, we take the mean of the sqaured errors rather than the mean of the errors themselves. This is exactly analogous to our reason for looking at squared deviations from average, when we were learning how to calculate the SD.</p>
@@ -131,7 +131,7 @@ Intercept: 4745.0
 <pre>Root mean squared error: 7019.17593405
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_15_1.png"/></div>
+<img src="/notebooks-images/Error_15_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The error of the regression line is indeed much smaller if we choose a slope and intercept near the regression line.</p></div></div>
@@ -143,7 +143,7 @@ Intercept: 4745.0
 <pre>Root mean squared error: 2715.53910638
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_17_1.png"/></div>
+<img src="/notebooks-images/Error_17_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>But the minimum is achieved using the regression line itself.</p></div></div>
@@ -155,7 +155,7 @@ Intercept: 4745.0
 <pre>Root mean squared error: 2701.69078531
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_19_1.png"/></div>
+<img src="/notebooks-images/Error_19_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerical-Optimization">Numerical Optimization<a class="anchor-link" href="#Numerical-Optimization">¶</a></h2></div></div>
@@ -179,7 +179,7 @@ Intercept: 4745.0
 <span class="n">faithful</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_24_0.png"/></div>
+<img src="/notebooks-images/Error_24_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It appears that there are two types of eruptions, short and long. The eruptions above 3 seconds appear correlated with waiting time.</p></div></div>
@@ -189,7 +189,7 @@ Intercept: 4745.0
 <span class="n">long</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_26_0.png"/></div>
+<img src="/notebooks-images/Error_26_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <code>rmse_geyser</code> function takes a slope and an intercept and returns the root mean squared error of a linear predictor of eruption size from the waiting time.</p></div></div>
@@ -331,7 +331,7 @@ b:        2.247629
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_44_0.png"/></div>
+<img src="/notebooks-images/Error_44_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By contrast, suppose we had attempted to fit a regression line to the entire set of eruptions of Old Faithful in the original dataset.</p></div></div>
@@ -340,7 +340,7 @@ b:        2.247629
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">faithful</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_46_0.png"/></div>
+<img src="/notebooks-images/Error_46_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This line does not pass through the average value of vertical strips. We may be able to see this fact from the scatter alone, but it is dramatically clear by visualizing the residual scatter.</p></div></div>
@@ -357,7 +357,7 @@ b:        2.247629
 <span class="n">residual_plot</span><span class="p">(</span><span class="n">faithful</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_48_0.png"/></div>
+<img src="/notebooks-images/Error_48_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The diagonal stripes show a non-linear pattern in the data. In this case, we would not expect the regression line to provide low-error estimates.</p></div></div>
@@ -427,7 +427,7 @@ b:        2.247629
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sat</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Participation Rate'</span><span class="p">,</span> <span class="s1">'Combined'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_53_0.png"/></div>
+<img src="/notebooks-images/Error_53_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The relation between the variables is clearly non-linear, but you might be tempted to fit a straight line anyway, especially if you never looked at a scatter diagram of the data.</p></div></div>
@@ -436,7 +436,7 @@ b:        2.247629
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sat</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Participation Rate'</span><span class="p">,</span> <span class="s1">'Combined'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_55_0.png"/></div>
+<img src="/notebooks-images/Error_55_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The points in the scatter plot start out above the regression line, then are consistently below the line, then above, then below. This pattern of non-linearity is more clearly visible in the residual plot.</p></div></div>
@@ -446,7 +446,7 @@ b:        2.247629
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Residual plot of a bad regression'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Error_57_0.png"/></div>
+<img src="/notebooks-images/Error_57_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This residual plot is not a formless cloud; it shows a non-linear pattern, and is a signal that linear regression should not have been used for these data.</p></div></div>

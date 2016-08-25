@@ -93,7 +93,7 @@
 <span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'male'</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Marital Status'</span><span class="p">)</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s2">"Marital Status"</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_5_0.png"/></div>
+<img src="/notebooks-images/Permutation_5_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Societal norms have changed over the decades, and there has been a gradual acceptance of couples living together without being married. Thus it is natural to expect that unmarried couples will in general consist of younger people than married couples.</p>
@@ -123,9 +123,9 @@
 <span class="n">plot_age</span><span class="p">(</span><span class="n">partnered_men</span><span class="p">,</span> <span class="s2">"cohabiting unmarried men"</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_8_0.png"/></div>
+<img src="/notebooks-images/Permutation_8_0.png"/></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_8_1.png"/></div>
+<img src="/notebooks-images/Permutation_8_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The difference is even more marked when we compare the married and unmarried women.</p></div></div>
@@ -139,9 +139,9 @@
 <span class="n">plot_age</span><span class="p">(</span><span class="n">partnered_women</span><span class="p">,</span> <span class="s2">"cohabiting unmarried women"</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_10_0.png"/></div>
+<img src="/notebooks-images/Permutation_10_0.png"/></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_10_1.png"/></div>
+<img src="/notebooks-images/Permutation_10_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The histograms show that the married men in the sample are in general older than unmarried cohabiting men. Married women are in general older than unmarried women. These observations are consistent with what we had predicted based on changing social norms.</p>
@@ -312,7 +312,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">proportions</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s1">'Employment Status'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_22_0.png"/></div>
+<img src="/notebooks-images/Permutation_22_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The distributions of employment status of the men in the two groups – married and unmarried – is clearly different in the sample.</p></div></div>
@@ -563,7 +563,7 @@
 <span class="n">tvds</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_40_0.png"/></div>
+<img src="/notebooks-images/Permutation_40_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The figure above is the <strong>empirical distribution of the total variation distance</strong> between the distributions of the employment status of married and unmarried men, under the null hypothesis.</p>
@@ -671,7 +671,7 @@
 Empirical P-value: 0.0
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_51_1.png"/></div>
+<img src="/notebooks-images/Permutation_51_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now that we have generalized our permutation test, we can apply it to other hypotheses. For example, we can compare the distribution over the employment status of women, grouping them by their marital status. In the case of men we found a difference, but what about with women? First, we can visualize the two distributions.</p></div></div>
@@ -688,7 +688,7 @@ Empirical P-value: 0.0
 <span class="n">compare_bar</span><span class="p">(</span><span class="n">couples</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'female'</span><span class="p">),</span> <span class="s1">'Marital Status'</span><span class="p">,</span> <span class="s1">'Employment Status'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_53_0.png"/></div>
+<img src="/notebooks-images/Permutation_53_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A glance at the figure shows that the two distributions are different in the sample. The difference in the category "Not working – other" is particularly striking: about 22% of the married women are in this category, compared to only about 8% of the unmarried women. There are several reasons for this difference. For example, the percent of homemakers is greater among married women than among unmarried women, possibly because married women are more likely to be "stay-at-home" mothers of young children. The difference could also be generational: as we saw earlier, the married couples are older than the unmarried partners, and older women are less likely to be in the workforce than younger women.</p></div></div>
@@ -712,7 +712,7 @@ Empirical P-value: 0.0
 Empirical P-value: 0.0
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_58_1.png"/></div>
+<img src="/notebooks-images/Permutation_58_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As for the males, the empirical P-value is 0 based on a lare number of repetitions. So the exact P-value is close to 0, which is evidence in favor of the alternative hypothesis. The data support the hypothesis that for women in the United States, employment status is associated with whether they are married or unmarried and living with their partners.</p></div></div>
@@ -730,7 +730,7 @@ Empirical P-value: 0.0
 Empirical P-value: 0.0
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_61_1.png"/></div>
+<img src="/notebooks-images/Permutation_61_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The conclusion of the test is that gender and employment status are not independent in the population. This is no surprise; for example, because of societal norms, older women were less likely to have gone into the workforce than men.</p></div></div>
@@ -1036,7 +1036,7 @@ Empirical P-value: 0.0
 Empirical P-value: 0.0028
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="../notebooks-images/Permutation_76_1.png"/></div>
+<img src="/notebooks-images/Permutation_76_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The observed difference was roughly 0.7335 psi. According to the empirical distribution above, there is a very small chance that a random permutation would yield a difference that large. So the data support the conclusion that the two groups of pressures were not like a random permutation of all 15 pressures.</p></div></div>
