@@ -10,6 +10,18 @@
   });
 </script>
 <div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
+<span class="c1"># Read two books, fast!  (We're just repeating the setup from the previous section.)</span>
+<span class="n">huck_finn_url</span> <span class="o">=</span> <span class="s1">'https://github.com/data-8/data8assets/raw/gh-pages/lec/huck_finn.txt'</span>
+<span class="n">huck_finn_text</span> <span class="o">=</span> <span class="n">read_url</span><span class="p">(</span><span class="n">huck_finn_url</span><span class="p">)</span>
+<span class="n">huck_finn_chapters</span> <span class="o">=</span> <span class="n">huck_finn_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'CHAPTER '</span><span class="p">)[</span><span class="mi">44</span><span class="p">:]</span>
+
+<span class="n">little_women_url</span> <span class="o">=</span> <span class="s1">'https://github.com/data-8/data8assets/raw/gh-pages/lec/little_women.txt'</span>
+<span class="n">little_women_text</span> <span class="o">=</span> <span class="n">read_url</span><span class="p">(</span><span class="n">little_women_url</span><span class="p">)</span>
+<span class="n">little_women_chapters</span> <span class="o">=</span> <span class="n">little_women_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'CHAPTER '</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div></div></div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In some situations, the relationships between quantities allow us to make predictions. This text will explore how to make accurate predictions based on incomplete information and develop methods for combining multiple sources of uncertain information to make decisions.</p>
 <p>As an example of visualizing information derived from multiple sources, let us first use the computer to get some information that would be tedious to acquire by hand.</p>
@@ -160,7 +172,7 @@
 <span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Number of characters in chapter'</span><span class="p">);</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="/notebooks-images/Another_Kind_Of_Character_8_0.png"/></div>
+<img src="/notebooks-images/Another_Kind_Of_Character_9_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The plot shows us that many but not all of the chapters of <em>Little Women</em> are longer than those of <em>Huckleberry Finn</em>, as we had observed by just looking at the numbers. But it also shows us something more. Notice how the blue points are roughly clustered around a straight line, as are the yellow points. Moreover, it looks as though both colors of points might be clustered around the <em>same</em> straight line.</p></div></div>
