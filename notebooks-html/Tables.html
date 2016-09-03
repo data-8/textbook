@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/Tables.ipynb">Interact</a>
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/minard.csv&path=notebooks/Tables.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -11,7 +11,11 @@
 </script>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tables are a fundamental object type for representing data sets. A table can be viewed in two ways. Tables are a sequence of named columns that each describe a single aspect of all entries in a data set. Tables are also a sequence of rows that each contain all information about a single entry in a data set.</p>
+<p>Tables are a fundamental object type for representing data sets. A table can be viewed in two ways:</p>
+<ul>
+<li>a sequence of named columns that each describe a single aspect of all entries in a data set, or</li>
+<li>a sequence of rows that each contain all information about a single entry in a data set.</li>
+</ul>
 <p>In order to use tables, import all of the module called <code>datascience</code>, a module created for this text.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -19,1049 +23,606 @@
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Empty tables can be created using the <code>Table</code> function, which optionally takes a list of column labels. The <code>with_row</code> and <code>with_rows</code> methods of a table return new tables with one or more additional rows. For example, we could create a table of <code>Odd</code> and <code>Even</code> numbers.</p></div></div>
+<p>Empty tables can be created using the <code>Table</code> function. Though it might seem surprising at first, a common use of the <code>Table</code> function is to create an empty table:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">([</span><span class="s1">'Odd'</span><span class="p">,</span> <span class="s1">'Even'</span><span class="p">])</span><span class="o">.</span><span class="n">with_row</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Odd</th> <th>Even</th>
+            
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>3   </td> <td>4   </td>
-        </tr>
-    </tbody>
-</table></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">([</span><span class="s1">'Odd'</span><span class="p">,</span> <span class="s1">'Even'</span><span class="p">])</span><span class="o">.</span><span class="n">with_rows</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>Odd</th> <th>Even</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>3   </td> <td>4   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>5   </td> <td>6   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>7   </td> <td>8   </td>
-        </tr>
-    </tbody>
-</table></div>
+</tbody></table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tables can also be extended with additional columns. The <code>with_column</code> and <code>with_columns</code> methods return new tables with additional labeled columns. Below, we begin each example with an empty table that has no columns.</p></div></div>
+<p>The reason for this is that the empty table can be extended with additional columns. The <code>with_column</code> and <code>with_columns</code> methods return new tables with additional labeled columns.</p>
+<p>Each column of a table has to be an array. The first argument of <code>with_column</code> is a string that is the column label, and the second argument is an array consisting of the data in the column.</p>
+<p>Below, we begin each example with an empty table that has no columns.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Odd'</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Number of petals'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Odd</th>
+            <th>Number of petals</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>3   </td>
+            <td>8               </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>5   </td>
+            <td>34              </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>7   </td>
-        </tr>
-    </tbody>
-</table></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
-        <span class="s1">'Odd'</span><span class="p">,</span>  <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
-        <span class="s1">'Even'</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
-    <span class="p">])</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>Odd</th> <th>Even</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>3   </td> <td>4   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>5   </td> <td>6   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>7   </td> <td>8   </td>
+            <td>5               </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tables are more typically created from files that contain comma-separated values, called CSV files. The file below contains "Annual Estimates of the Resident Population by Single Year of Age and Sex for the United States."</p></div></div>
+<p>We can also create a table that has multiple columns.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census_url</span> <span class="o">=</span> <span class="s1">'http://www.census.gov/popest/data/national/asrh/2014/files/NC-EST2014-AGESEX-RES.csv'</span>
-<span class="n">full_census_table</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">census_url</span><span class="p">)</span>
-<span class="n">full_census_table</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">'Number of petals'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="s1">'Name'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">'lotus'</span><span class="p">,</span> <span class="s1">'sunflower'</span><span class="p">,</span> <span class="s1">'rose'</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>SEX</th> <th>AGE</th> <th>CENSUS2010POP</th> <th>ESTIMATESBASE2010</th> <th>POPESTIMATE2010</th> <th>POPESTIMATE2011</th> <th>POPESTIMATE2012</th> <th>POPESTIMATE2013</th> <th>POPESTIMATE2014</th>
+            <th>Number of petals</th> <th>Name</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>0   </td> <td>0   </td> <td>3944153      </td> <td>3944160          </td> <td>3951330        </td> <td>3963071        </td> <td>3926665        </td> <td>3945610        </td> <td>3948350        </td>
+            <td>8               </td> <td>lotus    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>0   </td> <td>1   </td> <td>3978070      </td> <td>3978090          </td> <td>3957888        </td> <td>3966510        </td> <td>3978006        </td> <td>3943077        </td> <td>3962123        </td>
+            <td>34              </td> <td>sunflower</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>0   </td> <td>2   </td> <td>4096929      </td> <td>4096939          </td> <td>4090862        </td> <td>3971573        </td> <td>3979952        </td> <td>3992690        </td> <td>3957772        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>3   </td> <td>4119040      </td> <td>4119051          </td> <td>4111920        </td> <td>4102501        </td> <td>3983049        </td> <td>3992425        </td> <td>4005190        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>4   </td> <td>4063170      </td> <td>4063186          </td> <td>4077552        </td> <td>4122303        </td> <td>4112638        </td> <td>3994047        </td> <td>4003448        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>5   </td> <td>4056858      </td> <td>4056872          </td> <td>4064653        </td> <td>4087713        </td> <td>4132210        </td> <td>4123408        </td> <td>4004858        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>6   </td> <td>4066381      </td> <td>4066412          </td> <td>4073013        </td> <td>4074979        </td> <td>4097780        </td> <td>4143094        </td> <td>4134352        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>7   </td> <td>4030579      </td> <td>4030594          </td> <td>4043047        </td> <td>4083240        </td> <td>4084964        </td> <td>4108615        </td> <td>4154000        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>8   </td> <td>4046486      </td> <td>4046497          </td> <td>4025604        </td> <td>4053206        </td> <td>4093213        </td> <td>4095827        </td> <td>4119524        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>9   </td> <td>4148353      </td> <td>4148369          </td> <td>4125415        </td> <td>4035769        </td> <td>4063193        </td> <td>4104133        </td> <td>4106832        </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (296 rows omitted)</p></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>A <a href="http://www.census.gov/popest/data/national/asrh/2014/files/NC-EST2014-AGESEX-RES.pdf">description of the table</a> appears online. The <code>SEX</code> column contains numeric codes: <code>0</code> stands for the total, <code>1</code> for male, and <code>2</code> for female. The <code>AGE</code> column contains ages, but the special value <code>999</code> is a sum of the total population. The rest of the columns contain estimates of the US population.</p>
-<p>Typically, a public table will contain more information than necessary for a particular investigation or analysis. In this case, let us suppose that we are only interested in the population changes from 2010 to 2014. We can select only a subset of the columns using the <code>select</code> method.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">partial_census_table</span> <span class="o">=</span> <span class="n">full_census_table</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'SEX'</span><span class="p">,</span> <span class="s1">'AGE'</span><span class="p">,</span> <span class="s1">'POPESTIMATE2010'</span><span class="p">,</span> <span class="s1">'POPESTIMATE2014'</span><span class="p">])</span>
-<span class="n">partial_census_table</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>SEX</th> <th>AGE</th> <th>POPESTIMATE2010</th> <th>POPESTIMATE2014</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0   </td> <td>0   </td> <td>3951330        </td> <td>3948350        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>1   </td> <td>3957888        </td> <td>3962123        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>2   </td> <td>4090862        </td> <td>3957772        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>3   </td> <td>4111920        </td> <td>4005190        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>4   </td> <td>4077552        </td> <td>4003448        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>5   </td> <td>4064653        </td> <td>4004858        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>6   </td> <td>4073013        </td> <td>4134352        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>7   </td> <td>4043047        </td> <td>4154000        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>8   </td> <td>4025604        </td> <td>4119524        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>9   </td> <td>4125415        </td> <td>4106832        </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (296 rows omitted)</p></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>relabeled</code> method creates an alternative version of the table that replaces a column lable. Using this method, we can simplify the labels of the selected columns.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simple</span> <span class="o">=</span> <span class="n">partial_census_table</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s1">'POPESTIMATE2010'</span><span class="p">,</span> <span class="s1">'2010'</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s1">'POPESTIMATE2014'</span><span class="p">,</span> <span class="s1">'2014'</span><span class="p">)</span>
-<span class="n">simple</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>SEX</th> <th>AGE</th> <th>2010</th> <th>2014</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0   </td> <td>0   </td> <td>3951330</td> <td>3948350</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>1   </td> <td>3957888</td> <td>3962123</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>2   </td> <td>4090862</td> <td>3957772</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>3   </td> <td>4111920</td> <td>4005190</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>4   </td> <td>4077552</td> <td>4003448</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>5   </td> <td>4064653</td> <td>4004858</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>6   </td> <td>4073013</td> <td>4134352</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>7   </td> <td>4043047</td> <td>4154000</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>8   </td> <td>4025604</td> <td>4119524</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>9   </td> <td>4125415</td> <td>4106832</td>
-        </tr>
-    </tbody>
-</table>
-<p>... (296 rows omitted)</p></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>column</code> method returns an array of the values in a particular column. Each column of a table is an array of the same length, and so columns can be combined using arithmetic.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simple</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'2014'</span><span class="p">)</span> <span class="o">-</span> <span class="n">simple</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'2010'</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>array([  -2980,    4235, -133090, ...,    6717,   13410, 4662996])</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>A table with an additional column can be created from an existing table using the <code>with_column</code> method, which takes a label and a sequence of values as arguments. There must be either as many values as there are existing rows in the table or a single value (which fills the column with that value).</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">change</span> <span class="o">=</span> <span class="n">simple</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'2014'</span><span class="p">)</span> <span class="o">-</span> <span class="n">simple</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'2010'</span><span class="p">)</span>
-<span class="n">annual_growth_rate</span> <span class="o">=</span> <span class="p">(</span><span class="n">simple</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'2014'</span><span class="p">)</span> <span class="o">/</span> <span class="n">simple</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'2010'</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="n">census</span> <span class="o">=</span> <span class="n">simple</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span><span class="s1">'Change'</span><span class="p">,</span> <span class="n">change</span><span class="p">,</span> <span class="s1">'Growth'</span><span class="p">,</span> <span class="n">annual_growth_rate</span><span class="p">])</span>
-<span class="n">census</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>SEX</th> <th>AGE</th> <th>2010</th> <th>2014</th> <th>Change</th> <th>Growth</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0   </td> <td>0   </td> <td>3951330</td> <td>3948350</td> <td>-2980  </td> <td>-0.000188597</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>1   </td> <td>3957888</td> <td>3962123</td> <td>4235   </td> <td>0.000267397 </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>2   </td> <td>4090862</td> <td>3957772</td> <td>-133090</td> <td>-0.00823453 </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>3   </td> <td>4111920</td> <td>4005190</td> <td>-106730</td> <td>-0.0065532  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>4   </td> <td>4077552</td> <td>4003448</td> <td>-74104 </td> <td>-0.00457471 </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>5   </td> <td>4064653</td> <td>4004858</td> <td>-59795 </td> <td>-0.00369821 </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>6   </td> <td>4073013</td> <td>4134352</td> <td>61339  </td> <td>0.00374389  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>7   </td> <td>4043047</td> <td>4154000</td> <td>110953 </td> <td>0.00679123  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>8   </td> <td>4025604</td> <td>4119524</td> <td>93920  </td> <td>0.00578232  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>9   </td> <td>4125415</td> <td>4106832</td> <td>-18583 </td> <td>-0.00112804 </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (296 rows omitted)</p></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Although the columns of this table are simply arrays of numbers, the format of those numbers can be changed to improve the interpretability of the table. The <code>set_format</code> method takes <code>Formatter</code> objects, which exist for dates (<code>DateFormatter</code>), currencies (<code>CurrencyFormatter</code>), numbers, and percentages.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s1">'Growth'</span><span class="p">,</span> <span class="n">PercentFormatter</span><span class="p">)</span>
-<span class="n">census</span><span class="o">.</span><span class="n">set_format</span><span class="p">([</span><span class="s1">'2010'</span><span class="p">,</span> <span class="s1">'2014'</span><span class="p">,</span> <span class="s1">'Change'</span><span class="p">],</span> <span class="n">NumberFormatter</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>SEX</th> <th>AGE</th> <th>2010</th> <th>2014</th> <th>Change</th> <th>Growth</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0   </td> <td>0   </td> <td>3,951,330  </td> <td>3,948,350  </td> <td>-2,980   </td> <td>-0.02%</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>1   </td> <td>3,957,888  </td> <td>3,962,123  </td> <td>4,235    </td> <td>0.03% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>2   </td> <td>4,090,862  </td> <td>3,957,772  </td> <td>-133,090 </td> <td>-0.82%</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>3   </td> <td>4,111,920  </td> <td>4,005,190  </td> <td>-106,730 </td> <td>-0.66%</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>4   </td> <td>4,077,552  </td> <td>4,003,448  </td> <td>-74,104  </td> <td>-0.46%</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>5   </td> <td>4,064,653  </td> <td>4,004,858  </td> <td>-59,795  </td> <td>-0.37%</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>6   </td> <td>4,073,013  </td> <td>4,134,352  </td> <td>61,339   </td> <td>0.37% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>7   </td> <td>4,043,047  </td> <td>4,154,000  </td> <td>110,953  </td> <td>0.68% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>8   </td> <td>4,025,604  </td> <td>4,119,524  </td> <td>93,920   </td> <td>0.58% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0   </td> <td>9   </td> <td>4,125,415  </td> <td>4,106,832  </td> <td>-18,583  </td> <td>-0.11%</td>
-        </tr>
-    </tbody>
-</table>
-<p>... (296 rows omitted)</p></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The information in a table can be accessed in many ways. The attributes demonstrated below can be used for any table.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census</span><span class="o">.</span><span class="n">labels</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>('SEX', 'AGE', '2010', '2014', 'Change', 'Growth')</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census</span><span class="o">.</span><span class="n">num_columns</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>6</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census</span><span class="o">.</span><span class="n">num_rows</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>306</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>Row(SEX=0, AGE=5, 2010=4064653, 2014=4004858, Change=-59795, Growth=-0.0036982077956316806)</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>array([  3951330,   3957888,   4090862, ...,     26074,     45058,
-       157257573])</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>An individual item in a table can be accessed via a row or a column.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>3951330</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>3951330</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's take a look at the growth rates of the total number of males and females by selecting only the <em>rows</em> that sum over all ages. This sum is expressed with the special value <code>999</code> according to this data set description.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>SEX</th> <th>AGE</th> <th>2010</th> <th>2014</th> <th>Change</th> <th>Growth</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0   </td> <td>999 </td> <td>309,347,057</td> <td>318,857,056</td> <td>9,509,999</td> <td>0.76% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>999 </td> <td>152,089,484</td> <td>156,936,487</td> <td>4,847,003</td> <td>0.79% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2   </td> <td>999 </td> <td>157,257,573</td> <td>161,920,569</td> <td>4,662,996</td> <td>0.73% </td>
+            <td>5               </td> <td>rose     </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>What ages of males are driving this rapid growth? We can first filter the <code>census</code> table to keep only the male entries, then sort by growth rate in decreasing order.</p></div></div>
+<p>We can give this table a name, and then extend the table with another column.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">males</span> <span class="o">=</span> <span class="n">census</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'SEX'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">males</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'Growth'</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">flowers</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">'Number of petals'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="s1">'Name'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">'lotus'</span><span class="p">,</span> <span class="s1">'sunflower'</span><span class="p">,</span> <span class="s1">'rose'</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">flowers</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">'Color'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">'pink'</span><span class="p">,</span> <span class="s1">'yellow'</span><span class="p">,</span> <span class="s1">'red'</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>SEX</th> <th>AGE</th> <th>2010</th> <th>2014</th> <th>Change</th> <th>Growth</th>
+            <th>Number of petals</th> <th>Name</th> <th>Color</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1   </td> <td>99  </td> <td>6,104      </td> <td>9,037      </td> <td>2,933    </td> <td>10.31%</td>
+            <td>8               </td> <td>lotus    </td> <td>pink  </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1   </td> <td>100 </td> <td>9,351      </td> <td>13,729     </td> <td>4,378    </td> <td>10.08%</td>
+            <td>34              </td> <td>sunflower</td> <td>yellow</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1   </td> <td>98  </td> <td>9,504      </td> <td>13,649     </td> <td>4,145    </td> <td>9.47% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>93  </td> <td>60,182     </td> <td>85,980     </td> <td>25,798   </td> <td>9.33% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>96  </td> <td>22,022     </td> <td>31,235     </td> <td>9,213    </td> <td>9.13% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>94  </td> <td>43,828     </td> <td>62,130     </td> <td>18,302   </td> <td>9.12% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>97  </td> <td>14,775     </td> <td>20,479     </td> <td>5,704    </td> <td>8.50% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>95  </td> <td>31,736     </td> <td>42,824     </td> <td>11,088   </td> <td>7.78% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>91  </td> <td>104,291    </td> <td>138,080    </td> <td>33,789   </td> <td>7.27% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>92  </td> <td>83,462     </td> <td>109,873    </td> <td>26,411   </td> <td>7.12% </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (92 rows omitted)</p></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The fact that there are more men with <code>AGE</code> of 100 than 99 looks suspicious; shouldn't there be fewer? A careful look at the description of the data set reveals that the 100 category actually includes all men who are 100 or older. The growth rates in men at these very old ages could have several explanations, such as a large influx from another country, but the most natural explanation is that people are simply living longer in 2014 than 2010.</p>
-<p>The <code>where</code> method can also take an array of boolean values, constructed by applying some comparison operator to a column of the table. For example, we can find all of the age groups among males for which the absolute <code>Change</code> is substantial. The <code>show</code> method displays all rows without abbreviating.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">males</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">males</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Change'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">200000</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea ">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>SEX</th> <th>AGE</th> <th>2010</th> <th>2014</th> <th>Change</th> <th>Growth</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1   </td> <td>23  </td> <td>2,151,095  </td> <td>2,399,883  </td> <td>248,788  </td> <td>2.77% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>24  </td> <td>2,161,380  </td> <td>2,391,398  </td> <td>230,018  </td> <td>2.56% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>34  </td> <td>1,908,761  </td> <td>2,192,455  </td> <td>283,694  </td> <td>3.52% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>57  </td> <td>1,910,028  </td> <td>2,110,149  </td> <td>200,121  </td> <td>2.52% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>59  </td> <td>1,779,504  </td> <td>2,006,900  </td> <td>227,396  </td> <td>3.05% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>64  </td> <td>1,291,843  </td> <td>1,661,474  </td> <td>369,631  </td> <td>6.49% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>65  </td> <td>1,272,693  </td> <td>1,607,688  </td> <td>334,995  </td> <td>6.02% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>66  </td> <td>1,239,805  </td> <td>1,589,127  </td> <td>349,322  </td> <td>6.40% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>67  </td> <td>1,270,148  </td> <td>1,653,257  </td> <td>383,109  </td> <td>6.81% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>71  </td> <td>903,263    </td> <td>1,169,356  </td> <td>266,093  </td> <td>6.67% </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>999 </td> <td>152,089,484</td> <td>156,936,487</td> <td>4,847,003</td> <td>0.79% </td>
+            <td>5               </td> <td>rose     </td> <td>red   </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>By far the largest changes are clumped together in the 64-67 range. In 2014, these people would be born between 1947 and 1951, the height of the post-WWII baby boom in the United States.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>It is possible to specify multiple conditions using the functions <code>np.logical_and</code> and <code>np.logical_or</code>. When two conditions are combined with <code>logical_and</code>, both must be true for a row to be retained. When conditions are combined with <code>logical_or</code>, then either one of them must be true for a row to be retained. Here are two different ways to select 18 and 19 year olds.</p></div></div>
+<p>The methods <code>with_column</code> and <code>with_columns</code> create new tables each time they are called. They don't change the table on which they act. So the table <code>an_example</code> still has only the two columns that it had when it was created.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">both</span> <span class="o">=</span> <span class="n">census</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">census</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'SEX'</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">both</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">)</span> <span class="o">==</span> <span class="mi">18</span><span class="p">,</span> 
-                         <span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">)</span> <span class="o">==</span> <span class="mi">19</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">flowers</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>SEX</th> <th>AGE</th> <th>2010</th> <th>2014</th> <th>Change</th> <th>Growth</th>
+            <th>Number of petals</th> <th>Name</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1   </td> <td>18  </td> <td>2,305,733  </td> <td>2,165,062  </td> <td>-140,671 </td> <td>-1.56%</td>
+            <td>8               </td> <td>lotus    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1   </td> <td>19  </td> <td>2,334,906  </td> <td>2,220,790  </td> <td>-114,116 </td> <td>-1.24%</td>
+            <td>34              </td> <td>sunflower</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>2   </td> <td>18  </td> <td>2,185,272  </td> <td>2,060,528  </td> <td>-124,744 </td> <td>-1.46%</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2   </td> <td>19  </td> <td>2,236,479  </td> <td>2,105,604  </td> <td>-130,875 </td> <td>-1.50%</td>
-        </tr>
-    </tbody>
-</table></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">both</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">,</span> 
-                          <span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">19</span><span class="p">))</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>SEX</th> <th>AGE</th> <th>2010</th> <th>2014</th> <th>Change</th> <th>Growth</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1   </td> <td>18  </td> <td>2,305,733  </td> <td>2,165,062  </td> <td>-140,671 </td> <td>-1.56%</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>19  </td> <td>2,334,906  </td> <td>2,220,790  </td> <td>-114,116 </td> <td>-1.24%</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2   </td> <td>18  </td> <td>2,185,272  </td> <td>2,060,528  </td> <td>-124,744 </td> <td>-1.46%</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2   </td> <td>19  </td> <td>2,236,479  </td> <td>2,105,604  </td> <td>-130,875 </td> <td>-1.50%</td>
+            <td>5               </td> <td>rose     </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here, we observe a rather dramatic decrease in the number of 18 and 19 year olds in the United States; the children of the baby boom generation are now in their 20's, leaving fewer teenagers in America.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Aggregation and Grouping.</strong> This particular dataset includes entries for sums across all ages and sexes, using the special values <code>999</code> and <code>0</code> respectively. However, if these rows did not exist, we would be able to aggregate the remaining entries in order to compute those same results.</p></div></div>
+<p>Creating tables in this way involves a lot of typing. If the data have already been entered somewhere, it is usually possible to use Python to read it into a table, instead of typing it all in cell by cell.</p>
+<p>Often, tables are created from files that contain comma-separated values. Such files are called CSV files.</p>
+<p>Below, we use the Table method <code>read_table</code> to read a CSV file that contains some of the data used by Minard in his graphic about Napoleon's Russian campaign. The data are placed in a table named <code>minard</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">both</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'SEX'</span><span class="p">,</span> <span class="s1">'2014'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'minard.csv'</span><span class="p">)</span>
+<span class="n">minard</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>SEX</th> <th>2014</th>
+            <th>Longitude</th> <th>Latitude</th> <th>City</th> <th>Direction</th> <th>Survivors</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1   </td> <td>156,936,487</td>
+            <td>32       </td> <td>54.8    </td> <td>Smolensk   </td> <td>Advance  </td> <td>145000   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>2   </td> <td>161,920,569</td>
+            <td>33.2     </td> <td>54.9    </td> <td>Dorogobouge</td> <td>Advance  </td> <td>140000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>34.4     </td> <td>55.5    </td> <td>Chjat      </td> <td>Advance  </td> <td>127100   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>37.6     </td> <td>55.8    </td> <td>Moscou     </td> <td>Advance  </td> <td>100000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>34.3     </td> <td>55.2    </td> <td>Wixma      </td> <td>Retreat  </td> <td>55000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>32       </td> <td>54.6    </td> <td>Smolensk   </td> <td>Retreat  </td> <td>24000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>30.4     </td> <td>54.4    </td> <td>Orscha     </td> <td>Retreat  </td> <td>20000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>26.8     </td> <td>54.3    </td> <td>Moiodexno  </td> <td>Retreat  </td> <td>12000    </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">no_sums</span> <span class="o">=</span> <span class="n">both</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'SEX'</span><span class="p">,</span> <span class="s1">'AGE'</span><span class="p">,</span> <span class="s1">'2014'</span><span class="p">])</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">both</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">999</span><span class="p">)</span>
-<span class="n">females</span> <span class="o">=</span> <span class="n">no_sums</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'SEX'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'AGE'</span><span class="p">,</span> <span class="s1">'2014'</span><span class="p">])</span>
-<span class="n">females</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>AGE</th> <th>2014</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0   </td> <td>1,930,493  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1   </td> <td>1,938,870  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2   </td> <td>1,935,270  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>3   </td> <td>1,956,572  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>4   </td> <td>1,959,950  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>5   </td> <td>1,961,391  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>6   </td> <td>2,024,024  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>7   </td> <td>2,031,760  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>8   </td> <td>2,014,402  </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>9   </td> <td>2,009,560  </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (91 rows omitted)</p></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will use this small table to demonstrate some useful Table methods. We will then use those same methods, and develop other methods, on much larger tables of data.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Size-of-the-Table">The Size of the Table<a class="anchor-link" href="#The-Size-of-the-Table">¶</a></h3><p>The method <code>num_columns</code> gives the number of columns in the table, and <code>num_rows</code> the number of rows.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">females</span><span class="p">[</span><span class="s1">'2014'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">num_columns</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>161920569</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Some columns express categories, such as the sex or age group in the case of the census table. Aggregation can also be performed on every value for a category using the <code>group</code> and <code>groups</code> methods. The <code>group</code> method takes a single column (or column name) as an argument and collects all values associated with each unique value in that column.</p>
-<p>The second argument to <code>group</code>, the name of a function, specifies how to aggregate the resulting values. For example, the <code>sum</code> function can be used to add together the populations for each age. In this result, the <code>SEX sum</code> column is meaningless because the values were simply codes for different categories. However, the <code>2014 sum</code> column does in fact contain the total number across all sexes for each age category.</p></div></div>
+<pre>5</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">no_sums</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'AGE'</span><span class="p">,</span> <span class="s1">'2014'</span><span class="p">])</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Column-Labels">Column Labels<a class="anchor-link" href="#Column-Labels">¶</a></h3><p>The method <code>labels</code> can be used to list the labels of all the columns. With <code>minard</code> we don't gain much by this, but it can be very useful for tables that are so large that not all columns are visible on the screen.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">labels</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>('Longitude', 'Latitude', 'City', 'Direction', 'Survivors')</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can change column labels using the <code>relabeled</code> method. This creates a new table and leaves <code>minard</code> unchanged.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s1">'City'</span><span class="p">,</span> <span class="s1">'City Name'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>AGE</th> <th>2014 sum</th>
+            <th>Longitude</th> <th>Latitude</th> <th>City Name</th> <th>Direction</th> <th>Survivors</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>0   </td> <td>3948350 </td>
+            <td>32       </td> <td>54.8    </td> <td>Smolensk   </td> <td>Advance  </td> <td>145000   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1   </td> <td>3962123 </td>
+            <td>33.2     </td> <td>54.9    </td> <td>Dorogobouge</td> <td>Advance  </td> <td>140000   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>2   </td> <td>3957772 </td>
+            <td>34.4     </td> <td>55.5    </td> <td>Chjat      </td> <td>Advance  </td> <td>127100   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>3   </td> <td>4005190 </td>
+            <td>37.6     </td> <td>55.8    </td> <td>Moscou     </td> <td>Advance  </td> <td>100000   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>4   </td> <td>4003448 </td>
+            <td>34.3     </td> <td>55.2    </td> <td>Wixma      </td> <td>Retreat  </td> <td>55000    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>5   </td> <td>4004858 </td>
+            <td>32       </td> <td>54.6    </td> <td>Smolensk   </td> <td>Retreat  </td> <td>24000    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>6   </td> <td>4134352 </td>
+            <td>30.4     </td> <td>54.4    </td> <td>Orscha     </td> <td>Retreat  </td> <td>20000    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>7   </td> <td>4154000 </td>
+            <td>26.8     </td> <td>54.3    </td> <td>Moiodexno  </td> <td>Retreat  </td> <td>12000    </td>
         </tr>
     </tbody>
-        <tbody><tr>
-            <td>8   </td> <td>4119524 </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>9   </td> <td>4106832 </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (91 rows omitted)</p></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Joining Tables.</strong> There are many situations in data analysis in which two different rows need to be considered together. Two tables can be joined into one, an operation that creates one long row out of two matching rows. These matching rows can be from the same table or different tables.</p>
-<p>For example, we might want to estimate which age categories are expected to change significantly in the future. Someone who is 14 years old in 2014 will be 20 years old in 2020. Therefore, one estimate of the number of 20 year olds in 2020 is the number of 14 year olds in 2014. Between the ages of 1 and 50, annual mortality rates are very low (less than 0.5% for men and less than 0.3% for women [<a href="http://www.ssa.gov/oact/STATS/table4c6.html">1</a>]). Immigration also affects population changes, but for now we will ignore its influence. Let's consider just females in this analysis.</p></div></div>
+<h3 id="Accessing-the-Data-in-a-Column">Accessing the Data in a Column<a class="anchor-link" href="#Accessing-the-Data-in-a-Column">¶</a></h3><p>We can use a column's label to access the array of data in the column.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">females</span><span class="p">[</span><span class="s1">'AGE+6'</span><span class="p">]</span> <span class="o">=</span> <span class="n">females</span><span class="p">[</span><span class="s1">'AGE'</span><span class="p">]</span> <span class="o">+</span> <span class="mi">6</span>
-<span class="n">females</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([145000, 140000, 127100, 100000,  55000,  24000,  20000,  12000])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The 5 columns are indexed 0, 1, 2, 3, and 4. The column <code>Survivors</code> can also be accessed by using its column index.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([145000, 140000, 127100, 100000,  55000,  24000,  20000,  12000])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The 8 items in the array are indexed 0, 1, 2, and so on, up to 7. The items in the column can be accessed using <code>item</code>, as with any array.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>145000</pre></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>24000</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Working-with-the-Data-in-a-Column">Working with the Data in a Column<a class="anchor-link" href="#Working-with-the-Data-in-a-Column">¶</a></h3><p>Because columns are arrays, we can use array operations on them to discover new information. For example, we can create a new column that contains the percent of all survivors at each city after Smolensk.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">'Percent Surviving'</span><span class="p">,</span> <span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span><span class="o">/</span><span class="mi">145000</span>
+<span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>AGE</th> <th>2014</th> <th>AGE+6</th>
+            <th>Longitude</th> <th>Latitude</th> <th>City</th> <th>Direction</th> <th>Survivors</th> <th>Percent Surviving</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>0   </td> <td>1,930,493  </td> <td>6    </td>
+            <td>32       </td> <td>54.8    </td> <td>Smolensk   </td> <td>Advance  </td> <td>145000   </td> <td>1                </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>1   </td> <td>1,938,870  </td> <td>7    </td>
+            <td>33.2     </td> <td>54.9    </td> <td>Dorogobouge</td> <td>Advance  </td> <td>140000   </td> <td>0.965517         </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>2   </td> <td>1,935,270  </td> <td>8    </td>
+            <td>34.4     </td> <td>55.5    </td> <td>Chjat      </td> <td>Advance  </td> <td>127100   </td> <td>0.876552         </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>3   </td> <td>1,956,572  </td> <td>9    </td>
+            <td>37.6     </td> <td>55.8    </td> <td>Moscou     </td> <td>Advance  </td> <td>100000   </td> <td>0.689655         </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>4   </td> <td>1,959,950  </td> <td>10   </td>
+            <td>34.3     </td> <td>55.2    </td> <td>Wixma      </td> <td>Retreat  </td> <td>55000    </td> <td>0.37931          </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>5   </td> <td>1,961,391  </td> <td>11   </td>
+            <td>32       </td> <td>54.6    </td> <td>Smolensk   </td> <td>Retreat  </td> <td>24000    </td> <td>0.165517         </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>6   </td> <td>2,024,024  </td> <td>12   </td>
+            <td>30.4     </td> <td>54.4    </td> <td>Orscha     </td> <td>Retreat  </td> <td>20000    </td> <td>0.137931         </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>7   </td> <td>2,031,760  </td> <td>13   </td>
+            <td>26.8     </td> <td>54.3    </td> <td>Moiodexno  </td> <td>Retreat  </td> <td>12000    </td> <td>0.0827586        </td>
         </tr>
     </tbody>
-        <tbody><tr>
-            <td>8   </td> <td>2,014,402  </td> <td>14   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>9   </td> <td>2,009,560  </td> <td>15   </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (91 rows omitted)</p></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In order to relate the age in 2014 to the age in 2020, we will join this table with itself, matching values in the <code>AGE</code> column with values in the <code>AGE in 2020</code> column.</p></div></div>
+<p>To make the proportions in the new columns appear as percents, we can use the method <code>set_format</code> with the option <code>PercentFormatter</code>. The <code>set_format</code> method takes <code>Formatter</code> objects, which exist for dates (<code>DateFormatter</code>), currencies (<code>CurrencyFormatter</code>), numbers, and percentages.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">joined</span> <span class="o">=</span> <span class="n">females</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'AGE'</span><span class="p">,</span> <span class="n">females</span><span class="p">,</span> <span class="s1">'AGE+6'</span><span class="p">)</span>
-<span class="n">joined</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard_and_percents</span> <span class="o">=</span> <span class="n">minard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">'Percent Surviving'</span><span class="p">,</span> <span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span><span class="o">/</span><span class="mi">145000</span>
+<span class="p">)</span>
+
+<span class="n">minard_and_percents</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s1">'Percent Surviving'</span><span class="p">,</span> <span class="n">PercentFormatter</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>AGE</th> <th>2014</th> <th>AGE+6</th> <th>AGE_2</th> <th>2014_2</th>
+            <th>Longitude</th> <th>Latitude</th> <th>City</th> <th>Direction</th> <th>Survivors</th> <th>Percent Surviving</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>6   </td> <td>2024024</td> <td>12   </td> <td>0    </td> <td>1930493</td>
+            <td>32       </td> <td>54.8    </td> <td>Smolensk   </td> <td>Advance  </td> <td>145000   </td> <td>100.00%          </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>7   </td> <td>2031760</td> <td>13   </td> <td>1    </td> <td>1938870</td>
+            <td>33.2     </td> <td>54.9    </td> <td>Dorogobouge</td> <td>Advance  </td> <td>140000   </td> <td>96.55%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>8   </td> <td>2014402</td> <td>14   </td> <td>2    </td> <td>1935270</td>
+            <td>34.4     </td> <td>55.5    </td> <td>Chjat      </td> <td>Advance  </td> <td>127100   </td> <td>87.66%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>9   </td> <td>2009560</td> <td>15   </td> <td>3    </td> <td>1956572</td>
+            <td>37.6     </td> <td>55.8    </td> <td>Moscou     </td> <td>Advance  </td> <td>100000   </td> <td>68.97%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>10  </td> <td>2015380</td> <td>16   </td> <td>4    </td> <td>1959950</td>
+            <td>34.3     </td> <td>55.2    </td> <td>Wixma      </td> <td>Retreat  </td> <td>55000    </td> <td>37.93%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>11  </td> <td>2001949</td> <td>17   </td> <td>5    </td> <td>1961391</td>
+            <td>32       </td> <td>54.6    </td> <td>Smolensk   </td> <td>Retreat  </td> <td>24000    </td> <td>16.55%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>12  </td> <td>1993547</td> <td>18   </td> <td>6    </td> <td>2024024</td>
+            <td>30.4     </td> <td>54.4    </td> <td>Orscha     </td> <td>Retreat  </td> <td>20000    </td> <td>13.79%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>13  </td> <td>2041159</td> <td>19   </td> <td>7    </td> <td>2031760</td>
+            <td>26.8     </td> <td>54.3    </td> <td>Moiodexno  </td> <td>Retreat  </td> <td>12000    </td> <td>8.28%            </td>
         </tr>
     </tbody>
-        <tbody><tr>
-            <td>14  </td> <td>2068252</td> <td>20   </td> <td>8    </td> <td>2014402</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>15  </td> <td>2035299</td> <td>21   </td> <td>9    </td> <td>2009560</td>
-        </tr>
-    </tbody>
-</table>
-<p>... (85 rows omitted)</p></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The resulting table has five columns. The first three are the same as before. The two new colums are the values for <code>AGE</code> and <code>2014</code> that appeared in a different row, the one in which that <code>AGE</code> appeared in the <code>AGE+6</code> column. For instance, the first row contains the number of 6 year olds in 2014 and an estimate of the number of 6 year olds in 2020 (who were 0 in 2014). Some relabeling and selecting makes this table more clear.</p></div></div>
+<h3 id="Choosing-Sets-of-Columns">Choosing Sets of Columns<a class="anchor-link" href="#Choosing-Sets-of-Columns">¶</a></h3><p>The method <code>select</code> creates a new table that contains only the specified columns.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">future</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'AGE'</span><span class="p">,</span> <span class="s1">'2014'</span><span class="p">,</span> <span class="s1">'2014_2'</span><span class="p">])</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s1">'2014_2'</span><span class="p">,</span> <span class="s1">'2020 (est)'</span><span class="p">)</span>
-<span class="n">future</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Longitude'</span><span class="p">,</span> <span class="s1">'Latitude'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>AGE</th> <th>2014</th> <th>2020 (est)</th>
+            <th>Longitude</th> <th>Latitude</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>6   </td> <td>2024024</td> <td>1930493   </td>
+            <td>32       </td> <td>54.8    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>7   </td> <td>2031760</td> <td>1938870   </td>
+            <td>33.2     </td> <td>54.9    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>8   </td> <td>2014402</td> <td>1935270   </td>
+            <td>34.4     </td> <td>55.5    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>9   </td> <td>2009560</td> <td>1956572   </td>
+            <td>37.6     </td> <td>55.8    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>10  </td> <td>2015380</td> <td>1959950   </td>
+            <td>34.3     </td> <td>55.2    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>11  </td> <td>2001949</td> <td>1961391   </td>
+            <td>32       </td> <td>54.6    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>12  </td> <td>1993547</td> <td>2024024   </td>
+            <td>30.4     </td> <td>54.4    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>13  </td> <td>2041159</td> <td>2031760   </td>
+            <td>26.8     </td> <td>54.3    </td>
         </tr>
     </tbody>
-        <tbody><tr>
-            <td>14  </td> <td>2068252</td> <td>2014402   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>15  </td> <td>2035299</td> <td>2009560   </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (85 rows omitted)</p></div>
+</table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Adding a <code>Change</code> column and sorting by that change describes some of the major changes in age categories that we can expect in the United States for people under 50. According to this simplistic analysis, there will be substantially more people in their late 30's by 2020.</p></div></div>
+<p>The same selection can be made using column indices instead of labels.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">future</span><span class="p">[</span><span class="s1">'AGE'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">predictions</span><span class="p">[</span><span class="s1">'Change'</span><span class="p">]</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="s1">'2020 (est)'</span><span class="p">]</span> <span class="o">-</span> <span class="n">predictions</span><span class="p">[</span><span class="s1">'2014'</span><span class="p">]</span>
-<span class="n">predictions</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'Change'</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>AGE</th> <th>2014</th> <th>2020 (est)</th> <th>Change</th>
+            <th>Longitude</th> <th>Latitude</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>40  </td> <td>1940627</td> <td>2170440   </td> <td>229813</td>
+            <td>32       </td> <td>54.8    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>38  </td> <td>1936610</td> <td>2154232   </td> <td>217622</td>
+            <td>33.2     </td> <td>54.9    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>30  </td> <td>2110672</td> <td>2301237   </td> <td>190565</td>
+            <td>34.4     </td> <td>55.5    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>37  </td> <td>1995155</td> <td>2148981   </td> <td>153826</td>
+            <td>37.6     </td> <td>55.8    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>39  </td> <td>1993913</td> <td>2135416   </td> <td>141503</td>
+            <td>34.3     </td> <td>55.2    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>29  </td> <td>2169563</td> <td>2298701   </td> <td>129138</td>
+            <td>32       </td> <td>54.6    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>35  </td> <td>2046713</td> <td>2169563   </td> <td>122850</td>
+            <td>30.4     </td> <td>54.4    </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>36  </td> <td>2009423</td> <td>2110672   </td> <td>101249</td>
+            <td>26.8     </td> <td>54.3    </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The result of using <code>select</code> is a new table, even when you select just one column.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Survivors</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>145000   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>28  </td> <td>2144666</td> <td>2244480   </td> <td>99814 </td>
+            <td>140000   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>41  </td> <td>1977497</td> <td>2046713   </td> <td>69216 </td>
+            <td>127100   </td>
         </tr>
     </tbody>
-</table>
-<p>... (34 rows omitted)</p></div></div>
+        <tbody><tr>
+            <td>100000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>55000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>24000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>20000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>12000    </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that the result is a table, unlike the result of <code>column</code>, which is an array.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([145000, 140000, 127100, 100000,  55000,  24000,  20000,  12000])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Another way to create a new table consisting of a set of columns is to <code>drop</code> the columns you don't want.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Longitude'</span><span class="p">,</span> <span class="s1">'Latitude'</span><span class="p">,</span> <span class="s1">'Direction'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>City</th> <th>Survivors</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Smolensk   </td> <td>145000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Dorogobouge</td> <td>140000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Chjat      </td> <td>127100   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Moscou     </td> <td>100000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Wixma      </td> <td>55000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Smolensk   </td> <td>24000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Orscha     </td> <td>20000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Moiodexno  </td> <td>12000    </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>All of the methods that we have used above can be applied to any table.</p></div></div></div>
