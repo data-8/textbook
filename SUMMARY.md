@@ -26,3 +26,6 @@
   * [Sequences](chapters/04/3/sequences.md)
   * [Arrays](chapters/04/4/arrays.md)
   * [Ranges](chapters/04/5/ranges.md)
+* Visualizations (coming soon!)
+* [Tables](chapters/06/tables.md)
+  * [Example: Population Trends](chapters/06/1/example-trends-in-the-population-of-the-united-states.md)
