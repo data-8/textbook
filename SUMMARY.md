@@ -29,3 +29,5 @@
   * [More on Arrays](chapters/04/6/more-on-arrays.md)
 * [Tables](chapters/05/tables.md)
   * [Example: Population Trends](chapters/05/1/example-trends-in-the-population-of-the-united-states.md)
+  * [Sorting Rows](chapters/05/2/sorting-rows.md)
+  * [Selecting Rows](chapters/05/3/selecting-rows.md)
