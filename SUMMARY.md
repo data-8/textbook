@@ -31,3 +31,4 @@
   * [Example: Population Trends](chapters/05/1/example-trends-in-the-population-of-the-united-states.md)
   * [Sorting Rows](chapters/05/2/sorting-rows.md)
   * [Selecting Rows](chapters/05/3/selecting-rows.md)
+  * [Example: Trends in Gender](chapters/05/4/example-gender-ratio-in-the-us-population.md)
