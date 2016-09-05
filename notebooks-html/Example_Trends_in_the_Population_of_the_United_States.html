@@ -74,7 +74,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Only the first 10 rows of the table are displayed. Later we will see how to display the entire table; however, this is typically not useful with large tables.</p>
-<p>A <a href="http://www.census.gov/popest/data/national/asrh/2014/files/NC-EST2014-AGESEX-RES.pdf">description of the table</a> appears online. The <code>SEX</code> column contains numeric codes: <code>0</code> stands for the total, <code>1</code> for male, and <code>2</code> for female. The <code>AGE</code> column contains ages, but the special value <code>999</code> is a sum of the total population. The rest of the columns contain estimates of the US population.</p>
+<p>A <a href="http://www.census.gov/popest/data/national/asrh/2014/files/NC-EST2014-AGESEX-RES.pdf">description of the table</a> appears online. The <code>SEX</code> column contains numeric codes: <code>0</code> stands for the total, <code>1</code> for male, and <code>2</code> for female. The <code>AGE</code> column contains ages in completed years, but the special value <code>999</code> is a sum of the total population. The rest of the columns contain estimates of the US population.</p>
 <p>Typically, a public table will contain more information than necessary for a particular investigation or analysis. In this case, let us suppose that we are only interested in the population changes from 2010 to 2014. Let us select the relevant columns.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -322,4 +322,16 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Not surprisingly, the top row of the sorted table is the line that corresponds to the entire population: both sexes and all age groups. From 2010 to 2014, the population of the United States increased by about 9.5 million people, a change of just over 3%.</p>
 <p>The next two rows correspond to all the men and all the women respectively. The male population grew more than the female population, both in absolute and percentage terms. Both percent changes were around 3%.</p>
-<p>Now take a look at the next few rows. The percent change jumps from about 3% for the overall population to almost 30% for the people in their late sixties and early seventies. This stunning change contributes to what is known as the greying of America.</p></div></div></div>
+<p>Now take a look at the next few rows. The percent change jumps from about 3% for the overall population to almost 30% for the people in their late sixties and early seventies. This stunning change contributes to what is known as the greying of America.</p>
+<p>By far the greatest absolute change was among those in the 64-67 agegroup in 2014. What could explain this large increase? We can explore this question by examining the years in which the relevant groups were born.</p>
+<ul>
+<li><p>Those who were in the 64-67 age group in 2010 were born in the years 1943 to 1946. The attack on Pearl Harbor was in late 1941, and by 1942 U.S. forces were heavily engaged in a massive war that ended in 1945.</p>
+</li>
+<li><p>Those who were 64 to 67 years old in 2014 were born in the years 1947 to 1950, at the height of the post-WWII baby boom in the United States.</p>
+</li>
+</ul>
+<p>The post-war jump in births is the major reason for the large changes that we have observed.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div></div></div></div>
