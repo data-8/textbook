@@ -32,3 +32,5 @@
   * [Sorting Rows](chapters/05/2/sorting-rows.md)
   * [Selecting Rows](chapters/05/3/selecting-rows.md)
   * [Example: Trends in Gender](chapters/05/4/example-gender-ratio-in-the-us-population.md)
+* [Visualization](chapters/06/visualization.md)
+  * [Visualizing Categorical Distributions](chapters/06/1/visualizing-categorical-distributions.md)
