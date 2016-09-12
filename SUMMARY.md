@@ -33,4 +33,6 @@
   * [Selecting Rows](chapters/05/3/selecting-rows.md)
   * [Example: Trends in Gender](chapters/05/4/example-gender-ratio-in-the-us-population.md)
 * [Visualization](chapters/06/visualization.md)
-  * [Visualizing Categorical Distributions](chapters/06/1/visualizing-categorical-distributions.md)
+  * [Categorical Distributions](chapters/06/1/visualizing-categorical-distributions.md)
+  * [Numerical Distributions](chapters/06/2/visualizing-numerical-distributions.md)
+  * [Overlaid Graphs](chapters/06/3/overlaid-graphs.md)
