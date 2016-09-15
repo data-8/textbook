@@ -36,3 +36,5 @@
   * [Categorical Distributions](chapters/06/1/visualizing-categorical-distributions.md)
   * [Numerical Distributions](chapters/06/2/visualizing-numerical-distributions.md)
   * [Overlaid Graphs](chapters/06/3/overlaid-graphs.md)
+* [Functions and Tables](chapters/07/functions-and-tables.md)
+  * [Applying Functions to Columns](chapters/07/1/applying-a-function-to-a-column.md)
