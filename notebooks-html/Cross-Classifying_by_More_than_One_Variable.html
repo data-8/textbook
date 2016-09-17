@@ -10,16 +10,6 @@
   });
 </script>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datascience</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'Agg'</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plots</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div></div></div>
-<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Cross-Classifying-by-More-than-One-Variable">Cross-Classifying by More than One Variable<a class="anchor-link" href="#Cross-Classifying-by-More-than-One-Variable">¶</a></h3><p>When individuals have multiple features, there are many different ways to classify them. For example, if we have a population of college students for each of whom we have recorded a major and the number of years in college, then the students could be classified by major, or by year, or by a combination of major and year.</p>
 <p>The <code>groups</code> method (notice the plural) allows us to classify individuals according to multiple variables. This is called <em>cross-classifying</em>.</p></div></div>
@@ -235,7 +225,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong><code>pivot</code></strong></p>
 <p>The <code>pivot</code> method is closely related to the <code>groups</code> method: it groups together rows that share a combination of values. It differs from <code>groups</code> because it organizes the resulting values in a grid. The first argument to <code>pivot</code> is the label of a column that contains the values that will be used to form new columns in the result. The second argument is the label of a column used for the rows. The result gives the count of all rows of the original table that share the combination of column and row values.</p>
-<p>Like <code>groups</code>, <code>pivot</code> can be used with additional argument to find characteristics of each paired category. An optional third argument called <code>values</code> indicates a column of values that will replace the counts in each cell of the grid. All of these values will not be displayed, however; the fourth argument <code>collect</code> indicates how to collect them all into one aggregated value to be displayed in the cell.</p>
+<p>Like <code>groups</code>, <code>pivot</code> can be used with additional arguments to find characteristics of each paired category. An optional third argument called <code>values</code> indicates a column of values that will replace the counts in each cell of the grid. All of these values will not be displayed, however; the fourth argument <code>collect</code> indicates how to collect them all into one aggregated value to be displayed in the cell.</p>
 <p>An example will help clarify this. Here is <code>pivot</code> being used to find the total price of the cones in each cell.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -299,7 +289,7 @@
 <p>Though the numbers in both tables are the same, table produced by <code>pivot</code> is easier to read and lends itself more easily to analysis. The advantage of <code>pivot</code> is that it places grouped values into adjacent columns, so that they can be combined and compared.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Example:-Education-and-Income-of-Californian-Adults">Example: Education and Income of Californian Adults<a class="anchor-link" href="#Example:-Education-and-Income-of-Californian-Adults">¶</a></h3><p>The State of California's Open Data Portal is a rich source of information about the lives of Californians. It is our source of a <a href="http://data.ca.gov/dataset/ca-educational-attainment-personal-income">dataset</a> on educational attainment and personal income among Californians over the years 2008 to 2014. The data are derived from the U.S. Census Current Populatio Survey.</p>
+<h3 id="Example:-Education-and-Income-of-Californian-Adults">Example: Education and Income of Californian Adults<a class="anchor-link" href="#Example:-Education-and-Income-of-Californian-Adults">¶</a></h3><p>The State of California's Open Data Portal is a rich source of information about the lives of Californians. It is our source of a <a href="http://data.ca.gov/dataset/ca-educational-attainment-personal-income">dataset</a> on educational attainment and personal income among Californians over the years 2008 to 2014. The data are derived from the U.S. Census Current Population Survey.</p>
 <p>For each year, the table records the <code>Population Count</code> of Californians in many different combinations of age, gender, educational attainment, and personal income. We will study only the data for the year 2014.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -600,14 +590,10 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>At a glance, you can see that over 35% of those with Bachelor's degrees or higher had incomes of $\$75,000$ and over, whereas fewer than 10% of the people in the other education categories had that level of income.</p>
-<p>The bar chart below compared the personal income distributions of adult Californians who have no high diploma with those who have completed a Bachelor's degree or higher. The difference in the distributions is striking. There is a clear positive association between educational attainment and personal income.</p></div></div>
+<p>The bar chart below compares the personal income distributions of adult Californians who have no high diploma with those who have completed a Bachelor's degree or higher. The difference in the distributions is striking. There is a clear positive association between educational attainment and personal income.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">distributions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="/notebooks-images/Cross-Classifying_by_More_than_One_Variable_37_0.png"/></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<img src="/notebooks-images/Cross-Classifying_by_More_than_One_Variable_37_0.png"/></div></div>

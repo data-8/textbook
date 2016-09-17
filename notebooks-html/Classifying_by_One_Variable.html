@@ -10,16 +10,6 @@
   });
 </script>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datascience</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'Agg'</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plots</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div></div></div>
-<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Classifying-by-One-Variable">Classifying by One Variable<a class="anchor-link" href="#Classifying-by-One-Variable">¶</a></h3><p>Data scientists often need to classify individuals into groups according to shared features, and then identify some characteristics of the groups. For example, in the example using Galton's data on heights, we saw that it was useful to classify families according to the parents' midparent heights, and then find the average height of the children in each group.</p>
 <p>This section is about classifying individuals into categories that are not numerical. We begin by recalling the basic use of <code>group</code>.</p></div></div>
@@ -89,7 +79,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There are two distinct categories, chocolate and strawberry. The call to <code>group</code> creates a table of counts in each category. The column is called <code>count</code> by default, and contains the number of rows in each category.</p>
 <p>Notice that this can all be worked out from just the <code>Flavor</code> column. The <code>Price</code> column has not been used.</p>
-<p>But what if we wanted the total price of each different flavor? That's where the second argument of <code>group</code> comes in.</p></div></div>
+<p>But what if we wanted the total price of the cones of each different flavor? That's where the second argument of <code>group</code> comes in.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Finding-a-Characteristic-of-Each-Category">Finding a Characteristic of Each Category<a class="anchor-link" href="#Finding-a-Characteristic-of-Each-Category">¶</a></h3><p>The optional second argument of <code>group</code> names the function that will be used to aggregate values in other columns for all of those rows. For instance, <code>sum</code> will sum up the prices in all rows that match each category. This result also contains one row per unique value in the grouped column, but it has the same number of columns as the original table.</p>
@@ -120,7 +110,7 @@
 <p>To create this new table, <code>group</code> has calculated the sum of the <code>Price</code> entries in all the rows corresponding to each distinct flavor. The prices in the three <code>chocolate</code> rows add up to $\$16.55$ (you can assume that price is being measured in dollars). The prices in the two `strawberry` rows have a total of $\$8.80$.</p>
 <p>The label of the newly created "sum" column is <code>Price sum</code>, which is created by taking the label of the column being summed, and appending the word <code>sum</code>.</p>
 <p>Because <code>group</code> finds the <code>sum</code> of all columns other than the one with the categories, there is no need to specify that it has to <code>sum</code> the prices.</p>
-<p>To see in more detail what <code>group</code> is doing, notice that you could have figured out the total prices yourself, not only by mental arithmetic but also using code. For example, to find the total price of all the chocolate cones, you could start by creating a new table consisting of all the rows corresponding to <code>chocolate</code>, and then accessing the column of prices:</p></div></div>
+<p>To see in more detail what <code>group</code> is doing, notice that you could have figured out the total prices yourself, not only by mental arithmetic but also using code. For example, to find the total price of all the chocolate cones, you could start by creating a new table consisting of only the chocolate cones, and then accessing the column of prices:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cones</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="s1">'chocolate'</span><span class="p">))</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Price'</span><span class="p">)</span>
@@ -449,7 +439,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Center was the most highly paid position, at an average of over 6 million dollars.</p>
-<p>If we had not selected the two columns as our first step, <code>group</code> would not attempt to "sum" the categorical columns in <code>nba</code>. It performs arithmetic only on numerical columns and leaves the rest blank.</p></div></div>
+<p>If we had not selected the two columns as our first step, <code>group</code> would not attempt to "average" the categorical columns in <code>nba</code>. (It is impossible to average two strings like "Atlanta Hawks" and "Boston Celtics".) It performs arithmetic only on numerical columns and leaves the rest blank.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'POSITION'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
