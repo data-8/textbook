@@ -38,3 +38,5 @@
   * [Overlaid Graphs](chapters/06/3/overlaid-graphs.md)
 * [Functions and Tables](chapters/07/functions-and-tables.md)
   * [Applying Functions to Columns](chapters/07/1/applying-a-function-to-a-column.md)
+  * [Classifying by One Variable](chapters/07/2/classifying-by-one-variable.md)
+  * [Cross-Classifying](chapters/07/3/cross-classifying-by-more-than-one-variable.md)
