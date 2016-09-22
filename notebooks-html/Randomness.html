@@ -11,8 +11,8 @@
 </script>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Randomness">Randomness<a class="anchor-link" href="#Randomness">¶</a></h3><p>In the previous chapters we developed numerous skills needed for insightful descriptions of data. Data scientists also have to be able to understand randomness. For example, they have to be able to assign individuals to treatment and control groups at random, and then try to say whether any observed differences in the outcomes of the two groups are simply due to the random assignment or genuinely due to the treatment.</p>
-<p>In this chapter, we begin our analysis of randomness. To start off, we will use Python to make choices at random. In <code>numpy</code> there is a sub-module called <code>random</code> that contains many functions that involve random selection. One of these functions is called <code>choice</code>. It picks one item at random from an array, and is equally likely to pick any of the items. The function call is <code>np.random.choice(array_name)</code>, where <code>array_name</code> is the name of the array from which to make the choice.</p>
+<h3 id="Randomness">Randomness<a class="anchor-link" href="#Randomness">¶</a></h3><p>In the previous chapters we developed skills needed to make insightful descriptions of data. Data scientists also have to be able to understand randomness. For example, they have to be able to assign individuals to treatment and control groups at random, and then try to say whether any observed differences in the outcomes of the two groups are simply due to the random assignment or genuinely due to the treatment.</p>
+<p>In this chapter, we begin our analysis of randomness. To start off, we will use Python to make choices at random. In <code>numpy</code> there is a sub-module called <code>random</code> that contains many functions that involve random selection. One of these functions is called <code>choice</code>. It picks one item at random from an array, and it is equally likely to pick any of the items. The function call is <code>np.random.choice(array_name)</code>, where <code>array_name</code> is the name of the array from which to make the choice.</p>
 <p>Thus the following code evaluates to <code>treatment</code> with chance 50%, and <code>control</code> with chance 50%.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -26,7 +26,7 @@
 <p>The big difference between the code above and all the other code we have run thus far is that the code above doesn't always return the same value. It can return either <code>treatment</code> or <code>control</code>, and we don't know ahead of time which one it will pick. Run the cell a few times and see!</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A fundamental question about random events is whether or not they occurr. For example:</p>
+<p>A fundamental question about random events is whether or not they occur. For example:</p>
 <ul>
 <li>Did an individual get assigned to the treatment group, or not?</li>
 <li>Is a gambler going to win money, or not?</li>
@@ -63,8 +63,8 @@
 <tr>
 <td>Greater than</td>
 <td>&gt;</td>
-<td>3&gt;2</td>
-<td>3&gt;3</td>
+<td>3 &gt; 2</td>
+<td>3 &gt; 3</td>
 </tr>
 <tr>
 <td>Less than or equal</td>
@@ -94,7 +94,7 @@
 </table></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice the two equal signs <code>==</code> in the comparison to determine equality. This is necessary because Python already uses <code>=</code> to mean assignment to a name. It can't use the same symbol for a different purpose. Thus if you want to check whether 5 is equal to the 10/2, then you have to be careful: <code>5 = 10/2</code> returns an error message because Python assumes you are trying to assign the expression 10/2 to a name that is the numeral 5. Instead, you must use <code>5 == 10/2</code>, which evaluates to <code>True</code>.</p></div></div>
+<p>Notice the two equal signs <code>==</code> in the comparison to determine equality. This is necessary because Python already uses <code>=</code> to mean assignment to a name, as we have seen. It can't use the same symbol for a different purpose. Thus if you want to check whether 5 is equal to the 10/2, then you have to be careful: <code>5 = 10/2</code> returns an error message because Python assumes you are trying to assign the value of the expression 10/2 to a name that is the numeral 5. Instead, you must use <code>5 == 10/2</code>, which evaluates to <code>True</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="mi">5</span> <span class="o">=</span> <span class="mi">10</span><span class="o">/</span><span class="mi">2</span>
@@ -161,7 +161,7 @@
 <pre>False</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>True</code> corresponds to the numerical value 1, and <code>False</code> to 0.</p></div></div>
+<p>It is often useful to think of <code>True</code> as the number 1 and <code>False</code> as the number 0.  Python actually considers them equal.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kc">True</span> <span class="o">==</span> <span class="mi">1</span>
@@ -182,7 +182,7 @@
 <pre>True</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Comparing-an-Array-and-a-Value">Comparing an Array and a Value<a class="anchor-link" href="#Comparing-an-Array-and-a-Value">¶</a></h3><p>If you compare an array and one value, each element of the array is compared to that value, and the comparison evaluates to an array of Booleans.</p></div></div>
+<h3 id="Comparing-an-Array-and-a-Value">Comparing an Array and a Value<a class="anchor-link" href="#Comparing-an-Array-and-a-Value">¶</a></h3><p>Recall that we can perform arithmetic operations on many numbers in an array at once.  For example, <code>make_array(0, 5, 2)*2</code> is equivalent to <code>make_array(0, 10, 4)</code>.  In similar fashion, if we compare an array and one value, each element of the array is compared to that value, and the comparison evaluates to an array of Booleans.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tosses</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">'Tails'</span><span class="p">,</span> <span class="s1">'Heads'</span><span class="p">,</span> <span class="s1">'Tails'</span><span class="p">,</span> <span class="s1">'Heads'</span><span class="p">,</span> <span class="s1">'Heads'</span><span class="p">)</span>
