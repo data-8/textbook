@@ -40,3 +40,7 @@
   * [Applying Functions to Columns](chapters/07/1/applying-a-function-to-a-column.md)
   * [Classifying by One Variable](chapters/07/2/classifying-by-one-variable.md)
   * [Cross-Classifying](chapters/07/3/cross-classifying-by-more-than-one-variable.md)
+* [Randomness](chapters/08/randomness.md)
+  * [Conditional Statements](chapters/08/1/conditional-statements.md)
+  * [Iteration](chapters/08/2/iteration.md)
+  * [The Monty Hall Problem](chapters/08/3/monty-hall-problem.md)
