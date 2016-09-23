@@ -30,7 +30,7 @@
 <pre>'Positive'</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This function returns the correct sign if the input is a positive number. But if the input is not a positive number, then the <em>if expression</em> evaluates to a false value, and so the <code>return</code> statement is skipped and the function does nothing.</p></div></div>
+<p>This function returns the correct sign if the input is a positive number. But if the input is not a positive number, then the <em>if expression</em> evaluates to a false value, and so the <code>return</code> statement is skipped and the function call has no value.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sign</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
@@ -119,7 +119,7 @@ else:
 <p>There is always exactly one <code>if</code> clause, but there can be any number of <code>elif</code> clauses. Python will evaluate the <code>if</code> and <code>elif</code> expressions in the headers in order until one is found that is a true value, then execute the corresponding body. The <code>else</code> clause is optional. When an <code>else</code> header is provided, its <em>else body</em> is executed only if none of the header expressions of the previous clauses are true. The <code>else</code> clause must always come at the end (or not at all).</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id='Example:-"The-Other-One"'>Example: "The Other One"<a class="anchor-link" href='#Example:-"The-Other-One"'>¶</a></h3><p>We will now use conditinal statements to define a function that seems rather artificial and contrary, but will come in handy later in the chapter. It takes an array with two elements (for example, <code>red</code> and <code>blue</code>), and another element to compare. If that element is <code>red</code>, the function returns <code>blue</code>. If the element is <code>blue</code>, the function returns <code>red</code>. That is why we'll call the function <code>other_one</code>.</p></div></div>
+<h3 id='Example:-"The-Other-One"'>Example: "The Other One"<a class="anchor-link" href='#Example:-"The-Other-One"'>¶</a></h3><p>We will now use conditional statements to define a function that seems rather artificial and contrary, but will come in handy later in the chapter. It takes an array with two elements (for example, <code>red</code> and <code>blue</code>), and another element to compare. If that element is <code>red</code>, the function returns <code>blue</code>. If the element is (for example) <code>blue</code>, the function returns <code>red</code>. That is why we'll call the function <code>other_one</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">other_one</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a_b</span><span class="p">):</span>

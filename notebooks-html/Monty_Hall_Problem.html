@@ -10,16 +10,6 @@
   });
 </script>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datascience</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'Agg'</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plots</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div></div></div>
-<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-Monty-Hall-Problem">The Monty Hall Problem<a class="anchor-link" href="#The-Monty-Hall-Problem">¶</a></h3><p>This <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">problem</a> has flummoxed many people over the years, <a href="https://web.archive.org/web/20140413131827/http://www.decisionsciences.org/DecisionLine/Vol30/30_1/vazs30_1.pdf">mathematicians included</a>. Let's see if we can work it out.</p>
 <p>The setting is derived from a television game show called "Let's Make a Deal". Monty Hall hosted this show in the 1960's, and it has since led to a number of spin-offs. An exciting part of the show was that while the contestants had the chance to win great prizes, they might instead end up with "zonks" that were less desirable. This is the basis for what is now known as <em>the Monty Hall problem</em>.</p>
@@ -102,17 +92,39 @@
 <span class="n">make_array</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">throw_out</span><span class="p">,</span> <span class="n">other_one</span><span class="p">(</span><span class="n">throw_out</span><span class="p">,</span> <span class="n">goats</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array(['Car', 'Goat 2', 'Goat 1'], 
+<pre>array(['Car', 'Goat 1', 'Goat 2'], 
       dtype='&lt;U6')</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can now put all this code together into a single function <code>monty_hall</code> to simulate the result of one game. The function takes no arguments.</p>
 <p>The contestant's original choice will be a door chosen at random from among the three doors.</p>
-<p>Remember that the string comparisons <code>'Goat 1' &gt; 'Goat'</code> and <code>'Goat 2' &gt; 'Goat'</code> are both <code>True</code>.</p></div></div>
+<p>To check whether the original choice is a goat or not, we first write a little function named <code>is_goat</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">monty_hall</span><span class="p">():</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">is_goat</span><span class="p">(</span><span class="n">door_name</span><span class="p">):</span>
     
+    <span class="sd">""" Check whether the name of a door (a string) is a Goat.</span>
+<span class="sd">    </span>
+<span class="sd">    Examples:</span>
+<span class="sd">    =========</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; is_goat('Goat 1')</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; is_goat('Goat 2')</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; is_goat('Car')</span>
+<span class="sd">    False</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">door_name</span> <span class="o">==</span> <span class="s2">"Goat 1"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">door_name</span> <span class="o">==</span> <span class="s2">"Goat 2"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span> <span class="nf">monty_hall</span><span class="p">():</span>
+
     <span class="sd">""" Play the Monty Hall game once</span>
 <span class="sd">    and return an array of three strings:</span>
 <span class="sd">    </span>
@@ -121,10 +133,10 @@
     
     <span class="n">original</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">doors</span><span class="p">)</span>
     
-    <span class="k">if</span> <span class="n">original</span> <span class="o">&gt;</span> <span class="s1">'Goat'</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">is_goat</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">make_array</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">other_one</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">goats</span><span class="p">),</span> <span class="s1">'Car'</span><span class="p">)</span>
     
-    <span class="k">if</span> <span class="n">original</span> <span class="o">==</span> <span class="s1">'Car'</span><span class="p">:</span>
+    <span class="k">else</span><span class="p">:</span>
         <span class="n">throw_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">goats</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">make_array</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">throw_out</span><span class="p">,</span> <span class="n">other_one</span><span class="p">(</span><span class="n">throw_out</span><span class="p">,</span> <span class="n">goats</span><span class="p">))</span>
 </pre></div></div></div>
@@ -136,7 +148,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">monty_hall</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array(['Goat 2', 'Goat 1', 'Car'], 
+<pre>array(['Car', 'Goat 2', 'Goat 1'], 
       dtype='&lt;U6')</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -176,18 +188,6 @@
     </thead>
     <tbody>
         <tr>
-            <td>Goat 1              </td> <td>Goat 2          </td> <td>Car           </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
             <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
         </tr>
     </tbody>
@@ -200,15 +200,27 @@
         </tr>
     </tbody>
         <tbody><tr>
+            <td>Car                 </td> <td>Goat 2          </td> <td>Goat 1        </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Car                 </td> <td>Goat 2          </td> <td>Goat 1        </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Goat 1              </td> <td>Goat 2          </td> <td>Car           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Goat 1              </td> <td>Goat 2          </td> <td>Car           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
             <td>Goat 1              </td> <td>Goat 2          </td> <td>Car           </td>
         </tr>
     </tbody>
         <tbody><tr>
             <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
         </tr>
     </tbody>
         <tbody><tr>
@@ -233,15 +245,15 @@
     </thead>
     <tbody>
         <tr>
-            <td>Car                 </td> <td>3283 </td>
+            <td>Car                 </td> <td>3312 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Goat 1              </td> <td>3370 </td>
+            <td>Goat 1              </td> <td>3382 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Goat 2              </td> <td>3347 </td>
+            <td>Goat 2              </td> <td>3306 </td>
         </tr>
     </tbody>
 </table></div>
@@ -258,15 +270,15 @@
     </thead>
     <tbody>
         <tr>
-            <td>Car           </td> <td>6717 </td>
+            <td>Car           </td> <td>6688 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Goat 1        </td> <td>1649 </td>
+            <td>Goat 1        </td> <td>1640 </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Goat 2        </td> <td>1634 </td>
+            <td>Goat 2        </td> <td>1672 </td>
         </tr>
     </tbody>
 </table></div>
@@ -291,15 +303,15 @@
     </thead>
     <tbody>
         <tr>
-            <td>Car   </td> <td>3283         </td> <td>6717          </td>
+            <td>Car   </td> <td>3312         </td> <td>6688          </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Goat 1</td> <td>3370         </td> <td>1649          </td>
+            <td>Goat 1</td> <td>3382         </td> <td>1640          </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Goat 2</td> <td>3347         </td> <td>1634          </td>
+            <td>Goat 2</td> <td>3306         </td> <td>1672          </td>
         </tr>
     </tbody>
 </table></div>
@@ -312,8 +324,4 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice how the three blue bars are almost equal – the original choice is equally likely to be any of the three available items. But the gold bar corresponding to <code>Car</code> is twice as long as the blue.</p>
-<p>The simuation confirms that the contestant is twice as likely to win if she switches.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<p>The simulation confirms that the contestant is twice as likely to win if she switches.</p></div></div></div>
