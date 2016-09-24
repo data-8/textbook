@@ -67,7 +67,7 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
-    <span class="s1">'Flavor'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">'strawberry'</span><span class="p">,</span> <span class="s1">'chocolate'</span><span class="p">,</span> <span class="s1">'vanilla'</span><span class="p">),</span>
+    <span class="s1">'Kind'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">'strawberry'</span><span class="p">,</span> <span class="s1">'chocolate'</span><span class="p">,</span> <span class="s1">'vanilla'</span><span class="p">),</span>
     <span class="s1">'Stars'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">ratings</span>
@@ -76,7 +76,7 @@
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Flavor</th> <th>Stars</th>
+            <th>Kind</th> <th>Stars</th>
         </tr>
     </thead>
     <tbody>
@@ -95,10 +95,12 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Each of the tables has a column labeled <code>Flavor</code>. The method <code>join</code> creates a new table in which the <code>cones</code> and <code>ratings</code> are joined by the <code>Flavor</code> column. In such situations, the general call is <code>first_table_name.join(Common_Column_Label, second_table_name)</code>. Later in the section we will see how to join by columns that have different labels.</p></div></div>
+<p>Each of the tables has a column that contains ice cream flavors: <code>cones</code> has the column <code>Flavor</code>, and <code>ratings</code> has the column <code>Kind</code>. The entries in these columns can be used to link the two tables.</p>
+<p>The method <code>join</code> creates a new table in which the <code>cones</code> and <code>ratings</code> are joined by the columns <code>Flavor</code> and <code>Kind</code>. The general call is:</p>
+<p><code>table1.join(table1_column_for_joining, table2, table2_column_for_joining)</code></p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rated</span> <span class="o">=</span> <span class="n">cones</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="n">ratings</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rated</span> <span class="o">=</span> <span class="n">cones</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="n">ratings</span><span class="p">,</span> <span class="s1">'Kind'</span><span class="p">)</span>
 <span class="n">rated</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -171,16 +173,16 @@
 <p>Though strawberry has the lowest rating among the three flavors, the less expensive strawberry cone does well on this measure because it doesn't cost a lot per star.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Caution.</strong> Order matters. It is important that the second table used in a <code>join</code> call has exactly one row per category by which you are joining. If not, information can be lost, as you can see in the following example which tries to join the same two tables in the other order. Two of the cones end up vanishing. The <code>join</code> method just finds the first row corresponding to <code>chocolate</code> in <code>cones</code> and ignores the other one.</p></div></div>
+<p><strong>Caution.</strong> Order matters. It is important that the second table used in a <code>join</code> call has exactly one row per category by which you are joining. If not, information can be lost, as you can see in the following example which tries to join the same two tables by the same two columns, but in the other order. Two of the cones end up vanishing. The <code>join</code> method just finds the first row corresponding to <code>chocolate</code> in <code>cones</code> and ignores the other one.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="n">cones</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'Kind'</span><span class="p">,</span> <span class="n">cones</span><span class="p">,</span> <span class="s1">'Flavor'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Flavor</th> <th>Stars</th> <th>Price</th>
+            <th>Kind</th> <th>Stars</th> <th>Price</th>
         </tr>
     </thead>
     <tbody>
@@ -199,14 +201,11 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In the examples above, both tables being joined had a column called <code>Flavor</code>. Those columns were used for the joining. But you can join two tables by common values even if the columns containing those values have different labels.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>Suppose there is a table of reviews of some ice cream cones, and we have found the average review for each flavor.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">reviews</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
-    <span class="s1">'Kind'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">'vanilla'</span><span class="p">,</span> <span class="s1">'chocolate'</span><span class="p">,</span> <span class="s1">'vanilla'</span><span class="p">,</span> <span class="s1">'chocolate'</span><span class="p">),</span>
+    <span class="s1">'Flavor'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">'vanilla'</span><span class="p">,</span> <span class="s1">'chocolate'</span><span class="p">,</span> <span class="s1">'vanilla'</span><span class="p">,</span> <span class="s1">'chocolate'</span><span class="p">),</span>
     <span class="s1">'Stars'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">reviews</span>
@@ -215,7 +214,7 @@
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Kind</th> <th>Stars</th>
+            <th>Flavor</th> <th>Stars</th>
         </tr>
     </thead>
     <tbody>
@@ -238,14 +237,14 @@
 </table></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">average_review</span> <span class="o">=</span> <span class="n">reviews</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Kind'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">average_review</span> <span class="o">=</span> <span class="n">reviews</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
 <span class="n">average_review</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Kind</th> <th>Stars average</th>
+            <th>Flavor</th> <th>Stars average</th>
         </tr>
     </thead>
     <tbody>
@@ -263,7 +262,7 @@
 <p>We can join <code>cones</code> and <code>average_review</code> by providing the labels of the columns by which to join.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cones</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="n">average_review</span><span class="p">,</span> <span class="s1">'Kind'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cones</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="n">average_review</span><span class="p">,</span> <span class="s1">'Flavor'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">

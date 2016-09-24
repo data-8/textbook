@@ -452,7 +452,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_302e442c951a4314ae2be3331d8e2c43&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_af4a4bf1dc264b039ffc3e63d2ae1618&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -496,7 +496,7 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_302e442c951a4314ae2be3331d8e2c43', {
+      var map = L.map('folium_af4a4bf1dc264b039ffc3e63d2ae1618', {
                                        center:[37.567251, -122.1481515],
                                        zoom: 10.0,
                                        maxBounds: bounds,
@@ -1224,7 +1224,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_24c5a4ef648e473da35d2628eaf10cd5&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_50a43551f9e84343a550d05adfbbd3d5&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -1268,7 +1268,7 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_24c5a4ef648e473da35d2628eaf10cd5', {
+      var map = L.map('folium_50a43551f9e84343a550d05adfbbd3d5', {
                                        center:[37.787914, -122.4034835],
                                        zoom: 12.0,
                                        maxBounds: bounds,
@@ -1621,14 +1621,14 @@
 <h3 id="More-Informative-Maps:-An-Application-of-join">More Informative Maps: An Application of <code>join</code><a class="anchor-link" href="#More-Informative-Maps:-An-Application-of-join">¶</a></h3><p>The bike stations are located in five different cities in the Bay Area. To distinguish the points by using a different color for each city, let's start by using group to identify all the cities and assign each one a color.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cities</span> <span class="o">=</span> <span class="n">stations</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'landmark'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cities</span> <span class="o">=</span> <span class="n">stations</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'landmark'</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s1">'landmark'</span><span class="p">,</span> <span class="s1">'city'</span><span class="p">)</span>
 <span class="n">cities</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>landmark</th> <th>count</th>
+            <th>city</th> <th>count</th>
         </tr>
     </thead>
     <tbody>
@@ -1662,7 +1662,7 @@
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>landmark</th> <th>count</th> <th>color</th>
+            <th>city</th> <th>count</th> <th>color</th>
         </tr>
     </thead>
     <tbody>
@@ -1692,7 +1692,7 @@
 <p>Now we can join <code>stations</code> and <code>colors</code> by <code>landmark</code>, and then select the columns we need to draw a map.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">joined</span> <span class="o">=</span> <span class="n">stations</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'landmark'</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">joined</span> <span class="o">=</span> <span class="n">stations</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'landmark'</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="s1">'city'</span><span class="p">)</span>
 <span class="n">colored</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'lat'</span><span class="p">,</span> <span class="s1">'long'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">,</span> <span class="s1">'color'</span><span class="p">)</span>
 <span class="n">Marker</span><span class="o">.</span><span class="n">map_table</span><span class="p">(</span><span class="n">colored</span><span class="p">)</span>
 </pre></div></div></div>
@@ -1749,7 +1749,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_22cac2e4e4544267a48a8cc25cb717f1&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_3587af4f035a45e19912da71825da86d&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -1793,7 +1793,7 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_22cac2e4e4544267a48a8cc25cb717f1', {
+      var map = L.map('folium_3587af4f035a45e19912da71825da86d', {
                                        center:[37.567251, -122.1481515],
                                        zoom: 10.0,
                                        maxBounds: bounds,
@@ -2751,7 +2751,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_b8d7adb342f94075b5df21768ec2e764&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_b56fa087fb91438d939b15cba9d19261&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -2795,7 +2795,7 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_b8d7adb342f94075b5df21768ec2e764', {
+      var map = L.map('folium_b56fa087fb91438d939b15cba9d19261', {
                                        center:[37.567251, -122.1481515],
                                        zoom: 10.0,
                                        maxBounds: bounds,
