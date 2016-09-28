@@ -12,7 +12,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Sampling-from-a-Population">Sampling from a Population<a class="anchor-link" href="#Sampling-from-a-Population">¶</a></h3><p>The law of averages also holds when the random sample is drawn from individuals in a large population.</p>
-<p>As an example, we will study a population of flight delay times. The table <code>united</code> contains data for United Airlines domestic flights departing from San Francisco in the summer of 2015. The data are made publicly available by the <a href="bureau of transportation statistics t-100 market data">Bureau of Transportation Statistics</a> in the United States Department of Transportation.</p>
+<p>As an example, we will study a population of flight delay times. The table <code>united</code> contains data for United Airlines domestic flights departing from San Francisco in the summer of 2015. The data are made publicly available by the <a href="http://www.transtats.bts.gov/Fields.asp?Table_ID=293">Bureau of Transportation Statistics</a> in the United States Department of Transportation.</p>
 <p>There are 13,825 rows, each corresponding to a flight. The columns are the date of the flight, the flight number, the destination airport code, and the departure delay time in minutes. Some delay times are negative; those flights left early.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -118,7 +118,7 @@
 <pre>0.2935985533453888</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Empirical-Distribution-of-the-Sample">Empirical Distribution of the Sample<a class="anchor-link" href="#Empirical-Distribution-of-the-Sample">¶</a></h3><p>Let us now think of the 13,825 flights as a population, and draw random samples from it with replacement. The function <code>empirical_hist_delay</code> takes the sample size as its argument and draws an empiricial histogram of the results.</p></div></div>
+<h3 id="Empirical-Distribution-of-the-Sample">Empirical Distribution of the Sample<a class="anchor-link" href="#Empirical-Distribution-of-the-Sample">¶</a></h3><p>Let us now think of the 13,825 flights as a population, and draw random samples from it with replacement. It is helpful to package our analysis code into a function. The function <code>empirical_hist_delay</code> takes the sample size as its argument and draws an empiricial histogram of the results.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">empirical_hist_delay</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -126,7 +126,7 @@
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As we saw with the dice, as the sample size increases, the empirical histogram of the sample more closely resembles the histogram of the population.</p></div></div>
+<p>As we saw with the dice, as the sample size increases, the empirical histogram of the sample more closely resembles the histogram of the population. Compare these histograms to the population histogram above.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">empirical_hist_delay</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -152,8 +152,4 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Convergence-of-the-Empirical-Histogram-of-the-Sample">Convergence of the Empirical Histogram of the Sample<a class="anchor-link" href="#Convergence-of-the-Empirical-Histogram-of-the-Sample">¶</a></h3><p>What we have observed in this section can be summarized as follows:</p>
 <p>For a large random sample, the empirical histogram of the sample resembles the histogram of the population, with high probability.</p>
-<p>This justifies the use of large random samples in statistical inference. The idea is that since a large random sample is likely to resemble the population from which it is drawn, quantities computed from the values in the sample are likely to be close to the corresponding quantities in the population.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<p>This justifies the use of large random samples in statistical inference. The idea is that since a large random sample is likely to resemble the population from which it is drawn, quantities computed from the values in the sample are likely to be close to the corresponding quantities in the population.</p></div></div></div>
