@@ -10,18 +10,8 @@
   });
 </script>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datascience</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'Agg'</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plots</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div></div></div>
-<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Joining-Tables-by-Columns">Joining Tables by Columns<a class="anchor-link" href="#Joining-Tables-by-Columns">¶</a></h3><p>Sometimes, data about the same individuals might be maintained in more than one table. For example, one university office might have data about each student's time to completion of degree, while another has data about the student's tuition and financial aid.</p>
+<h3 id="Joining-Tables-by-Columns">Joining Tables by Columns<a class="anchor-link" href="#Joining-Tables-by-Columns">¶</a></h3><p>Often, data about the same individuals is maintained in more than one table. For example, one university office might have data about each student's time to completion of degree, while another has data about the student's tuition and financial aid.</p>
 <p>To understand the students' experience, it may be helpful to put the two datasets together. If the data are in two tables, each with one row per student, then we would want to put the columns together, making sure to match the rows so that each student's information remains on a single row.</p>
 <p>Let us do this in the context of a simple example, and then use the method with a larger dataset.</p></div></div>
 <div class="inner_cell">
@@ -96,8 +86,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Each of the tables has a column that contains ice cream flavors: <code>cones</code> has the column <code>Flavor</code>, and <code>ratings</code> has the column <code>Kind</code>. The entries in these columns can be used to link the two tables.</p>
-<p>The method <code>join</code> creates a new table in which the <code>cones</code> and <code>ratings</code> are joined by the columns <code>Flavor</code> and <code>Kind</code>. The general call is:</p>
-<p><code>table1.join(table1_column_for_joining, table2, table2_column_for_joining)</code></p></div></div>
+<p>The method <code>join</code> creates a new table in which each cone in the <code>cones</code> table is augmented with the Stars information in the <code>ratings</code> table.  For each cone in <code>cones</code>, <code>join</code> finds a row in <code>ratings</code> whose <code>Kind</code> matches the cone's <code>Flavor</code>. We have to tell <code>join</code> to use those columns for matching.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rated</span> <span class="o">=</span> <span class="n">cones</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="n">ratings</span><span class="p">,</span> <span class="s1">'Kind'</span><span class="p">)</span>
@@ -134,7 +123,13 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Each cone now has not only its price but also the rating of its flavor. The new table <code>rated</code> allows us to work out the price per star, which you can think of as an informal measure of value. Low values are good – they mean that you are paying less for each rating star.</p></div></div>
+<p>Each cone now has not only its price but also the rating of its flavor.</p>
+<p>In general, a call to <code>join</code> that augments a table (say <code>table1</code>) with information from another table (say <code>table2</code>) looks like this:</p>
+
+<pre><code>table1.join(table1_column_for_joining, table2, table2_column_for_joining)
+
+</code></pre>
+<p>The new table <code>rated</code> allows us to work out the price per star, which you can think of as an informal measure of value. Low values are good – they mean that you are paying less for each rating star.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rated</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'$/Star'</span><span class="p">,</span> <span class="n">rated</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Price'</span><span class="p">)</span> <span class="o">/</span> <span class="n">rated</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Stars'</span><span class="p">))</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -173,7 +168,8 @@
 <p>Though strawberry has the lowest rating among the three flavors, the less expensive strawberry cone does well on this measure because it doesn't cost a lot per star.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Caution.</strong> Order matters. It is important that the second table used in a <code>join</code> call has exactly one row per category by which you are joining. If not, information can be lost, as you can see in the following example which tries to join the same two tables by the same two columns, but in the other order. Two of the cones end up vanishing. The <code>join</code> method just finds the first row corresponding to <code>chocolate</code> in <code>cones</code> and ignores the other one.</p></div></div>
+<p><strong>Caution.</strong> Order matters. Since the second table in a <code>join</code> is used to augment the first table, it is important that each row in the first table has exactly one matching row in the second. If a row in the first table is missing a match in the second table, information can be lost. If a row in the first table has more than one match in the second table, <code>join</code> will pick just one, which is also a kind of information loss.</p>
+<p>We can see this in the following example, which tries to join the same two tables by the same two columns, but in the other order. This join does not make sense: it is attempting to augment the rating of each flavor with its price, but according to the <code>cones</code> table, there is more than one cone (and price) for each flavor. The result is that two of the cones end up vanishing. The <code>join</code> method just finds the first row corresponding to <code>chocolate</code> in <code>cones</code> and ignores the other one.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'Kind'</span><span class="p">,</span> <span class="n">cones</span><span class="p">,</span> <span class="s1">'Flavor'</span><span class="p">)</span>
@@ -287,8 +283,4 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice how the strawberry cones have disappeared. None of the reviews are for strawberry cones, so there is nothing to which the <code>strawberry</code> rows can be joined.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<p>Notice how the strawberry cones have disappeared. None of the reviews are for strawberry cones, so there is nothing to which the <code>strawberry</code> rows can be joined. This might be a problem, or it might not be - that depends on the analysis we are trying to perform with the joined table.</p></div></div></div>
