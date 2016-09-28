@@ -144,7 +144,65 @@
 <p>... (28 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Suppose you decide to repeatedly bet \$1 on red, on 200 separate spins of the wheel. How much money will you make?</p>
+<p>Suppose you decide to bet \$1 on red.  What might happen?</p>
+<p>Here is a simulation of 1 spin.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">one_spin</span> <span class="o">=</span> <span class="n">bets</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">one_spin</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Pocket</th> <th>Color</th> <th>Winnings: Red</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>14    </td> <td>red  </td> <td>1            </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The color of the spin is the value in the <code>Color</code> column.  Regardless of your bet, the outcome might be red, green, or black.  To see how often those events happen, we can simulate many of these single spins and draw a bar chart of the colors we see.  (We could call this an <em>empirical bar chart</em>.)</p>
+<p>To do that, we can use a <code>for</code> loop. We have chosen 5,000 repetitions here, but you can change that when you run the cell.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">num_simulations</span> <span class="o">=</span> <span class="mi">5000</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+<span class="n">winnings_on_red</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_simulations</span><span class="p">):</span>
+    <span class="n">spin</span> <span class="o">=</span> <span class="n">bets</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">new_color</span> <span class="o">=</span> <span class="n">spin</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s2">"Color"</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">new_color</span><span class="p">)</span>
+    <span class="n">new_winnings</span> <span class="o">=</span> <span class="n">spin</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Winnings: Red'</span><span class="p">)</span>
+    <span class="n">winnings_on_red</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">winnings_on_red</span><span class="p">,</span> <span class="n">new_winnings</span><span class="p">)</span>
+
+<span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Color'</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>\
+       <span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Color'</span><span class="p">)</span>\
+       <span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s1">'Color'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/At_the_Roulette_Table_11_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>18 out of 38 pockets are red, and each is equally likely.  So out of 5,000 simulations, we'd expect to see <em>roughly</em> (but probably not exactly) $\frac{18}{38} \times 5000$, or 2,368, red spins.  The simulation bears that out.</p>
+<p>In the simulation, we also recorded your winnings.  An empirical histogram of those shows the (approximate) chances of different outcomes of your \$1 bet on red.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Winnings: Red'</span><span class="p">,</span> <span class="n">winnings_on_red</span><span class="p">)</span>\
+       <span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">1.55</span><span class="p">,</span> <span class="mf">1.65</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/At_the_Roulette_Table_13_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The only possible outcome of each simulation is that you win \$1 or lose \$1, and this is reflected in the histogram.  We can also see that you win slightly less often than you lose.  Do you like this gambling strategy?</p>
+<h3 id="Multiple-Games">Multiple Games<a class="anchor-link" href="#Multiple-Games">¶</a></h3><p>Most roulette players stay for more than one spin of the wheel.  Suppose you repeatedly bet \$1 on red, on 200 separate spins. How much money will you make, in total?</p>
 <p>Here is a simulation of one set of 200 spins. The table <code>spins</code> consists of the results of all 200 bets. Your net gain is the sum of all the +1's and -1's in the <code>Winnings: Red</code> column of <code>spins</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -152,32 +210,32 @@
 <span class="n">spins</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Winnings: Red'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>-8</pre></div>
+<pre>-26</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Run the cell a few times. Sometimes your net gain is positive, but more often it seems to be negative. To repeat the simulation many times and draw an empirical histogram of the results, we can use a <code>for</code> loop. We have chosen 5,000 repetitions here, but you can change that when you run the cell.</p></div></div>
+<p>Run the cell a few times. Sometimes your net gain is positive, but more often it seems to be negative.</p>
+<p>To see more clearly what happens, let us simulate 200 spins many times, just as we did with a single spin.  For each simulation, we will record the total winnings from the 200 spins.  Then we will make a histogram of the 5,000 different simulated total winnings.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">5000</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">num_spins</span> <span class="o">=</span> <span class="mi">200</span>
 
 <span class="n">net_gain</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="n">spins</span> <span class="o">=</span> <span class="n">bets</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_simulations</span><span class="p">):</span>
+    <span class="n">spins</span> <span class="o">=</span> <span class="n">bets</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_spins</span><span class="p">)</span>
     <span class="n">new_net_gain</span> <span class="o">=</span> <span class="n">spins</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Winnings: Red'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="n">net_gain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">net_gain</span><span class="p">,</span> <span class="n">new_net_gain</span><span class="p">)</span>
 
 <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Net Gain on Red'</span><span class="p">,</span> <span class="n">net_gain</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="/notebooks-images/At_the_Roulette_Table_11_0.png"/></div>
+<img src="/notebooks-images/At_the_Roulette_Table_17_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice the position of 0 on the horizontal axis. That's where you break even. How do you like your chances of making money by using this gambling scheme?</p>
 <p>If the bet on red isn't appealing, maybe it's worth trying a different bet. A 'split' is a bet on two adjacent numbers on the roulette table, such as 0 and 00. The split pays 17 to 1.</p>
 <p>The function <code>split_winnings</code> takes a pocket as its argument and returns 17 if the pocket is either 0 or 00. For all other pockets it returns -1.</p>
-<p>The table <code>bets</code> is now augmented by each pocket's winnings on the 0/00 split.</p></div></div>
+<p>The table <code>more_bets</code> is a version of the <code>bets</code> table augmented by each pocket's winnings on the 0/00 split.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">split_winnings</span><span class="p">(</span><span class="n">pocket</span><span class="p">):</span>
@@ -190,11 +248,11 @@
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bets</span> <span class="o">=</span> <span class="n">wheel</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_bets</span> <span class="o">=</span> <span class="n">wheel</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
     <span class="s1">'Winnings: Red'</span><span class="p">,</span> <span class="n">wheel</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">red_winnings</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">),</span>
     <span class="s1">'Winnings: Split'</span><span class="p">,</span> <span class="n">wheel</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">split_winnings</span><span class="p">,</span> <span class="s1">'Pocket'</span><span class="p">)</span>
     <span class="p">)</span>
-<span class="n">bets</span>
+<span class="n">more_bets</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -248,17 +306,14 @@
 <p>... (28 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The code below simulates the results of both bets – on red and on the 0/00 split – on 200 spins of the wheel. The code is the same as in the previous simulation, apart from the addition of the lines for the split.</p></div></div>
+<p>The code below simulates the results of both bets – on red and on the 0/00 split – on 200 spins of the wheel. The code is the same as in the previous simulation, apart from the addition of the lines for the split.  (Note: <code>num_simulations</code> and <code>num_spins</code> were previously defined as 5,000 and 200, respectively, so we do not need to define them again.)</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">5000</span>
-
-<span class="n">net_gain_red</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net_gain_red</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
 <span class="n">net_gain_split</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="n">spins</span> <span class="o">=</span> <span class="n">bets</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_simulations</span><span class="p">):</span>
+    <span class="n">spins</span> <span class="o">=</span> <span class="n">more_bets</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_spins</span><span class="p">)</span>
     <span class="n">new_net_gain_red</span> <span class="o">=</span> <span class="n">spins</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Winnings: Red'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="n">net_gain_red</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">net_gain_red</span><span class="p">,</span> <span class="n">new_net_gain_red</span><span class="p">)</span>
     <span class="n">new_net_gain_split</span> <span class="o">=</span> <span class="n">spins</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Winnings: Split'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -270,7 +325,7 @@
     <span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="/notebooks-images/At_the_Roulette_Table_16_0.png"/></div>
+<img src="/notebooks-images/At_the_Roulette_Table_22_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The position of 0 on the horizontal axis shows that you are more likely to lose money than to make money, regardless of which bet you choose. In both histograms, less than 50% of the area is to the right of 0.</p>
