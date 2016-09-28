@@ -46,3 +46,8 @@
   * [Conditional Statements](chapters/08/1/conditional-statements.md)
   * [Iteration](chapters/08/2/iteration.md)
   * [The Monty Hall Problem](chapters/08/3/monty-hall-problem.md)
+  * [Finding Probabilities](chapters/08/4/finding-probabilities.md)
+  * [Sampling](chapters/08/5/sampling.md)
+* [Empirical Distributions](chapters/09/empirical-distributions.md)
+  * [Sampling from a Population](chapters/09/1/sampling_from_a_population.md)
+  * [At the Roulette Table](chapters/09/2/at-the-roulette-table.md)
