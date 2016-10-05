@@ -52,3 +52,6 @@
   * [Sampling from a Population](chapters/09/1/sampling_from_a_population.md)
   * [At the Roulette Table](chapters/09/2/at-the-roulette-table.md)
   * [Empirical Distibution of a Statistic](chapters/09/3/empirical-distribution-of-a-statistic.md)
+* [Testing Hypotheses](chapters/10/testing-hypotheses.md)
+  * [Jury Selection](chapters/10/1/jury-selection.md)
+  * [Terminology of Testing](chapters/10/2/terminology-of-testing.md)
