@@ -55,3 +55,4 @@
 * [Testing Hypotheses](chapters/10/testing-hypotheses.md)
   * [Jury Selection](chapters/10/1/jury-selection.md)
   * [Terminology of Testing](chapters/10/2/terminology-of-testing.md)
+  * [Error Probabilities](chapters/10/3/error-probabilities.md)
