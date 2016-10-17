@@ -57,3 +57,5 @@
   * [Terminology of Testing](chapters/10/2/terminology-of-testing.md)
   * [Error Probabilities](chapters/10/3/error-probabilities.md)
   * [Example: Deflategate](chapters/10/4/example-deflategate.md)
+* [Estimation](chapters/11/estimation.md)
+  * [Percentiles](chapters/11/1/percentiles.md)
