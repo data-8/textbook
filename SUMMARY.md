@@ -59,3 +59,4 @@
   * [Example: Deflategate](chapters/10/4/example-deflategate.md)
 * [Estimation](chapters/11/estimation.md)
   * [Percentiles](chapters/11/1/percentiles.md)
+  * [The Bootstrap](chapters/11/2/bootstrap.md)
