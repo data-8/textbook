@@ -239,7 +239,7 @@
 <span class="n">est_median</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>114191.58</pre></div>
+<pre>113598.99000000001</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The sample size is large. By the law of averages, the distribution of the sample resembles that of the population, and consequently the sample median is not very far from the population median (though of course it is not exactly the same).</p>
@@ -277,7 +277,7 @@
 <span class="n">resampled_median_1</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>116238.69</pre></div>
+<pre>110001.16</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By resampling, we have another estimate of the population median. By resampling again and again, we will get many such estimates, and hence an empirical distribution of the estimates.</p></div></div>
@@ -288,7 +288,7 @@
 <span class="n">resampled_median_2</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>114229.78</pre></div>
+<pre>110261.39999999999</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bootstrap-Empirical-Distribution-of-the-Sample-Median">Bootstrap Empirical Distribution of the Sample Median<a class="anchor-link" href="#Bootstrap-Empirical-Distribution-of-the-Sample-Median">¶</a></h3><p>Let us define a function <code>bootstrap_median</code> that takes our original sample, the label of the column containing the variable, and the number of bootstrap samples we want to take, and returns an array of the corresponding resampled medians.</p>
@@ -346,14 +346,14 @@
 <span class="n">left</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>107132.38</pre></div>
+<pre>107652.71000000001</pre></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">right</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">97.5</span><span class="p">,</span> <span class="n">bstrap_medians</span><span class="p">)</span>
 <span class="n">right</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>118861.06</pre></div>
+<pre>119256.73</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The population median of \$110,305 is between these two numbers. The interval and the population median are shown on the histogram below.</p></div></div>
@@ -387,8 +387,10 @@
 <span class="n">left_ends</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
 <span class="n">right_ends</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
 
+<span class="n">total_comps</span> <span class="o">=</span> <span class="n">sf2015</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Total Compensation'</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">first_sample</span> <span class="o">=</span> <span class="n">sf2015</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">first_sample</span> <span class="o">=</span> <span class="n">total_comps</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">medians</span> <span class="o">=</span> <span class="n">bootstrap_median</span><span class="p">(</span><span class="n">first_sample</span><span class="p">,</span> <span class="s1">'Total Compensation'</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
     <span class="n">left_ends</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">left_ends</span><span class="p">,</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">medians</span><span class="p">))</span>
     <span class="n">right_ends</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">right_ends</span><span class="p">,</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">97.5</span><span class="p">,</span> <span class="n">medians</span><span class="p">))</span>
@@ -398,6 +400,9 @@
     <span class="s1">'Right'</span><span class="p">,</span> <span class="n">right_ends</span>
 <span class="p">)</span>    
 </pre></div></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For each of the 100 replications, we get one interval of estimates of the median.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">intervals</span>
@@ -411,56 +416,74 @@
     </thead>
     <tbody>
         <tr>
-            <td>102167</td> <td>111837</td>
+            <td>100547 </td> <td>115112</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>106235</td> <td>117520</td>
+            <td>98788.4</td> <td>112129</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>103018</td> <td>116229</td>
+            <td>107981 </td> <td>121218</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>101391</td> <td>112418</td>
+            <td>100965 </td> <td>114796</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>107984</td> <td>119296</td>
+            <td>102596 </td> <td>112056</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>105501</td> <td>118461</td>
+            <td>105386 </td> <td>113909</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>105977</td> <td>115112</td>
+            <td>105225 </td> <td>116918</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>105049</td> <td>114654</td>
+            <td>102844 </td> <td>116712</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>106535</td> <td>119708</td>
+            <td>106584 </td> <td>118054</td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>103854</td> <td>115891</td>
+            <td>108451 </td> <td>118421</td>
         </tr>
     </tbody>
 </table>
 <p>... (90 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>How many of these intervals contain the population median?</p></div></div>
+<p>The good intervals are those that contain the parameter we are trying to estimate. Typically the parameter is unknown, but in this section we happen to know what the parameter is.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_median</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>110305.78999999999</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>How many of the 100 intervals contain the population median? That's the number of intervals where the left end is below the population median and the right end is above.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">intervals</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Left'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below</span><span class="p">(</span><span class="n">pop_median</span><span class="p">))</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Right'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">above</span><span class="p">(</span><span class="n">pop_median</span><span class="p">))</span><span class="o">.</span><span class="n">num_rows</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>95</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It takes a few minutes to construct all the intervals, but try it again if you have the patience. Most likely, about 95 of the 100 intervals will be good ones: they will contain the parameter.</p>
+<p>It's hard to show you all the intervals on the horizontal axis as they have large overlaps – after all, they are all trying to estimate the same parameter. The graphic below shows each interval on the same axes by stacking them vertically. The vertical axis is simply the number of the replication from which the interval was generated.</p>
+<p>The red line is where the parameter is. Good intervals cover the parameter; there are about 95 of these, typically.</p>
+<p>If an interval doesn't cover the parameter, it's a dud. The duds are the ones where you can see "daylight" around the red line. There are very few of them – about 5, typically – but they do happen.</p>
+<p>Any method based on sampling has the possibility of being off. The beauty of methods based on random sampling is that we can quantify how often they are likely to be off.</p></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Bootstrap_52_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To summarize what the simulation shows, suppose you are estimating the population median by the following process:</p>
