@@ -60,3 +60,4 @@
 * [Estimation](chapters/11/estimation.md)
   * [Percentiles](chapters/11/1/percentiles.md)
   * [The Bootstrap](chapters/11/2/bootstrap.md)
+  * [Confidence Intervals](chapters/11/3/confidence-intervals.md)
