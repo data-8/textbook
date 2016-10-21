@@ -61,3 +61,4 @@
   * [Percentiles](chapters/11/1/percentiles.md)
   * [The Bootstrap](chapters/11/2/bootstrap.md)
   * [Confidence Intervals](chapters/11/3/confidence-intervals.md)
+  * [Using Confidence Intervals](chapters/11/4/using-confidence-intervals.md)
