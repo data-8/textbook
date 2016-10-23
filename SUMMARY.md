@@ -62,3 +62,5 @@
   * [The Bootstrap](chapters/11/2/bootstrap.md)
   * [Confidence Intervals](chapters/11/3/confidence-intervals.md)
   * [Using Confidence Intervals](chapters/11/4/using-confidence-intervals.md)
+* [Why the Mean Matters](chapters/12/why-the-mean-matters.md)
+  * [Properties of the Mean](chapters/12/1/properties-of-the-mean.md)
