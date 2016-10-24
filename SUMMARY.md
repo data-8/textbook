@@ -65,3 +65,4 @@
 * [Why the Mean Matters](chapters/12/why-the-mean-matters.md)
   * [Properties of the Mean](chapters/12/1/properties-of-the-mean.md)
   * [Variability](chapters/12/2/variability.md)
+  * [The SD and the Normal Curve](chapters/12/3/sd-and-the-normal-curve.md)
