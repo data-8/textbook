@@ -66,3 +66,4 @@
   * [Properties of the Mean](chapters/12/1/properties-of-the-mean.md)
   * [Variability](chapters/12/2/variability.md)
   * [The SD and the Normal Curve](chapters/12/3/sd-and-the-normal-curve.md)
+  * [The Central Limit Theorem](chapters/12/4/central-limit-theorem.md)
