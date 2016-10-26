@@ -57,16 +57,10 @@
 <p>To draw that basic curve, we will use the units into which we can convert every list: standard units. The resulting curve is therefore called the <em>standard normal curve</em>.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The standard normal curve has an impressive equation. But for now, it is best to think of it as a smoothed version of a histogram of a variable that has been measured in standard units.</p>
+<p>The standard normal curve has an impressive equation. But for now, it is best to think of it as a smoothed outline of a histogram of a variable that has been measured in standard units and has a bell-shaped distribution.</p>
 $$
 \phi(z) = {\frac{1}{\sqrt{2 \pi}}} e^{-\frac{1}{2}z^2}, ~~ -\infty &lt; z &lt; \infty
 $$</div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># The standard normal curve</span>
-
-<span class="n">plot_normal_cdf</span><span class="p">()</span>
-</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/SD_and_the_Normal_Curve_11_0.png"/></div>
 <div class="inner_cell">
@@ -95,13 +89,7 @@ $$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id='The-standard-normal-"cdf"'>The standard normal "cdf"<a class="anchor-link" href='#The-standard-normal-"cdf"'>¶</a></h3><p>The fundamental function for finding areas under the normal curve is <code>stats.norm.cdf</code>. It takes a numerical argument and returns all the area under the curve to the left of that number. Formally, it is called the "cumulative distribution function" of the standard normal curve. That rather unwieldy mouthful is abbreviated as cdf.</p>
-<p>Let us use this function to find the area to the left of $z=1$ under the standard normal curve. First, we visualize the area we are trying to find. The function <code>plot_normal_cdf</code> takes a numerical argument and shades all the area under the normal curve to the left of that number. In more technical terms, the argument is the upper bound of the region to be shaded; the lower bound is $-\infty$.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Area under the standard normal curve, below 1</span>
-
-<span class="n">plot_normal_cdf</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div></div></div>
+<p>Let us use this function to find the area to the left of $z=1$ under the standard normal curve.</p></div></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/SD_and_the_Normal_Curve_16_0.png"/></div>
 <div class="inner_cell">
@@ -116,14 +104,7 @@ $$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>That's about 84%. We can now use the symmetry of the curve and the fact that the total area under the curve is 1 to find other areas.</p>
-<p>For visualization, will be using <code>plot_normal_cdf</code> with the optional second numerical argument <code>lbound</code> which sets the lower bound of the area to be shaded. By default, the upper bound is $\infty$, so all the area to the right gets shaded.</p>
 <p>The area to the right of $z=1$ is about 100% - 84% = 16%.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Area under the standard normal curve, above 1</span>
-
-<span class="n">plot_normal_cdf</span><span class="p">(</span><span class="n">lbound</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/SD_and_the_Normal_Curve_20_0.png"/></div>
 <div class="inner_cell">
@@ -134,13 +115,7 @@ $$</div></div>
 <pre>0.15865525393145707</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The area between $z=-1$ and $z=1$ can be computed in several different ways.  It is the gold area in the curve below.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Area under the standard normal curve, between -1 and 1</span>
-
-<span class="n">plot_normal_cdf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">lbound</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-</pre></div></div></div>
+<p>The area between $z=-1$ and $z=1$ can be computed in several different ways.  It is the gold area under the curve below.</p></div></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/SD_and_the_Normal_Curve_23_0.png"/></div>
 <div class="inner_cell">
@@ -156,12 +131,6 @@ $$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By a similar calculation, we see that the area between $-2$ and 2 is about 95%.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Area under the standard normal curve, between -2 and 2</span>
-
-<span class="n">plot_normal_cdf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">lbound</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
-</pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/SD_and_the_Normal_Curve_27_0.png"/></div>
 <div class="inner_cell">
@@ -176,12 +145,12 @@ $$</div></div>
 <p>That is quite a bit more than Chebychev's lower bound of 75%. Chebychev's bound is weaker because it has to work for all distributions. If we know that a distribution is normal, we have good approximations to the proportions, not just bounds.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The table below compares what we know about all distributions and about normal distributions. Notice that when $z=1$, Chebychev's bound is correct but not very illuminating.</p>
+<p>The table below compares what we know about all distributions and about normal distributions. Notice that when $z=1$, Chebychev's bound is correct but not illuminating.</p>
 <table>
 <thead><tr>
 <th style="text-align:left">Percent in Range</th>
-<th style="text-align:left">All Distributions</th>
-<th style="text-align:left">Normal Distribution</th>
+<th style="text-align:left">All Distributions: Bound</th>
+<th style="text-align:left">Normal Distribution: Approximation</th>
 </tr>
 </thead>
 <tbody>
@@ -201,4 +170,8 @@ $$</div></div>
 <td style="text-align:left">about 99.73%</td>
 </tr>
 </tbody>
-</table></div></div></div>
+</table></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div></div></div></div>
