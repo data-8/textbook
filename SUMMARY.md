@@ -67,3 +67,5 @@
   * [Variability](chapters/12/2/variability.md)
   * [The SD and the Normal Curve](chapters/12/3/sd-and-the-normal-curve.md)
   * [The Central Limit Theorem](chapters/12/4/central-limit-theorem.md)
+  * [The Variability of the Sample Mean](chapters/12/5/variability-of-the-sample-mean.md)
+  * [Choosing a Sample Size](chapters/12/6/choosing-a-sample-size.md)
