@@ -1,1 +1,1 @@
-{% include "../../../notebooks-html/Choosing_a-Sample_Size.html" %}
+{% include "../../../notebooks-html/Choosing_a_Sample_Size.html" %}
