@@ -46,8 +46,80 @@ $$</div></div>
 <p>Remember that the possible values in the population are only 0 and 1.</p>
 <p>The blue histogram (50% 1's and 50% 0's) has more spread than the gold. The mean is 0.5. Half the deviations from mean are equal to 0.5 and the other half equal to -0.5, so the SD is 0.5.</p>
 <p>In the gold histogram, all of the area is being squished up around 1, leading to less spread. 90% of the deviations are small: 0.1. The other 10% are -0.9 which is large, but overall the spread is smaller than in the blue histogram.</p>
-<p>The same observation would hold if we varied the proportion of 1's or let the proportion of 0's be larger than the proportion of 1's. In fact:</p>
-<p><strong>The SD of a population of 1's and 0's is at most 0.5. That's the value of the SD when 50% of the population is coded 1 and the other 50% are coded 0.</strong></p></div></div>
+<p>The same observation would hold if we varied the proportion of 1's or let the proportion of 0's be larger than the proportion of 1's. Let's check this by calculating the SDs of populations of 10 elements that only consist of 0's and 1's, in varying proportions. The function <code>np.ones</code> is useful for this. It takes a positive integer as its argument and returns an array consisting of that many 1's.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sd</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># Create an array of i 1's and (10-i) 0's</span>
+    <span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="o">-</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">population</span><span class="p">))</span>
+    
+<span class="n">zero_one_sds</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s2">"Population Proportion of 1's"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="s2">"Population SD"</span><span class="p">,</span> <span class="n">sd</span>
+<span class="p">)</span>
+
+<span class="n">zero_one_sds</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Population Proportion of 1's</th> <th>Population SD</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0.1                         </td> <td>0.3          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0.2                         </td> <td>0.4          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0.3                         </td> <td>0.458258     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0.4                         </td> <td>0.489898     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0.5                         </td> <td>0.5          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0.6                         </td> <td>0.489898     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0.7                         </td> <td>0.458258     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0.8                         </td> <td>0.4          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0.9                         </td> <td>0.3          </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Not surprisingly, the SD of a population with 10% 1's and 90% 0's is the same as that of a population with 90% 1's and 10% 0's. That's because you switch the bars of one histogram to get the other; there is no change in spread.</p>
+<p>More importantly for our purposes, the SD increases as the proportion of 1's increases, until the proportion of 1's is 0.5; then it starts to decrease symmetrically.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zero_one_sds</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s2">"Population Proportion of 1's"</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Choosing_a_Sample_Size_8_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Summary:</strong> The SD of a population of 1's and 0's is at most 0.5. That's the value of the SD when 50% of the population is coded 1 and the other 50% are coded 0.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-Sample-Size">The Sample Size<a class="anchor-link" href="#The-Sample-Size">¶</a></h3><p>We know that 

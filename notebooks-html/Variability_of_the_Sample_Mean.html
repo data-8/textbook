@@ -11,7 +11,7 @@
 </script>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-Variability-of-the-Sample-Mean">The Variability of the Sample Mean<a class="anchor-link" href="#The-Variability-of-the-Sample-Mean">¶</a></h3><p>By the Central Limit Theorem, the probability distribution of a the mean of a large random sample is roughly normal. The bell curve is centered at the population mean. Some of the sample means are higher, and some lower, but the deviations from the population mean are roughly symmetric on either side, as we have seen repeatedly. Formally, probability theory shows that the sample mean is an <em>unbiased</em> estimate of the population mean.</p>
+<h3 id="The-Variability-of-the-Sample-Mean">The Variability of the Sample Mean<a class="anchor-link" href="#The-Variability-of-the-Sample-Mean">¶</a></h3><p>By the Central Limit Theorem, the probability distribution of the mean of a large random sample is roughly normal. The bell curve is centered at the population mean. Some of the sample means are higher, and some lower, but the deviations from the population mean are roughly symmetric on either side, as we have seen repeatedly. Formally, probability theory shows that the sample mean is an <em>unbiased</em> estimate of the population mean.</p>
 <p>In our simulations, we also noticed that the means of larger samples tend to be more tightly clustered around the population mean than means of smaller samples. In this section, we will quantify the variability of the sample mean and develop a relation between the variability and the sample size.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -71,9 +71,9 @@
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Sample size:  100
 Population mean: 16.6581555154
-Average of sample means:  16.637895
+Average of sample means:  16.662059
 Population SD: 39.4801998516
-SD of sample means: 3.9921668025
+SD of sample means: 3.90507237968
 </pre></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/Variability_of_the_Sample_Mean_9_1.png"/></div>
@@ -86,9 +86,9 @@ SD of sample means: 3.9921668025
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Sample size:  400
 Population mean: 16.6581555154
-Average of sample means:  16.6433635
+Average of sample means:  16.67117625
 Population SD: 39.4801998516
-SD of sample means: 1.97280960228
+SD of sample means: 1.98326299651
 </pre></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/Variability_of_the_Sample_Mean_10_1.png"/></div>
@@ -100,17 +100,17 @@ SD of sample means: 1.97280960228
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Sample size:  625
-Population average: 16.6581555154
-Average of sample averages:  16.63275904
+Population mean: 16.6581555154
+Average of sample means:  16.68523712
 Population SD: 39.4801998516
-SD of sample averages 1.56543771116
+SD of sample means: 1.60089096006
 </pre></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/Variability_of_the_Sample_Mean_11_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can see the Central Limit Theorem in action – the histograms of the sample means are roughly normal, even though the histogram of the delays themselves is far from normal.</p>
-<p>You can also see that each of the three histograms of the sample means is centered very close to the population mean. In each case, the "average of sample means" is very close to 16.66 minutes, the population mean. Both values are provided in the printout above each histogram.</p></div></div>
+<p>You can also see that each of the three histograms of the sample means is centered very close to the population mean. In each case, the "average of sample means" is very close to 16.66 minutes, the population mean. Both values are provided in the printout above each histogram. As expected, the sample mean is an unbiased estimate of the population mean.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-SD-of-All-the-Sample-Means">The SD of All the Sample Means<a class="anchor-link" href="#The-SD-of-All-the-Sample-Means">¶</a></h3><p>You can also see that the histograms get narrower, and hence taller, as the sample size increases. We have seen that before, but now we will pay closer attention to the measure of spread.</p>
@@ -124,7 +124,7 @@ SD of sample averages 1.56543771116
 <pre>39.480199851609314</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Take a look at the SDs in the histograms above. In all three of them, the SD of the population of delays is about 40 minutes, because all the samples were taken from the same population.</p>
+<p>Take a look at the SDs in the sample mean histograms above. In all three of them, the SD of the population of delays is about 40 minutes, because all the samples were taken from the same population.</p>
 <p>Now look at the SD of all 10,000 sample means, when the sample size is 100. That SD is about one-tenth of the population SD. When the sample size is 400, the SD of all the sample means is about one-twentieth of the population SD. When the sample size is 625, the SD of the sample means is about one-twentyfifth of the population SD.</p>
 <p>It seems like a good idea to compare the SD of the empirical distribution of the sample means to the quantity "population SD divided by the square root of the sample size."</p></div></div>
 <div class="inner_cell">
@@ -163,43 +163,43 @@ SD of sample averages 1.56543771116
     </thead>
     <tbody>
         <tr>
-            <td>25           </td> <td>7.81875                  </td> <td>7.89604       </td>
+            <td>25           </td> <td>7.95017                  </td> <td>7.89604       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>50           </td> <td>5.54507                  </td> <td>5.58334       </td>
+            <td>50           </td> <td>5.53425                  </td> <td>5.58334       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>75           </td> <td>4.53838                  </td> <td>4.55878       </td>
+            <td>75           </td> <td>4.54429                  </td> <td>4.55878       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>100          </td> <td>3.9376                   </td> <td>3.94802       </td>
+            <td>100          </td> <td>3.96157                  </td> <td>3.94802       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>125          </td> <td>3.5396                   </td> <td>3.53122       </td>
+            <td>125          </td> <td>3.51095                  </td> <td>3.53122       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>150          </td> <td>3.2533                   </td> <td>3.22354       </td>
+            <td>150          </td> <td>3.23949                  </td> <td>3.22354       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>175          </td> <td>2.97723                  </td> <td>2.98442       </td>
+            <td>175          </td> <td>3.00694                  </td> <td>2.98442       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>200          </td> <td>2.80106                  </td> <td>2.79167       </td>
+            <td>200          </td> <td>2.74606                  </td> <td>2.79167       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>225          </td> <td>2.6404                   </td> <td>2.63201       </td>
+            <td>225          </td> <td>2.63865                  </td> <td>2.63201       </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>250          </td> <td>2.50004                  </td> <td>2.49695       </td>
+            <td>250          </td> <td>2.51853                  </td> <td>2.49695       </td>
         </tr>
     </tbody>
 </table>
@@ -238,8 +238,4 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-Square-Root-Law">The Square Root Law<a class="anchor-link" href="#The-Square-Root-Law">¶</a></h3><p>From the table of SD comparisons, you can see that the SD of the means of random samples of 25 flight delays is about 8 minutes. If you multiply the sample size by 4, you'll get samples of size 100. The SD of the means of all of those samples is about 4 minutes. That's smaller than 8 minutes, but it's not 4 times as small; it's only 2 times as small. That's because the sample size in the denominator has a square root over it. The sample size increased by a factor of 4, but the SD went down by a factor of $2 = \sqrt{4}$. In other words, the accuracy went up by a factor of $2 = \sqrt{4}$.</p>
 <p>In general, when you multiply the sample size by a factor, the accuracy of the sample mean goes up by the square root of that factor.</p>
-<p>So to increase accuracy by a factor of 10, you have to multiply sample size by a factor of 100. Accuracy doesn't come cheap!</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<p>So to increase accuracy by a factor of 10, you have to multiply sample size by a factor of 100. Accuracy doesn't come cheap!</p></div></div></div>
