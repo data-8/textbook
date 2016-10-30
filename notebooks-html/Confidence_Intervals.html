@@ -293,7 +293,7 @@ $$</div></div>
 <span class="n">make_array</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([ 26.90204429,  27.55962521])</pre></div>
+<pre>array([ 26.89778535,  27.55962521])</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The 95% confidence interval goes from about 26.9 years to about 27.6 years. That is, we are estimating that the average age of the mothers in the population is somewhere in the interval 26.9 years to 27.6 years.</p>
@@ -329,12 +329,12 @@ $$</div></div>
 <h3 id="An-80%-Confidence-Interval">An 80% Confidence Interval<a class="anchor-link" href="#An-80%-Confidence-Interval">¶</a></h3><p>You can use the bootstrapped sample means to construct an interval of any level of confidence. For example, to construct an 80% confidence interval for the mean age in the population, you would take the "middle 80%" of the resampled means. So you would want 10% of the disribution in each of the two tails, and hence the endpoints would be the 10th and 90th percentiles of the resampled means.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">left_80</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">bstrap_means</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">left_80</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">bstrap_means</span><span class="p">)</span>
 <span class="n">right_80</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="n">bstrap_means</span><span class="p">)</span>
 <span class="n">make_array</span><span class="p">(</span><span class="n">left_80</span><span class="p">,</span> <span class="n">right_80</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([ 27.08517888,  27.45144804])</pre></div>
+<pre>array([ 27.01192504,  27.439523  ])</pre></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">resampled_means</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
@@ -344,7 +344,7 @@ $$</div></div>
 <img src="/notebooks-images/Confidence_Intervals_36_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This 80% confidence interval is much shorter than the 95% confidence interval. It only goes from about 27.1 years to about 27.4 years. While that's a tight set of estimates, you know that this process only produces a good interval about 80% of the time.</p>
+<p>This 80% confidence interval is much shorter than the 95% confidence interval. It only goes from about 27.0 years to about 27.4 years. While that's a tight set of estimates, you know that this process only produces a good interval about 80% of the time.</p>
 <p>The earlier process produced a wider interval but we had more confidence in the process that generated it.</p>
 <p>To get a narrow confidence interval at a high level of confidence, you'll have to start with a larger sample. We'll see why in the next chapter.</p></div></div>
 <div class="inner_cell">
@@ -434,8 +434,4 @@ $$</div></div>
 <li>The original sample is very small, say less than 10 or 15.</li>
 </ul>
 </li>
-</ul></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+</ul></div></div></div>
