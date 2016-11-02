@@ -71,3 +71,4 @@
   * [Choosing a Sample Size](chapters/12/6/choosing-a-sample-size.md)
 * [Prediction](chapters/13/prediction.md)
   * [Correlation](chapters/13/1/correlation.md)
+  * [The Regression Line](chapters/13/2/regression-line.md)
