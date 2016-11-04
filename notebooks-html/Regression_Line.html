@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/galton.csv&path=notebooks/Regression_Line.ipynb">Interact</a>
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/galton.csv&path=notebooks/baby.csv&path=notebooks/Regression_Line.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -374,8 +374,60 @@ $$<p>This is also known as the <em>regression equation.</em> The principal use o
 <p>The grey dots show the regression predictions, all on the regression line. Notice how the line is very close to the gold graph of averages. For these data, the regression line does a good job of approximating the centers of the vertical strips.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Even though we won't establish the mathematical basis for the regression equation, we can see that it gives pretty good predictions when the scatter plot is football shaped. It is a remarkable fact of mathematics that no matter what the shape of the scatter plot, the same equation gives the "best" among all straight lines. That's the topic of the next section.</p></div></div>
+<h3 id="Fitted-Values">Fitted Values<a class="anchor-link" href="#Fitted-Values">¶</a></h3><p>The predictions all lie on the line and are known as the "fitted values". The function <code>fit</code> takes the name of the table and the labels of $x$ and $y$, and returns an array of fitted values, one fitted value for each point in the scatter plot.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">"""Return the height of the regression line at each x value."""</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">intercept</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is easier to see the line in the graph below than in the one above.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Fitted'</span><span class="p">,</span> <span class="n">fit</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">'MidParent'</span><span class="p">,</span> <span class="s1">'Child'</span><span class="p">))</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'MidParent'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Regression_Line_48_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Another way to draw the line is to use the option <code>fit_line=True</code> with the Table method <code>scatter</code>.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'MidParent'</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Regression_Line_50_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Units-of-Measurement-of-the-Slope">Units of Measurement of the Slope<a class="anchor-link" href="#Units-of-Measurement-of-the-Slope">¶</a></h3><p>The slope is a ratio, and it worth taking a moment to study the units in which it is measured. Our example comes from the familiar dataset about mothers who gave birth in a hospital system. The scatter plot of pregnancy weights versus heights looks like a football that has been used in one game too many, but it's close enough to a football that we can justify putting our fitted line through it. In later sections we will see how to make such justifications more formal.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'baby.csv'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Maternal Height'</span><span class="p">,</span> <span class="s1">'Maternal Pregnancy Weight'</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Regression_Line_53_0.png"/></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slope</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Maternal Height'</span><span class="p">,</span> <span class="s1">'Maternal Pregnancy Weight'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>3.5728462592750558</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The slope of the regression line is <strong>3.57 pounds per inch</strong>. This means that for two women who are 1 inch apart in height, our prediction of pregnancy weight will differ by 3.57 pounds. For a woman who is 2 inches taller than another, our prediction of pregnancy weight will be 
+$$
+2 \times 3.57 ~=~ 7.14
+$$
+pounds more than our prediction for the shorter woman.</p>
+<p>Notice that the successive vertical strips in the scatter plot are one inch apart, because the heights have been rounded to the nearest inch. Another way to think about the slope is to take any two consecutive strips (which are necessarily 1 inch apart), corresponding to two groups of women who are separated by 1 inch in height. The slope of 3.57 pounds per inch means that the average pregnancy weight of the taller group is about 3.57 pounds more than that of the shorter group.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Endnote">Endnote<a class="anchor-link" href="#Endnote">¶</a></h3><p>Even though we won't establish the mathematical basis for the regression equation, we can see that it gives pretty good predictions when the scatter plot is football shaped. It is a surprising mathematical fact that no matter what the shape of the scatter plot, the same equation gives the "best" among all straight lines. That's the topic of the next section.</p></div></div></div>

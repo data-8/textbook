@@ -1,0 +1,510 @@
+<div id="ipython-notebook">
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/little_women.csv&path=notebooks/shotput.csv&path=notebooks/Method_of_Least_Squares.ipynb">Interact</a>
+            
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      processEscapes: true
+    }
+  });
+</script>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Method-of-Least-Squares">The Method of Least Squares<a class="anchor-link" href="#The-Method-of-Least-Squares">¶</a></h3><p>We have retraced the steps that Galton and Pearson took to develop the equation of the regression line that runs through a football shaped scatter plot. But not all scatter plots are football shaped, not even linear ones. Does every scatter plot have a "best" line that goes through it? If so, can we still use the formulas for the slope and intercept developed in the previous section, or do we need new ones?</p>
+<p>To address these questions, we need a reasonable definition of "best". Recall that the purpose of the line is to <em>predict</em> or <em>estimate</em> values of $y$, given values of $x$. Estimates typically aren't perfect. Each one is off the true value by an <em>error</em>. A reasonable criterion for a line to be the "best" is for it to have the smallest possible overall error among all straight lines.</p>
+<p>In this section we will make this criterion precise and see if we can identify the best straight line under the criterion.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our first example is a dataset that has one row for every chapter of the novel "Little Women." The goal is to estimate the number of characters (that is, letters, spaces punctuation marks, and so on) based on the number of periods. Recall that we attempted to do this in the very first lecture of this course.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">little_women</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'little_women.csv'</span><span class="p">)</span>
+<span class="n">little_women</span> <span class="o">=</span> <span class="n">little_women</span><span class="o">.</span><span class="n">move_to_start</span><span class="p">(</span><span class="s1">'Periods'</span><span class="p">)</span>
+<span class="n">little_women</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Periods</th> <th>Characters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>189    </td> <td>21759     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>188    </td> <td>22148     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>231    </td> <td>20558     </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (44 rows omitted)</p></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">little_women</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Periods'</span><span class="p">,</span> <span class="s1">'Characters'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_5_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To explore the data, we will need to use the functions <code>correlation</code>, <code>slope</code>, <code>intercept</code>, and <code>fit</code> defined in the previous section.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">little_women</span><span class="p">,</span> <span class="s1">'Periods'</span><span class="p">,</span> <span class="s1">'Characters'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.92295768958548163</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The scatter plot is remarkably close to linear, and the correlation is more than 0.92.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Error-in-Estimation">Error in Estimation<a class="anchor-link" href="#Error-in-Estimation">¶</a></h3><p>The graph below shows the scatter plot and line that we developed in the previous section. We don't yet know if that's the best among all lines. We first have to say precisely what "best" means.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_with_predictions</span> <span class="o">=</span> <span class="n">little_women</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Linear Prediction'</span><span class="p">,</span> <span class="n">fit</span><span class="p">(</span><span class="n">little_women</span><span class="p">,</span> <span class="s1">'Periods'</span><span class="p">,</span> <span class="s1">'Characters'</span><span class="p">))</span>
+<span class="n">lw_with_predictions</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Periods'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_10_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Corresponding to each point on the scatter plot, there is an error of prediction calculated as the actual value minus the predicted value. It is the vertical distance between the point and the line, with a negative sign if the point is below the line.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">actual</span> <span class="o">=</span> <span class="n">lw_with_predictions</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Characters'</span><span class="p">)</span>
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">lw_with_predictions</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Linear Prediction'</span><span class="p">)</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">actual</span> <span class="o">-</span> <span class="n">predicted</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_with_predictions</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Error'</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Periods</th> <th>Characters</th> <th>Linear Prediction</th> <th>Error</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>189    </td> <td>21759     </td> <td>21183.6          </td> <td>575.403 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>188    </td> <td>22148     </td> <td>21096.6          </td> <td>1051.38 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>231    </td> <td>20558     </td> <td>24836.7          </td> <td>-4278.67</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>195    </td> <td>25526     </td> <td>21705.5          </td> <td>3820.54 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>255    </td> <td>23395     </td> <td>26924.1          </td> <td>-3529.13</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>140    </td> <td>14622     </td> <td>16921.7          </td> <td>-2299.68</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>131    </td> <td>14431     </td> <td>16138.9          </td> <td>-1707.88</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>214    </td> <td>22476     </td> <td>23358            </td> <td>-882.043</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>337    </td> <td>33767     </td> <td>34056.3          </td> <td>-289.317</td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>185    </td> <td>18508     </td> <td>20835.7          </td> <td>-2327.69</td>
+        </tr>
+    </tbody>
+</table>
+<p>... (37 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can use <code>slope</code> and <code>intercept</code> to calculate the slope and intercept of the fitted line. The graph below shows the line (in light blue). The errors corresponding to four of the points are shown in red. There is nothing special about those four points. They were just chosen for clarity of the display. The function <code>lw_errors</code> takes a slope and an intercept (in that order) as its arguments and draws the figure.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_reg_slope</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">little_women</span><span class="p">,</span> <span class="s1">'Periods'</span><span class="p">,</span> <span class="s1">'Characters'</span><span class="p">)</span>
+<span class="n">lw_reg_intercept</span> <span class="o">=</span> <span class="n">intercept</span><span class="p">(</span><span class="n">little_women</span><span class="p">,</span> <span class="s1">'Periods'</span><span class="p">,</span> <span class="s1">'Characters'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Slope of Regression Line:    '</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">lw_reg_slope</span><span class="p">),</span> <span class="s1">'characters per period'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Intercept of Regression Line:'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">lw_reg_intercept</span><span class="p">),</span> <span class="s1">'characters'</span><span class="p">)</span>
+<span class="n">lw_errors</span><span class="p">(</span><span class="n">lw_reg_slope</span><span class="p">,</span> <span class="n">lw_reg_intercept</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Slope of Regression Line:     87.0 characters per period
+Intercept of Regression Line: 4745.0 characters
+</pre></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_17_1.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Had we used a different line to create our estimates, the errors would have been different. The graph below shows how big the errors would be if we were to use another line for estimation. The second graph shows large errors obtained by using a line that is downright silly.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_errors</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_19_0.png"/></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_errors</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_20_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Root-Mean-Squared-Error">Root Mean Squared Error<a class="anchor-link" href="#Root-Mean-Squared-Error">¶</a></h3><p>What we need now is one overall measure of the rough size of the errors. You will recognize the approach to creating this – it's exactly the way we developed the SD.</p>
+<p>If you use any arbitrary line to calculate your estimates, then some of your errors are likely to be positive and others negative. To avoid cancellation when measuring the rough size of the errors, we will take the mean of the sqaured errors rather than the mean of the errors themselves.</p>
+<p>The mean squared error of estimation is a measure of roughly how big the squared errors are, but as we have noted earlier, its units are hard to interpret. Taking the square root yields the root mean square error (rmse), which is in the same units as the variable being predicted and therefore much easier to understand.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Minimizing-the-Root-Mean-Squared-Error">Minimizing the Root Mean Squared Error<a class="anchor-link" href="#Minimizing-the-Root-Mean-Squared-Error">¶</a></h3><p>Our observations so far can be summarized as follows.</p>
+<ul>
+<li>To get estimates of $y$ based on $x$, you can use any line you want.</li>
+<li>Every line has a root mean squared error of estimation.</li>
+<li>"Better" lines have smaller errors.</li>
+</ul>
+<p>Is there a "best" line? That is, is there a line that minimizes the root mean squared error among all lines?</p>
+<p>To answer this question, we will start by defining a function <code>lw_rmse</code> to compute the root mean squared error of any line through the Little Women scatter diagram. The function takes the slope and the intercept (in that order) as its arguments.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">lw_rmse</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">):</span>
+    <span class="n">lw_errors</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">little_women</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Periods'</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">little_women</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Characters'</span><span class="p">)</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">intercept</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Root mean squared error:"</span><span class="p">,</span> <span class="n">mse</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_rmse</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Root mean squared error: 4322.16783177
+</pre></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_24_1.png"/></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_rmse</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Root mean squared error: 16710.1198374
+</pre></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_25_1.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Bad lines have big values of rmse, as expected. But the rmse is much smaller if we choose a slope and intercept close to those of the regression line.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_rmse</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">4000</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Root mean squared error: 2715.53910638
+</pre></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_27_1.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is the root mean squared error corresponding to the regression line. By a remarkable fact of mathematics, no other line can beat this one.</p>
+<ul>
+<li><strong>The regression line is the unique straight line that minimizes the mean squared error of estimation among all straight lines.</strong></li>
+</ul></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_rmse</span><span class="p">(</span><span class="n">lw_reg_slope</span><span class="p">,</span> <span class="n">lw_reg_intercept</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Root mean squared error: 2701.69078531
+</pre></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_29_1.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The proof of this statement requires abstract mathematics that is beyond the scope of this course. On the other hand, we do have a powerful tool – Python – that performs large numerical computations with ease. So we can use Python to confirm that the regression line minimizes the mean squared error.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Numerical-Optimization">Numerical Optimization<a class="anchor-link" href="#Numerical-Optimization">¶</a></h3><p>First note that a line that minimizes the root mean squared error is also a line that minimizes the squared error. The square root makes no difference to the minimization. So we will save ourselves a step of computation and just minimize the mean squared error (mse).</p>
+<p>We are trying to predict the number of characters ($y$) based on the number of periods ($x$) in chapters of Little Women. If we use the line 
+$$
+\mbox{prediction} ~=~ ax + b
+$$
+it will have an mse that depends on the slope $a$ and the intercept $b$. The function <code>lw_mse</code> takes the slope and intercept as its arguments and returns the corresponding mse.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">lw_mse</span><span class="p">(</span><span class="n">any_slope</span><span class="p">,</span> <span class="n">any_intercept</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">little_women</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Periods'</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">little_women</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Characters'</span><span class="p">)</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">any_slope</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">any_intercept</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's check that <code>lw_mse</code> gets the right answer for the root mean squared error of the regression line. Remember that <code>lw_mse</code> returns the mean squared error, so we have to take the square root to get the rmse.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_mse</span><span class="p">(</span><span class="n">lw_reg_slope</span><span class="p">,</span> <span class="n">lw_reg_intercept</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>2701.690785311856</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's the same as the value we got by using <code>lw_rmse</code> earlier:</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_rmse</span><span class="p">(</span><span class="n">lw_reg_slope</span><span class="p">,</span> <span class="n">lw_reg_intercept</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Root mean squared error: 2701.69078531
+</pre></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_36_1.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can confirm that <code>lw_mse</code> returns the correct value for other slopes and intercepts too. For example, here is the rmse of the extremely bad line that we tried earlier.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_mse</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>16710.119837353752</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And here is the rmse for a line that is close to the regression line.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lw_mse</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">4000</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>2715.5391063834586</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we experiment with different values, we can find a low-error slope and intercept through trial and error, but that would take a while. Fortunately, there is a Python function that does all the trial and error for us.</p>
+<p>The <code>minimize</code> function can be used to find the arguments of a function for which the function returns its minimum value. Python uses a similar trial-and-error approach, following the changes that lead to incrementally lower output values.</p>
+<p>The argument of <code>minimize</code> is a function that itself takes numerical arguments and returns a numerical value. For example, the function <code>lw_mse</code> takes a numerical slope and intercept as its arguments and returns the corresponding mse.</p>
+<p>The call <code>minimize(lw_mse)</code> returns an array consisting of the slope and the intercept that minimize the mse. These minimizing values are excellent approximations arrived at by intelligent trial-and-error, not exact values based on formulas.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">best</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">lw_mse</span><span class="p">)</span>
+<span class="n">best</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([   86.97784117,  4744.78484535])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These values are the same as the values we calculated earlier by using the <code>slope</code> and <code>intercept</code> functions. We see small deviations due to the inexact nature of <code>minimize</code>, but the values are essentially the same.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"slope from formula:        "</span><span class="p">,</span> <span class="n">lw_reg_slope</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"slope from minimize:       "</span><span class="p">,</span> <span class="n">best</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"intercept from formula:    "</span><span class="p">,</span> <span class="n">lw_reg_intercept</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"intercept from minimize:   "</span><span class="p">,</span> <span class="n">best</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>slope from formula:         86.9778412583
+slope from minimize:        86.97784116615884
+intercept from formula:     4744.78479657
+intercept from minimize:    4744.784845352655
+</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Least-Squares-Line">The Least Squares Line<a class="anchor-link" href="#The-Least-Squares-Line">¶</a></h3><p>Therefore, we have found not only that the regression line minimizes mean squared error, but also that minimizing mean squared error gives us the regression line. The regression line is the only line that minimizes mean squared error.</p>
+<p>That is why the regression line is sometimes called the "least squares line."</p>
+<p>In the previous section, we developed formulas for the slope and intercept of the regression line through a football shaped scatter diagram. It turns out that the slope and intercept of the least squares line have the same formulas as those we developed, regardless of the shape of the scatter plot.</p>
+<p>Let's confirm this in an example. For the data, we are once again indebted to the rich <a href="http://www.stat.ufl.edu/~winner/datasets.html">data archive of Prof. Larry Winner</a> of the University of Florida. A <a href="http://digitalcommons.wku.edu/ijes/vol6/iss2/10/">2013 study</a> in the International Journal of Exercise Science studied collegiate shot put athletes and examined the relation between strength and shot put distance. The population consists of 28 female collegiate athletes. Strength was measured by the the biggest amount (in kilograms) that the athlete lifted in the "1RM power clean" in the pre-season. The distance (in meters) was the athlete's personal best.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shotput</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'shotput.csv'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shotput</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Weight Lifted</th> <th>Shot Put Distance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>37.5         </td> <td>6.4              </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>51.5         </td> <td>10.2             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>61.3         </td> <td>12.4             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>61.3         </td> <td>13               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>63.6         </td> <td>13.2             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>66.1         </td> <td>13               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>70           </td> <td>12.7             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>92.7         </td> <td>13.9             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>90.5         </td> <td>15.5             </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>90.5         </td> <td>15.8             </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (18 rows omitted)</p></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shotput</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Weight Lifted'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_48_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's not a football shaped scatter plot. In fact, it seems to have a slight non-linear component. But if we insist on using a straight line to make our predictions, there is still one best straight line among all straight lines.</p>
+<p>Our formulas for the slope and intercept of the regression line, derived for football shaped scatter plots, give the following values.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slope</span><span class="p">(</span><span class="n">shotput</span><span class="p">,</span> <span class="s1">'Weight Lifted'</span><span class="p">,</span> <span class="s1">'Shot Put Distance'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.098343821597819972</pre></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intercept</span><span class="p">(</span><span class="n">shotput</span><span class="p">,</span> <span class="s1">'Weight Lifted'</span><span class="p">,</span> <span class="s1">'Shot Put Distance'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>5.9596290983739522</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Does it still make sense to use these formulas even though the scatter plot isn't football shaped? We can answer this by finding the slope and intercept of the line that minimizes the mse.</p>
+<p>We will define the function <code>shotput_linear_mse</code> to take an arbirtary slope and intercept as arguments and return the corresponding mse. Then <code>minimize</code> applied to <code>shotput_linear_mse</code> will return the best slope and intercept.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">shotput_linear_mse</span><span class="p">(</span><span class="n">any_slope</span><span class="p">,</span> <span class="n">any_intercept</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">shotput</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Weight Lifted'</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">shotput</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Shot Put Distance'</span><span class="p">)</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">any_slope</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">any_intercept</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minimize</span><span class="p">(</span><span class="n">shotput_linear_mse</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 0.09834382,  5.95962911])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These values are the same as those we got by using our formulas. To summarize:</p>
+<p><strong>No matter what the shape of the scatter plot, there is a unique line that minimizes the mean squared error of estimation. It is called the regression line, and its slope and intercept are given by</strong></p>
+$$
+\mathbf{\mbox{slope of the regression line}} ~=~ r \cdot
+\frac{\mbox{SD of }y}{\mbox{SD of }x}
+$$$$
+\mathbf{\mbox{intercept of the regression line}} ~=~
+\mbox{average of }y ~-~ \mbox{slope} \cdot \mbox{average of }x
+$$</div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">shotput</span><span class="p">,</span> <span class="s1">'Weight Lifted'</span><span class="p">,</span> <span class="s1">'Shot Put Distance'</span><span class="p">)</span>
+<span class="n">shotput</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Best Straight Line'</span><span class="p">,</span> <span class="n">fitted</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Weight Lifted'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_56_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Nonlinear-Regression">Nonlinear Regression<a class="anchor-link" href="#Nonlinear-Regression">¶</a></h3><p>The graph above reinforces our earlier observation that the scatter plot is a bit curved. So it is better to fit a curve than a straight line. The <a href="http://digitalcommons.wku.edu/ijes/vol6/iss2/10/">study</a> postulated a quadratic relation between the weight lifted and the shot put distance. So let's use quadratic functions as our predictors and see if we can find the best one.</p>
+<p>We have to find the best quadratic function among all quadratic functions, instead of the best straight line among all straight lines. The method of least squares allows us to do this.</p>
+<p>The mathematics of this minimization is complicated and not easy to see just by examining the scatter plot. But numerical minimization is just as easy as it was with linear predictors! We can get the best quadratic predictor by once again using <code>minimize</code>. Let's see how this works.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Recall that a quadratic function has the form</p>
+$$
+f(x) ~=~ ax^2 + bx + c
+$$<p>for constants $a$, $b$, and $c$.</p>
+<p>To find the best quadratic function to predict distance based on weight lifted, using the criterion of least squares, we will first write a function that takes the three constants as its arguments, calculates the fitted values by using the quadratic function above, and then returns the mean squared error.</p>
+<p>The function is called <code>shotput_quadratic_mse</code>. Notice that the definition is analogous to that of <code>lw_mse</code>, except that the fitted values are based on a quadratic function instead of linear.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">shotput_quadratic_mse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">shotput</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Weight Lifted'</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">shotput</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Shot Put Distance'</span><span class="p">)</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can now use <code>minimize</code> just as before to find the constants that minimize the mean squared error.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">best</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">shotput_quadratic_mse</span><span class="p">)</span>
+<span class="n">best</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ -1.04004838e-03,   2.82708045e-01,  -1.53182115e+00])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our prediction of the shot put distance for an athlete who lifts $x$ kilograms is about
+$$
+-0.00104x^2 ~+~ 0.2827x - 1.5318
+$$
+meters. For example, if the athlete can lift 100 kilograms, the predicted distance is 16.33 meters. On the scatter plot, that's near the center of a vertical strip around 100 kilograms.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="o">-</span><span class="mf">0.00104</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">100</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2827</span><span class="o">*</span><span class="mi">100</span> <span class="o">-</span> <span class="mf">1.5318</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>16.3382</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here are the predictions for all the values of <code>Weight Lifted</code>. You can see that they go through the center of the scatter plot, to a rough approximation.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">shotput</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">shotput_fit</span> <span class="o">=</span> <span class="n">best</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">best</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">best</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shotput</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Best Quadratic Curve'</span><span class="p">,</span> <span class="n">shotput_fit</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Method_of_Least_Squares_66_0.png"/></div></div>
