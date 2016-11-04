@@ -72,3 +72,4 @@
 * [Prediction](chapters/13/prediction.md)
   * [Correlation](chapters/13/1/correlation.md)
   * [The Regression Line](chapters/13/2/regression-line.md)
+  * [The Method of Least Squares](chapters/13/3/method-of-least-squares.md)
