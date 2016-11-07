@@ -73,3 +73,8 @@
   * [Correlation](chapters/13/1/correlation.md)
   * [The Regression Line](chapters/13/2/regression-line.md)
   * [The Method of Least Squares](chapters/13/3/method-of-least-squares.md)
+  * [Least Squares Regression](chapters/13/4/least-squares-regression.md)
+  * [Visual Diagnostics](chapters/13/5/visual-diagnostics.md)
+  * [Numerical Diagnostics](chapters/13/6/numerical-diagnostics.md)
+* [Inference for Regression](chapters/14/inference-for-regression.md)
+  * [A Regression Model](chapters/14/1/regression-model.md)
