@@ -78,3 +78,5 @@
   * [Numerical Diagnostics](chapters/13/6/numerical-diagnostics.md)
 * [Inference for Regression](chapters/14/inference-for-regression.md)
   * [A Regression Model](chapters/14/1/regression-model.md)
+  * [Inference for the True Slope](chapters/14/2/inference-for-the-true-slope.md)
+  * [Prediction Intervals](chapters/14/3/prediction-intervals.md)
