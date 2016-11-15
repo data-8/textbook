@@ -80,3 +80,6 @@
   * [A Regression Model](chapters/14/1/regression-model.md)
   * [Inference for the True Slope](chapters/14/2/inference-for-the-true-slope.md)
   * [Prediction Intervals](chapters/14/3/prediction-intervals.md)
+* [Classification](chapters/15/classification.md)
+  * [Nearest Neighbors](chapters/15/1/nearest-neighbors.md)
+  * [Training and Testing](chapters/15/2/training-and-testing.md)
