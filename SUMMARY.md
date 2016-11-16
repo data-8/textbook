@@ -83,3 +83,4 @@
 * [Classification](chapters/15/classification.md)
   * [Nearest Neighbors](chapters/15/1/nearest-neighbors.md)
   * [Training and Testing](chapters/15/2/training-and-testing.md)
+  * [Rows of Tables](chapters/15/3/rows-of-tables.md)
