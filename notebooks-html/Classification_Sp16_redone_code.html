@@ -489,8 +489,15 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
         <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dists</span><span class="p">,</span> <span class="n">distance_from_individual</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span> <span class="n">i</span> <span class="p">,</span> <span class="n">p</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">training</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Distance'</span><span class="p">,</span> <span class="n">dists</span><span class="p">)</span>
 
+<span class="k">def</span> <span class="nf">new_table_with_dists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">dist_point_row</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">distance2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">dists</span> <span class="o">=</span> <span class="n">attributes</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">dist_point_row</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">training</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Distance'</span><span class="p">,</span> <span class="n">dists</span><span class="p">)</span>
+
 <span class="k">def</span> <span class="nf">closest2</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="n">with_dists</span> <span class="o">=</span> <span class="n">table_with_dists2</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">with_dists</span> <span class="o">=</span> <span class="n">new_table_with_dists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
     <span class="n">sorted_by_dist</span> <span class="o">=</span> <span class="n">with_dists</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'Distance'</span><span class="p">)</span>
     <span class="n">topk</span> <span class="o">=</span> <span class="n">sorted_by_dist</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">topk</span>
@@ -510,15 +517,92 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">new_table_with_dists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dist_point_row</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">distance2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">dists</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">dist_point_row</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">training</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Distance'</span><span class="p">,</span> <span class="n">dists</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">12</span>
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">patients</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
 <span class="n">point</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[5, 3, 3, 3, 2, 3, 4, 4, 1]])</pre></div>
+<pre>array([5, 3, 3, 3, 2, 3, 4, 4, 1])</pre></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trial_training</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_table_with_dists</span><span class="p">(</span><span class="n">trial_training</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Clump Thickness</th> <th>Uniformity of Cell Size</th> <th>Uniformity of Cell Shape</th> <th>Marginal Adhesion</th> <th>Single Epithelial Cell Size</th> <th>Bare Nuclei</th> <th>Bland Chromatin</th> <th>Normal Nucleoli</th> <th>Mitoses</th> <th>Distance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>5              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>5.09902 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5              </td> <td>4                      </td> <td>4                       </td> <td>5                </td> <td>7                          </td> <td>10         </td> <td>3              </td> <td>2              </td> <td>1      </td> <td>9.21954 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>3              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>2          </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>5.19615 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>6              </td> <td>8                      </td> <td>8                       </td> <td>1                </td> <td>3                          </td> <td>4          </td> <td>3              </td> <td>7              </td> <td>1      </td> <td>8.18535 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>4              </td> <td>1                      </td> <td>1                       </td> <td>3                </td> <td>2                          </td> <td>1          </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>4.79583 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>8              </td> <td>10                     </td> <td>10                      </td> <td>8                </td> <td>7                          </td> <td>10         </td> <td>9              </td> <td>7              </td> <td>1      </td> <td>15.4919 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>10         </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>9.32738 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>2              </td> <td>1                      </td> <td>2                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>5.65685 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>2              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>1              </td> <td>1              </td> <td>5      </td> <td>7.68115 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>4              </td> <td>2                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>2              </td> <td>1              </td> <td>1      </td> <td>5.19615 </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trial_training</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>Row(Clump Thickness=5, Uniformity of Cell Size=1, Uniformity of Cell Shape=1, Marginal Adhesion=1, Single Epithelial Cell Size=2, Bare Nuclei=1, Bland Chromatin=3, Normal Nucleoli=1, Mitoses=1)</pre></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distance2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">trial_training</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="n">point</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>5.0990195135927845</pre></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">closest2</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -1471,7 +1555,75 @@ $$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional spac
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wine1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">wine1</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="/notebooks-images/Classification_Sp16_redone_code_65_0.png"/></div>
+<img src="/notebooks-images/Classification_Sp16_redone_code_70_0.png"/></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">""" REDONE REDONE STUFF"""</span>
+
+<span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">pt1</span> <span class="o">-</span> <span class="n">pt2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">all_dists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">dist_point_row</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">distance</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">attributes</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">dist_point_row</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">table_with_dists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">training</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Distance'</span><span class="p">,</span> <span class="n">all_dists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">closest</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">with_dists</span> <span class="o">=</span> <span class="n">table_with_dists</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">sorted_by_dist</span> <span class="o">=</span> <span class="n">with_dists</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'Distance'</span><span class="p">)</span>
+    <span class="n">topk</span> <span class="o">=</span> <span class="n">sorted_by_dist</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">topk</span>
+
+<span class="k">def</span> <span class="nf">majority</span><span class="p">(</span><span class="n">topkclasses</span><span class="p">):</span>
+    <span class="n">ones</span> <span class="o">=</span> <span class="n">topkclasses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">num_rows</span>
+    <span class="n">zeros</span> <span class="o">=</span> <span class="n">topkclasses</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">num_rows</span>
+    <span class="k">if</span> <span class="n">ones</span> <span class="o">&gt;</span> <span class="n">zeros</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">closestk</span> <span class="o">=</span> <span class="n">closest</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">topkclasses</span> <span class="o">=</span> <span class="n">closestk</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">majority</span><span class="p">(</span><span class="n">topkclasses</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">closest</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Clump Thickness</th> <th>Uniformity of Cell Size</th> <th>Uniformity of Cell Shape</th> <th>Marginal Adhesion</th> <th>Single Epithelial Cell Size</th> <th>Bare Nuclei</th> <th>Bland Chromatin</th> <th>Normal Nucleoli</th> <th>Mitoses</th> <th>Class</th> <th>Distance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>5              </td> <td>3                      </td> <td>3                       </td> <td>3                </td> <td>2                          </td> <td>3          </td> <td>4              </td> <td>4              </td> <td>1      </td> <td>1    </td> <td>0       </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5              </td> <td>3                      </td> <td>3                       </td> <td>4                </td> <td>2                          </td> <td>4          </td> <td>3              </td> <td>4              </td> <td>1      </td> <td>1    </td> <td>1.73205 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5              </td> <td>1                      </td> <td>3                       </td> <td>3                </td> <td>2                          </td> <td>2          </td> <td>2              </td> <td>3              </td> <td>1      </td> <td>0    </td> <td>3.16228 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5              </td> <td>2                      </td> <td>2                       </td> <td>2                </td> <td>2                          </td> <td>2          </td> <td>3              </td> <td>2              </td> <td>2      </td> <td>0    </td> <td>3.16228 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5              </td> <td>3                      </td> <td>3                       </td> <td>1                </td> <td>3                          </td> <td>3          </td> <td>3              </td> <td>3              </td> <td>3      </td> <td>1    </td> <td>3.31662 </td>
+        </tr>
+    </tbody>
+</table></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
