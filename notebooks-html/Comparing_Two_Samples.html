@@ -1,0 +1,254 @@
+<div id="ipython-notebook">
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/Comparing_Two_Samples.ipynb">Interact</a>
+            
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      processEscapes: true
+    }
+  });
+</script>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Comparing-Two-Samples">Comparing Two Samples<a class="anchor-link" href="#Comparing-Two-Samples">¶</a></h3><p>The nearest neighbor approach to classification is motivated by the idea that an individual is likely to resemble its nearest neighbors. Looking at this another way, we can say that individuals in one class don't resemble individuals in another. Machine learning gives us a powerful way to spot this lack of resemblance and use it to classify. It illuminates patterns that we wouldn't necessarily be able to spot just by examining one or two attributes at at time.</p>
+<p>However, there is much that we can learn from just a single attribute. To see this, we will compare the distributions of the attribute in the two classes.</p>
+<p>Let's take a look at Brittany Wenger's breast cancer data and see whether using just one attribute has any hope of producing a reasonable classifier. As before, we'll do our exploration on a randomly chosen training set, and test our classifer on the remaining hold-out set.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patients</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'breast-cancer.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'ID'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shuffled_patients</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+<span class="n">training_set</span> <span class="o">=</span> <span class="n">shuffled_patients</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">341</span><span class="p">))</span>
+<span class="n">test_set</span>  <span class="o">=</span> <span class="n">shuffled_patients</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">341</span><span class="p">,</span> <span class="mi">683</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_set</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Clump Thickness</th> <th>Uniformity of Cell Size</th> <th>Uniformity of Cell Shape</th> <th>Marginal Adhesion</th> <th>Single Epithelial Cell Size</th> <th>Bare Nuclei</th> <th>Bland Chromatin</th> <th>Normal Nucleoli</th> <th>Mitoses</th> <th>Class</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>5              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>2              </td> <td>1              </td> <td>1      </td> <td>0    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>1                          </td> <td>1          </td> <td>1              </td> <td>1              </td> <td>1      </td> <td>0    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>4              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>1              </td> <td>1              </td> <td>1      </td> <td>0    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5              </td> <td>1                      </td> <td>2                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>0    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>4              </td> <td>10                     </td> <td>8                       </td> <td>5                </td> <td>4                          </td> <td>1          </td> <td>10             </td> <td>1              </td> <td>1      </td> <td>1    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>7              </td> <td>2                      </td> <td>4                       </td> <td>1                </td> <td>3                          </td> <td>4          </td> <td>3              </td> <td>3              </td> <td>1      </td> <td>1    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>9              </td> <td>4                      </td> <td>5                       </td> <td>10               </td> <td>6                          </td> <td>10         </td> <td>4              </td> <td>8              </td> <td>1      </td> <td>1    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>3              </td> <td>1                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>2          </td> <td>3              </td> <td>1              </td> <td>1      </td> <td>0    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>3              </td> <td>2                      </td> <td>1                       </td> <td>1                </td> <td>2                          </td> <td>1          </td> <td>2              </td> <td>2              </td> <td>1      </td> <td>0    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>6              </td> <td>3                      </td> <td>3                       </td> <td>5                </td> <td>3                          </td> <td>10         </td> <td>3              </td> <td>5              </td> <td>3      </td> <td>0    </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (331 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's see what the second attribute, <code>Uniformity of Cell Size</code>, can tell us about a patient's class.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_cellsize</span> <span class="o">=</span> <span class="n">training_set</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">,</span> <span class="s1">'Uniformity of Cell Size'</span><span class="p">)</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'Uniformity'</span><span class="p">)</span>
+<span class="n">training_cellsize</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Class</th> <th>Uniformity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0    </td> <td>1         </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0    </td> <td>1         </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0    </td> <td>1         </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0    </td> <td>1         </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1    </td> <td>10        </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1    </td> <td>2         </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>1    </td> <td>4         </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0    </td> <td>1         </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0    </td> <td>2         </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>0    </td> <td>3         </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (331 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Class</code> and <code>Uniformity</code> columns appear numerical but they're really both categorical. The classes are "cancerous" (1) and "not cancerous" (0). Uniformity was rated on a scale of 1 to 10, but those labels were determined by humans, and they could just as well have been ten labels like "pretty uniform", "not uniform at all", and so on.  (A 2 isn't necessarily twice as uniform as a 1.)  So we are comparing two categorical distributions, one for each class.</p>
+<p>For each class, we need the number of training set patients who had each uniformity rating. The <code>pivot</code> method will do the counting for us.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_counts</span> <span class="o">=</span> <span class="n">training_cellsize</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">,</span> <span class="s1">'Uniformity'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_counts</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Uniformity</th> <th>0</th> <th>1</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1         </td> <td>181 </td> <td>3   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>2         </td> <td>21  </td> <td>2   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>3         </td> <td>16  </td> <td>15  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>4         </td> <td>4   </td> <td>18  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>5         </td> <td>0   </td> <td>17  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>6         </td> <td>0   </td> <td>8   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>7         </td> <td>0   </td> <td>8   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>8         </td> <td>1   </td> <td>13  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>9         </td> <td>1   </td> <td>4   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>10        </td> <td>0   </td> <td>29  </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now have something resembling a distribution of uniformity rating, for each class. And the two look rather different. However, let's be careful – while the total number of patients in the two classes is 341 (the size of the training set), more than half are in Class 0.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">training_counts</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'0'</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>224</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So to compare the two distributions we should convert the counts to proportions and then visualize.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">proportions</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">array</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_dists</span> <span class="o">=</span> <span class="n">training_counts</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+   <span class="s1">'0'</span><span class="p">,</span> <span class="n">proportions</span><span class="p">(</span><span class="n">training_counts</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'0'</span><span class="p">)),</span>
+    <span class="s1">'1'</span><span class="p">,</span> <span class="n">proportions</span><span class="p">(</span><span class="n">training_counts</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'1'</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_dists</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="s1">'Uniformity'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Comparing_Two_Samples_16_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Those two distributions don't look the same at all! In fact they look so different that we should be able to construct a perfectly decent classifier based on a very straightforward observation about the difference. A simple classification rule would be, "If the uniformity is bigger than 3, say the Class is 1; that is, the cell is cancerous. Otherwise say the Class is 0."</p>
+<p>Can something so crude be any good? Let's try it out. For any individual in the test set, all we have to do is see whether or not the uniformity rating is bigger than 3. For example, for the first 4 patients we'll get an array of four booleans:</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_set</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Uniformity of Cell Size'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ True, False, False, False], dtype=bool)</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember that <code>True</code> equals 1, which is the Class we're going to assign if the uniformity is bigger than 3. So to measure the accuracy of our crude classifier, all we have to do is find the proportion of test set patients for which the classification is the same as the patient's known class. We'll use the <code>count_equal</code> function we wrote in the previous section.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classification</span> <span class="o">=</span> <span class="n">test_set</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Uniformity of Cell Size'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span>
+
+<span class="n">count_equal</span><span class="p">(</span><span class="n">classification</span><span class="p">,</span> <span class="n">test_set</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">))</span><span class="o">/</span><span class="n">test_set</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.935672514619883</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's pretty accurate, even though we're only using a one-attribute one-line-of-code classifier!</p>
+<p>Does that mean that the nearest neighbor methods of the previous chapter are unnecessary? No, because those are even more accurate, and for cancer diagnoses any patient would want as accurate a method as possible. But it's reassuring to see that simple methods aren't bad.</p></div></div></div>
