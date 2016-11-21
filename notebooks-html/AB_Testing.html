@@ -1,0 +1,309 @@
+<div id="ipython-notebook">
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/baby.csv&path=notebooks/AB_Testing.ipynb">Interact</a>
+            
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      processEscapes: true
+    }
+  });
+</script>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="A/B-Testing">A/B Testing<a class="anchor-link" href="#A/B-Testing">¶</a></h3><p>We have used random permutations to see whether two samples are drawn from the same underlying categorical distribution. If the samples are numerical, the same method can be used; the choice of test statistic is usually simpler. In our example with the Deflategate data, we used the difference of means to test whether the Patriots' and Colts' balls came from the same underlying distribution.</p>
+<p>In modern data analytics, deciding whether two numerical samples come from the same underlying distribution is called <em>A/B testing</em>. The name refers to the labels of the two samples, A and B.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Smokers-and-Nonsmokers">Smokers and Nonsmokers<a class="anchor-link" href="#Smokers-and-Nonsmokers">¶</a></h3><p>We have performed many different analyses on our random sample of mothers and their newborn infants, but we haven't yet looked at the data whether the mothers smoked. One of the aims of the study was to see whether maternal smoking was associated with birth weight.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'baby.csv'</span><span class="p">)</span>
+<span class="n">baby</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Birth Weight</th> <th>Gestational Days</th> <th>Maternal Age</th> <th>Maternal Height</th> <th>Maternal Pregnancy Weight</th> <th>Maternal Smoker</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>120         </td> <td>284             </td> <td>27          </td> <td>62             </td> <td>100                      </td> <td>False          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>113         </td> <td>282             </td> <td>33          </td> <td>64             </td> <td>135                      </td> <td>False          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>128         </td> <td>279             </td> <td>28          </td> <td>64             </td> <td>115                      </td> <td>True           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>108         </td> <td>282             </td> <td>23          </td> <td>67             </td> <td>125                      </td> <td>True           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>136         </td> <td>286             </td> <td>25          </td> <td>62             </td> <td>93                       </td> <td>False          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>138         </td> <td>244             </td> <td>33          </td> <td>62             </td> <td>178                      </td> <td>False          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>132         </td> <td>245             </td> <td>23          </td> <td>65             </td> <td>140                      </td> <td>False          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>120         </td> <td>289             </td> <td>25          </td> <td>62             </td> <td>125                      </td> <td>False          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>143         </td> <td>299             </td> <td>30          </td> <td>66             </td> <td>136                      </td> <td>True           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>140         </td> <td>351             </td> <td>27          </td> <td>68             </td> <td>120                      </td> <td>False          </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (1164 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We'll start by selecting just <code>Birth Weight</code> and <code>Maternal Smoker</code>. There are 715 non-smokers among the women in the sample, and 459 smokers.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">weight_smoke</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Birth Weight'</span><span class="p">,</span> <span class="s1">'Maternal Smoker'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">weight_smoke</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Maternal Smoker'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Maternal Smoker</th> <th>count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>False          </td> <td>715  </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True           </td> <td>459  </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The first histogram below displays the distribution of birth weights of the babies of the non-smokers in the sample. The second displays the birth weights of the babies of the smokers.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nonsmokers</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">nonsmokers</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Birth Weight'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'ounce'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/AB_Testing_8_0.png"/></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">smokers</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">smokers</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Birth Weight'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'ounce'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/AB_Testing_9_0.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Both distributions are approximately bell shaped and centered near 120 ounces. The distributions are not identical, of course, which raises the question of whether the difference reflects just chance variation or a difference in the distributions in the population.</p>
+<p>This question can be answered by a test of hypotheses.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Null hypothesis:</strong> In the population, the distribution of birth weights of babies is the same for mothers who don't smoke as for mothers who do. The difference in the sample is due to chance.</p>
+<p><strong>Alternative hypothesis:</strong> The two distributions are different in the population.</p>
+<p><strong>Test statistic:</strong> Birth weight is a quantitative variable, so it is reasonable to use the absolute difference between the means as the test statistic.</p>
+<p>The observed value of the test statistic is about 9.27 ounces.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">means_table</span> <span class="o">=</span> <span class="n">weight_smoke</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">means_table</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Maternal Smoker</th> <th>Birth Weight mean</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>False          </td> <td>123.085          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>True           </td> <td>113.819          </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nonsmokers_mean</span> <span class="o">=</span> <span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">smokers_mean</span> <span class="o">=</span> <span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nonsmokers_mean</span> <span class="o">-</span> <span class="n">smokers_mean</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>9.266142572024918</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="A-Permutation-Test">A Permutation Test<a class="anchor-link" href="#A-Permutation-Test">¶</a></h3><p>To see whether such a difference could have arisen due to chance under the null hypothesis, we will use a permutation test just as we did in the previous section. All we have to change is the code for the test statistic. For that, we'll compute the difference in means as we did above, and then take the absolute value.</p>
+<p>Remember that under the null hypothesis, all permutations of birth weight are equally likely to be appear with the <code>Maternal Smoker</code> column. So, just as before, each repetition starts with shuffling the variable being compared.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">permutation_test_means</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+    
+    <span class="sd">"""Test whether two numerical samples </span>
+<span class="sd">    come from the same underlying distribution, </span>
+<span class="sd">    using the absolute difference between the means.</span>
+<span class="sd">    table: name of table containing the sample</span>
+<span class="sd">    variable: label of column containing the numerical variable </span>
+<span class="sd">    classes: label of column containing names of the two samples</span>
+<span class="sd">    repetitions: number of random permutations"""</span>
+    
+    <span class="n">t</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+    
+    <span class="c1"># Find the observed test statistic</span>
+    <span class="n">means_table</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> 
+    <span class="n">obs_stat</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    
+    <span class="c1"># Assuming the null is true, randomly permute the variable </span>
+    <span class="c1"># and collect all the generated test statistics</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">shuffled_var</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">shuffled</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Shuffled Variable'</span><span class="p">,</span> <span class="n">shuffled_var</span><span class="p">)</span>
+        <span class="n">m_tbl</span> <span class="o">=</span> <span class="n">shuffled</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+        <span class="n">new_stat</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">m_tbl</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">m_tbl</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stats</span><span class="p">,</span> <span class="n">new_stat</span><span class="p">)</span>
+    
+    <span class="c1"># Find the empirical P-value:</span>
+    <span class="n">emp_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">stats</span> <span class="o">&gt;=</span> <span class="n">obs_stat</span><span class="p">)</span><span class="o">/</span><span class="n">repetitions</span>
+
+    <span class="c1"># Draw the empirical histogram of the tvd's generated under the null, </span>
+    <span class="c1"># and compare with the value observed in the original sample</span>
+    <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Test Statistic'</span><span class="p">,</span> <span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Empirical Distribution Under the Null'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Observed statistic:'</span><span class="p">,</span> <span class="n">obs_stat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Empirical P-value:'</span><span class="p">,</span> <span class="n">emp_p</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">permutation_test_means</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">,</span> <span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Observed statistic: 9.266142572024918
+Empirical P-value: 0.0
+</pre></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/AB_Testing_16_1.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The observed difference in the original sample is about 9.27 ounces, which is inconsistent with this distribution: the empirical P-value is 0, implying that the exact P-value is very small indeed. So the conclusion of the test is that in the population, the distributions of birth weights of the babies of non-smokers and smokers are different.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bootstrap-Confidence-Interval-For-the-Difference">Bootstrap Confidence Interval For the Difference<a class="anchor-link" href="#Bootstrap-Confidence-Interval-For-the-Difference">¶</a></h3><p>Our A/B test has concluded that the two distributions are different, but that's a little unsatisfactory. How different are they? Which one has the larger mean? These are natural questions that the test can't answer.</p>
+<p>Recall that we've had this discussion before: instead of just asking a yes/no question about whether the two distributions are different, we might learn more by not making any hypotheses and simply estimating the difference between the means.</p>
+<p>The observed difference (nonsmokers $-$ smokers) was about 9.27 ounces; the positive sign says that the non-smoking mothers had larger babies on average. But samples could have come out differently due to randomness. To see how different, we have to generate more samples; to generate more samples, we'll use the bootstrap as we have done many times before. The bootstrap makes no hypotheses about whether or not the two distributions are the same. It simply replicates the original random sample and computes new values of the statistic.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The function <code>bootstrap_ci_means</code> returns a bootstrap confidence interval for the difference between the means of the two groups in the population. In our example, the confidence interval would estimate the difference between the average birth weights of babies of mothers who didn't smoke and mothers who did, in the entire population.</p>
+<ul>
+<li>the name of the table that contains the data in the original sample</li>
+<li>the label of the column containing the numerical variable</li>
+<li>the label of the column containing the names of the two samples</li>
+<li>the number of bootstrap repetitions</li>
+</ul>
+<p>The function returns an approximate 95% confidence interval for the difference between the two means, using the bootstrap percentile method.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">bootstrap_ci_means</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+    
+    <span class="sd">"""Bootstrap approximate 95% confidence interval</span>
+<span class="sd">    for the difference between the means of the two classes</span>
+<span class="sd">    in the population"""</span>
+    
+    <span class="n">t</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+    
+    <span class="n">mean_diffs</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">bootstrap_sample</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+        <span class="n">m_tbl</span> <span class="o">=</span> <span class="n">bootstrap_sample</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+        <span class="n">new_stat</span> <span class="o">=</span> <span class="n">m_tbl</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">m_tbl</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">mean_diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_diffs</span><span class="p">,</span> <span class="n">new_stat</span><span class="p">)</span>
+        
+    <span class="n">left</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">mean_diffs</span><span class="p">)</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">97.5</span><span class="p">,</span> <span class="n">mean_diffs</span><span class="p">)</span>
+    
+    <span class="c1"># Find the observed test statistic</span>
+    <span class="n">means_table</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> 
+    <span class="n">obs_stat</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    
+    <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Difference Between Means'</span><span class="p">,</span> <span class="n">mean_diffs</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">),</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'yellow'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Observed difference between means:'</span><span class="p">,</span> <span class="n">obs_stat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Approximate 95% CI for the difference between means:'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="s1">'to'</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_ci_means</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">,</span> <span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Observed difference between means: 9.266142572024918
+Approximate 95% CI for the difference between means:
+7.23940878698 to 11.3907887554
+</pre></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/AB_Testing_21_1.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The non-smoking mothers had babies that were about 7.2 ounces to 11.4 ounces heavier, on average, than the babies of the mothers who smoked. This is a more useful conclusion than "the two distributions are different." And because the confidence interval doesn't contain 0, it also tells us that the two distributions are different. So the confidence interval gives us an estimate of the difference between the means and also lets us decide whether or not the two underlying distributions are the same.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The non-smoking mothers were a little older, on average, than the mothers who smoked.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_ci_means</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Maternal Age'</span><span class="p">,</span> <span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Observed difference between means: 0.8076725017901509
+Approximate 95% CI for the difference between means:
+0.154278698588 to 1.4701157656
+</pre></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/AB_Testing_24_1.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But not surprisingly, the evidence doesn't point to their heights being any different, on average, than those of the mothers who didn't smoke. Zero is in the confidence interval for the difference between the means.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_ci_means</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">'Maternal Height'</span><span class="p">,</span> <span class="s1">'Maternal Smoker'</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Observed difference between means: 0.09058914941267915
+Approximate 95% CI for the difference between means:
+-0.390841928035 to 0.204388297872
+</pre></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/AB_Testing_26_1.png"/></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In summary:</p>
+<ul>
+<li><p>If you want to tell whether or not two underlying distributions are the same, you can use a permutation test with an appropriate test statistic. We used the total variation distance when the distributions were categorical, and the absolute difference between means when the distributions were numerical.</p>
+</li>
+<li><p>To compare two numerical distributions, it's often more informative to replace hypothesis testing by estimation. Just estimate a difference, such as the difference between the means of the two groups. This can be done by constructing a bootstrap confidence interval. If zero is not in the interval, you can conclude that the two distributions are different and you also have an estimate of how different the means are.</p>
+</li>
+</ul></div></div></div>

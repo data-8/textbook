@@ -214,7 +214,7 @@
 <p>... (673 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Random-Permutations">Random Permutations<a class="anchor-link" href="#Random-Permutations">¶</a></h3><p>If class and mitosis ratings are unrelated, then it doesn't matter in what order the <code>Mitoses</code> values appear – since they are not related to the values in <code>Class</code>, all rearrangements should be equally likely. This is the same as the approach that we took when analyzing the footabll Deflategate data.</p>
+<h3 id="Random-Permutations">Random Permutations<a class="anchor-link" href="#Random-Permutations">¶</a></h3><p>If class and mitosis ratings are unrelated, then it doesn't matter in what order the <code>Mitoses</code> values appear – since they are not related to the values in <code>Class</code>, all rearrangements should be equally likely. This is the same as the approach that we took when analyzing the football Deflategate data.</p>
 <p>So let's shuffle all the <code>Mitoses</code> values into an array called <code>shuffled_mitoses</code>. You can see its first item below, but it contains 683 items because it is a permutation (that is, a rearrangement) of the entire <code>Mitoses</code> column.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -424,7 +424,7 @@
     <span class="n">shuffled_mitoses</span> <span class="o">=</span> <span class="n">mitoses</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Mitoses'</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">shuffled</span> <span class="o">=</span> <span class="n">mitoses</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Shuffled Mitoses'</span><span class="p">,</span> <span class="n">shuffled_mitoses</span><span class="p">)</span>
     <span class="n">shuffled_counts</span> <span class="o">=</span> <span class="n">shuffled</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">,</span> <span class="s1">'Shuffled Mitoses'</span><span class="p">)</span>
-    <span class="n">new_tvd</span> <span class="o">=</span><span class="n">tvd</span><span class="p">(</span><span class="n">proportions</span><span class="p">(</span><span class="n">shuffled_counts</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="n">proportions</span><span class="p">(</span><span class="n">shuffled_counts</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="n">new_tvd</span> <span class="o">=</span> <span class="n">tvd</span><span class="p">(</span><span class="n">proportions</span><span class="p">(</span><span class="n">shuffled_counts</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="n">proportions</span><span class="p">(</span><span class="n">shuffled_counts</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
     <span class="n">tvds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tvds</span><span class="p">,</span> <span class="n">new_tvd</span><span class="p">)</span>
 
 <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'TVD'</span><span class="p">,</span> <span class="n">tvds</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -489,9 +489,8 @@ Empirical P-value: 0.0
 <img src="/notebooks-images/Two_Categorical_Distributions_40_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once again, the observed distance of 0.64 is very far away from the distribution predicted by the null hypothesis. The empirical P-value is 0, so the exact P-value will be close to zero. Thus if class and clump thickness were unrelated, the observed data are hugely unlikely.</p>
+<p>Once again, the observed distance of 0.64 is very far away from the distribution predicted by the null hypothesis. The empirical P-value is 0, so the exact P-value will be close to zero. Thus if class and clump thickness were unrelated, the observed data would be hugely unlikely.</p>
 <p>So the conclusion is that clump thickness is related to class, not just in the sample but in the population.</p></div></div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We have use permutation tests to help decide whether the distribution of a categorical attribute is related to class. In general, permutation tests can be used in this way to decide whether two categorical distributions were randomly sampled from the same underlying distribution.</p></div></div></div>
