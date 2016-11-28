@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/bta.csv&path=notebooks/potential_outcomes.csv&path=notebooks/observed_outcomes.csv&path=notebooks/Causality.ipynb">Interact</a>
+            <a class="interact-button" href="http://data8.berkeley.edu/hub/interact?repo=textbook&path=notebooks/bta.csv&path=notebooks/observed_outcomes.csv&path=notebooks/Causality.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -110,151 +110,9 @@
 <p><img alt="Two-sided ticket" src="../images/causality1.png"/></p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If, by magic, we observed both sides of everyone's ticket and put all of this information into a table, it might look like this:</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">example_potential_outcomes</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">"potential_outcomes.csv"</span><span class="p">)</span>
-<span class="n">example_potential_outcomes</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div></div></div>
-<div class="output_html rendered_html output_subarea ">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>Outcome if assigned treatment</th> <th>Outcome if assigned control</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1                            </td> <td>1                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>1                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>1                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>1                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>1                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>0                            </td> <td>0                          </td>
-        </tr>
-    </tbody>
-</table></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>We have fabricated these data for demonstration</strong>; they are not the real potential outcomes of the 31 patients.  The study could only discover half of the values in this table.  The other half are unknown, and were probably not the same as the values we've shown in this example.</p>
 <p>After the randomization, we get to see the right half of a randomly selected set of tickets, and the left half of the remaining group.</p>
 <p><img alt="Half-tickets" src="../images/causality2.png"/></p>
-<p>The table below shows the actual observations in our study, with the unobserved outcomes masked.  Compare it with <code>example_potential_outcomes</code>.</p></div></div>
+<p>The table <code>observed_outcomes</code> collects the information about every patient's potential outcomes, leaving the unobserved half of each "ticket" blank.  (It's just another way of thinking about the <code>bta</code> table, carrying the same information.)</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">observed_outcomes</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">"observed_outcomes.csv"</span><span class="p">)</span>
@@ -395,7 +253,7 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="A-Test-of-Hypotheses">A Test of Hypotheses<a class="anchor-link" href="#A-Test-of-Hypotheses">¶</a></h3><p>The question is whether the treatment does anything. In terms of the tickets, the question is whether the distribution of the 31 "treatment" values on the left sides of the tickets is different from the distribution of the 31 "control" values on the right.</p>
+<h3 id="A-Test-of-Hypotheses">A Test of Hypotheses<a class="anchor-link" href="#A-Test-of-Hypotheses">¶</a></h3><p>The question is whether the treatment does anything. In terms of the table <code>observed_outcomes</code>, the question is whether the distribution of the 31 "treatment" values in column 2 (including the unknown ones) is different from the distribution of the 31 "control" values in column 3 (again including the unknown ones).</p>
 <p><strong>Null Hypothesis:</strong> The distribution of all 31 potential "treatment" outcomes is the same as that of all 31 potential "control" outcomes. The treatment does nothing different from the control; the difference in the two samples is just due to chance.</p>
 <p><strong>Alternative Hypotheses:</strong> The distribution of 31 potential "treatment" outcomes is different from that of the 31 control outcomes. The treatment does something different from the control.</p>
 <p>To test these hypotheses, notice that if the null hypothesis were true, then all assignments of the 31 observed outcomes to a group of 16 outcomes labeled "control" and the other 15 labeled "treatment" would be equally likely. So we can simply permute the values and see how different the distributions in the two groups are. Even more simply, since the data are numerical, we can just see how different the two means are.</p>
@@ -448,12 +306,12 @@
 Empirical P-value: 0.00965
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="/notebooks-images/Causality_13_1.png"/></div>
+<img src="/notebooks-images/Causality_11_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The empirical P-value is very small (the study reports a P-value of 0.009, which is consistent with our calculation), and thus the evidence points to the alternative: the underlying treatment and control distributions are different.</p>
 <p>This is evidence that the treatment <em>causes</em> the difference, because the randomization ensures that there is no confounding variable that could affect the conclusion.</p>
-<p>If the treatment had not been randomly assigned, our test would still tell us that there is an <em>association</em> between the treatment and back pain outcomes among our 31 patients.  We just couldn't say that the treatment caused the difference.  For example, if the patients themselves had chosen whether to administer the treatment, perhaps the patients experiencing more pain would be more likely to choose the treatment <em>and</em> more likely to experience some reduction in pain even without medication.  Pre-existing pain would then be a <em>confounding factor</em> in the analysis.  The permutation test does not fix that.</p></div></div>
+<p>If the treatment had not been randomly assigned, our test would still point toward an <em>association</em> between the treatment and back pain outcomes among our 31 patients.  But beware: without randomization, this association would not imply that the treatment caused a change in back pain outcomes.  For example, if the patients themselves had chosen whether to administer the treatment, perhaps the patients experiencing more pain would be more likely to choose the treatment <em>and</em> more likely to experience some reduction in pain even without medication.  Pre-existing pain would then be a <em>confounding factor</em> in the analysis.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-Confidence-Interval-for-the-Effect">A Confidence Interval for the Effect<a class="anchor-link" href="#A-Confidence-Interval-for-the-Effect">¶</a></h3><p>As we noted in the previous section, it's a little unsatisfactory to simply conclude that the treatment does something. We're left wanting to know what it does.</p>
@@ -489,7 +347,7 @@ Empirical P-value: 0.00965
 <pre>-0.475</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>But this is just the result in one sample; the sample could have come out differently. (For example, if the population were the table <code>example_potential_outcomes</code> we fabricated earlier, the true difference between the means would be -51.6%.)  So we will replicate the sample using the bootstrap, and recompute the difference. That's exactly what we did in the previous section.</p></div></div>
+<p>But this is just the result in one sample; the sample could have come out differently. So we will replicate the sample using the bootstrap, and recompute the difference. That's exactly what we did in the previous section.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">bootstrap_ci_means</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
@@ -530,7 +388,7 @@ Approximate 95% CI for the difference between means:
 -0.759090909091 to -0.162393162393
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="/notebooks-images/Causality_20_1.png"/></div>
+<img src="/notebooks-images/Causality_18_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>An approximate 95% confidence interval for the difference between the means of the underlying distributions goes from about -80% to -20%. In other words, the treatment group did better by about 20% to 80%.</p>
