@@ -89,3 +89,4 @@
 * [Comparing Two Samples](chapters/16/comparing-two-samples.md)
   * [Two Categorical Distributions](chapters/16/1/two-categorical-distributions.md)
   * [A/B Testing](chapters/16/2/ab-testing.md)
+  * [Causality](chapters/16/3/causality.md)
