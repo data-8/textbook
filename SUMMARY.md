@@ -90,3 +90,6 @@
   * [Two Categorical Distributions](chapters/16/1/two-categorical-distributions.md)
   * [A/B Testing](chapters/16/2/ab-testing.md)
   * [Causality](chapters/16/3/causality.md)
+* [Updating Predictions](chapters/17/updating-predictions.md)
+  * [A "More Likely Than Not" Binary Classifier](chapters/17/1/more-likely-than-not-binary-classifier.md)
+  * [Making Decisions](chapters/17/2/making-decisions.md)
