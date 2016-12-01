@@ -1,1 +1,1 @@
-{% include "../../notebooks-html/Comparing_Two_Samples.html" %}
+{% include "../../notebooks-html/Updating_Predictions.html" %}
