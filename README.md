@@ -1,6 +1,9 @@
 Computational and Inferential Thinking
 ======================================
 
+**The textbook is currently offline for the Data 8 final. It will be back
+online after the final is over.**
+
 The Foundations of Data Science
 -------------------------------
 
