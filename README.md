@@ -1,7 +1,7 @@
 Computational and Inferential Thinking
 ======================================
 
-<!-- Required to ensure that mathjax loads correctly... -->
+<!-- Required to ensure that mathjax loads correctly on interior pages... -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
