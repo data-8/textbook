@@ -1,18 +1,26 @@
 Computational and Inferential Thinking
 ======================================
 
+<!-- Required to ensure that mathjax loads correctly... -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
 The Foundations of Data Science
 -------------------------------
 
 **By [Ani Adhikari](http://statistics.berkeley.edu/people/ani-adhikari) and [John DeNero](http://denero.org)**
 
-Contributions by [David Wagner](https://www.cs.berkeley.edu/~daw/)
+Contributions by [David Wagner](https://www.cs.berkeley.edu/~daw/) and Henry Milner
 
 This is the textbook for the [Foundations of Data Science class at UC Berkeley][data8].
 
 [View this textbook online on Gitbooks.][gitbook]
-
-[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/data-8/textbook)
 
 [data8]: http://data8.org/
 [gitbook]: https://ds8.gitbooks.io/textbook/content/

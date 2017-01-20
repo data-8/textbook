@@ -7,3 +7,7 @@ __pycache__/
 
 # IPython checkpoints
 .ipynb_checkpoints
+
+# Gitbooks
+_book
+node_modules
