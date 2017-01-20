@@ -14,6 +14,7 @@
 <p>A <em>range</em> is an array of numbers in increasing or decreasing order, each separated by a regular interval. 
 Ranges are useful in a surprisingly large number of situations, so it's worthwhile to learn about them.</p>
 <p>Ranges are defined  using the <code>np.arange</code> function, which takes either one, two, or three arguments: a start, and end, and a 'step'.</p>
+<p>If you pass one argument to <code>np.arange</code>, this becomes the <code>end</code> value, with <code>start=0</code>, <code>step=1</code> assumed.  Two arguments give the <code>start</code> and <code>end</code> with <code>step=1</code> assumed.  Three arguments give the <code>start</code>, <code>end</code> and <code>step</code> explicitly.</p>
 <p>A range always includes its <code>start</code> value, but does not include its <code>end</code> value.  It counts up by <code>step</code>, and it stops before it gets to the <code>end</code>.</p>
 
 <pre><code>np.arange(end): An array starting with 0 of increasing consecutive integers, stopping before end.</code></pre></div></div>
