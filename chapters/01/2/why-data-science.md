@@ -15,15 +15,15 @@ their work, their scientific endeavors, and their personal decisions. Critical
 thinking has long been a hallmark of a rigorous education, but critiques are
 often most effective when supported by data. A critical analysis of any aspect
 of the world, may it be business or social science, involves inductive
-reasoning --- conclusions can rarely been proven outright, only supported by
+reasoning; conclusions can rarely been proven outright, only supported by
 the available evidence. Data science provides the means to make precise,
 reliable, and quantitative arguments about any set of observations. With
 unprecedented access to information and computing, critical thinking about
 any aspect of the world that can be measured would be incomplete without
-the inferential techniques that are core to data science.
+effective inferential techniques.
 
 The world has too many unanswered questions and difficult challenges to leave
-this critical reasoning to only a few specialists. However, all educated adults
-can build the capacity to reason about data. The tools, techniques, and data
-sets are all readily available; this text aims to make them accessible to
-everyone.
+this critical reasoning to only a few specialists. All educated members of 
+society can build the capacity to reason about data. The tools, techniques, 
+and data sets are all readily available; this text aims to make them 
+accessible to everyone.

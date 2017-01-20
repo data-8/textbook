@@ -13,9 +13,9 @@ applications. A foundation in data science requires not only understanding
 statistical and computational techniques, but also recognizing how they apply
 to real scenarios.
 
-For whatever aspect of the world we wish to study---whether it's the Earth's
-weather, the world's markets, political polls, or the human mind---data we
-collect typically offer an incomplete description of the subject at hand. The
+For whatever aspect of the world we wish to study—whether it's the Earth's
+weather, the world's markets, political polls, or the human mind—data we
+collect typically offer an incomplete description of the subject at hand. A
 central challenge of data science is to make reliable conclusions using this
 partial information.
 
@@ -38,4 +38,4 @@ science curriculum. Data science also requires careful reasoning about
 quantities, but this text does not assume any background in mathematics or
 statistics beyond basic algebra. You will find very few equations in this text.
 Instead, techniques are described to readers in the same language in which they
-are described to the computers that execute them---a programming language.
+are described to the computers that execute them—a programming language.

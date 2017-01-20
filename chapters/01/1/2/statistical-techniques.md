@@ -2,7 +2,7 @@ Statistical Techniques
 ----------------------
 
 The discipline of statistics has long addressed the same fundamental challenge
-as data science: how to draw conclusions about the world using incomplete
+as data science: how to draw robust conclusions about the world using incomplete
 information. One of the most important contributions of statistics is a
 consistent and precise vocabulary for describing the relationship between
 observations and conclusions. This text continues in the same tradition,
@@ -10,8 +10,9 @@ focusing on a set of core inferential problems from statistics: testing
 hypotheses, estimating confidence, and predicting unknown quantities.
 
 Data science extends the field of statistics by taking full advantage of
-computing, data visualization, and access to information. The combination of
-fast computers and the Internet gives anyone the ability to access and analyze
+computing, data visualization, machine learning, optimization, and access 
+to information. The combination of fast computers and the Internet gives 
+anyone the ability to access and analyze
 vast datasets: millions of news articles, full encyclopedias, databases for
 any domain, and massive repositories of music, photos, and video.
 
