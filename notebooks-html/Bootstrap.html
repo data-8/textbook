@@ -257,11 +257,6 @@
 <p>It is important to resample the same number of times as the original sample size. The reason is that the variability of an estimate depends on the size of the sample. Since our original sample consisted of 500 employees, our sample median was based on 500 values. To see how different the sample could have been, we have to compare it to the median of other samples of size 500.</p>
 <p>If we drew 500 times at random <em>without</em> replacement from our sample of size 500, we would just get the same sample back. By drawing <em>with</em> replacement, we create the possibility for the new samples to be different from the original, because some employees might be drawn more than once and others not at all.</p>
 <p>Why is this a good idea? By the law of averages, the distribution of the original sample is likely to resemble the population, and the distributions of all the "resamples" are likely to resemble the original sample. So the distributions of all the resamples are likely to resemble the population as well.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="s2">"../images/bootstrap_pic.png"</span><span class="p">)</span>
-</pre></div></div></div>
 <div class="output_png output_subarea output_execute_result">
 <img src="/notebooks-images/Bootstrap_25_0.png"/></div>
 <div class="inner_cell">
