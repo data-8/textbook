@@ -107,4 +107,10 @@
 <pre>0.03613617208346853</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The total growth over 10 years is equivalent to a 3.6% increase each year.</p></div></div></div>
+<p>The total growth over 10 years is equivalent to a 3.6% increase each year.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In summary, a growth rate <code>g</code> is used to describe the relative size of an <code>initial</code> amount and a <code>changed</code> amount after some amount of time <code>t</code>. To compute $changed$, apply the growth rate <code>g</code> repeatedly, <code>t</code> times using exponentiation.</p>
+<p><code>initial * (1 + g) ** t</code></p>
+<p>To compute <code>g</code>, raise the total growth to the power of <code>1/t</code> and subtract one.</p>
+<p><code>(changed/initial) ** (1/t) - 1</code></p></div></div></div>

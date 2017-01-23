@@ -19,7 +19,7 @@
   * [Numbers](chapters/03/2/numbers.md)
   * [Names](chapters/03/3/names.md)
     * [Example: Growth Rates](chapters/03/3/1/example-growth-rates.md)
-  * [Call Expressions](chapters/03/3/call-expressions.md)
+  * [Call Expressions](chapters/03/4/call-expressions.md)
 * [Data Types](chapters/04/data-types.md)
   * [Strings](chapters/04/1/strings.md)
     * [String Methods](chapters/04/1/1/string-methods.md)
