@@ -73,6 +73,11 @@ blockquote {
     background-color:rgba(245,245,245,0.8);
     border-left:5px solid #eee;
 }
-    blockquote p {
-        margin-top:0;
-    }
+
+blockquote p {
+    margin-top:0;
+}
+
+.input_area pre {
+  border: 1px solid;
+}
