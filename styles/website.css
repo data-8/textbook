@@ -1,83 +1,88 @@
-#ipython-notebook .interact-button {
-    background-color: #477DCA;
-    border-radius: 3px;
+/* Interact button */
 
-    display: inline-block;
-    margin-bottom: 1.2em;
-    padding: 0.4em 1em;
-
-    font-size: 1.2em;
-    color: white;
-    font-weight: 700;
-}
-
-#ipython-notebook .interact-button:hover,
-#ipython-notebook .interact-button:focus {
-  text-decoration: none;
+#ipython-notebook .interact-button
+{
+  background-color:#477DCA;
+  border-radius:3px;
+  color:#FFF;
+  display:inline-block;
+  font-size:1.2em;
+  font-weight:700;
+  margin-bottom:1.2em;
+  padding:.4em 1em;
 }
 
-.chapter-ctt pre {
-    padding:0.2em 2em;
-    border-radius:0;
-    border:none;
-    white-space:pre;
-    overflow-x:scroll;
-    background-color:rgba(245, 245, 245, 0.95);
-    margin:0;
-    font-size:0.95em;
-    text-align:left;
+#ipython-notebook .interact-button:hover,#ipython-notebook .interact-button:focus
+{
+  text-decoration:none;
 }
 
-.chapter-ctt pre :not(code) {
-    font-size:1em;
-    white-space:nowrap;
-}
-.chapter-ctt pre,.chapter-ctt pre * {
-    font-family:'Source Code Pro', Menlo, Consolas, monospace;
-    font-weight:400;
-}
-
-.output_html,.output_png::before {
-    padding:1em 1.5em;
-}
-
-.ansicyan, pre .kn {
-    color:#0080FF;
-}
-.ansigreen, pre .n,pre .nb {
-    color:#690;
-}
-.ansired {
-    color:#f00;
-}
-pre .nn {
-    color:pink;
-}
-.output_png img, p img {
-    max-width:100%;
-}
-pre .o, pre .k {
-    color:purple;
-}
-pre .p,pre .c {
-    color:#999;
-}
-.hl-ipython3 pre::before,.output_subarea pre::before,.output_html::before,.output_png::before {
-    width:100%;
-    float:left;
-    margin-bottom:0.25em;
-    color:#ccc;
-}
-
-blockquote {
-    background-color:rgba(245,245,245,0.8);
-    border-left:5px solid #eee;
-}
-
-blockquote p {
-    margin-top:0;
-}
+/* Code cells */
 
 .input_area pre {
-  border: 1px solid;
+  border: 1px solid #CCC;
+  margin-bottom: 8px;
+}
+
+.output_text pre {
+  background-color: #F8F8FB;
+}
+
+.output_html,.output_png::before
+{
+  padding:1em 1.5em;
+}
+
+.ansicyan,pre .kn
+{
+  color:#0080FF;
+}
+
+.ansigreen,pre .n,pre .nb
+{
+  color:#690;
+}
+
+.ansired
+{
+  color:red;
+}
+
+pre .nn
+{
+  color:#FFC0CB;
+}
+
+.output_png img,p img
+{
+  max-width:100%;
+}
+
+pre .o,pre .k
+{
+  color:purple;
+}
+
+pre .p,pre .c
+{
+  color:#999;
+}
+
+.hl-ipython3 pre::before,.output_subarea pre::before,.output_html::before,.output_png::before
+{
+  color:#ccc;
+  float:left;
+  margin-bottom:.25em;
+  width:100%;
+}
+
+blockquote
+{
+  background-color:rgba(245,245,245,0.8);
+  border-left:5px solid #eee;
+}
+
+blockquote p
+{
+  margin-top:0;
 }
