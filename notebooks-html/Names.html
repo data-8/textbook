@@ -11,7 +11,7 @@
 </script>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Names are given to values in Python using an <em>assignment</em> expression. In an assignment, a name is followed by <code>=</code>, which is followed by another expression. The value of the expression to the right of <code>=</code> is <em>assigned</em> to the name. Once a name has a value assigned to it, the value will be substituted for that name in future expressions.</p></div></div>
+<p>Names are given to values in Python using an <em>assignment</em> statement. In an assignment, a name is followed by <code>=</code>, which is followed by any expression. The value of the expression to the right of <code>=</code> is <em>assigned</em> to the name. Once a name has a value assigned to it, the value will be substituted for that name in future expressions.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
@@ -25,22 +25,22 @@
 <p>A previously assigned name can be used in the expression to the right of <code>=</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">quarter</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">whole</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">quarter</span>
-<span class="n">whole</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">quarter</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span>
+<span class="n">half</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">quarter</span>
+<span class="n">half</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>8</pre></div>
+<pre>0.5</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>However, only the current value of an expression is assigned to a name. If that value changes later, names that were defined in terms of that value will not change automatically.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">quarter</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">whole</span>
+<span class="n">half</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>8</pre></div>
+<pre>0.5</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Names must start with a letter, but can contain both letters and numbers. A name cannot contain a space; instead, it is common to use an underscore character <code>_</code> to replace each space. Names are only as useful as you make them; it's up to the programmer to choose names that are easy to interpret. Typically, more meaningful names can be invented than <code>a</code> and <code>b</code>. For example, to describe the sales tax on a $5 purchase in Berkeley, CA, the following names clarify the meaning of the various quantities involved.</p></div></div>

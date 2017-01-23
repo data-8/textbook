@@ -11,7 +11,8 @@
 </script>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To learn to program, we will begin by learning some of the grammar rules of a programming language. Programs are made up of <em>expressions</em>, which describe to the computer how to combine pieces of data. For example, a multiplication expression consists of a <code>*</code> symbol between two numerical expressions. Expressions, such as <code>3 * 4</code>, are <em>evaluated</em> by the computer. The value (the result of <em>evaluation</em>) of the last expression in each cell, <code>12</code> in this case, is displayed below the cell.</p></div></div>
+<p>Programming languages are much simpler than human languages. Nonetheless, there are some rules of grammar to learn in any language, and that is where we will begin. In this text, we will use the <a href="https://www.python.org/">Python</a> programming language. Learning the grammar rules is essential, and the same rules used in the most basic programs are also central to more sophisticated programs.</p>
+<p>Programs are made up of <em>expressions</em>, which describe to the computer how to combine pieces of data. For example, a multiplication expression consists of a <code>*</code> symbol between two numerical expressions. Expressions, such as <code>3 * 4</code>, are <em>evaluated</em> by the computer. The value (the result of <em>evaluation</em>) of the last expression in each cell, <code>12</code> in this case, is displayed below the cell.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>
@@ -20,7 +21,7 @@
 <pre>12</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The rules of a programming language are rigid. In Python, the <code>*</code> symbol cannot appear twice in a row. The computer will not try to interpret an expression that differs from its prescribed expression structures. Instead, it will show a <code>SyntaxError</code> error. The <em>Syntax</em> of a language is its set of grammar rules, and a <code>SyntaxError</code> indicates that some rule has been violated.</p></div></div>
+<p>The grammar rules of a programming language are rigid. In Python, the <code>*</code> symbol cannot appear twice in a row. The computer will not try to interpret an expression that differs from its prescribed expression structures. Instead, it will show a <code>SyntaxError</code> error. The <em>Syntax</em> of a language is its set of grammar rules, and a <code>SyntaxError</code> indicates that an expression structure doesn't match any of the rules of the language.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="mi">3</span> <span class="o">*</span> <span class="o">*</span> <span class="mi">4</span>
@@ -95,16 +96,16 @@
 <p>Python expressions obey the same familiar rules of <em>precedence</em> as in algebra: multiplication and division occur before addition and subtraction. Parentheses can be used to group together smaller expressions within a larger expression.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">-</span> <span class="mi">9</span> <span class="o">+</span> <span class="mi">10</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>16.555555555555557</pre></div>
+<pre>17.555555555555557</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">((</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">-</span> <span class="mi">9</span> <span class="o">+</span> <span class="mi">10</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>2016.0</pre></div>
+<pre>2017.0</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Example">Example<a class="anchor-link" href="#Example">¶</a></h3><p>Here, from the Washington Post in the early 1980s, is a graph that attempts to compare the earnings of doctors with the earnings of other professionals over a few decades. Do we really need to see two heads (one with a stethoscope) on each bar? Edward Tufte, Professor at Yale and one of the world's experts on visualizing quantitative information, coined the term "chartjunk" for such unnecessary embellishments. This graph is also an example of the "low data-to-ink ratio" that Tufte deplores.</p></div></div>
