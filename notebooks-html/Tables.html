@@ -23,7 +23,7 @@
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Empty tables can be created using the <code>Table</code> function. Though it might seem surprising at first, a common use of the <code>Table</code> function is to create an empty table:</p></div></div>
+<p>Empty tables can be created using the <code>Table</code> function. An empty table is usefuly because it can be extended to contain new rows and columns.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span>
@@ -39,7 +39,7 @@
 </tbody></table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The reason for this is that the empty table can be extended with additional columns. The <code>with_column</code> and <code>with_columns</code> methods return new tables with additional labeled columns.</p>
+<p>The <code>with_column</code> and <code>with_columns</code> methods on a table construct new tables with additional labeled columns.</p>
 <p>Each column of a table has to be an array. The first argument of <code>with_column</code> is a string that is the column label, and the second argument is an array consisting of the data in the column.</p>
 <p>Below, we begin each example with an empty table that has no columns.</p></div></div>
 <div class="inner_cell">
@@ -289,6 +289,103 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>However, this method does not change the original table.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Longitude</th> <th>Latitude</th> <th>City</th> <th>Direction</th> <th>Survivors</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>32       </td> <td>54.8    </td> <td>Smolensk   </td> <td>Advance  </td> <td>145000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>33.2     </td> <td>54.9    </td> <td>Dorogobouge</td> <td>Advance  </td> <td>140000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>34.4     </td> <td>55.5    </td> <td>Chjat      </td> <td>Advance  </td> <td>127100   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>37.6     </td> <td>55.8    </td> <td>Moscou     </td> <td>Advance  </td> <td>100000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>34.3     </td> <td>55.2    </td> <td>Wixma      </td> <td>Retreat  </td> <td>55000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>32       </td> <td>54.6    </td> <td>Smolensk   </td> <td>Retreat  </td> <td>24000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>30.4     </td> <td>54.4    </td> <td>Orscha     </td> <td>Retreat  </td> <td>20000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>26.8     </td> <td>54.3    </td> <td>Moiodexno  </td> <td>Retreat  </td> <td>12000    </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A common pattern is to assign the original name <code>minard</code> to the new table, so that all future uses of <code>minard</code> will refer to the relabeled table.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span> <span class="o">=</span> <span class="n">minard</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s1">'City'</span><span class="p">,</span> <span class="s1">'City Name'</span><span class="p">)</span>
+<span class="n">minard</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Longitude</th> <th>Latitude</th> <th>City Name</th> <th>Direction</th> <th>Survivors</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>32       </td> <td>54.8    </td> <td>Smolensk   </td> <td>Advance  </td> <td>145000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>33.2     </td> <td>54.9    </td> <td>Dorogobouge</td> <td>Advance  </td> <td>140000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>34.4     </td> <td>55.5    </td> <td>Chjat      </td> <td>Advance  </td> <td>127100   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>37.6     </td> <td>55.8    </td> <td>Moscou     </td> <td>Advance  </td> <td>100000   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>34.3     </td> <td>55.2    </td> <td>Wixma      </td> <td>Retreat  </td> <td>55000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>32       </td> <td>54.6    </td> <td>Smolensk   </td> <td>Retreat  </td> <td>24000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>30.4     </td> <td>54.4    </td> <td>Orscha     </td> <td>Retreat  </td> <td>20000    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>26.8     </td> <td>54.3    </td> <td>Moiodexno  </td> <td>Retreat  </td> <td>12000    </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Accessing-the-Data-in-a-Column">Accessing the Data in a Column<a class="anchor-link" href="#Accessing-the-Data-in-a-Column">¶</a></h3><p>We can use a column's label to access the array of data in the column.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -325,15 +422,17 @@
 <h3 id="Working-with-the-Data-in-a-Column">Working with the Data in a Column<a class="anchor-link" href="#Working-with-the-Data-in-a-Column">¶</a></h3><p>Because columns are arrays, we can use array operations on them to discover new information. For example, we can create a new column that contains the percent of all survivors at each city after Smolensk.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
-    <span class="s1">'Percent Surviving'</span><span class="p">,</span> <span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span><span class="o">/</span><span class="mi">145000</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">initial</span> <span class="o">=</span> <span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">minard</span> <span class="o">=</span> <span class="n">minard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">'Percent Surviving'</span><span class="p">,</span> <span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span><span class="o">/</span><span class="n">initial</span>
 <span class="p">)</span>
+<span class="n">minard</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Longitude</th> <th>Latitude</th> <th>City</th> <th>Direction</th> <th>Survivors</th> <th>Percent Surviving</th>
+            <th>Longitude</th> <th>Latitude</th> <th>City Name</th> <th>Direction</th> <th>Survivors</th> <th>Percent Surviving</th>
         </tr>
     </thead>
     <tbody>
@@ -375,17 +474,13 @@
 <p>To make the proportions in the new columns appear as percents, we can use the method <code>set_format</code> with the option <code>PercentFormatter</code>. The <code>set_format</code> method takes <code>Formatter</code> objects, which exist for dates (<code>DateFormatter</code>), currencies (<code>CurrencyFormatter</code>), numbers, and percentages.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard_and_percents</span> <span class="o">=</span> <span class="n">minard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
-    <span class="s1">'Percent Surviving'</span><span class="p">,</span> <span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span><span class="o">/</span><span class="mi">145000</span>
-<span class="p">)</span>
-
-<span class="n">minard_and_percents</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s1">'Percent Surviving'</span><span class="p">,</span> <span class="n">PercentFormatter</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s1">'Percent Surviving'</span><span class="p">,</span> <span class="n">PercentFormatter</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Longitude</th> <th>Latitude</th> <th>City</th> <th>Direction</th> <th>Survivors</th> <th>Percent Surviving</th>
+            <th>Longitude</th> <th>Latitude</th> <th>City Name</th> <th>Direction</th> <th>Survivors</th> <th>Percent Surviving</th>
         </tr>
     </thead>
     <tbody>
@@ -586,40 +681,88 @@
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>City</th> <th>Survivors</th>
+            <th>City Name</th> <th>Survivors</th> <th>Percent Surviving</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Smolensk   </td> <td>145000   </td>
+            <td>Smolensk   </td> <td>145000   </td> <td>100.00%          </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Dorogobouge</td> <td>140000   </td>
+            <td>Dorogobouge</td> <td>140000   </td> <td>96.55%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Chjat      </td> <td>127100   </td>
+            <td>Chjat      </td> <td>127100   </td> <td>87.66%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Moscou     </td> <td>100000   </td>
+            <td>Moscou     </td> <td>100000   </td> <td>68.97%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Wixma      </td> <td>55000    </td>
+            <td>Wixma      </td> <td>55000    </td> <td>37.93%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Smolensk   </td> <td>24000    </td>
+            <td>Smolensk   </td> <td>24000    </td> <td>16.55%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Orscha     </td> <td>20000    </td>
+            <td>Orscha     </td> <td>20000    </td> <td>13.79%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Moiodexno  </td> <td>12000    </td>
+            <td>Moiodexno  </td> <td>12000    </td> <td>8.28%            </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Neither <code>select</code> nor <code>drop</code> change the original table. Instead, they create new smaller tables that share the same data. The fact that the original table is preserved is useful! You can generate multiple different tables that only consider certain columns without worrying that one analysis will affect the other.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minard</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Longitude</th> <th>Latitude</th> <th>City Name</th> <th>Direction</th> <th>Survivors</th> <th>Percent Surviving</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>32       </td> <td>54.8    </td> <td>Smolensk   </td> <td>Advance  </td> <td>145000   </td> <td>100.00%          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>33.2     </td> <td>54.9    </td> <td>Dorogobouge</td> <td>Advance  </td> <td>140000   </td> <td>96.55%           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>34.4     </td> <td>55.5    </td> <td>Chjat      </td> <td>Advance  </td> <td>127100   </td> <td>87.66%           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>37.6     </td> <td>55.8    </td> <td>Moscou     </td> <td>Advance  </td> <td>100000   </td> <td>68.97%           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>34.3     </td> <td>55.2    </td> <td>Wixma      </td> <td>Retreat  </td> <td>55000    </td> <td>37.93%           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>32       </td> <td>54.6    </td> <td>Smolensk   </td> <td>Retreat  </td> <td>24000    </td> <td>16.55%           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>30.4     </td> <td>54.4    </td> <td>Orscha     </td> <td>Retreat  </td> <td>20000    </td> <td>13.79%           </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>26.8     </td> <td>54.3    </td> <td>Moiodexno  </td> <td>Retreat  </td> <td>12000    </td> <td>8.28%            </td>
         </tr>
     </tbody>
 </table></div>

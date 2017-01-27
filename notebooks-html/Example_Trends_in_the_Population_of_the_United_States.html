@@ -17,7 +17,7 @@
 <p>We are now ready to work with large tables of data. The file below contains "Annual Estimates of the Resident Population by Single Year of Age and Sex for the United States." Notice that <code>read_table</code> can read data directly from a URL.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census_url</span> <span class="o">=</span> <span class="s1">'http://www.census.gov/popest/data/national/asrh/2014/files/NC-EST2014-AGESEX-RES.csv'</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">census_url</span> <span class="o">=</span> <span class="s1">'https://raw.githubusercontent.com/open-source-economics/taxdata/master/Stage%20I/NC-EST2014-AGESEX-RES.csv'</span>
 <span class="n">full_census_table</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">census_url</span><span class="p">)</span>
 <span class="n">full_census_table</span>
 </pre></div></div></div>
@@ -330,8 +330,4 @@
 <li><p>Those who were 64 to 67 years old in 2014 were born in the years 1947 to 1950, at the height of the post-WWII baby boom in the United States.</p>
 </li>
 </ul>
-<p>The post-war jump in births is the major reason for the large changes that we have observed.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<p>The post-war jump in births is the major reason for the large changes that we have observed.</p></div></div></div>
