@@ -126,8 +126,45 @@
 <p>... (414 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Glance through about 20 rows or so, and you will see that the rows are in alphabetical order by team name. To examine the players' salaries, however, it would be much more helpful if the data were ordered by salary.</p>
-<p>To do this, we will first simplify the label of the column of salaries (just for convenience), and then use the Table method <code>sort</code> to re-order rows by that column. The argument to <code>sort</code> is the new column label <code>SALARY</code>.</p>
+<p>Glance through about 20 rows or so, and you will see that the rows are in alphabetical order by team name. It's also possible to list the same rows in alphabetical order by player name using the <code>sort</code> method. The argument to <code>sort</code> is a column label or index.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba_salaries</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'PLAYER'</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>PLAYER</th> <th>POSITION</th> <th>TEAM</th> <th>'15-'16 SALARY</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Aaron Brooks  </td> <td>PG      </td> <td>Chicago Bulls         </td> <td>2.25          </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Aaron Gordon  </td> <td>PF      </td> <td>Orlando Magic         </td> <td>4.17168       </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Aaron Harrison</td> <td>SG      </td> <td>Charlotte Hornets     </td> <td>0.525093      </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Adreian Payne </td> <td>PF      </td> <td>Minnesota Timberwolves</td> <td>1.93884       </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Al Horford    </td> <td>C       </td> <td>Atlanta Hawks         </td> <td>12            </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (412 rows omitted)</p></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To examine the players' salaries, it would be much more helpful if the data were ordered by salary.</p>
+<p>To do this, we will first simplify the label of the column of salaries (just for convenience), and then sort by the new label <code>SALARY</code>.</p>
 <p>This arranges all the rows of the table in <em>increasing</em> order of salary, with the lowest salary appearing first. The output is a new table with the same columns as the original but with the rows rearranged.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -245,59 +282,91 @@
 <p>... (407 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Kobe Bryant, in his final season with the Lakers, was the highest paid at a salary of $\$25$ million. Notice that the MVP Stephen Curry doesn't appear among the top 10. He is quite a bit further down the list, as we will see later.</p>
-<p>The <code>sort</code> method will sort alphabetically when its argument is the name of a column of strings. Here are the rows of <code>nba</code> sorted by the column <code>PLAYER</code>, with all the Aarons appearing first due to alphabetical ordering by first name.</p></div></div>
+<p>Kobe Bryant, in his final season with the Lakers, was the highest paid at a salary of $\$25$ million. Notice that the MVP Stephen Curry doesn't appear among the top 10. He is quite a bit further down the list, as we will see later.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Named-Arguments">Named Arguments<a class="anchor-link" href="#Named-Arguments">¶</a></h3><p>The <code>descending=True</code> portion of this call expression is called a <em>named argument</em>. When a function or method is called, each argument has both a position and a name. Both are evident from the help text of a function or method.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'PLAYER'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">)</span>
 </pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>PLAYER</th> <th>POSITION</th> <th>TEAM</th> <th>SALARY</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Aaron Brooks   </td> <td>PG      </td> <td>Chicago Bulls         </td> <td>2.25    </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Aaron Gordon   </td> <td>PF      </td> <td>Orlando Magic         </td> <td>4.17168 </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Aaron Harrison </td> <td>SG      </td> <td>Charlotte Hornets     </td> <td>0.525093</td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Adreian Payne  </td> <td>PF      </td> <td>Minnesota Timberwolves</td> <td>1.93884 </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Al Horford     </td> <td>C       </td> <td>Atlanta Hawks         </td> <td>12      </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Al Jefferson   </td> <td>C       </td> <td>Charlotte Hornets     </td> <td>13.5    </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Al-Farouq Aminu</td> <td>SF      </td> <td>Portland Trail Blazers</td> <td>8.04289 </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Alan Anderson  </td> <td>SG      </td> <td>Washington Wizards    </td> <td>4       </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Alec Burks     </td> <td>SG      </td> <td>Utah Jazz             </td> <td>9.46348 </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>Alex Len       </td> <td>C       </td> <td>Phoenix Suns          </td> <td>3.80712 </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (407 rows omitted)</p></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on method sort in module datascience.tables:
+
+sort(column_or_label, descending=False, distinct=False) method of datascience.tables.Table instance
+    Return a Table of rows sorted according to the values in a column.
+    
+    Args:
+        ``column_or_label``: the column whose values are used for sorting.
+    
+        ``descending``: if True, sorting will be in descending, rather than
+            ascending order.
+    
+        ``distinct``: if True, repeated values in ``column_or_label`` will
+            be omitted.
+    
+    Returns:
+        An instance of ``Table`` containing rows sorted based on the values
+        in ``column_or_label``.
+    
+    &gt;&gt;&gt; marbles = Table().with_columns(
+    ...    "Color", make_array("Red", "Green", "Blue", "Red", "Green", "Green"),
+    ...    "Shape", make_array("Round", "Rectangular", "Rectangular", "Round", "Rectangular", "Round"),
+    ...    "Amount", make_array(4, 6, 12, 7, 9, 2),
+    ...    "Price", make_array(1.30, 1.30, 2.00, 1.75, 1.40, 1.00))
+    &gt;&gt;&gt; marbles
+    Color | Shape       | Amount | Price
+    Red   | Round       | 4      | 1.3
+    Green | Rectangular | 6      | 1.3
+    Blue  | Rectangular | 12     | 2
+    Red   | Round       | 7      | 1.75
+    Green | Rectangular | 9      | 1.4
+    Green | Round       | 2      | 1
+    &gt;&gt;&gt; marbles.sort("Amount")
+    Color | Shape       | Amount | Price
+    Green | Round       | 2      | 1
+    Red   | Round       | 4      | 1.3
+    Green | Rectangular | 6      | 1.3
+    Red   | Round       | 7      | 1.75
+    Green | Rectangular | 9      | 1.4
+    Blue  | Rectangular | 12     | 2
+    &gt;&gt;&gt; marbles.sort("Amount", descending = True)
+    Color | Shape       | Amount | Price
+    Blue  | Rectangular | 12     | 2
+    Green | Rectangular | 9      | 1.4
+    Red   | Round       | 7      | 1.75
+    Green | Rectangular | 6      | 1.3
+    Red   | Round       | 4      | 1.3
+    Green | Round       | 2      | 1
+    &gt;&gt;&gt; marbles.sort(3) # the Price column
+    Color | Shape       | Amount | Price
+    Green | Round       | 2      | 1
+    Red   | Round       | 4      | 1.3
+    Green | Rectangular | 6      | 1.3
+    Green | Rectangular | 9      | 1.4
+    Red   | Round       | 7      | 1.75
+    Blue  | Rectangular | 12     | 2
+    &gt;&gt;&gt; marbles.sort(3, distinct = True)
+    Color | Shape       | Amount | Price
+    Green | Round       | 2      | 1
+    Red   | Round       | 4      | 1.3
+    Green | Rectangular | 9      | 1.4
+    Red   | Round       | 7      | 1.75
+    Blue  | Rectangular | 12     | 2
+
+</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At the very top of this <code>help</code> text, the <em>signature</em> of the <code>sort</code> method appears:</p>
+
+<pre><code>sort(column_or_label, descending=False, distinct=False)
+
+</code></pre>
+<p>This describes the positions, names, and default values of the three arguments to <code>sort</code>. When calling this method, you can use either positional arguments or named arguments, so the following three calls do exactly the same thing.</p>
+
+<pre><code>sort('SALARY', True)
+sort('SALARY', descending=True)
+sort(column_or_label='SALARY', descending=True)
+
+</code></pre>
+<p>When an argument is simply <code>True</code> or <code>False</code>, it's a useful convention to include the argument name so that it's more obvious what the argument value means.</p></div></div></div>
