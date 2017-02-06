@@ -79,7 +79,8 @@
 <h3 id="Visualizing-the-Distribution-of-the-Adjusted-Receipts">Visualizing the Distribution of the Adjusted Receipts<a class="anchor-link" href="#Visualizing-the-Distribution-of-the-Adjusted-Receipts">¶</a></h3><p>In this section we will draw graphs of the distribution of the numerical variable in the column <code>Gross (Adjusted)</code>. For simplicity, let's create a smaller table that has the information that we need. And since three-digit numbers are easier to work with than nine-digit numbers, let's measure the <code>Adjusted Gross</code> receipts in millions of dollars. Note how <code>round</code> is used to retain only two decimal places.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Adjusted Gross'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Adjusted Gross'</span><span class="p">,</span> 
+                                     <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="n">e6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">millions</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -251,7 +252,14 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice the <code>bin</code> value 2000 in the last row. That's not the left end-point of any bar – it's the right end point of the last bar. By the endpoint convention, the data there are not included. So the corresponding <code>count</code> is recorded as 0, and would have been recorded as 0 even if there had been movies that made more than \$2,000$ million dollars. When <code>hist</code> is called with a <code>bins</code> argument, the graph only considers values that are in the specified bins.</p></div></div>
+<p>Notice the <code>bin</code> value 2000 in the last row. That's not the left end-point of any bar – it's the right end point of the last bar. By the endpoint convention, the data there are not included. So the corresponding <code>count</code> is recorded as 0, and would have been recorded as 0 even if there had been movies that made more than \$2,000$ million dollars. When either <code>bin</code> or <code>hist</code> is called with a <code>bins</code> argument, the graph only considers values that are in the specified bins.</p>
+<p>Once values have been binned, the resulting counts can be used to generate a histogram using the <code>bin_column</code> named argument to specify which column contains the bin lower bounds.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bin_counts</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Adjusted Gross count'</span><span class="p">,</span> <span class="n">bin_column</span><span class="o">=</span><span class="s1">'bin'</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'Million Dollars'</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_png output_subarea ">
+<img src="/notebooks-images/Visualizing_Numerical_Distributions_14_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-Vertical-Axis:-Density-Scale">The Vertical Axis: Density Scale<a class="anchor-link" href="#The-Vertical-Axis:-Density-Scale">¶</a></h3><p>The horizontal axis of a histogram is straightforward to read, once we have taken care of details like the ends of the bins. The features of the vertical axis require a little more attention. We will go over them one by one.</p>
@@ -320,13 +328,7 @@
 <p>... (8 rows omitted)</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here is the histogram again. Go over the numbers on the vertical axis to check that the column <code>Heights</code> looks correct.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">'Adjusted Gross'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">2001</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Million Dollars"</span><span class="p">,</span> <span class="p">)</span>
-</pre></div></div></div>
-<div class="output_png output_subarea ">
-<img src="/notebooks-images/Visualizing_Numerical_Distributions_17_0.png"/></div>
+<p>Go over the numbers on the vertical axis of the histogram above to check that the column <code>Heights</code> looks correct.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The calculations will become clear if we just examine the first row of the table.</p>
@@ -532,7 +534,7 @@ Look again at the [300, 400) bin in the earlier histograms. As we have seen, the
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Differences-Between-Bar-Charts-and-Histograms">Differences Between Bar Charts and Histograms<a class="anchor-link" href="#Differences-Between-Bar-Charts-and-Histograms">¶</a></h3><ul>
-<li>Bar charts display the distributions of categorical variables. Histograms display the distributions of quantitative variables. </li>
+<li>Bar charts display one quantity per category. They are often used to display the distributions of categorical variables. Histograms display the distributions of quantitative variables. </li>
 <li>All the bars in a bar chart have the same width, and there is an equal amount of space between consecutive bars. The bars of a histogram can have different widths, and they are contiguous.</li>
-<li>The lengths (or heights, if the bars are drawn vertically) of the bars in a bar chart are proportional to the numbers of entries in the categories. The heights of bars in a histogram measure densities; the <em>areas</em> of bars in a histogram are proportional to the numbers of entries in the bins.</li>
+<li>The lengths (or heights, if the bars are drawn vertically) of the bars in a bar chart are proportional to the value for each category. The heights of bars in a histogram measure densities; the <em>areas</em> of bars in a histogram are proportional to the numbers of entries in the bins.</li>
 </ul></div></div></div>

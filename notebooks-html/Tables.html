@@ -39,12 +39,11 @@
 </tbody></table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>with_column</code> and <code>with_columns</code> methods on a table construct new tables with additional labeled columns.</p>
-<p>Each column of a table has to be an array. The first argument of <code>with_column</code> is a string that is the column label, and the second argument is an array consisting of the data in the column.</p>
+<p>The <code>with_columns</code> method on a table constructs a new table with additional labeled columns. Each column of a table is an array. To add one new column to a table, call <code>with_columns</code> with a label and an array. (The <code>with_column</code> method can be used with the same effect.)</p>
 <p>Below, we begin each example with an empty table that has no columns.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Number of petals'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="s1">'Number of petals'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -69,7 +68,7 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can also create a table that has multiple columns.</p></div></div>
+<p>To add two (or more) new columns, provide the labe and array for each column. All columns must have the same length, or an error will occur.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
@@ -108,7 +107,7 @@
     <span class="s1">'Name'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">'lotus'</span><span class="p">,</span> <span class="s1">'sunflower'</span><span class="p">,</span> <span class="s1">'rose'</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="n">flowers</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+<span class="n">flowers</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
     <span class="s1">'Color'</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">'pink'</span><span class="p">,</span> <span class="s1">'yellow'</span><span class="p">,</span> <span class="s1">'red'</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div></div></div>
@@ -135,7 +134,7 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The methods <code>with_column</code> and <code>with_columns</code> create new tables each time they are called. They don't change the table on which they act. So the table <code>an_example</code> still has only the two columns that it had when it was created.</p></div></div>
+<p>The <code>with_columns</code> method creates a new table each time it is called, so the original table is not affected. For example, the table <code>an_example</code> still has only the two columns that it had when it was created.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">flowers</span>
@@ -423,7 +422,7 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">initial</span> <span class="o">=</span> <span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">minard</span> <span class="o">=</span> <span class="n">minard</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+<span class="n">minard</span> <span class="o">=</span> <span class="n">minard</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
     <span class="s1">'Percent Surviving'</span><span class="p">,</span> <span class="n">minard</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Survivors'</span><span class="p">)</span><span class="o">/</span><span class="n">initial</span>
 <span class="p">)</span>
 <span class="n">minard</span>
@@ -437,35 +436,35 @@
     </thead>
     <tbody>
         <tr>
-            <td>32       </td> <td>54.8    </td> <td>Smolensk   </td> <td>Advance  </td> <td>145000   </td> <td>1                </td>
+            <td>32       </td> <td>54.8    </td> <td>Smolensk   </td> <td>Advance  </td> <td>145000   </td> <td>100.00%          </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>33.2     </td> <td>54.9    </td> <td>Dorogobouge</td> <td>Advance  </td> <td>140000   </td> <td>0.965517         </td>
+            <td>33.2     </td> <td>54.9    </td> <td>Dorogobouge</td> <td>Advance  </td> <td>140000   </td> <td>96.55%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>34.4     </td> <td>55.5    </td> <td>Chjat      </td> <td>Advance  </td> <td>127100   </td> <td>0.876552         </td>
+            <td>34.4     </td> <td>55.5    </td> <td>Chjat      </td> <td>Advance  </td> <td>127100   </td> <td>87.66%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>37.6     </td> <td>55.8    </td> <td>Moscou     </td> <td>Advance  </td> <td>100000   </td> <td>0.689655         </td>
+            <td>37.6     </td> <td>55.8    </td> <td>Moscou     </td> <td>Advance  </td> <td>100000   </td> <td>68.97%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>34.3     </td> <td>55.2    </td> <td>Wixma      </td> <td>Retreat  </td> <td>55000    </td> <td>0.37931          </td>
+            <td>34.3     </td> <td>55.2    </td> <td>Wixma      </td> <td>Retreat  </td> <td>55000    </td> <td>37.93%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>32       </td> <td>54.6    </td> <td>Smolensk   </td> <td>Retreat  </td> <td>24000    </td> <td>0.165517         </td>
+            <td>32       </td> <td>54.6    </td> <td>Smolensk   </td> <td>Retreat  </td> <td>24000    </td> <td>16.55%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>30.4     </td> <td>54.4    </td> <td>Orscha     </td> <td>Retreat  </td> <td>20000    </td> <td>0.137931         </td>
+            <td>30.4     </td> <td>54.4    </td> <td>Orscha     </td> <td>Retreat  </td> <td>20000    </td> <td>13.79%           </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>26.8     </td> <td>54.3    </td> <td>Moiodexno  </td> <td>Retreat  </td> <td>12000    </td> <td>0.0827586        </td>
+            <td>26.8     </td> <td>54.3    </td> <td>Moiodexno  </td> <td>Retreat  </td> <td>12000    </td> <td>8.28%            </td>
         </tr>
     </tbody>
 </table></div>
