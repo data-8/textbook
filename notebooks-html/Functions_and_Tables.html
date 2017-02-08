@@ -63,7 +63,16 @@
 <pre>84</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Names that are defined inside a function, including arguments like <code>double</code>'s <code>x</code>, have only a fleeting existence.  They are defined only while the function is being called, and they are only accessible inside the body of the function. We can't refer to <code>x</code> outside the body of <code>double</code>. The technical terminology is that <code>x</code> has <em>local scope</em>.</p>
+<p>The argument can also be any value that can be doubled. For example, a whole array of numbers can be passed as an argument to <code>double</code>, and the result will be another array.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">double</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 6,  8, 10])</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, names that are defined inside a function, including arguments like <code>double</code>'s <code>x</code>, have only a fleeting existence.  They are defined only while the function is being called, and they are only accessible inside the body of the function. We can't refer to <code>x</code> outside the body of <code>double</code>. The technical terminology is that <code>x</code> has <em>local scope</em>.</p>
 <p>Therefore the name <code>x</code> isn't recognized outside the body of the function, even though we have called <code>double</code> in the cells above.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -72,7 +81,7 @@
 <div class="output_subarea output_text output_error">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-6-401b30e3b8b5&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-18-401b30e3b8b5&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>x
 
 <span class="ansi-red-fg">NameError</span>: name 'x' is not defined</pre></div>
@@ -110,10 +119,10 @@
 <p>Contrast the function <code>percent</code> defined above with the function <code>percents</code> defined below. The latter takes an array as its argument, and converts all the numbers in the array to percents out of the total of the values in the array. The percents are all rounded to two decimal places, this time replacing <code>round</code> by <code>np.round</code> because the argument is an array and not a number.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percents</span><span class="p">(</span><span class="n">array_x</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percents</span><span class="p">(</span><span class="n">counts</span><span class="p">):</span>
     <span class="sd">"""Convert the values in array_x to percents out of the total of array_x."""</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="n">array_x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">array_x</span><span class="o">/</span><span class="n">total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">counts</span><span class="o">/</span><span class="n">total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -140,10 +149,54 @@
 <span class="n">big_diff</span> <span class="o">=</span> <span class="n">biggest_difference</span><span class="p">(</span><span class="n">some_numbers</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"The biggest difference is"</span><span class="p">,</span> <span class="n">big_diff</span><span class="p">)</span>
 </pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The biggest difference is 5
+</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Here is what happens when we run that cell:</p>
 <p><img src="/images/function_execution.jpg"/></p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Note:-Methods">Note: Methods<a class="anchor-link" href="#Note:-Methods">¶</a></h3><p>Functions are called by placing argument expressions in parentheses after the function name. Any function that is defined in isolation is called in this way. You have also seen examples of functions ("methods") that are called using dot notation, such as <code>some_table.sort(some_label)</code>, but functions that you define will always be called using the function name first, passing in all of its arguments.</p></div></div></div>
+<h2 id="Multiple-Arguments">Multiple Arguments<a class="anchor-link" href="#Multiple-Arguments">¶</a></h2></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There can be multiple ways to generalize an expression or block of code, and so a function can take multiple arguments that each determine different aspects of the result. For example, the <code>percents</code> function we defined previously rounded to two decimal places every time. The following two-argument definition allows different calls to round to different amounts.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percents</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">decimal_places</span><span class="p">):</span>
+    <span class="sd">"""Convert the values in array_x to percents out of the total of array_x."""</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">counts</span><span class="o">/</span><span class="n">total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">decimal_places</span><span class="p">)</span>
+
+<span class="n">parts</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Rounded to 1 decimal place: "</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Rounded to 2 decimal places:"</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Rounded to 3 decimal places:"</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rounded to 1 decimal place:  [ 28.6  14.3  57.1]
+Rounded to 2 decimal places: [ 28.57  14.29  57.14]
+Rounded to 3 decimal places: [ 28.571  14.286  57.143]
+</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The flexibility of this new definition comes at a small price: each time the function is called, the number of decimal places must be specified. Default argument values allow a function to be called with a variable number of arguments; any argument that isn't specified in the call expression is given its default value, which is stated in the first line of the <code>def</code> statement. For example, in this final definition of <code>percents</code>, the optional argument <code>decimal_places</code> is given a default value of 2.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percents</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">"""Convert the values in array_x to percents out of the total of array_x."""</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">counts</span><span class="o">/</span><span class="n">total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">decimal_places</span><span class="p">)</span>
+
+<span class="n">parts</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Rounded to 1 decimal place:"</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Rounded to the default number of decimal places:"</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">parts</span><span class="p">))</span>
+</pre></div></div></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rounded to 1 decimal place: [ 28.6  14.3  57.1]
+Rounded to the default number of decimal places: [ 28.57  14.29  57.14]
+</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Note:-Methods">Note: Methods<a class="anchor-link" href="#Note:-Methods">¶</a></h3><p>Functions are called by placing argument expressions in parentheses after the function name. Any function that is defined in isolation is called in this way. You have also seen examples of methods, which are like functions but are called using dot notation, such as <code>some_table.sort(some_label)</code>. The functions that you define will always be called using the function name first, passing in all of the arguments.</p></div></div></div>
