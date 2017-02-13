@@ -12,7 +12,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Cross-Classifying-by-More-than-One-Variable">Cross-Classifying by More than One Variable<a class="anchor-link" href="#Cross-Classifying-by-More-than-One-Variable">¶</a></h3><p>When individuals have multiple features, there are many different ways to classify them. For example, if we have a population of college students for each of whom we have recorded a major and the number of years in college, then the students could be classified by major, or by year, or by a combination of major and year.</p>
-<p>The <code>groups</code> method (notice the plural) allows us to classify individuals according to multiple variables. This is called <em>cross-classifying</em>.</p></div></div>
+<p>The <code>group</code> method also allows us to classify individuals according to multiple variables. This is called <em>cross-classifying</em>.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Two-Variables:-Counting-the-Number-in-Each-Paired-Category">Two Variables: Counting the Number in Each Paired Category<a class="anchor-link" href="#Two-Variables:-Counting-the-Number-in-Each-Paired-Category">¶</a></h3><p>The table <code>more_cones</code> records the flavor, color, and price of six ice cream cones.</p></div></div>
@@ -89,13 +89,13 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>But now each cone has a color as well. To classify the cones by both flavor and color, we will use <code>groups</code>. The <code>groups</code> method behaves in the same way as <code>group</code>, but accepts an array of columns as its first argument. The resulting table has one row for every <em>unique combination</em> of values that appear together in the grouped columns. As before, a single argument (an array, in this case) gives row counts.</p></div></div>
+<p>But now each cone has a color as well. To classify the cones by both flavor and color, we will pass a list of labels as an argument to <code>group</code>. The resulting table has one row for every <em>unique combination</em> of values that appear together in the grouped columns. As before, a single argument (a list, in this case, but an array would work too) gives row counts.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Though there are six cones, there are only four unique combinations of flavor and color. Two of the cones were dark brown chocolate, and two pink strawberry.</p></div></div>
+<p>Although there are six cones, there are only four unique combinations of flavor and color. Two of the cones were dark brown chocolate, and two pink strawberry.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">groups</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">group</span><span class="p">([</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -124,10 +124,10 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Two-Variables:-Finding-a-Characteristic-of-Each-Paired-Category">Two Variables: Finding a Characteristic of Each Paired Category<a class="anchor-link" href="#Two-Variables:-Finding-a-Characteristic-of-Each-Paired-Category">¶</a></h3><p>As with <code>group</code>, a second argument to <code>groups</code> aggregates all other columns that are not in the array of grouped columns.</p></div></div>
+<h3 id="Two-Variables:-Finding-a-Characteristic-of-Each-Paired-Category">Two Variables: Finding a Characteristic of Each Paired Category<a class="anchor-link" href="#Two-Variables:-Finding-a-Characteristic-of-Each-Paired-Category">¶</a></h3><p>A second argument aggregates all other columns that are not in the list of grouped columns.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">groups</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">),</span> <span class="nb">sum</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">group</span><span class="p">([</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">],</span> <span class="nb">sum</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -156,14 +156,14 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Three or More Variables.</strong> You can use <code>groups</code> to classify rows by three or more categorical variables. Just include them all in the array that is the first argument. But cross-classifying by multiple variables can become complex, as the number of distinct combinations of categories can be quite large.</p></div></div>
+<p><strong>Three or More Variables.</strong> You can use <code>group</code> to classify rows by three or more categorical variables. Just include them all in the list that is the first argument. But cross-classifying by multiple variables can become complex, as the number of distinct combinations of categories can be quite large.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Pivot-Tables:-Rearranging-the-Output-of-groups">Pivot Tables: Rearranging the Output of <code>groups</code><a class="anchor-link" href="#Pivot-Tables:-Rearranging-the-Output-of-groups">¶</a></h3><p>Many uses of cross-classification involve just two categorical variables, like <code>Flavor</code> and <code>Color</code> in the example above. In these cases it is possible to display the results of the classification in a different kind of table, called a <em>pivot table</em>. Pivot tables, also known as <em>contingency tables</em>, make it easier to work with data that have been classified according to two variables.</p>
-<p>Recall the use of <code>groups</code> to count the number of cones in each paired category of flavor and color:</p></div></div>
+<h3 id="Pivot-Tables:-Rearranging-the-Output-of-group">Pivot Tables: Rearranging the Output of <code>group</code><a class="anchor-link" href="#Pivot-Tables:-Rearranging-the-Output-of-group">¶</a></h3><p>Many uses of cross-classification involve just two categorical variables, like <code>Flavor</code> and <code>Color</code> in the example above. In these cases it is possible to display the results of the classification in a different kind of table, called a <em>pivot table</em>. Pivot tables, also known as <em>contingency tables</em>, make it easier to work with data that have been classified according to two variables.</p>
+<p>Recall the use of <code>group</code> to count the number of cones in each paired category of flavor and color:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">groups</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">group</span><span class="p">([</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
@@ -220,12 +220,13 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice how this table displays all nine possible pairs of flavor and color, including pairs like "dark brown bubblegum" that don't exist in our data. Notice also that the count in each pair appears in the body of the table: to find the number of light brown chocolate cones, run your eye along the row <code>light brown</code> until it meets the column <code>chocolate</code>.</p></div></div>
+<p>Notice how this table displays all nine possible pairs of flavor and color, including pairs like "dark brown bubblegum" that don't exist in our data. Notice also that the count in each pair appears in the body of the table: to find the number of light brown chocolate cones, run your eye along the row <code>light brown</code> until it meets the column <code>chocolate</code>.</p>
+<p>The <code>group</code> method takes a list of two labels because it is flexible: it could take one or three or more. On the other hand, <code>pivot</code> always takes two column labels, one to determine the columns and one to determine the rows.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong><code>pivot</code></strong></p>
-<p>The <code>pivot</code> method is closely related to the <code>groups</code> method: it groups together rows that share a combination of values. It differs from <code>groups</code> because it organizes the resulting values in a grid. The first argument to <code>pivot</code> is the label of a column that contains the values that will be used to form new columns in the result. The second argument is the label of a column used for the rows. The result gives the count of all rows of the original table that share the combination of column and row values.</p>
-<p>Like <code>groups</code>, <code>pivot</code> can be used with additional arguments to find characteristics of each paired category. An optional third argument called <code>values</code> indicates a column of values that will replace the counts in each cell of the grid. All of these values will not be displayed, however; the fourth argument <code>collect</code> indicates how to collect them all into one aggregated value to be displayed in the cell.</p>
+<p>The <code>pivot</code> method is closely related to the <code>group</code> method: it groups together rows that share a combination of values. It differs from <code>group</code> because it organizes the resulting values in a grid. The first argument to <code>pivot</code> is the label of a column that contains the values that will be used to form new columns in the result. The second argument is the label of a column used for the rows. The result gives the count of all rows of the original table that share the combination of column and row values.</p>
+<p>Like <code>group</code>, <code>pivot</code> can be used with additional arguments to find characteristics of each paired category. An optional third argument called <code>values</code> indicates a column of values that will replace the counts in each cell of the grid. All of these values will not be displayed, however; the fourth argument <code>collect</code> indicates how to collect them all into one aggregated value to be displayed in the cell.</p>
 <p>An example will help clarify this. Here is <code>pivot</code> being used to find the total price of the cones in each cell.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -254,10 +255,10 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And here is <code>groups</code> doing the same thing.</p></div></div>
+<p>And here is <code>group</code> doing the same thing.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">groups</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">),</span> <span class="nb">sum</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">group</span><span class="p">([</span><span class="s1">'Flavor'</span><span class="p">,</span> <span class="s1">'Color'</span><span class="p">],</span> <span class="nb">sum</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
