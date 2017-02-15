@@ -99,7 +99,7 @@
 <img src="/notebooks-images/Bike_Sharing_in_the_Bay_Area_6_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Exploring-the-Data-with-group,-groups,-and-pivot">Exploring the Data with <code>group</code>, <code>groups</code>, and <code>pivot</code><a class="anchor-link" href="#Exploring-the-Data-with-group,-groups,-and-pivot">¶</a></h3><p>We can use <code>group</code> to identify the most highly used Start Station:</p></div></div>
+<h3 id="Exploring-the-Data-with-group-and-pivot">Exploring the Data with <code>group</code> and <code>pivot</code><a class="anchor-link" href="#Exploring-the-Data-with-group-and-pivot">¶</a></h3><p>We can use <code>group</code> to identify the most highly used Start Station:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">starts</span> <span class="o">=</span> <span class="n">commute</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Start Station'</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'count'</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -160,7 +160,7 @@
 <p>The largest number of trips started at the Caltrain Station on Townsend and 4th in San Francisco. People take the train into the city, and then use a shared bike to get to their next destination.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>groups</code> method can be used to classify the rentals by both Start Station and End Station.</p></div></div>
+<p>The <code>group</code> method can also be used to classify the rentals by both Start Station and End Station.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">commute</span><span class="o">.</span><span class="n">group</span><span class="p">([</span><span class="s1">'Start Station'</span><span class="p">,</span> <span class="s1">'End Station'</span><span class="p">])</span>
@@ -452,7 +452,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_0e5415e377ff41048afc6d93eb8d404b&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_a4626707f4a94446af60c544cd8c0c5c&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -496,7 +496,7 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_0e5415e377ff41048afc6d93eb8d404b', {
+      var map = L.map('folium_a4626707f4a94446af60c544cd8c0c5c', {
                                        center:[37.567251, -122.1481515],
                                        zoom: 10.0,
                                        maxBounds: bounds,
@@ -1169,7 +1169,7 @@
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span> <span class="o">=</span> <span class="n">stations</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'landmark'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="s1">'San Francisco'</span><span class="p">))</span>
 <span class="n">sf_map_data</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'lat'</span><span class="p">,</span> <span class="s1">'long'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">)</span>
-<span class="n">Circle</span><span class="o">.</span><span class="n">map_table</span><span class="p">(</span><span class="n">sf_map_data</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">Circle</span><span class="o">.</span><span class="n">map_table</span><span class="p">(</span><span class="n">sf_map_data</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe ;="" border:="" none"="" srcdoc="&lt;!DOCTYPE html&gt;
@@ -1224,7 +1224,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_6c15a2e85f594d3785093404bf8d9655&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_5a2652b02dfc46ff988693e411b081d5&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -1268,7 +1268,7 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_6c15a2e85f594d3785093404bf8d9655', {
+      var map = L.map('folium_5a2652b02dfc46ff988693e411b081d5', {
                                        center:[37.787914, -122.4034835],
                                        zoom: 12.0,
                                        maxBounds: bounds,
@@ -1287,7 +1287,7 @@
       
 
       
-      var circle_1 = L.circle([37.795001, -122.39997], 100, {
+      var circle_1 = L.circle([37.795001, -122.39997], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1296,7 +1296,7 @@
       circle_1._popup.options.maxWidth = 300;
       map.addLayer(circle_1)
       
-      var circle_2 = L.circle([37.79728, -122.398436], 100, {
+      var circle_2 = L.circle([37.79728, -122.398436], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1305,7 +1305,7 @@
       circle_2._popup.options.maxWidth = 300;
       map.addLayer(circle_2)
       
-      var circle_3 = L.circle([37.794231, -122.402923], 100, {
+      var circle_3 = L.circle([37.794231, -122.402923], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1314,7 +1314,7 @@
       circle_3._popup.options.maxWidth = 300;
       map.addLayer(circle_3)
       
-      var circle_4 = L.circle([37.795425, -122.404767], 100, {
+      var circle_4 = L.circle([37.795425, -122.404767], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1323,7 +1323,7 @@
       circle_4._popup.options.maxWidth = 300;
       map.addLayer(circle_4)
       
-      var circle_5 = L.circle([37.788975, -122.403452], 100, {
+      var circle_5 = L.circle([37.788975, -122.403452], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1332,7 +1332,7 @@
       circle_5._popup.options.maxWidth = 300;
       map.addLayer(circle_5)
       
-      var circle_6 = L.circle([37.799953, -122.398525], 100, {
+      var circle_6 = L.circle([37.799953, -122.398525], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1341,7 +1341,7 @@
       circle_6._popup.options.maxWidth = 300;
       map.addLayer(circle_6)
       
-      var circle_7 = L.circle([37.790302, -122.390637], 100, {
+      var circle_7 = L.circle([37.790302, -122.390637], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1350,7 +1350,7 @@
       circle_7._popup.options.maxWidth = 300;
       map.addLayer(circle_7)
       
-      var circle_8 = L.circle([37.795392, -122.394203], 100, {
+      var circle_8 = L.circle([37.795392, -122.394203], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1359,7 +1359,7 @@
       circle_8._popup.options.maxWidth = 300;
       map.addLayer(circle_8)
       
-      var circle_9 = L.circle([37.791464, -122.391034], 100, {
+      var circle_9 = L.circle([37.791464, -122.391034], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1368,7 +1368,7 @@
       circle_9._popup.options.maxWidth = 300;
       map.addLayer(circle_9)
       
-      var circle_10 = L.circle([37.783871, -122.408433], 100, {
+      var circle_10 = L.circle([37.783871, -122.408433], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1377,7 +1377,7 @@
       circle_10._popup.options.maxWidth = 300;
       map.addLayer(circle_10)
       
-      var circle_11 = L.circle([37.787152, -122.388013], 100, {
+      var circle_11 = L.circle([37.787152, -122.388013], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1386,7 +1386,7 @@
       circle_11._popup.options.maxWidth = 300;
       map.addLayer(circle_11)
       
-      var circle_12 = L.circle([37.789756, -122.394643], 100, {
+      var circle_12 = L.circle([37.789756, -122.394643], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1395,7 +1395,7 @@
       circle_12._popup.options.maxWidth = 300;
       map.addLayer(circle_12)
       
-      var circle_13 = L.circle([37.792251, -122.397086], 100, {
+      var circle_13 = L.circle([37.792251, -122.397086], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1404,7 +1404,7 @@
       circle_13._popup.options.maxWidth = 300;
       map.addLayer(circle_13)
       
-      var circle_14 = L.circle([37.781752, -122.405127], 100, {
+      var circle_14 = L.circle([37.781752, -122.405127], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1413,7 +1413,7 @@
       circle_14._popup.options.maxWidth = 300;
       map.addLayer(circle_14)
       
-      var circle_15 = L.circle([37.77865, -122.418235], 100, {
+      var circle_15 = L.circle([37.77865, -122.418235], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1422,7 +1422,7 @@
       circle_15._popup.options.maxWidth = 300;
       map.addLayer(circle_15)
       
-      var circle_16 = L.circle([37.781332, -122.418603], 100, {
+      var circle_16 = L.circle([37.781332, -122.418603], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1431,7 +1431,7 @@
       circle_16._popup.options.maxWidth = 300;
       map.addLayer(circle_16)
       
-      var circle_17 = L.circle([37.80477, -122.403234], 100, {
+      var circle_17 = L.circle([37.80477, -122.403234], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1440,7 +1440,7 @@
       circle_17._popup.options.maxWidth = 300;
       map.addLayer(circle_17)
       
-      var circle_18 = L.circle([37.780526, -122.390288], 100, {
+      var circle_18 = L.circle([37.780526, -122.390288], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1449,7 +1449,7 @@
       circle_18._popup.options.maxWidth = 300;
       map.addLayer(circle_18)
       
-      var circle_19 = L.circle([37.785299, -122.396236], 100, {
+      var circle_19 = L.circle([37.785299, -122.396236], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1458,7 +1458,7 @@
       circle_19._popup.options.maxWidth = 300;
       map.addLayer(circle_19)
       
-      var circle_20 = L.circle([37.786978, -122.398108], 100, {
+      var circle_20 = L.circle([37.786978, -122.398108], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1467,7 +1467,7 @@
       circle_20._popup.options.maxWidth = 300;
       map.addLayer(circle_20)
       
-      var circle_21 = L.circle([37.782259, -122.392738], 100, {
+      var circle_21 = L.circle([37.782259, -122.392738], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1476,7 +1476,7 @@
       circle_21._popup.options.maxWidth = 300;
       map.addLayer(circle_21)
       
-      var circle_22 = L.circle([37.771058, -122.402717], 100, {
+      var circle_22 = L.circle([37.771058, -122.402717], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1485,7 +1485,7 @@
       circle_22._popup.options.maxWidth = 300;
       map.addLayer(circle_22)
       
-      var circle_23 = L.circle([37.774814, -122.418954], 100, {
+      var circle_23 = L.circle([37.774814, -122.418954], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1494,7 +1494,7 @@
       circle_23._popup.options.maxWidth = 300;
       map.addLayer(circle_23)
       
-      var circle_24 = L.circle([37.776619, -122.417385], 100, {
+      var circle_24 = L.circle([37.776619, -122.417385], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1503,7 +1503,7 @@
       circle_24._popup.options.maxWidth = 300;
       map.addLayer(circle_24)
       
-      var circle_25 = L.circle([37.784878, -122.401014], 100, {
+      var circle_25 = L.circle([37.784878, -122.401014], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1512,7 +1512,7 @@
       circle_25._popup.options.maxWidth = 300;
       map.addLayer(circle_25)
       
-      var circle_26 = L.circle([37.7766, -122.39547], 100, {
+      var circle_26 = L.circle([37.7766, -122.39547], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1521,7 +1521,7 @@
       circle_26._popup.options.maxWidth = 300;
       map.addLayer(circle_26)
       
-      var circle_27 = L.circle([37.776617, -122.39526], 100, {
+      var circle_27 = L.circle([37.776617, -122.39526], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1530,7 +1530,7 @@
       circle_27._popup.options.maxWidth = 300;
       map.addLayer(circle_27)
       
-      var circle_28 = L.circle([37.788446, -122.408499], 100, {
+      var circle_28 = L.circle([37.788446, -122.408499], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1539,7 +1539,7 @@
       circle_28._popup.options.maxWidth = 300;
       map.addLayer(circle_28)
       
-      var circle_29 = L.circle([37.781039, -122.411748], 100, {
+      var circle_29 = L.circle([37.781039, -122.411748], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1548,7 +1548,7 @@
       circle_29._popup.options.maxWidth = 300;
       map.addLayer(circle_29)
       
-      var circle_30 = L.circle([37.798522, -122.407245], 100, {
+      var circle_30 = L.circle([37.798522, -122.407245], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1557,7 +1557,7 @@
       circle_30._popup.options.maxWidth = 300;
       map.addLayer(circle_30)
       
-      var circle_31 = L.circle([37.794139, -122.394434], 100, {
+      var circle_31 = L.circle([37.794139, -122.394434], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1566,7 +1566,7 @@
       circle_31._popup.options.maxWidth = 300;
       map.addLayer(circle_31)
       
-      var circle_32 = L.circle([37.7913, -122.399051], 100, {
+      var circle_32 = L.circle([37.7913, -122.399051], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1575,7 +1575,7 @@
       circle_32._popup.options.maxWidth = 300;
       map.addLayer(circle_32)
       
-      var circle_33 = L.circle([37.786305, -122.404966], 100, {
+      var circle_33 = L.circle([37.786305, -122.404966], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1584,7 +1584,7 @@
       circle_33._popup.options.maxWidth = 300;
       map.addLayer(circle_33)
       
-      var circle_34 = L.circle([37.789625, -122.400811], 100, {
+      var circle_34 = L.circle([37.789625, -122.400811], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1593,7 +1593,7 @@
       circle_34._popup.options.maxWidth = 300;
       map.addLayer(circle_34)
       
-      var circle_35 = L.circle([37.798541, -122.400862], 100, {
+      var circle_35 = L.circle([37.798541, -122.400862], 200, {
                             color: 'None',
                             fillColor: 'green',
                             fillOpacity: 0.6
@@ -1749,7 +1749,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_73c1ec4eae6e4d9f88448e61a317cc0e&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_e906e753fc124c3c95b0b66a279388b6&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -1793,7 +1793,7 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_73c1ec4eae6e4d9f88448e61a317cc0e', {
+      var map = L.map('folium_e906e753fc124c3c95b0b66a279388b6', {
                                        center:[37.567251, -122.1481515],
                                        zoom: 10.0,
                                        maxBounds: bounds,
@@ -2580,9 +2580,9 @@
 <p>Now we extract just the data needed for drawing our map, adding a color and an area to each station. The area is 1000 times the count of the number of rentals starting at each station, where the constant 1000 was chosen so that the circles would appear at an appropriate scale on the map.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">starts_map_data</span> <span class="o">=</span> <span class="n">starts_with_blue</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'lat'</span><span class="p">,</span> <span class="s1">'long'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">)</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">starts_map_data</span> <span class="o">=</span> <span class="n">station_starts</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'lat'</span><span class="p">,</span> <span class="s1">'long'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">)</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
     <span class="s1">'color'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">,</span>
-    <span class="s1">'area'</span><span class="p">,</span> <span class="n">starts_with_blue</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'count'</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+    <span class="s1">'area'</span><span class="p">,</span> <span class="n">station_starts</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'count'</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
 <span class="p">)</span>
 <span class="n">starts_map_data</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">Circle</span><span class="o">.</span><span class="n">map_table</span><span class="p">(</span><span class="n">starts_map_data</span><span class="p">)</span>
@@ -2662,7 +2662,7 @@
 
 &lt;body&gt;
 
-   &lt;div class=&quot;folium-map&quot; id=&quot;folium_6d73aee6a4224617a86db3f02e76a2be&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
+   &lt;div class=&quot;folium-map&quot; id=&quot;folium_9b717b5ecda8467c8ce61b280e3b4a71&quot; style=&quot;width: 960px; height: 500px&quot;&gt;&lt;/div&gt;
 
    &lt;script&gt;
 
@@ -2706,7 +2706,7 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_6d73aee6a4224617a86db3f02e76a2be', {
+      var map = L.map('folium_9b717b5ecda8467c8ce61b280e3b4a71', {
                                        center:[37.567251, -122.1481515],
                                        zoom: 10.0,
                                        maxBounds: bounds,

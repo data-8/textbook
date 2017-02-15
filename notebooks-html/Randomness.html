@@ -23,7 +23,15 @@
 <pre>'treatment'</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The big difference between the code above and all the other code we have run thus far is that the code above doesn't always return the same value. It can return either <code>treatment</code> or <code>control</code>, and we don't know ahead of time which one it will pick. Run the cell a few times and see!</p></div></div>
+<p>The big difference between the code above and all the other code we have run thus far is that the code above doesn't always return the same value. It can return either <code>treatment</code> or <code>control</code>, and we don't know ahead of time which one it will pick. We can repeat the process by providing a second argument, the number of times to repeat the process.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">two_groups</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array(['treatment', 'control', 'treatment', 'control', 'control',
+       'treatment', 'treatment', 'control', 'control', 'control'], 
+      dtype='&lt;U9')</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A fundamental question about random events is whether or not they occur. For example:</p>
@@ -32,7 +40,7 @@
 <li>Is a gambler going to win money, or not?</li>
 <li>Has a poll made an accurate prediction, or not?</li>
 </ul>
-<p>Once the event has occurred, you can answer "yes" or "no" to all these questions. In programming, it is conventional to do this by labeling statements as True or False. For example, if an individual did get assigned to the treatment group, then the statement, "The individual was assigned to the treatment group" would be True. If not, it would be False.</p></div></div>
+<p>Once the event has occurred, you can answer "yes" or "no" to all these questions. In programming, it is conventional to do this by labeling statements as True or False. For example, if an individual did get assigned to the treatment group, then the statement, "The individual was assigned to the treatment group" would be <code>True</code>. If not, it would be <code>False</code>.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Booleans-and-Comparison">Booleans and Comparison<a class="anchor-link" href="#Booleans-and-Comparison">¶</a></h3><p>In Python, Boolean values, named for the logician <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>, represent truth and take only two possible values: <code>True</code> and <code>False</code>. Whether problems involve randomness or not, Boolean values most often arise from comparison operators. Python includes a variety of operators that compare values. For example, <code>3</code> is larger than <code>1 + 1</code>.</p></div></div>
@@ -152,36 +160,6 @@
 <p>As before, the random choice will not always be the same, so the result of the comparison won't always be the same either. It will depend on whether <code>treatment</code> or <code>control</code> was chosen. With any cell that involves random selection, it is a good idea to run the cell several times to get a sense of the variability in the result.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Comparing-Booleans">Comparing Booleans<a class="anchor-link" href="#Comparing-Booleans">¶</a></h3><p>Booleans themselves can also be compared.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kc">True</span> <span class="o">==</span> <span class="kc">False</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>False</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>It is often useful to think of <code>True</code> as the number 1 and <code>False</code> as the number 0.  Python actually considers them equal.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kc">True</span> <span class="o">==</span> <span class="mi">1</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kc">False</span> <span class="o">==</span> <span class="mi">0</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kc">True</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</pre></div></div></div>
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Comparing-an-Array-and-a-Value">Comparing an Array and a Value<a class="anchor-link" href="#Comparing-an-Array-and-a-Value">¶</a></h3><p>Recall that we can perform arithmetic operations on many numbers in an array at once.  For example, <code>make_array(0, 5, 2)*2</code> is equivalent to <code>make_array(0, 10, 4)</code>.  In similar fashion, if we compare an array and one value, each element of the array is compared to that value, and the comparison evaluates to an array of Booleans.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -198,7 +176,4 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">tosses</span> <span class="o">==</span> <span class="s1">'Heads'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>3</pre></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Comparing two arrays is more complicated. We will leave it for a later course.</p></div></div></div>
+<pre>3</pre></div></div>
