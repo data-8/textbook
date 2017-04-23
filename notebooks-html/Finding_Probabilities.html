@@ -42,9 +42,11 @@ $$</p></div></div>
 $$
 P(\mbox{an event happens}) ~=~
 \frac{\#\{\mbox{outcomes that make the event happen}\}}
-{\#\{\mbox{all outcomes}\}} ~~~~
-\mbox{provided all the outcomes are equally likely}
+{\#\{\mbox{all outcomes}\}}
 $$</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>provided all the outcomes are equally likely.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Not all random phenomena are as simple as one roll of a die. The two main rules of probability, developed below, allow mathematicians to find probabilities even in complex situations.</p></div></div>
@@ -86,12 +88,12 @@ $$</p>
 $$
 P(\mbox{one green and one red}) ~=~ P(\mbox{GR}) + P(\mbox{RG}) ~=~ 
 \frac{1}{6} + \frac{1}{6} ~=~ \frac{2}{6}
-$$<p>In general, we have the <strong>addition rule</strong>:
+$$<p>In general, we have the <strong>addition rule</strong>:</p>
 $$
 P(\mbox{an event happens}) ~=~
 P(\mbox{first way it can happen}) + P(\mbox{second way it can happen}) ~~~
-\mbox{provided the event happens in exactly one of the two ways}
-$$</p>
+\mbox{}
+$$<p>provided the event happens in exactly one of the two ways.</p>
 <p>Thus, when an event can happen in one of two different ways, the chance that it happens is a sum of chances, and hence bigger than the chance of either of the individual ways.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -109,23 +111,27 @@ P(\mbox{at least one head in two tosses}) ~=~ 1 - P(\mbox{both tails}) ~=~ 1 - \
 $$</p>
 <p>Notice also that 
 $$
-P(\mbox{both tails}) ~=~ \frac{1}{4} ~=~ \frac{1}{2} \cdot \frac{1}{2} ~=~ (\frac{1}{2})^2
+P(\mbox{both tails}) ~=~ \frac{1}{4} ~=~ \frac{1}{2} \cdot \frac{1}{2} ~=~ \left(\frac{1}{2}\right)^2
 $$
 by the multiplication rule.</p>
 <p>These two observations allow us to find the chance of at least one head in any given number of tosses. For example,
 $$
 P(\mbox{at least one head in 17 tosses}) ~=~ 1 - P(\mbox{all 17 are tails})
-~=~ 1 - (\frac{1}{2})^{17}
+~=~ 1 - \left(\frac{1}{2}\right)^{17}
 $$</p>
-<p>And now we are in a position to find the chance that the face with six spots comes up at least once in rolls of a die. For example,
+<p>And now we are in a position to find the chance that the face with six spots comes up at least once in rolls of a die.</p>
+<p>For example,</p>
+$$
+P(\mbox{a single roll is not 6}) ~=~ P(1) + P(2) + P(3) + P(4) + P(5)
+~=~ \frac{5}{6}
+$$<p>Therefore,</p>
 $$
 P(\mbox{at least one 6 in two rolls}) ~=~ 1 - P(\mbox{both rolls are not 6})
-~=~ 1 - (\frac{5}{6})^2
-$$
-and
+~=~ 1 - \left(\frac{5}{6}\right)^2
+$$<p>and
 $$
 P(\mbox{at least one 6 in 17 rolls})
-~=~ 1 - (\frac{5}{6})^{17}
+~=~ 1 - \left(\frac{5}{6}\right)^{17}
 $$</p>
 <p>The table below shows these probabilities as the number of rolls increases from 1 to 50.</p></div></div>
 <div class="inner_cell">
@@ -195,7 +201,7 @@ $$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Rolls'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
-<img src="/notebooks-images/Finding_Probabilities_14_0.png"/></div>
+<img src="/notebooks-images/Finding_Probabilities_15_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In 50 rolls, you are almost certain to get at least one 6.</p></div></div>

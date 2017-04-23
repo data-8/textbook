@@ -430,4 +430,41 @@ pounds more than our prediction for the shorter woman.</p>
 <p>Notice that the successive vertical strips in the scatter plot are one inch apart, because the heights have been rounded to the nearest inch. Another way to think about the slope is to take any two consecutive strips (which are necessarily 1 inch apart), corresponding to two groups of women who are separated by 1 inch in height. The slope of 3.57 pounds per inch means that the average pregnancy weight of the taller group is about 3.57 pounds more than that of the shorter group.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example">Example<a class="anchor-link" href="#Example">¶</a></h3><p>Suppose that our goal is to use regression to estimate the height of a basset hound based on its weight, using a sample that looks consistent with the regression model. Suppose the observed correlation $r$ is 0.5, and that the summary statistics for the two variables are as in the table below:</p>
+<table>
+<thead><tr>
+<th style="text-align:right"></th>
+<th style="text-align:center"><strong>average</strong></th>
+<th style="text-align:center"><strong>SD</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">height</td>
+<td style="text-align:center">14 inches</td>
+<td style="text-align:center">2 inches</td>
+</tr>
+<tr>
+<td style="text-align:right">weight</td>
+<td style="text-align:center">50 pounds</td>
+<td style="text-align:center">5 pounds</td>
+</tr>
+</tbody>
+</table>
+<p>To calculate the equation of the regression line, we need the slope and the intercept.</p>
+$$
+\mbox{slope} ~=~ \frac{r \cdot \mbox{SD of }y}{\mbox{SD of }x} ~=~
+\frac{0.5 \cdot 2 \mbox{ inches}}{5 \mbox{ pounds}} ~=~ 0.2 ~\mbox{inches per pound}
+$$$$
+\mbox{intercept} ~=~ \mbox{average of }y - \mbox{slope}\cdot \mbox{average of } x
+~=~ 14 \mbox{ inches} ~-~ 0.2 \mbox{ inches per pound} \cdot 50 \mbox{ pounds}
+~=~ 4 \mbox{ inches}
+$$<p>The equation of the regression line allows us to calculate the estimated height, in inches,
+based on a given weight in pounds:</p>
+$$
+\mbox{estimated height} ~=~ 0.2 \cdot \mbox{given weight} ~+~ 4
+$$<p>The slope of the line is measures the increase in the estimated height per unit increase in weight. The slope is positive, and it is important to note that this does not mean that we think basset hounds get taller if they put on weight. The slope reflects the difference in the average heights of two groups of dogs that are 1 pound apart in weight. Specifically, consider a group of dogs whose weight is $w$ pounds, and the group whose weight is $w+1$ pounds. The second group is estimated to be 0.2 inches taller, on average. This is true for all values of $w$ in the sample.</p>
+<p>In general, the slope of the regression line can be interpreted as the average increase in $y$ per unit increase in $x$. Note that if the slope is negative, then for every unit increase in $x$, the average of $y$ decreases.</p></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Endnote">Endnote<a class="anchor-link" href="#Endnote">¶</a></h3><p>Even though we won't establish the mathematical basis for the regression equation, we can see that it gives pretty good predictions when the scatter plot is football shaped. It is a surprising mathematical fact that no matter what the shape of the scatter plot, the same equation gives the "best" among all straight lines. That's the topic of the next section.</p></div></div></div>
