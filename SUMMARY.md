@@ -87,6 +87,7 @@
   * [Rows of Tables](chapters/15/3/rows-of-tables.md)
   * [Implementing the Classifier](chapters/15/4/implementing-the-classifier.md)
   * [The Accuracy of the Classifier](chapters/15/5/accuracy-of-the-classifier.md)
+  * [Multiple Regression](chapters/15/6/multiple-regression.md)
 * [Comparing Two Samples](chapters/16/comparing-two-samples.md)
   * [Two Categorical Distributions](chapters/16/1/two-categorical-distributions.md)
   * [A/B Testing](chapters/16/2/ab-testing.md)
