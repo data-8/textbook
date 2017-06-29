@@ -1,6 +1,6 @@
 {
     "gitbook": "3.x.x",
-    "plugins": [ "https://github.com/data-8/plugin-mathjax" ],
+    "plugins": [ "git+https://github.com/data-8/plugin-mathjax" ],
     "links": {
         "sidebar": {
             "Main Data Science 8 Site": "http://data8.org/"
