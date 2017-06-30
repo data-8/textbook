@@ -1,5 +1,5 @@
 {
-    "gitbook": "4.x.x",
+    "gitbook": ">= 4.0.0",
     "plugins": [ "mathjax@git+https://github.com/data-8/plugin-mathjax" ],
     "links": {
         "sidebar": {
