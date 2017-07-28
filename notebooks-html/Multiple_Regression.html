@@ -252,7 +252,7 @@ Predicted sale price using random slopes: 195583.275784
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">best_slopes</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
 
 <span class="n">test</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Fitted'</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fit</span><span class="p">))</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'Fitted'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5e5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5e5</span><span class="p">]);</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="n">e5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="n">e5</span><span class="p">]);</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/Multiple_Regression_26_0.png"/></div>
@@ -262,7 +262,7 @@ Predicted sale price using random slopes: 195583.275784
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Residual'</span><span class="p">,</span> <span class="n">test_prices</span><span class="o">-</span><span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fit</span><span class="p">))</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'Residual'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7e5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="n">e5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/Multiple_Regression_28_0.png"/></div>
@@ -404,7 +404,7 @@ Test set RMSE for nearest neighbor regression: 31210.6572877
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Residual'</span><span class="p">,</span> <span class="n">test_prices</span><span class="o">-</span><span class="n">nn_test_predictions</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'Residual'</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7e5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="n">e5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 </pre></div></div></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/Multiple_Regression_41_0.png"/></div></div>
