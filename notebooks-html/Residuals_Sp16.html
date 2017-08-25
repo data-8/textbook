@@ -47,12 +47,13 @@
 <h3 id="Second-Diagnostic:-A-Residual-Plot">Second Diagnostic: A Residual Plot<a class="anchor-link" href="#Second-Diagnostic:-A-Residual-Plot">¶</a></h3><p>We cannot see the true line that is the basis of the regression model, but the regression line that we calculate acts as a substitute for it. So also the vertical distances of the points from the regression line act as substitutes for the random errors that Tyche uses to push the points vertically off the true line.</p>
 <p>As we have seen earlier, the vertical distances of the points from the regression line are called <em>residuals</em>. There is one residual for each point in the scatter plot. The residual is the difference between the observed value of $y$ and the fitted value of $y$:</p>
 <p>For the point $(x, y)$,</p>
-$$
+<p>$$
 \mbox{residual} ~~ = ~~ y ~-~
 \mbox{fitted value of }y
 ~~ = ~~ y ~-~
 \mbox{height of regression line at }y
-$$<p>The table <code>baby_regression</code> contains the data, the fitted values and the residuals:</p></div></div>
+$$</p>
+<p>The table <code>baby_regression</code> contains the data, the fitted values and the residuals:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby2</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'Gestational Days'</span><span class="p">,</span> <span class="s1">'Birth Weight'</span><span class="p">])</span>

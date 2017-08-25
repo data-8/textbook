@@ -133,10 +133,12 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Distance-in-Multiple-Dimensions">Distance in Multiple Dimensions<a class="anchor-link" href="#Distance-in-Multiple-Dimensions">¶</a></h3><p>We know how to compute distance in 2-dimensional space. If we have a point at coordinates $(x_0,y_0)$ and another at $(x_1,y_1)$, the distance between them is</p>
-$$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}.$$<p>In 3-dimensional space, the points are $(x_0, y_0, z_0)$ and $(x_1, y_1, z_1)$, and the formula for the distance between them is</p>
-$$
+<p>$$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}.$$</p>
+<p>In 3-dimensional space, the points are $(x_0, y_0, z_0)$ and $(x_1, y_1, z_1)$, and the formula for the distance between them is</p>
+<p>$$
 D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}
-$$<p>In $n$-dimensional space, things are a bit harder to visualize, but I think you can see how the formula generalized: we sum up the squares of the differences between each individual coordinate, and then take the square root of that.</p></div></div>
+$$</p>
+<p>In $n$-dimensional space, things are a bit harder to visualize, but I think you can see how the formula generalized: we sum up the squares of the differences between each individual coordinate, and then take the square root of that.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the last section, we defined the function <code>distance</code> which returned the distance between two points. We used it in two-dimensions, but the great news is that the function doesn't care how many dimensions there are! It just subtracts the two arrays of coordinates (no matter how long the arrays are), squares the differences and adds up, and then takes the square root. To work in multiple dimensions, we don't have to change the code at all.</p></div></div>
@@ -416,8 +418,4 @@ $$<p>In $n$-dimensional space, things are a bit harder to visualize, but I think
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Yes! The classifier gets this one right too.</p>
-<p>But we don't yet know how it does with all the other wines, and in any case we know that testing on wines that are already part of the training set might be over-optimistic. In the final section of this chapter, we will separate the wines into a training and test set and then measure the accuracy of our classifier on the test set.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<p>But we don't yet know how it does with all the other wines, and in any case we know that testing on wines that are already part of the training set might be over-optimistic. In the final section of this chapter, we will separate the wines into a training and test set and then measure the accuracy of our classifier on the test set.</p></div></div></div>

@@ -35,18 +35,21 @@
 </tbody>
 </table>
 <p>To calculate the equation of the regression line, we need the slope and the intercept.</p>
-$$
+<p>$$
 \mbox{slope} ~=~ \frac{r \cdot \mbox{SD of }y}{\mbox{SD of }x} ~=~
 \frac{0.5 \cdot 2 \mbox{ inches}}{5 \mbox{ pounds}} ~=~ 0.2 ~\mbox{inches per pound}
-$$$$
+$$</p>
+<p>$$
 \mbox{intercept} ~=~ \mbox{average of }y - \mbox{slope}\cdot \mbox{average of } x
 ~=~ 14 \mbox{ inches} ~-~ 0.2 \mbox{ inches per pound} \cdot 50 \mbox{ pounds}
 ~=~ 4 \mbox{ inches}
-$$<p>The equation of the regression line allows us to calculate the estimated height, in inches,
+$$</p>
+<p>The equation of the regression line allows us to calculate the estimated height, in inches,
 based on a given weight in pounds:</p>
-$$
+<p>$$
 \mbox{estimated height} ~=~ 0.2 \cdot \mbox{given weight} ~+~ 4
-$$<p>The slope of the line is measures the increase in the estimated height per unit increase in weight. The slope is positive, and it is important to note that this does not mean that we think basset hounds get taller if they put on weight. The slope reflects the difference in the average heights of two groups of dogs that are 1 pound apart in weight. Specifically, consider a group of dogs whose weight is $w$ pounds, and the group whose weight is $w+1$ pounds. The second group is estimated to be 0.2 inches taller, on average. This is true for all values of $w$ in the sample.</p>
+$$</p>
+<p>The slope of the line is measures the increase in the estimated height per unit increase in weight. The slope is positive, and it is important to note that this does not mean that we think basset hounds get taller if they put on weight. The slope reflects the difference in the average heights of two groups of dogs that are 1 pound apart in weight. Specifically, consider a group of dogs whose weight is $w$ pounds, and the group whose weight is $w+1$ pounds. The second group is estimated to be 0.2 inches taller, on average. This is true for all values of $w$ in the sample.</p>
 <p>In general, the slope of the regression line can be interpreted as the average increase in $y$ per unit increase in $x$. Note that if the slope is negative, then for every unit increase in $x$, the average of $y$ decreases.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -338,9 +341,10 @@ $$<p>The slope of the line is measures the increase in the estimated height per 
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Definition of $R^2$, consistent with our old $r^2$</strong></p>
 <p>When we studied simple regression, we had noted that</p>
-$$
+<p>$$
 |r| ~=~ \frac{\mbox{SD of fitted values of }y}{\mbox{SD of observed values of } y}
-$$<p>Let us use our old functions to compute the fitted values and confirm that this is true for our example:</p></div></div>
+$$</p>
+<p>Let us use our old functions to compute the fitted values and confirm that this is true for our example:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="s1">'days online'</span><span class="p">,</span> <span class="s1">'GPA'</span><span class="p">)</span>
@@ -351,15 +355,16 @@ $$<p>Let us use our old functions to compute the fitted values and confirm that 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Because variance is the square of the standard deviation, we can say that</p>
-$$
+<p>$$
 0.469 ~=~r^2 ~=~ \frac{\mbox{variance of fitted values of }y}{\mbox{variance of observed values of }y}
-$$</div></div>
+$$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that this way of thinking about $r^2$ involves only the estimated values and the observed values, <em>not the number of predictor variables</em>. Therefore, it motivates the definition of <em>multiple $R^2$</em>:</p>
-$$
+<p>$$
 R^2 ~=~ \frac{\mbox{variance of fitted values of }y}{\mbox{variance of observed values of }y}
-$$<p>It is a fact of mathematics that this quantity is always between 0 and 1. With multiple predictor variables, there is no clear interpretation of a sign attached to the square root of $R^2$. Some of the predictors might be positively associated with $y$, others negatively. An overall measure of the fit is provided by $R^2$.</p></div></div>
+$$</p>
+<p>It is a fact of mathematics that this quantity is always between 0 and 1. With multiple predictor variables, there is no clear interpretation of a sign attached to the square root of $R^2$. Some of the predictors might be positively associated with $y$, others negatively. An overall measure of the fit is provided by $R^2$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit_grades</span><span class="p">(</span><span class="o">*</span><span class="n">minimize</span><span class="p">(</span><span class="n">grades_all_mse</span><span class="p">))</span>

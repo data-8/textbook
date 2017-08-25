@@ -80,7 +80,7 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">millions</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Adjusted Gross'</span><span class="p">,</span> 
-                                     <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="n">e6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+                                     <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">millions</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -433,17 +433,20 @@ $$</p>
 <li>The <strong>area</strong> of each bar is proportional to the number of entries in the bin. </li>
 </ol>
 <p>Property 2 is the key to drawing a histogram, and is usually achieved as follows:</p>
-$$
+<p>$$
 \mbox{area of bar} ~=~ \mbox{percent of entries in bin}
-$$<p>The calculation of the heights just uses the fact that the bar is a rectangle:</p>
-$$
+$$</p>
+<p>The calculation of the heights just uses the fact that the bar is a rectangle:</p>
+<p>$$
 \mbox{area of bar} = \mbox{height of bar} \times \mbox{width of bin}
-$$<p>and so</p>
-$$
+$$</p>
+<p>and so</p>
+<p>$$
 \mbox{height of bar} ~=~ 
 \frac{\mbox{area of bar}}{\mbox{width of bin}} ~=~
 \frac{\mbox{percent of entries in bin}}{\mbox{width of bin}}
-$$<p>The units of height are "percent per unit on the horizontal axis."</p>
+$$</p>
+<p>The units of height are "percent per unit on the horizontal axis."</p>
 <p>When drawn using this method, the histogram is said to be drawn on the density scale. On this scale:</p>
 <ul>
 <li>The area of each bar is equal to the percent of data values that are in the corresponding bin.</li>

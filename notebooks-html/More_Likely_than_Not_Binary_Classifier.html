@@ -144,20 +144,21 @@
 <p>The <em>posterior probability</em> that the student is a Third Year, given that the student has Declared, is denoted $P(\mbox{Third Year} ~\big{|}~ \mbox{Declared})$ and is calculated as follows.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-\begin{align*}
+<p>\begin{align*}
 P(\mbox{Third Year} ~\big{|}~ \mbox{Declared}) 
 ~ &amp;=~ \frac{ 0.4 \times 0.8}{0.6 \times 0.5 ~+~ 0.4 \times  0.8} \\ \\
 &amp;=~ \frac{\mbox{(prior probability of Third Year)} \times
 \mbox{(likelihood of Declared given Third Year)}}
 {\mbox{total probability of Declared}}
-\end{align*}<p>The other posterior probability is</p>
-\begin{align*}
+\end{align*}</p>
+<p>The other posterior probability is</p>
+<p>\begin{align*}
 P(\mbox{Second Year} ~\big{|}~ \mbox{Declared})
 ~ &amp;=~ \frac{ 0.6 \times 0.5}{0.6 \times 0.5 ~+~ 0.4 \times  0.8} \\ \\
 &amp;=~ \frac{\mbox{(prior probability of Second Year)} \times
 \mbox{(likelihood of Declared given Second Year)}}
 {\mbox{total probability of Declared}}
-\end{align*}</div></div>
+\end{align*}</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="mf">0.6</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.6</span> <span class="o">*</span> <span class="mf">0.5</span>  <span class="o">+</span>  <span class="mf">0.4</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
@@ -169,9 +170,9 @@ P(\mbox{Second Year} ~\big{|}~ \mbox{Declared})
 <p>That's about 0.484, which is less than half, consistent with our classification of Third Year.</p>
 <p>Notice that both the posterior probabilities have the same denominator: the chance of the new information, which is that the student has Declared.</p>
 <p>Because of this, Bayes' method is sometimes summarized as a statement about proportionality:</p>
-$$
+<p>$$
 \mbox{posterior} ~ \propto ~ \mbox{prior} \times \mbox{likelihood}
-$$</div></div>
+$$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Formulas are great for efficiently describing calculations. But in settings like our example about students, it is simpler not to think in terms of formulas. Just use the tree diagram.</p></div></div></div>
