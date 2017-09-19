@@ -168,8 +168,7 @@
 <p>Though strawberry has the lowest rating among the three flavors, the less expensive strawberry cone does well on this measure because it doesn't cost a lot per star.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Caution.</strong> Order matters. Since the second table in a <code>join</code> is used to augment the first table, it is important that each row in the first table has exactly one matching row in the second. If a row in the first table is missing a match in the second table, information can be lost. If a row in the first table has more than one match in the second table, <code>join</code> will pick just one, which is also a kind of information loss.</p>
-<p>We can see this in the following example, which tries to join the same two tables by the same two columns, but in the other order. This join does not make sense: it is attempting to augment the rating of each flavor with its price, but according to the <code>cones</code> table, there is more than one cone (and price) for each flavor. The result is that two of the cones end up vanishing. The <code>join</code> method just finds the first row corresponding to <code>chocolate</code> in <code>cones</code> and ignores the other one.</p></div></div>
+<p><strong>Side note.</strong> Does the order we list the two tables matter? Let's try it.  As you see it, this changes the order that the columns appear in, and can potentially changes the order of the rows, but it doesn't make any fundamental difference.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'Kind'</span><span class="p">,</span> <span class="n">cones</span><span class="p">,</span> <span class="s1">'Flavor'</span><span class="p">)</span>
@@ -187,7 +186,15 @@
         </tr>
     </tbody>
         <tbody><tr>
+            <td>chocolate </td> <td>3.5  </td> <td>5.75 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
             <td>strawberry</td> <td>2.5  </td> <td>3.55 </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>strawberry</td> <td>2.5  </td> <td>5.25 </td>
         </tr>
     </tbody>
         <tbody><tr>
@@ -197,7 +204,7 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Suppose there is a table of reviews of some ice cream cones, and we have found the average review for each flavor.</p></div></div>
+<p>Also note that the join will only contain information about items that appear in both tables. Let's see an example. Suppose there is a table of reviews of some ice cream cones, and we have found the average review for each flavor.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">reviews</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
