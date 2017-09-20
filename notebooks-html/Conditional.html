@@ -790,7 +790,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The standard notation for this relationship uses a vertical bar for conditioning and a comma for a joint event.</p>
-<p>$$P(B | A) = \frac{P(A, B)}{P(A)}$$</p></div></div>
+$$P(B | A) = \frac{P(A, B)}{P(A)}$$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Joint-Distributions">Joint Distributions<a class="anchor-link" href="#Joint-Distributions">¶</a></h2><p>A joint event is one in which two different events both occur. Similarly, a joint outcome is an outcome that is composed of two different outcomes. For example, the outcomes of the <code>two_dice</code> distribution are each joint outcomes of the first and second dice rolls.</p></div></div>
@@ -851,8 +851,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Another common way to transform distributions is to form a joint distribution from conditional distributions. The definition of a conditional probability provides a formula for computing a joint probability, simply by multiplying both sides of the equation above by $P(B)$.</p>
-<p>$$ P(B|A) \times P(A) = P(A, B) $$</p>
-<p>The chance of each outcome of a joint distribution can be computed from the probability of the first outcome and the conditional probability of the second outcome given the first outcome. In the <code>two_dice</code> table above, the chance of any first outcome is <code>1/6</code>, and the chance of any second outcome given any first outcome is <code>1/6</code>, so the chance of any joint outcome is <code>1/36</code> or 2.8%.</p></div></div>
+$$ P(B|A) \times P(A) = P(A, B) $$<p>The chance of each outcome of a joint distribution can be computed from the probability of the first outcome and the conditional probability of the second outcome given the first outcome. In the <code>two_dice</code> table above, the chance of any first outcome is <code>1/6</code>, and the chance of any second outcome given any first outcome is <code>1/6</code>, so the chance of any joint outcome is <code>1/36</code> or 2.8%.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="U.S.-Birth-Days">U.S. Birth Days<a class="anchor-link" href="#U.S.-Birth-Days">¶</a></h3><p>The CDC also published that in 2013, 78.25% of babies born on weekdays (Monday through Friday) and 21.75% of babies were born on weekends (Saturday and Sunday). Notably, this distribution is not 5/7 (71.4%) to 2/7 (28.6%), but instead favors weekdays.</p>
@@ -1036,8 +1035,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Bayes'-Rule">Bayes' Rule<a class="anchor-link" href="#Bayes'-Rule">¶</a></h2><p>In the final example above, we began with a distribution over weekday and weekend births, $P(A)$, along with conditional distributions over hours, $P(B|A)$. We were able to compute the probability of a weekend birth conditioned on an hour, an outcome in the distribution $P(A|B)$. Bayes' rule is the formula that expresses the relationship between all of these quantities.</p>
-<p>$$ P(A|B) = \frac{P(A) \times P(B|A)}{P(B)} $$</p>
-<p>The numerator on the right-hand side is just the joint probability of A and B. Bayes' rule writes this probability in its expanded form because so often we are given these two components and must form the joint distribution through multiplication.</p>
+$$ P(A|B) = \frac{P(A) \times P(B|A)}{P(B)} $$<p>The numerator on the right-hand side is just the joint probability of A and B. Bayes' rule writes this probability in its expanded form because so often we are given these two components and must form the joint distribution through multiplication.</p>
 <p>The denominator on the right-hand side is an event that can be computed from the joint probability. For example, the <code>early_morning</code> event in the example above is an event just about hours, but it includes all joint outcomes where the correct hour occurs.</p>
 <p>Each probability in this equation has a name. The names are derived from the most typical application of Bayes' rule, which is to update one's beliefs based on new evidence.</p>
 <ul>

@@ -64,13 +64,12 @@ Ranges are useful in a surprisingly large number of situations, so it's worthwhi
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The great German mathematician and philosopher <a href="https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz">Gottfried Wilhelm Leibniz</a> 
 (1646 - 1716) discovered a wonderful formula for $\pi$ as an infinite sum of simple fractions. The formula is</p>
-<p>$$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \dots\right)$$</p></div></div>
+$$\pi = 4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \dots\right)$$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Though some math is needed to establish this, we can use arrays to convince ourselves that the formula works. Let's calculate the first 5000 terms of Leibniz's infinite sum and see if it is close to $\pi$.</p>
-<p>$$4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \dots - \frac{1}{9999} \right)$$</p>
-<p>We will calculate this finite sum by adding all the positive terms first and then subtracting the sum of all the negative terms <a href="#footnotes">[1]</a>:</p>
-<p>$$4 \cdot \left( \left(1 + \frac{1}{5} + \frac{1}{9} + \dots + \frac{1}{9997} \right) - \left(\frac{1}{3} + \frac{1}{7} + \frac{1}{11} + \dots + \frac{1}{9999} \right) \right)$$</p></div></div>
+$$4 \cdot \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \dots - \frac{1}{9999} \right)$$<p>We will calculate this finite sum by adding all the positive terms first and then subtracting the sum of all the negative terms <a href="#footnotes">[1]</a>:</p>
+$$4 \cdot \left( \left(1 + \frac{1}{5} + \frac{1}{9} + \dots + \frac{1}{9997} \right) - \left(\frac{1}{3} + \frac{1}{7} + \frac{1}{11} + \dots + \frac{1}{9999} \right) \right)$$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The positive terms in the sum have 1, 5, 9, and so on in the denominators. The array <code>by_four_to_20</code> contains these numbers up to 17:</p></div></div>

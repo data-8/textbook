@@ -16,12 +16,12 @@
 <p>Fortunately, a simple approximation takes care of this. In the place of the population SD, we can simply use the SD of the sample. It will not be equal to the population SD, but when we divide it by $\sqrt{\mbox{sample size}}$, the error is greatly reduced and the approximation works.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$
+$$
 \mbox{SE of the sample average} ~=~
 \frac{\mbox{Population SD}}{\sqrt{\mbox{sample size}}}
 ~~\approx~~ \frac{\mbox{sample SD}}{\sqrt{\mbox{sample size}}} ~~~
 \mbox{when the random sample is large}
-$$</p></div></div>
+$$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Use-in-estimation">Use in estimation<a class="anchor-link" href="#Use-in-estimation">¶</a></h3><p>As a consequence of the Central Limit Theorem, we can use proportions derived from the normal curve in statements about the distance between the sample mean and the population mean.</p>
@@ -38,10 +38,9 @@ $$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="An-approximate-95%-confidence-interval-for-the-population-mean">An approximate 95%-confidence interval for the population mean<a class="anchor-link" href="#An-approximate-95%-confidence-interval-for-the-population-mean">¶</a></h3><p>A <em>confidence interval</em> is a range of estimates. An <em>approximate 95%-confidence interval for the population mean</em> is given by:</p>
-<p>$$
+$$
 \mbox{sample average} ~\pm~ 2 \times \mbox{SE of sample average}
-$$</p>
-<p>We estimate that the population mean will be in this range.</p>
+$$<p>We estimate that the population mean will be in this range.</p>
 <p>The confidence is in the procedure.
 If we repeat this procedure many times, we will get many intervals, one for each repetition. About 95% of the intervals will contain the population average, which is what we are trying to estimate.</p>
 <p>The <em>level of confidence</em>, 95%, can be replaced by any percent. The number of SEs on either side of the sample average has to be adjusted accordingly, by using the normal curve.</p></div></div>
