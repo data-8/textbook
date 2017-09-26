@@ -119,8 +119,8 @@ def convert_notebooks_to_html_partial(notebook_paths):
 
         # Write out HTML
         outfile_path = os.path.join(os.curdir, NOTEBOOK_HTML_DIR, outfile_name)
-        with open(outfile_path, 'w') as outfile:
-            outfile.write(final_output)
+        with open(outfile_path, 'wb') as outfile:
+            outfile.write(final_output.encode('utf-8'))
 
         # Write out images
         for relative_path, image_data in resources['outputs'].items():
