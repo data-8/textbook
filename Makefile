@@ -16,7 +16,7 @@ notebooks:
 	@echo "${BLUE}Converting notebooks to HTML.${NOCOLOR}"
 	@echo "${BLUE}=============================${NOCOLOR}"
 
-	python convert_notebooks_to_html_partial.py
+	python3 convert_notebooks_to_html_partial.py
 
 	@echo ""
 	@echo "${BLUE}    Done, output is in notebooks-html${NOCOLOR}"
