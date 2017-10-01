@@ -12,16 +12,18 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Visual-Diagnostics">Visual Diagnostics<a class="anchor-link" href="#Visual-Diagnostics">¶</a></h3><p>Suppose a data scientist has decided to use linear regression to estimate values of a response variable based on a predictor. To see how well this method of estmation performs, the data scientist must how far off the estimates are from the actual values. These differences are called <em>residuals</em>.</p>
-$$
+<p>$$
 \mbox{residual} ~=~ \mbox{observed value} ~-~ \mbox{regression estimate}
-$$<p>A residual is what's left over – the residue – after estimation.</p>
+$$</p>
+<p>A residual is what's left over – the residue – after estimation.</p>
 <p>Residuals are the vertical distances of the points from the regression line. There is one residual for each point in the scatter plot. The residual is the difference between the observed value of $y$ and the fitted value of $y$, so fr the point $(x, y)$,</p>
-$$
+<p>$$
 \mbox{residual} ~~ = ~~ y ~-~
 \mbox{fitted value of }y
 ~~ = ~~ y ~-~
 \mbox{height of regression line at }x
-$$<p>The function <code>residual</code> calculates the residuals. The calculation assumes all the relevant functions we have already defined: <code>standard_units</code>, <code>correlation</code>, <code>slope</code>, <code>intercept</code>, and <code>fit</code>.</p></div></div>
+$$</p>
+<p>The function <code>residual</code> calculates the residuals. The calculation assumes all the relevant functions we have already defined: <code>standard_units</code>, <code>correlation</code>, <code>slope</code>, <code>intercept</code>, and <code>fit</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">residual</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -255,8 +257,4 @@ $$<p>The function <code>residual</code> calculates the residuals. The calculatio
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice how the residual plot flares out towards the low end of the accelerations. In other words, the variability in the size of the errors is greater for low values of acceleration than for high values. Uneven variation is often more easily noticed in a residual plot than in the original scatter plot.</p>
-<p><strong>If the residual plot shows uneven variation about the horizontal line at 0, the regression estimates are not equally accurate across the range of the predictor variable.</strong></p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<p><strong>If the residual plot shows uneven variation about the horizontal line at 0, the regression estimates are not equally accurate across the range of the predictor variable.</strong></p></div></div></div>

@@ -19,9 +19,9 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="When-an-Event-Doesn't-Happen">When an Event Doesn't Happen<a class="anchor-link" href="#When-an-Event-Doesn't-Happen">¶</a></h3><p>If the chance that event happens is 40%, then the chance that it doesn't happen is 60%. This natural calculation can be described in general as follows:</p>
-$$
+<p>$$
 P(\mbox{an event doesn't happen}) ~=~ 1 - P(\mbox{the event happens})
-$$</div></div>
+$$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="When-All-Outcomes-are-Equally-Likely">When All Outcomes are Equally Likely<a class="anchor-link" href="#When-All-Outcomes-are-Equally-Likely">¶</a></h3><p>If you are rolling an ordinary die, a natural assumption is that all six faces are equally likely. Then probabilities of how one roll comes out can be easily calculated as a ratio. For example, the chance that the die shows an even number is
@@ -85,15 +85,17 @@ $$</p>
 <h3 id="When-an-Event-Can-Happen-in-Two-Different-Ways">When an Event Can Happen in Two Different Ways<a class="anchor-link" href="#When-an-Event-Can-Happen-in-Two-Different-Ways">¶</a></h3><p>Suppose instead we want the chance that one of the two tickets is green and the other red. This event doesn't specify the order in which the colors must appear. So they can appear in either order.</p>
 <p>A good way to tackle problems like this is to <em>partition</em> the event so that it can happen in exactly one of several different ways. The natural partition of "one green and one red" is: GR, RG.</p>
 <p>Each of GR and RG has chance $1/6$ by the calculation above. So you can calculate the chance of "one green and one red" by adding them up.</p>
-$$
+<p>$$
 P(\mbox{one green and one red}) ~=~ P(\mbox{GR}) + P(\mbox{RG}) ~=~ 
 \frac{1}{6} + \frac{1}{6} ~=~ \frac{2}{6}
-$$<p>In general, we have the <strong>addition rule</strong>:</p>
-$$
+$$</p>
+<p>In general, we have the <strong>addition rule</strong>:</p>
+<p>$$
 P(\mbox{an event happens}) ~=~
 P(\mbox{first way it can happen}) + P(\mbox{second way it can happen}) ~~~
 \mbox{}
-$$<p>provided the event happens in exactly one of the two ways.</p>
+$$</p>
+<p>provided the event happens in exactly one of the two ways.</p>
 <p>Thus, when an event can happen in one of two different ways, the chance that it happens is a sum of chances, and hence bigger than the chance of either of the individual ways.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -121,14 +123,16 @@ P(\mbox{at least one head in 17 tosses}) ~=~ 1 - P(\mbox{all 17 are tails})
 $$</p>
 <p>And now we are in a position to find the chance that the face with six spots comes up at least once in rolls of a die.</p>
 <p>For example,</p>
-$$
+<p>$$
 P(\mbox{a single roll is not 6}) ~=~ P(1) + P(2) + P(3) + P(4) + P(5)
 ~=~ \frac{5}{6}
-$$<p>Therefore,</p>
-$$
+$$</p>
+<p>Therefore,</p>
+<p>$$
 P(\mbox{at least one 6 in two rolls}) ~=~ 1 - P(\mbox{both rolls are not 6})
 ~=~ 1 - \left(\frac{5}{6}\right)^2
-$$<p>and
+$$
+and
 $$
 P(\mbox{at least one 6 in 17 rolls})
 ~=~ 1 - \left(\frac{5}{6}\right)^{17}

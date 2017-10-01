@@ -215,17 +215,20 @@
 </ul>
 <p>and so on.</p>
 <p>Each way is a pattern consisting of 3 W's and 2 L's. Each of these patterns has chance $(18/38)^3 (20/38)^2$. The chance of winning exactly 3 times is the total chance of all these ways:</p>
-$$
+<p>$$
 P(\mbox{3 wins among 5 bets on red}) ~=~ \mbox{number of patterns of 3 W's and 2 L's} \cdot (18/38)^3 (20/38)^2
-$$<p><strong>A fact of mathematics.</strong> The number of patterns consisting of 3 W's and 2 L's is called <em>5 choose 3</em> and is calculated as follows:</p>
-$$
+$$</p>
+<p><strong>A fact of mathematics.</strong> The number of patterns consisting of 3 W's and 2 L's is called <em>5 choose 3</em> and is calculated as follows:</p>
+<p>$$
 \mbox{number of patterns of 3 W's and 2 L's} 
 ~=~ {5 \choose 3}
 ~=~ \frac{5!}{3!2!} ~=~ 10
-$$<p>So</p>
-$$
+$$</p>
+<p>So</p>
+<p>$$
 P(\mbox{3 wins among 5 bets on red}) = 10 \cdot (18/38)^3(20/38)^2
-$$<p>This is calculated in the cell below, and agrees with the answer obtained earlier by using <code>stats.binom.pmf</code>.</p></div></div>
+$$</p>
+<p>This is calculated in the cell below, and agrees with the answer obtained earlier by using <code>stats.binom.pmf</code>.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="mi">10</span><span class="o">*</span><span class="p">((</span><span class="mi">18</span><span class="o">/</span><span class="mi">38</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">20</span><span class="o">/</span><span class="mi">38</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
@@ -235,10 +238,10 @@ $$<p>This is calculated in the cell below, and agrees with the answer obtained e
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Binomial-distribution-with-parameters-$n$-and-$p$">Binomial distribution with parameters $n$ and $p$<a class="anchor-link" href="#Binomial-distribution-with-parameters-$n$-and-$p$">¶</a></h2><p>We can generalize our observations above to identify the probability distribution of the number of successes in $n$ repeated, independent, success/failure trials, with probability $p$ of success on each single trial. This is the binomial distribution with parameters $n$ and $p$.</p>
-$$
+<p>$$
 P(k \mbox{ successes in }n \mbox{ trials}) ~=~ {n \choose k} p^k (1-p)^{n-k}
 ~=~ \frac{n!}{k!(n-k)!} p^k (1-p)^{n-k} ~~~ \mbox{for} ~ 0 \le k \le n
-$$</div></div>
+$$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It is worth recalling that $0!$ is defined to be 1, so that the answers make sense in the two edge cases $k=0$ and $k=n$. Notice also that when we say "$k$ successes", we mean "exactly $k$ successes".</p></div></div>
@@ -247,23 +250,26 @@ $$</div></div>
 <h3 id="More-than-two-categories:-Multinomial-Probabilities">More than two categories: Multinomial Probabilities<a class="anchor-link" href="#More-than-two-categories:-Multinomial-Probabilities">¶</a></h3><p>The binomial can be generalized to the case where the population splits into more than two categories. This is called the <em>multinomial</em> model. That is why the NumPy method to simulate the draws is called <code>np.random.multinomial</code>.</p>
 <p><strong>Example 5.</strong> In a population, 20% of the people are men, 30% are women, and 50% are children. Six people are drawn at random with replacement. Find the chance that the sample contains 1 man, 2 women, and 3 children.</p>
 <p>The answer is a straightforward generalization of the binomial formula above.</p>
-$$
+<p>$$
 P(\mbox{1 man, 2 women, 3 children}) ~=~
 \frac{6!}{1!2!3!} (0.2)^1 (0.3)^2 (0.5)^3
-$$</div></div>
+$$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Expected-Value-and-Standard-Error-of-the-Binomial">Expected Value and Standard Error of the Binomial<a class="anchor-link" href="#Expected-Value-and-Standard-Error-of-the-Binomial">¶</a></h3><p>In an earlier section, we saw that if we had $n$ independent, repeated, success/failure trials with probability $p$ of success on each trial, then:</p>
-$$
+<p>$$
 \mbox{expected proportion of successes} ~=~ p
-$$$$
+$$</p>
+<p>$$
 \mbox{SE of the proportion of successes} ~=~ \sqrt{ \frac{p(1-p)}{n} }
-$$<p>Now the number of success is just $n$ times the proportion of successes. Hence</p>
-$$
+$$</p>
+<p>Now the number of success is just $n$ times the proportion of successes. Hence</p>
+<p>$$
 \mbox{expected number of successes} ~=~ np
-$$$$
+$$</p>
+<p>$$
 \mbox{SE of the number of successes} ~=~ \sqrt{np(1-p)}
-$$</div></div>
+$$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Example 6.</strong> What is the expected value and standard error of the number of heads in 100 tosses of a coin?</p>

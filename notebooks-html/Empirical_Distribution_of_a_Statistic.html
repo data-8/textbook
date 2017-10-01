@@ -376,9 +376,10 @@ But often, as in this example, the approximation provided by the empirical distr
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-Different-Estimate-of-the-Parameter">A Different Estimate of the Parameter<a class="anchor-link" href="#A-Different-Estimate-of-the-Parameter">¶</a></h3><p>Here is an example to illustrate this point. Thus far, we have used the largest observed serial number as an estimate of the total number of planes. But there are other possible estimates, and we will now consider one of them.</p>
 <p>The idea underlying this estimate is that the <em>average</em> of the observed serial numbers is likely be about halfway between 1 and $N$. Thus, if $A$ is the average, then</p>
-$$
+<p>$$
 A ~ \approx ~ \frac{N}{2} ~~~ \mbox{and so} ~~~ N \approx 2A
-$$<p>Thus a new statistic can be used to estimate the total number of planes: take the average of the observed serial numbers and double it.</p></div></div>
+$$</p>
+<p>Thus a new statistic can be used to estimate the total number of planes: take the average of the observed serial numbers and double it.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>How does this method of estimation compare with using the largest number observed? It is not easy to calculate the probability distribution of the new statistic. But as before, we can simulate it to get the probabilities approximately. Let's take a look at the empirical distributions of both statistics based on repeated sampling. The number of repetitions is chosen to be 750, the same as it was in the earlier simulation, for ease of comparison.</p></div></div>
