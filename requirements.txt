@@ -1,2 +1,7 @@
+numpy
+pandas
+scipy
+folium
+matplotlib
+ipywidgets
 datascience
-
