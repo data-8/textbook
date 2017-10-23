@@ -3,5 +3,5 @@ pandas
 scipy
 folium
 matplotlib
-ipywidgets
 datascience
+ipywidgets>=7.0.0
