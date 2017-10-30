@@ -1,3 +1,4 @@
 #!/bin/bash
 
 jupyter nbextension enable --py --sys-prefix widgetsnbextension
+jupyter nbextension enable --py --sys-prefix bqplot

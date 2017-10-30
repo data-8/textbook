@@ -5,3 +5,4 @@ folium
 matplotlib
 datascience
 ipywidgets>=7.0.0
+bqplot
