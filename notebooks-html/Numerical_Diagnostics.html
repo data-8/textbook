@@ -66,10 +66,9 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="SD-of-the-Residuals">SD of the Residuals<a class="anchor-link" href="#SD-of-the-Residuals">¶</a></h3><p><strong>No matter what the shape of the scatter plot, the SD of the residuals is a fraction of the SD of the response variable. The fraction is  $\sqrt{1-r^2}$.</strong></p>
-<p>$$
+$$
 \mbox{SD of residuals} ~=~ \sqrt{1 - r^2} \cdot \mbox{SD of }y
-$$</p>
-<p>We will soon see how this measures the accuracy of the regression estimate. But first, let's confirm it by example.</p>
+$$<p>We will soon see how this measures the accuracy of the regression estimate. But first, let's confirm it by example.</p>
 <p>In the case of children's heights and midparent heights, the SD of the residuals is about 3.39 inches.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -116,14 +115,12 @@ $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Another-Way-to-Interpret-$r$">Another Way to Interpret $r$<a class="anchor-link" href="#Another-Way-to-Interpret-$r$">¶</a></h3><p>We can rewrite the result above to say that no matter what the shape of the scatter plot,</p>
-<p>$$
+$$
 \frac{\mbox{SD of residuals}}{\mbox{SD of }y} ~=~ \sqrt{1-r^2}
-$$</p>
-<p>A complentary result is that no matter what the shape of the scatter plot, the SD of the fitted values is a fraction of the SD of the observed values of $y$. The fraction is |r|.</p>
-<p>$$
+$$<p>A complentary result is that no matter what the shape of the scatter plot, the SD of the fitted values is a fraction of the SD of the observed values of $y$. The fraction is |r|.</p>
+$$
 \frac{\mbox{SD of fitted values}}{\mbox{SD of }y} ~=~ |r|
-$$</p>
-<p>To see where the fraction comes in, notice that the fitted values are all on the regression line whereas the observed values of $y$ are the heights of all the points in the scatter plot and are more variable.</p></div></div>
+$$<p>To see where the fraction comes in, notice that the fitted values are all on the regression line whereas the observed values of $y$ are the heights of all the points in the scatter plot and are more variable.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scatter_fit</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">'MidParent'</span><span class="p">,</span> <span class="s1">'Child'</span><span class="p">)</span>
@@ -169,10 +166,13 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The ratio of the two SDs is $|r|$.</p>
 <p>A more standard way to express this result is to recall that</p>
-<p>$$
+$$
 \mbox{variance} ~=~ \mbox{mean squared deviation from average} ~=~ \mbox{SD}^2
-$$</p>
-<p>and therefore, by squaring both sides of our result,</p>
-<p>$$
+$$<p>and therefore, by squaring both sides of our result,</p>
+$$
 \frac{\mbox{variance of fitted values}}{\mbox{variance of }y} ~=~ r^2
-$$</p></div></div></div>
+$$</div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div></div></div></div>

@@ -70,16 +70,16 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Example:-Wallis'-Formula-for-$\pi$">Example: Wallis' Formula for $\pi$<a class="anchor-link" href="#Example:-Wallis'-Formula-for-$\pi$">¶</a></h3><p>The number $\pi$ is important in many different areas of math. Centuries before computers were invented, mathematicians worked on finding simple ways to approximate the numerical value of $\pi$. We have already seen Leibniz's formula for $\pi$. About half a century before Leibniz, the English mathematician <a href="https://en.wikipedia.org/wiki/John_Wallis">John Wallis</a> (1616-1703) also expressed $\pi$ in terms of simple fractions, as an infinite product.</p>
-<p>$$
+$$
 \pi = 2 \cdot \left( \frac{2}{1}\cdot\frac{2}{3}\cdot\frac{4}{3}\cdot\frac{4}{5}\cdot\frac{6}{5}\cdot\frac{6}{7}\dots \right)
-$$</p></div></div>
+$$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is a product of "even/odd" fractions. Let's use arrays to multiply a million of them, and see if the product is close to $\pi$.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Remember that multiplication can done in any order <a href="#footnotes">[1]</a>, so we can readjust our calculation to:</p>
-<p>$$\pi \approx 2 \cdot \left( \frac{2}{1} \cdot \frac{4}{3} \cdot \frac{6}{5} \cdots \frac{1,000,000}{999999} \right) \cdot \left( \frac{2}{3} \cdot \frac{4}{5} \cdot \frac{6}{7} \cdots \frac{1,000,000}{1,000,001} \right)$$</p></div></div>
+$$\pi \approx 2 \cdot \left( \frac{2}{1} \cdot \frac{4}{3} \cdot \frac{6}{5} \cdots \frac{1,000,000}{999999} \right) \cdot \left( \frac{2}{3} \cdot \frac{4}{5} \cdot \frac{6}{7} \cdots \frac{1,000,000}{1,000,001} \right)$$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We're now ready to do the calculation. We start by creating an array of even numbers 2, 4, 6, and so on upto 1,000,000. Then we create two lists of odd numbers: 1, 3, 5, 7, ... upto 999,999, and 3, 5, 7, ... upto 1,000,001.</p></div></div>
@@ -104,4 +104,8 @@ $$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="footnotes"></a></p>
-<h5 id="Footnotes">Footnotes<a class="anchor-link" href="#Footnotes">¶</a></h5><p>[1] As we saw in the example about Leibniz's formula, when we add  <em>infinitely</em> many fractions, the order can matter. The same is true with multiplying fractions, as we are doing here. But our approximation to $\pi$ uses only a large finite number of fractions, so it's okay to multiply the terms in any convenient order.</p></div></div></div>
+<h5 id="Footnotes">Footnotes<a class="anchor-link" href="#Footnotes">¶</a></h5><p>[1] As we saw in the example about Leibniz's formula, when we add  <em>infinitely</em> many fractions, the order can matter. The same is true with multiplying fractions, as we are doing here. But our approximation to $\pi$ uses only a large finite number of fractions, so it's okay to multiply the terms in any convenient order.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div></div></div></div>
