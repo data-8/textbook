@@ -1,4 +1,4 @@
-/* Notebook launch buttons */
+/* Interact buttons */
 
 #ipython-notebook .interact-button
 {
@@ -16,7 +16,7 @@
   text-decoration:none;
 }
 
-/* Interact button */
+/* Course button */
 
 #ipython-notebook .course-button
 {
