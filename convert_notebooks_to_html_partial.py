@@ -46,7 +46,23 @@ NOTEBOOK_IMAGE_DIR = 'notebooks-images'
 
 # The prefix for the interact button links. The path format string gets filled
 # in with the notebook as well as any datasets the notebook requires.
-INTERACT_LINK = 'http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&{paths}'
+COURSE_LINK = 'http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&{paths}'
+# jupyterhub tooltip
+COURSE_TITLE = "Launch notebook on datahub.berkeley.edu."
+# jupyterhub button label
+COURSE_LABEL = "Interact on DataHub"
+
+# mybinder url template
+BINDER_LINK = 'https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks%2F{filename}'
+# mybinder tooltip
+BINDER_TITLE = "Launch notebook on mybinder.org."
+# mybinder button label
+BINDER_LABEL = "Interact on Binder"
+
+buttons_tmpl = '''
+    <a class="interact-button course-button" href="http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&{paths}" title="{course_title}">{course_label}</a>
+	<a class="interact-button binder-button" href="https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks%2F{filename}" title="{binder_title}">{binder_label}</a>
+'''
 
 # The prefix for each notebook + its dependencies
 PATH_PREFIX = 'path=notebooks/{}'
@@ -68,6 +84,13 @@ DATASET_REGEX = re.compile(
 CLOSING_DIV_REGEX = re.compile('\s+</div>')
 
 import pdb
+
+def interact_buttons(paths, filename):
+	return buttons_tmpl.format(
+		paths=paths, filename=filename,
+		course_title=COURSE_TITLE, course_label=COURSE_LABEL,
+		binder_title=BINDER_TITLE, binder_label=BINDER_LABEL,
+	)
 
 def convert_notebooks_to_html_partial(notebook_paths):
     """
@@ -109,10 +132,10 @@ def convert_notebooks_to_html_partial(notebook_paths):
         paths = '&'.join([PATH_PREFIX.format(dep) for dep in dependencies])
 
         with_wrapper = """<div id="ipython-notebook">
-            <a class="interact-button" href="{interact_link}">Interact</a>
+            {interact_buttons}
             {html}
-        </div>""".format(interact_link=INTERACT_LINK.format(paths=paths),
-                         html=html)
+        </div>""".format(interact_buttons=interact_buttons(paths, filename),
+			html=html)
 
         # Remove newlines before closing div tags
         final_output = CLOSING_DIV_REGEX.sub('</div>', with_wrapper)
