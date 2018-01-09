@@ -6,4 +6,4 @@ matplotlib
 datascience
 ipywidgets>=7.0.0
 bqplot
-nbinteract
+nbinteract==0.0.12
