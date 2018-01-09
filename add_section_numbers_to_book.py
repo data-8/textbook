@@ -21,7 +21,7 @@ For example, given this `SUMMARY.md` file:
   * [Interact](/tutorial/Interact.md)
 ```
 
-This plugin will generate:
+This script will generate:
 
 ```
 # Table of Contents
