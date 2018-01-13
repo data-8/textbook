@@ -17,6 +17,7 @@ notebooks:
 	@echo "${BLUE}=============================${NOCOLOR}"
 
 	python convert_notebooks_to_html_partial.py
+	python add_section_numbers_to_book.py
 
 	@echo ""
 	@echo "${BLUE}    Done, output is in notebooks-html${NOCOLOR}"
