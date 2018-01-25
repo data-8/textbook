@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&path=notebooks/ckd.csv&path=notebooks/banknote.csv&path=notebooks/Classification Lecture.ipynb">Interact</a>
+            <a class="interact-button" href="https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks/Classification Lecture.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -233,8 +233,9 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Applying-the-k-nearest-neighbor-classifier-to-breast-cancer-diagnosis">Applying the k-nearest neighbor classifier to breast cancer diagnosis<a class="anchor-link" href="#Applying-the-k-nearest-neighbor-classifier-to-breast-cancer-diagnosis">¶</a></h3><p>The first thing we need is a way to compute the distance between two points.  How do we do this?  In 2-dimensional space, it's pretty easy.  If we have a point at coordinates $(x_0,y_0)$ and another at $(x_1,y_1)$, the distance between them is</p>
-$$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}.$$<p>In 3-dimensional space, the formula is</p>
-$$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$</div></div>
+<p>$$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}.$$</p>
+<p>In 3-dimensional space, the formula is</p>
+<p>$$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">):</span>

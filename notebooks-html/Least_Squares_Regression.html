@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&path=notebooks/shotput.csv&path=notebooks/Least_Squares_Regression.ipynb">Interact</a>
+            <a class="interact-button" href="https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks/Least_Squares_Regression.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -115,13 +115,14 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>These values are the same as those we got by using our formulas. To summarize:</p>
 <p><strong>No matter what the shape of the scatter plot, there is a unique line that minimizes the mean squared error of estimation. It is called the regression line, and its slope and intercept are given by</strong></p>
-$$
+<p>$$
 \mathbf{\mbox{slope of the regression line}} ~=~ r \cdot
 \frac{\mbox{SD of }y}{\mbox{SD of }x}
-$$$$
+$$</p>
+<p>$$
 \mathbf{\mbox{intercept of the regression line}} ~=~
 \mbox{average of }y ~-~ \mbox{slope} \cdot \mbox{average of }x
-$$</div></div>
+$$</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">shotput</span><span class="p">,</span> <span class="s1">'Weight Lifted'</span><span class="p">,</span> <span class="s1">'Shot Put Distance'</span><span class="p">)</span>
@@ -137,9 +138,10 @@ $$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Recall that a quadratic function has the form</p>
-$$
+<p>$$
 f(x) ~=~ ax^2 + bx + c
-$$<p>for constants $a$, $b$, and $c$.</p>
+$$
+for constants $a$, $b$, and $c$.</p>
 <p>To find the best quadratic function to predict distance based on weight lifted, using the criterion of least squares, we will first write a function that takes the three constants as its arguments, calculates the fitted values by using the quadratic function above, and then returns the mean squared error.</p>
 <p>The function is called <code>shotput_quadratic_mse</code>. Notice that the definition is analogous to that of <code>lw_mse</code>, except that the fitted values are based on a quadratic function instead of linear.</p></div></div>
 <div class="inner_cell">

@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&path=notebooks/baby.csv&path=notebooks/BootstrapFa15.ipynb">Interact</a>
+            <a class="interact-button" href="https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks/BootstrapFa15.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -19,9 +19,9 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Here is an example where this question arises. The table <code>baby</code> contains data on a random sample of 1,174 pairs of mothers and their newborn infants. Birth weight is an important factor in the health of a newborn infant – smaller babies tend to need more medical care in their first days than larger newborns. It is therefore helpful to have an estimate of birth weight before the baby is born. One way to do this is to examine the relationship between birth weight and the number of gestational days.</p>
 <p>We will begin by constructing a measure of this relationship. For each baby, we will calculate the ratio of birth weight to the number of gestational days. Below, the original table <code>baby</code> has been augmented by the column <code>r_bwt_gd</code> containing the values of this ratio. The first entry in that column was calcualted as follows:</p>
-$$
+<p>$$
 \frac{120~\mbox{ounces}}{284~\mbox{days}} ~\approx ~ 0.4225~ \mbox{ounces per day}
-$$</div></div>
+$$</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">]</span> <span class="o">=</span> <span class="n">baby</span><span class="p">[</span><span class="s1">'birthwt'</span><span class="p">]</span><span class="o">/</span><span class="n">baby</span><span class="p">[</span><span class="s1">'gest_days'</span><span class="p">]</span>
@@ -94,7 +94,7 @@ $$</div></div>
 <p>At a first glance the histogram looks quite symmetric, with the density at its maximum over the interval 4 ounces per day to 4.5 ounces per day. But a closer look reveals that some of the ratios were quite large by comparison. The maximum value of the ratios was just over 0.78 ounces per day, almost double the typical value.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">])</span>            
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.78378378378378377</pre></div>
@@ -103,7 +103,7 @@ $$</div></div>
 <p>This is a situation in which the median of the distribution is more informative about the typical value than the mean, as the median is unaffected by outliers. The median in the sample is just over 0.429.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">])</span>         
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="s1">'r_bwt_gd'</span><span class="p">])</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.42907801418439717</pre></div>

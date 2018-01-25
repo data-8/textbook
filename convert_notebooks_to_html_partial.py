@@ -45,23 +45,8 @@ NOTEBOOK_HTML_DIR = 'notebooks-html'
 NOTEBOOK_IMAGE_DIR = 'notebooks-images'
 
 # The prefix for the interact button links. The path format string gets filled
-# in with the notebook as well as any datasets the notebook requires.
-INTERACT_LINK = 'http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&{paths}'
-
-# The prefix for each notebook + its dependencies
-PATH_PREFIX = 'path=notebooks/{}'
-
-# The regex used to find file dependencies for notebooks. I could have used
-# triple quotes here but it messes up Python syntax highlighting :(
-DATASET_REGEX = re.compile(
-    r"read_table\("        # We look for a line containing read_table(
-    r"('|\")"              # Then either a single or double quote
-    r"(?P<dataset>"        # Start our named match -- dataset
-    r"    (?!https?://)"   # Don't match http(s) since those aren't local files
-    r"    \w+.csv\w*"      # It has to have .csv in there (might end in .gz)
-    r")"                   # Finish our match
-    r"\1\)"                # Make sure the quotes match
-, re.VERBOSE)
+# with path to notebook to open from root of repo
+INTERACT_LINK = 'https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath={path}'
 
 # Used to ensure all the closing div tags are on the same line for Markdown to
 # parse them properly
@@ -100,19 +85,13 @@ def convert_notebooks_to_html_partial(notebook_paths):
 
         html = preamble + _extract_cells(raw_html)
 
-        # Get dependencies from notebook
-        matches = list(DATASET_REGEX.finditer(
-            '\n'.join([cell['source'] for cell in notebook.cells])
-        ))
-        dependencies = [match.group('dataset') for match in matches] + \
-                       [filename]
-        paths = '&'.join([PATH_PREFIX.format(dep) for dep in dependencies])
-
         with_wrapper = """<div id="ipython-notebook">
             <a class="interact-button" href="{interact_link}">Interact</a>
             {html}
-        </div>""".format(interact_link=INTERACT_LINK.format(paths=paths),
-                         html=html)
+        </div>""".format(
+            interact_link=INTERACT_LINK.format(path='notebooks/' + filename),
+            html=html
+        )
 
         # Remove newlines before closing div tags
         final_output = CLOSING_DIV_REGEX.sub('</div>', with_wrapper)

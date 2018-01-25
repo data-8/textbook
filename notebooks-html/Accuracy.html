@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&path=notebooks/Accuracy.ipynb">Interact</a>
+            <a class="interact-button" href="https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks/Accuracy.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -17,11 +17,12 @@
 <h3 id="1.-Accuracy-increases-with-sample-size.">1. Accuracy increases with sample size.<a class="anchor-link" href="#1.-Accuracy-increases-with-sample-size.">¶</a></h3><p>The sample size is in the denominator of the formula for the standard error of the sample mean. So for predicting means (or proportions, in the case of a population of 0's and 1's), larger random samples are more accurate.</p>
 <h3 id="2.-The-Square-Root-Law">2. The Square Root Law<a class="anchor-link" href="#2.-The-Square-Root-Law">¶</a></h3><p>The denominator of the standard error formula is the square root of the sample size. Therefore, if the sample size is multiplied by a factor bigger than 1, the accuracy increases by the square root of the factor.</p>
 <h3 id="3.-A-bound-for-the-standard-error-of-the-sample-proportion">3. A bound for the standard error of the sample proportion<a class="anchor-link" href="#3.-A-bound-for-the-standard-error-of-the-sample-proportion">¶</a></h3><p>The standard error of a sample mean or proportion does not depend only on the sample size; it depends also on the population SD. When the population consists of 0's and 1's – that is, when the quanity being estimated is a population proportion – there is a simple bound for the population SD.</p>
-$$
+<p>$$
 \mbox{For}~p~\mbox{between}~0~\mbox{and}~1,
 \sqrt{p(1-p)} ~\mbox{is}~ \mathbf{\mbox{at most}} ~ 0.5, ~
 \mbox{which is the value of} ~\sqrt{p(1-p)}~ \mbox{for} ~ p = 0.5.
-$$<p>This leads to a bound for the standard error of the sample proportion.
+$$</p>
+<p>This leads to a bound for the standard error of the sample proportion.
 $$
 \mbox{The SE of sample proportion is} ~ \mathbf{\mbox{at most}} ~~
 \frac{0.5}{\sqrt{\mbox{sample size}}}.
@@ -53,8 +54,4 @@ $$</p></div></div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Concluding-note">Concluding note<a class="anchor-link" href="#Concluding-note">¶</a></h3><p>In news reports about opinion polls, the focus is typically on the estimates; any mention of error is often relegated to the final sentence of the report and might say something like this:</p>
 <p>"The margin of error in such surveys is about 3 percentage points."</p>
-<p>Usually, this means that 0.03 is close to the largest possible "plus or minus" number in the polling organization's construction of confidence intervals for proportions. Most polling organizations use sampling schemes that are more complex than those in our course. However, regardless of exactly how the samples are drawn, it is important to remember that it is possible for estimates based on random samples to be off by more than the expected amounts. A better ending for the news report would be, "The margin of error in most such surveys is about 3 percentage points. However, sometimes the error might be larger."</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div></div>
+<p>Usually, this means that 0.03 is close to the largest possible "plus or minus" number in the polling organization's construction of confidence intervals for proportions. Most polling organizations use sampling schemes that are more complex than those in our course. However, regardless of exactly how the samples are drawn, it is important to remember that it is possible for estimates based on random samples to be off by more than the expected amounts. A better ending for the news report would be, "The margin of error in most such surveys is about 3 percentage points. However, sometimes the error might be larger."</p></div></div></div>

@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&path=notebooks/Estimation_Sp16.ipynb">Interact</a>
+            <a class="interact-button" href="https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks/Estimation_Sp16.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -206,9 +206,10 @@ But often, as in this example, the approximation provided by the empirical distr
 <p><strong>Another Estimate.</strong></p>
 <p>Here is an example to illustrate this point. Thus far, we have used the largest observed serial number as an estimate of the total number of planes. But there are other possible estimates, and we will now consider one of them.</p>
 <p>The idea underlying this estimate is that the <em>average</em> of the observed serial numbers is likely be about halfway between 1 and $N$. Thus, if $A$ is the average, then</p>
-$$
+<p>$$
 A ~ \approx ~ \frac{N}{2} ~~~ \mbox{and so} ~~~ N \approx 2A
-$$<p>Thus a new statistic can be used to estimate the total number of planes: take the average of the observed serial numbers and double it.</p></div></div>
+$$</p>
+<p>Thus a new statistic can be used to estimate the total number of planes: take the average of the observed serial numbers and double it.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>How does this method of estimation compare with using the largest number observed? It is not easy to calculate the probability distribution of the new statistic. But as before, we can simulate it to get the probabilities approximately. Let's take a look at the empirical distribution based on repeated sampling. The number of repetitions is chosen to be the same as it was for the earlier estimate. This will allow us to compare the two empirical distributions.</p></div></div>
