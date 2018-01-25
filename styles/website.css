@@ -1,8 +1,7 @@
-/* Interact button */
+/* Interact buttons */
 
 #ipython-notebook .interact-button
 {
-  background-color:#477DCA;
   border-radius:3px;
   color:#FFF;
   display:inline-block;
@@ -15,6 +14,20 @@
 #ipython-notebook .interact-button:hover,#ipython-notebook .interact-button:focus
 {
   text-decoration:none;
+}
+
+/* Course button */
+
+#ipython-notebook .course-button
+{
+  background-color:#477DCA;
+}
+
+/* Binder button */
+
+#ipython-notebook .binder-button
+{
+  background-color:#E66581;
 }
 
 /* Code cells */
