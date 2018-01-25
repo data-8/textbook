@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&path=notebooks/heights.csv&path=notebooks/Regression.ipynb">Interact</a>
+            <a class="interact-button" href="https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks/Regression.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -130,7 +130,8 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-regression-line-in-original-units">The regression line in original units<a class="anchor-link" href="#The-regression-line-in-original-units">¶</a></h3><p>As we saw in the last section for football shaped scatter plots, when the variables $x$ and $y$ are measured in standard units, the best straight line for estimating $y$ based on $x$ has slope $r$ and passes through the origin. Thus the equation of the regression line can be written as:</p>
-$$(\textit{y in standard units}) = r \times (\textit{x in standard units})$$<p>That is,
+<p>$$(\textit{y in standard units}) = r \times (\textit{x in standard units})$$</p>
+<p>That is,
 $$
 \frac{\mbox{estimate of}~y ~-~\mbox{average of}~y}{\mbox{SD of}~y}
 ~=~ r \times 
@@ -143,7 +144,8 @@ $$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Calculation-of-the-slope-and-intercept">Calculation of the slope and intercept<a class="anchor-link" href="#Calculation-of-the-slope-and-intercept">¶</a></h3><p>The regression line is also commonly expressed as a slope and an intercept, where an estimate for y is computed from an x value using the equation</p>
-$$y = \mbox{slope} \times x + \mbox{intercept}$$<p>The calculations of the slope and intercept of the regression line can be derived from the equation above.</p></div></div>
+<p>$$y = \mbox{slope} \times x + \mbox{intercept}$$</p>
+<p>The calculations of the slope and intercept of the regression line can be derived from the equation above.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>

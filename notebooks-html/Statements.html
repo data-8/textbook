@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&path=notebooks/Statements.ipynb">Interact</a>
+            <a class="interact-button" href="https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks/Statements.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -68,10 +68,6 @@
 <p>It's <em>critical</em> to recognize that subexpressions are valid expressions that could be written by themselves or made part of other compound expressions.  If you see a complicated expression like the one above (or even more exotic ones later), and you don't understand what it does, you can always break it down into smaller bits until you get to very basic expressions.  There is a fairly small list of basic expression types (things that can't be broken down into subexpressions) to learn.</p>
 <p>This note will tell you the rules about most of the basic expressions in Python, but in order to understand and write real code (which very regularly involves large compound expressions) you'll need to develop the skill of breaking down compound expressions into subexpressions.  You can try to do that mentally while you're reading code, but if that's too hard, you can <em>just type them into a Python code cell</em> and see what they do.</p>
 <p><strong>Question.</strong> What's the value of each subexpression you found above?  You can just type them into the empty code cell below if you like.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="A-note-on-errors">A note on errors<a class="anchor-link" href="#A-note-on-errors">¶</a></h4><p>Line 5 (<code>"foo"+"bar"</code>) is a compound expression adding two strings, with <code>"foo"</code> and <code>"bar"</code> as subexpressions.  This is okay, since the <code>+</code> operator knows how to handle two strings.  It produces the string "foobar" as its value.</p>
@@ -354,7 +350,7 @@
 <p>Different indexable things can have different behavior when you set something in them.  For example, Tables use string indexing instead of number indexing, and they are okay with adding new columns using indexing assignments (as we saw in lines 1 and 2) or with replacing existing columns with something else.  If we want to change the customer names (say because we made a mistake the first time), we could do that by changing the whole "Customer" column:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">transactions</span><span class="p">[</span><span class="s1">'Customer'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Alice'</span><span class="p">,</span> <span class="s1">'Bob'</span><span class="p">,</span> <span class="s1">'Alice'</span><span class="p">,</span> <span class="s1">'Alice'</span><span class="p">,</span> <span class="s1">'Dora'</span><span class="p">]</span> <span class="c1"># </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">transactions</span><span class="p">[</span><span class="s1">'Customer'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Alice'</span><span class="p">,</span> <span class="s1">'Bob'</span><span class="p">,</span> <span class="s1">'Alice'</span><span class="p">,</span> <span class="s1">'Alice'</span><span class="p">,</span> <span class="s1">'Dora'</span><span class="p">]</span> <span class="c1">#</span>
 </pre></div></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">

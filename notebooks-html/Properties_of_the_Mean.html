@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&path=notebooks/san_francisco_2015.csv&path=notebooks/Properties_of_the_Mean.ipynb">Interact</a>
+            <a class="interact-button" href="https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks/Properties_of_the_Mean.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -76,13 +76,14 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-Mean-and-the-Histogram">The Mean and the Histogram<a class="anchor-link" href="#The-Mean-and-the-Histogram">¶</a></h3><p>The mean of the collection {2, 3, 3, 9} is 4.25, which is not the "halfway point" of the data. So then what does the mean measure?</p>
 <p>To see this, notice that the mean can be calculated in different ways.</p>
-\begin{align*}
+<p>\begin{align*}
 \mbox{mean} ~ &amp;=~ 4.25 \\ \\
 &amp;=~ \frac{2 + 3 + 3 + 9}{4} \\ \\
 &amp;=~ 2 \cdot \frac{1}{4} ~~ + ~~ 3 \cdot \frac{1}{4} ~~ + ~~ 3 \cdot \frac{1}{4} ~~ + ~~ 9 \cdot \frac{1}{4} \\ \\
 &amp;=~ 2 \cdot \frac{1}{4} ~~ + ~~ 3 \cdot \frac{2}{4} ~~ + ~~ 9 \cdot \frac{1}{4} \\ \\
 &amp;=~ 2 \cdot 0.25 ~~ + ~~ 3 \cdot 0.5 ~~ + ~~ 9 \cdot 0.25
-\end{align*}<p>The last expression is an example of a general fact: when we calculate the mean, each distinct value in the collection is <em>weighted</em> by the proportion of times it appears in the collection.</p>
+\end{align*}</p>
+<p>The last expression is an example of a general fact: when we calculate the mean, each distinct value in the collection is <em>weighted</em> by the proportion of times it appears in the collection.</p>
 <p>This has an important consequence. The mean of a collection depends only on the distinct values and their proportions, not on the number of elements in the collection. In other words, the mean of a collection depends only on the distribution of values in the collection.</p>
 <p>Therefore, <strong>if two collections have the same distribution, then they have the same mean.</strong></p>
 <p>For example, here is another collection that has the same distribution as <code>not_symmetric</code> and hence the same mean.</p></div></div>

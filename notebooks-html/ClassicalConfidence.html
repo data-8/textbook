@@ -1,5 +1,5 @@
 <div id="ipython-notebook">
-            <a class="interact-button" href="http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&path=notebooks/baby.csv&path=notebooks/ClassicalConfidence.ipynb">Interact</a>
+            <a class="interact-button" href="https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath=notebooks/ClassicalConfidence.ipynb">Interact</a>
             
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -16,12 +16,12 @@
 <p>Fortunately, a simple approximation takes care of this. In the place of the population SD, we can simply use the SD of the sample. It will not be equal to the population SD, but when we divide it by $\sqrt{\mbox{sample size}}$, the error is greatly reduced and the approximation works.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-$$
+<p>$$
 \mbox{SE of the sample average} ~=~
 \frac{\mbox{Population SD}}{\sqrt{\mbox{sample size}}}
 ~~\approx~~ \frac{\mbox{sample SD}}{\sqrt{\mbox{sample size}}} ~~~
 \mbox{when the random sample is large}
-$$</div></div>
+$$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Use-in-estimation">Use in estimation<a class="anchor-link" href="#Use-in-estimation">¶</a></h3><p>As a consequence of the Central Limit Theorem, we can use proportions derived from the normal curve in statements about the distance between the sample mean and the population mean.</p>
@@ -38,9 +38,10 @@ $$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="An-approximate-95%-confidence-interval-for-the-population-mean">An approximate 95%-confidence interval for the population mean<a class="anchor-link" href="#An-approximate-95%-confidence-interval-for-the-population-mean">¶</a></h3><p>A <em>confidence interval</em> is a range of estimates. An <em>approximate 95%-confidence interval for the population mean</em> is given by:</p>
-$$
+<p>$$
 \mbox{sample average} ~\pm~ 2 \times \mbox{SE of sample average}
-$$<p>We estimate that the population mean will be in this range.</p>
+$$</p>
+<p>We estimate that the population mean will be in this range.</p>
 <p>The confidence is in the procedure.
 If we repeat this procedure many times, we will get many intervals, one for each repetition. About 95% of the intervals will contain the population average, which is what we are trying to estimate.</p>
 <p>The <em>level of confidence</em>, 95%, can be replaced by any percent. The number of SEs on either side of the sample average has to be adjusted accordingly, by using the normal curve.</p></div></div>
@@ -198,7 +199,7 @@ True or false: About 95% of the mothers in the population are between 26.89 and 
 <pre>0.40000000000000008</pre></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>    
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.40000000000000002</pre></div>
