@@ -110,11 +110,9 @@
 <h3 id="Applying-the-k-nearest-neighbor-classifier-to-breast-cancer-diagnosis">Applying the k-nearest neighbor classifier to breast cancer diagnosis<a class="anchor-link" href="#Applying-the-k-nearest-neighbor-classifier-to-breast-cancer-diagnosis">¶</a></h3><p>We've got a data set.  Let's try out the $k$-nearest neighbor classifier and see how it does.  This is going to be great.</p>
 <p>We're going to need an implementation of the $k$-nearest neighbor classifier.  In practice you would probably use an existing library, but it's simple enough that I'm going to imeplment it myself.</p>
 <p>The first thing we need is a way to compute the distance between two points.  How do we do this?  In 2-dimensional space, it's pretty easy.  If we have a point at coordinates $(x_0,y_0)$ and another at $(x_1,y_1)$, the distance between them is</p>
-<p>$$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}.$$</p>
-<p>(Where did this come from?  It comes from the Pythogorean theorem: we have a right triangle with side lengths $x_0-x_1$ and $y_0-y_1$, and we want to find the length of the diagonal.)</p>
+$$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}.$$<p>(Where did this come from?  It comes from the Pythogorean theorem: we have a right triangle with side lengths $x_0-x_1$ and $y_0-y_1$, and we want to find the length of the diagonal.)</p>
 <p>In 3-dimensional space, the formula is</p>
-<p>$$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$</p>
-<p>In $k$-dimensional space, things are a bit harder to visualize, but I think you can see how the formula generalized: we sum up the squares of the differences between each individual coordinate, and then take the square root of that.  Let's implement a function to compute this distance function for us:</p></div></div>
+$$D = \sqrt{x_0-x_1)^2 + (y_0-y_1)^2 + (z_0-z_1)^2}.$$<p>In $k$-dimensional space, things are a bit harder to visualize, but I think you can see how the formula generalized: we sum up the squares of the differences between each individual coordinate, and then take the square root of that.  Let's implement a function to compute this distance function for us:</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">):</span>
@@ -436,4 +434,8 @@
 <p>First, machine learning is powerful.  If you had to try to write code to make a diagnosis without knowing about machine learning, you might spend a lot of time by trial-and-error trying to come up with some complicated set of rules that seem to work, and the result might not be very accurate.  The $k$-nearest neighbors algorithm automates the entire task for you.  And machine learning often lets them make predictions far more accurately than anything you'd come up with by trial-and-error.</p>
 <p>Second, you can do it.  Yes, you.  You can use machine learning in your own work to make predictions based on data.  You now know enough to start applying these ideas to new data sets and help others make useful predictions.  The techniques are very powerful, but you don't have to have a Ph.D. in statistics to use them.</p>
 <p>Third, be careful about how to evaluate accuracy.  Use a hold-out set.</p>
-<p>There's lots more one can say about machine learning: how to choose attributes, how to choose $k$ or other parameters, what other classification methods are available, how to solve more complex prediction tasks, and lots more.  In this course, we've barely even scratched the surface.  If you enjoyed this material, you might enjoy continuing your studies in statistics and computer science; courses like Stats 132 and 154 and CS 188 and 189 go into a lot more depth.</p></div></div></div>
+<p>There's lots more one can say about machine learning: how to choose attributes, how to choose $k$ or other parameters, what other classification methods are available, how to solve more complex prediction tasks, and lots more.  In this course, we've barely even scratched the surface.  If you enjoyed this material, you might enjoy continuing your studies in statistics and computer science; courses like Stats 132 and 154 and CS 188 and 189 go into a lot more depth.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div></div></div></div>

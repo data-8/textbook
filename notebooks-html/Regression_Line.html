@@ -33,7 +33,7 @@
 <span class="sd">    """</span>
     
     <span class="n">close_points</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'MidParent'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">mpht</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">mpht</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">close_points</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Child'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">close_points</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Child'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>   
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -54,7 +54,7 @@
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">standard_units</span><span class="p">(</span><span class="n">xyz</span><span class="p">):</span>
     <span class="s2">"Convert any array of numbers to standard units."</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">xyz</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xyz</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">xyz</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xyz</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>  
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -142,7 +142,7 @@
 <span class="sd">    """</span>
     <span class="n">close</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">/</span><span class="n">sd_midparent</span>
     <span class="n">close_points</span> <span class="o">=</span> <span class="n">heights_SU</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">'MidParent SU'</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">mpht_su</span><span class="o">-</span><span class="n">close</span><span class="p">,</span> <span class="n">mpht_su</span> <span class="o">+</span> <span class="n">close</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">close_points</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Child SU'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">close_points</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'Child SU'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>   
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -167,7 +167,7 @@
 <img src="/notebooks-images/Regression_Line_18_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>But the 45 degree line is not the line that picks off the centers of the vertical strips. You can see that in the figure below, where the vertical line at 1.5 standard units is shown in black. The points on the scatter plot near the blue line all have heights roughly in the -2 to 3 range. The red line is too high to pick off the center.</p></div></div>
+<p>But the 45 degree line is not the line that picks off the centers of the vertical strips. You can see that in the figure below, where the vertical line at 1.5 standard units is shown in black. The points on the scatter plot near the black line all have heights roughly in the -2 to 3 range. The red line is too high to pick off the center.</p></div></div>
 <div class="output_png output_subarea ">
 <img src="/notebooks-images/Regression_Line_20_0.png"/></div>
 <div class="inner_cell">
@@ -208,26 +208,23 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-Equation-of-the-Regression-Line">The Equation of the Regression Line<a class="anchor-link" href="#The-Equation-of-the-Regression-Line">¶</a></h3><p>In regression, we use the value of one variable (which we will call $x$) to predict the value of another (which we will call $y$). When the variables $x$ and $y$ are measured in standard units, the regression line for predicting $y$ based on $x$ has slope $r$ and passes through the origin. Thus the equation of the regression line can be written as:</p>
-<p>$$
+$$
 \mbox{estimate of }y ~=~ r \cdot x ~~~
 \mbox{when both variables are measured in standard units}
-$$</p>
-<p>In the original units of the data, this becomes</p>
-<p>$$
+$$<p>In the original units of the data, this becomes</p>
+$$
 \frac{\mbox{estimate of}~y ~-~\mbox{average of}~y}{\mbox{SD of}~y}
 ~=~ r \times 
 \frac{\mbox{the given}~x ~-~\mbox{average of}~x}{\mbox{SD of}~x}
-$$</p>
-<p><img alt="regline" src="/images/regline.png"/></p>
+$$<p><img alt="regline" src="/images/regline.png"/></p>
 <p>The slope and intercept of the regression line in original units can be derived from the diagram above.</p>
-<p>$$
+$$
 \mathbf{\mbox{slope of the regression line}} ~=~ r \cdot
 \frac{\mbox{SD of }y}{\mbox{SD of }x}
-$$</p>
-<p>$$
+$$$$
 \mathbf{\mbox{intercept of the regression line}} ~=~
 \mbox{average of }y ~-~ \mbox{slope} \cdot \mbox{average of }x
-$$</p></div></div>
+$$</div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The three functions below compute the correlation, slope, and intercept. All of them take three arguments: the name of the table, the label of the column containing $x$, and the label of the column containing $y$.</p></div></div>
@@ -267,10 +264,9 @@ $$</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The equation of the regression line is</p>
-<p>$$
+$$
 \mbox{estimate of child's height} ~=~ 0.64 \cdot \mbox{midparent height} ~+~ 22.64
-$$</p>
-<p>This is also known as the <em>regression equation.</em> The principal use of the regression equation is to predict $y$ based on $x$.</p>
+$$<p>This is also known as the <em>regression equation.</em> The principal use of the regression equation is to predict $y$ based on $x$.</p>
 <p>For example, for a midparent height of 70.48 inches, the regression equation predicts the child's height to be 67.56 inches.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -456,21 +452,18 @@ pounds more than our prediction for the shorter woman.</p>
 </tbody>
 </table>
 <p>To calculate the equation of the regression line, we need the slope and the intercept.</p>
-<p>$$
+$$
 \mbox{slope} ~=~ \frac{r \cdot \mbox{SD of }y}{\mbox{SD of }x} ~=~
 \frac{0.5 \cdot 2 \mbox{ inches}}{5 \mbox{ pounds}} ~=~ 0.2 ~\mbox{inches per pound}
-$$</p>
-<p>$$
+$$$$
 \mbox{intercept} ~=~ \mbox{average of }y - \mbox{slope}\cdot \mbox{average of } x
 ~=~ 14 \mbox{ inches} ~-~ 0.2 \mbox{ inches per pound} \cdot 50 \mbox{ pounds}
 ~=~ 4 \mbox{ inches}
-$$</p>
-<p>The equation of the regression line allows us to calculate the estimated height, in inches,
+$$<p>The equation of the regression line allows us to calculate the estimated height, in inches,
 based on a given weight in pounds:</p>
-<p>$$
+$$
 \mbox{estimated height} ~=~ 0.2 \cdot \mbox{given weight} ~+~ 4
-$$</p>
-<p>The slope of the line is measures the increase in the estimated height per unit increase in weight. The slope is positive, and it is important to note that this does not mean that we think basset hounds get taller if they put on weight. The slope reflects the difference in the average heights of two groups of dogs that are 1 pound apart in weight. Specifically, consider a group of dogs whose weight is $w$ pounds, and the group whose weight is $w+1$ pounds. The second group is estimated to be 0.2 inches taller, on average. This is true for all values of $w$ in the sample.</p>
+$$<p>The slope of the line is measures the increase in the estimated height per unit increase in weight. The slope is positive, and it is important to note that this does not mean that we think basset hounds get taller if they put on weight. The slope reflects the difference in the average heights of two groups of dogs that are 1 pound apart in weight. Specifically, consider a group of dogs whose weight is $w$ pounds, and the group whose weight is $w+1$ pounds. The second group is estimated to be 0.2 inches taller, on average. This is true for all values of $w$ in the sample.</p>
 <p>In general, the slope of the regression line can be interpreted as the average increase in $y$ per unit increase in $x$. Note that if the slope is negative, then for every unit increase in $x$, the average of $y$ decreases.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">

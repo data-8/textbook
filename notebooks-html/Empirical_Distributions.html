@@ -11,8 +11,9 @@
 </script>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Empirical-Distributions">Empirical Distributions<a class="anchor-link" href="#Empirical-Distributions">¶</a></h3><p>Much of data science involves data from large random samples. In this section we will examine some properties of such samples.</p>
-<p>We will start with a simple experiment: rolling a die multiple times and keeping track of which face appears. The table <code>die</code> contains the numbers of spots on the faces of a die. All the numbers appear exactly once, as we are assuming that the die is fair.</p></div></div>
+<h3 id="Empirical-Distributions">Empirical Distributions<a class="anchor-link" href="#Empirical-Distributions">¶</a></h3><p>In data science, the word "empirical" means "observed". Empirical distributions are distributions of observed data, such as data in random samples.</p>
+<p>In this section we will generate data and see what the empirical distribution looks like.</p>
+<p>Our setting is a simple experiment: rolling a die multiple times and keeping track of which face appears. The table <code>die</code> contains the numbers of spots on the faces of a die. All the numbers appear exactly once, as we are assuming that the die is fair.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">die</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Face'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -63,14 +64,15 @@
 <img src="/notebooks-images/Empirical_Distributions_4_0.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Variables whose successive values are separated by the same fixed amount, such as the values on rolls of a die (successive values separated by 1), are called <em>discrete</em>. The histogram above is called a <em>discrete</em> histogram. Its bins are specified by the array <code>die_bins</code> and ensure that each bar is centered over the corresponding integer value.</p>
+<p>Variables whose successive values are separated by the same fixed amount, such as the values on rolls of a die (successive values separated by 1), fall into a class of variables that are called <em>discrete</em>. The histogram above is called a <em>discrete</em> histogram. Its bins are specified by the array <code>die_bins</code> and ensure that each bar is centered over the corresponding integer value.</p>
 <p>It is important to remember that the die can't show 1.3 spots, or 5.2 spots – it always shows an integer number of spots. But our visualization spreads the probability of each value over the area of a bar. While this might seem a bit arbitrary at this stage of the course, it will become important later when we overlay smooth curves over discrete histograms.</p>
 <p>Before going further, let's make sure that the numbers on the axes make sense. The probability of each face is 1/6, which is 16.67% when rounded to two decimal places. The width of each bin is 1 unit. So the height of each bar is 16.67% per unit. This agrees with the horizontal and vertical scales of the graph.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Empirical-Distributions">Empirical Distributions<a class="anchor-link" href="#Empirical-Distributions">¶</a></h3><p>The distribution above consists of the theoretical probability of each face. It is not based on data. It can be studied and understood without any dice being rolled.</p>
 <p><em>Empirical distributions,</em> on the other hand, are distributions of observed data. They can be visualized by <em>empirical histograms</em>.</p>
-<p>Let us get some data by simulating rolls of a die. This can be done by sampling at random with replacement from the integers 1 through 6. To do this using Python, we will use the Table method <code>sample</code>, which draws at random with replacement from the rows of a table. Its argument is the sample size, and it returns a table consisting of the rows that were selected. An optional argument <code>with_replacement=False</code> specifies that the sample should be drawn without replacement, but that does not apply to rolling a die.</p>
+<p>Let us get some data by simulating rolls of a die. This can be done by sampling at random with replacement from the integers 1 through 6. We have used <code>np.random.choice</code> for such simulations before. But now we will introduce a Table method for doing this. This will make it possible for us to use our familiar Table methods for visualization.</p>
+<p>TThe Table method is called <code>sample</code>. It draws at random with replacement from the rows of a table. Its argument is the sample size, and it returns a table consisting of the rows that were selected. An optional argument <code>with_replacement=False</code> specifies that the sample should be drawn without replacement, but that does not apply to rolling a die.</p>
 <p>Here are the results of 10 rolls of a die.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
@@ -85,31 +87,19 @@
     </thead>
     <tbody>
         <tr>
+            <td>1   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
             <td>5   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>3   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>3   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
             <td>4   </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>2   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>2   </td>
-        </tr>
-    </tbody>
-        <tbody><tr>
-            <td>4   </td>
+            <td>3   </td>
         </tr>
     </tbody>
         <tbody><tr>
@@ -122,6 +112,18 @@
     </tbody>
         <tbody><tr>
             <td>6   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>3   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>4   </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>2   </td>
         </tr>
     </tbody>
 </table></div>

@@ -204,10 +204,9 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Distance-Between-Points-When-There-are-Two-Attributes">Distance Between Points When There are Two Attributes<a class="anchor-link" href="#Distance-Between-Points-When-There-are-Two-Attributes">¶</a></h3><p>The main calculation we need to do is to find the distance between Alice's point and any other point. For this, the first thing we need is a way to compute the distance between any pair of points.</p>
 <p>How do we do this?  In 2-dimensional space, it's pretty easy.  If we have a point at coordinates $(x_0,y_0)$ and another at $(x_1,y_1)$, the distance between them is</p>
-<p>$$
+$$
 D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}
-$$</p>
-<p>(Where did this come from?  It comes from the Pythogorean theorem: we have a right triangle with side lengths $x_0-x_1$ and $y_0-y_1$, and we want to find the length of the hypotenuse.)</p></div></div>
+$$<p>(Where did this come from?  It comes from the Pythogorean theorem: we have a right triangle with side lengths $x_0-x_1$ and $y_0-y_1$, and we want to find the length of the hypotenuse.)</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the next section we'll see that this formula has a straightforward extension when there are more than two attributes. For now, let's use the formula and array operations to find the distance between Alice and the patient in Row 3.</p></div></div>
