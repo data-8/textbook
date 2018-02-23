@@ -11,20 +11,23 @@
 </script>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Causality">Causality<a class="anchor-link" href="#Causality">¶</a></h3><p>Our methods for comparing two samples have a powerful use in the analysis of randomized controlled experiments. Since the treatment and control groups are assigned randomly in such experiements, any differences in their outcomes can be compared to what would happen just due to the randomness in the assignment if the treatment had no effect at all. If the observed differences are more marked than what we would predict as purely due to chance, we will have evidence of <em>causation</em>. Because of the unbiased assignment of individuals to the treatment and control groups, differences in the outcomes of the two groups can be ascribed to the treatment.</p>
-<p>The key to the analysis of randomized controlled experiments is understanding exactly how chance enters the picture. This helps us set up clear null and alternative hypotheses. Once that's done, we can simply use the methods of the previous section to complete the analysis.</p>
+<h3 id="Causality">Causality<a class="anchor-link" href="#Causality">¶</a></h3></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our methods for comparing two samples have a powerful use in the analysis of randomized controlled experiments. Since the treatment and control groups are assigned randomly in such experiements, differences in their outcomes can be compared to what would happen just due to chance if the treatment had no effect at all. If the observed differences are more marked than what we would predict as purely due to chance, we will have evidence of <em>causation</em>. Because of the unbiased assignment of individuals to the treatment and control groups, differences in the outcomes of the two groups can be ascribed to the treatment.</p>
+<p>The key to the analysis of randomized controlled experiments is understanding exactly how chance enters the picture. This helps us set up clear null and alternative hypotheses. Once that's done, we can simply use the methods of the previous sections to complete the analysis.</p>
 <p>Let's see how to do this in an example.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Treating-Chronic-Back-Pain:-An-RCT">Treating Chronic Back Pain: An RCT<a class="anchor-link" href="#Treating-Chronic-Back-Pain:-An-RCT">¶</a></h3><p>Low-back pain in adults can be very persistent and hard to treat. Common methods run the gamut from corticosteroids to acupuncture. A <a href="https://www.ncbi.nlm.nih.gov/pubmed/11376175">randomized controlled trial (RCT)</a> examined the effect of using Botulinum Toxin A as a treatment. Botulinum toxin is a neurotoxic protein that causes the disease botulism; <a href="https://en.wikipedia.org/wiki/Botulinum_toxin">Wikipedia</a> says that botulinum "is the most acutely lethal toxin known." There are seven types of botulinum toxin. Botulinum Toxin A is one of the types that can cause disease in humans, but it is also used in medicine to treat various diseases involving the muscles. The RCT analyzed by Foster, Clapp, and Jabbari in 2001 examined it as a treatment for low back pain.</p>
-<p>Thirty one patients with low-back pain were randomized into treatment and control groups, with 15 in treatment and 16 in control. The control group was given normal saline, and the trials were run double-blind so that neither doctors nor patients knew which group they were in.</p>
-<p>Eight weeks after the start of the study, nine of the 15 in the treatment group and two of the 16 in the control group had pain relief (defined precisely by the researchers). These data are in the table <code>bta</code> and appear to show that the treatment has a clear benefit.</p></div></div>
+<h3 id="Treating-Chronic-Back-Pain:-A-Randomized-Controlled-Trial">Treating Chronic Back Pain: A Randomized Controlled Trial<a class="anchor-link" href="#Treating-Chronic-Back-Pain:-A-Randomized-Controlled-Trial">¶</a></h3><p>Low-back pain in adults can be very persistent and hard to treat. Common methods run the gamut from corticosteroids to acupuncture. A <a href="https://www.ncbi.nlm.nih.gov/pubmed/11376175">randomized controlled trial (RCT)</a> examined the effect of using Botulinum Toxin A as a treatment. Botulinum toxin is a neurotoxic protein that causes the disease botulism; <a href="https://en.wikipedia.org/wiki/Botulinum_toxin">Wikipedia</a> says that botulinum "is the most acutely lethal toxin known." There are seven types of botulinum toxin. Botulinum Toxin A is one of the types that can cause disease in humans, but it is also used in medicine to treat various diseases involving the muscles. The RCT analyzed by Foster, Clapp, and Jabbari in 2001 examined it as a treatment for low back pain.</p>
+<p>Thirty one patients with low-back pain were randomized into treatment and control groups, with 15 in the treatment group and 16 in control. The control group was given normal saline, and the trials were run double-blind so that neither doctors nor patients knew which group they were in.</p>
+<p>Eight weeks after the start of the study, nine of the 15 in the treatment group and two of the 16 in the control group had pain relief (according to a precise definition used by the researchers). These data are in the table <code>bta</code> and appear to show that the treatment has a clear benefit.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bta</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">'bta.csv'</span><span class="p">)</span>
-<span class="n">bta</span>
+<span class="n">bta</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div></div></div>
-<div class="output_html rendered_html output_subarea output_execute_result">
+<div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -33,47 +36,133 @@
     </thead>
     <tbody>
         <tr>
-            <td>Control</td> <td>1     </td>
+            <td>Control  </td> <td>1     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Control</td> <td>1     </td>
+            <td>Control  </td> <td>1     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Control</td> <td>0     </td>
+            <td>Control  </td> <td>0     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Control</td> <td>0     </td>
+            <td>Control  </td> <td>0     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Control</td> <td>0     </td>
+            <td>Control  </td> <td>0     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Control</td> <td>0     </td>
+            <td>Control  </td> <td>0     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Control</td> <td>0     </td>
+            <td>Control  </td> <td>0     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Control</td> <td>0     </td>
+            <td>Control  </td> <td>0     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Control</td> <td>0     </td>
+            <td>Control  </td> <td>0     </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Control</td> <td>0     </td>
+            <td>Control  </td> <td>0     </td>
         </tr>
     </tbody>
-</table>
-<p>... (21 rows omitted)</p></div>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember that counting is the same as adding zeros and ones. The sum of 1's in the control group is the number of control group patients who had pain relief. So the <em>average</em> of the number of 1's is the <em>proportion</em> of control group patients who had pain relief.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bta</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Group'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
@@ -98,7 +187,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the treatment group, 60% of the patients had pain relief, compared to only 12.5% in the control group. None of the patients suffered any side effects.</p>
-<p>So the indications are that botolinum toxin A did better than the saline. But the conclusion isn't yet a slam-dunk. The patients were assigned at random into the two groups, so perhaps the difference could just be due to chance?</p>
+<p>So the indications are that botulinum toxin A did better than the saline. But the conclusion isn't yet a slam-dunk. The patients were assigned at random into the two groups, so perhaps the difference could just be due to chance?</p>
 <p>To understand what this means, we have to consider the possibility that among the 31 people in the study, some were simply better able to recover than others, even without any help from the treatment. What if an unusually large proportion of them got assigned to the treatment group, just by chance? Then even if the treatment did nothing more than the saline in the control group, the results of the treatment group might look better than those of the control group.</p>
 <p>To account for this possibility, let's start by carefully setting up the chance model.</p></div></div>
 <div class="inner_cell">
@@ -253,146 +342,295 @@
 </table></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="A-Test-of-Hypotheses">A Test of Hypotheses<a class="anchor-link" href="#A-Test-of-Hypotheses">¶</a></h3><p>The question is whether the treatment does anything. In terms of the table <code>observed_outcomes</code>, the question is whether the distribution of the 31 "treatment" values in column 2 (including the unknown ones) is different from the distribution of the 31 "control" values in column 3 (again including the unknown ones).</p>
-<p><strong>Null Hypothesis:</strong> The distribution of all 31 potential "treatment" outcomes is the same as that of all 31 potential "control" outcomes. The treatment does nothing different from the control; the difference in the two samples is just due to chance.</p>
-<p><strong>Alternative Hypotheses:</strong> The distribution of 31 potential "treatment" outcomes is different from that of the 31 control outcomes. The treatment does something different from the control.</p>
-<p>To test these hypotheses, notice that if the null hypothesis were true, then all assignments of the 31 observed outcomes to a group of 16 outcomes labeled "control" and the other 15 labeled "treatment" would be equally likely. So we can simply permute the values and see how different the distributions in the two groups are. Even more simply, since the data are numerical, we can just see how different the two means are.</p>
-<p>That's exactly what we did for A/B testing in the previous section. Sample A is now the control group and Sample B the treatment group. Our test statistic is the absolute difference between the two group means.</p>
-<p>Let's run our permutation test for the difference between means. There are only 31 observations, so we can run a large number of permutations without having to wait too long for the results.</p></div></div>
+<h3 id="The-Hypotheses">The Hypotheses<a class="anchor-link" href="#The-Hypotheses">¶</a></h3><p>The question is whether the treatment does anything. In terms of the table <code>observed_outcomes</code>, the question is whether the distribution of the 31 "treatment" values in Column 1  (including the unknown ones) is different from the distribution of the 31 "control" values in Column 2 (again including the unknown ones).</p>
+<p><strong>Null Hypothesis:</strong> The distribution of all 31 potential "treatment" outcomes is the same as that of all 31 potential "control" outcomes. Botulinum toxin A does nothing different from saline; the difference in the two samples is just due to chance.</p>
+<p><strong>Alternative Hypothesis:</strong> The distribution of 31 potential "treatment" outcomes is different from that of the 31 control outcomes. The treatment does something different from the control.</p>
+<p>There are 31 observed outcomes jointly in the two groups. If the null hypothesis were true, it wouldn't matter which of those 31 outcomes were labeled "treatment" and which "control." Any random subset of 16 out of the 31 values could be called "control" and the remaining 15 "treatment".</p>
+<p>We can simulate this. We can randomly permute the 31 values, split them into two groups of 16 and 15, and see how different the distributions in the two groups are. Since the data are zeros and ones, we can just see how different the two proportions are.</p>
+<p>That's exactly what we did for A/B testing in the previous section. Sample A is now the control group and Sample B the treatment group. We will carry out the test below showing the details of all the steps. You should confirm that they are the same as the steps carried out for A/B testing.</p>
+<h3 id="The-Test-Statistic">The Test Statistic<a class="anchor-link" href="#The-Test-Statistic">¶</a></h3><p>If the two group proportions are very different from each other, we will lean towards the alternative hypothesis that the two underlying distributions are different. So our test statistic will be the distance between the two group proportions, that is, the absolute value of the difference between them.</p>
+<p>Large values of the test statistic will favor the alternative hypothesis over the null.</p>
+<p>Since the two group proportions were 0.6 and 0.125, the observed value of the test statistic is $\big{\vert} 0.6 - 0.125 \big{\vert} = 0.475$.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">permutation_test_means</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
-    
-    <span class="sd">"""Test whether two numerical samples </span>
-<span class="sd">    come from the same underlying distribution, </span>
-<span class="sd">    using the absolute difference between the means.</span>
-<span class="sd">    table: name of table containing the sample</span>
-<span class="sd">    variable: label of column containing the numerical variable </span>
-<span class="sd">    classes: label of column containing names of the two samples</span>
-<span class="sd">    repetitions: number of random permutations"""</span>
-    
-    <span class="n">t</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
-    
-    <span class="c1"># Find the observed test statistic</span>
-    <span class="n">means_table</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> 
-    <span class="n">obs_stat</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-    
-    <span class="c1"># Assuming the null is true, randomly permute the variable </span>
-    <span class="c1"># and collect all the generated test statistics</span>
-    <span class="n">stats</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
-        <span class="n">shuffled_var</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">shuffled</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Shuffled Variable'</span><span class="p">,</span> <span class="n">shuffled_var</span><span class="p">)</span>
-        <span class="n">m_tbl</span> <span class="o">=</span> <span class="n">shuffled</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
-        <span class="n">new_stat</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">m_tbl</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">m_tbl</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">stats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stats</span><span class="p">,</span> <span class="n">new_stat</span><span class="p">)</span>
-    
-    <span class="c1"># Find the empirical P-value:</span>
-    <span class="n">emp_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">stats</span> <span class="o">&gt;=</span> <span class="n">obs_stat</span><span class="p">)</span><span class="o">/</span><span class="n">repetitions</span>
-
-    <span class="c1"># Draw the empirical histogram of the tvd's generated under the null, </span>
-    <span class="c1"># and compare with the value observed in the original sample</span>
-    <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Test Statistic'</span><span class="p">,</span> <span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Empirical Distribution Under the Null'</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Observed statistic:'</span><span class="p">,</span> <span class="n">obs_stat</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Empirical P-value:'</span><span class="p">,</span> <span class="n">emp_p</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">permutation_test_means</span><span class="p">(</span><span class="n">bta</span><span class="p">,</span> <span class="s1">'Result'</span><span class="p">,</span> <span class="s1">'Group'</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
-</pre></div></div></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Observed statistic: 0.475
-Empirical P-value: 0.00965
-</pre></div>
-<div class="output_png output_subarea ">
-<img src="/notebooks-images/Causality_11_1.png"/></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The empirical P-value is very small (the study reports a P-value of 0.009, which is consistent with our calculation), and thus the evidence points to the alternative: the underlying treatment and control distributions are different.</p>
-<p>This is evidence that the treatment <em>causes</em> the difference, because the randomization ensures that there is no confounding variable that could affect the conclusion.</p>
-<p>If the treatment had not been randomly assigned, our test would still point toward an <em>association</em> between the treatment and back pain outcomes among our 31 patients.  But beware: without randomization, this association would not imply that the treatment caused a change in back pain outcomes.  For example, if the patients themselves had chosen whether to administer the treatment, perhaps the patients experiencing more pain would be more likely to choose the treatment <em>and</em> more likely to experience some reduction in pain even without medication.  Pre-existing pain would then be a <em>confounding factor</em> in the analysis.</p></div></div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="A-Confidence-Interval-for-the-Effect">A Confidence Interval for the Effect<a class="anchor-link" href="#A-Confidence-Interval-for-the-Effect">¶</a></h3><p>As we noted in the previous section, it's a little unsatisfactory to simply conclude that the treatment does something. We're left wanting to know what it does.</p>
-<p>So instead of performing a yes/no test of hypotheses about the two underlying distributions, let's simply estimate the difference between their means. Specifically, we are looking at the mean of all 31 control outcomes minus the mean of all 31 treatment outcomes. That's the unknown parameter. It is unknown because we only have 16 of the control values and 15 of the treatment values.</p>
-<p>In our sample, the difference between the means is -47.5%. The control group had a mean of 12.5% whereas the treatment group had a mean of 60%. The negative sign of the difference says that the treatment group did better.</p></div></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">group_means</span> <span class="o">=</span> <span class="n">bta</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Group'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
-<span class="n">group_means</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bta</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Group'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Group</th> <th>Result mean</th>
+            <th>Group</th> <th>Result average</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Control  </td> <td>0.125      </td>
+            <td>Control  </td> <td>0.125         </td>
         </tr>
     </tbody>
         <tbody><tr>
-            <td>Treatment</td> <td>0.6        </td>
+            <td>Treatment</td> <td>0.6           </td>
         </tr>
     </tbody>
 </table></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">group_means</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">group_means</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">observed_proportions</span> <span class="o">=</span> <span class="n">bta</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Group'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">observed_distance</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">observed_proportions</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">observed_proportions</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">observed_distance</span>
 </pre></div></div></div>
 <div class="output_text output_subarea output_execute_result">
-<pre>-0.475</pre></div>
+<pre>0.475</pre></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>But this is just the result in one sample; the sample could have come out differently. So we will replicate the sample using the bootstrap, and recompute the difference. That's exactly what we did in the previous section.</p></div></div>
+<h3 id="Predicting-the-Statistic-Under-the-Null-Hypothesis">Predicting the Statistic Under the Null Hypothesis<a class="anchor-link" href="#Predicting-the-Statistic-Under-the-Null-Hypothesis">¶</a></h3><p>We can simulate results under the null hypothesis, to see how our test statistic should come out if the null hypothesis is true.</p>
+<h4 id="Generating-One-Value-of-the-Statistic">Generating One Value of the Statistic<a class="anchor-link" href="#Generating-One-Value-of-the-Statistic">¶</a></h4><p>The simulation follows exactly the same process we used in the previous section. We start by randomly permuting the <code>results</code> column and assigning "control" and "treatment" labels to the permuted results.</p></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">bootstrap_ci_means</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
-    
-    <span class="sd">"""Bootstrap approximate 95% confidence interval</span>
-<span class="sd">    for the difference between the means of the two classes</span>
-<span class="sd">    in the population"""</span>
-    
-    <span class="n">t</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
-    
-    <span class="n">mean_diffs</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
-        <span class="n">bootstrap_sample</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
-        <span class="n">m_tbl</span> <span class="o">=</span> <span class="n">bootstrap_sample</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
-        <span class="n">new_stat</span> <span class="o">=</span> <span class="n">m_tbl</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">m_tbl</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">mean_diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_diffs</span><span class="p">,</span> <span class="n">new_stat</span><span class="p">)</span>
-        
-    <span class="n">left</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">mean_diffs</span><span class="p">)</span>
-    <span class="n">right</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">97.5</span><span class="p">,</span> <span class="n">mean_diffs</span><span class="p">)</span>
-    
-    <span class="c1"># Find the observed test statistic</span>
-    <span class="n">means_table</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> 
-    <span class="n">obs_stat</span> <span class="o">=</span> <span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    
-    <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Difference Between Means'</span><span class="p">,</span> <span class="n">mean_diffs</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">),</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'yellow'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Observed difference between means:'</span><span class="p">,</span> <span class="n">obs_stat</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Approximate 95% CI for the difference between means:'</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="s1">'to'</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shuffled_results</span> <span class="o">=</span> <span class="n">bta</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_ci_means</span><span class="p">(</span><span class="n">bta</span><span class="p">,</span> <span class="s1">'Result'</span><span class="p">,</span> <span class="s1">'Group'</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bta_with_shuffled_results</span> <span class="o">=</span> <span class="n">bta</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Shuffled Results'</span><span class="p">,</span> <span class="n">shuffled_results</span><span class="p">)</span>
+<span class="n">bta_with_shuffled_results</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Group</th> <th>Result</th> <th>Shuffled Results</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Control  </td> <td>1     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>1     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>1               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>1               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>1               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Control  </td> <td>0     </td> <td>1               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td> <td>1               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td> <td>1               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td> <td>1               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>1     </td> <td>1               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td> <td>1               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td> <td>0               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td> <td>1               </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0     </td> <td>1               </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We then get the group means of the shuffled results:</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bta_with_shuffled_results</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Group'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Group</th> <th>Result average</th> <th>Shuffled Results average</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Control  </td> <td>0.125         </td> <td>0.25                    </td>
+        </tr>
+    </tbody>
+        <tbody><tr>
+            <td>Treatment</td> <td>0.6           </td> <td>0.466667                </td>
+        </tr>
+    </tbody>
+</table></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The group proportions in the "shuffled" column look quite different from those in the study's results.</p>
+<p>We can use the simulated proportions to calculate the simulated value of the test statistic. By doing this repeatedly, we will get a sense of how the statistic varies under the null hypothesis.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">proportions</span> <span class="o">=</span> <span class="n">bta_with_shuffled_results</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">'Group'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">simulated_distance</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">proportions</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">proportions</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">simulated_distance</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.21666666666666667</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Permutation-Test">Permutation Test<a class="anchor-link" href="#Permutation-Test">¶</a></h3><p>You can see that we are doing exactly what we did in our previous examples of the permutation test. Here is the function we defined earlier to generate the simulated differences under the null hypothesis. It simply collects the code above and puts it in the body of a <code>for</code> loop.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">permuted_sample_average_difference</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">group_label</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+    
+    <span class="n">tbl</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">group_label</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+    
+    <span class="n">differences</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">shuffled</span> <span class="o">=</span> <span class="n">tbl</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">original_and_shuffled</span> <span class="o">=</span> <span class="n">tbl</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Shuffled Data'</span><span class="p">,</span> <span class="n">shuffled</span><span class="p">)</span>
+
+        <span class="n">shuffled_means</span> <span class="o">=</span> <span class="n">original_and_shuffled</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">group_label</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">simulated_difference</span> <span class="o">=</span> <span class="n">shuffled_means</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">shuffled_means</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+        <span class="n">differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">differences</span><span class="p">,</span> <span class="n">simulated_difference</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">differences</span>   
+</pre></div></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will call this function to generate an array of differences between proportions in randomly selected "control" and "treatment" groups.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">differences</span> <span class="o">=</span> <span class="n">permuted_sample_average_difference</span><span class="p">(</span><span class="n">bta</span><span class="p">,</span> <span class="s1">'Result'</span><span class="p">,</span> <span class="s1">'Group'</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our statistic is the distance between the two proportions, that is, the absolute value of the difference.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Conclusion-of-the-Test">Conclusion of the Test<a class="anchor-link" href="#Conclusion-of-the-Test">¶</a></h3><p>The array <code>distances</code> contains 20,000 values of our test statistic simulated under the null hypothesis.</p>
+<p>To find the P-value of the test, remember that large values of the test statitsic favor the alternative hypothesis. So the empirical P-value is the proportion of simulated statistics that were equal to or larger than the observed statistic.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">empirical_P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">distances</span> <span class="o">&gt;=</span> <span class="n">observed_distance</span><span class="p">)</span> <span class="o">/</span> <span class="n">repetitions</span>
+<span class="n">empirical_P</span>
+</pre></div></div></div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.01015</pre></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a small P-value. The observed statistc, shown as the red dot below, is in the tail of the empirical histogram of the test statistic generated under the null hypothesis.</p>
+<p>The result is statistically significant. The test favors the alternative hypothesis more than the null. The evidence supports the hypothesis that the treatment is doing something.</p></div></div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">'Distance under Null Hypothesis'</span><span class="p">,</span> <span class="n">distances</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">observed_distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Prediction Under the Null Hypothesis'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Observed Distance'</span><span class="p">,</span> <span class="n">observed_distance</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Empirical P-value:'</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">empirical_P</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="s1">'%'</span><span class="p">)</span>
 </pre></div></div></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Observed difference between means: -0.475
-Approximate 95% CI for the difference between means:
--0.759090909091 to -0.162393162393
+<pre>Observed Distance 0.475
+Empirical P-value: 1.01 %
 </pre></div>
 <div class="output_png output_subarea ">
-<img src="/notebooks-images/Causality_18_1.png"/></div>
+<img src="/notebooks-images/Causality_30_1.png"/></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>An approximate 95% confidence interval for the difference between the means of the underlying distributions goes from about -80% to -20%. In other words, the treatment group did better by about 20% to 80%.</p>
-<p>Notice the widely varying estimate. That's because the sample size is only about 15 in each group. While the methods work for such numbers without further assumptions, the results aren't very precise.</p></div></div>
+<p>The study reports a P-value of 0.009, or 0.9%, which is not far from our empirical value.</p>
+<h3 id="Causality">Causality<a class="anchor-link" href="#Causality">¶</a></h3><p>Because the trials were randomized, the test is evidence that the treatment <em>causes</em> the difference. The random assignment of patients to the two groups ensures that there is no confounding variable that could affect the conclusion of causality.</p>
+<p>If the treatment had not been randomly assigned, our test would still point toward an <em>association</em> between the treatment and back pain outcomes among our 31 patients.  But beware: without randomization, this association would not imply that the treatment caused a change in back pain outcomes.  For example, if the patients themselves had chosen whether to administer the treatment, perhaps the patients experiencing more pain would be more likely to choose the treatment <em>and</em> more likely to experience some reduction in pain even without medication.  Pre-existing pain would then be a <em>confounding factor</em> in the analysis.</p></div></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-Meta-Analysis">A Meta-Analysis<a class="anchor-link" href="#A-Meta-Analysis">¶</a></h3><p>While the RCT does provide evidence that the botulinum toxin A treatment helped patients, a study of 31 patients isn't enough to establish the effectiveness of a medical treatment. This is not just because of the small sample size.  Our results in this section are valid for the 31 patients in the study, but we are really interested in the population of <em>all possible patients</em>.  If the 31 patients were a random sample from <em>that</em> larger population, our confidence interval would be valid for that population.  But they were not a random sample.</p>
