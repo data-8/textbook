@@ -8,7 +8,7 @@ studies how to make robust conclusions with incomplete information. Computing
 is a central component because programming allows us to apply analysis
 techniques to the large and diverse data sets that arise in real-world
 applications: not just numbers, but text, images, videos, and sensor readings.
-Data science is all of these things, but it more than the sum of its parts
+Data science is all of these things, but is more than the sum of its parts
 because of the applications. Through understanding a particular domain, data
 scientists learn to ask appropriate questions about their data and correctly
 interpret the answers provided by our inferential and computational tools.
