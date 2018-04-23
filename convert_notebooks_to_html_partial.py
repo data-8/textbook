@@ -45,8 +45,20 @@ NOTEBOOK_HTML_DIR = 'notebooks-html'
 NOTEBOOK_IMAGE_DIR = 'notebooks-images'
 
 # The prefix for the interact button links. The path format string gets filled
-# with path to notebook to open from root of repo
+# with path to notebook to open from root of repo.
+# See below if you'd like to use a custom interact link.
 INTERACT_LINK = 'https://mybinder.org/v2/gh/data-8/textbook/gh-pages?filepath={path}'
+
+# --- Using custom interact links ---
+# If you'd like interact links to point to your own JupyterHub (or to use your own version
+# of the textbook), uncomment the lines below and replace values with the appropriate URLs.
+ 
+#JUPYTERHUB_URL = 'https://datahub.berkeley.edu'
+#TEXTBOOK_URL = 'https://github.com/data-8/textbook'
+#INTERACT_LINK = 'http://{JUPYTERHUB_URL}/hub/user-redirect/git-pull?repo={TEXTBOOK_URL}&branch=gh-pages&subPath={path}'
+#INTERACT_LINK = INTERACT_LINK.format(JUPYTERHUB_URL=JUPYTERHUB_URL, TEXTBOOK_URL=TEXTBOOK_URL)
+
+# --- end custom interact links ---
 
 # Used to ensure all the closing div tags are on the same line for Markdown to
 # parse them properly
@@ -57,6 +69,12 @@ import pdb
 def convert_notebooks_to_html_partial(notebook_paths):
     """
     Converts notebooks in notebook_paths to HTML partials in NOTEBOOK_HTML_DIR
+    
+    Parameters
+    ----------
+    
+    notebook_paths : list of strings
+        A list of paths to each notebook file.
     """
     for notebook_path in notebook_paths:
         # Computes <name>.ipynb from notebooks/<name>.ipynb
