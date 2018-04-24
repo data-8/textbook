@@ -48,7 +48,7 @@ NOTEBOOK_IMAGE_DIR = 'notebooks-images'
 # If you'd like interact links to point to your own JupyterHub (or to use your own version
 # of the textbook), fill these values in the variables below.
  
-JUPYTERHUB_URL = '104.155.140.67'  # This should always be a string, even if the URL is an IP address
+JUPYTERHUB_URL = ''  # This should always be a string, even if the URL is an IP address
 TEXTBOOK_URL = ''  # In case you are hosting your own textbook repo
 
 # The prefix for the interact button links. The path format string gets filled
