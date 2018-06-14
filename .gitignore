@@ -11,3 +11,6 @@ __pycache__/
 # Gitbooks
 _book
 node_modules
+
+# Jekyll
+_site
