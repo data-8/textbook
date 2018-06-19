@@ -354,49 +354,49 @@ original_and_shuffled.show()
     </thead>
     <tbody>
         <tr>
-            <td>Patriots</td> <td>0.85         </td> <td>1.8          </td>
+            <td>Patriots</td> <td>0.85         </td> <td>0.475        </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>1.475        </td> <td>0.85         </td>
+            <td>Patriots</td> <td>1.475        </td> <td>0.65         </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>1.175        </td> <td>0.275        </td>
+            <td>Patriots</td> <td>1.175        </td> <td>1.65         </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>1.65         </td> <td>1.175        </td>
+            <td>Patriots</td> <td>1.65         </td> <td>0.85         </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>1.225        </td> <td>1.375        </td>
+            <td>Patriots</td> <td>1.225        </td> <td>1.175        </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>0.725        </td> <td>1.65         </td>
+            <td>Patriots</td> <td>0.725        </td> <td>0.425        </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>0.425        </td> <td>1.475        </td>
+            <td>Patriots</td> <td>0.425        </td> <td>1.225        </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>1.175        </td> <td>0.475        </td>
+            <td>Patriots</td> <td>1.175        </td> <td>0.725        </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>1.35         </td> <td>0.425        </td>
+            <td>Patriots</td> <td>1.35         </td> <td>0.275        </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>1.8          </td> <td>0.65         </td>
+            <td>Patriots</td> <td>1.8          </td> <td>1.375        </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>1.375        </td> <td>1.175        </td>
+            <td>Patriots</td> <td>1.375        </td> <td>1.35         </td>
         </tr>
         <tr>
-            <td>Colts   </td> <td>0.475        </td> <td>0.475        </td>
+            <td>Colts   </td> <td>0.475        </td> <td>1.8          </td>
         </tr>
         <tr>
-            <td>Colts   </td> <td>0.475        </td> <td>1.35         </td>
+            <td>Colts   </td> <td>0.475        </td> <td>1.175        </td>
         </tr>
         <tr>
-            <td>Colts   </td> <td>0.275        </td> <td>1.225        </td>
+            <td>Colts   </td> <td>0.275        </td> <td>1.475        </td>
         </tr>
         <tr>
-            <td>Colts   </td> <td>0.65         </td> <td>0.725        </td>
+            <td>Colts   </td> <td>0.65         </td> <td>0.475        </td>
         </tr>
     </tbody>
 </table>
@@ -423,10 +423,10 @@ original_and_shuffled.group('Team', np.average)
     </thead>
     <tbody>
         <tr>
-            <td>Colts   </td> <td>0.46875              </td> <td>0.94375              </td>
+            <td>Colts   </td> <td>0.46875              </td> <td>1.23125              </td>
         </tr>
         <tr>
-            <td>Patriots</td> <td>1.20227              </td> <td>1.02955              </td>
+            <td>Patriots</td> <td>1.20227              </td> <td>0.925                </td>
         </tr>
     </tbody>
 </table>
@@ -487,7 +487,7 @@ empirical_P
 
 {:.output_data_text}
 ```
-0.0017
+0.003
 ```
 
 
@@ -507,7 +507,7 @@ print('Empirical P-value:', empirical_P)
 {:.output_stream}
 ```
 Observed Difference: 0.733522727272728
-Empirical P-value: 0.0017
+Empirical P-value: 0.003
 
 ```
 

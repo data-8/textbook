@@ -26,7 +26,7 @@ np.random.choice(make_array('Heads', 'Tails'))
 
 {:.output_data_text}
 ```
-'Tails'
+'Heads'
 ```
 
 
@@ -89,10 +89,10 @@ for i in np.arange(5):
 {:.output_stream}
 ```
 Heads
-Tails
+Heads
 Heads
 Tails
-Tails
+Heads
 
 ```
 
@@ -181,7 +181,7 @@ outcomes
 
 {:.output_data_text}
 ```
-array(['Tails', 'Heads', 'Heads', 'Tails', 'Heads'], dtype='<U32')
+array(['Tails', 'Tails', 'Tails', 'Heads', 'Tails'], dtype='<U32')
 ```
 
 
@@ -223,7 +223,7 @@ outcomes
 
 {:.output_data_text}
 ```
-array(['Tails', 'Tails', 'Tails', 'Tails', 'Tails'], dtype='<U32')
+array(['Heads', 'Heads', 'Heads', 'Tails', 'Heads'], dtype='<U32')
 ```
 
 
@@ -241,7 +241,7 @@ np.count_nonzero(outcomes == 'Heads')
 
 {:.output_data_text}
 ```
-0
+4
 ```
 
 
@@ -267,7 +267,7 @@ np.count_nonzero(outcomes == 'Heads')
 
 {:.output_data_text}
 ```
-525
+515
 ```
 
 

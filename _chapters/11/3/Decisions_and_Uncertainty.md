@@ -138,39 +138,30 @@ scores
         <tr>
             <td>1      </td> <td>22     </td>
         </tr>
-    </tbody>
         <tr>
             <td>2      </td> <td>12     </td>
         </tr>
-    </tbody>
         <tr>
             <td>2      </td> <td>23     </td>
         </tr>
-    </tbody>
         <tr>
             <td>2      </td> <td>14     </td>
         </tr>
-    </tbody>
         <tr>
             <td>1      </td> <td>20     </td>
         </tr>
-    </tbody>
         <tr>
             <td>3      </td> <td>25     </td>
         </tr>
-    </tbody>
         <tr>
             <td>4      </td> <td>19     </td>
         </tr>
-    </tbody>
         <tr>
             <td>1      </td> <td>24     </td>
         </tr>
-    </tbody>
         <tr>
             <td>5      </td> <td>8      </td>
         </tr>
-    </tbody>
         <tr>
             <td>6      </td> <td>14     </td>
         </tr>
@@ -202,47 +193,36 @@ section_averages.show()
         <tr>
             <td>1      </td> <td>15.5938        </td>
         </tr>
-    </tbody>
         <tr>
             <td>2      </td> <td>15.125         </td>
         </tr>
-    </tbody>
         <tr>
             <td>3      </td> <td>13.6667        </td>
         </tr>
-    </tbody>
         <tr>
             <td>4      </td> <td>14.7667        </td>
         </tr>
-    </tbody>
         <tr>
             <td>5      </td> <td>17.4545        </td>
         </tr>
-    </tbody>
         <tr>
             <td>6      </td> <td>15.0312        </td>
         </tr>
-    </tbody>
         <tr>
             <td>7      </td> <td>16.625         </td>
         </tr>
-    </tbody>
         <tr>
             <td>8      </td> <td>16.3103        </td>
         </tr>
-    </tbody>
         <tr>
             <td>9      </td> <td>14.5667        </td>
         </tr>
-    </tbody>
         <tr>
             <td>10     </td> <td>15.2353        </td>
         </tr>
-    </tbody>
         <tr>
             <td>11     </td> <td>15.8077        </td>
         </tr>
-    </tbody>
         <tr>
             <td>12     </td> <td>15.7333        </td>
         </tr>
@@ -275,39 +255,30 @@ scores.group('Section')
         <tr>
             <td>1      </td> <td>32   </td>
         </tr>
-    </tbody>
         <tr>
             <td>2      </td> <td>32   </td>
         </tr>
-    </tbody>
         <tr>
             <td>3      </td> <td>27   </td>
         </tr>
-    </tbody>
         <tr>
             <td>4      </td> <td>30   </td>
         </tr>
-    </tbody>
         <tr>
             <td>5      </td> <td>33   </td>
         </tr>
-    </tbody>
         <tr>
             <td>6      </td> <td>32   </td>
         </tr>
-    </tbody>
         <tr>
             <td>7      </td> <td>24   </td>
         </tr>
-    </tbody>
         <tr>
             <td>8      </td> <td>29   </td>
         </tr>
-    </tbody>
         <tr>
             <td>9      </td> <td>30   </td>
         </tr>
-    </tbody>
         <tr>
             <td>10     </td> <td>34   </td>
         </tr>
@@ -346,41 +317,32 @@ sampled_scores
     </thead>
     <tbody>
         <tr>
+            <td>24     </td>
+        </tr>
+        <tr>
+            <td>19     </td>
+        </tr>
+        <tr>
+            <td>22     </td>
+        </tr>
+        <tr>
             <td>13     </td>
         </tr>
-    </tbody>
+        <tr>
+            <td>11     </td>
+        </tr>
         <tr>
             <td>21     </td>
         </tr>
-    </tbody>
         <tr>
-            <td>23     </td>
+            <td>14     </td>
         </tr>
-    </tbody>
         <tr>
-            <td>15     </td>
+            <td>14     </td>
         </tr>
-    </tbody>
         <tr>
-            <td>24     </td>
+            <td>21     </td>
         </tr>
-    </tbody>
-        <tr>
-            <td>18     </td>
-        </tr>
-    </tbody>
-        <tr>
-            <td>17     </td>
-        </tr>
-    </tbody>
-        <tr>
-            <td>13     </td>
-        </tr>
-    </tbody>
-        <tr>
-            <td>8      </td>
-        </tr>
-    </tbody>
         <tr>
             <td>0      </td>
         </tr>
@@ -404,7 +366,7 @@ np.average(sampled_scores.column('Midterm'))
 
 {:.output_data_text}
 ```
-15.592592592592593
+16.666666666666668
 ```
 
 
@@ -466,7 +428,7 @@ np.count_nonzero(averages <= section_3_average)/repetitions
 
 {:.output_data_text}
 ```
-0.0569
+0.0587
 ```
 
 

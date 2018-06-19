@@ -262,7 +262,7 @@ make_array(left, right)
 
 {:.output_data_text}
 ```
-array([0.42545455, 0.43252595])
+array([0.42545455, 0.43272727])
 ```
 
 
@@ -365,7 +365,7 @@ make_array(left, right)
 
 {:.output_data_text}
 ```
-array([26.90034072, 27.56303237])
+array([26.89778535, 27.56218058])
 ```
 
 
@@ -422,7 +422,7 @@ make_array(left_80, right_80)
 
 {:.output_data_text}
 ```
-array([27.0153322 , 27.44378194])
+array([27.01192504, 27.44633731])
 ```
 
 
@@ -528,7 +528,7 @@ make_array(left, right)
 
 {:.output_data_text}
 ```
-array([0.3637138 , 0.41908007])
+array([0.3637138 , 0.41737649])
 ```
 
 

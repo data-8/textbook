@@ -61,7 +61,7 @@ evaluate_accuracy(training_set, test_set, 5)
 
 {:.output_data_text}
 ```
-0.898876404494382
+0.9438202247191011
 ```
 
 
@@ -194,7 +194,7 @@ evaluate_accuracy(training_set, test_set, 5)
 
 {:.output_data_text}
 ```
-0.9736070381231672
+0.9765395894428153
 ```
 
 

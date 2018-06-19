@@ -79,34 +79,34 @@ lines
     </thead>
     <tbody>
         <tr>
-            <td>0.453905</td> <td>-6.76376 </td> <td>129.408            </td>
+            <td>0.45313 </td> <td>-6.4802  </td> <td>129.459            </td>
         </tr>
         <tr>
-            <td>0.543944</td> <td>-32.0829 </td> <td>131.1              </td>
+            <td>0.380348</td> <td>13.8783  </td> <td>127.983            </td>
         </tr>
         <tr>
-            <td>0.446086</td> <td>-4.89917 </td> <td>128.927            </td>
+            <td>0.371561</td> <td>15.565   </td> <td>127.033            </td>
         </tr>
         <tr>
-            <td>0.449766</td> <td>-6.17735 </td> <td>128.752            </td>
+            <td>0.501393</td> <td>-20.6304 </td> <td>129.787            </td>
         </tr>
         <tr>
-            <td>0.398745</td> <td>8.23717  </td> <td>127.861            </td>
+            <td>0.523362</td> <td>-26.7984 </td> <td>130.21             </td>
         </tr>
         <tr>
-            <td>0.417052</td> <td>3.38853  </td> <td>128.504            </td>
+            <td>0.435213</td> <td>-2.38498 </td> <td>128.179            </td>
         </tr>
         <tr>
-            <td>0.477235</td> <td>-13.8421 </td> <td>129.328            </td>
+            <td>0.510679</td> <td>-22.7834 </td> <td>130.42             </td>
         </tr>
         <tr>
-            <td>0.484068</td> <td>-16.1277 </td> <td>129.093            </td>
+            <td>0.454862</td> <td>-8.25145 </td> <td>128.207            </td>
         </tr>
         <tr>
-            <td>0.444122</td> <td>-4.20062 </td> <td>129.036            </td>
+            <td>0.519532</td> <td>-26.4801 </td> <td>129.379            </td>
         </tr>
         <tr>
-            <td>0.414443</td> <td>3.73315  </td> <td>128.066            </td>
+            <td>0.528918</td> <td>-28.3326 </td> <td>130.343            </td>
         </tr>
     </tbody>
 </table>
@@ -173,7 +173,7 @@ bootstrap_prediction(baby, 'Gestational Days', 'Birth Weight', 300, 5000)
 ```
 Height of regression line at x=300: 129.2129241703143
 Approximate 95%-confidence interval:
-127.23781336430461 131.26126564749393
+127.241239628963 131.32562696740675
 
 ```
 
@@ -199,7 +199,7 @@ bootstrap_prediction(baby, 'Gestational Days', 'Birth Weight', 285, 5000)
 ```
 Height of regression line at x=285: 122.21457101607608
 Approximate 95%-confidence interval:
-121.1956618893433 123.32285365443737
+121.15227951418838 123.29668698463169
 
 ```
 

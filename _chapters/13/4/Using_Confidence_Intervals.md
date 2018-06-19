@@ -306,7 +306,7 @@ make_array(left, right)
 
 {:.output_data_text}
 ```
-array([16.84636364, 40.71045455])
+array([17.22636364, 40.54045455])
 ```
 
 
