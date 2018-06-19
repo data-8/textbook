@@ -203,7 +203,7 @@ make_array(original, throw_out, other_one(throw_out, goats))
 
 {:.output_data_text}
 ```
-array(['Car', 'Goat 1', 'Goat 2'], dtype='<U6')
+array(['Car', 'Goat 2', 'Goat 1'], dtype='<U6')
 ```
 
 
@@ -312,7 +312,16 @@ results
     </thead>
     <tbody>
         <tr>
+            <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
+        </tr>
+        <tr>
+            <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
+        </tr>
+        <tr>
             <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
+        </tr>
+        <tr>
+            <td>Goat 1              </td> <td>Goat 2          </td> <td>Car           </td>
         </tr>
         <tr>
             <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
@@ -321,25 +330,16 @@ results
             <td>Goat 1              </td> <td>Goat 2          </td> <td>Car           </td>
         </tr>
         <tr>
-            <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
-        </tr>
-        <tr>
-            <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
-        </tr>
-        <tr>
-            <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
-        </tr>
-        <tr>
-            <td>Car                 </td> <td>Goat 2          </td> <td>Goat 1        </td>
-        </tr>
-        <tr>
             <td>Goat 1              </td> <td>Goat 2          </td> <td>Car           </td>
         </tr>
         <tr>
-            <td>Car                 </td> <td>Goat 2          </td> <td>Goat 1        </td>
+            <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
         </tr>
         <tr>
-            <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
+            <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
+        </tr>
+        <tr>
+            <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
         </tr>
     </tbody>
 </table>
@@ -368,13 +368,13 @@ results.group('Original Door Choice')
     </thead>
     <tbody>
         <tr>
-            <td>Car                 </td> <td>3383 </td>
+            <td>Car                 </td> <td>3348 </td>
         </tr>
         <tr>
-            <td>Goat 1              </td> <td>3335 </td>
+            <td>Goat 1              </td> <td>3395 </td>
         </tr>
         <tr>
-            <td>Goat 2              </td> <td>3282 </td>
+            <td>Goat 2              </td> <td>3257 </td>
         </tr>
     </tbody>
 </table>
@@ -400,13 +400,13 @@ results.group('Remaining Door')
     </thead>
     <tbody>
         <tr>
-            <td>Car           </td> <td>6617 </td>
+            <td>Car           </td> <td>6652 </td>
         </tr>
         <tr>
-            <td>Goat 1        </td> <td>1730 </td>
+            <td>Goat 1        </td> <td>1713 </td>
         </tr>
         <tr>
-            <td>Goat 2        </td> <td>1653 </td>
+            <td>Goat 2        </td> <td>1635 </td>
         </tr>
     </tbody>
 </table>
@@ -440,13 +440,13 @@ combined
     </thead>
     <tbody>
         <tr>
-            <td>Car   </td> <td>3383         </td> <td>6617          </td>
+            <td>Car   </td> <td>3348         </td> <td>6652          </td>
         </tr>
         <tr>
-            <td>Goat 1</td> <td>3335         </td> <td>1730          </td>
+            <td>Goat 1</td> <td>3395         </td> <td>1713          </td>
         </tr>
         <tr>
-            <td>Goat 2</td> <td>3282         </td> <td>1653          </td>
+            <td>Goat 2</td> <td>3257         </td> <td>1635          </td>
         </tr>
     </tbody>
 </table>

@@ -224,34 +224,34 @@ top.take(np.arange(start, top.num_rows, 10))
     </thead>
     <tbody>
         <tr>
-            <td>8        </td> <td>Avengers: Age of Ultron                 </td> <td>Buena Vista (Disney)</td> <td>459,005,868</td> <td>465,684,200     </td> <td>2015</td>
+            <td>2        </td> <td>Titanic                                    </td> <td>Paramount   </td> <td>658,672,302</td> <td>1,178,627,900   </td> <td>1997</td>
         </tr>
         <tr>
-            <td>18       </td> <td>Spider-Man                              </td> <td>Sony                </td> <td>403,706,375</td> <td>604,517,300     </td> <td>2002</td>
+            <td>12       </td> <td>The Hunger Games: Catching Fire            </td> <td>Lionsgate   </td> <td>424,668,047</td> <td>444,697,400     </td> <td>2013</td>
         </tr>
         <tr>
-            <td>28       </td> <td>Despicable Me 2                         </td> <td>Universal           </td> <td>368,061,265</td> <td>407,978,700     </td> <td>2013</td>
+            <td>22       </td> <td>Harry Potter and the Deathly Hallows Part 2</td> <td>Warner Bros.</td> <td>381,011,219</td> <td>417,512,200     </td> <td>2011</td>
         </tr>
         <tr>
-            <td>38       </td> <td>Guardians of the Galaxy                 </td> <td>Buena Vista (Disney)</td> <td>333,176,600</td> <td>358,244,800     </td> <td>2014</td>
+            <td>32       </td> <td>American Sniper                            </td> <td>Warner Bros.</td> <td>350,126,372</td> <td>374,796,000     </td> <td>2014</td>
         </tr>
         <tr>
-            <td>48       </td> <td>Pirates of the Caribbean: At World's End</td> <td>Buena Vista (Disney)</td> <td>309,420,425</td> <td>391,272,900     </td> <td>2007</td>
+            <td>42       </td> <td>Iron Man                                   </td> <td>Paramount   </td> <td>318,412,101</td> <td>385,808,100     </td> <td>2008</td>
         </tr>
         <tr>
-            <td>58       </td> <td>Up                                      </td> <td>Buena Vista (Disney)</td> <td>293,004,164</td> <td>341,681,900     </td> <td>2009</td>
+            <td>52       </td> <td>Skyfall                                    </td> <td>Sony        </td> <td>304,360,277</td> <td>329,225,400     </td> <td>2012</td>
         </tr>
         <tr>
-            <td>68       </td> <td>Shrek                                   </td> <td>Dreamworks          </td> <td>267,665,011</td> <td>411,428,500     </td> <td>2001</td>
+            <td>62       </td> <td>Harry Potter and the Goblet of Fire        </td> <td>Warner Bros.</td> <td>290,013,036</td> <td>393,024,800     </td> <td>2005</td>
         </tr>
         <tr>
-            <td>78       </td> <td>Toy Story 2                             </td> <td>Buena Vista (Disney)</td> <td>245,852,179</td> <td>416,177,700     </td> <td>1999</td>
+            <td>72       </td> <td>Jaws                                       </td> <td>Universal   </td> <td>260,000,000</td> <td>1,114,285,700   </td> <td>1975</td>
         </tr>
         <tr>
-            <td>88       </td> <td>Signs                                   </td> <td>Buena Vista (Disney)</td> <td>227,966,634</td> <td>341,332,700     </td> <td>2002</td>
+            <td>82       </td> <td>Twister                                    </td> <td>Warner Bros.</td> <td>241,721,524</td> <td>475,786,700     </td> <td>1996</td>
         </tr>
         <tr>
-            <td>98       </td> <td>Terminator 2: Judgment Day              </td> <td>TriS                </td> <td>204,843,345</td> <td>423,310,500     </td> <td>1991</td>
+            <td>92       </td> <td>Ghost                                      </td> <td>Paramount   </td> <td>217,631,306</td> <td>447,747,400     </td> <td>1990</td>
         </tr>
     </tbody>
 </table>

@@ -5,8 +5,53 @@ This repository holds a Jekyll-based version of the Data 8 textbook.
 All textbook content is primarily stored in Jupyter notebooks in the `notebooks/` folder.
 This can be converted to Jekyll-ready markdown and served on github pages.
 
+## Hosting the textbook at `inferentialthinking.com`
 
-## Getting started
+This repository is **not** being hosted at `inferentialthinking.com`. The repository
+for that site is located here:
+
+https://github.com/inferentialthinking/inferentialthinking.github.io
+
+This repository should be treated as the **master** repository, and any changes
+here should be pulled into the `inferentialthinking` repository. When they are
+pushed to the master branch of
+[the inferentialthinking repo](https://github.com/inferentialthinking/inferentialthinking.github.io),
+the website will be updated.
+
+The easiest way to do this is to set up a "remote" git connection. Take the
+following steps:
+
+1. **Clone the `inferentialthinking` repository** and `cd` into it:
+
+   ```
+   git clone https://github.com/inferentialthinking/inferentialthinking.github.io
+   cd interentialthinking.github.io
+   ```
+   
+2. Add the `data-8/textbook` repository as a remote.
+
+   ```
+   git remote add textbook https://github.com/data-8/textbook
+   ```
+
+3. Ensure you are on the `master` branch of `inferentialthinking.github.io`
+4. Pull in the latest changes to the textbook:
+
+   ```
+   git pull textbook gh-pages
+   ```
+   
+5. Push the updated repository to github:
+
+   ```
+   git push origin master
+   ```
+   
+This will update your local copy with the latest version of the textbook in
+the `data-8` organization, then push it to the `inferentialthinking` organization
+where it'll be hosted online.
+
+## Building the textbook
 Here are steps to get started:
 
 1. **Install the proper dependencies**. You can do this by installing the
@@ -22,11 +67,11 @@ Here are steps to get started:
    a markdown list of bullet points and links. Each item corresponds to a chapter in the
    textbook, and is used to build the table of contents in the sidebar.
 
-   If you **do not** have a `SUMMARY.md` file made for this textbook, you may create one
-   by hand, or generate one from the folders/files in `notebooks/` by running the following
-   script:
-
-       python scripts/generate_summary_from_folders.py
+   > If you **do not** have a `SUMMARY.md` file made for this textbook, you may create one
+     by hand, or generate one from the folders/files in `notebooks/` by running the following
+     script:
+   > 
+   >    python scripts/generate_summary_from_folders.py
 
 3. Build the textbook with the following command:
 

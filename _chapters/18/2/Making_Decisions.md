@@ -240,7 +240,7 @@ positive.where('True Condition', are.equal_to('Disease')).num_rows/positive.num_
 
 {:.output_data_text}
 ```
-0.8953068592057761
+0.906896551724138
 ```
 
 

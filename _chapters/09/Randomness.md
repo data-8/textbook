@@ -48,8 +48,8 @@ np.random.choice(two_groups, 10)
 
 {:.output_data_text}
 ```
-array(['treatment', 'control', 'treatment', 'control', 'control',
-       'treatment', 'treatment', 'control', 'control', 'control'], 
+array(['control', 'control', 'treatment', 'treatment', 'control',
+       'treatment', 'treatment', 'control', 'control', 'treatment'],
       dtype='<U9')
 ```
 
@@ -105,7 +105,7 @@ Notice the two equal signs `==` in the comparison to determine equality. This is
 
 {:.output_traceback_line}
 ```
-  File "<ipython-input-4-5c7d3e808777>", line 1
+  File "<ipython-input-5-e8c755f5e450>", line 1
     5 = 10/2
             ^
 SyntaxError: can't assign to literal
@@ -177,6 +177,16 @@ Strings can also be compared, and their order is alphabetical. A shorter string 
 'Dog' > 'Catastrophe' > 'Cat'
 ```
 
+
+
+
+{:.output_data_text}
+```
+True
+```
+
+
+
 Let's return to random selection. Recall the array `two_groups` which consists of just two elements, `treatment` and `control`. To see whether a randomly assigned individual went to the treatment group, you can use a comparison:
 
 
@@ -212,7 +222,7 @@ tosses == 'Heads'
 
 {:.output_data_text}
 ```
-array([False,  True, False,  True,  True], dtype=bool)
+array([False,  True, False,  True,  True])
 ```
 
 

@@ -110,18 +110,6 @@ die.sample(10)
     </thead>
     <tbody>
         <tr>
-            <td>3   </td>
-        </tr>
-        <tr>
-            <td>1   </td>
-        </tr>
-        <tr>
-            <td>3   </td>
-        </tr>
-        <tr>
-            <td>4   </td>
-        </tr>
-        <tr>
             <td>6   </td>
         </tr>
         <tr>
@@ -131,10 +119,22 @@ die.sample(10)
             <td>5   </td>
         </tr>
         <tr>
-            <td>1   </td>
+            <td>3   </td>
         </tr>
         <tr>
-            <td>1   </td>
+            <td>4   </td>
+        </tr>
+        <tr>
+            <td>3   </td>
+        </tr>
+        <tr>
+            <td>5   </td>
+        </tr>
+        <tr>
+            <td>6   </td>
+        </tr>
+        <tr>
+            <td>5   </td>
         </tr>
         <tr>
             <td>4   </td>

@@ -179,7 +179,7 @@ np.median(united.sample(1000).column('Delay'))
 
 {:.output_data_text}
 ```
-3.0
+2.0
 ```
 
 
@@ -225,15 +225,6 @@ simulated_medians
     </thead>
     <tbody>
         <tr>
-            <td>2.5          </td>
-        </tr>
-        <tr>
-            <td>2            </td>
-        </tr>
-        <tr>
-            <td>3            </td>
-        </tr>
-        <tr>
             <td>3            </td>
         </tr>
         <tr>
@@ -241,15 +232,24 @@ simulated_medians
         </tr>
         <tr>
             <td>2            </td>
-        </tr>
-        <tr>
-            <td>3            </td>
         </tr>
         <tr>
             <td>4            </td>
         </tr>
         <tr>
             <td>3            </td>
+        </tr>
+        <tr>
+            <td>2            </td>
+        </tr>
+        <tr>
+            <td>2            </td>
+        </tr>
+        <tr>
+            <td>2            </td>
+        </tr>
+        <tr>
+            <td>4            </td>
         </tr>
         <tr>
             <td>2            </td>

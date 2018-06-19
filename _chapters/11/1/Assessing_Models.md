@@ -65,7 +65,7 @@ sample_proportions(100, eligible_population)
 
 {:.output_data_text}
 ```
-array([0.25, 0.75])
+array([0.28, 0.72])
 ```
 
 
@@ -89,7 +89,7 @@ Run the cell a few times to see how the output varies.
 
 {:.output_data_text}
 ```
-25.0
+24.0
 ```
 
 
@@ -208,7 +208,7 @@ abs(100 * sample_proportions(929, model_proportions).item(0) - 75)
 
 {:.output_data_text}
 ```
-0.5113024757804112
+0.6727664155005328
 ```
 
 

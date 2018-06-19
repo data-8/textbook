@@ -34,7 +34,7 @@ correlation(heights, 'MidParent', 'Residual')
 
 {:.output_data_text}
 ```
--2.7196898076470642e-16
+-2.719689807647064e-16
 ```
 
 
@@ -161,7 +161,7 @@ np.sqrt(1 - r**2) * np.std(heights.column('Child'))
 
 {:.output_data_text}
 ```
-3.3880799163953421
+3.388079916395342
 ```
 
 
@@ -200,7 +200,7 @@ np.std(hybrid.column('residual')), np.sqrt(1 - r**2)*np.std(hybrid.column('mpg')
 
 {:.output_data_text}
 ```
-(9.4327368334302903, 9.4327368334302903)
+(9.43273683343029, 9.43273683343029)
 ```
 
 
