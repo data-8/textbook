@@ -1,0 +1,15 @@
+name: textbook
+
+channels:
+  - conda-forge
+
+dependencies:
+  - pip:
+    - bs4
+    - tqdm
+    - numpy
+    - prob140
+    - datascience
+    - pyyaml
+    - nbformat
+    - nbclean
