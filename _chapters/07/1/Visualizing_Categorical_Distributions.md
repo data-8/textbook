@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/07/1/Visualizing_Categorical_Distributions.ipynb
 title: '7.1 Categorical Distributions'
+permalink: 'chapters/07/1/visualizing-categorical-distributions'
 previouschapter:
-  url: chapters/07/Visualization
+  url: chapters/07/visualization
   title: '7. Visualization'
 nextchapter:
-  url: chapters/07/2/Visualizing_Numerical_Distributions
+  url: chapters/07/visualization
   title: '7.2 Numerical Distributions'
 ---
 

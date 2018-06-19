@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/09/Randomness.ipynb
 title: '9. Randomness'
+permalink: 'chapters/09/randomness'
 previouschapter:
-  url: chapters/08/5/Bike_Sharing_in_the_Bay_Area
+  url: chapters/08/5/bike-sharing-in-the-bay-area
   title: '8.5 Bike Sharing in the Bay Area'
 nextchapter:
-  url: chapters/09/1/Conditional_Statements
+  url: chapters/08/5/bike-sharing-in-the-bay-area
   title: '9.1 Conditional Statements'
 ---
 

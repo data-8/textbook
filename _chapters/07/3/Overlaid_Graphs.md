@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/07/3/Overlaid_Graphs.ipynb
 title: '7.3 Overlaid Graphs'
+permalink: 'chapters/07/3/overlaid-graphs'
 previouschapter:
-  url: chapters/07/2/Visualizing_Numerical_Distributions
+  url: chapters/07/2/visualizing-numerical-distributions
   title: '7.2 Numerical Distributions'
 nextchapter:
-  url: chapters/08/Functions_and_Tables
+  url: chapters/07/2/visualizing-numerical-distributions
   title: '8. Functions and Tables'
 ---
 

@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/08/4/Joining_Tables_by_Columns.ipynb
 title: '8.4 Joining Tables by Columns'
+permalink: 'chapters/08/4/joining-tables-by-columns'
 previouschapter:
-  url: chapters/08/3/Cross-Classifying_by_More_than_One_Variable
+  url: chapters/08/3/cross-classifying-by-more-than-one-variable
   title: '8.3 Cross-Classifying'
 nextchapter:
-  url: chapters/08/5/Bike_Sharing_in_the_Bay_Area
+  url: chapters/08/3/cross-classifying-by-more-than-one-variable
   title: '8.5 Bike Sharing in the Bay Area'
 ---
 

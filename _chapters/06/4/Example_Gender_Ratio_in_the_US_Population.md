@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/06/4/Example_Gender_Ratio_in_the_US_Population.ipynb
 title: '6.4 Example: Trends in Gender'
+permalink: 'chapters/06/4/example-gender-ratio-in-the-us-population'
 previouschapter:
-  url: chapters/06/3/Example_Trends_in_the_Population_of_the_United_States
+  url: chapters/06/3/example-trends-in-the-population-of-the-united-states
   title: '6.3 Example: Population Trends'
 nextchapter:
-  url: chapters/07/Visualization
+  url: chapters/06/3/example-trends-in-the-population-of-the-united-states
   title: '7. Visualization'
 ---
 

@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/14/Why_the_Mean_Matters.ipynb
 title: '14. Why the Mean Matters'
+permalink: 'chapters/14/why-the-mean-matters'
 previouschapter:
-  url: chapters/13/4/Using_Confidence_Intervals
+  url: chapters/13/4/using-confidence-intervals
   title: '13.4 Using Confidence Intervals'
 nextchapter:
-  url: chapters/14/1/Properties_of_the_Mean
+  url: chapters/13/4/using-confidence-intervals
   title: '14.1 Properties of the Mean'
 ---
 

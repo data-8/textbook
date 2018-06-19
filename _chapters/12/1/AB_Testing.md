@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/12/1/AB_Testing.ipynb
 title: '12.1 A/B Testing'
+permalink: 'chapters/12/1/ab-testing'
 previouschapter:
-  url: chapters/12/Comparing_Two_Samples
+  url: chapters/12/comparing-two-samples
   title: '12. Comparing Two Samples'
 nextchapter:
-  url: chapters/12/2/Deflategate
+  url: chapters/12/comparing-two-samples
   title: '12.2 Deflategate'
 ---
 

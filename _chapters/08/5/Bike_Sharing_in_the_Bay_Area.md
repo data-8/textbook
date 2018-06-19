@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/08/5/Bike_Sharing_in_the_Bay_Area.ipynb
 title: '8.5 Bike Sharing in the Bay Area'
+permalink: 'chapters/08/5/bike-sharing-in-the-bay-area'
 previouschapter:
-  url: chapters/08/4/Joining_Tables_by_Columns
+  url: chapters/08/4/joining-tables-by-columns
   title: '8.4 Joining Tables by Columns'
 nextchapter:
-  url: chapters/09/Randomness
+  url: chapters/08/4/joining-tables-by-columns
   title: '9. Randomness'
 ---
 

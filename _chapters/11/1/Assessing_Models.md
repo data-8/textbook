@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/11/1/Assessing_Models.ipynb
 title: '11.1 Assessing Models'
+permalink: 'chapters/11/1/assessing-models'
 previouschapter:
-  url: chapters/11/Testing_Hypotheses
+  url: chapters/11/testing-hypotheses
   title: '11. Testing Hypotheses'
 nextchapter:
-  url: chapters/11/2/Multiple_Categories
+  url: chapters/11/testing-hypotheses
   title: '11.2 Multiple Categories'
 ---
 

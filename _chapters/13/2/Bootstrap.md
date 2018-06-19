@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/13/2/Bootstrap.ipynb
 title: '13.2 The Bootstrap'
+permalink: 'chapters/13/2/bootstrap'
 previouschapter:
-  url: chapters/13/1/Percentiles
+  url: chapters/13/1/percentiles
   title: '13.1 Percentiles'
 nextchapter:
-  url: chapters/13/3/Confidence_Intervals
+  url: chapters/13/1/percentiles
   title: '13.3 Confidence Intervals'
 ---
 

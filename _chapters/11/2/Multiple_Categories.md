@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/11/2/Multiple_Categories.ipynb
 title: '11.2 Multiple Categories'
+permalink: 'chapters/11/2/multiple-categories'
 previouschapter:
-  url: chapters/11/1/Assessing_Models
+  url: chapters/11/1/assessing-models
   title: '11.1 Assessing Models'
 nextchapter:
-  url: chapters/11/3/Decisions_and_Uncertainty
+  url: chapters/11/1/assessing-models
   title: '11.3 Decisions and Uncertainty'
 ---
 

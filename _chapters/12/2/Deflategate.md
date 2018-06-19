@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/12/2/Deflategate.ipynb
 title: '12.2 Deflategate'
+permalink: 'chapters/12/2/deflategate'
 previouschapter:
-  url: chapters/12/1/AB_Testing
+  url: chapters/12/1/ab-testing
   title: '12.1 A/B Testing'
 nextchapter:
-  url: chapters/12/3/Causality
+  url: chapters/12/1/ab-testing
   title: '12.3 Causality'
 ---
 

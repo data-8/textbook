@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/07/Visualization.ipynb
 title: '7. Visualization'
+permalink: 'chapters/07/visualization'
 previouschapter:
-  url: chapters/06/4/Example_Gender_Ratio_in_the_US_Population
+  url: chapters/06/4/example-gender-ratio-in-the-us-population
   title: '6.4 Example: Trends in Gender'
 nextchapter:
-  url: chapters/07/1/Visualizing_Categorical_Distributions
+  url: chapters/06/4/example-gender-ratio-in-the-us-population
   title: '7.1 Categorical Distributions'
 ---
 
