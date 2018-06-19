@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/17/2/Training_and_Testing.ipynb
 title: '17.2 Training and Testing'
+permalink: 'chapters/17/2/training-and-testing'
 previouschapter:
-  url: chapters/17/1/Nearest_Neighbors
+  url: chapters/17/1/nearest-neighbors
   title: '17.1 Nearest Neighbors'
 nextchapter:
-  url: chapters/17/3/Rows_of_Tables
+  url: chapters/17/3/rows-of-tables
   title: '17.3 Rows of Tables'
 ---
 

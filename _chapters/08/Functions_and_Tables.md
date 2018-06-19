@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/08/Functions_and_Tables.ipynb
 title: '8. Functions and Tables'
+permalink: 'chapters/08/functions-and-tables'
 previouschapter:
-  url: chapters/07/3/Overlaid_Graphs
+  url: chapters/07/3/overlaid-graphs
   title: '7.3 Overlaid Graphs'
 nextchapter:
-  url: chapters/08/1/Applying_a_Function_to_a_Column
+  url: chapters/08/1/applying-a-function-to-a-column
   title: '8.1 Applying Functions to Columns'
 ---
 

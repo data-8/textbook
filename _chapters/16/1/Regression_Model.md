@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/16/1/Regression_Model.ipynb
 title: '16.1 A Regression Model'
+permalink: 'chapters/16/1/regression-model'
 previouschapter:
-  url: chapters/16/Inference_for_Regression
+  url: chapters/16/inference-for-regression
   title: '16. Inference for Regression'
 nextchapter:
-  url: chapters/16/2/Inference_for_the_True_Slope
+  url: chapters/16/2/inference-for-the-true-slope
   title: '16.2 Inference for the True Slope'
 ---
 

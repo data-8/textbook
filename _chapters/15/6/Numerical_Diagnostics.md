@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/15/6/Numerical_Diagnostics.ipynb
 title: '15.6 Numerical Diagnostics'
+permalink: 'chapters/15/6/numerical-diagnostics'
 previouschapter:
-  url: chapters/15/5/Visual_Diagnostics
+  url: chapters/15/5/visual-diagnostics
   title: '15.5 Visual Diagnostics'
 nextchapter:
-  url: chapters/16/Inference_for_Regression
+  url: chapters/16/inference-for-regression
   title: '16. Inference for Regression'
 ---
 

@@ -21,13 +21,13 @@ chapters:
     url: chapters/01/2/why-data-science
   - class: level_1
     title: 1.3 Plotting the Classics
-    url: chapters/01/3/Plotting_the_Classics
+    url: chapters/01/3/plotting-the-classics
   - class: level_2
     title: 1.3.1 Literary Characters
-    url: chapters/01/3/1/Literary_Characters
+    url: chapters/01/3/1/literary-characters
   - class: level_2
     title: 1.3.2 Another Kind of Character
-    url: chapters/01/3/2/Another_Kind_Of_Character
+    url: chapters/01/3/2/another-kind-of-character
   class: level_0
   title: 1. Data Science
   url: chapters/01/what-is-data-science
@@ -53,260 +53,260 @@ chapters:
 - children:
   - class: level_1
     title: 3.1 Expressions
-    url: chapters/03/1/Expressions
+    url: chapters/03/1/expressions
   - class: level_1
     title: 3.2 Names
-    url: chapters/03/2/Names
+    url: chapters/03/2/names
   - class: level_2
     title: '3.2.1 Example: Growth Rates'
-    url: chapters/03/2/1/Growth
+    url: chapters/03/2/1/growth
   - class: level_1
     title: 3.3 Call Expressions
-    url: chapters/03/3/Calls
+    url: chapters/03/3/calls
   - class: level_1
     title: 3.4 Introduction to Tables
-    url: chapters/03/4/Introduction_to_Tables
+    url: chapters/03/4/introduction-to-tables
   class: level_0
   title: 3. Programming in Python
   url: chapters/03/programming-in-python
 - children:
   - class: level_1
     title: 4.1 Numbers
-    url: chapters/04/1/Numbers
+    url: chapters/04/1/numbers
   - class: level_1
     title: 4.2 Strings
-    url: chapters/04/2/Strings
+    url: chapters/04/2/strings
   - class: level_2
     title: 4.2.1 String Methods
-    url: chapters/04/2/1/String_Methods
+    url: chapters/04/2/1/string-methods
   - class: level_1
     title: 4.3 Comparisons
-    url: chapters/04/3/Comparison
+    url: chapters/04/3/comparison
   class: level_0
   title: 4. Data Types
-  url: chapters/04/Types
+  url: chapters/04/types
 - children:
   - class: level_1
     title: 5.1 Arrays
-    url: chapters/05/1/Arrays
+    url: chapters/05/1/arrays
   - class: level_1
     title: 5.2 Ranges
-    url: chapters/05/2/Ranges
+    url: chapters/05/2/ranges
   - class: level_1
     title: 5.3 More on Arrays
-    url: chapters/05/3/More_on_Arrays
+    url: chapters/05/3/more-on-arrays
   class: level_0
   title: 5. Sequences
-  url: chapters/05/Collections
+  url: chapters/05/collections
 - children:
   - class: level_1
     title: 6.1 Sorting Rows
-    url: chapters/06/1/Sorting_Rows
+    url: chapters/06/1/sorting-rows
   - class: level_1
     title: 6.2 Selecting Rows
-    url: chapters/06/2/Selecting_Rows
+    url: chapters/06/2/selecting-rows
   - class: level_1
     title: '6.3 Example: Population Trends'
-    url: chapters/06/3/Example_Trends_in_the_Population_of_the_United_States
+    url: chapters/06/3/example-trends-in-the-population-of-the-united-states
   - class: level_1
     title: '6.4 Example: Trends in Gender'
-    url: chapters/06/4/Example_Gender_Ratio_in_the_US_Population
+    url: chapters/06/4/example-gender-ratio-in-the-us-population
   class: level_0
   title: 6. Tables
-  url: chapters/06/Tables
+  url: chapters/06/tables
 - children:
   - class: level_1
     title: 7.1 Categorical Distributions
-    url: chapters/07/1/Visualizing_Categorical_Distributions
+    url: chapters/07/1/visualizing-categorical-distributions
   - class: level_1
     title: 7.2 Numerical Distributions
-    url: chapters/07/2/Visualizing_Numerical_Distributions
+    url: chapters/07/2/visualizing-numerical-distributions
   - class: level_1
     title: 7.3 Overlaid Graphs
-    url: chapters/07/3/Overlaid_Graphs
+    url: chapters/07/3/overlaid-graphs
   class: level_0
   title: 7. Visualization
-  url: chapters/07/Visualization
+  url: chapters/07/visualization
 - children:
   - class: level_1
     title: 8.1 Applying Functions to Columns
-    url: chapters/08/1/Applying_a_Function_to_a_Column
+    url: chapters/08/1/applying-a-function-to-a-column
   - class: level_1
     title: 8.2 Classifying by One Variable
-    url: chapters/08/2/Classifying_by_One_Variable
+    url: chapters/08/2/classifying-by-one-variable
   - class: level_1
     title: 8.3 Cross-Classifying
-    url: chapters/08/3/Cross-Classifying_by_More_than_One_Variable
+    url: chapters/08/3/cross-classifying-by-more-than-one-variable
   - class: level_1
     title: 8.4 Joining Tables by Columns
-    url: chapters/08/4/Joining_Tables_by_Columns
+    url: chapters/08/4/joining-tables-by-columns
   - class: level_1
     title: 8.5 Bike Sharing in the Bay Area
-    url: chapters/08/5/Bike_Sharing_in_the_Bay_Area
+    url: chapters/08/5/bike-sharing-in-the-bay-area
   class: level_0
   title: 8. Functions and Tables
-  url: chapters/08/Functions_and_Tables
+  url: chapters/08/functions-and-tables
 - children:
   - class: level_1
     title: 9.1 Conditional Statements
-    url: chapters/09/1/Conditional_Statements
+    url: chapters/09/1/conditional-statements
   - class: level_1
     title: 9.2 Iteration
-    url: chapters/09/2/Iteration
+    url: chapters/09/2/iteration
   - class: level_1
     title: 9.3 Simulation
-    url: chapters/09/3/Simulation
+    url: chapters/09/3/simulation
   - class: level_1
     title: 9.4 The Monty Hall Problem
-    url: chapters/09/4/Monty_Hall_Problem
+    url: chapters/09/4/monty-hall-problem
   - class: level_1
     title: 9.5 Finding Probabilities
-    url: chapters/09/5/Finding_Probabilities
+    url: chapters/09/5/finding-probabilities
   class: level_0
   title: 9. Randomness
-  url: chapters/09/Randomness
+  url: chapters/09/randomness
 - children:
   - class: level_1
     title: 10.1 Empirical Distributions
-    url: chapters/10/1/Empirical_Distributions
+    url: chapters/10/1/empirical-distributions
   - class: level_1
     title: 10.2 Sampling from a Population
-    url: chapters/10/2/Sampling_from_a_Population
+    url: chapters/10/2/sampling-from-a-population
   - class: level_1
     title: 10.3 Empirical Distibution of a Statistic
-    url: chapters/10/3/Empirical_Distribution_of_a_Statistic
+    url: chapters/10/3/empirical-distribution-of-a-statistic
   class: level_0
   title: 10. Sampling and Empirical Distributions
-  url: chapters/10/Sampling_and_Empirical_Distributions
+  url: chapters/10/sampling-and-empirical-distributions
 - children:
   - class: level_1
     title: 11.1 Assessing Models
-    url: chapters/11/1/Assessing_Models
+    url: chapters/11/1/assessing-models
   - class: level_1
     title: 11.2 Multiple Categories
-    url: chapters/11/2/Multiple_Categories
+    url: chapters/11/2/multiple-categories
   - class: level_1
     title: 11.3 Decisions and Uncertainty
-    url: chapters/11/3/Decisions_and_Uncertainty
+    url: chapters/11/3/decisions-and-uncertainty
   class: level_0
   title: 11. Testing Hypotheses
-  url: chapters/11/Testing_Hypotheses
+  url: chapters/11/testing-hypotheses
 - children:
   - class: level_1
     title: 12.1 A/B Testing
-    url: chapters/12/1/AB_Testing
+    url: chapters/12/1/ab-testing
   - class: level_1
     title: 12.2 Deflategate
-    url: chapters/12/2/Deflategate
+    url: chapters/12/2/deflategate
   - class: level_1
     title: 12.3 Causality
-    url: chapters/12/3/Causality
+    url: chapters/12/3/causality
   class: level_0
   title: 12. Comparing Two Samples
-  url: chapters/12/Comparing_Two_Samples
+  url: chapters/12/comparing-two-samples
 - children:
   - class: level_1
     title: 13.1 Percentiles
-    url: chapters/13/1/Percentiles
+    url: chapters/13/1/percentiles
   - class: level_1
     title: 13.2 The Bootstrap
-    url: chapters/13/2/Bootstrap
+    url: chapters/13/2/bootstrap
   - class: level_1
     title: 13.3 Confidence Intervals
-    url: chapters/13/3/Confidence_Intervals
+    url: chapters/13/3/confidence-intervals
   - class: level_1
     title: 13.4 Using Confidence Intervals
-    url: chapters/13/4/Using_Confidence_Intervals
+    url: chapters/13/4/using-confidence-intervals
   class: level_0
   title: 13. Estimation
-  url: chapters/13/Estimation
+  url: chapters/13/estimation
 - children:
   - class: level_1
     title: 14.1 Properties of the Mean
-    url: chapters/14/1/Properties_of_the_Mean
+    url: chapters/14/1/properties-of-the-mean
   - class: level_1
     title: 14.2 Variability
-    url: chapters/14/2/Variability
+    url: chapters/14/2/variability
   - class: level_1
     title: 14.3 The SD and the Normal Curve
-    url: chapters/14/3/SD_and_the_Normal_Curve
+    url: chapters/14/3/sd-and-the-normal-curve
   - class: level_1
     title: 14.4 The Central Limit Theorem
-    url: chapters/14/4/Central_Limit_Theorem
+    url: chapters/14/4/central-limit-theorem
   - class: level_1
     title: 14.5 The Variability of the Sample Mean
-    url: chapters/14/5/Variability_of_the_Sample_Mean
+    url: chapters/14/5/variability-of-the-sample-mean
   - class: level_1
     title: 14.6 Choosing a Sample Size
-    url: chapters/14/6/Choosing_a_Sample_Size
+    url: chapters/14/6/choosing-a-sample-size
   class: level_0
   title: 14. Why the Mean Matters
-  url: chapters/14/Why_the_Mean_Matters
+  url: chapters/14/why-the-mean-matters
 - children:
   - class: level_1
     title: 15.1 Correlation
-    url: chapters/15/1/Correlation
+    url: chapters/15/1/correlation
   - class: level_1
     title: 15.2 The Regression Line
-    url: chapters/15/2/Regression_Line
+    url: chapters/15/2/regression-line
   - class: level_1
     title: 15.3 The Method of Least Squares
-    url: chapters/15/3/Method_of_Least_Squares
+    url: chapters/15/3/method-of-least-squares
   - class: level_1
     title: 15.4 Least Squares Regression
-    url: chapters/15/4/Least_Squares_Regression
+    url: chapters/15/4/least-squares-regression
   - class: level_1
     title: 15.5 Visual Diagnostics
-    url: chapters/15/5/Visual_Diagnostics
+    url: chapters/15/5/visual-diagnostics
   - class: level_1
     title: 15.6 Numerical Diagnostics
-    url: chapters/15/6/Numerical_Diagnostics
+    url: chapters/15/6/numerical-diagnostics
   class: level_0
   title: 15. Prediction
-  url: chapters/15/Prediction
+  url: chapters/15/prediction
 - children:
   - class: level_1
     title: 16.1 A Regression Model
-    url: chapters/16/1/Regression_Model
+    url: chapters/16/1/regression-model
   - class: level_1
     title: 16.2 Inference for the True Slope
-    url: chapters/16/2/Inference_for_the_True_Slope
+    url: chapters/16/2/inference-for-the-true-slope
   - class: level_1
     title: 16.3 Prediction Intervals
-    url: chapters/16/3/Prediction_Intervals
+    url: chapters/16/3/prediction-intervals
   class: level_0
   title: 16. Inference for Regression
-  url: chapters/16/Inference_for_Regression
+  url: chapters/16/inference-for-regression
 - children:
   - class: level_1
     title: 17.1 Nearest Neighbors
-    url: chapters/17/1/Nearest_Neighbors
+    url: chapters/17/1/nearest-neighbors
   - class: level_1
     title: 17.2 Training and Testing
-    url: chapters/17/2/Training_and_Testing
+    url: chapters/17/2/training-and-testing
   - class: level_1
     title: 17.3 Rows of Tables
-    url: chapters/17/3/Rows_of_Tables
+    url: chapters/17/3/rows-of-tables
   - class: level_1
     title: 17.4 Implementing the Classifier
-    url: chapters/17/4/Implementing_the_Classifier
+    url: chapters/17/4/implementing-the-classifier
   - class: level_1
     title: 17.5 The Accuracy of the Classifier
-    url: chapters/17/5/Accuracy_of_the_Classifier
+    url: chapters/17/5/accuracy-of-the-classifier
   - class: level_1
     title: 17.6 Multiple Regression
-    url: chapters/17/6/Multiple_Regression
+    url: chapters/17/6/multiple-regression
   class: level_0
   title: 17. Classification
-  url: chapters/17/Classification
+  url: chapters/17/classification
 - children:
   - class: level_1
     title: 18.1 A "More Likely Than Not" Binary Classifier
-    url: chapters/18/1/More_Likely_than_Not_Binary_Classifier
+    url: chapters/18/1/more-likely-than-not-binary-classifier
   - class: level_1
     title: 18.2 Making Decisions
-    url: chapters/18/2/Making_Decisions
+    url: chapters/18/2/making-decisions
   class: level_0
   title: 18. Updating Predictions
-  url: chapters/18/Updating_Predictions
+  url: chapters/18/updating-predictions
 first_chapter_url: chapters/intro

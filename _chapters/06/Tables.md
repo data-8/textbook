@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/06/Tables.ipynb
 title: '6. Tables'
+permalink: 'chapters/06/tables'
 previouschapter:
-  url: chapters/05/3/More_on_Arrays
+  url: chapters/05/3/more-on-arrays
   title: '5.3 More on Arrays'
 nextchapter:
-  url: chapters/06/1/Sorting_Rows
+  url: chapters/06/1/sorting-rows
   title: '6.1 Sorting Rows'
 ---
 

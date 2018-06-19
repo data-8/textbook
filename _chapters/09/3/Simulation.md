@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/09/3/Simulation.ipynb
 title: '9.3 Simulation'
+permalink: 'chapters/09/3/simulation'
 previouschapter:
-  url: chapters/09/2/Iteration
+  url: chapters/09/2/iteration
   title: '9.2 Iteration'
 nextchapter:
-  url: chapters/09/4/Monty_Hall_Problem
+  url: chapters/09/4/monty-hall-problem
   title: '9.4 The Monty Hall Problem'
 ---
 

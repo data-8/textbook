@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/17/6/Multiple_Regression.ipynb
 title: '17.6 Multiple Regression'
+permalink: 'chapters/17/6/multiple-regression'
 previouschapter:
-  url: chapters/17/5/Accuracy_of_the_Classifier
+  url: chapters/17/5/accuracy-of-the-classifier
   title: '17.5 The Accuracy of the Classifier'
 nextchapter:
-  url: chapters/18/Updating_Predictions
+  url: chapters/18/updating-predictions
   title: '18. Updating Predictions'
 ---
 

@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/16/3/Prediction_Intervals.ipynb
 title: '16.3 Prediction Intervals'
+permalink: 'chapters/16/3/prediction-intervals'
 previouschapter:
-  url: chapters/16/2/Inference_for_the_True_Slope
+  url: chapters/16/2/inference-for-the-true-slope
   title: '16.2 Inference for the True Slope'
 nextchapter:
-  url: chapters/17/Classification
+  url: chapters/17/classification
   title: '17. Classification'
 ---
 

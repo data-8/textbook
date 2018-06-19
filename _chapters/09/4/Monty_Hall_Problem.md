@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/09/4/Monty_Hall_Problem.ipynb
 title: '9.4 The Monty Hall Problem'
+permalink: 'chapters/09/4/monty-hall-problem'
 previouschapter:
-  url: chapters/09/3/Simulation
+  url: chapters/09/3/simulation
   title: '9.3 Simulation'
 nextchapter:
-  url: chapters/09/5/Finding_Probabilities
+  url: chapters/09/5/finding-probabilities
   title: '9.5 Finding Probabilities'
 ---
 

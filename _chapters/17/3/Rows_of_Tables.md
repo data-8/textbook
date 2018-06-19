@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/17/3/Rows_of_Tables.ipynb
 title: '17.3 Rows of Tables'
+permalink: 'chapters/17/3/rows-of-tables'
 previouschapter:
-  url: chapters/17/2/Training_and_Testing
+  url: chapters/17/2/training-and-testing
   title: '17.2 Training and Testing'
 nextchapter:
-  url: chapters/17/4/Implementing_the_Classifier
+  url: chapters/17/4/implementing-the-classifier
   title: '17.4 Implementing the Classifier'
 ---
 

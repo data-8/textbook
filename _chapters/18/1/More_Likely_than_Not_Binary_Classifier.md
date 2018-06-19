@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/18/1/More_Likely_than_Not_Binary_Classifier.ipynb
 title: '18.1 A "More Likely Than Not" Binary Classifier'
+permalink: 'chapters/18/1/more-likely-than-not-binary-classifier'
 previouschapter:
-  url: chapters/18/Updating_Predictions
+  url: chapters/18/updating-predictions
   title: '18. Updating Predictions'
 nextchapter:
-  url: chapters/18/2/Making_Decisions
+  url: chapters/18/2/making-decisions
   title: '18.2 Making Decisions'
 ---
 

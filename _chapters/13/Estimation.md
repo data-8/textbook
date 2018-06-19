@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/13/Estimation.ipynb
 title: '13. Estimation'
+permalink: 'chapters/13/estimation'
 previouschapter:
-  url: chapters/12/3/Causality
+  url: chapters/12/3/causality
   title: '12.3 Causality'
 nextchapter:
-  url: chapters/13/1/Percentiles
+  url: chapters/13/1/percentiles
   title: '13.1 Percentiles'
 ---
 

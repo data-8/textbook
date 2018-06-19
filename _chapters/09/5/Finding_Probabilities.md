@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/09/5/Finding_Probabilities.ipynb
 title: '9.5 Finding Probabilities'
+permalink: 'chapters/09/5/finding-probabilities'
 previouschapter:
-  url: chapters/09/4/Monty_Hall_Problem
+  url: chapters/09/4/monty-hall-problem
   title: '9.4 The Monty Hall Problem'
 nextchapter:
-  url: chapters/10/Sampling_and_Empirical_Distributions
+  url: chapters/10/sampling-and-empirical-distributions
   title: '10. Sampling and Empirical Distributions'
 ---
 

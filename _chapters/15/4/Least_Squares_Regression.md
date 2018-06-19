@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/15/4/Least_Squares_Regression.ipynb
 title: '15.4 Least Squares Regression'
+permalink: 'chapters/15/4/least-squares-regression'
 previouschapter:
-  url: chapters/15/3/Method_of_Least_Squares
+  url: chapters/15/3/method-of-least-squares
   title: '15.3 The Method of Least Squares'
 nextchapter:
-  url: chapters/15/5/Visual_Diagnostics
+  url: chapters/15/5/visual-diagnostics
   title: '15.5 Visual Diagnostics'
 ---
 

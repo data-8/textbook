@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/14/3/SD_and_the_Normal_Curve.ipynb
 title: '14.3 The SD and the Normal Curve'
+permalink: 'chapters/14/3/sd-and-the-normal-curve'
 previouschapter:
-  url: chapters/14/2/Variability
+  url: chapters/14/2/variability
   title: '14.2 Variability'
 nextchapter:
-  url: chapters/14/4/Central_Limit_Theorem
+  url: chapters/14/4/central-limit-theorem
   title: '14.4 The Central Limit Theorem'
 ---
 

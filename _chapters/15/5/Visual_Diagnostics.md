@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/15/5/Visual_Diagnostics.ipynb
 title: '15.5 Visual Diagnostics'
+permalink: 'chapters/15/5/visual-diagnostics'
 previouschapter:
-  url: chapters/15/4/Least_Squares_Regression
+  url: chapters/15/4/least-squares-regression
   title: '15.4 Least Squares Regression'
 nextchapter:
-  url: chapters/15/6/Numerical_Diagnostics
+  url: chapters/15/6/numerical-diagnostics
   title: '15.6 Numerical Diagnostics'
 ---
 

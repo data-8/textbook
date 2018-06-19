@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/14/4/Central_Limit_Theorem.ipynb
 title: '14.4 The Central Limit Theorem'
+permalink: 'chapters/14/4/central-limit-theorem'
 previouschapter:
-  url: chapters/14/3/SD_and_the_Normal_Curve
+  url: chapters/14/3/sd-and-the-normal-curve
   title: '14.3 The SD and the Normal Curve'
 nextchapter:
-  url: chapters/14/5/Variability_of_the_Sample_Mean
+  url: chapters/14/5/variability-of-the-sample-mean
   title: '14.5 The Variability of the Sample Mean'
 ---
 

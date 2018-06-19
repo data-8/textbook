@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/17/4/Implementing_the_Classifier.ipynb
 title: '17.4 Implementing the Classifier'
+permalink: 'chapters/17/4/implementing-the-classifier'
 previouschapter:
-  url: chapters/17/3/Rows_of_Tables
+  url: chapters/17/3/rows-of-tables
   title: '17.3 Rows of Tables'
 nextchapter:
-  url: chapters/17/5/Accuracy_of_the_Classifier
+  url: chapters/17/5/accuracy-of-the-classifier
   title: '17.5 The Accuracy of the Classifier'
 ---
 

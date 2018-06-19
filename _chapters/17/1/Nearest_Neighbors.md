@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/17/1/Nearest_Neighbors.ipynb
 title: '17.1 Nearest Neighbors'
+permalink: 'chapters/17/1/nearest-neighbors'
 previouschapter:
-  url: chapters/17/Classification
+  url: chapters/17/classification
   title: '17. Classification'
 nextchapter:
-  url: chapters/17/2/Training_and_Testing
+  url: chapters/17/2/training-and-testing
   title: '17.2 Training and Testing'
 ---
 

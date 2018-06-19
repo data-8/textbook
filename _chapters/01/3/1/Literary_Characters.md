@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/01/3/1/Literary_Characters.ipynb
 title: '1.3.1 Literary Characters'
+permalink: 'chapters/01/3/1/literary-characters'
 previouschapter:
-  url: chapters/01/3/Plotting_the_Classics
+  url: chapters/01/3/plotting-the-classics
   title: '1.3 Plotting the Classics'
 nextchapter:
-  url: chapters/01/3/2/Another_Kind_Of_Character
+  url: chapters/01/3/2/another-kind-of-character
   title: '1.3.2 Another Kind of Character'
 ---
 
@@ -60,34 +61,74 @@ Table().with_column('Chapters', little_women_chapters)
     </thead>
     <tbody>
         <tr>
-            <td>ONE PLAYING PILGRIMS "Christmas won't be Christmas witho ...</td>
+            <td>ONE
+
+PLAYING PILGRIMS
+
+"Christmas won't be Christmas wit ...</td>
         </tr>
         <tr>
-            <td>TWO A MERRY CHRISTMAS Jo was the first to wake in the gr ...</td>
+            <td>TWO
+
+A MERRY CHRISTMAS
+
+Jo was the first to wake in the  ...</td>
         </tr>
         <tr>
-            <td>THREE THE LAURENCE BOY "Jo! Jo! Where are you?" cried Me ...</td>
+            <td>THREE
+
+THE LAURENCE BOY
+
+"Jo!  Jo!  Where are you?" crie ...</td>
         </tr>
         <tr>
-            <td>FOUR BURDENS "Oh, dear, how hard it does seem to take up ...</td>
+            <td>FOUR
+
+BURDENS
+
+"Oh, dear, how hard it does seem to take  ...</td>
         </tr>
         <tr>
-            <td>FIVE BEING NEIGHBORLY "What in the world are you going t ...</td>
+            <td>FIVE
+
+BEING NEIGHBORLY
+
+"What in the world are you going ...</td>
         </tr>
         <tr>
-            <td>SIX BETH FINDS THE PALACE BEAUTIFUL The big house did pr ...</td>
+            <td>SIX
+
+BETH FINDS THE PALACE BEAUTIFUL
+
+The big house did  ...</td>
         </tr>
         <tr>
-            <td>SEVEN AMY'S VALLEY OF HUMILIATION "That boy is a perfect ...</td>
+            <td>SEVEN
+
+AMY'S VALLEY OF HUMILIATION
+
+"That boy is a perfe ...</td>
         </tr>
         <tr>
-            <td>EIGHT JO MEETS APOLLYON "Girls, where are you going?" as ...</td>
+            <td>EIGHT
+
+JO MEETS APOLLYON
+
+"Girls, where are you going?"  ...</td>
         </tr>
         <tr>
-            <td>NINE MEG GOES TO VANITY FAIR "I do think it was the most ...</td>
+            <td>NINE
+
+MEG GOES TO VANITY FAIR
+
+"I do think it was the mo ...</td>
         </tr>
         <tr>
-            <td>TEN THE P.C. AND P.O. As spring came on, a new set of am ...</td>
+            <td>TEN
+
+THE P.C. AND P.O.
+
+As spring came on, a new set of  ...</td>
         </tr>
     </tbody>
 </table>

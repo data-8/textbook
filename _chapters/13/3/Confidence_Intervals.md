@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/13/3/Confidence_Intervals.ipynb
 title: '13.3 Confidence Intervals'
+permalink: 'chapters/13/3/confidence-intervals'
 previouschapter:
-  url: chapters/13/2/Bootstrap
+  url: chapters/13/2/bootstrap
   title: '13.2 The Bootstrap'
 nextchapter:
-  url: chapters/13/4/Using_Confidence_Intervals
+  url: chapters/13/4/using-confidence-intervals
   title: '13.4 Using Confidence Intervals'
 ---
 

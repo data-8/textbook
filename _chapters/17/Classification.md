@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/17/Classification.ipynb
 title: '17. Classification'
+permalink: 'chapters/17/classification'
 previouschapter:
-  url: chapters/16/3/Prediction_Intervals
+  url: chapters/16/3/prediction-intervals
   title: '16.3 Prediction Intervals'
 nextchapter:
-  url: chapters/17/1/Nearest_Neighbors
+  url: chapters/17/1/nearest-neighbors
   title: '17.1 Nearest Neighbors'
 ---
 

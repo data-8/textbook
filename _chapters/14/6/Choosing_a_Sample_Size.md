@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/14/6/Choosing_a_Sample_Size.ipynb
 title: '14.6 Choosing a Sample Size'
+permalink: 'chapters/14/6/choosing-a-sample-size'
 previouschapter:
-  url: chapters/14/5/Variability_of_the_Sample_Mean
+  url: chapters/14/5/variability-of-the-sample-mean
   title: '14.5 The Variability of the Sample Mean'
 nextchapter:
-  url: chapters/15/Prediction
+  url: chapters/15/prediction
   title: '15. Prediction'
 ---
 

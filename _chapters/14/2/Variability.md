@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/14/2/Variability.ipynb
 title: '14.2 Variability'
+permalink: 'chapters/14/2/variability'
 previouschapter:
-  url: chapters/14/1/Properties_of_the_Mean
+  url: chapters/14/1/properties-of-the-mean
   title: '14.1 Properties of the Mean'
 nextchapter:
-  url: chapters/14/3/SD_and_the_Normal_Curve
+  url: chapters/14/3/sd-and-the-normal-curve
   title: '14.3 The SD and the Normal Curve'
 ---
 
