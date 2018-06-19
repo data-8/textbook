@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/08/4/joining-tables-by-columns
   title: '8.4 Joining Tables by Columns'
 nextchapter:
-  url: chapters/08/4/joining-tables-by-columns
+  url: chapters/09/randomness
   title: '9. Randomness'
 ---
 

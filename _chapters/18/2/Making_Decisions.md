@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/18/1/more-likely-than-not-binary-classifier
   title: '18.1 A "More Likely Than Not" Binary Classifier'
 nextchapter:
-  url: chapters/18/1/more-likely-than-not-binary-classifier
+  url: 
   title: ''
 ---
 

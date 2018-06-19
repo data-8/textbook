@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/07/1/visualizing-categorical-distributions
   title: '7.1 Categorical Distributions'
 nextchapter:
-  url: chapters/07/1/visualizing-categorical-distributions
+  url: chapters/07/3/overlaid-graphs
   title: '7.3 Overlaid Graphs'
 ---
 

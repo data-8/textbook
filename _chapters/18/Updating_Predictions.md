@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/17/6/multiple-regression
   title: '17.6 Multiple Regression'
 nextchapter:
-  url: chapters/17/6/multiple-regression
+  url: chapters/18/1/more-likely-than-not-binary-classifier
   title: '18.1 A "More Likely Than Not" Binary Classifier'
 ---
 

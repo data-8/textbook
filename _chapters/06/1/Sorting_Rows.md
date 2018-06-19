@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/06/tables
   title: '6. Tables'
 nextchapter:
-  url: chapters/06/tables
+  url: chapters/06/2/selecting-rows
   title: '6.2 Selecting Rows'
 ---
 

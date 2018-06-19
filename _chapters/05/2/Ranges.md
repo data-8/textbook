@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/05/1/arrays
   title: '5.1 Arrays'
 nextchapter:
-  url: chapters/05/1/arrays
+  url: chapters/05/3/more-on-arrays
   title: '5.3 More on Arrays'
 ---
 

@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/12/1/ab-testing
   title: '12.1 A/B Testing'
 nextchapter:
-  url: chapters/12/1/ab-testing
+  url: chapters/12/3/causality
   title: '12.3 Causality'
 ---
 

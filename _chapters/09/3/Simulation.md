@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/09/2/iteration
   title: '9.2 Iteration'
 nextchapter:
-  url: chapters/09/2/iteration
+  url: chapters/09/4/monty-hall-problem
   title: '9.4 The Monty Hall Problem'
 ---
 

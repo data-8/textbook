@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/10/3/empirical-distribution-of-a-statistic
   title: '10.3 Empirical Distibution of a Statistic'
 nextchapter:
-  url: chapters/10/3/empirical-distribution-of-a-statistic
+  url: chapters/11/1/assessing-models
   title: '11.1 Assessing Models'
 ---
 

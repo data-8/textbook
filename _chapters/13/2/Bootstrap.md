@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/13/1/percentiles
   title: '13.1 Percentiles'
 nextchapter:
-  url: chapters/13/1/percentiles
+  url: chapters/13/3/confidence-intervals
   title: '13.3 Confidence Intervals'
 ---
 

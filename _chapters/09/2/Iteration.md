@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/09/1/conditional-statements
   title: '9.1 Conditional Statements'
 nextchapter:
-  url: chapters/09/1/conditional-statements
+  url: chapters/09/3/simulation
   title: '9.3 Simulation'
 ---
 

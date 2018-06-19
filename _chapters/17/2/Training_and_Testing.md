@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/17/1/nearest-neighbors
   title: '17.1 Nearest Neighbors'
 nextchapter:
-  url: chapters/17/1/nearest-neighbors
+  url: chapters/17/3/rows-of-tables
   title: '17.3 Rows of Tables'
 ---
 

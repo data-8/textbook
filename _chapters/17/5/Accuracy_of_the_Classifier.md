@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/17/4/implementing-the-classifier
   title: '17.4 Implementing the Classifier'
 nextchapter:
-  url: chapters/17/4/implementing-the-classifier
+  url: chapters/17/6/multiple-regression
   title: '17.6 Multiple Regression'
 ---
 

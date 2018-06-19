@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/14/3/sd-and-the-normal-curve
   title: '14.3 The SD and the Normal Curve'
 nextchapter:
-  url: chapters/14/3/sd-and-the-normal-curve
+  url: chapters/14/5/variability-of-the-sample-mean
   title: '14.5 The Variability of the Sample Mean'
 ---
 

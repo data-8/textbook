@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/10/sampling-and-empirical-distributions
   title: '10. Sampling and Empirical Distributions'
 nextchapter:
-  url: chapters/10/sampling-and-empirical-distributions
+  url: chapters/10/2/sampling-from-a-population
   title: '10.2 Sampling from a Population'
 ---
 

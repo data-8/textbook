@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/16/3/prediction-intervals
   title: '16.3 Prediction Intervals'
 nextchapter:
-  url: chapters/16/3/prediction-intervals
+  url: chapters/17/1/nearest-neighbors
   title: '17.1 Nearest Neighbors'
 ---
 

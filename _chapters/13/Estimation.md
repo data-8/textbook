@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/12/3/causality
   title: '12.3 Causality'
 nextchapter:
-  url: chapters/12/3/causality
+  url: chapters/13/1/percentiles
   title: '13.1 Percentiles'
 ---
 

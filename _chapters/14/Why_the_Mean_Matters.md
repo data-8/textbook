@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/13/4/using-confidence-intervals
   title: '13.4 Using Confidence Intervals'
 nextchapter:
-  url: chapters/13/4/using-confidence-intervals
+  url: chapters/14/1/properties-of-the-mean
   title: '14.1 Properties of the Mean'
 ---
 

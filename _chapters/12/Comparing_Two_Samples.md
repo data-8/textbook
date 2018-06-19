@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/11/3/decisions-and-uncertainty
   title: '11.3 Decisions and Uncertainty'
 nextchapter:
-  url: chapters/11/3/decisions-and-uncertainty
+  url: chapters/12/1/ab-testing
   title: '12.1 A/B Testing'
 ---
 

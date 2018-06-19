@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/13/estimation
   title: '13. Estimation'
 nextchapter:
-  url: chapters/13/estimation
+  url: chapters/13/2/bootstrap
   title: '13.2 The Bootstrap'
 ---
 

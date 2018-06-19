@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/08/2/classifying-by-one-variable
   title: '8.2 Classifying by One Variable'
 nextchapter:
-  url: chapters/08/2/classifying-by-one-variable
+  url: chapters/08/4/joining-tables-by-columns
   title: '8.4 Joining Tables by Columns'
 ---
 

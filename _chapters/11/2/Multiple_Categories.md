@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/11/1/assessing-models
   title: '11.1 Assessing Models'
 nextchapter:
-  url: chapters/11/1/assessing-models
+  url: chapters/11/3/decisions-and-uncertainty
   title: '11.3 Decisions and Uncertainty'
 ---
 

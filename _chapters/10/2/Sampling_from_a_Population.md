@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/10/1/empirical-distributions
   title: '10.1 Empirical Distributions'
 nextchapter:
-  url: chapters/10/1/empirical-distributions
+  url: chapters/10/3/empirical-distribution-of-a-statistic
   title: '10.3 Empirical Distibution of a Statistic'
 ---
 

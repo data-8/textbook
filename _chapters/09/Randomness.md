@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/08/5/bike-sharing-in-the-bay-area
   title: '8.5 Bike Sharing in the Bay Area'
 nextchapter:
-  url: chapters/08/5/bike-sharing-in-the-bay-area
+  url: chapters/09/1/conditional-statements
   title: '9.1 Conditional Statements'
 ---
 

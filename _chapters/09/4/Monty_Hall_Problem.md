@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/09/3/simulation
   title: '9.3 Simulation'
 nextchapter:
-  url: chapters/09/3/simulation
+  url: chapters/09/5/finding-probabilities
   title: '9.5 Finding Probabilities'
 ---
 

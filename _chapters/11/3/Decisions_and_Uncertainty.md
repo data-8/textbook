@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/11/2/multiple-categories
   title: '11.2 Multiple Categories'
 nextchapter:
-  url: chapters/11/2/multiple-categories
+  url: chapters/12/comparing-two-samples
   title: '12. Comparing Two Samples'
 ---
 

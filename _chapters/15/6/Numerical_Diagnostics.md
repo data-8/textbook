@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/15/5/visual-diagnostics
   title: '15.5 Visual Diagnostics'
 nextchapter:
-  url: chapters/15/5/visual-diagnostics
+  url: chapters/16/inference-for-regression
   title: '16. Inference for Regression'
 ---
 

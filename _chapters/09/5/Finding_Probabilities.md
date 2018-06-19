@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/09/4/monty-hall-problem
   title: '9.4 The Monty Hall Problem'
 nextchapter:
-  url: chapters/09/4/monty-hall-problem
+  url: chapters/10/sampling-and-empirical-distributions
   title: '10. Sampling and Empirical Distributions'
 ---
 

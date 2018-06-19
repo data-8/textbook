@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/16/inference-for-regression
   title: '16. Inference for Regression'
 nextchapter:
-  url: chapters/16/inference-for-regression
+  url: chapters/16/2/inference-for-the-true-slope
   title: '16.2 Inference for the True Slope'
 ---
 

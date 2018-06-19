@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/03/4/introduction-to-tables
   title: '3.4 Introduction to Tables'
 nextchapter:
-  url: chapters/03/4/introduction-to-tables
+  url: chapters/04/1/numbers
   title: '4.1 Numbers'
 ---
 

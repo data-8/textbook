@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/12/2/deflategate
   title: '12.2 Deflategate'
 nextchapter:
-  url: chapters/12/2/deflategate
+  url: chapters/13/estimation
   title: '13. Estimation'
 ---
 

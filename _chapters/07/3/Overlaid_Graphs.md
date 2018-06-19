@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/07/2/visualizing-numerical-distributions
   title: '7.2 Numerical Distributions'
 nextchapter:
-  url: chapters/07/2/visualizing-numerical-distributions
+  url: chapters/08/functions-and-tables
   title: '8. Functions and Tables'
 ---
 

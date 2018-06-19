@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/04/2/strings
   title: '4.2 Strings'
 nextchapter:
-  url: chapters/04/2/strings
+  url: chapters/04/3/comparison
   title: '4.3 Comparisons'
 ---
 

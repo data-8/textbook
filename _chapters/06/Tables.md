@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/05/3/more-on-arrays
   title: '5.3 More on Arrays'
 nextchapter:
-  url: chapters/05/3/more-on-arrays
+  url: chapters/06/1/sorting-rows
   title: '6.1 Sorting Rows'
 ---
 

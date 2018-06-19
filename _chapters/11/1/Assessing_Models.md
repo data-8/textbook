@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/11/testing-hypotheses
   title: '11. Testing Hypotheses'
 nextchapter:
-  url: chapters/11/testing-hypotheses
+  url: chapters/11/2/multiple-categories
   title: '11.2 Multiple Categories'
 ---
 

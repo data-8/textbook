@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/04/2/1/string-methods
   title: '4.2.1 String Methods'
 nextchapter:
-  url: chapters/04/2/1/string-methods
+  url: chapters/05/collections
   title: '5. Sequences'
 ---
 

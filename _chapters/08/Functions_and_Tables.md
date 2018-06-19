@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/07/3/overlaid-graphs
   title: '7.3 Overlaid Graphs'
 nextchapter:
-  url: chapters/07/3/overlaid-graphs
+  url: chapters/08/1/applying-a-function-to-a-column
   title: '8.1 Applying Functions to Columns'
 ---
 

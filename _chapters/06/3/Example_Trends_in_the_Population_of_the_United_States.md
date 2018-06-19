@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/06/2/selecting-rows
   title: '6.2 Selecting Rows'
 nextchapter:
-  url: chapters/06/2/selecting-rows
+  url: chapters/06/4/example-gender-ratio-in-the-us-population
   title: '6.4 Example: Trends in Gender'
 ---
 

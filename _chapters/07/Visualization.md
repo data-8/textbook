@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/06/4/example-gender-ratio-in-the-us-population
   title: '6.4 Example: Trends in Gender'
 nextchapter:
-  url: chapters/06/4/example-gender-ratio-in-the-us-population
+  url: chapters/07/1/visualizing-categorical-distributions
   title: '7.1 Categorical Distributions'
 ---
 

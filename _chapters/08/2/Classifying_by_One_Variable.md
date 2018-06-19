@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/08/1/applying-a-function-to-a-column
   title: '8.1 Applying Functions to Columns'
 nextchapter:
-  url: chapters/08/1/applying-a-function-to-a-column
+  url: chapters/08/3/cross-classifying-by-more-than-one-variable
   title: '8.3 Cross-Classifying'
 ---
 

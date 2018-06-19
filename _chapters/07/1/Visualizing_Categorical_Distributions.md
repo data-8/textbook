@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/07/visualization
   title: '7. Visualization'
 nextchapter:
-  url: chapters/07/visualization
+  url: chapters/07/2/visualizing-numerical-distributions
   title: '7.2 Numerical Distributions'
 ---
 

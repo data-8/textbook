@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/17/2/training-and-testing
   title: '17.2 Training and Testing'
 nextchapter:
-  url: chapters/17/2/training-and-testing
+  url: chapters/17/4/implementing-the-classifier
   title: '17.4 Implementing the Classifier'
 ---
 

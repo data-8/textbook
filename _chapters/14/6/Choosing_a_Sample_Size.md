@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/14/5/variability-of-the-sample-mean
   title: '14.5 The Variability of the Sample Mean'
 nextchapter:
-  url: chapters/14/5/variability-of-the-sample-mean
+  url: chapters/15/prediction
   title: '15. Prediction'
 ---
 

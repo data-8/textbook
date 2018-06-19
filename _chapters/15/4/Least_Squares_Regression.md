@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/15/3/method-of-least-squares
   title: '15.3 The Method of Least Squares'
 nextchapter:
-  url: chapters/15/3/method-of-least-squares
+  url: chapters/15/5/visual-diagnostics
   title: '15.5 Visual Diagnostics'
 ---
 

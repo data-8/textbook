@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/17/3/rows-of-tables
   title: '17.3 Rows of Tables'
 nextchapter:
-  url: chapters/17/3/rows-of-tables
+  url: chapters/17/5/accuracy-of-the-classifier
   title: '17.5 The Accuracy of the Classifier'
 ---
 

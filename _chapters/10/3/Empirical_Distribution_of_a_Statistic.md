@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/10/2/sampling-from-a-population
   title: '10.2 Sampling from a Population'
 nextchapter:
-  url: chapters/10/2/sampling-from-a-population
+  url: chapters/11/testing-hypotheses
   title: '11. Testing Hypotheses'
 ---
 

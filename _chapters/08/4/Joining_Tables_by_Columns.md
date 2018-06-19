@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/08/3/cross-classifying-by-more-than-one-variable
   title: '8.3 Cross-Classifying'
 nextchapter:
-  url: chapters/08/3/cross-classifying-by-more-than-one-variable
+  url: chapters/08/5/bike-sharing-in-the-bay-area
   title: '8.5 Bike Sharing in the Bay Area'
 ---
 

@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/09/randomness
   title: '9. Randomness'
 nextchapter:
-  url: chapters/09/randomness
+  url: chapters/09/2/iteration
   title: '9.2 Iteration'
 ---
 

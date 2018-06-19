@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/14/4/central-limit-theorem
   title: '14.4 The Central Limit Theorem'
 nextchapter:
-  url: chapters/14/4/central-limit-theorem
+  url: chapters/14/6/choosing-a-sample-size
   title: '14.6 Choosing a Sample Size'
 ---
 

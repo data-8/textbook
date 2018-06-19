@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/14/6/choosing-a-sample-size
   title: '14.6 Choosing a Sample Size'
 nextchapter:
-  url: chapters/14/6/choosing-a-sample-size
+  url: chapters/15/1/correlation
   title: '15.1 Correlation'
 ---
 

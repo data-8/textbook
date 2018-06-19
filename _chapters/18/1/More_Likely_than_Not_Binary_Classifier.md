@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/18/updating-predictions
   title: '18. Updating Predictions'
 nextchapter:
-  url: chapters/18/updating-predictions
+  url: chapters/18/2/making-decisions
   title: '18.2 Making Decisions'
 ---
 

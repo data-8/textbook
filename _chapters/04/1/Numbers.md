@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/04/types
   title: '4. Data Types'
 nextchapter:
-  url: chapters/04/types
+  url: chapters/04/2/strings
   title: '4.2 Strings'
 ---
 

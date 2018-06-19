@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/16/1/regression-model
   title: '16.1 A Regression Model'
 nextchapter:
-  url: chapters/16/1/regression-model
+  url: chapters/16/3/prediction-intervals
   title: '16.3 Prediction Intervals'
 ---
 

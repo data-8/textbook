@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/14/1/properties-of-the-mean
   title: '14.1 Properties of the Mean'
 nextchapter:
-  url: chapters/14/1/properties-of-the-mean
+  url: chapters/14/3/sd-and-the-normal-curve
   title: '14.3 The SD and the Normal Curve'
 ---
 

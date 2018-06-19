@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/17/5/accuracy-of-the-classifier
   title: '17.5 The Accuracy of the Classifier'
 nextchapter:
-  url: chapters/17/5/accuracy-of-the-classifier
+  url: chapters/18/updating-predictions
   title: '18. Updating Predictions'
 ---
 

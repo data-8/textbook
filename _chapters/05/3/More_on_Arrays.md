@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/05/2/ranges
   title: '5.2 Ranges'
 nextchapter:
-  url: chapters/05/2/ranges
+  url: chapters/06/tables
   title: '6. Tables'
 ---
 

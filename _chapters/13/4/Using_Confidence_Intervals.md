@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/13/3/confidence-intervals
   title: '13.3 Confidence Intervals'
 nextchapter:
-  url: chapters/13/3/confidence-intervals
+  url: chapters/14/why-the-mean-matters
   title: '14. Why the Mean Matters'
 ---
 

@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/14/2/variability
   title: '14.2 Variability'
 nextchapter:
-  url: chapters/14/2/variability
+  url: chapters/14/4/central-limit-theorem
   title: '14.4 The Central Limit Theorem'
 ---
 

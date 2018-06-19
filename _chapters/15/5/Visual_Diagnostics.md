@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/15/4/least-squares-regression
   title: '15.4 Least Squares Regression'
 nextchapter:
-  url: chapters/15/4/least-squares-regression
+  url: chapters/15/6/numerical-diagnostics
   title: '15.6 Numerical Diagnostics'
 ---
 

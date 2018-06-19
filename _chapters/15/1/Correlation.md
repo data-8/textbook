@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/15/prediction
   title: '15. Prediction'
 nextchapter:
-  url: chapters/15/prediction
+  url: chapters/15/2/regression-line
   title: '15.2 The Regression Line'
 ---
 

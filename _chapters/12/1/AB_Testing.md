@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/12/comparing-two-samples
   title: '12. Comparing Two Samples'
 nextchapter:
-  url: chapters/12/comparing-two-samples
+  url: chapters/12/2/deflategate
   title: '12.2 Deflategate'
 ---
 

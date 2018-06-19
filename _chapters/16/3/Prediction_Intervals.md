@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/16/2/inference-for-the-true-slope
   title: '16.2 Inference for the True Slope'
 nextchapter:
-  url: chapters/16/2/inference-for-the-true-slope
+  url: chapters/17/classification
   title: '17. Classification'
 ---
 

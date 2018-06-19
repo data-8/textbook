@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/15/1/correlation
   title: '15.1 Correlation'
 nextchapter:
-  url: chapters/15/1/correlation
+  url: chapters/15/3/method-of-least-squares
   title: '15.3 The Method of Least Squares'
 ---
 

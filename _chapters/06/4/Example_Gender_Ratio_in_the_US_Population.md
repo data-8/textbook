@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/06/3/example-trends-in-the-population-of-the-united-states
   title: '6.3 Example: Population Trends'
 nextchapter:
-  url: chapters/06/3/example-trends-in-the-population-of-the-united-states
+  url: chapters/07/visualization
   title: '7. Visualization'
 ---
 

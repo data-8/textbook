@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/09/5/finding-probabilities
   title: '9.5 Finding Probabilities'
 nextchapter:
-  url: chapters/09/5/finding-probabilities
+  url: chapters/10/1/empirical-distributions
   title: '10.1 Empirical Distributions'
 ---
 

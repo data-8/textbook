@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/14/why-the-mean-matters
   title: '14. Why the Mean Matters'
 nextchapter:
-  url: chapters/14/why-the-mean-matters
+  url: chapters/14/2/variability
   title: '14.2 Variability'
 ---
 

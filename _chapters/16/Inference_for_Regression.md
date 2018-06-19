@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/15/6/numerical-diagnostics
   title: '15.6 Numerical Diagnostics'
 nextchapter:
-  url: chapters/15/6/numerical-diagnostics
+  url: chapters/16/1/regression-model
   title: '16.1 A Regression Model'
 ---
 

@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/06/1/sorting-rows
   title: '6.1 Sorting Rows'
 nextchapter:
-  url: chapters/06/1/sorting-rows
+  url: chapters/06/3/example-trends-in-the-population-of-the-united-states
   title: '6.3 Example: Population Trends'
 ---
 

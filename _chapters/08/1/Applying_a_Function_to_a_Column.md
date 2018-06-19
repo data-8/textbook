@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/08/functions-and-tables
   title: '8. Functions and Tables'
 nextchapter:
-  url: chapters/08/functions-and-tables
+  url: chapters/08/2/classifying-by-one-variable
   title: '8.2 Classifying by One Variable'
 ---
 

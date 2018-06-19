@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/04/3/comparison
   title: '4.3 Comparisons'
 nextchapter:
-  url: chapters/04/3/comparison
+  url: chapters/05/1/arrays
   title: '5.1 Arrays'
 ---
 

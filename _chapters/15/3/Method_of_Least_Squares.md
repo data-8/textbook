@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/15/2/regression-line
   title: '15.2 The Regression Line'
 nextchapter:
-  url: chapters/15/2/regression-line
+  url: chapters/15/4/least-squares-regression
   title: '15.4 Least Squares Regression'
 ---
 
