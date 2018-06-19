@@ -119,19 +119,19 @@ panels_and_sample
     </thead>
     <tbody>
         <tr>
-            <td>Asian    </td> <td>0.15    </td> <td>0.26  </td> <td>0.150723     </td>
+            <td>Asian    </td> <td>0.15    </td> <td>0.26  </td> <td>0.152787     </td>
         </tr>
         <tr>
             <td>Black    </td> <td>0.18    </td> <td>0.08  </td> <td>0.166552     </td>
         </tr>
         <tr>
-            <td>Latino   </td> <td>0.12    </td> <td>0.08  </td> <td>0.133517     </td>
+            <td>Latino   </td> <td>0.12    </td> <td>0.08  </td> <td>0.116999     </td>
         </tr>
         <tr>
-            <td>White    </td> <td>0.54    </td> <td>0.54  </td> <td>0.538885     </td>
+            <td>White    </td> <td>0.54    </td> <td>0.54  </td> <td>0.555403     </td>
         </tr>
         <tr>
-            <td>Other    </td> <td>0.01    </td> <td>0.04  </td> <td>0.0103235    </td>
+            <td>Other    </td> <td>0.01    </td> <td>0.04  </td> <td>0.00825877   </td>
         </tr>
     </tbody>
 </table>
@@ -335,7 +335,7 @@ total_variation_distance(sample_distribution, eligible_population)
 
 {:.output_data_text}
 ```
-0.010426703372333118
+0.020722642807983506
 ```
 
 

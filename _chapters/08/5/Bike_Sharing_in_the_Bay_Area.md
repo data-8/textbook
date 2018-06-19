@@ -463,7 +463,7 @@ Marker.map_table(stations.select('lat', 'long', 'name'))
 
 <body>
 
-   <div class=&quot;folium-map&quot; id=&quot;folium_cb0c8c3e95b840518694df7b63f7fbc8&quot; style=&quot;width: 960px; height: 500px&quot;></div>
+   <div class=&quot;folium-map&quot; id=&quot;folium_80451c4aa9aa4421b55af5563ac50e26&quot; style=&quot;width: 960px; height: 500px&quot;></div>
 
    <script>
 
@@ -507,7 +507,7 @@ Marker.map_table(stations.select('lat', 'long', 'name'))
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_cb0c8c3e95b840518694df7b63f7fbc8', {
+      var map = L.map('folium_80451c4aa9aa4421b55af5563ac50e26', {
                                        center:[37.567251, -122.1481515],
                                        zoom: 10.0,
                                        maxBounds: bounds,
@@ -1242,7 +1242,7 @@ Circle.map_table(sf_map_data, color='green', radius=200)
 
 <body>
 
-   <div class=&quot;folium-map&quot; id=&quot;folium_5ba089b7935b4530bf212b46890e2231&quot; style=&quot;width: 960px; height: 500px&quot;></div>
+   <div class=&quot;folium-map&quot; id=&quot;folium_7f6d6c3bb2e94fe4ac03cbaf47ea1ecd&quot; style=&quot;width: 960px; height: 500px&quot;></div>
 
    <script>
 
@@ -1286,7 +1286,7 @@ Circle.map_table(sf_map_data, color='green', radius=200)
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_5ba089b7935b4530bf212b46890e2231', {
+      var map = L.map('folium_7f6d6c3bb2e94fe4ac03cbaf47ea1ecd', {
                                        center:[37.787914, -122.4034835],
                                        zoom: 12.0,
                                        maxBounds: bounds,
@@ -1785,7 +1785,7 @@ Marker.map_table(colored)
 
 <body>
 
-   <div class=&quot;folium-map&quot; id=&quot;folium_4f4d09efe27c4dc8a100a118a0801091&quot; style=&quot;width: 960px; height: 500px&quot;></div>
+   <div class=&quot;folium-map&quot; id=&quot;folium_4c7f7f8e875845f59a8ed5de971afdef&quot; style=&quot;width: 960px; height: 500px&quot;></div>
 
    <script>
 
@@ -1829,7 +1829,7 @@ Marker.map_table(colored)
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_4f4d09efe27c4dc8a100a118a0801091', {
+      var map = L.map('folium_4c7f7f8e875845f59a8ed5de971afdef', {
                                        center:[37.567251, -122.1481515],
                                        zoom: 10.0,
                                        maxBounds: bounds,
@@ -2705,7 +2705,7 @@ Circle.map_table(starts_map_data)
 
 <body>
 
-   <div class=&quot;folium-map&quot; id=&quot;folium_4edb8ac9d9724911af5a835ec090a125&quot; style=&quot;width: 960px; height: 500px&quot;></div>
+   <div class=&quot;folium-map&quot; id=&quot;folium_de431ee228834d0bb1bc23197c768fb7&quot; style=&quot;width: 960px; height: 500px&quot;></div>
 
    <script>
 
@@ -2749,7 +2749,7 @@ Circle.map_table(starts_map_data)
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_4edb8ac9d9724911af5a835ec090a125', {
+      var map = L.map('folium_de431ee228834d0bb1bc23197c768fb7', {
                                        center:[37.567251, -122.1481515],
                                        zoom: 10.0,
                                        maxBounds: bounds,

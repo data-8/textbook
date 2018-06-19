@@ -73,8 +73,8 @@ ten_tosses
 
 {:.output_data_text}
 ```
-array(['Tails', 'Heads', 'Heads', 'Heads', 'Heads', 'Heads', 'Heads',
-       'Heads', 'Tails', 'Tails'], dtype='<U5')
+array(['Tails', 'Heads', 'Heads', 'Tails', 'Tails', 'Heads', 'Tails',
+       'Tails', 'Heads', 'Tails'], dtype='<U5')
 ```
 
 
@@ -92,7 +92,7 @@ np.count_nonzero(ten_tosses == 'Heads')
 
 {:.output_data_text}
 ```
-7
+4
 ```
 
 
@@ -112,7 +112,7 @@ num_heads
 
 {:.output_data_text}
 ```
-56
+45
 ```
 
 
@@ -196,34 +196,34 @@ simulation_results
     </thead>
     <tbody>
         <tr>
-            <td>1         </td> <td>49             </td>
+            <td>1         </td> <td>46             </td>
         </tr>
         <tr>
-            <td>2         </td> <td>49             </td>
+            <td>2         </td> <td>54             </td>
         </tr>
         <tr>
-            <td>3         </td> <td>51             </td>
+            <td>3         </td> <td>53             </td>
         </tr>
         <tr>
-            <td>4         </td> <td>51             </td>
+            <td>4         </td> <td>52             </td>
         </tr>
         <tr>
-            <td>5         </td> <td>50             </td>
+            <td>5         </td> <td>58             </td>
         </tr>
         <tr>
-            <td>6         </td> <td>50             </td>
+            <td>6         </td> <td>48             </td>
         </tr>
         <tr>
-            <td>7         </td> <td>49             </td>
+            <td>7         </td> <td>45             </td>
         </tr>
         <tr>
-            <td>8         </td> <td>42             </td>
+            <td>8         </td> <td>44             </td>
         </tr>
         <tr>
-            <td>9         </td> <td>53             </td>
+            <td>9         </td> <td>43             </td>
         </tr>
         <tr>
-            <td>10        </td> <td>49             </td>
+            <td>10        </td> <td>47             </td>
         </tr>
     </tbody>
 </table>
@@ -278,7 +278,7 @@ heads
 
 {:.output_data_text}
 ```
-array([56., 42., 56., ..., 49., 45., 43.])
+array([52., 45., 48., ..., 48., 44., 51.])
 ```
 
 

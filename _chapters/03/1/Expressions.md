@@ -41,7 +41,7 @@ The grammar rules of a programming language are rigid. In Python, the `*` symbol
 
 {:.output_traceback_line}
 ```
-  File "<ipython-input-4-d90564f70db7>", line 1
+  File "<ipython-input-2-012ea60b41dd>", line 1
     3 * * 4
         ^
 SyntaxError: invalid syntax
@@ -111,5 +111,11 @@ Python expressions obey the same familiar rules of *precedence* as in algebra: m
 ```
 
 
+
+{:.output_stream}
+```
+The history saving thread hit an unexpected error (OperationalError('disk I/O error',)).History will not be written to the database.
+
+```
 
 This chapter introduces many types of expressions. Learning to program involves trying out everything you learn in combination, investigating the behavior of the computer. What happens if you divide by zero? What happens if you divide twice in a row? You don't always need to ask an expert (or the Internet); many of these details can be discovered by trying them out yourself. 

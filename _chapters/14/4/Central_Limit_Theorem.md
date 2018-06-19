@@ -242,7 +242,7 @@ np.mean(results.column(0))
 
 {:.output_data_text}
 ```
--20.9424
+-20.859
 ```
 
 
@@ -262,7 +262,7 @@ np.std(results.column(0))
 
 {:.output_data_text}
 ```
-20.066486544485063
+20.257603979740548
 ```
 
 
@@ -330,7 +330,7 @@ np.mean(delay.sample(400).column('Delay'))
 
 {:.output_data_text}
 ```
-15.7625
+15.77
 ```
 
 

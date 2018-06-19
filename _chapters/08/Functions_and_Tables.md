@@ -137,7 +137,7 @@ NameError                                 Traceback (most recent call last)
 
 {:.output_traceback_line}
 ```
-<ipython-input-18-401b30e3b8b5> in <module>()
+<ipython-input-7-6fcf9dfbd479> in <module>()
 ----> 1 x
 
 ```
@@ -215,7 +215,7 @@ percents(some_array)
 
 {:.output_data_text}
 ```
-array([ 33.33,  47.62,  19.05])
+array([33.33, 47.62, 19.05])
 ```
 
 
@@ -266,9 +266,9 @@ print("Rounded to 3 decimal places:", percents(parts, 3))
 
 {:.output_stream}
 ```
-Rounded to 1 decimal place:  [ 28.6  14.3  57.1]
-Rounded to 2 decimal places: [ 28.57  14.29  57.14]
-Rounded to 3 decimal places: [ 28.571  14.286  57.143]
+Rounded to 1 decimal place:  [28.6 14.3 57.1]
+Rounded to 2 decimal places: [28.57 14.29 57.14]
+Rounded to 3 decimal places: [28.571 14.286 57.143]
 
 ```
 
@@ -289,8 +289,8 @@ print("Rounded to the default number of decimal places:", percents(parts))
 
 {:.output_stream}
 ```
-Rounded to 1 decimal place: [ 28.6  14.3  57.1]
-Rounded to the default number of decimal places: [ 28.57  14.29  57.14]
+Rounded to 1 decimal place: [28.6 14.3 57.1]
+Rounded to the default number of decimal places: [28.57 14.29 57.14]
 
 ```
 

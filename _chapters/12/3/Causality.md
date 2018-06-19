@@ -44,123 +44,93 @@ bta.show()
         <tr>
             <td>Control  </td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td>
         </tr>
@@ -191,7 +161,6 @@ bta.group('Group', np.mean)
         <tr>
             <td>Control  </td> <td>0.125      </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0.6        </td>
         </tr>
@@ -245,123 +214,93 @@ observed_outcomes.show()
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>1                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>1                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
         </tr>
@@ -410,7 +349,6 @@ bta.group('Group', np.average)
         <tr>
             <td>Control  </td> <td>0.125         </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0.6           </td>
         </tr>
@@ -467,125 +405,95 @@ bta_with_shuffled_results.show()
     </thead>
     <tbody>
         <tr>
-            <td>Control  </td> <td>1     </td> <td>0               </td>
+            <td>Control  </td> <td>1     </td> <td>1               </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Control  </td> <td>1     </td> <td>0               </td>
+            <td>Control  </td> <td>1     </td> <td>1               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td> <td>0               </td>
         </tr>
-    </tbody>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>0               </td>
+        </tr>
         <tr>
             <td>Control  </td> <td>0     </td> <td>1               </td>
         </tr>
-    </tbody>
-        <tr>
-            <td>Control  </td> <td>0     </td> <td>0               </td>
-        </tr>
-    </tbody>
-        <tr>
-            <td>Control  </td> <td>0     </td> <td>0               </td>
-        </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td> <td>1               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td> <td>0               </td>
         </tr>
-    </tbody>
-        <tr>
-            <td>Control  </td> <td>0     </td> <td>0               </td>
-        </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td> <td>1               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Control  </td> <td>0     </td> <td>0               </td>
         </tr>
-    </tbody>
-        <tr>
-            <td>Control  </td> <td>0     </td> <td>0               </td>
-        </tr>
-    </tbody>
-        <tr>
-            <td>Control  </td> <td>0     </td> <td>0               </td>
-        </tr>
-    </tbody>
-        <tr>
-            <td>Control  </td> <td>0     </td> <td>1               </td>
-        </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td> <td>1               </td>
         </tr>
-    </tbody>
+        <tr>
+            <td>Treatment</td> <td>1     </td> <td>1               </td>
+        </tr>
         <tr>
             <td>Treatment</td> <td>1     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td> <td>1               </td>
         </tr>
-    </tbody>
-        <tr>
-            <td>Treatment</td> <td>1     </td> <td>1               </td>
-        </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>1     </td> <td>1               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td> <td>1               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Treatment</td> <td>0     </td> <td>1               </td>
+            <td>Treatment</td> <td>0     </td> <td>0               </td>
         </tr>
-    </tbody>
         <tr>
             <td>Treatment</td> <td>0     </td> <td>1               </td>
         </tr>
@@ -614,11 +522,10 @@ bta_with_shuffled_results.group('Group', np.average)
     </thead>
     <tbody>
         <tr>
-            <td>Control  </td> <td>0.125         </td> <td>0.25                    </td>
+            <td>Control  </td> <td>0.125         </td> <td>0.3125                  </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Treatment</td> <td>0.6           </td> <td>0.466667                </td>
+            <td>Treatment</td> <td>0.6           </td> <td>0.4                     </td>
         </tr>
     </tbody>
 </table>
@@ -643,7 +550,7 @@ simulated_distance
 
 {:.output_data_text}
 ```
-0.21666666666666667
+0.08750000000000002
 ```
 
 
@@ -676,7 +583,8 @@ We will call this function to generate an array of differences between proportio
 
 {:.input_area}
 ```python
-differences = permuted_sample_average_difference(bta, 'Result', 'Group', 20000)
+repetitions = 20000
+differences = permuted_sample_average_difference(bta, 'Result', 'Group', repetitions)
 ```
 
 Our statistic is the distance between the two proportions, that is, the absolute value of the difference.
@@ -704,7 +612,7 @@ empirical_P
 
 {:.output_data_text}
 ```
-0.01015
+0.00955
 ```
 
 
@@ -726,7 +634,7 @@ print('Empirical P-value:', round(empirical_P, 4) *100, '%')
 {:.output_stream}
 ```
 Observed Distance 0.475
-Empirical P-value: 1.01 %
+Empirical P-value: 0.95 %
 
 ```
 
