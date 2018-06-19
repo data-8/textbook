@@ -5,7 +5,7 @@ This repository holds a Jekyll-based version of the Data 8 textbook.
 All textbook content is primarily stored in Jupyter notebooks in the `notebooks/` folder.
 This can be converted to Jekyll-ready markdown and served on github pages.
 
-## Hosting the textbook at `inferentialthinkin.com`
+## Hosting the textbook at `inferentialthinking.com`
 
 This repository is **not** being hosted at `inferentialthinking.com`. The repository
 for that site is located here:
