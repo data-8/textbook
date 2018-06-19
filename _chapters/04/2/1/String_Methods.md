@@ -10,6 +10,8 @@ nextchapter:
   title: '4.3 Comparisons'
 ---
 
+# String Methods
+
 From an existing string, related strings can be constructed using string methods, which are functions that operate on strings. These methods are called by placing a dot after the string, then calling the function.
 
 For example, the following method generates an uppercased version of a string.

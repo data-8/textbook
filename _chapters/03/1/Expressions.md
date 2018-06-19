@@ -10,6 +10,8 @@ nextchapter:
   title: '3.2 Names'
 ---
 
+# Expressions
+
 Programming languages are much simpler than human languages. Nonetheless, there are some rules of grammar to learn in any language, and that is where we will begin. In this text, we will use the [Python](https://www.python.org/) programming language. Learning the grammar rules is essential, and the same rules used in the most basic programs are also central to more sophisticated programs.
 
 Programs are made up of *expressions*, which describe to the computer how to combine pieces of data. For example, a multiplication expression consists of a `*` symbol between two numerical expressions. Expressions, such as `3 * 4`, are *evaluated* by the computer. The value (the result of *evaluation*) of the last expression in each cell, `12` in this case, is displayed below the cell.
@@ -111,11 +113,5 @@ Python expressions obey the same familiar rules of *precedence* as in algebra: m
 ```
 
 
-
-{:.output_stream}
-```
-The history saving thread hit an unexpected error (OperationalError('disk I/O error',)).History will not be written to the database.
-
-```
 
 This chapter introduces many types of expressions. Learning to program involves trying out everything you learn in combination, investigating the behavior of the computer. What happens if you divide by zero? What happens if you divide twice in a row? You don't always need to ask an expert (or the Internet); many of these details can be discovered by trying them out yourself. 
