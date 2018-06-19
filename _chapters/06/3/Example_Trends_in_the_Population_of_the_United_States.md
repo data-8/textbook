@@ -10,6 +10,8 @@ nextchapter:
   title: '6.4 Example: Trends in Gender'
 ---
 
+# Example: Population Trends
+
 We are now ready to work with large tables of data. The file below contains "Annual Estimates of the Resident Population by Single Year of Age and Sex for the United States." Notice that `read_table` can read data directly from a URL.
 
 

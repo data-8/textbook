@@ -3,12 +3,14 @@ interact_link: notebooks/05/1/Arrays.ipynb
 title: '5.1 Arrays'
 permalink: 'chapters/05/1/arrays'
 previouschapter:
-  url: chapters/05/collections
+  url: chapters/05/sequences
   title: '5. Sequences'
 nextchapter:
   url: chapters/05/2/ranges
   title: '5.2 Ranges'
 ---
+
+# Arrays
 
 While there are many kinds of collections in Python, we will work primarily with arrays in this class. We've already seen that the `make_array` function can be used to create arrays of numbers.
 

@@ -10,6 +10,8 @@ nextchapter:
   title: '3.4 Introduction to Tables'
 ---
 
+# Call Expressions
+
 *Call expressions* invoke functions, which are named operations. The name of the function appears first, followed by expressions in parentheses. 
 
 
