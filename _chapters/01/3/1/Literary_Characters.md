@@ -10,6 +10,8 @@ nextchapter:
   title: '1.3.2 Another Kind of Character'
 ---
 
+# Literary Characters
+
 *The Adventures of Huckleberry Finn* describes a journey that Huck and Jim take along the Mississippi River. Tom Sawyer joins them towards the end as the action heats up. Having loaded the text, we can quickly visualize how many times these characters have each been mentioned at any point in the book.
 
 

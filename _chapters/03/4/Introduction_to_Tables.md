@@ -6,9 +6,11 @@ previouschapter:
   url: chapters/03/3/calls
   title: '3.3 Call Expressions'
 nextchapter:
-  url: chapters/04/types
+  url: chapters/04/data-types
   title: '4. Data Types'
 ---
+
+# Introduction to Tables
 
 We can now apply Python to analyze data. We will work with data stored in Table structures.
 

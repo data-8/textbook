@@ -1,7 +1,7 @@
 ---
-interact_link: notebooks/05/Collections.ipynb
+interact_link: notebooks/05/Sequences.ipynb
 title: '5. Sequences'
-permalink: 'chapters/05/collections'
+permalink: 'chapters/05/sequences'
 previouschapter:
   url: chapters/04/3/comparison
   title: '4.3 Comparisons'
@@ -9,6 +9,8 @@ nextchapter:
   url: chapters/05/1/arrays
   title: '5.1 Arrays'
 ---
+
+# Sequences
 
 Values can be grouped together into collections, which allows programmers to organize those values and refer to all of them with a single name. By grouping values together, we can write code that performs a computation on many pieces of data at once.
 

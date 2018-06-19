@@ -10,6 +10,8 @@ nextchapter:
   title: '6.1 Sorting Rows'
 ---
 
+# Tables
+
 Tables are a fundamental object type for representing data sets. A table can be viewed in two ways:
 * a sequence of named columns that each describe a single aspect of all entries in a data set, or
 * a sequence of rows that each contain all information about a single entry in a data set.

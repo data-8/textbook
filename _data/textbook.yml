@@ -84,7 +84,7 @@ chapters:
     url: chapters/04/3/comparison
   class: level_0
   title: 4. Data Types
-  url: chapters/04/types
+  url: chapters/04/data-types
 - children:
   - class: level_1
     title: 5.1 Arrays
@@ -97,7 +97,7 @@ chapters:
     url: chapters/05/3/more-on-arrays
   class: level_0
   title: 5. Sequences
-  url: chapters/05/collections
+  url: chapters/05/sequences
 - children:
   - class: level_1
     title: 6.1 Sorting Rows
