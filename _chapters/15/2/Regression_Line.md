@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/15/2/Regression_Line.ipynb
 title: '15.2 The Regression Line'
+permalink: 'chapters/15/2/regression-line'
 previouschapter:
-  url: chapters/15/1/Correlation
+  url: chapters/15/1/correlation
   title: '15.1 Correlation'
 nextchapter:
-  url: chapters/15/3/Method_of_Least_Squares
+  url: chapters/15/1/correlation
   title: '15.3 The Method of Least Squares'
 ---
 

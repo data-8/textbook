@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/05/2/Ranges.ipynb
 title: '5.2 Ranges'
+permalink: 'chapters/05/2/ranges'
 previouschapter:
-  url: chapters/05/1/Arrays
+  url: chapters/05/1/arrays
   title: '5.1 Arrays'
 nextchapter:
-  url: chapters/05/3/More_on_Arrays
+  url: chapters/05/1/arrays
   title: '5.3 More on Arrays'
 ---
 

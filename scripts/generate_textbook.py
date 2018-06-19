@@ -39,6 +39,8 @@ def _prepare_link(link):
     """Prep the formatting for a link."""
     link = _strip_suffixes(link)
     link = link.lstrip('._').lower().replace('_', '-')
+    link = link.replace(NOTEBOOKS_FOLDER_NAME,
+                        TEXTBOOK_FOLDER_NAME.lstrip('_'))
     return link
 
 
@@ -84,8 +86,7 @@ def _generate_sidebar(files):
             if site_yaml.get('number_chapters', False) is True:
                 title = '{}. {}'.format(chapter_ix, title)
             chapter_ix += 1
-        new_link = link.replace(NOTEBOOKS_FOLDER_NAME, TEXTBOOK_FOLDER_NAME.lstrip('_'))
-        new_link = _prepare_link(new_link)
+        new_link = _prepare_link(link)
         new_item = {'title': title, "class": "level_{}".format(int(level)), 'url': new_link}
         if level == 0:
             if ix_file != (len(files) - 1) and level < files[ix_file + 1][-1]:
@@ -167,14 +168,14 @@ if __name__ == '__main__':
             prev_file_title = ''
         else:
             prev_file_title, prev_page_link, _ = files[ix_file-1]
-            prev_page_link = _prepare_link(prev_page_link.replace(NOTEBOOKS_FOLDER_NAME, TEXTBOOK_FOLDER_NAME))
+            prev_page_link = _prepare_link(prev_page_link)
 
         if ix_file == len(files) - 1:
             next_page_link = ''
             next_file_title = ''
         else:
             next_file_title, next_page_link, _ = files[ix_file+1]
-            next_page_link = _prepare_link(next_page_link.replace(NOTEBOOKS_FOLDER_NAME, TEXTBOOK_FOLDER_NAME))
+            next_page_link = _prepare_link(next_page_link)
 
         # Convert notebooks or just copy md if no notebook.
         if link.endswith('.ipynb'):
@@ -220,6 +221,7 @@ if __name__ == '__main__':
         if link.endswith('.ipynb'):
             yaml_fm += ['interact_link: {}'.format(link.lstrip('./'))]
         yaml_fm += ["title: '{}'".format(title)]
+        yaml_fm += ["permalink: '{}'".format(_prepare_link(link))]
         yaml_fm += ['previouschapter:']
         yaml_fm += ['  url: {}'.format(_prepare_link(prev_page_link).replace('"', "'"))]
         yaml_fm += ["  title: '{}'".format(prev_file_title)]

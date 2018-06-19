@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/06/3/Example_Trends_in_the_Population_of_the_United_States.ipynb
 title: '6.3 Example: Population Trends'
+permalink: 'chapters/06/3/example-trends-in-the-population-of-the-united-states'
 previouschapter:
-  url: chapters/06/2/Selecting_Rows
+  url: chapters/06/2/selecting-rows
   title: '6.2 Selecting Rows'
 nextchapter:
-  url: chapters/06/4/Example_Gender_Ratio_in_the_US_Population
+  url: chapters/06/2/selecting-rows
   title: '6.4 Example: Trends in Gender'
 ---
 

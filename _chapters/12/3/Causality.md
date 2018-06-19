@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/12/3/Causality.ipynb
 title: '12.3 Causality'
+permalink: 'chapters/12/3/causality'
 previouschapter:
-  url: chapters/12/2/Deflategate
+  url: chapters/12/2/deflategate
   title: '12.2 Deflategate'
 nextchapter:
-  url: chapters/13/Estimation
+  url: chapters/12/2/deflategate
   title: '13. Estimation'
 ---
 

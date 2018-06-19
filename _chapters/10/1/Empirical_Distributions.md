@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/10/1/Empirical_Distributions.ipynb
 title: '10.1 Empirical Distributions'
+permalink: 'chapters/10/1/empirical-distributions'
 previouschapter:
-  url: chapters/10/Sampling_and_Empirical_Distributions
+  url: chapters/10/sampling-and-empirical-distributions
   title: '10. Sampling and Empirical Distributions'
 nextchapter:
-  url: chapters/10/2/Sampling_from_a_Population
+  url: chapters/10/sampling-and-empirical-distributions
   title: '10.2 Sampling from a Population'
 ---
 

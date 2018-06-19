@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/08/1/Applying_a_Function_to_a_Column.ipynb
 title: '8.1 Applying Functions to Columns'
+permalink: 'chapters/08/1/applying-a-function-to-a-column'
 previouschapter:
-  url: chapters/08/Functions_and_Tables
+  url: chapters/08/functions-and-tables
   title: '8. Functions and Tables'
 nextchapter:
-  url: chapters/08/2/Classifying_by_One_Variable
+  url: chapters/08/functions-and-tables
   title: '8.2 Classifying by One Variable'
 ---
 

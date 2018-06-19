@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/15/1/Correlation.ipynb
 title: '15.1 Correlation'
+permalink: 'chapters/15/1/correlation'
 previouschapter:
-  url: chapters/15/Prediction
+  url: chapters/15/prediction
   title: '15. Prediction'
 nextchapter:
-  url: chapters/15/2/Regression_Line
+  url: chapters/15/prediction
   title: '15.2 The Regression Line'
 ---
 

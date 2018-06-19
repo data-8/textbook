@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/14/5/Variability_of_the_Sample_Mean.ipynb
 title: '14.5 The Variability of the Sample Mean'
+permalink: 'chapters/14/5/variability-of-the-sample-mean'
 previouschapter:
-  url: chapters/14/4/Central_Limit_Theorem
+  url: chapters/14/4/central-limit-theorem
   title: '14.4 The Central Limit Theorem'
 nextchapter:
-  url: chapters/14/6/Choosing_a_Sample_Size
+  url: chapters/14/4/central-limit-theorem
   title: '14.6 Choosing a Sample Size'
 ---
 

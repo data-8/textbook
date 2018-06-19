@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/07/2/Visualizing_Numerical_Distributions.ipynb
 title: '7.2 Numerical Distributions'
+permalink: 'chapters/07/2/visualizing-numerical-distributions'
 previouschapter:
-  url: chapters/07/1/Visualizing_Categorical_Distributions
+  url: chapters/07/1/visualizing-categorical-distributions
   title: '7.1 Categorical Distributions'
 nextchapter:
-  url: chapters/07/3/Overlaid_Graphs
+  url: chapters/07/1/visualizing-categorical-distributions
   title: '7.3 Overlaid Graphs'
 ---
 

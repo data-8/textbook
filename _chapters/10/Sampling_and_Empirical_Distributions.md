@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/10/Sampling_and_Empirical_Distributions.ipynb
 title: '10. Sampling and Empirical Distributions'
+permalink: 'chapters/10/sampling-and-empirical-distributions'
 previouschapter:
-  url: chapters/09/5/Finding_Probabilities
+  url: chapters/09/5/finding-probabilities
   title: '9.5 Finding Probabilities'
 nextchapter:
-  url: chapters/10/1/Empirical_Distributions
+  url: chapters/09/5/finding-probabilities
   title: '10.1 Empirical Distributions'
 ---
 

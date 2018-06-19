@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/05/Collections.ipynb
 title: '5. Sequences'
+permalink: 'chapters/05/collections'
 previouschapter:
-  url: chapters/04/3/Comparison
+  url: chapters/04/3/comparison
   title: '4.3 Comparisons'
 nextchapter:
-  url: chapters/05/1/Arrays
+  url: chapters/04/3/comparison
   title: '5.1 Arrays'
 ---
 

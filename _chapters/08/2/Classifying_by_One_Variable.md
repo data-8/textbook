@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/08/2/Classifying_by_One_Variable.ipynb
 title: '8.2 Classifying by One Variable'
+permalink: 'chapters/08/2/classifying-by-one-variable'
 previouschapter:
-  url: chapters/08/1/Applying_a_Function_to_a_Column
+  url: chapters/08/1/applying-a-function-to-a-column
   title: '8.1 Applying Functions to Columns'
 nextchapter:
-  url: chapters/08/3/Cross-Classifying_by_More_than_One_Variable
+  url: chapters/08/1/applying-a-function-to-a-column
   title: '8.3 Cross-Classifying'
 ---
 

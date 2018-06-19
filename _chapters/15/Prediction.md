@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/15/Prediction.ipynb
 title: '15. Prediction'
+permalink: 'chapters/15/prediction'
 previouschapter:
-  url: chapters/14/6/Choosing_a_Sample_Size
+  url: chapters/14/6/choosing-a-sample-size
   title: '14.6 Choosing a Sample Size'
 nextchapter:
-  url: chapters/15/1/Correlation
+  url: chapters/14/6/choosing-a-sample-size
   title: '15.1 Correlation'
 ---
 

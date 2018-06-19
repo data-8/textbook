@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/11/Testing_Hypotheses.ipynb
 title: '11. Testing Hypotheses'
+permalink: 'chapters/11/testing-hypotheses'
 previouschapter:
-  url: chapters/10/3/Empirical_Distribution_of_a_Statistic
+  url: chapters/10/3/empirical-distribution-of-a-statistic
   title: '10.3 Empirical Distibution of a Statistic'
 nextchapter:
-  url: chapters/11/1/Assessing_Models
+  url: chapters/10/3/empirical-distribution-of-a-statistic
   title: '11.1 Assessing Models'
 ---
 

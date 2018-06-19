@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/14/1/Properties_of_the_Mean.ipynb
 title: '14.1 Properties of the Mean'
+permalink: 'chapters/14/1/properties-of-the-mean'
 previouschapter:
-  url: chapters/14/Why_the_Mean_Matters
+  url: chapters/14/why-the-mean-matters
   title: '14. Why the Mean Matters'
 nextchapter:
-  url: chapters/14/2/Variability
+  url: chapters/14/why-the-mean-matters
   title: '14.2 Variability'
 ---
 

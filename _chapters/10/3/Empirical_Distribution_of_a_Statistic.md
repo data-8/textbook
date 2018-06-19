@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/10/3/Empirical_Distribution_of_a_Statistic.ipynb
 title: '10.3 Empirical Distibution of a Statistic'
+permalink: 'chapters/10/3/empirical-distribution-of-a-statistic'
 previouschapter:
-  url: chapters/10/2/Sampling_from_a_Population
+  url: chapters/10/2/sampling-from-a-population
   title: '10.2 Sampling from a Population'
 nextchapter:
-  url: chapters/11/Testing_Hypotheses
+  url: chapters/10/2/sampling-from-a-population
   title: '11. Testing Hypotheses'
 ---
 
