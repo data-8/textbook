@@ -1,7 +1,7 @@
 numpy
 pandas
 scipy
-folium
+folium==0.2.1
 matplotlib
 datascience
 ipywidgets>=7.0.0
