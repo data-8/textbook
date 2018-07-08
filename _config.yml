@@ -11,7 +11,7 @@ baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name for this site
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 footer                   : false # Whether to include a footer with the built site
-masthead                 : true  # Whether to include a masthead (header/navbar) with the site.
+masthead                 : true  # Whether to include a masthead (header/navbar) with the site. (the masthead won't ever be shown with the textbook)
 
 # Textbook settings
 hub_url                  : "https://mybinder.org"  # The URL for your JupyterHub/BinderHub.
@@ -22,7 +22,7 @@ textbook_repo_org        : "data-8"  # The username or organization that owns th
 textbook_repo_name       : "textbook"  # The name of the repository on the web
 textbook_repo_branch     : "gh-pages"  # The branch on which your textbook is hosted.
 number_chapters          : false  # Whether to number the chapers in the sidebar for the textbook
-chapter_titles           : false  # Whether to include the title of the chapter at the top of each chapter
+chapter_titles           : true  # Whether to include the title of the chapter at the top of each chapter
 textbook_only            : true  # If 'true', the home page will be the first chapter of the textbook, and *only* the sidebar is shown
 use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
 textbook_logo            : favicon.png  # A logo to be displayed at the top of your textbook sidebar
