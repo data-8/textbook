@@ -10,7 +10,7 @@ nextchapter:
   title: '7.3 Overlaid Graphs'
 ---
 
-### Visualizing Numerical Distributions ###
+### Visualizing Numerical Distributions
 
 Many of the variables that data scientists study are *quantitative* or *numerical*. Their values are numbers on which you can perform arithmetic. Examples that we have seen include the number of periods in chapters of a book, the amount of money made by movies, and the age of people in the United States.
 
@@ -78,7 +78,7 @@ top.set_format([2, 3], NumberFormatter)
 
 
 
-### Visualizing the Distribution of the Adjusted Receipts ###
+### Visualizing the Distribution of the Adjusted Receipts
 
 In this section we will draw graphs of the distribution of the numerical variable in the column `Gross (Adjusted)`. For simplicity, let's create a smaller table that has the information that we need. And since three-digit numbers are easier to work with than nine-digit numbers, let's measure the `Adjusted Gross` receipts in millions of dollars. Note how `round` is used to retain only two decimal places.
 
@@ -138,7 +138,7 @@ millions
 
 
 
-### A Histogram ###
+### A Histogram
 A *histogram* of a numerical dataset looks very much like a bar chart, though it has some important differences that we will examine in this section. First, let's just draw a histogram of the adjusted receipts.
 
 The `hist` method generates a histogram of the values in a column. The optional `unit` argument is used in the labels on the two axes. The histogram shows the distribution of the adjusted gross amounts, in millions of 2016 dollars. 
@@ -153,7 +153,7 @@ millions.hist('Adjusted Gross', unit="Million Dollars")
 ![png]({{ site.baseurl }}/images/chapters/07/2/Visualizing_Numerical_Distributions_6_0.png)
 
 
-### The Horizontal Axis ###
+### The Horizontal Axis
 
 The amounts have been grouped into contiguous intervals called *bins*. Although in this dataset no movie grossed an amount that is exactly on the edge between two bins, `hist` does have to account for situations where there might have been values at the edges. So `hist` has an *endpoint convention*: bins include the data at their left endpoint, but not the data at their right endpoint. 
 
@@ -181,7 +181,7 @@ The horizontal axis of this figure is easier to read. The labels 200, 400, 600, 
 
 A very small number of movies grossed 800 million dollars or more. This results in the figure being "skewed to the right," or, less formally, having "a long right hand tail." Distributions of variables like income or rent in large populations also often have this kind of shape.
 
-### The Counts in the Bins ###
+### The Counts in the Bins
 
 The counts of values in the bins can be computed from a table using the `bin` method, which takes a column label or index and an optional sequence or number of bins. The result is a tabular form of a histogram. The first column lists the left endpoints of the bins (but see the note about the final value, below). The second column contains the counts of all values in the `Adjusted Gross` column that are in the corresponding bin. That is, it counts all the `Adjusted Gross` values that are greater than or equal to the value in `bin`, but less than the next value in `bin`.
 
@@ -274,7 +274,7 @@ bin_counts.hist('Adjusted Gross count', bin_column='bin', unit='Million Dollars'
 ![png]({{ site.baseurl }}/images/chapters/07/2/Visualizing_Numerical_Distributions_13_0.png)
 
 
-### The Vertical Axis: Density Scale ###
+### The Vertical Axis: Density Scale
 
 The horizontal axis of a histogram is straightforward to read, once we have taken care of details like the ends of the bins. The features of the vertical axis require a little more attention. We will go over them one by one.
 
@@ -365,7 +365,7 @@ This method of drawing histograms creates a vertical axis that is said to be *on
 
 Let's see why this matters.
 
-### Unequal Bins ###
+### Unequal Bins
 An advantage of the histogram over a bar chart is that a histogram can contain bins of unequal width. Below, the values in the `Millions` column are binned into three uneven categories.
 
 
@@ -420,7 +420,7 @@ Although the ranges [300, 400) and [400, 600) have nearly identical counts, the 
 
 Histograms help us visualize where on the number line the data are most concentrated, epecially when the bins are uneven.
 
-### The Problem with Simply Plotting Counts ###
+### The Problem with Simply Plotting Counts
 It is possible to display counts directly in a chart, using the `normed=False` option of the `hist` method. The resulting chart has the same shape as a histogram when the bins all have equal widths, though the numbers on the vertical axis are different.
 
 
@@ -462,7 +462,7 @@ millions.hist('Adjusted Gross', bins=very_uneven, normed=False)
 
 In this count-based figure, the shape of the distribution of movies is lost entirely.
 
-### The Histogram: General Principles and Calculation ##
+### The Histogram: General Principles and Calculation
 
 The figure above shows that what the eye perceives as "big" is area, not just height. This observation becomes particularly important when the bins have different widths.
 
@@ -497,7 +497,7 @@ When drawn using this method, the histogram is said to be drawn on the density s
 - The area of each bar is equal to the percent of data values that are in the corresponding bin.
 - The total area of all the bars in the histogram is 100%. Speaking in terms of proportions, we say that the areas of all the bars in a histogram "sum to 1".
 
-### Flat Tops and the Level of Detail ###
+### Flat Tops and the Level of Detail
 
 Even though the density scale correctly represents percents using area, some detail is lost by grouping values into bins.
 
@@ -536,7 +536,7 @@ Now think of the bin as consisting of 100 narrow bins that are each 1 million do
 
 Notice that because we have the entire dataset that is being used to draw the histograms, we can draw the histograms to as fine a level of detail as the data and our patience will allow. However, if you are looking at a histogram in a book or on a website, and you don't have access to the underlying dataset, then it becomes important to have a clear understanding of the "rough approximation" created by the flat tops.
 
-### Histograms Q&A ###
+### Histograms Q&A
 Let's draw the histogram again, this time with four bins, and check our understanding of the concepts.
 
 
@@ -598,7 +598,7 @@ Look again at the histogram, and compare the [400, 450) bin with the [450, 1500)
 
 **A**: Because height represents density per unit of space in the bin, not the number of movies in the bin. The [450, 1500) bin does have more movies than the [400, 450) bin, but it is also a whole lot wider. So it is less crowded. The density of movies in it is much lower.
 
-### Differences Between Bar Charts and Histograms ### 
+### Differences Between Bar Charts and Histograms ###
 
 - Bar charts display one quantity per category. They are often used to display the distributions of categorical variables. Histograms display the distributions of quantitative variables. 
 - All the bars in a bar chart have the same width, and there is an equal amount of space between consecutive bars. The bars of a histogram can have different widths, and they are contiguous.

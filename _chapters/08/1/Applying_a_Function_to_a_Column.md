@@ -10,7 +10,7 @@ nextchapter:
   title: '8.2 Classifying by One Variable'
 ---
 
-### Applying a Function to a Column ###
+### Applying a Function to a Column
 
 We have seen many examples of creating new columns of tables by applying functions to existing columns or to other arrays. All of those functions took arrays as their arguments. But frequently we will want to convert the entries in a column by a function that doesn't take an array as its argument. For example, it might take just one number as its argument, as in the function `cut_off_at_100` defined below.
 
@@ -123,7 +123,7 @@ ages
 
 
 
-### `apply` ###
+### `apply`
 
 To cut off each of the ages at 100, we will use the a new Table method. The `apply` method calls a function on each element of a column, forming a new array of return values. To indicate which function to call, just name it (without quotation marks or parentheses). The name of the column of input values is a string that must still appear within quotation marks.
 
@@ -190,7 +190,7 @@ ages.with_column(
 
 
 
-### Functions as Values ###
+### Functions as Values
 We've seen that Python has many kinds of values.  For example, `6` is a number value, `"cake"` is a text value, `Table()` is an empty table, and `ages` is a name for a table value (since we defined it above).
 
 In Python, every function, including `cut_off_at_100`, is also a value. It helps to think about recipes again. A recipe for cake is a real thing, distinct from cakes or ingredients, and you can give it a name like "Ani's cake recipe." When we defined `cut_off_at_100` with a `def` statement, we actually did two separate things: we created a function that cuts off numbers at 100, and we gave it the name `cut_off_at_100`.
@@ -243,7 +243,7 @@ cut_off
 
 Let us see another application of `apply`.
 
-### Example: Prediction ###
+### Example: Prediction
 
 Data Science is often used to make predictions about the future. If we are trying to predict an outcome for a particular individual – for example, how she will respond to a treatment, or whether he will buy a product – it is natural to base the prediction on the outcomes of other similar individuals.
 

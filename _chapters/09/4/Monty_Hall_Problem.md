@@ -10,7 +10,7 @@ nextchapter:
   title: '9.5 Finding Probabilities'
 ---
 
-### The Monty Hall Problem ###
+### The Monty Hall Problem
 This [problem](https://en.wikipedia.org/wiki/Monty_Hall_problem) has flummoxed many people over the years, [mathematicians included](https://web.archive.org/web/20140413131827/http://www.decisionsciences.org/DecisionLine/Vol30/30_1/vazs30_1.pdf). Let's see if we can work it out by simulation.
 
 The setting is derived from a television game show called "Let's Make a Deal". Monty Hall hosted this show in the 1960's, and it has since led to a number of spin-offs. An exciting part of the show was that while the contestants had the chance to win great prizes, they might instead end up with "zonks" that were less desirable. This is the basis for what is now known as *the Monty Hall problem*.
@@ -26,7 +26,7 @@ The setting is a game show in which the contestant is faced with three closed do
 
 The contestant has a decision to make. Which door should she choose to open, if she wants the car? Should she stick with her initial choice, or switch to the other door? That is the Monty Hall problem.
 
-### The Solution ###
+### The Solution
 
 In any problem involving chances, the assumptions about randomness are important. It's reasonable to assume that there is a 1/3 chance that the contestant's initial choice is the door that has the car behind it. 
 
@@ -41,20 +41,20 @@ That's it. End of story.
 
 Not convinced? Then let's simulate the game and see how the results turn out.
 
-### Simulation ###
+### Simulation
 The simulation will be more complex that those we have done so far. Let's break it down.
 
-### Step 1: What to Simulate ###
+### Step 1: What to Simulate
 For each play we will simulate what's behind all three doors:
 - the one the contestant first picks
 - the one that Monty throws out
 - the remaining door
 So we will be keeping track of three quantitites, not just one.
 
-### Step 2: Simulating One Play ###
+### Step 2: Simulating One Play
 The bulk of our work consists of simulating one play of the game. This involves several pieces.
 
-#### The Doors ####
+#### The Doors
 We start by setting up two useful arrays – `doors` and `goats` – that will allow us to distinguish the three doors and the two goats.
 
 
@@ -64,7 +64,7 @@ doors = make_array('Car', 'Goat 1', 'Goat 2')
 goats = make_array('Goat 1', 'Goat 2')
 ```
 
-#### Identifying Goats ####
+#### Identifying Goats
 
 We are going to have to recognize whether a door has a goat behind it or not. We can just label each door with what's behind it; the contestant can't see what we are doing! 
 
@@ -134,7 +134,7 @@ False
 
 
 
-#### One Play ####
+#### One Play
 
 If the contestant's original choice is a door with a goat, Monty must throw out the other goat, and what will remain is the car. If the original choice is the door with a car, Monty must throw out one of the two goats, and what will remain is the other goat. 
 
@@ -208,7 +208,7 @@ array(['Car', 'Goat 2', 'Goat 1'], dtype='<U6')
 
 
 
-#### A Function to Simulate One Play ####
+#### A Function to Simulate One Play
 Now we define a function `monty_hall` that simulates the game and returns an array of three strings in this order: 
 - what is behind the contestant's original choice of door
 - what Monty throws out
@@ -259,10 +259,10 @@ array(['Car', 'Goat 1', 'Goat 2'], dtype='<U6')
 
 
 
-### Step 3: Number of Repetitions ###
+### Step 3: Number of Repetitions
 To gauge the frequency with which the different outcomes occur, we have to play the games many times and collect the results. Let's run 10,000 repetitions.
 
-### Step 4: Coding the Simulation ###
+### Step 4: Coding the Simulation
 It's time to run the simulation. We will start by defining three empty arrays, one each for the original choice, what Monty throws out, and what remains. 
 
 
@@ -285,7 +285,7 @@ for i in np.arange(num_repetitions):
 
 The simulation is done. As always, the majority of the work is in generating the simulated outcome of one repetition.
 
-### Visualization ###
+### Visualization
 
 We can now put all the results into one table for ease of visualization.
 

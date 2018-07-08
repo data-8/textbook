@@ -10,7 +10,7 @@ nextchapter:
   title: '7.2 Numerical Distributions'
 ---
 
-### Visualizing Categorical Distributions ###
+### Visualizing Categorical Distributions
 
 Data come in many forms that are not numerical. Data can be pieces of music, or places on a map. They can also be categories into which you can place individuals. Here are some examples of *categorical* variables.
 
@@ -59,7 +59,7 @@ icecream
 
 The *values* of the categorical variable "flavor" are chocolate, strawberry, and vanilla. The table shows the number of cartons of each flavor. We call this a *distribution table*. A *distribution* shows all the values of a variable, along with the frequency of each one.
 
-### Bar Chart ###
+### Bar Chart
 The bar chart is a familiar way of visualizing categorical distributions. It displays a bar for each category. The bars are equally spaced and equally wide. The length of each bar is proportional to the frequency of the corresponding category.
 
 We will draw bar charts with horizontal bars because it's easier to label the bars that way. The Table method is therefore called `barh`. It takes two arguments: the first is the column label of the categories, and the second is the column label of the frequencies.
@@ -86,7 +86,7 @@ icecream.barh('Flavor')
 ![png]({{ site.baseurl }}/images/chapters/07/1/Visualizing_Categorical_Distributions_7_0.png)
 
 
-### Features of Categorical Distributions ###
+### Features of Categorical Distributions
 Apart from purely visual differences, there is an important fundamental distinction between bar charts and the two graphs that we saw in the previous sections. Those were the scatter plot and the line plot, both of which display two numerical variables – the variables on both axes are numerical. In contrast, the bar chart has categories on one axis and numerical frequencies on the other.
 
 This has consequences for the chart. First, the width of each bar and the space between consecutive bars is entirely up to the person who is producing the graph, or to the program being used to produce it. Python made those choices for us. If you were to draw the bar graph by hand, you could make completely different choices and still have a perfectly correct bar graph, provided you drew all the bars with the same width and kept all the spaces the same.
@@ -107,7 +107,7 @@ icecream.sort('Number of Cartons', descending=True).barh('Flavor')
 
 This bar chart contains exactly the same information as the previous ones, but it is a little easier to read. While this is not a huge gain in reading a chart with just three bars, it can be quite significant when the number of categories is large.
 
-### Grouping Categorical Data ###
+### Grouping Categorical Data
 To construct the table `icecream`, someone had to look at all 30 cartons of ice-cream and count the number of each flavor. But if our data does not already include frequencies, we have to compute the frequencies before we can draw a bar chart. Here is an example where this is necessary.
 
 The table `top` consists of U.S.A.'s top grossing movies of all time. The first column contains the title of the movie; *Star Wars: The Force Awakens* has the top rank, with a box office gross amount of more than 900 million dollars in the United States. The second column contains the name of the studio that produced the movie. The third contains the domestic box office gross in dollars, and the fourth contains the  gross amount that would have been earned from ticket sales at 2016 prices. The fifth contains the release year of the movie. 
@@ -267,7 +267,7 @@ movies_and_years.group('Year').sort('count', descending=True).barh('Year')
 
 All of the longest bars correspond to years after 2000. This is consistent with our observation that recent years should be among the most frequent.
 
-### Towards numerical variables ###
+### Towards numerical variables
 There is something unsettling about this chart. Though it does answer the question of which release years appear most frequently among the 200 top grossing movies, it doesn't list all the years in chronological order. It is treating `Year` as a categorical variable. 
 
 But years are fixed chronological units that do have an order. They also have fixed numerical spacings relative to each other. Let's see what happens when we try to take that into account.

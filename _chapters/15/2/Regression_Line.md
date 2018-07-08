@@ -10,7 +10,7 @@ nextchapter:
   title: '15.3 The Method of Least Squares'
 ---
 
-### The Regression Line ###
+### The Regression Line
 The correlation coefficient $r$ doesn't just measure how clustered the points in a scatter plot are about a straight line. It also helps identify the straight line about which the points are clustered. In this section we will retrace the path that Galton and Pearson took to discover that line.
 
 Galton's data on the heights of parents and their adult children showed a linear association. The linearity was confirmed when our predictions of the children's heights based on the midparent heights roughly followed a straight line.
@@ -59,7 +59,7 @@ heights_with_predictions.scatter('MidParent')
 ![png]({{ site.baseurl }}/images/chapters/15/2/Regression_Line_4_0.png)
 
 
-### Measuring in Standard Units ###
+### Measuring in Standard Units
 
 Let's see if we can find a way to identify this line. First, notice that linear association doesn't depend on the units of measurement – we might as well measure both variables in standard units. 
 
@@ -200,7 +200,7 @@ heights_with_su_predictions.scatter('MidParent SU')
 
 This plot looks exactly like the plot drawn on the original scale. Only the numbers on the axes have changed. This confirms that we can understand the prediction process by just working in standard units.
 
-### Identifying the Line in Standard Units ###
+### Identifying the Line in Standard Units
 Galton's scatter plot has a *football* shape – that is, it is roughly oval like an American football. Not all scatter plots are football shaped, not even those that show linear association. But in this section we will pretend we are Galton and work only with football shaped scatter plots. In the next section, we will generalize our analysis to other shapes of plots.
 
 Here is a football shaped scatter plot with both variables measured in standard units. The 45 degree line is shown in red.
@@ -215,7 +215,7 @@ The slope of the 45 degree line is 1. So the slope of the green "graph of averag
 
 What value could that be? You've guessed it – it's $r$.
 
-### The Regression Line, in Standard Units ###
+### The Regression Line, in Standard Units
 The green "graph of averages" line is called the *regression line*, for reasons we will explain shortly. But first, let's simulate some football shaped scatter plots with different values of $r$, and see how the line changes. In each case, the red 45 degree line has been drawn for comparison.
 
 The function that performs the simulation is called `regression_line` and takes $r$ as its argument.
@@ -242,7 +242,7 @@ regression_line(0.6)
 
 When $r$ is close to 1, the scatter plot, the 45 degree line, and the regression line are all very close to each other. But for more moderate values of $r$, the regression line is noticeably flatter.
 
-### The Regression Effect ###
+### The Regression Effect
 In terms of prediction, this means that for a parents whose midparent height is at 1.5 standard units, our prediction of the child's height is somewhat *less* than 1.5 standard units. If the midparent height is 2 standard units, we predict that the child's height will be somewhat less than 2 standard units.
 
 In other words, we predict that the child will be somewhat closer to average than the parents were.
@@ -251,7 +251,7 @@ This didn't please Sir Francis Galton. He had been hoping that exceptionally tal
 
 Galton also noticed that exceptionally short parents had children who were somewhat taller relative to their generation, on average. In general, individuals who are away from average on one variable are expected to be not quite as far away from average on the other. This is called the *regression effect*.
 
-### The Equation of the Regression Line ###
+### The Equation of the Regression Line
 In regression, we use the value of one variable (which we will call $x$) to predict the value of another (which we will call $y$). When the variables $x$ and $y$ are measured in standard units, the regression line for predicting $y$ based on $x$ has slope $r$ and passes through the origin. Thus the equation of the regression line can be written as:
 
 $$
@@ -298,7 +298,7 @@ def intercept(t, label_x, label_y):
     return np.mean(t.column(label_y)) - slope(t, label_x, label_y)*np.mean(t.column(label_x))
 ```
 
-### The Regression Line and Galton's Data ###
+### The Regression Line and Galton's Data
 The correlation between midparent height and child's height is 0.32:
 
 
@@ -467,7 +467,7 @@ heights_with_predictions.scatter('MidParent')
 
 The grey dots show the regression predictions, all on the regression line. Notice how the line is very close to the gold graph of averages. For these data, the regression line does a good job of approximating the centers of the vertical strips.
 
-### Fitted Values ##
+### Fitted Values
 The predictions all lie on the line and are known as the "fitted values". The function `fit` takes the name of the table and the labels of $x$ and $y$, and returns an array of fitted values, one fitted value for each point in the scatter plot.
 
 
@@ -504,7 +504,7 @@ heights.scatter('MidParent', fit_line=True)
 ![png]({{ site.baseurl }}/images/chapters/15/2/Regression_Line_45_0.png)
 
 
-### Units of Measurement of the Slope ###
+### Units of Measurement of the Slope
 The slope is a ratio, and it worth taking a moment to study the units in which it is measured. Our example comes from the familiar dataset about mothers who gave birth in a hospital system. The scatter plot of pregnancy weights versus heights looks like a football that has been used in one game too many, but it's close enough to a football that we can justify putting our fitted line through it. In later sections we will see how to make such justifications more formal.
 
 
@@ -582,5 +582,5 @@ The slope of the line is measures the increase in the estimated height per unit 
 
 In general, the slope of the regression line can be interpreted as the average increase in $y$ per unit increase in $x$. Note that if the slope is negative, then for every unit increase in $x$, the average of $y$ decreases.
 
-### Endnote ###
+### Endnote
 Even though we won't establish the mathematical basis for the regression equation, we can see that it gives pretty good predictions when the scatter plot is football shaped. It is a surprising mathematical fact that no matter what the shape of the scatter plot, the same equation gives the "best" among all straight lines. That's the topic of the next section.

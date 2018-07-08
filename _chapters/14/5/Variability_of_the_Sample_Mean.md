@@ -10,7 +10,7 @@ nextchapter:
   title: '14.6 Choosing a Sample Size'
 ---
 
-### The Variability of the Sample Mean ###
+### The Variability of the Sample Mean
 By the Central Limit Theorem, the probability distribution of the mean of a large random sample is roughly normal. The bell curve is centered at the population mean. Some of the sample means are higher, and some lower, but the deviations from the population mean are roughly symmetric on either side, as we have seen repeatedly. Formally, probability theory shows that the sample mean is an *unbiased* estimate of the population mean.
 
 In our simulations, we also noticed that the means of larger samples tend to be more tightly clustered around the population mean than means of smaller samples. In this section, we will quantify the variability of the sample mean and develop a relation between the variability and the sample size.
@@ -144,7 +144,7 @@ You can see the Central Limit Theorem in action – the histograms of the sample
 
 You can also see that each of the three histograms of the sample means is centered very close to the population mean. In each case, the "average of sample means" is very close to 16.66 minutes, the population mean. Both values are provided in the printout above each histogram. As expected, the sample mean is an unbiased estimate of the population mean.
 
-### The SD of All the Sample Means ###
+### The SD of All the Sample Means
 
 You can also see that the histograms get narrower, and hence taller, as the sample size increases. We have seen that before, but now we will pay closer attention to the measure of spread.
 
@@ -285,17 +285,17 @@ $$
 
 This is the standard deviation of the averages of all the possible samples that could be drawn. ***It measures roughly how far off the sample means are from the population mean.**
 
-### The Central Limit Theorem for the Sample Mean ###
+### The Central Limit Theorem for the Sample Mean
 If you draw a large random sample with replacement from a population, then, regardless of the distribution of the population, the probability distribution of the sample mean is roughly normal, centered at the population mean, with an SD equal to the population SD divided by the square root of the sample size.
 
-### The Accuracy of the Sample Mean ###
+### The Accuracy of the Sample Mean
 The SD of all possible sample means measures how variable the sample mean can be. As such, it is taken as a measure of the accuracy of the sample mean as an estimate of the population mean. The smaller the SD, the more accurate the estimate.
 
 The formula shows that:
 - The population size doesn't affect the accuracy of the sample mean. The population size doesn't appear anywhere in the formula.
 - The population SD is a constant; it's the same for every sample drawn from the population. The sample size can be varied. Because the sample size appears in the denominator, the variability of the sample mean *decreases* as the sample size increases, and hence the accuracy increases.
 
-### The Square Root Law ###
+### The Square Root Law
 From the table of SD comparisons, you can see that the SD of the means of random samples of 25 flight delays is about 8 minutes. If you multiply the sample size by 4, you'll get samples of size 100. The SD of the means of all of those samples is about 4 minutes. That's smaller than 8 minutes, but it's not 4 times as small; it's only 2 times as small. That's because the sample size in the denominator has a square root over it. The sample size increased by a factor of 4, but the SD went down by a factor of $2 = \sqrt{4}$. In other words, the accuracy went up by a factor of $2 = \sqrt{4}$.
 
 In general, when you multiply the sample size by a factor, the accuracy of the sample mean goes up by the square root of that factor.

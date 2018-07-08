@@ -450,7 +450,7 @@ nba.where('TEAM', 'Denver Nuggets') # equivalent to nba.where('TEAM', are.equal_
 
 
 
-### Multiple Features ###
+### Multiple Features
 You can access rows that have multiple specified features, by using `where` repeatedly. For example, here is a way to extract all the Point Guards whose salaries were over $\$15$ million.
 
 
@@ -491,7 +491,7 @@ nba.where('POSITION', 'PG').where('SALARY', are.above(15))
 
 
 
-### General Form ###
+### General Form
 By now you will have realized that the general way to create a new table by selecting rows with a given feature is to use `where` and `are` with the appropriate condition:
 
 `original_table_name.where(column_label_string, are.condition)`
@@ -558,7 +558,7 @@ nba.where('PLAYER', are.equal_to('Barack Obama'))
 
 
 
-### Some More Conditions ###
+### Some More Conditions
 Here are some predicates of `are` that you might find useful. Note that `x` and `y` are numbers, `STRING` is a string, and `Z` is either a number or a string; you have to specify these depending on the feature you want.
 
 | **Predicate**              | Description                              |

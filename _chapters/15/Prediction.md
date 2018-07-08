@@ -10,7 +10,7 @@ nextchapter:
   title: '15.1 Correlation'
 ---
 
-### Prediction ###
+### Prediction
 
 An important aspect of data science is to find out what data can tell us about the future. What do data about climate and pollution say about temperatures a few decades from now? Based on a person's internet profile, which websites are likely to interest them? How can a patient's medical history be used to judge how well he or she will respond to a treatment?
 

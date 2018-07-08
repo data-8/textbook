@@ -10,13 +10,13 @@ nextchapter:
   title: '8.1 Applying Functions to Columns'
 ---
 
-### Functions and Tables ###
+### Functions and Tables
 
 We are building up a useful inventory of techniques for identifying patterns and themes in a data set by using functions already available in Python. We will now explore a core feature of the Python programming language: function definition.
 
 We have used functions extensively already in this text, but never defined a function of our own. The purpose of defining a function is to give a name to a computational process that may be applied multiple times. There are many situations in computing that require repeated computation. For example, it is often the case that we want to perform the same manipulation on every value in a column of a table.
 
-### Defining a Function ###
+### Defining a Function
 The definition of the `double` function below simply doubles a number.
 
 

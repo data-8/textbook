@@ -10,7 +10,7 @@ nextchapter:
   title: '12. Comparing Two Samples'
 ---
 
-### Decisions and Uncertainty ###
+### Decisions and Uncertainty
 We have seen several examples of assessing models that involve chance, by comparing observed data to the predictions made by the models. In all of our examples, there has been no doubt about whether the data were consistent with the model's predictions. The data were either very far away from the predictions, or very close to them.
 
 But outcomes are not always so clear cut. How far is "far"? Exactly what does "close" mean? While these questions don't have universal answers, there are guidelines and conventions that you can follow. In this section we will describe some of them.
@@ -19,7 +19,7 @@ But first let us develop a general framework of decision making, into which all 
 
 What we have developed while assessing models are some of the fundamental concepts of statistical tests of hypotheses. Using statistical tests as a way of making decisions is standard in many fields and has a standard terminology. Here is the sequence of the steps in most statistical tests, along with some terminology and examples. You will see that they are consistent with the sequence of steps we have used for assessing models.
 
-### Step 1: The Hypotheses ###
+### Step 1: The Hypotheses
 
 All statistical tests attempt to choose between two views of the world. Specifically, the choice is between two views about how the data were generated. These two views are called *hypotheses*.
 
@@ -35,7 +35,7 @@ Under this hypothesis, we were able to simulate random samples, by using `sample
 
 In the example about Mendel's plants, the alternative hypothesis is simply that his model isn't good.
 
-### Step 2: The Test Statistic ###
+### Step 2: The Test Statistic
 
 In order to decide between the two hypothesis, we must choose a statistic that we can use to make the decision. This is called the **test statistic**.
 
@@ -70,7 +70,7 @@ abs ( 100 * (705 / 929) - 75)
 
 
 
-### Step 3: The Distribution of the Test Statistic, Under the Null Hypothesis ###
+### Step 3: The Distribution of the Test Statistic, Under the Null Hypothesis
 
 The main computational aspect of a test of hypotheses is figuring out *what the values of the test statistic might be if the null hypothesis were true*. 
 
@@ -80,7 +80,7 @@ By simulating the statistic repeatedly, we get a good sense of its possible valu
 
 As with all distributions, it is very useful to visualize this distribution by a histogram. We have done so in all our examples.
 
-### Step 4. The Conclusion of the Test ###
+### Step 4. The Conclusion of the Test
 
 The choice between the null and alternative hypotheses depends on the comparison between what you computed in Steps 2 and 3: the observed value of the test statistic and its distribution as predicted by the null hypothesis. 
 
@@ -90,7 +90,7 @@ But if the two are not consistent with each other, as is the case in our example
 
 If the data do not support the null hypothesis, we say that the test *rejects* the null hypothesis.
 
-### The Meaning of "Consistent" ###
+### The Meaning of "Consistent"
 
 In the example about Alameda County juries, it was apparent that our observed test statistic was far from what was predicted by the null hypothesis. In the example about pea flowers, it is just as clear that the observed statistic is consistent with the distribution that the null predicts. So in both of the examples, it is clear which hypothesis to choose.
 
@@ -98,7 +98,7 @@ But sometimes the decision is not so clear. Whether the observed test statistic 
 
 Here is an example where the decision requires judgment.
 
-### The GSI's Defense ###
+### The GSI's Defense
 A Berkeley Statistics class of about 350 students was divided into 12 discussion sections led by Graduate Student Instructors (GSIs). After the midterm, students in Section 3 noticed that their scores were on average lower than the rest of the class. 
 
 In such situations, students tend to grumble about the section's GSI. Surely, they feel, there must have been something wrong with the GSI's teaching. Or else why would their section have done worse than others?
@@ -410,7 +410,7 @@ Is the observed statistic of 13.667 "too low" in relation to this distribution? 
 
 It's up to you to decide! Use your judgment. Go ahead – it's OK to do so.
 
-### Conventional Cut-offs and the P-value ###
+### Conventional Cut-offs and the P-value
 If you don't want to make your own judgment, there are conventions that you can follow. These conventions tell us how far out into the tails is considered "too far". 
 
 The conventions are based on the area in the tail, starting at the observed statistic (the red dot) and looking in the direction that makes us lean toward the alternative (the left side, in this example). If the area of the tail is small, the observed statistic is far away from the values most commonly predicted by the null hypothesis.
@@ -437,7 +437,7 @@ Just about 5.7% of the simulated random sample averages were 3.667 or below. If 
 
 This chance has an impressive name. It is called the *observed significance level* of the test. That's a mouthful, and so it is commonly called the *P-value* of the test. 
 
-#### Definition of P-value #### 
+#### Definition of P-value ####
 
 The P-value is the chance, based on the model in the null hypothesis, that the test statistic is equal to the value that was observed in the data or is even further in the direction of the alternative.
 
@@ -453,7 +453,7 @@ By this convention, our P-value of 5.7% is not considered small. So we have to c
 
 When you make a conclusion in this way, we recommend that you don't just say whether or not the result is statistically significant. Along with your conclusion, provide the observed statistic and the P-value as well, so that readers can use their own judgment.
 
-### Historical Note on the Conventions ###
+### Historical Note on the Conventions
 
 The determination of statistical significance, as defined above, has become standard in statistical analyses in all fields of application. When a convention is so universally followed, it is interesting to examine how it arose. 
 

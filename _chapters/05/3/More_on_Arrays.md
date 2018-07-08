@@ -107,7 +107,7 @@ If an arithmetic operator acts on two arrays of the same size, then the operatio
 
 For example, if `array1` and `array2` have the same number of elements, then the value of `array1 * array2` is an array. Its first element is the first element of `array1` times the first element of `array2`, its second element is the second element of `array1` times the second element of `array2`, and so on.
 
-### Example: Wallis' Formula for $\pi$ ###
+### Example: Wallis' Formula for $\pi$
 The number $\pi$ is important in many different areas of math. Centuries before computers were invented, mathematicians worked on finding simple ways to approximate the numerical value of $\pi$. We have already seen Leibniz's formula for $\pi$. About half a century before Leibniz, the English mathematician [John Wallis](https://en.wikipedia.org/wiki/John_Wallis) (1616-1703) also expressed $\pi$ in terms of simple fractions, as an infinite product.
 
 $$

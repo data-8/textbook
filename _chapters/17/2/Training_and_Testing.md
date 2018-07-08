@@ -10,7 +10,7 @@ nextchapter:
   title: '17.3 Rows of Tables'
 ---
 
-### Training and Testing ###
+### Training and Testing
 How good is our nearest neighbor classifier? To answer this we'll need to find out how frequently our classifications are correct. If a patient has chronic kidney disease, how likely is our classifier to pick that up?
 
 If the patient is in our training set, we can find out immediately. We already know what class the patient is in. So we can just compare our prediction and the patient's true class.
@@ -21,7 +21,7 @@ One way is to wait for further medical tests on the patient and then check wheth
 
 Instead, we will try our classifier on some patients whose true classes are known.  Then, we will compute the proportion of the time our classifier was correct.  This proportion will serve as an estimate of the proportion of all new patients whose class our classifier will accurately predict.  This is called *testing*.
 
-### Overly Optimistic "Testing" ###
+### Overly Optimistic "Testing"
 The training set offers a very tempting set of patients on whom to test out our classifier, because we know the class of each patient in the training set.
 
 But let's be careful ... there will be pitfalls ahead if we take this path. An example will show us why.
@@ -52,7 +52,7 @@ No, not so much. A new point in the lower-left might easily be mis-classified, a
 
 The lesson of this example is *not* to use the training set to test a classifier that is based on it.
 
-### Generating a Test Set ###
+### Generating a Test Set
 In earlier chapters, we saw that random sampling could be used to estimate the proportion of individuals in a population that met some criterion.  Unfortunately, we have just seen that the training set is not like a random sample from the population of all patients, in one important respect: Our classifier guesses correctly for a higher proportion of individuals in the training set than it does for individuals in the population.
 
 When we computed confidence intervals for numerical parameters, we wanted to have many new random samples from a population, but we only had access to a single sample.  We solved that problem by taking bootstrap resamples from our sample.

@@ -10,7 +10,7 @@ nextchapter:
   title: '15.4 Least Squares Regression'
 ---
 
-### The Method of Least Squares ###
+### The Method of Least Squares
 We have retraced the steps that Galton and Pearson took to develop the equation of the regression line that runs through a football shaped scatter plot. But not all scatter plots are football shaped, not even linear ones. Does every scatter plot have a "best" line that goes through it? If so, can we still use the formulas for the slope and intercept developed in the previous section, or do we need new ones?
 
 To address these questions, we need a reasonable definition of "best". Recall that the purpose of the line is to *predict* or *estimate* values of $y$, given values of $x$. Estimates typically aren't perfect. Each one is off the true value by an *error*. A reasonable criterion for a line to be the "best" is for it to have the smallest possible overall error among all straight lines.
@@ -81,7 +81,7 @@ correlation(little_women, 'Periods', 'Characters')
 
 The scatter plot is remarkably close to linear, and the correlation is more than 0.92.
 
-### Error in Estimation ###
+### Error in Estimation
 
 The graph below shows the scatter plot and line that we developed in the previous section. We don't yet know if that's the best among all lines. We first have to say precisely what "best" means.
 
@@ -210,7 +210,7 @@ lw_errors(-100, 50000)
 ![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_17_0.png)
 
 
-### Root Mean Squared Error ###
+### Root Mean Squared Error
 
 What we need now is one overall measure of the rough size of the errors. You will recognize the approach to creating this – it's exactly the way we developed the SD.
 
@@ -218,7 +218,7 @@ If you use any arbitrary line to calculate your estimates, then some of your err
 
 The mean squared error of estimation is a measure of roughly how big the squared errors are, but as we have noted earlier, its units are hard to interpret. Taking the square root yields the root mean square error (rmse), which is in the same units as the variable being predicted and therefore much easier to understand. 
 
-### Minimizing the Root Mean Squared Error ###
+### Minimizing the Root Mean Squared Error
 
 Our observations so far can be summarized as follows.
 
@@ -314,7 +314,7 @@ Root mean squared error: 2701.690785311856
 
 The proof of this statement requires abstract mathematics that is beyond the scope of this course. On the other hand, we do have a powerful tool – Python – that performs large numerical computations with ease. So we can use Python to confirm that the regression line minimizes the mean squared error.
 
-### Numerical Optimization ###
+### Numerical Optimization
 First note that a line that minimizes the root mean squared error is also a line that minimizes the squared error. The square root makes no difference to the minimization. So we will save ourselves a step of computation and just minimize the mean squared error (mse).
 
 We are trying to predict the number of characters ($y$) based on the number of periods ($x$) in chapters of Little Women. If we use the line 
@@ -450,7 +450,7 @@ intercept from minimize:    4744.784845352655
 
 ```
 
-### The Least Squares Line ###
+### The Least Squares Line
 
 Therefore, we have found not only that the regression line minimizes mean squared error, but also that minimizing mean squared error gives us the regression line. The regression line is the only line that minimizes mean squared error.
 

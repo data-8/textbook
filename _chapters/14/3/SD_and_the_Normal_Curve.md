@@ -10,13 +10,13 @@ nextchapter:
   title: '14.4 The Central Limit Theorem'
 ---
 
-### The SD and the Normal Curve ###
+### The SD and the Normal Curve
 
 We know that the mean is the balance point of the histogram. Unlike the mean, the SD is usually not easy to identify by looking at the histogram. 
 
 However, there is one shape of distribution for which the SD is almost as clearly identifiable as the mean. That is the bell-shaped disribution. This section examines that shape, as it appears frequently in probability histograms and also in some histograms of data.  
 
-### A Roughly Bell-Shaped Histogram of Data ###
+### A Roughly Bell-Shaped Histogram of Data
 Let us look at the distribution of heights of mothers in our familiar sample of 1,174 mother-newborn pairs. The mothers' heights have a mean of 64 inches and an SD of 2.5 inches. Unlike the heights of the basketball players, the mothers' heights are distributed fairly symmetrically about the mean in a bell-shaped curve.
 
 
@@ -74,7 +74,7 @@ plots.xticks(positions);
 
 The last two lines of code in the cell above change the labeling of the horizontal axis. Now, the labels correspond to "average $\pm$ $z$ SDs" for $z = 0, \pm 1, \pm 2$, and $\pm 3$. Because of the shape of the distribution, the "center" has an unambiguous meaning and is clearly visible at 64.
 
-### How to Spot the SD on a Bell Shaped Curve ###
+### How to Spot the SD on a Bell Shaped Curve
 
 To see how the SD is related to the curve, start at the top of the curve and look towards the right. Notice that there is a place where the curve changes from looking like an "upside-down cup" to a "right-way-up cup"; formally, the curve has a point of inflection. That point is one SD above average. It is the point $z=1$, which is "average plus 1 SD" = 66.5 inches.
 
@@ -82,7 +82,7 @@ Symmetrically on the left-hand side of the mean, the point of inflection is at $
 
 In general, **for bell-shaped distributions, the SD is the distance between the mean and the points of inflection on either side.**
 
-### The standard normal curve ###
+### The standard normal curve
 
 All the bell-shaped histograms that we have seen look essentially the same apart from the labels on the axes. Indeed, there is really just one basic curve from which all of these curves can be drawn just by relabeling the axes appropriately. 
 
@@ -118,7 +118,7 @@ Therefore, areas under the curve have to be approximated. That is why almost all
 from scipy import stats
 ```
 
-### The standard normal "cdf" ###
+### The standard normal "cdf"
 
 The fundamental function for finding areas under the normal curve is `stats.norm.cdf`. It takes a numerical argument and returns all the area under the curve to the left of that number. Formally, it is called the "cumulative distribution function" of the standard normal curve. That rather unwieldy mouthful is abbreviated as cdf.
 

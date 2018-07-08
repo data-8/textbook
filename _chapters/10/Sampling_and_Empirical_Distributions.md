@@ -10,7 +10,7 @@ nextchapter:
   title: '10.1 Empirical Distributions'
 ---
 
-### Sampling and Empirical Distributions ###
+### Sampling and Empirical Distributions
 An important part of data science consists of making conclusions based on the data in random samples. In order to correctly interpret their results, data scientists have to first understand exactly what random samples are.
 
 In this chapter we will take a more careful look at sampling, with special attention to the properties of large random samples. 
@@ -75,12 +75,12 @@ top.set_format(make_array(3, 4), NumberFormatter)
 
 
 
-### Sampling Rows of a Table ###
+### Sampling Rows of a Table
 Each row of a data table represents an individual; in `top`, each individual is a movie. Sampling individuals can thus be achieved by sampling the rows of a table.
 
 The contents of a row are the values of different variables measured on the same individual. So the contents of the sampled rows form samples of values of each of the variables.
 
-### Deterministic Samples ###
+### Deterministic Samples
 
 When you simply specify which elements of a set you want to choose, without any chances involved, you create a *deterministic sample*.
 
@@ -177,7 +177,7 @@ A *probability sample* is one for which it is possible to calculate, before the 
 
 In a probability sample, all elements need not have the same chance of being chosen. 
 
-### A Random Sampling Scheme ###
+### A Random Sampling Scheme
 
 For example, suppose you choose two people from a population that consists of three people A, B, and C, according to the following scheme:
 
@@ -196,7 +196,7 @@ This is a probability sample of size 2. Here are the chances of entry for all no
 
 Person A has a higher chance of being selected than Persons B or C; indeed, Person A is certain to be selected. Since these differences are known and quantified, they can be taken into account when working with the sample. 
 
-### A Systematic Sample ###
+### A Systematic Sample
 
 Imagine all the elements of the population listed in a sequence. One method of sampling starts by choosing a random position early in the list, and then evenly spaced positions after that. The sample consists of the elements in those positions. Such a sample is called a *systematic sample*. 
 
@@ -266,7 +266,7 @@ This systematic sample is a probability sample. In this scheme, all rows have ch
 
 But not all subsets have the same chance of being chosen. Because the selected rows are evenly spaced, most subsets of rows have no chance of being chosen. The only subsets that are possible are those that consist of rows all separated by multiples of 10. Any of those subsets is selected with chance 1/10.  Other subsets, like the subset containing the first 11 rows of the table, are selected with chance 0.
 
-### Random Samples Drawn With or Without Replacement ###
+### Random Samples Drawn With or Without Replacement
 In this course, we will mostly deal with the two most straightforward methods of sampling. 
 
 The first is random sampling with replacement, which (as we have seen earlier) is the default behavior of `np.random.choice` when it samples from an array. 

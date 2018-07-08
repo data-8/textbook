@@ -10,13 +10,13 @@ nextchapter:
   title: '16. Inference for Regression'
 ---
 
-### Numerical Diagnostics ###
+### Numerical Diagnostics
 
 In addition to visualization, we can use numerical properties of residuals to assess the quality of regression. We will not prove these properties mathematically. Rather, we will observe them by computation and see what they tell us about the regression.
 
 All of the facts listed below hold for all shapes of scatter plots, whether or not they are linear.
 
-### Residual Plots Show No Trend ###
+### Residual Plots Show No Trend
 **For every linear regression, whether good or bad, the residual plot shows no trend. Overall, it is flat. In other words, the residuals and the predictor variable are uncorrelated.** 
 
 You can see this in all the residual plots above. We can also calculate the correlation between the predictor variable and the residuals in each case.
@@ -77,7 +77,7 @@ round(correlation(dugong, 'Length', 'Residual'), 10)
 
 
 
-### Average of Residuals ###
+### Average of Residuals
 **No matter what the shape of the scatter diagram, the average of the residulas is 0.**
 
 This is analogous to the fact that if you take any list of numbers and calculate the list of deviations from average, the average of the deviations is 0.
@@ -120,7 +120,7 @@ round(np.mean(dugong.column('Residual')), 10)
 
 
 
-### SD of the Residuals ###
+### SD of the Residuals
 **No matter what the shape of the scatter plot, the SD of the residuals is a fraction of the SD of the response variable. The fraction is  $\sqrt{1-r^2}$.**
 
 $$
@@ -213,7 +213,7 @@ But usually $r$ is not at the extremes. If $r$ is neither $\pm 1$ nor 0, then $\
 
 The worst case is when $r = 0$. Then $\sqrt{1-r^2} =1$, and the SD of the residuals is equal to the SD of $y$. This is consistent with the observation that if $r=0$ then the regression line is a flat line at the average of $y$. In this situation, the root mean square error of regression is the root mean squared deviation from the average of $y$, which is the SD of $y$. In practical terms, if $r = 0$ then there is no linear association between the two variables, so there is no benefit in using linear regression.
 
-### Another Way to Interpret $r$ ###
+### Another Way to Interpret $r$
 We can rewrite the result above to say that no matter what the shape of the scatter plot,
 
 $$

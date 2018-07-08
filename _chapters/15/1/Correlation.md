@@ -10,7 +10,7 @@ nextchapter:
   title: '15.2 The Regression Line'
 ---
 
-### Correlation ###
+### Correlation
 
 In this section we will develop a measure of how tightly clustered a scatter diagram is about a straight line. Formally, this is called measuring *linear association*.
 
@@ -184,7 +184,7 @@ The associations that we see in these figures are the same as those we saw befor
 
 We will now define a measure that uses standard units to quantify the kinds of association that we have seen.
 
-### The correlation coefficient ###
+### The correlation coefficient
 
 The *correlation coefficient* measures the strength of the linear relationship between two variables. Graphically, it measures how clustered the scatter diagram is around a straight line.
 
@@ -242,7 +242,7 @@ r_scatter(-0.55)
 ![png]({{ site.baseurl }}/images/chapters/15/1/Correlation_22_0.png)
 
 
-### Calculating $r$ ###
+### Calculating $r$
 
 The formula for $r$ is not apparent from our observations so far. It has a mathematical basis that is outside the scope of this class. However, as you will see, the calculation is straightforward and helps us understand several of the properties of $r$.
 
@@ -443,7 +443,7 @@ t.scatter('y', 'x', s=30, color='red')
 ![png]({{ site.baseurl }}/images/chapters/15/1/Correlation_35_0.png)
 
 
-### The `correlation` function ###
+### The `correlation` function
 We are going to be calculating correlations repeatedly, so it will help to define a function that computes it by performing all the steps described above. Let's define a function ``correlation`` that takes a table and the labels of two columns in the table. The function returns $r$, the mean of the products of those column values in standard units.
 
 
@@ -530,11 +530,11 @@ These values confirm what we had observed:
 
 Correlation is a simple and powerful concept, but it is sometimes misused. Before using $r$, it is important to be aware of what correlation does and does not measure.
 
-### Association is not Causation ###
+### Association is not Causation
 
 Correlation only measures association. Correlation does not imply causation. Though the correlation between the weight and the math ability of children in a school district may be positive, that does not mean that doing math makes children heavier or that putting on weight improves the children's math skills. Age is a confounding variable: older children are both heavier and better at math than younger children, on average.
 
-### Correlation Measures *Linear* Association ###
+### Correlation Measures *Linear* Association
 Correlation measures only one kind of association – linear. Variables that have strong non-linear association might have very low correlation. Here is an example of variables that have a perfect quadratic relation $y = x^2$ but have correlation equal to 0.
 
 
@@ -568,7 +568,7 @@ correlation(nonlinear, 'x', 'y')
 
 
 
-### Correlation is Affected by Outliers ###
+### Correlation is Affected by Outliers
 Outliers can have a big effect on correlation. Here is an example where a scatter plot for which $r$ is equal to 1 is turned into a plot for which $r$ is equal to 0, by the addition of just one outlying point.
 
 
@@ -631,7 +631,7 @@ correlation(outlier, 'x', 'y')
 
 
 
-### Ecological Correlations Should be Interpreted with Care ###
+### Ecological Correlations Should be Interpreted with Care
 Correlations based on aggregated data can be misleading. As an example, here are data on the Critical Reading and Math SAT scores in 2014. There is one point for each of the 50 states and one for Washington, D.C. The column ``Participation Rate`` contains the percent of high school seniors who took the test. The next three columns show the average score in the state on each portion of the test, and the final column is the average of the total scores on the test.
 
 

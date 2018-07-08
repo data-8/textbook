@@ -10,7 +10,7 @@ nextchapter:
   title: '12.1 A/B Testing'
 ---
 
-### Comparing Two Samples ###
+### Comparing Two Samples
 We have seen several examples of assessing whether a single sample looks like random draws from a specified chance model. 
 - Did the Alameda County jury panels look like a random sample from the population of eligible jurors?
 - Did the pea plants that Mendel grew have colors that were consistent with the chances he specified in his model?

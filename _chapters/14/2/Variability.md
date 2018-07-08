@@ -10,12 +10,12 @@ nextchapter:
   title: '14.3 The SD and the Normal Curve'
 ---
 
-### Variability ###
+### Variability
 The mean tells us where a histogram balances. But in almost every histogram we have seen, the values spread out on both sides of the mean. How far from the mean can they be? To answer this question, we will develop a measure of variability about the mean.
 
 We will start by describing how to calculate the measure. Then we will see why it is a good measure to calcualte.
 
-### The Rough Size of Deviations from Average ###
+### The Rough Size of Deviations from Average
 For simplicity, we will begin our calcuations in the context of a simple array `any_numbers` consisting of just four values. As you will see, our method will extend easily to any other array of values.
 
 
@@ -222,7 +222,7 @@ sd
 
 
 
-### Standard Deviation ###
+### Standard Deviation
 
 The quantity that we have just computed is called the *standard deviation* of the list, and is abbreviated as SD. It measures roughly how far the numbers on the list are from their average.
 
@@ -246,7 +246,7 @@ np.std(any_numbers)
 
 
 
-### Working with the SD ###
+### Working with the SD
 
 To see what we can learn from the SD, let's move to a more interesting dataset than `any_numbers`. The table `nba13` contains data on the players in the National Basketball Association (NBA) in 2013. For each player, the table records the position at which the player usually played, his height in inches, his weight in pounds, and his age in years.
 
@@ -618,7 +618,7 @@ nba13.sort('Age in 2013').show(3)
 
 What we have observed for the heights and ages is true in great generality. For *all* lists, the bulk of the entries are no more than 2 or 3 SDs away from the average. 
 
-### Chebychev's Bounds ###
+### Chebychev's Bounds
 The Russian mathematician [Pafnuty Chebychev](https://en.wikipedia.org/wiki/Pafnuty_Chebyshev) (1821-1894) proved a result that makes our rough statements precise.
 
 **For all lists, and all numbers $z$, the proportion of entries that are in the range
@@ -659,7 +659,7 @@ def standard_units(numbers_array):
     return (numbers_array - np.mean(numbers_array))/np.std(numbers_array)    
 ```
 
-### Example ###
+### Example
 As we saw in an earlier section, the table `united` contains a column `Delay` consisting of the departure delay times, in minutes, of over thousands of United Airlines flights in the summer of 2015. We will create a new column called `Delay (Standard Units)` by applying the function `standard_units` to the column of delay times. This allows us to see all the delay times in minutes as well as their corresponding values in standard units. 
 
 

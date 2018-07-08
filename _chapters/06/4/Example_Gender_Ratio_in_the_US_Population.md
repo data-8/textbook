@@ -72,7 +72,7 @@ As we know from having examined this dataset earlier, a [description of the tabl
 
 Each row represents an age group. The `SEX` column contains numeric codes: `0` stands for the total, `1` for male, and `2` for female. The `AGE` column contains ages in completed years, but the special value `999` represents the entire population regardless of age. The rest of the columns contain estimates of the US population.
 
-### Understanding `AGE` = 100 ###
+### Understanding `AGE` = 100
 As a preliminary, let's interpret data in the final age category in the table, where `AGE` is 100. The code below extracts the rows for the combined group of men and women (`SEX` code 0) for the highest ages.
 
 
@@ -116,7 +116,7 @@ It does come as a surprise, though, that the numbers for `AGE` 100 are quite a b
 
 The row with `AGE` 100 doesn't just represent 100-year-olds – it also includes those who are older than 100. That is why the numbers in that row are larger than in the row for the 99-year-olds.
 
-### Overall Proportions of Males and Females ###
+### Overall Proportions of Males and Females
 We will now begin looking at gender ratios in 2014. First, let's look at all the age groups together. Remember that this means looking at the rows where the "age" is coded 999. The table `all_ages` contains this information. There are three rows: one for the total of both genders, one for males (`SEX` code 1), and one for females (`SEX` code 2).
 
 
@@ -272,7 +272,7 @@ infants.with_column(
 
 In fact, it has long been observed that the proportion of boys among newborns is slightly more than 1/2. The reason for this is not thoroughly understood, and [scientists are still working on it](http://www.npr.org/sections/health-shots/2015/03/30/396384911/why-are-more-baby-boys-born-than-girls).
 
-### Female:Male Gender Ratio at Each Age ###
+### Female:Male Gender Ratio at Each Age
 
 We have seen that while there are more baby boys than baby girls, there are more females than males overall. So it's clear that the split between genders must vary across age groups.
 

@@ -10,7 +10,7 @@ nextchapter:
   title: '8. Functions and Tables'
 ---
 
-### Overlaid Graphs ###
+### Overlaid Graphs
 
 In this chapter, we have learned how to visualize data by drawing graphs. A common use of such visualizations is to compare two datasets. In this section, we will see how to *overlay* plots, that is, draw them in a single graphic on a common pair of axes.
 
@@ -25,7 +25,7 @@ More commonly, we will first select only the columns needed for our graph, and t
 `name_of_table.method(column_label_of_common_axis)`
 
 
-### Scatter Plots ###
+### Scatter Plots
 
 [Franics Galton](https://en.wikipedia.org/wiki/Francis_Galton) (1822-1911) was an English polymath who was a pioneer in the analysis of relations between numerical variables. He was particularly interested in the controversial area of eugenics – indeed, he coined that term – which involves understading how physical traits are passed down from one generation to the next. 
 
@@ -102,7 +102,7 @@ Notice how we only specified the variable (sons' heights) on the common horizont
 
 Both the gold and the blue scatter plots slope upwards and show a positive association between the sons' heights and the heights of both their parents. The blue (fathers) plot is in general higher than the gold, because the fathers were in general taller than the mothers.
 
-### Line Plots ###
+### Line Plots
 
 Our next example involves data on children of more recent times. We will return to the Census data table `us_pop`, created below again for reference. From this, we will extract the counts of all children in each of the age categories 0 through 18 years.
 
@@ -211,7 +211,7 @@ The graphs cross each other in a few places: for example, there were more 4-year
 
 Of course, the 14-year-olds in 2014 mostly consist of the 10-year-olds in 2010. To see this, look at the gold graph at `AGE` 14 and the blue graph at `AGE` 10. Indeed, you will notice that the entire gold graph (2014) looks like the blue graph (2010) slid over to the right by 4 years. The slide is accompanied by a slight rise due to the net effect of children who entered the country between 2010 and 2014 outnumbering those who left. Fortunately at these ages there is not much loss of life.
 
-### Bar Charts ###
+### Bar Charts
 
 For our final example of this section, we look at distributions of ethnicities of adults and children in California as well as in the entire United States.
 

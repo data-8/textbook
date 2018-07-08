@@ -10,21 +10,21 @@ nextchapter:
   title: '9.4 The Monty Hall Problem'
 ---
 
-### Simulation ###
+### Simulation
 Simulation is the process of using a computer to mimic a physical experiment. In this class, those experiments will almost invariably involve chance. 
 
 We have seen how to simulate the results of tosses of a coin. The steps in that simulation were examples of the steps that will constitute every simulation we do in this course. In this section we will set out those steps and follow them in examples.
 
-### Step 1: What to Simulate ###
+### Step 1: What to Simulate
 Specify the quantity you want to simulate. For example, you might decide that you want to simulate the outcomes of tosses of a coin. 
 
-### Step 2: Simulating One Value ###
+### Step 2: Simulating One Value
 Figure out how to simulate *one* value of the quantity you specified in Step 1. In our example, you have to figure out how to simulate the outcome of *one* toss of a coin. If your quantity is more complicated, you might need several lines of code to come up with one simulated value.
 
-### Step 3: Number of Repetitions ###
+### Step 3: Number of Repetitions
 Decide how many times you want to simulate the quantity. You will have to repeat Step 2 that many times. In one of our earlier examples we had decided to simulate the outcomes of 1000 tosses of a coin, and so we needed 1000 repetitions of generating the outcome of a single toss.
 
-### Step 4: Coding the Simulation ###
+### Step 4: Coding the Simulation
 Put it all together in code.
 - Create an empty array in which to collect all the simulated values. We will call this the collection array.
 - Create a "repetitions sequence," that is, a sequence whose length is the number of repetitions you specified in Step 3. For `n` repetitions we will almost always use the sequence `np.arange(n)`.
@@ -36,7 +36,7 @@ That's it! Once you have carried out the steps above, your simulation is done. T
 
 At this point you can use the collection array as you would any other array. You can visualize the distribution of the simulated values, count how many simulated values fall into a particular category, and so on.
 
-### Number of Heads in 100 Tosses ###
+### Number of Heads in 100 Tosses
 It is natural to expect that in 100 tosses of a coin, there will be 50 heads, give or take a few. 
 
 But how many is "a few"? What's the chance of getting exactly 50 heads? Questions like these matter in data science not only because they are about interesting aspects of randomness, but also because they can be used in analyzing experiments where assignments to treatment and control groups are decided by the toss of a coin.
@@ -45,10 +45,10 @@ In this example we will simulate the number of heads in 100 tosses of a coin. Th
 
 Let's get started on the simulation, following the steps above.
 
-### Step 1: What to Simulate ###
+### Step 1: What to Simulate
 The quantity we are going to simulate is the number of heads in 100 tosses. 
 
-### Step 2: Simulating One Value ###
+### Step 2: Simulating One Value
 We have to figure out how to make one set of 100 tosses and count the number of heads. Let's start by creating a coin.
 
 
@@ -117,13 +117,13 @@ num_heads
 
 
 
-### Step 3: Number of Repetitions ###
+### Step 3: Number of Repetitions
 How many repetitions we want is up to us. The more we use, the more reliable our simulations will be, but the longer it will take to run the code. Python is pretty fast at tossing coins. Let's go for 10,000 repetitions. That means we are going to do the following 10,000 times:
 - Toss a coin 100 times and count the number of heads.
 
 That's a lot of tossing! It's good that we have Python to do it for us.
 
-### Step 4: Coding the Simulation ###
+### Step 4: Coding the Simulation
 We are ready to write the code to execute the entire simulation.
 
 
@@ -252,7 +252,7 @@ While in theory it is *possible* that the number of heads can be anywhere betwee
 
 This is an instance of a more general phenomenon about the variability in coin tossing, as we will see later in the course.
 
-### A More Compact Version of the Code ###
+### A More Compact Version of the Code
 We wrote the code for the simulation to show each of the steps in detail. Here are the same steps written in a more compact form. You can see that the code starts out the same way as before, but then some steps are combined.
 
 
@@ -283,7 +283,7 @@ array([52., 45., 48., ..., 48., 44., 51.])
 
 
 
-### Moves in Monopoly ###
+### Moves in Monopoly
 Each move in the game Monopoly is determined by the total number of spots of two rolls of a die. If you play Monopoly, what should you expect to get when you roll the die two times?
 
 We can explore this by simulating the sum of two rolls of a die. We will run the simulation 10,000 times as we did in the previous example. Notice that is this paragraph we have completed Steps 1 and 3 of our simulation process.

@@ -10,7 +10,7 @@ nextchapter:
   title: '16.2 Inference for the True Slope'
 ---
 
-### A Regression Model ###
+### A Regression Model
 
 In brief, such models say that the underlying relation between the two variables is perfectly linear; this straight line is the *signal* that we would like to identify. However, we are not able to see the line clearly. What we see are points that are scattered around the line. In each of the points, the signal has been contaminated by *random noise*. Our inferential goal, therefore, is to separate the signal from the noise.
 

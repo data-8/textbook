@@ -10,7 +10,7 @@ nextchapter:
   title: '15. Prediction'
 ---
 
-### Choosing a Sample Size ###
+### Choosing a Sample Size
 Candidate A is contesting an election. A polling organization wants to estimate the proportion of voters who will vote for her. Let's suppose that they plan to take a simple random sample of voters, though in reality their method of sampling would be more complex. How can they decide how large their sample should be, to get a desired level of accuracy?
 
 We are now in a position to answer this question, after making a few assumptions:
@@ -20,7 +20,7 @@ We are now in a position to answer this question, after making a few assumptions
 
 We will work with the sample proportion of voters for Candidate A. Recall that a proportion is a mean, when the values in the population are only 0 (the type of individual you are not counting) or 1 (the type of individual you are counting).
 
-### Width of Confidence Interval ###
+### Width of Confidence Interval
 If we had a random sample, we could go about using the bootstrap to construct a confidence interval for the percent of voters for Candidate A. But we don't have a sample yet – we are trying to find out how big the sample has to be so that our confidence interval is as narrow as we want it to be.
 
 In situations like this, it helps to see what theory predicts.
@@ -46,7 +46,7 @@ $$
 \sqrt{\mbox{sample size}} ~ \ge ~ 4 \times \frac{\mbox{SD of the 0-1 population}}{0.01}
 $$
 
-### The SD of a collection of 0's and 1's ###
+### The SD of a collection of 0's and 1's
 If we knew the SD of the population, we'd be done. We could calculate the square root of the sample size, and then take the square to get the sample size. But we don't know the SD of the population. The population consists of 1 for each voter for Candidate A, and 0 for all other voters, and *we don't know what proportion of each kind there are.* That's what we're trying to estimate.
 
 So are we stuck? No, because we can *bound* the SD of the population. Here are histograms of two such distributions, one for an equal proportion of 1's and 0's, and one with 90% 1's and 10% 0's. Which one has the bigger SD? 
@@ -136,7 +136,7 @@ zero_one_sds.scatter("Population Proportion of 1's")
 
 **Summary:** The SD of a population of 1's and 0's is at most 0.5. That's the value of the SD when 50% of the population is coded 1 and the other 50% are coded 0.
 
-### The Sample Size ###
+### The Sample Size
 We know that 
 $$
 \sqrt{\mbox{sample size}} ~ \ge ~ 4 \times \frac{\mbox{SD of the 0-1 population}}{0.01}

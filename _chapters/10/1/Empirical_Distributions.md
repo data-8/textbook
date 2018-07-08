@@ -10,7 +10,7 @@ nextchapter:
   title: '10.2 Sampling from a Population'
 ---
 
-### Empirical Distributions ###
+### Empirical Distributions
 
 In data science, the word "empirical" means "observed". Empirical distributions are distributions of observed data, such as data in random samples.
 
@@ -60,7 +60,7 @@ die
 
 
 
-### A Probability Distribution ###
+### A Probability Distribution
 
 The histogram below helps us visualize the fact that every face appears with probability 1/6. We say that the histogram shows the *distribution* of probabilities over all the possible faces. Since all the bars represent the same percent chance, the distribution is called *uniform on the integers 1 through 6.*
 
@@ -81,7 +81,7 @@ It is important to remember that the die can't show 1.3 spots, or 5.2 spots – 
 
 Before going further, let's make sure that the numbers on the axes make sense. The probability of each face is 1/6, which is 16.67% when rounded to two decimal places. The width of each bin is 1 unit. So the height of each bar is 16.67% per unit. This agrees with the horizontal and vertical scales of the graph.
 
-### Empirical Distributions ###
+### Empirical Distributions
 The distribution above consists of the theoretical probability of each face. It is not based on data. It can be studied and understood without any dice being rolled.
 
 *Empirical distributions,* on the other hand, are distributions of observed data. They can be visualized by *empirical histograms*. 
@@ -154,7 +154,7 @@ def empirical_hist_die(n):
     die.sample(n).hist(bins = die_bins)
 ```
 
-### Empirical Histograms ###
+### Empirical Histograms
 
 Here is an empirical histogram of 10 rolls. It doesn't look very much like the probability histogram above. Run the cell a few times to see how it varies.
 
@@ -194,7 +194,7 @@ As we increase the number of rolls in the simulation, the area of each bar gets 
 
 What we have observed in an instance of a general rule:
 
-### The Law of Averages ###
+### The Law of Averages
 
 If a chance experiment is repeated independently and under identical conditions, then, in the long run, the proportion of times that an event occurs gets closer and closer to the theoretical probability of the event.
 

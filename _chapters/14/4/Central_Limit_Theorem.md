@@ -10,12 +10,12 @@ nextchapter:
   title: '14.5 The Variability of the Sample Mean'
 ---
 
-### The Central Limit Theorem ###
+### The Central Limit Theorem
 Very few of the data histograms that we have seen in this course have been bell shaped. When we have come across a bell shaped distribution, it has almost invariably been an empirical histogram of a statistic based on a random sample.
 
 The examples below show two very different situations in which an approximate bell shape appears in such histograms.
 
-### Net Gain in Roulette ###
+### Net Gain in Roulette
 In an earlier section, the bell appeared as the rough shape of the total amount of money we would make if we placed the same bet repeatedly on different spins of a roulette wheel. 
 
 
@@ -269,7 +269,7 @@ np.std(results.column(0))
 
 **Summary.** The net gain in 400 bets is the sum of the 400 amounts won on each individual bet. The probability distribution of that sum is approximately normal, with an average and an SD that we can approximate.
 
-### Average Flight Delay ###
+### Average Flight Delay
 The table `united` contains data on departure delays of 13,825 United Airlines domestic flights out of San Francisco airport in the summer of 2015. As we have seen before, the distribution of delays has a long right-hand tail.
 
 
@@ -367,7 +367,7 @@ results.hist(bins=np.arange(10, 25, 0.5))
 
 Once again, we see a rough bell shape, even though we are drawing from a very skewed distribution. The bell is centered somewhere between 16 ad 17, as we expect.
 
-### Central Limit Theorem ###
+### Central Limit Theorem
 
 The reason why the bell shape appears in such settings is a remarkable result of probability theory called the **Central Limit Theorem**. 
 
@@ -377,7 +377,7 @@ As we noted when we were studying Chebychev's bounds, results that can be applie
 
 The Central Limit Theorem makes it possible to make inferences with very little knowledge about the population, provided we have a large random sample. That is why it is central to the field of statistical inference.
 
-### Proportion of Purple Flowers ###
+### Proportion of Purple Flowers
 Recall Mendel's probability model for the colors of the flowers of a species of pea plant. The model says that the flower colors of the plants are like draws made at random with replacement from {Purple, Purple, Purple, White}.
 
 In a large sample of plants, about what proportion will have purple flowers? We would expect the answer to be about 0.75, the proportion purple in the model. And, because proportions are means, the Central Limit Theorem says that the distribution of the sample proportion of purple plants is roughly normal.

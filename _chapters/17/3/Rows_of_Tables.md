@@ -10,7 +10,7 @@ nextchapter:
   title: '17.4 Implementing the Classifier'
 ---
 
-### Rows of Tables ###
+### Rows of Tables
 Now that we have a qualitative understanding of nearest neighbor classification, it's time to implement our classifier.
 
 Until this chapter, we have worked mostly with single columns of tables. But now we have to see whether one *individual* is "close" to another. Data for individuals are contained in *rows* of tables.
@@ -65,7 +65,7 @@ ckd.row(0).item(3)
 
 
 
-### Converting Rows to Arrays (When Possible) ###
+### Converting Rows to Arrays (When Possible)
 Rows whose elements are all numerical (or all strings) can be converted to arrays.  Converting a row to an array gives us access to arithmetic operations and other nice NumPy functions, so it is often useful.
 
 Recall that in the previous section we tried to classify the patients as 'CKD' or 'not CKD', based on two attributes `Hemoglobin` and `Glucose`, both measured in standard units. 
@@ -247,7 +247,7 @@ array([ 0.59610766, -0.19065363])
 
 This is very handy because we can now use array operations on the data in each row.
 
-### Distance Between Points When There are Two Attributes ###
+### Distance Between Points When There are Two Attributes
 The main calculation we need to do is to find the distance between Alice's point and any other point. For this, the first thing we need is a way to compute the distance between any pair of points. 
 
 How do we do this?  In 2-dimensional space, it's pretty easy.  If we have a point at coordinates $(x_0,y_0)$ and another at $(x_1,y_1)$, the distance between them is
@@ -326,7 +326,7 @@ distance(alice, patient3)
 
 We have begun to build our classifier: the `distance` function is the first building block. Now let's work on the next piece.
 
-### Using `apply` on an Entire Row ###
+### Using `apply` on an Entire Row
 Recall that if you want to apply a function to each element of a column of a table, one way to do that is by the call `table_name.apply(function_name, column_label)`. This evaluates to an array consisting of the values of the function when we call it on each element of the column. So each entry of the array is based on the corresponding row of the table.
 
 If you use `apply` without specifying a column label, then the entire row is passed to the function. Let's see how this works on a very small table `t` containing the information about the first five patients in the training sample.
@@ -417,7 +417,7 @@ array([0.4568837 , 1.15300352, 0.77013762, 0.59610766, 0.49961028])
 
 This way of using `apply` will help us create the next building block of our classifier.
 
-### Alice's $k$ Nearest Neighbors ###
+### Alice's $k$ Nearest Neighbors
 If we want to classify Alice using a k-nearest neighbor classifier, we have to identify her $k$ nearest neighbors. What are the steps in this process? Suppose $k = 5$. Then the steps are:
 - **Step 1.** Find the distance between Alice and each point in the training sample.
 - **Step 2.** Sort the data table in increasing order of the distances.

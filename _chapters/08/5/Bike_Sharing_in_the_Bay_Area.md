@@ -10,7 +10,7 @@ nextchapter:
   title: '9. Randomness'
 ---
 
-### Bike Sharing in the Bay Area ###
+### Bike Sharing in the Bay Area
 
 We end this chapter by using all the methods we have learned to examine a new and large dataset. We will also introduce `map_table`, a powerful visualization tool.
 
@@ -106,7 +106,7 @@ commute.hist('Duration', bins=60, unit='Second')
 ![png]({{ site.baseurl }}/images/chapters/08/5/Bike_Sharing_in_the_Bay_Area_5_0.png)
 
 
-### Exploring the Data with `group` and `pivot` ###
+### Exploring the Data with `group` and `pivot`
 
 We can use `group` to identify the most highly used Start Station:
 
@@ -341,7 +341,7 @@ commute.pivot('Start Station', 'End Station', 'Duration', min)
 
 Someone had a very quick trip (271 seconds, or about 4.5 minutes) from 2nd at Folsom to Beale at Market, about five blocks away. There are no bike trips between the 2nd Avenue stations and Adobe on Almaden, because the latter is in a different city.
 
-### Drawing Maps ###
+### Drawing Maps
 The table `stations` contains geographical information about each bike station, including latitude, longitude, and a "landmark" which is the name of the city where the station is located.
 
 
@@ -437,7 +437,7 @@ Circle.map_table(sf_map_data, color='green', radius=200)
 
 
 
-### More Informative Maps: An Application of `join` ###
+### More Informative Maps: An Application of `join`
 The bike stations are located in five different cities in the Bay Area. To distinguish the points by using a different color for each city, let's start by using group to identify all the cities and assign each one a color.
 
 

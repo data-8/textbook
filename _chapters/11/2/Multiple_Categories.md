@@ -10,24 +10,24 @@ nextchapter:
   title: '11.3 Decisions and Uncertainty'
 ---
 
-### Multiple Categories ###
+### Multiple Categories
 We have developed a way of assessing models about chance processes that generate data in two categories. The method extends to models involving data in multiple categories. The process of assessment is the same as before, the only difference being that we have to come up with a new statistic to simulate.
 
 Let's do this in an example that addresses the same kind of question that was raised in the case of Robert Swain's jury panel. This time, the data are more recent.
 
-### Jury Selection in Alameda County ###
+### Jury Selection in Alameda County
 
 In 2010, the American Civil Liberties Union (ACLU) of Northern California presented a [report](https://www.aclunc.org/sites/default/files/racial_and_ethnic_disparities_in_alameda_county_jury_pools.pdf "ACLU_NC report") on jury selection in Alameda County, California. The report concluded that certain ethnic groups are underrepresented among jury panelists in Alameda County, and suggested some reforms of the process by which eligible jurors are assigned to panels. In this section, we will perform our own analysis of the data and examine some questions that arise as a result.
 
 Some details about jury panels and juries will be helpful in interpreting the results of our analysis.
 
-### Jury Panels ###
+### Jury Panels
 
 A jury panel is a group of people chosen to be prospective jurors; the final trial jury is selected from among them. Jury panels can consist of a few dozen people or several thousand, depending on the trial. By law, a jury panel is supposed to be representative of the community in which the trial is taking place. Section 197 of California's Code of Civil Procedure says, "All persons selected for jury service shall be selected at random, from a source or sources inclusive of a representative cross section of the population of the area served by the court."
 
 The final jury is selected from the panel by deliberate inclusion or exclusion. The law allows potential jurors to be excused for medical reasons; lawyers on both sides may strike a certain number of potential jurors from the list in what are called "peremptory challenges"; the trial judge might make a selection based on questionnaires filled out by the panel; and so on. But the initial panel is supposed to resemble a random sample of the population of eligible jurors.
 
-### Composition of Panels in Alameda County ###
+### Composition of Panels in Alameda County
 
 The focus of the study by the ACLU of Northern California was the ethnic composition of jury panels in Alameda County. The ACLU compiled data on the ethnic composition of the jury panels in 11 felony trials in Alameda County in the years 2009 and 2010. In those panels, the total number of people who reported for jury service was 1,453. The ACLU gathered demographic data on all of these prosepctive jurors, and compared those data with the composition of all eligible jurors in the county. 
 
@@ -89,7 +89,7 @@ jury.barh('Ethnicity')
 ![png]({{ site.baseurl }}/images/chapters/11/2/Multiple_Categories_6_0.png)
 
 
-### Comparison with Panels Selected at Random ###
+### Comparison with Panels Selected at Random
 What if we select a random sample of 1,453 people from the population of eligible jurors? Will the distribution of their ethnicities look like the distribution of the panels above?
 
 We can answer these questions by using `sample_proportions` and augmenting the `jury` table with a column of the proportions in our sample.
@@ -157,7 +157,7 @@ The bar chart shows that the distribution of the random sample resembles the eli
 
 To assess whether this observation is particular to one random sample or more general, we can  simulate multiple panels under the model of random selection and see what the simulations predict. But we won't be able to look at thousands of bar charts like the one above. We need a statistic that will help us assess whether or not the model or random selection is supported by the data.
 
-### A New Statistic: The Distance between Two Distributions ###
+### A New Statistic: The Distance between Two Distributions
 We know how to measure how different two numbers are – if the numbers are $x$ and $y$, the distance between them is $\vert x-y \vert$. Now we have to quantify the distance between two distributions. For example, we have to measure the distance between the blue and gold distributions below.
 
 
@@ -285,7 +285,7 @@ This quantity 0.14 is the *total variation distance* (TVD) between the distribut
 
 We could have obtained the same result by just adding the positive differences. But our method of including all the absolute differences eliminates the need to keep track of which differences are positive and which are not.
 
-### Simulating One Value of the Statistic ###
+### Simulating One Value of the Statistic
 We will use the total variation distance between distributions as the statistic to simulate. It will help us decide whether the model of random selection is good, because large values of the distance will be evidence against the model.
 
 Keep in mind that **the observed value of our statistic is 0.14**, calculated above.
@@ -344,7 +344,7 @@ Notice that the distance is quite a bit smaller than 0.14, the distance between 
 
 We are now ready to run a simulation to assess the model of random selection.
 
-### Predicting the Statistic Under the Model of Random Selection ###
+### Predicting the Statistic Under the Model of Random Selection
 The total variation distance between the distributions of the random sample and the eligible jurors is the statistic that we are using to measure the distance between the two distributions. By repeating the process of sampling, we can see how much the statistic varies across different random samples. 
 
 The code below simulates the statistic based on a large number of replications of the random sampling process, following our usual sequence of steps for simulation. The body of the `for` loop repeats the code we used to simulate one value of the statistics, and then appends the simulated value to the collection array `tvds`.
@@ -380,18 +380,18 @@ Table().with_column('TVD', tvds).hist(bins=np.arange(0, 0.2, 0.005))
 ![png]({{ site.baseurl }}/images/chapters/11/2/Multiple_Categories_31_0.png)
 
 
-### Assessing the Model of Random Selection ###
+### Assessing the Model of Random Selection
 
 The panels in the study, however, were not quite so similar to the eligible population. The total variation distance between the panels and the population was 0.14, which is far out in the tail of the histogram above. It does not look at all like a typical distance between a random sample and the eligible population.
 
 The data in the panels is not consistent with the predicted values of the statistic based on the model of random selection. So our analysis supports the ACLU's calculation that the panels were not representative of the distribution provided for the eligible jurors. 
 
-### Some Possible Explanations for the Differences ###
+### Some Possible Explanations for the Differences
 As with most such analyses, however, our analysis does not say *why* the distributions are different or what the difference might imply.
 
 The ACLU report discusses several possible reasons for the discrepancies. For example, some minority groups were underrepresented on the records of voter registration and of the Department of Motor Vehicles, the two main sources from which jurors are selected. At the time of the study, the county did not have an effective process for following up on prospective jurors who had been called but had failed to appear. The ACLU listed several other reasons as well. Whatever the reasons, it seems clear that the composition of the jury panels was different from what we would have expected in a random sample from the distribution in the `Eligible` column.
 
-### Questions about the Data ###
+### Questions about the Data
 We have developed a powerful technique that helps decide whether one distribution looks like a random sample from another. But data science is about more than techniques. In particular, data science always involves a thoughtful examination of how the data were gathered.
 
 **Eligible Jurors.** First, it is important to remember that not everyone is eligible to serve on a jury. On its [website](http://www.alameda.courts.ca.gov/pages.aspx/jury-duty-overview), the Superior Court of Alameda County says, "You may be called to serve if you are 18 years old, a U.S. citizen and a resident of the county or district where summoned. You must be able to understand English, and be physically and mentally capable of serving. In addition, you must not have served as any kind of juror in the past 12 months, nor have been convicted of a felony."
