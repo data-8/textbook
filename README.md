@@ -27,7 +27,7 @@ following steps:
    git clone https://github.com/inferentialthinking/inferentialthinking.github.io
    cd interentialthinking.github.io
    ```
-   
+
 2. Add the `data-8/textbook` repository as a remote.
 
    ```
@@ -40,13 +40,13 @@ following steps:
    ```
    git pull textbook gh-pages
    ```
-   
+
 5. Push the updated repository to github:
 
    ```
    git push origin master
    ```
-   
+
 This will update your local copy with the latest version of the textbook in
 the `data-8` organization, then push it to the `inferentialthinking` organization
 where it'll be hosted online.
@@ -70,12 +70,13 @@ Here are steps to get started:
    > If you **do not** have a `SUMMARY.md` file made for this textbook, you may create one
      by hand, or generate one from the folders/files in `notebooks/` by running the following
      script:
-   > 
+   >
    >    python scripts/generate_summary_from_folders.py
 
-3. Build the textbook with the following command:
+3. Build the textbook by navigating to the root of the repository and running
+   the following command:
 
-       python scripts/generate_textbook.py
+       make textbook
 
 This will:
 
@@ -94,7 +95,7 @@ your newly-created Markdown files.
    for more information on how Jekyll and GitHub interact.
 2. Ensure that your notebooks have been converted to markdown:
 
-       python scripts/generate_textbook.py
+       make textbook
 
 3. Run the Jekyll site preview command:
 
