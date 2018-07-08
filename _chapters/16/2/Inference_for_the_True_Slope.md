@@ -10,7 +10,7 @@ nextchapter:
   title: '16.3 Prediction Intervals'
 ---
 
-### Inference for the True Slope ###
+### Inference for the True Slope
 
 Our simulations show that if the regression model holds and the sample size is large, then the regression line is likely to be close to the true line. This allows us to estimate the slope of the true line.
 
@@ -68,12 +68,12 @@ We need another sample of points, so that we can draw the regression line throug
 
 You have guessed it – we will *bootstrap our original sample*. That will give us a bootstrapped scatter plot, through which we can draw a regression line.
 
-### Bootstrapping the Scatter Plot ###
+### Bootstrapping the Scatter Plot
 We can simulate new samples by random sampling with replacement from the original sample, as many times as the original sample size. Each of these new samples will give us a scatter plot. We will call that a *bootstrapped scatter plot*, and for short, we will call the entire process *bootstrapping the scatter plot*.
 
 Here is the original scatter diagram from the sample, and four replications of the bootstrap resampling procedure. Notice how the resampled scatter plots are in general a little more sparse than the original. That is because some of the original points do not get selected in the samples.
 
-### Estimating the True Slope ###
+### Estimating the True Slope
 
 We can bootstrap the scatter plot a large number of times, and draw a regression line through each bootstrapped plot. Each of those lines has a slope. We can simply collect all the slopes and draw their empirical histogram. Recall that by default, the `sample` method draws at random with replacement, the same number of times as the number of rows in the table. That is, `sample` generates a bootstrap sample by default.
 
@@ -114,7 +114,7 @@ left, right
 
 An approximate 95% confidence interval for the true slope extends from about 0.38 ounces per day to about 0.56 ounces per day. 
 
-### A Function to Bootstrap the Slope ###
+### A Function to Bootstrap the Slope
 
 Let us collect all the steps of our method of estimating the slope and define a function `bootstrap_slope` that carries them out. Its arguments are the name of the table and the labels of the predictor and response variables, and the desired number of bootstrap replications. In each replication, the function bootstraps the original scatter plot and calculates the slope of the resulting regression line. It then draws the histogram of all the generated slopes and prints the interval consisting of the "middle 95%" of the slopes. 
 
@@ -221,7 +221,7 @@ Approximate 95%-confidence interval for the true slope:
 
 A 95% confidence interval for the true slope extends from about 1 ounce per inch to about 1.9 ounces per inch.
 
-### Could the True Slope Be 0? ###
+### Could the True Slope Be 0?
 
 Suppose we believe that our data follow the regression model, and we fit the regression line to estimate the true line. If the regression line isn't perfectly flat, as is almost invariably the case, we will be observing some linear association in the scatter plot.
 

@@ -253,7 +253,7 @@ minard
 
 We will use this small table to demonstrate some useful Table methods. We will then use those same methods, and develop other methods, on much larger tables of data.
 
-### The Size of the Table ###
+### The Size of the Table
 
 The method `num_columns` gives the number of columns in the table, and `num_rows` the number of rows.
 
@@ -289,7 +289,7 @@ minard.num_rows
 
 
 
-### Column Labels 
+### Column Labels
 The method `labels` can be used to list the labels of all the columns. With `minard` we don't gain much by this, but it can be very useful for tables that are so large that not all columns are visible on the screen.
 
 
@@ -456,7 +456,7 @@ minard
 
 
 
-### Accessing the Data in a Column ###
+### Accessing the Data in a Column
 We can use a column's label to access the array of data in the column.
 
 
@@ -527,7 +527,7 @@ minard.column(4).item(5)
 
 
 
-### Working with the Data in a Column ###
+### Working with the Data in a Column
 Because columns are arrays, we can use array operations on them to discover new information. For example, we can create a new column that contains the percent of all survivors at each city after Smolensk.
 
 
@@ -630,7 +630,7 @@ minard.set_format('Percent Surviving', PercentFormatter)
 
 
 
-### Choosing Sets of Columns ###
+### Choosing Sets of Columns
 The method `select` creates a new table that contains only the specified columns.
 
 

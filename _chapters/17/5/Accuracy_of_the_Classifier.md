@@ -10,12 +10,12 @@ nextchapter:
   title: '17.6 Multiple Regression'
 ---
 
-### The Accuracy of the Classifier ###
+### The Accuracy of the Classifier
 To see how well our classifier does, we might put 50% of the data into the training set and the other 50% into the test set.  Basically, we are setting aside some data for later use, so we can use it to measure the accuracy of our classifier.  We've been calling that the *test set*. Sometimes people will call the data that you set aside for testing a *hold-out set*, and they'll call this strategy for estimating accuracy the *hold-out method*.
 
 Note that this approach requires great discipline.  Before you start applying machine learning methods, you have to take some of your data and set it aside for testing.  You must avoid using the test set for developing your classifier: you shouldn't use it to help train your classifier or tweak its settings or for brainstorming ways to improve your classifier.  Instead, you should use it only once, at the very end, after you've finalized your classifier, when you want an unbiased estimate of its accuracy.
 
-### Measuring the Accuracy of Our Wine Classifier ###
+### Measuring the Accuracy of Our Wine Classifier
 OK, so let's apply the hold-out method to evaluate the effectiveness of the $k$-nearest neighbor classifier for identifying wines.  The data set has 178 wines, so we'll randomly permute the data set and put 89 of them in the training set and the remaining 89 in the test set.
 
 
@@ -68,7 +68,7 @@ evaluate_accuracy(training_set, test_set, 5)
 
 The accuracy rate isn't bad at all for a simple classifier.
 
-### Breast Cancer Diagnosis ###
+### Breast Cancer Diagnosis
 
 Now I want to do an example based on diagnosing breast cancer.  I was inspired by Brittany Wenger, who won the Google national science fair in 2012 a 17-year old high school student.  Here's Brittany:
 

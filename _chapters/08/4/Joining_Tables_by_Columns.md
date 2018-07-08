@@ -10,7 +10,7 @@ nextchapter:
   title: '8.5 Bike Sharing in the Bay Area'
 ---
 
-### Joining Tables by Columns ###
+### Joining Tables by Columns
 Often, data about the same individuals is maintained in more than one table. For example, one university office might have data about each student's time to completion of degree, while another has data about the student's tuition and financial aid.
 
 To understand the students' experience, it may be helpful to put the two datasets together. If the data are in two tables, each with one row per student, then we would want to put the columns together, making sure to match the rows so that each student's information remains on a single row.

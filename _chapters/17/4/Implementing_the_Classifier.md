@@ -10,7 +10,7 @@ nextchapter:
   title: '17.5 The Accuracy of the Classifier'
 ---
 
-### Implementing the Classifier ###
+### Implementing the Classifier
 We are now ready to impelment a $k$-nearest neighbor classifier based on multiple attributes. We have used only two attributes so far, for ease of visualization. But usually predictions will be based on many attributes. Here is an example that shows how multiple attributes can be better than pairs.
 
 ### Banknote authentication
@@ -151,7 +151,7 @@ To sum up: you now know how to use $k$-nearest neighbor classification to predic
 2. Gather a training set of examples where you know the values of the attributes as well as the correct prediction.
 3. To make predictions in the future, measure the value of the attributes and then use $k$-nearest neighbor classification to predict the answer to the question.
 
-### Distance in Multiple Dimensions ###
+### Distance in Multiple Dimensions
 We know how to compute distance in 2-dimensional space. If we have a point at coordinates $(x_0,y_0)$ and another at $(x_1,y_1)$, the distance between them is
 
 $$D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}.$$
@@ -334,7 +334,7 @@ wine_with_colors.scatter('Magnesium', 'Total Phenols', colors='Color')
 
 Let's see if we can implement a classifier based on all of the attributes. After that, we'll see how accurate it is.
 
-### A Plan for the Implementation ###
+### A Plan for the Implementation
 It's time to write some code to implement the classifier.  The input is a `point` that we want to classify.  The classifier works by finding the $k$ nearest neighbors of `point` from the training set.  So, our approach will go like this:
 
 1. Find the closest $k$ neighbors of `point`, i.e., the $k$ wines from the training set that are most similar to `point`.
@@ -358,7 +358,7 @@ def classify(training, p, k):
     return majority(kclosest)
 ```
 
-### Implementation Step 1 ###
+### Implementation Step 1
 To implement the first step for the kidney disease data, we had to compute the distance from each patient in the training set to `point`, sort them by distance, and take the $k$ closest patients in the training set.  
 
 That's what we did in the previous section with the point corresponding to Alice. Let's generalize that code. We'll redefine `distance` here, just for convenience.
@@ -447,7 +447,7 @@ closest(wine, special_wine, 5)
 
 Bingo! The first row is the nearest neighbor, which is itself – there's a 0 in the `Distance` column as expected. All five nearest neighbors are of Class 1, which is consistent with our earlier observation that Class 1 wines appear to be clumped together in some dimensions.
 
-### Implementation Steps 2 and 3 ###
+### Implementation Steps 2 and 3
 Next we need to take a "majority vote" of the nearest neighbors and assign our point the same class as the majority.
 
 

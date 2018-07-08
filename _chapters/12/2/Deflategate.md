@@ -10,7 +10,7 @@ nextchapter:
   title: '12.3 Causality'
 ---
 
-### Deflategate ###
+### Deflategate
 On January 18, 2015, the Indianapolis Colts and the New England Patriots played the American Football Conference (AFC) championship game to determine which of those teams would play in the Super Bowl. After the game, there were allegations that the Patriots' footballs had not been inflated as much as the regulations required; they were softer. This could be an advantage, as softer balls might be easier to catch.
 
 For several weeks, the world of American football was consumed by accusations, denials, theories, and suspicions: the press labeled the topic Deflategate, after the Watergate political scandal of the 1970's. The National Football League (NFL) commissioned an independent analysis. In this example, we will perform our own analysis of the data.
@@ -304,12 +304,12 @@ The average drop for the Patriots was about 1.2 psi compared to about 0.47 psi f
 
 The question now is why the Patriots' footballs had a larger drop in pressure, on average, than the Colts footballs. Could it be due to chance?
 
-### The Hypotheses ###
+### The Hypotheses
 How does chance come in here? Nothing was being selected at random. But we can make a chance model by hypothesizing that the 11 Patriots' drops look like a random sample of 11 out of all the 15 drops, with the Colts' drops being the remaining four. That's a completely specified chance model under which we can simulate data. So it's the **null hypothesis**.
 
 For the alternative, we can take the position that the Patriots' drops are too large, on average, to resemble a random sample drawn from all the drops. 
 
-### Test Statistic ###
+### Test Statistic
 A natural statistic is the difference between the two average drops, which we will compute as "average drop for Patriots - average drop for Colts". Large values of this statistic will favor the alternative hypothesis.
 
 
@@ -333,7 +333,7 @@ observed_difference
 
 This positive difference reflects the fact that the average drop in pressure of the Patriots' balls was greater than that of the Colts.
 
-### Predicting the Statistic Under the Null Hypothesis ###
+### Predicting the Statistic Under the Null Hypothesis
 If the null hypothesis were true, then the Patriots' drops would be comparable to 11 drops drawn at random without replacement from all 15 drops, and the Colts' drops would be the remaining four. We can simulate this by randomly permuting all 15 drops and assigning each team the appropriate number of permuted values.
 
 
@@ -437,7 +437,7 @@ original_and_shuffled.group('Team', np.average)
 The two teams' average drop values are closer when the balls are randomly assigned to the two teams than they were for the balls actually used in the game.
 
 
-### Permutation Test ###
+### Permutation Test
 It's time for a step that is now familiar. We will do repeated simulations of the test statistic under the null hypothesis, by repeatedly permuting the footballs and assigning random sets to the two teams.
 
 In the last section we defined a function called `permuted_sample_average_difference` to do this. Here is the definition again. The code is based on the steps we took to compare the averages of the shuffled data.
@@ -470,7 +470,7 @@ differences = permuted_sample_average_difference(football, 'Pressure Drop', 'Tea
 
 The array `differences` contains 10,000 values of the test statistic simulated under the null hypothesis.
 
-### Conclusion of the Test ###
+### Conclusion of the Test
 To calculate the empirical P-value, it's important to recall the alternative hypothesis, which is that the Patriots' drops are too large to be the result of chance variation alone.
 
 The "direction of the alternative" is towards large drops for the Patriots, with correspondingly large values for out test statistic "Patriots' average - Colts' average". So the P-value is the chance (computed under the null hypothesis) of getting a test statistic equal to our observed value of 0.73352272727272805 or *larger*.

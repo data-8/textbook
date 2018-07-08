@@ -74,7 +74,7 @@ def bootstrap_proportion(original_sample, label, replications):
     return proportions
 ```
 
-### Using Confidence Intervals ###
+### Using Confidence Intervals
 A confidence interval has a single purpose – to estimate an unknown parameter based on data in a random sample. In the last section, we said that the interval (36%, 42%) was an approximate 95% confidence interval for the percent of smokers among mothers in the population. That was a formal way of saying that by our estimate, the percent of smokers among the mothers in the population was somewhere between 36% and 42%, and that our process of estimation is correct about 95% of the time.
 
 It is important to resist the impulse to use confidence intervals for other purposes. For example, recall that we calculated the interval (26.9 years, 27.6 years) as an approximate 95% confidence interval for the average age of mothers in the population. A dismayingly common misuse of the interval is to conclude that about 95% of the women were between 26.9 years and 27.6 years old. You don't need to know much about confidence intervals to see that this can't be right – you wouldn't expect 95% of mothers to all be within a few months of each other in age. Indeed, the histogram of the sampled ages shows quite a bit of variation.
@@ -99,7 +99,7 @@ A small percent of the sampled ages are in the (26.9, 27.6) interval, and you wo
 
 However, estimating a parameter by confidence intervals does have an important use besides just telling us roughly how big the parameter is. 
 
-### Using a Confidence Interval to Test Hypotheses ###
+### Using a Confidence Interval to Test Hypotheses
 Our approximate 95% confidence interval for the average age in the population goes from 26.9 years to 27.6 years. Suppose someone wants to test the following hypotheses:
 
 **Null hypothesis.** The average age in the population is 30 years.
@@ -335,5 +335,5 @@ But notice that we have done better than simply concluding that the average drop
 
 In the next chapter, we will examine how the sample size affects accuracy. We will also examine how the empirical distributions of sample means so often come out bell shaped even though the distributions of the underlying data are not bell shaped at all.
 
-### Endnote ###
+### Endnote
 The terminology of a field usually comes from the leading researchers in that field. [Brad Efron](https://en.wikipedia.org/wiki/Bradley_Efron), who first proposed the bootstrap technique, used a term that has [American origins](https://en.wikipedia.org/wiki/Bootstrapping). Not to be outdone, Chinese statisticians have [proposed their own method](http://econpapers.repec.org/article/eeestapro/v_3a37_3ay_3a1998_3ai_3a4_3ap_3a321-329.htm).

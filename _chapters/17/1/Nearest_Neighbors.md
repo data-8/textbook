@@ -10,7 +10,7 @@ nextchapter:
   title: '17.2 Training and Testing'
 ---
 
-### Nearest Neighbors ###
+### Nearest Neighbors
 In this section we'll develop the *nearest neighbor* method of classification. Just focus on the ideas for now and don't worry if some of the code is mysterious. Later in the chapter we'll see how to organize our ideas into code that performs the classification.
 
 ### Chronic kidney disease
@@ -165,7 +165,7 @@ ckd.scatter('Hemoglobin', 'Glucose', colors='Color')
 
 Suppose Alice is a new patient who is not in the data set.  If I tell you Alice's hemoglobin level and blood glucose level, could you predict whether she has CKD?  It sure looks like it!  You can see a very clear pattern here: points in the lower-right tend to represent people who don't have CKD, and the rest tend to be folks with CKD.  To a human, the pattern is obvious.  But how can we program a computer to automatically detect patterns such as this one?
 
-### A Nearest Neighbor Classifier ###
+### A Nearest Neighbor Classifier
 
 There are lots of kinds of patterns one might look for, and lots of algorithms for classification.  But I'm going to tell you about one that turns out to be surprisingly effective.  It is called *nearest neighbor classification*.  Here's the idea.  If we have Alice's hemoglobin and glucose numbers, we can put her somewhere on this scatterplot; the hemoglobin is her x-coordinate, and the glucose is her y-coordinate.  Now, to predict whether she has CKD or not, we find the nearest point in the scatterplot and check whether it is blue or gold; we predict that Alice should receive the same diagnosis as that patient.
 
@@ -191,7 +191,7 @@ Thus our *nearest neighbor classifier* works like this:
 
 The scatterplot suggests that this nearest neighbor classifier should be pretty accurate.  Points in the lower-right will tend to receive a "no CKD" diagnosis, as their nearest neighbor will be a gold point.  The rest of the points will tend to receive a "CKD" diagnosis, as their nearest neighbor will be a blue point.  So the nearest neighbor strategy seems to capture our intuition pretty well, for this example.
 
-### Decision boundary ###
+### Decision boundary
 
 Sometimes a helpful way to visualize a classifier is to map out the kinds of attributes where the classifier would predict 'CKD', and the kinds where it would predict 'not CKD'.  We end up with some boundary between the two, where points on one side of the boundary will be classified 'CKD' and points on the other side will be classified 'not CKD'.  This boundary is called the *decision boundary*.  Each different classifier will have a different decision boundary; the decision boundary is just a way to visualize what criteria the classifier is using to classify points.
 
@@ -220,7 +220,7 @@ The resulting graph shows which points will get classified as 'CKD' (all the blu
 
 The decision boundary is where the classifier switches from turning the red points blue to turning them gold.
 
-### k-Nearest Neighbors ###
+### k-Nearest Neighbors
 
 However, the separation between the two classes won't always be quite so clean.  For instance, suppose that instead of hemoglobin levels we were to look at white blood cell count.  Look at what happens:
 

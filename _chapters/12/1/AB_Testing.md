@@ -10,12 +10,12 @@ nextchapter:
   title: '12.2 Deflategate'
 ---
 
-### A/B Testing ###
+### A/B Testing
 In modern data analytics, deciding whether two numerical samples come from the same underlying distribution is called *A/B testing*. The name refers to the labels of the two samples, A and B.
 
 We will develop the method in the context of an example. The data come from a sample of newborns in a large hospital system. We will treat it as if it were a simple random sample though the sampling was done in multiple stages. [Stat Labs](https://www.stat.berkeley.edu/~statlabs/) by Deborah Nolan and Terry Speed has details about a larger dataset from which this set is drawn. 
 
-### Smokers and Nonsmokers ###
+### Smokers and Nonsmokers
 The table `baby` contains the following variables for 1,174 mother-baby pairs: the baby's birth weight in ounces, the number of gestational days, the mother's age in completed years, the mother's height in inches, pregnancy weight in pounds, and whether or not the mother smoked during pregnancy.
 
 
@@ -128,14 +128,14 @@ The distribution of the weights of the babies born to mothers who smoked appears
 
 This raises the question of whether the difference reflects just chance variation or a difference in the distributions in the larger population. Could it be that there is no difference between the two distributions in the population, but we are seeing a difference in the samples just because of the mothers who happened to be selected?
 
-### The Hypotheses ###
+### The Hypotheses
 We can try to answer this question by a test of hypotheses. The chance model that we will test says that there is no underlying difference; the distributions in the samples are different just due to chance. Formally, this is the null hypothesis.
 
 **Null hypothesis:** In the population, the distribution of birth weights of babies is the same for mothers who don't smoke as for mothers who do. The difference in the sample is due to chance.
 
 **Alternative hypothesis:** In the population, the babies of the mothers who smoke have a lower birth weight, on average, than the babies of the non-smokers.
 
-### Test Statistic ###
+### Test Statistic
 The alternative hypothesis compares the average birth weights of the two groups and says that the average for the mothers who smoke is smaller. Therefore it is reasonable for us to use the difference between the two group means as our statistic. 
 
 We will do the subtraction in the order "average weight of the smoking group $-$ average weight of the non-smoking group". Small values (that is, large negative values) of this statistic will favor the alternative hypothesis. 
@@ -190,7 +190,7 @@ observed_difference
 
 
 
-### Predicting the Statistic Under the Null Hypothesis ###
+### Predicting the Statistic Under the Null Hypothesis
 
 To see how the statistic should vary under the null hypothesis, we have to figure out how to simulate the statistic under that hypothesis. A clever method based on *random permutations* does just that.
 
@@ -402,7 +402,7 @@ difference
 
 
 
-### Permutation Test ###
+### Permutation Test
 Tests based on random permutations of the data are called *permutation tests*. We are performing one in this example. In the cell below, we will simulate our test statistic – the difference between the averages of the two groups – many times and collect the differences in an array. The code in the body of the for loop is just copied over from the cell above.
 
 
@@ -425,7 +425,7 @@ for i in np.arange(repetitions):
 
 The array `differences` contains 5,000 simulated values of our test statistic – the difference between the mean weight in the smoking group and the mean weight in the non-smoking group. 
 
-### Conclusion of the Test ###
+### Conclusion of the Test
 The histogram below shows the distribution of these 5,000 values. It is the empirical distribution of the test statistic simulated under the null hypothesis. It is a prediction made by the null hypothesis, about the statistic.
 
 
@@ -473,7 +473,7 @@ empirical_P
 
 The empirical P-value is 0, meaning that none of the 5,000 observed samples resulted in a difference of -9.27 or lower. This is an approximation; the exact chance of getting a difference in that range is not 0 but it is vanishingly small.
 
-### A Function to Simulate the Differences Under the Null Hypothesis ###
+### A Function to Simulate the Differences Under the Null Hypothesis
 We will want to perform permutation tests for the difference between averages in other contexts as well. Let us define a function that generates the array of simulated differences, based on the code that we wrote above. That will save us time later.
 
 The function `difference_of_permuted_sample_means` takes four arguments:

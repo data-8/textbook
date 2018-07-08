@@ -10,7 +10,7 @@ nextchapter:
   title: '18.2 Making Decisions'
 ---
 
-### A "More Likely Than Not" Binary Classifier ###
+### A "More Likely Than Not" Binary Classifier
 Let's try to use data to classify a point into one of two categories, choosing the category that we think is more likely than not. To do this, we not only need the data but also a clear description of how chances are involved.
 
 We will start out in a simple artifical setting just to develop the main technique, and then move to a more intriguing example.
@@ -32,7 +32,7 @@ We have a pretty simple classifier! But now suppose I give you some additional i
 
 Would this knowledge change your classification?
 
-### Updating the Prediction Based on New Information ###
+### Updating the Prediction Based on New Information
 Now that we know the student has declared a major, it becomes important to look at the relation between year and major declaration. It's still true that more students are Second Years than Third Years. But it's also true that among the Third Years, a much higher percent have declared their major than among the Second Years. Our classifier has to take both of these observations into account.
 
 To visualize this, we will use a table `students` that consists of one row for each of 100 students whose years and majors have the same proportions as given in the data.
@@ -128,7 +128,7 @@ In other words, the chance that we are correct is **the proportion of Third Year
 
 
 
-### Tree Diagram ###
+### Tree Diagram
 The proportion that we have just calculated was based on a class of 100 students. But there's no reason the class couldn't have had 200 students, for example, as long as all the proportions in the cells were correct. Then our calculation would just have been 64/(60 + 64) which is 0.516 as before.
 
 So the calculation depends only on the proportions in the different categories, not on the counts. The proportions can be visualized in a *tree diagram*, shown directly below the pivot table for ease of comparison.
@@ -188,7 +188,7 @@ That is, the answer is **the proportion of Third Years among students who are De
 
 
 
-### Bayes' Rule ###
+### Bayes' Rule
 The method that we have just used is due to the Reverend [Thomas Bayes](https://en.wikipedia.org/wiki/Thomas_Bayes) (1701-1761). His method solved what was called an "inverse probability" problem: given new data, how can you update chances you had found earlier? Though Bayes lived three centuries ago, his method is [widely used now](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) in machine learning.
 
 We will state the rule in the context of our population of students. First, some terminology:

@@ -10,7 +10,7 @@ nextchapter:
   title: '17.1 Nearest Neighbors'
 ---
 
-### Classification ###
+### Classification
 
 *[David Wagner](https://en.wikipedia.org/wiki/David_A._Wagner) is the primary author of this chapter.*
 

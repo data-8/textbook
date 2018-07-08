@@ -10,7 +10,7 @@ nextchapter:
   title: '10.3 Empirical Distibution of a Statistic'
 ---
 
-### Sampling from a Population ###
+### Sampling from a Population
 
 The law of averages also holds when the random sample is drawn from individuals in a large population.
 
@@ -165,7 +165,7 @@ united.where('Delay', are.between(0, 10)).num_rows/united.num_rows
 
 
 
-### Empirical Distribution of the Sample ###
+### Empirical Distribution of the Sample
 
 Let us now think of the 13,825 flights as a population, and draw random samples from it with replacement. It is helpful to package our analysis code into a function. The function `empirical_hist_delay` takes the sample size as its argument and draws an empiricial histogram of the results.
 
@@ -210,7 +210,7 @@ empirical_hist_delay(1000)
 ![png]({{ site.baseurl }}/images/chapters/10/2/Sampling_from_a_Population_17_0.png)
 
 
-### Convergence of the Empirical Histogram of the Sample ###
+### Convergence of the Empirical Histogram of the Sample
 What we have observed in this section can be summarized as follows:
 
 For a large random sample, the empirical histogram of the sample resembles the histogram of the population, with high probability.

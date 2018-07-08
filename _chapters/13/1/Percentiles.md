@@ -10,7 +10,7 @@ nextchapter:
   title: '13.2 The Bootstrap'
 ---
 
-### Percentiles ###
+### Percentiles
 Numerical data can be sorted in increasing or decreasing order. Thus the values of a numerical data set have a *rank order*. A percentile is the value at a particular rank.
 
 For example, if your score on a test is on the 95th percentile, a common interpretation is that only 5% of the scores were higher than yours. The median is the 50th percentile; it is commonly assumed that 50% the values in a data set are above the median.
@@ -21,7 +21,7 @@ You also have to be careful about exactly how far up the list to go when the rel
 
 In this section, we will give a definition that works consistently for all ranks and all lists.
 
-### A Numerical Example ###
+### A Numerical Example
 Before giving a general definition of all percentiles, we will define the 80th percentile of a collection of values to be the smallest value in the collection that is at least as large as 80% of all of the values.
 
 For example, let's consider the sizes of the five largest continents – Africa, Antarctica, Asia, North America, and South America – rounded to the nearest million square miles.
@@ -54,7 +54,7 @@ The 80th percentile is a value on the list, namely 12. You can see that 80% of t
 
 Analogously, the 70th percentile is the smallest value in the collection that is at least as large as 70% of the elements of `sizes`. Now 70% of 5 elements is "3.5 elements", so the 70th percentile is the 4th element on the list. That's 12, the same as the 80th percentile for these data.
 
-### The `percentile` function ###
+### The `percentile` function
 The `percentile` function takes two arguments: a rank between 0 and 100, and a array. It returns the corresponding percentile of the array.
 
 
@@ -73,7 +73,7 @@ percentile(70, sizes)
 
 
 
-### The General Definition ###
+### The General Definition
 
 Let $p$ be a number between 0 and 100. The $p$th percentile of a collection is the smallest value in the collection that is at least as large as p% of all the values.
 
@@ -85,7 +85,7 @@ In practical terms, suppose there are $n$ elements in the collection. To find th
 - If $k$ is an integer, take the $k$th element of the sorted collection.
 - If $k$ is not an integer, round it up to the next integer, and take that element of the sorted collection.
 
-### Example ###
+### Example
 The table `scores_and_sections` contains one row for each student in a class of 359 students. The columns are the student's discussion section and midterm score. 
 
 
@@ -227,7 +227,7 @@ sorted_scores.item(305)
 
 That's the same as the answer we got by using `percentile`. In future, we will just use `percentile`.
 
-### Quartiles ###
+### Quartiles
 The *first quartile* of a numercial collection is the 25th percentile. The terminology arises from *the first quarter*. The second quartile is the median, and the third quartile is the 75th percentile.
 
 For our `scores` data, those values are:

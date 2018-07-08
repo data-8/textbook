@@ -10,7 +10,7 @@ nextchapter:
   title: '15.6 Numerical Diagnostics'
 ---
 
-### Visual Diagnostics ###
+### Visual Diagnostics
 Suppose a data scientist has decided to use linear regression to estimate values of a response variable based on a predictor. To see how well this method of estmation performs, the data scientist must how far off the estimates are from the actual values. These differences are called *residuals*.
 
 $$
@@ -148,7 +148,7 @@ residual_plot(heights, 'MidParent', 'Child')
 
 The midparent heights are on the horizontal axis, as in the original scatter plot. But now the vertical axis shows the residuals. Notice that the plot appears to be centered around the horizontal line at the level 0 (shown in dark blue). Notice also that the plot shows no upward or downward trend. We will observe later that this is true of all regressions.
 
-### Regression Diagnostics ###
+### Regression Diagnostics
 Residual plots help us make visual assessments of the quality of a linear regression analysis. Such assessments are called *diagnostics*. The function ``regression_diagnostic_plots`` draws the original scatter plot as well as the residual plot for ease of comparison.
 
 
@@ -179,7 +179,7 @@ In other words, the accuracy of the regression appears to be about the same acro
 
 **The residual plot of a good regression shows no pattern. The residuals look about the same, above and below the horizontal line at 0, across the range of the predictor variable.**
 
-### Detecting Nonlinearity ###
+### Detecting Nonlinearity
 Drawing the scatter plot of the data usually gives an indication of whether the relation between the two variables is non-linear. Often, however, it is easier to spot non-linearity in a residual plot than in the original scatter plot. This is usually because of the scales of the two plots: the residual plot allows us to zoom in on the errors and hence makes it easier to spot patterns.
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Dugong_dugon.jpg"/>
@@ -282,7 +282,7 @@ At the low end of the lengths, the residuals are almost all positive; then they 
 
 **When a residual plot shows a pattern, there may be a non-linear relation between the variables.**
 
-### Detecting Heteroscedasticity ###
+### Detecting Heteroscedasticity
 
 *Heteroscedasticity* is a word that will surely be of interest to those who are preparing for Spelling Bees. For data scientists, its interest lies in its meaning, which is "uneven spread". 
 

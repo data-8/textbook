@@ -10,13 +10,13 @@ nextchapter:
   title: '8.3 Cross-Classifying'
 ---
 
-### Classifying by One Variable ###
+### Classifying by One Variable
 
 Data scientists often need to classify individuals into groups according to shared features, and then identify some characteristics of the groups. For example, in the example using Galton's data on heights, we saw that it was useful to classify families according to the parents' midparent heights, and then find the average height of the children in each group.
 
 This section is about classifying individuals into categories that are not numerical. We begin by recalling the basic use of `group`. 
 
-### Counting the Number in Each Category ###
+### Counting the Number in Each Category
 The `group` method with a single argument counts the number of rows for each category in a column. The result contains one row per unique value in the grouped column.
 
 Here is a small table of data on ice cream cones. The `group` method can be used to list the distinct flavors and provide the counts of each flavor.
@@ -98,7 +98,7 @@ Notice that this can all be worked out from just the `Flavor` column. The `Price
 
 But what if we wanted the total price of the cones of each different flavor? That's where the second argument of `group` comes in.
 
-### Finding a Characteristic of Each Category ###
+### Finding a Characteristic of Each Category
 The optional second argument of `group` names the function that will be used to aggregate values in other columns for all of those rows. For instance, `sum` will sum up the prices in all rows that match each category. This result also contains one row per unique value in the grouped column, but it has the same number of columns as the original table.
 
 To find the total price of each flavor, we call `group` again, with `Flavor` as its first argument as before. But this time there is a second argument: the function name `sum`.
@@ -320,7 +320,7 @@ lengths
 
 
 
-### Example: NBA Salaries ###
+### Example: NBA Salaries
 The table `nba` contains data on the 2015-2016 players in the National Basketball Association. We have examined these data earlier. Recall that salaries are measured in millions of dollars.
 
 

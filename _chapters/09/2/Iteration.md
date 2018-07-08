@@ -10,7 +10,7 @@ nextchapter:
   title: '9.3 Simulation'
 ---
 
-### Iteration ###
+### Iteration
 It is often the case in programming – especially when dealing with randomness – that we want to repeat a process multiple times. For example, we might want to assign each person in a study to the treatment group or to control, based on tossing a coin. We can do this without actually tossing a coin for each person; we can just use `np.random.choice` instead.
 
 Here is a reminder of how `np.random.choice` works. Run the cell a few times to see how the output changes.
@@ -98,7 +98,7 @@ Heads
 
 In this case, we simply perform exactly the same (random) action several times, so the code inside our `for` statement does not actually refer to `i`.
 
-### Augmenting Arrays ###
+### Augmenting Arrays
 
 While the `for` statement above does simulate the results of five tosses of a coin, the results are simply printed and aren't in a form that we can use for computation. Thus a typical use of a `for` statement is to create an array of results, by augmenting it each time.
 
@@ -158,7 +158,7 @@ array(['Cat', 'Dog', 'Another Pet'], dtype='<U11')
 
 
 
-### Example: Counting the Number of Heads ###
+### Example: Counting the Number of Heads
 
 We can now simulate five tosses of a coin and place the results into an array. We will start by creating an empty array and then appending the outcome of each toss. Notice that the body of the `for` loop contains two statements. Both statements are executed for each value in the given sequence `np.arange(5)`.
 

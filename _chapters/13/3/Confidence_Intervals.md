@@ -10,7 +10,7 @@ nextchapter:
   title: '13.4 Using Confidence Intervals'
 ---
 
-### Confidence Intervals ###
+### Confidence Intervals
 We have developed a method for estimating a parameter by using random sampling and the bootstrap. Our method produces an interval of estimates, to account for chance variability in the random sample. By providing an interval of estimates instead of just one estimate, we give ourselves some wiggle room.
 
 In the previous example we saw that our process of estimation produced a good interval about 95% of the time, a "good" interval being one that contains the parameter. We say that we are *95% confident* that the process results in a good interval. Our interval of estimates is called a *95% confidence interval* for the parameter, and 95% is called the *confidence level* of the interval.
@@ -19,7 +19,7 @@ The situation in the previous example was a bit unusual. Because we happened to 
 
 But usually, data scientists don't know the value of the parameter. That is the reason they want to estimate it in the first place. In such situations, they provide an interval of estimates for the unknown parameter by using methods like the one we have developed. Because of statistical theory and demonstrations like the one we have seen, data scientists can be confident that their process of generating the interval results in a good interval a known percent of the time.
 
-### Confidence Interval for a Population Median: Bootstrap Percentile Method ###
+### Confidence Interval for a Population Median: Bootstrap Percentile Method
 
 We will now use the bootstrap method to estimate an unknown population median. The data come from a sample of newborns in a large hospital system; we will treat it as if it were a simple random sample though the sampling was done in multiple stages. [Stat Labs](https://www.stat.berkeley.edu/~statlabs/) by Deborah Nolan and Terry Speed has details about a larger dataset from which this set is drawn. 
 
@@ -293,7 +293,7 @@ We just have an interval of estimates. It is a 95% confidence interval of estima
 
 Keep in mind that this interval is an approximate 95% confidence interval. There are many approximations involved in its computation. The approximation is not bad, but it is not exact.
 
-### Confidence Interval for a Population Mean: Bootstrap Percentile Method ###
+### Confidence Interval for a Population Mean: Bootstrap Percentile Method
 What we have done for medians can be done for means as well. Suppose we want to estimate the average age of the mothers in the population. A natural estimate is the average age of the mothers in the sample. Here is the distribution of their ages, and their average age which was about 27.2 years.
 
 
@@ -406,7 +406,7 @@ baby.select('Maternal Age').hist()
 
 This is a consequence of the Central Limit Theorem of probability and statistics. In later sections, we will see what the theorem says.
 
-### An 80% Confidence Interval ###
+### An 80% Confidence Interval
 You can use the bootstrapped sample means to construct an interval of any level of confidence. For example, to construct an 80% confidence interval for the mean age in the population, you would take the "middle 80%" of the resampled means. So you would want 10% of the disribution in each of the two tails, and hence the endpoints would be the 10th and 90th percentiles of the resampled means.
 
 
@@ -444,7 +444,7 @@ The earlier process produced a wider interval but we had more confidence in the 
 
 To get a narrow confidence interval at a high level of confidence, you'll have to start with a larger sample. We'll see why in the next chapter.
 
-### Confidence Interval for a Population Proportion: Bootstrap Percentile Method ###
+### Confidence Interval for a Population Proportion: Bootstrap Percentile Method
 In the sample, 39% of the mothers smoked during pregnancy.
 
 
@@ -549,7 +549,7 @@ plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=8);
 ![png]({{ site.baseurl }}/images/chapters/13/3/Confidence_Intervals_46_0.png)
 
 
-### Care in Using the Bootstrap ###
+### Care in Using the Bootstrap
 The bootstrap is an elegant and powerful method. Before using it, it is important to keep some points in mind.
 
 - Start with a large random sample. If you don't, the method might not work. Its success is based on large random samples (and hence also resamples from the sample) resembling the population. The Law of Averages says that this is likely to be true provided the random sample is large.

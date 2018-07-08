@@ -10,7 +10,7 @@ nextchapter:
   title: '13. Estimation'
 ---
 
-### Causality ###
+### Causality
 
 Our methods for comparing two samples have a powerful use in the analysis of randomized controlled experiments. Since the treatment and control groups are assigned randomly in such experiements, differences in their outcomes can be compared to what would happen just due to chance if the treatment had no effect at all. If the observed differences are more marked than what we would predict as purely due to chance, we will have evidence of *causation*. Because of the unbiased assignment of individuals to the treatment and control groups, differences in the outcomes of the two groups can be ascribed to the treatment.
 
@@ -18,7 +18,7 @@ The key to the analysis of randomized controlled experiments is understanding ex
 
 Let's see how to do this in an example.
 
-### Treating Chronic Back Pain: A Randomized Controlled Trial ###
+### Treating Chronic Back Pain: A Randomized Controlled Trial
 Low-back pain in adults can be very persistent and hard to treat. Common methods run the gamut from corticosteroids to acupuncture. A [randomized controlled trial (RCT)](https://www.ncbi.nlm.nih.gov/pubmed/11376175) examined the effect of using Botulinum Toxin A as a treatment. Botulinum toxin is a neurotoxic protein that causes the disease botulism; [Wikipedia](https://en.wikipedia.org/wiki/Botulinum_toxin) says that botulinum "is the most acutely lethal toxin known." There are seven types of botulinum toxin. Botulinum Toxin A is one of the types that can cause disease in humans, but it is also used in medicine to treat various diseases involving the muscles. The RCT analyzed by Foster, Clapp, and Jabbari in 2001 examined it as a treatment for low back pain.
 
 Thirty one patients with low-back pain were randomized into treatment and control groups, with 15 in the treatment group and 16 in control. The control group was given normal saline, and the trials were run double-blind so that neither doctors nor patients knew which group they were in.
@@ -178,7 +178,7 @@ To understand what this means, we have to consider the possibility that among th
 
 To account for this possibility, let's start by carefully setting up the chance model.
 
-### Potential Outcomes ###
+### Potential Outcomes
 Before the patients are randomized into the two groups, our minds instinctively imagine two possible outcomes for each patient: the outcome that the patient would have if assigned to the treatment group, and the outcome that the same patient would have if assigned to the control group. These are called the two *potential outcomes* of the patient.
 
 Thus there are 31 potential treatment outcomes and 31 potential control ouctomes. The question is about the distributions of these two sets of 31 outcomes each. Are they the same, or are they different?
@@ -309,7 +309,7 @@ observed_outcomes.show()
 </div>
 
 
-### The Hypotheses ###
+### The Hypotheses
 The question is whether the treatment does anything. In terms of the table `observed_outcomes`, the question is whether the distribution of the 31 "treatment" values in Column 1  (including the unknown ones) is different from the distribution of the 31 "control" values in Column 2 (again including the unknown ones).
 
 **Null Hypothesis:** The distribution of all 31 potential "treatment" outcomes is the same as that of all 31 potential "control" outcomes. Botulinum toxin A does nothing different from saline; the difference in the two samples is just due to chance.
@@ -322,7 +322,7 @@ We can simulate this. We can randomly permute the 31 values, split them into two
 
 That's exactly what we did for A/B testing in the previous section. Sample A is now the control group and Sample B the treatment group. We will carry out the test below showing the details of all the steps. You should confirm that they are the same as the steps carried out for A/B testing.
 
-### The Test Statistic ###
+### The Test Statistic
 If the two group proportions are very different from each other, we will lean towards the alternative hypothesis that the two underlying distributions are different. So our test statistic will be the distance between the two group proportions, that is, the absolute value of the difference between them.
 
 Large values of the test statistic will favor the alternative hypothesis over the null.
@@ -376,10 +376,10 @@ observed_distance
 
 
 
-### Predicting the Statistic Under the Null Hypothesis ###
+### Predicting the Statistic Under the Null Hypothesis
 We can simulate results under the null hypothesis, to see how our test statistic should come out if the null hypothesis is true.
 
-#### Generating One Value of the Statistic ####
+#### Generating One Value of the Statistic
 The simulation follows exactly the same process we used in the previous section. We start by randomly permuting the `results` column and assigning "control" and "treatment" labels to the permuted results. 
 
 
@@ -555,7 +555,7 @@ simulated_distance
 
 
 
-### Permutation Test ###
+### Permutation Test
 You can see that we are doing exactly what we did in our previous examples of the permutation test. Here is the function we defined earlier to generate the simulated differences under the null hypothesis. It simply collects the code above and puts it in the body of a `for` loop.
 
 
@@ -595,7 +595,7 @@ Our statistic is the distance between the two proportions, that is, the absolute
 distances = np.abs(differences)
 ```
 
-### Conclusion of the Test ###
+### Conclusion of the Test
 The array `distances` contains 20,000 values of our test statistic simulated under the null hypothesis. 
 
 To find the P-value of the test, remember that large values of the test statitsic favor the alternative hypothesis. So the empirical P-value is the proportion of simulated statistics that were equal to or larger than the observed statistic.
@@ -644,12 +644,12 @@ Empirical P-value: 0.95 %
 
 The study reports a P-value of 0.009, or 0.9%, which is not far from our empirical value. 
 
-### Causality ###
+### Causality
 Because the trials were randomized, the test is evidence that the treatment *causes* the difference. The random assignment of patients to the two groups ensures that there is no confounding variable that could affect the conclusion of causality.
 
 If the treatment had not been randomly assigned, our test would still point toward an *association* between the treatment and back pain outcomes among our 31 patients.  But beware: without randomization, this association would not imply that the treatment caused a change in back pain outcomes.  For example, if the patients themselves had chosen whether to administer the treatment, perhaps the patients experiencing more pain would be more likely to choose the treatment *and* more likely to experience some reduction in pain even without medication.  Pre-existing pain would then be a *confounding factor* in the analysis.
 
-### A Meta-Analysis ###
+### A Meta-Analysis
 
 While the RCT does provide evidence that the botulinum toxin A treatment helped patients, a study of 31 patients isn't enough to establish the effectiveness of a medical treatment. This is not just because of the small sample size.  Our results in this section are valid for the 31 patients in the study, but we are really interested in the population of *all possible patients*.  If the 31 patients were a random sample from *that* larger population, our confidence interval would be valid for that population.  But they were not a random sample.
 

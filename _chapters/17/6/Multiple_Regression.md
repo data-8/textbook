@@ -163,7 +163,7 @@ correlation(sales.with_column('Both Floors', both_floors), 'SalePrice', 'Both Fl
 
 This high correlation indicates that we should try to use more than one attribute to predict the sale price. In a dataset with multiple observed attributes and a single numerical value to be predicted (the sale price in this case), multiple linear regression can be an effective technique.
 
-## Multiple Linear Regression 
+## Multiple Linear Regression
 
 In multiple linear regression, a numerical output is predicted from numerical input attributes by multiplying each attribute value by a different slope, then summing the results. In this example, the slope for the `1st Flr SF` would represent the dollars per square foot of area on the first floor of the house that should be used in our prediction. 
 
@@ -292,7 +292,7 @@ RMSE of all training examples using the best slopes: 32283.50513136445
 
 ```
 
-#### Interpreting Multiple Regression 
+#### Interpreting Multiple Regression
 
 Let's interpret these results. The best slopes give us a method for estimating the price of a house from its attributes. A square foot of area on the first floor is worth about \\$75 (the first slope), while one on the second floor is worth about \\$70 (the second slope). The final negative value describes the market: prices in later years were lower on average.
 

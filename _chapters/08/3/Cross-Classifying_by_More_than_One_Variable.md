@@ -10,13 +10,13 @@ nextchapter:
   title: '8.4 Joining Tables by Columns'
 ---
 
-### Cross-Classifying by More than One Variable ###
+### Cross-Classifying by More than One Variable
 
 When individuals have multiple features, there are many different ways to classify them. For example, if we have a population of college students for each of whom we have recorded a major and the number of years in college, then the students could be classified by major, or by year, or by a combination of major and year.
 
 The `group` method also allows us to classify individuals according to multiple variables. This is called *cross-classifying*.
 
-### Two Variables: Counting the Number in Each Paired Category ###
+### Two Variables: Counting the Number in Each Paired Category
 The table `more_cones` records the flavor, color, and price of six ice cream cones.
 
 
@@ -139,7 +139,7 @@ more_cones.group(['Flavor', 'Color'])
 
 
 
-### Two Variables: Finding a Characteristic of Each Paired Category ###
+### Two Variables: Finding a Characteristic of Each Paired Category
 A second argument aggregates all other columns that are not in the list of grouped columns.
 
 
@@ -179,7 +179,7 @@ more_cones.group(['Flavor', 'Color'], sum)
 
 **Three or More Variables.** You can use `group` to classify rows by three or more categorical variables. Just include them all in the list that is the first argument. But cross-classifying by multiple variables can become complex, as the number of distinct combinations of categories can be quite large. 
 
-### Pivot Tables: Rearranging the Output of `group` ###
+### Pivot Tables: Rearranging the Output of `group`
 Many uses of cross-classification involve just two categorical variables, like `Flavor` and `Color` in the example above. In these cases it is possible to display the results of the classification in a different kind of table, called a *pivot table*. Pivot tables, also known as *contingency tables*, make it easier to work with data that have been classified according to two variables.
 
 Recall the use of `group` to count the number of cones in each paired category of flavor and color:
@@ -336,7 +336,7 @@ more_cones.group(['Flavor', 'Color'], sum)
 
 Though the numbers in both tables are the same, table produced by `pivot` is easier to read and lends itself more easily to analysis. The advantage of `pivot` is that it places grouped values into adjacent columns, so that they can be combined and compared.
 
-### Example: Education and Income of Californian Adults ###
+### Example: Education and Income of Californian Adults
 The State of California's Open Data Portal is a rich source of information about the lives of Californians. It is our source of a [dataset](http://data.ca.gov/dataset/ca-educational-attainment-personal-income) on educational attainment and personal income among Californians over the years 2008 to 2014. The data are derived from the U.S. Census Current Population Survey.
 
 For each year, the table records the `Population Count` of Californians in many different combinations of age, gender, educational attainment, and personal income. We will study only the data for the year 2014.

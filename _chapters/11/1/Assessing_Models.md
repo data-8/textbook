@@ -10,12 +10,12 @@ nextchapter:
   title: '11.2 Multiple Categories'
 ---
 
-### Assessing Models ###
+### Assessing Models
 In data science, a "model" is a set of assumptions about data. Often, models include assumptions about chance processes used to generate data. 
 
 Sometimes, data scientists have to decide whether or not their models are good. In this section we will discuss two examples of making such decisions. In later sections we will use the methods developed here as the building blocks of a general framework for testing hypotheses.
 
-### U.S. Supreme Court, 1965: Swain vs. Alabama ###
+### U.S. Supreme Court, 1965: Swain vs. Alabama
 
 In the early 1960's, in Talladega County in Alabama, a black man called Robert Swain was convicted of raping a white woman and was sentenced to death. He appealed his sentence, citing among other factors the all-white jury. At the time, only men aged 21 or older were allowed to serve on juries in Talladega County. In the county, 26% of the eligible jurors were black, but there were only 8 black men among the 100 selected for the jury panel in Swain's trial. No black man was selected for the trial jury.
 
@@ -23,7 +23,7 @@ In 1965, the Supreme Court of the United States denied Swain's appeal. In its ru
 
 Jury panels are supposed to be selected at random from the eligible population. Because 26% of the eligible population was black, 8 black men on a panel of 100 might seem low.
 
-### A Model ###
+### A Model
 But one view of the data – a model, in other words – is that the panel was selected at random and ended up with a small number of black men just due to chance. This model is consistent with what the Supreme Court wrote in its ruling.
 
 The model specifies the details of a chance process. It says the data are like a random sample from a population in which 26% of the people are black. We are in a good position to assess this model, because:
@@ -34,13 +34,13 @@ The model specifies the details of a chance process. It says the data are like a
 
 Let's go through the process in detail. 
 
-### The Statistic ###
+### The Statistic
 First, we have to choose a statistic to simulate. The statistic has to be able to help us decide between the model and alternative views about the data. The model says the panel was drawn at random. The alternative viewpoint, suggested by Robert Swain's appeal, is that the panel was not drawn at random because it contained too few black men. A natural statistic, then, is the number of black men in our simulated sample of 100 men representing the panel. Small values of the statistic will favor the alternative viewpoint.
 
-### Predicting the Statistic Under the Model ###
+### Predicting the Statistic Under the Model
 If the model were true, how big would the statistic typically be? To answer that, we have to start by working out the details of the simulation. 
 
-#### Generating One Value of the Statistic ####
+#### Generating One Value of the Statistic
 First let's figure out how to simulate one value of the statistic. For this, we have to sample 100 times at random from the population of eligible jurors and count the number of black men we get.
 
 One way is to set up a table representing the eligible population and use `sample` as we did in the previous chapter. But there is also a quicker way, using a `datascience` function tailored for sampling at random from categorical distributions. We will use it several times in this chapter.
@@ -94,7 +94,7 @@ Run the cell a few times to see how the output varies.
 
 
 
-#### Running the Simulation ####
+#### Running the Simulation
 To get a sense of the variability without running the cell over and over, let's generate 10,000 simulated values of the count. The code follows the same steps that we have used in every simulation.
 
 
@@ -108,7 +108,7 @@ for i in np.arange(repetitions):
     counts = np.append(counts, simulated_count)
 ```
 
-### The Prediction ###
+### The Prediction
 To interpret the results of our simulation, we start as usual by visualizing the results by an empirical histogram.
 
 
@@ -127,7 +127,7 @@ The histogram tells us what the model of random selection predicts about our sta
 
 To generate each simulated count, we drew at 100 times at random from a population in which 26% were black. So, as you would expect, most of the simulated counts are around 26. They are not exactly 26 – there is some variation. The counts range between about 10 and 45. 
 
-### Comparing the Prediction and the Data ###
+### Comparing the Prediction and the Data
 Though the simulated counts are quite varied, very few of them came out to be eight or less. The value eight is far out in the left hand tail of the histogram. It's the red dot on the horizontal axis of the histogram.
 
 
@@ -151,7 +151,7 @@ While it is *possible* that a panel like Robert Swain's could have been generate
 
 This method of assessing models is very general. Here is an example in which we use it to assess a model in a completely different setting.
 
-### Mendel's Pea Flowers ###
+### Mendel's Pea Flowers
 [Gregor Mendel](https://en.wikipedia.org/wiki/Gregor_Mendel) (1822-1884) was an Austrian monk who is widely recognized as the founder of the modern field of genetics. Mendel performed careful and large-scale experiments on plants to come up with fundamental laws of genetics. 
 
 Many of his experiments were on varieties of pea plants. He formulated sets of assumptions about each variety; these were his models. He then tested the validity of his models by growing the plants and gathering data.
@@ -160,13 +160,13 @@ Let's analyze the data from one such experiment to see if Mendel's model was goo
 
 In a particular variety, each plant has either purple flowers or white. The color in each plant is unaffected by the colors in other plants. Mendel hypothesized that the plants should bear purple or white flowers at random, in the ratio 3:1. 
 
-### Mendel's Model ###
+### Mendel's Model
 For every plant, there is a 75% chance that it will have purple flowers, and a 25% chance that the flowers will be white, regardless of the colors in all the other plants.
 
-#### Approach to Assessment ####
+#### Approach to Assessment
 To go about assessing Mendel's model, we can simulate plants under the assumptions of the model and see what it predicts. Then we will be able to compare the predictions with the data that Mendel recorded.
 
-### The Statistic ####
+### The Statistic
 Our goal is to see whether or not Mendel's model is good. We need to simulate a statistic that will help us make this decision. 
 
 If the model is good, the percent of purple-flowering plants in the sample should be close to 75%. If the model is not good, the percent purple-flowering will be away from 75%. It may be higher, or lower; the direction doesn't matter.
@@ -179,14 +179,14 @@ $$
 \big{\vert} \text{sample percent of purple-flowering plants} - 75 \big{\vert}
 $$
 
-### Predicting the Statistic Under the Model ###
+### Predicting the Statistic Under the Model
 To see how big the distance would be if Mendel's model were true, we can use `sample_proportions` to simulate the distance under the assumptions of the model.
 
 First, we have to figure out how many times to sample. To do this, remember that we are going to compare our simulation with Mendel's plants. So we should simulate the same number of plants that he had.
 
 Mendel grew a lot of plants. There were 929 plants of the variety corresponding to this model. So we have to sample 929 times. 
 
-#### Generating One Value of the Statistic ####
+#### Generating One Value of the Statistic
 
 The steps in the calculation:
 
@@ -215,7 +215,7 @@ abs(100 * sample_proportions(929, model_proportions).item(0) - 75)
 
 That's one simulated value of the distance between the sample percent of purple-flowering plants and 75% as predicted by Mendel's model. 
 
-#### Running the Simulation ####
+#### Running the Simulation
 To get a sense of how variable the distance could be, we have to simulate it many more times.
 We will generate 10,000 values of the distance.
 
@@ -230,7 +230,7 @@ for i in np.arange(repetitions):
     distances = np.append(distances, one_distance)
 ```
 
-### The Prediction ###
+### The Prediction
 The empirical histogram of the simulated values shows the distribution of the distance as predicted by the model.
 
 
@@ -247,7 +247,7 @@ Table().with_column(
 
 Look on the horizontal axis to see the typical values of the distance, as predicted by the model. They are rather small. For example, a high proportion of the distances are in the range 0 to 1, meaning that for a high proportion of the samples, the percent of purple-flowering plants is within 1% of 75%, that is, the sample percent is in the range 74% to 76%.
 
-### Comparing the Prediction and the Data ###
+### Comparing the Prediction and the Data
 To assess the model, we have to compare this prediction with the data. Mendel recorded the number of purple and white flowering plants. Among the 929 plants that he grew, 705 were purple flowering. That's just about 75.89%.
 
 

@@ -10,7 +10,7 @@ nextchapter:
   title: '14.2 Variability'
 ---
 
-### Properties of the Mean ###
+### Properties of the Mean
 
 In this course, we have used the words "average" and "mean" interchangeably, and will continue to do so. The definition of the mean will be familiar to you from your high school days or even earlier.
 
@@ -56,7 +56,7 @@ np.mean(not_symmetric)
 
 
 
-### Basic Properties ###
+### Basic Properties
 
 The definition and the example above point to some properties of the mean.
 
@@ -68,11 +68,11 @@ The definition and the example above point to some properties of the mean.
 
 We will now study some other properties that are helpful in understanding the mean and its relation to other statistics.
 
-### The Mean is a "Smoother" ##
+### The Mean is a "Smoother"
 
 You can think of taking the mean as an "equalizing" or "smoothing" operation. For example, imagine the entries in `not_symmetric` above as the dollars in the pockets of four different people. To get the mean, you first put all of the money into one big pot and then divide it evenly among the four people. They had started out with different amounts of money in their pockets (\$2, \\$3, \\$3, and \\$9), but now each person has \\$4.25, the mean amount.
 
-### Proportions are Means ###
+### Proportions are Means
 If a collection consists only of ones and zeroes, then the sum of the collection is the number of ones in it, and the mean of the collection is the proportion of ones.
 
 
@@ -128,7 +128,7 @@ np.mean(make_array(True, True, True, False))
 
 Because proportions are a special case of means, results about random sample means apply to random sample proportions as well.
 
-### The Mean and the Histogram ###
+### The Mean and the Histogram
 The mean of the collection {2, 3, 3, 9} is 4.25, which is not the "halfway point" of the data. So then what does the mean measure?
 
 To see this, notice that the mean can be calculated in different ways.
@@ -192,7 +192,7 @@ To understand why that is, it helps to know some physics. The center of gravity 
 
 Because the mean is a balance point, it is sometimes displayed as a *fulcrum* or triangle at the base of the histogram.
 
-### The Mean and the Median ###
+### The Mean and the Median
 
 If a student's score on a test is below average, does that imply that the student is in the bottom half of the class on that test?
 
@@ -252,7 +252,7 @@ In the gold distribution, 3 out of 4 entries (75%) are below average. The studen
 
 In general, **if the histogram has a tail on one side (the formal term is "skewed"), then the mean is pulled away from the median in the direction of the tail.**
 
-### Example ###
+### Example
 The table `sf2015` contains salary and benefits data for San Francisco City employees in 2015. As before, we will restrict our analysis to those who had the equivalent of at least half-time employment for the year.
 
 

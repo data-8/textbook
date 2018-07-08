@@ -10,7 +10,7 @@ nextchapter:
   title: ''
 ---
 
-### Making Decisions ###
+### Making Decisions
 A primary use of Bayes' Rule is to make decisions based on incomplete information, incorporating new information as it comes in. This section points out the importance of keeping your assumptions in mind as you make decisions.
 
 Many medical tests for diseases return Positive or Negative results. A Positive result means that according to the test, the patient has the disease. A Negative result means the test concludes that the patient doesn't have the disease. 
@@ -23,7 +23,7 @@ Medical tests are carefully designed to be very accurate. But few tests are accu
 
 These errors can affect people's decisions. False positives can cause anxiety and unnecessary treatment (which in some cases is expensive or dangerous). False negatives can have even more serious consequences if the patient doesn't receive treatment because of their Negative test result.
 
-### A Test for a Rare Disease ###
+### A Test for a Rare Disease
 Suppose there is a large population and a disease that strikes a tiny proportion of the population. The tree diagram below summarizes information about such a disease and about a medical test for it.
 
 ![Tree Rare Disease]({{ site.baseurl }}/images/tree_disease_rare.png)
@@ -124,7 +124,7 @@ These two proportions are comparable; the second is a little larger.
 
 So, given that the randomly chosen person tested positive, we were right to classify them as more likely than not to **not** have the disease.
 
-### A Subjective Prior ###
+### A Subjective Prior
 Being right isn't always satisfying. Classifying a Positive patient as not having the disease still seems somehow wrong, for such an accurate test. Since the calculations are right, let's take a look at the basis of our probability calculation: the assumption of randomness.
 
 Our assumption was that a randomly chosen person was tested and got a Positive result. But this doesn't happen in reality. People go in to get tested because they think they might have the disease, or because their doctor thinks they might have the disease. **People getting tested are not randomly chosen members of the population.**
@@ -163,7 +163,7 @@ The effect of changing the prior is stunning. Even though the doctor has a prett
 
 If the patient tests Positive, it would be reasonable for the doctor to proceed as though the patient has the disease.
 
-### Confirming the Answer ###
+### Confirming the Answer
 Though the doctor's opinion is subjective, we can generate an artificial population in which 5% of the people have the disease and are tested using the same test. Then we can count people in different categories to see if the counts are consistent with the answer we got by using Bayes' Rule.
 
 We can use `population(0.05)` and `pivot` to construct the corresponding population and look at the counts in the four cells.

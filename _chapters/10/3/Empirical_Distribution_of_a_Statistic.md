@@ -10,7 +10,7 @@ nextchapter:
   title: '11. Testing Hypotheses'
 ---
 
-### Empirical Distribution of a Statistic ###
+### Empirical Distribution of a Statistic
 The Law of Averages implies that with high probability, the empirical distribution of a large random sample will resemble the distribution of the population from which the sample was drawn.
 
 The resemblance is visible in two histograms: the empirical histogram of a large random sample is likely to resemble the histogram of the population.
@@ -49,7 +49,7 @@ plots.title('Sample of Size 1000');
 
 The two histograms clearly resemble each other, though they are not identical. 
 
-### Parameter ###
+### Parameter
 Frequently, we are interested in numerical quantities associated with a population.
 - In a population of voters, what percent will vote for Candidate A?
 - In a population of Facebook users, what is the largest number of Facebook friends that the users have?
@@ -111,7 +111,7 @@ united.where('Delay', are.equal_to(2)).num_rows
 
 
 
-### Statistic ###
+### Statistic
 In many situations, we will be interested in figuring out the value of an unknown parameter. For this, we will rely on data from a large random sample from the population.
 
 A *statistic* (note the singular!) is any number computed using the data in a sample. The sample median, therefore, is a statistic. 
@@ -161,7 +161,7 @@ Run the cell above a few times to see how the answer varies. Often it is equal t
 
 Let's recall the main steps in a simulation.
 
-### Simulating a Statistic ###
+### Simulating a Statistic
 We will simulate the sample median using the steps we set up in an earlier chapter when we started studying simulation. You can replace the sample size of 1000 by any other sample size, and the sample median by any other statistic.
 
 **Step 1: Decide which statistic to simulate.** We have already decided that: we are going to simulate the median of a random sample of size 1000 drawn from the population of flight delays.
@@ -202,7 +202,7 @@ for i in np.arange(5000):
 
 The simulation is done. All 5,000 simulated sample medians have been collected in the array `medians`. Now it's time to visualize the results. 
 
-### Visualization ###
+### Visualization
 
 Here are the simulated values displayed in the table `simulated_medians`.
 
@@ -277,7 +277,7 @@ You can see that the sample median is very likely to be close to 2, which was th
 
 This is an example of how a statistic can provide a good estimate of a parameter.
 
-### The Power of Simulation ###
+### The Power of Simulation
 
 If we could generate all possible random samples of size 1000, we would know all possible values of the statistic (the sample median), as well as the probabilities of all those values. We could visualize all the values and probabilities in the probability histogram of the statistic.
 

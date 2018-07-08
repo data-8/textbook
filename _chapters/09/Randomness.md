@@ -10,7 +10,7 @@ nextchapter:
   title: '9.1 Conditional Statements'
 ---
 
-### Randomness ###
+### Randomness
 
 In the previous chapters we developed skills needed to make insightful descriptions of data. Data scientists also have to be able to understand randomness. For example, they have to be able to assign individuals to treatment and control groups at random, and then try to say whether any observed differences in the outcomes of the two groups are simply due to the random assignment or genuinely due to the treatment.
 
@@ -63,7 +63,7 @@ A fundamental question about random events is whether or not they occur. For exa
 
 Once the event has occurred, you can answer "yes" or "no" to all these questions. In programming, it is conventional to do this by labeling statements as True or False. For example, if an individual did get assigned to the treatment group, then the statement, "The individual was assigned to the treatment group" would be `True`. If not, it would be `False`.
 
-### Booleans and Comparison ###
+### Booleans and Comparison
 
 In Python, Boolean values, named for the logician [George Boole](https://en.wikipedia.org/wiki/George_Boole), represent truth and take only two possible values: `True` and `False`. Whether problems involve randomness or not, Boolean values most often arise from comparison operators. Python includes a variety of operators that compare values. For example, `3` is larger than `1 + 1`.
 
@@ -167,7 +167,7 @@ True
 
 
 
-### Comparing Strings ###
+### Comparing Strings
 
 Strings can also be compared, and their order is alphabetical. A shorter string is less than a longer string that begins with the shorter string.
 
@@ -207,7 +207,7 @@ False
 
 As before, the random choice will not always be the same, so the result of the comparison won't always be the same either. It will depend on whether `treatment` or `control` was chosen. With any cell that involves random selection, it is a good idea to run the cell several times to get a sense of the variability in the result.
 
-### Comparing an Array and a Value ###
+### Comparing an Array and a Value
 Recall that we can perform arithmetic operations on many numbers in an array at once.  For example, `make_array(0, 5, 2)*2` is equivalent to `make_array(0, 10, 4)`.  In similar fashion, if we compare an array and one value, each element of the array is compared to that value, and the comparison evaluates to an array of Booleans.
 
 

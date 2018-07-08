@@ -10,13 +10,13 @@ nextchapter:
   title: '7.1 Categorical Distributions'
 ---
 
-### Visualization ###
+### Visualization
 
 Tables are a powerful way of organizing and visualizing data. However, large tables of numbers can be difficult to interpret, no matter how organized they are. Sometimes it is much easier to interpret graphs than numbers.
 
 In this chapter we will develop some of the fundamental graphical methods of data analysis. Our source of data is the [Internet Movie Database](http://www.imdb.com), an online database that contains information about movies, television shows, video games, and so on. The site [Box Office Mojo](http://www.boxofficemojo.com) provides many summaries of IMDB data, some of which we have adapted. We have also used data summaries from [The Numbers](http://www.the-numbers.com), a site with a tagline that says it is "where data and the movie business meet."
 
-### Scatter Plots and Line Graphs ###
+### Scatter Plots and Line Graphs
 
 The table `actors` contains data on Hollywood actors, both male and female. The columns are:
 
@@ -93,7 +93,7 @@ A *variable* is a formal name for what we have been calling a "feature", such as
 
 Variables that have numerical values, such as 'number of movies' or 'average gross receipts per movie' are called *quantitative* or *numerical* variables.
 
-### Scatter Plots ###
+### Scatter Plots
 A *scatter plot* displays the relation between two numerical variables. You saw an example of a scatter plot in an early section where we looked at the number of periods and number of characters in two classic novels.
 
 The Table method `scatter` draws a scatter plot consisting of one point for each row of the table. Its first argument is the label of the column to be plotted on the horizontal axis, and its second argument is the label of the column on the vertical.
@@ -226,7 +226,7 @@ Mr. Daniels' entire filmography (apart from cameos) consists of movies in the hi
 
 Variables such as genre and production budget have an effect on the association between the number of movies and the average receipt per movie. This example is a reminder that studying the association between two variables often involves understanding other related variables as well. 
 
-### Line Graphs ###
+### Line Graphs
 Line graphs are among the most common visualizations and are often used to study chronological trends and patterns.
 
 The table `movies_by_year` contains data on movies produced by U.S. studios in each of the years 1980 through 2015. The columns are:

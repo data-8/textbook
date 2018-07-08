@@ -10,7 +10,7 @@ nextchapter:
   title: '13.3 Confidence Intervals'
 ---
 
-### The Bootstrap ###
+### The Bootstrap
 A data scientist is using the data in a random sample to estimate an unknown parameter. She uses the sample to calculate the value of a statistic that she will use as her estimate. 
 
 Once she has calculated the observed value of her statistic, she could just present it as her estimate and go on her merry way. But she's a data scientist. She knows that her random sample is just one of numerous possible random samples, and thus her estimate is just one of numerous plausible estimates. 
@@ -25,7 +25,7 @@ In this section, we will see how and why the bootstrap works. In the rest of the
 
 
 
-### Employee Compensation in the City of San Francisco ###
+### Employee Compensation in the City of San Francisco
 [SF OpenData](https://data.sfgov.org) is a website where the City and County of San Francisco make some of their data publicly available. One of the data sets contains compensation data for employees of the City. These include medical professionals at City-run hospitals, police officers, fire fighters, transportation workers, elected officials, and all other employees of the City. 
 
 Compensation data for the calendar year 2015 are in the table `sf2015`.
@@ -200,7 +200,7 @@ sf2015.num_rows
 
 
 
-### Population and Parameter ###
+### Population and Parameter
 Let this table of just over 36,500 rows be our population. Here is a histogram of the total compensations.
 
 
@@ -270,7 +270,7 @@ From a practical perspective, there is no reason for us to draw a sample to esti
 
 In later sections, we will come down to earth and work in situations where the parameter is unknown. For now, we are all-knowing.
 
-### A Random Sample and an Estimate ###
+### A Random Sample and an Estimate
 Let us draw a sample of 500 employees at random without replacement, and let the median total compensation of the sampled employees serve as our estimate of the parameter.
 
 
@@ -309,7 +309,7 @@ To see how different the estimate would be if the sample had come out differentl
 
 Somehow, we have to get another random sample without sampling from the population.
 
-### The Bootstrap: Resampling from the Sample ###
+### The Bootstrap: Resampling from the Sample
 What we do have is a large random sample from the population. As we know, a large random sample is likely to resemeble the population from which it is drawn. This observation allows data scientists to *lift themselves up by their own bootstraps*: the sampling procedure can be replicated by *sampling from the sample*. 
 
 Here are the steps of *the bootstrap method* for generating another random sample that resembles the population:
@@ -323,7 +323,7 @@ If we drew 500 times at random *without* replacement from our sample of size 500
 
 Why is this a good idea? By the law of averages, the distribution of the original sample is likely to resemble the population, and the distributions of all the "resamples" are likely to resemble the original sample. So the distributions of all the resamples are likely to resemble the population as well. 
 
-### A Resampled Median ###
+### A Resampled Median
 Recall that when the `sample` method is used without specifying a sample size, by default the sample size equals the number of rows of the table from which the sample is drawn. That's perfect for the bootstrap! Here is one new sample drawn from the original sample, and the corresponding sample median.
 
 
@@ -379,7 +379,7 @@ resampled_median_2
 
 
 
-### Bootstrap Empirical Distribution of the Sample Median ###
+### Bootstrap Empirical Distribution of the Sample Median
 Let us define a function `bootstrap_median` that takes our original sample, the label of the column containing the variable, and the number of bootstrap samples we want to take, and returns an array of the corresponding resampled medians. 
 
 Each time we resample and find the median, we *replicate* the bootstrap process. So the number of bootstrap samples will be called the number of replications.
@@ -433,7 +433,7 @@ It is important to remember that the red dot is fixed: it is \\$110,305.79, the 
 
 Remember also that the point of all these computations is to estimate the population median, which is the red dot. Our estimates are all the randomly generated sampled medians whose histogram you see above. We want those estimates to contain the parameter – it they don't, then they are off.
 
-### Do the Estimates Capture the Parameter? ###
+### Do the Estimates Capture the Parameter?
 
 How often does the empirical histogram of the resampled medians sit firmly over the red dot, and not just brush the dot with its tails? To answer this, we must define "sit firmly". Let's take that to mean "the middle 95% of the resampled medians contains the red dot". 
 

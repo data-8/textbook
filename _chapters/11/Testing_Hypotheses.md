@@ -10,7 +10,7 @@ nextchapter:
   title: '11.1 Assessing Models'
 ---
 
-### Testing Hypotheses ###
+### Testing Hypotheses
 
 Data scientists are often faced with yes-no questions about the world. You have seen some examples of such questions in this course:
 
