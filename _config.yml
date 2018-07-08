@@ -25,6 +25,7 @@ number_chapters          : false  # Whether to number the chapers in the sidebar
 chapter_titles           : false  # Whether to include the title of the chapter at the top of each chapter
 textbook_only            : true  # If 'true', the home page will be the first chapter of the textbook, and *only* the sidebar is shown
 use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
+textbook_logo            : favicon.png  # A logo to be displayed at the top of your textbook sidebar
 
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -220,7 +221,11 @@ whitelist:
   - jemoji
   - jekyll-redirect-from
 
-
+# Infer titles from the section headings
+titles_from_headings:
+  enabled:     true
+  strip_title: true
+  collections: true
 # Archives
 #  Type
 #  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
@@ -297,6 +302,9 @@ defaults:
     values:
       layout: textbook
       masthead: false
+      toc: true
+      toc_label: "  On this page"
+      toc_icon: "list-ul"
   # _guide
   - scope:
       path: ""
