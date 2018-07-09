@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/17/1/Nearest_Neighbors.ipynb
 title: '17.1 Nearest Neighbors'
-permalink: 'chapters/17/1/nearest-neighbors'
+permalink: 'chapters/17/1/Nearest_Neighbors'
 previouschapter:
-  url: chapters/17/classification
+  url: chapters/17/Classification
   title: '17. Classification'
 nextchapter:
-  url: chapters/17/2/training-and-testing
+  url: chapters/17/2/Training_and_Testing
   title: '17.2 Training and Testing'
+redirect_from:
+  - 'chapters/17/1/nearest-neighbors'
 ---
 
 ### Nearest Neighbors
@@ -160,7 +162,7 @@ ckd.scatter('Hemoglobin', 'Glucose', colors='Color')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/1/Nearest_Neighbors_8_0.png)
+![png](../../../images/chapters/17/1/Nearest_Neighbors_8_0.png)
 
 
 Suppose Alice is a new patient who is not in the data set.  If I tell you Alice's hemoglobin level and blood glucose level, could you predict whether she has CKD?  It sure looks like it!  You can see a very clear pattern here: points in the lower-right tend to represent people who don't have CKD, and the rest tend to be folks with CKD.  To a human, the pattern is obvious.  But how can we program a computer to automatically detect patterns such as this one?
@@ -182,7 +184,7 @@ show_closest(alice)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/1/Nearest_Neighbors_12_0.png)
+![png](../../../images/chapters/17/1/Nearest_Neighbors_12_0.png)
 
 
 Thus our *nearest neighbor classifier* works like this:
@@ -205,7 +207,7 @@ show_closest(alice)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/1/Nearest_Neighbors_15_0.png)
+![png](../../../images/chapters/17/1/Nearest_Neighbors_15_0.png)
 
 
 Here are hundreds of new unclassified points, all in red.
@@ -231,7 +233,7 @@ ckd.scatter('White Blood Cell Count', 'Glucose', colors='Color')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/1/Nearest_Neighbors_20_0.png)
+![png](../../../images/chapters/17/1/Nearest_Neighbors_20_0.png)
 
 
 As you can see, non-CKD individuals are all clustered in the lower-left.  Most of the patients with CKD are above or to the right of that cluster... but not all.  There are some patients with CKD who are in the lower left of the above figure (as indicated by the handful of blue dots scattered among the gold cluster).  What this means is that you can't tell for certain whether someone has CKD from just these two blood test measurements.

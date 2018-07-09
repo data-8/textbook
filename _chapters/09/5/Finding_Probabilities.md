@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/09/5/Finding_Probabilities.ipynb
 title: '9.5 Finding Probabilities'
-permalink: 'chapters/09/5/finding-probabilities'
+permalink: 'chapters/09/5/Finding_Probabilities'
 previouschapter:
-  url: chapters/09/4/monty-hall-problem
+  url: chapters/09/4/Monty_Hall_Problem
   title: '9.4 The Monty Hall Problem'
 nextchapter:
-  url: chapters/10/sampling-and-empirical-distributions
+  url: chapters/10/Sampling_and_Empirical_Distributions
   title: '10. Sampling and Empirical Distributions'
+redirect_from:
+  - 'chapters/09/5/finding-probabilities'
 ---
 
 ### Finding Probabilities
@@ -228,7 +230,7 @@ results.scatter('Rolls')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/09/5/Finding_Probabilities_14_0.png)
+![png](../../../images/chapters/09/5/Finding_Probabilities_14_0.png)
 
 
 In 50 rolls, you are almost certain to get at least one 6.

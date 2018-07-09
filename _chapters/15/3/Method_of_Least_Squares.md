@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/15/3/Method_of_Least_Squares.ipynb
 title: '15.3 The Method of Least Squares'
-permalink: 'chapters/15/3/method-of-least-squares'
+permalink: 'chapters/15/3/Method_of_Least_Squares'
 previouschapter:
-  url: chapters/15/2/regression-line
+  url: chapters/15/2/Regression_Line
   title: '15.2 The Regression Line'
 nextchapter:
-  url: chapters/15/4/least-squares-regression
+  url: chapters/15/4/Least_Squares_Regression
   title: '15.4 Least Squares Regression'
+redirect_from:
+  - 'chapters/15/3/method-of-least-squares'
 ---
 
 ### The Method of Least Squares
@@ -58,7 +60,7 @@ little_women.scatter('Periods', 'Characters')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_3_0.png)
+![png](../../../images/chapters/15/3/Method_of_Least_Squares_3_0.png)
 
 
 To explore the data, we will need to use the functions `correlation`, `slope`, `intercept`, and `fit` defined in the previous section.
@@ -93,7 +95,7 @@ lw_with_predictions.scatter('Periods')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_8_0.png)
+![png](../../../images/chapters/15/3/Method_of_Least_Squares_8_0.png)
 
 
 Corresponding to each point on the scatter plot, there is an error of prediction calculated as the actual value minus the predicted value. It is the vertical distance between the point and the line, with a negative sign if the point is below the line.
@@ -185,7 +187,7 @@ Intercept of Regression Line: 4745.0 characters
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_14_1.png)
+![png](../../../images/chapters/15/3/Method_of_Least_Squares_14_1.png)
 
 
 Had we used a different line to create our estimates, the errors would have been different. The graph below shows how big the errors would be if we were to use another line for estimation. The second graph shows large errors obtained by using a line that is downright silly.
@@ -197,7 +199,7 @@ lw_errors(50, 10000)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_16_0.png)
+![png](../../../images/chapters/15/3/Method_of_Least_Squares_16_0.png)
 
 
 
@@ -207,7 +209,7 @@ lw_errors(-100, 50000)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_17_0.png)
+![png](../../../images/chapters/15/3/Method_of_Least_Squares_17_0.png)
 
 
 ### Root Mean Squared Error
@@ -255,7 +257,7 @@ Root mean squared error: 4322.167831766537
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_21_1.png)
+![png](../../../images/chapters/15/3/Method_of_Least_Squares_21_1.png)
 
 
 
@@ -271,7 +273,7 @@ Root mean squared error: 16710.11983735375
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_22_1.png)
+![png](../../../images/chapters/15/3/Method_of_Least_Squares_22_1.png)
 
 
 Bad lines have big values of rmse, as expected. But the rmse is much smaller if we choose a slope and intercept close to those of the regression line.
@@ -289,7 +291,7 @@ Root mean squared error: 2715.5391063834586
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_24_1.png)
+![png](../../../images/chapters/15/3/Method_of_Least_Squares_24_1.png)
 
 
 Here is the root mean squared error corresponding to the regression line. By a remarkable fact of mathematics, no other line can beat this one. 
@@ -309,7 +311,7 @@ Root mean squared error: 2701.690785311856
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_26_1.png)
+![png](../../../images/chapters/15/3/Method_of_Least_Squares_26_1.png)
 
 
 The proof of this statement requires abstract mathematics that is beyond the scope of this course. On the other hand, we do have a powerful tool – Python – that performs large numerical computations with ease. So we can use Python to confirm that the regression line minimizes the mean squared error.
@@ -366,7 +368,7 @@ Root mean squared error: 2701.690785311856
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/3/Method_of_Least_Squares_33_1.png)
+![png](../../../images/chapters/15/3/Method_of_Least_Squares_33_1.png)
 
 
 You can confirm that `lw_mse` returns the correct value for other slopes and intercepts too. For example, here is the rmse of the extremely bad line that we tried earlier.

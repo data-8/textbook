@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/16/1/Regression_Model.ipynb
 title: '16.1 A Regression Model'
-permalink: 'chapters/16/1/regression-model'
+permalink: 'chapters/16/1/Regression_Model'
 previouschapter:
-  url: chapters/16/inference-for-regression
+  url: chapters/16/Inference_for_Regression
   title: '16. Inference for Regression'
 nextchapter:
-  url: chapters/16/2/inference-for-the-true-slope
+  url: chapters/16/2/Inference_for_the_True_Slope
   title: '16.2 Inference for the True Slope'
+redirect_from:
+  - 'chapters/16/1/regression-model'
 ---
 
 ### A Regression Model
@@ -43,7 +45,7 @@ draw_and_compare(4, -5, 10)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/1/Regression_Model_2_0.png)
+![png](../../../images/chapters/16/1/Regression_Model_2_0.png)
 
 
 In reality, of course, we will never see the true line. What the simulation shows that if the regression model looks plausible, and if we have a large sample, then the regression line is a good approximation to the true line.

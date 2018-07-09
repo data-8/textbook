@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/03/2/1/Growth.ipynb
 title: '3.2.1 Example: Growth Rates'
-permalink: 'chapters/03/2/1/growth'
+permalink: 'chapters/03/2/1/Growth'
 previouschapter:
-  url: chapters/03/2/names
+  url: chapters/03/2/Names
   title: '3.2 Names'
 nextchapter:
-  url: chapters/03/3/calls
+  url: chapters/03/3/Calls
   title: '3.3 Call Expressions'
+redirect_from:
+  - 'chapters/03/2/1/growth'
 ---
 
 # Example: Growth Rates

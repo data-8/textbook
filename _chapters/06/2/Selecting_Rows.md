@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/06/2/Selecting_Rows.ipynb
 title: '6.2 Selecting Rows'
-permalink: 'chapters/06/2/selecting-rows'
+permalink: 'chapters/06/2/Selecting_Rows'
 previouschapter:
-  url: chapters/06/1/sorting-rows
+  url: chapters/06/1/Sorting_Rows
   title: '6.1 Sorting Rows'
 nextchapter:
-  url: chapters/06/3/example-trends-in-the-population-of-the-united-states
+  url: chapters/06/3/Example_Trends_in_the_Population_of_the_United_States
   title: '6.3 Example: Population Trends'
+redirect_from:
+  - 'chapters/06/2/selecting-rows'
 ---
 
 # Selecting Rows

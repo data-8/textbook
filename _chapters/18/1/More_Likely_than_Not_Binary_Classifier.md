@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/18/1/More_Likely_than_Not_Binary_Classifier.ipynb
 title: '18.1 A "More Likely Than Not" Binary Classifier'
-permalink: 'chapters/18/1/more-likely-than-not-binary-classifier'
+permalink: 'chapters/18/1/More_Likely_than_Not_Binary_Classifier'
 previouschapter:
-  url: chapters/18/updating-predictions
+  url: chapters/18/Updating_Predictions
   title: '18. Updating Predictions'
 nextchapter:
-  url: chapters/18/2/making-decisions
+  url: chapters/18/2/Making_Decisions
   title: '18.2 Making Decisions'
+redirect_from:
+  - 'chapters/18/1/more-likely-than-not-binary-classifier'
 ---
 
 ### A "More Likely Than Not" Binary Classifier
@@ -162,7 +164,7 @@ students.pivot('Major', 'Year')
 
 
 
-![Students Tree Diagram]({{ site.baseurl }}/images/tree_students.png)
+![Students Tree Diagram](../../../images/tree_students.png)
 
 Like the pivot table, this diagram *partitions* the students into four distinct groups known as "branches". Notice that the "Third Year, Declared" branch contains the proportion 0.4 x 0.8 = 0.32 of the students, corresponding to the 32 students in the "Third Year, Declared" cell of the pivot table. The "Second Year, Declared" branch contains 0.6 x 0.5 = 0.3 of the students, corresponding to the 30 in the "Second Year, Declared" cell of the pivot table.
 

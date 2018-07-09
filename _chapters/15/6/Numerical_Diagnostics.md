@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/15/6/Numerical_Diagnostics.ipynb
 title: '15.6 Numerical Diagnostics'
-permalink: 'chapters/15/6/numerical-diagnostics'
+permalink: 'chapters/15/6/Numerical_Diagnostics'
 previouschapter:
-  url: chapters/15/5/visual-diagnostics
+  url: chapters/15/5/Visual_Diagnostics
   title: '15.5 Visual Diagnostics'
 nextchapter:
-  url: chapters/16/inference-for-regression
+  url: chapters/16/Inference_for_Regression
   title: '16. Inference for Regression'
+redirect_from:
+  - 'chapters/15/6/numerical-diagnostics'
 ---
 
 ### Numerical Diagnostics
@@ -235,7 +237,7 @@ scatter_fit(heights, 'MidParent', 'Child')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/6/Numerical_Diagnostics_19_0.png)
+![png](../../../images/chapters/15/6/Numerical_Diagnostics_19_0.png)
 
 
 The fitted values range from about 64 to about 71, whereas the heights of all the children are quite a bit more variable, ranging from about 55 to 80.

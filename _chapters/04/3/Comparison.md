@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/04/3/Comparison.ipynb
 title: '4.3 Comparisons'
-permalink: 'chapters/04/3/comparison'
+permalink: 'chapters/04/3/Comparison'
 previouschapter:
-  url: chapters/04/2/1/string-methods
+  url: chapters/04/2/1/String_Methods
   title: '4.2.1 String Methods'
 nextchapter:
-  url: chapters/05/sequences
+  url: chapters/05/Sequences
   title: '5. Sequences'
+redirect_from:
+  - 'chapters/04/3/comparison'
 ---
 
 # Comparisons

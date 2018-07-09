@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/09/1/Conditional_Statements.ipynb
 title: '9.1 Conditional Statements'
-permalink: 'chapters/09/1/conditional-statements'
+permalink: 'chapters/09/1/Conditional_Statements'
 previouschapter:
-  url: chapters/09/randomness
+  url: chapters/09/Randomness
   title: '9. Randomness'
 nextchapter:
-  url: chapters/09/2/iteration
+  url: chapters/09/2/Iteration
   title: '9.2 Iteration'
+redirect_from:
+  - 'chapters/09/1/conditional-statements'
 ---
 
 ### Conditional Statements

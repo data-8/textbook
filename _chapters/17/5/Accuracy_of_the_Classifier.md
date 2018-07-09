@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/17/5/Accuracy_of_the_Classifier.ipynb
 title: '17.5 The Accuracy of the Classifier'
-permalink: 'chapters/17/5/accuracy-of-the-classifier'
+permalink: 'chapters/17/5/Accuracy_of_the_Classifier'
 previouschapter:
-  url: chapters/17/4/implementing-the-classifier
+  url: chapters/17/4/Implementing_the_Classifier
   title: '17.4 Implementing the Classifier'
 nextchapter:
-  url: chapters/17/6/multiple-regression
+  url: chapters/17/6/Multiple_Regression
   title: '17.6 Multiple Regression'
+redirect_from:
+  - 'chapters/17/5/accuracy-of-the-classifier'
 ---
 
 ### The Accuracy of the Classifier
@@ -162,7 +164,7 @@ patients_with_colors.scatter('Bland Chromatin', 'Single Epithelial Cell Size', c
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/5/Accuracy_of_the_Classifier_12_0.png)
+![png](../../../images/chapters/17/5/Accuracy_of_the_Classifier_12_0.png)
 
 
 Oops.  That plot is utterly misleading, because there are a bunch of points that have identical values for both the x- and y-coordinates.  To make it easier to see all the data points, I'm going to add a little bit of random jitter to the x- and y-values.  Here's how that looks:

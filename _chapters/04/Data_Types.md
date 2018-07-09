@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/04/Data_Types.ipynb
 title: '4. Data Types'
-permalink: 'chapters/04/data-types'
+permalink: 'chapters/04/Data_Types'
 previouschapter:
-  url: chapters/03/4/introduction-to-tables
+  url: chapters/03/4/Introduction_to_Tables
   title: '3.4 Introduction to Tables'
 nextchapter:
-  url: chapters/04/1/numbers
+  url: chapters/04/1/Numbers
   title: '4.1 Numbers'
+redirect_from:
+  - 'chapters/04/data-types'
 ---
 
 # Data Types

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/05/1/Arrays.ipynb
 title: '5.1 Arrays'
-permalink: 'chapters/05/1/arrays'
+permalink: 'chapters/05/1/Arrays'
 previouschapter:
-  url: chapters/05/sequences
+  url: chapters/05/Sequences
   title: '5. Sequences'
 nextchapter:
-  url: chapters/05/2/ranges
+  url: chapters/05/2/Ranges
   title: '5.2 Ranges'
+redirect_from:
+  - 'chapters/05/1/arrays'
 ---
 
 # Arrays
@@ -75,7 +77,7 @@ array([56.48  , 57.8966, 58.253 , 59.2952])
 
 
 
-<img src="{{ site.baseurl }}/images/array_arithmetic.png" />
+<img src="../../../images/array_arithmetic.png" />
 
 Arrays also have *methods*, which are functions that operate on the array values. The `mean` of a collection of numbers is its average value: the sum divided by the length. Each pair of parentheses in the examples below is part of a call expression; it's calling a function with no arguments to perform a computation on the array called `highs`.
 
