@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/12/1/AB_Testing.ipynb
 title: '12.1 A/B Testing'
-permalink: 'chapters/12/1/ab-testing'
+permalink: 'chapters/12/1/AB_Testing'
 previouschapter:
-  url: chapters/12/comparing-two-samples
+  url: chapters/12/Comparing_Two_Samples
   title: '12. Comparing Two Samples'
 nextchapter:
-  url: chapters/12/2/deflategate
+  url: chapters/12/2/Deflategate
   title: '12.2 Deflategate'
+redirect_from:
+  - 'chapters/12/1/ab-testing'
 ---
 
 ### A/B Testing
@@ -121,7 +123,7 @@ smoking_and_birthweight.hist('Birth Weight', group = 'Maternal Smoker')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/12/1/AB_Testing_7_0.png)
+![png](../../../images/chapters/12/1/AB_Testing_7_0.png)
 
 
 The distribution of the weights of the babies born to mothers who smoked appears to be shifted slightly to the left of the distribution corresponding to non-smoking mothers. The weights of the babies of the mothers who smoked seem lower, on average than the weights of the babies of the non-smokers. 
@@ -443,7 +445,7 @@ Observed Difference: -9.266142572024918
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/12/1/AB_Testing_27_1.png)
+![png](../../../images/chapters/12/1/AB_Testing_27_1.png)
 
 
 Notice how the distribution is centered around 0. This makes sense, because under the null hypothesis the two groups should have roughly the same average. Therefore the difference between the group averages should be around 0.
@@ -514,7 +516,7 @@ smoking_and_age.hist('Maternal Age', group = 'Maternal Smoker')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/12/1/AB_Testing_34_0.png)
+![png](../../../images/chapters/12/1/AB_Testing_34_0.png)
 
 
 
@@ -594,7 +596,7 @@ Observed Difference: -0.8076725017901509
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/12/1/AB_Testing_41_1.png)
+![png](../../../images/chapters/12/1/AB_Testing_41_1.png)
 
 
 The empirical P-value of the test is the proportion of simulated differences that were equal to or less than the observed difference. This is because low values of the difference favor the alternative hypothesis that the smokers were younger on average.

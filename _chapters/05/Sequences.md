@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/05/Sequences.ipynb
 title: '5. Sequences'
-permalink: 'chapters/05/sequences'
+permalink: 'chapters/05/Sequences'
 previouschapter:
-  url: chapters/04/3/comparison
+  url: chapters/04/3/Comparison
   title: '4.3 Comparisons'
 nextchapter:
-  url: chapters/05/1/arrays
+  url: chapters/05/1/Arrays
   title: '5.1 Arrays'
+redirect_from:
+  - 'chapters/05/sequences'
 ---
 
 # Sequences

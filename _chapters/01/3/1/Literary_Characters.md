@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/01/3/1/Literary_Characters.ipynb
 title: '1.3.1 Literary Characters'
-permalink: 'chapters/01/3/1/literary-characters'
+permalink: 'chapters/01/3/1/Literary_Characters'
 previouschapter:
-  url: chapters/01/3/plotting-the-classics
+  url: chapters/01/3/Plotting_the_Classics
   title: '1.3 Plotting the Classics'
 nextchapter:
-  url: chapters/01/3/2/another-kind-of-character
+  url: chapters/01/3/2/Another_Kind_Of_Character
   title: '1.3.2 Another Kind of Character'
+redirect_from:
+  - 'chapters/01/3/1/literary-characters'
 ---
 
 # Literary Characters
@@ -34,7 +36,7 @@ plots.title('Cumulative Number of Times Each Name Appears', y=1.08);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/01/3/1/Literary_Characters_1_0.png)
+![png](../../../../images/chapters/01/3/1/Literary_Characters_1_0.png)
 
 
 In the plot above, the horizontal axis shows chapter numbers and the vertical axis shows how many times each character has been mentioned up to and including that chapter. 
@@ -163,7 +165,7 @@ plots.title('Cumulative Number of Times Each Name Appears', y=1.08);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/01/3/1/Literary_Characters_6_0.png)
+![png](../../../../images/chapters/01/3/1/Literary_Characters_6_0.png)
 
 
 Laurie is a young man who marries one of the girls in the end. See if you can use the plots to guess which one.

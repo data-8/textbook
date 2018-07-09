@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/10/2/Sampling_from_a_Population.ipynb
 title: '10.2 Sampling from a Population'
-permalink: 'chapters/10/2/sampling-from-a-population'
+permalink: 'chapters/10/2/Sampling_from_a_Population'
 previouschapter:
-  url: chapters/10/1/empirical-distributions
+  url: chapters/10/1/Empirical_Distributions
   title: '10.1 Empirical Distributions'
 nextchapter:
-  url: chapters/10/3/empirical-distribution-of-a-statistic
+  url: chapters/10/3/Empirical_Distribution_of_a_Statistic
   title: '10.3 Empirical Distibution of a Statistic'
+redirect_from:
+  - 'chapters/10/2/sampling-from-a-population'
 ---
 
 ### Sampling from a Population
@@ -115,7 +117,7 @@ united.select('Delay').hist(bins = delay_bins, unit = 'minute')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/2/Sampling_from_a_Population_5_0.png)
+![png](../../../images/chapters/10/2/Sampling_from_a_Population_5_0.png)
 
 
 For the purposes of this section, it is enough to zoom in on the bulk of the data and ignore the 0.8% of flights that had delays of more than 200 minutes. This restriction is just for visual convenience; the table still retains all the data.
@@ -144,7 +146,7 @@ united.select('Delay').hist(bins = delay_bins, unit = 'minute')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/2/Sampling_from_a_Population_8_0.png)
+![png](../../../images/chapters/10/2/Sampling_from_a_Population_8_0.png)
 
 
 The height of the [0, 10) bar is just under 3% per minute, which means that just under 30% of the flights had delays between 0 and 10 minutes. That is confirmed by counting rows: 
@@ -185,7 +187,7 @@ empirical_hist_delay(10)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/2/Sampling_from_a_Population_14_0.png)
+![png](../../../images/chapters/10/2/Sampling_from_a_Population_14_0.png)
 
 
 
@@ -195,7 +197,7 @@ empirical_hist_delay(100)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/2/Sampling_from_a_Population_15_0.png)
+![png](../../../images/chapters/10/2/Sampling_from_a_Population_15_0.png)
 
 
 The most consistently visible discrepancies are among the values that are rare in the population. In our example, those values are in the the right hand tail of the distribution. But as the sample size increases, even those values begin to appear in the sample in roughly the correct proportions.
@@ -207,7 +209,7 @@ empirical_hist_delay(1000)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/2/Sampling_from_a_Population_17_0.png)
+![png](../../../images/chapters/10/2/Sampling_from_a_Population_17_0.png)
 
 
 ### Convergence of the Empirical Histogram of the Sample

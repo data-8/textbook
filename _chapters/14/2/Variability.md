@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/14/2/Variability.ipynb
 title: '14.2 Variability'
-permalink: 'chapters/14/2/variability'
+permalink: 'chapters/14/2/Variability'
 previouschapter:
-  url: chapters/14/1/properties-of-the-mean
+  url: chapters/14/1/Properties_of_the_Mean
   title: '14.1 Properties of the Mean'
 nextchapter:
-  url: chapters/14/3/sd-and-the-normal-curve
+  url: chapters/14/3/SD_and_the_Normal_Curve
   title: '14.3 The SD and the Normal Curve'
+redirect_from:
+  - 'chapters/14/2/variability'
 ---
 
 ### Variability
@@ -314,7 +316,7 @@ nba13.select('Height').hist(bins=np.arange(68, 88, 1))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/2/Variability_21_0.png)
+![png](../../../images/chapters/14/2/Variability_21_0.png)
 
 
 It is no surprise that NBA players are tall! Their average height is just over 79 inches (6'7"), about 10 inches taller than the average height of men in the United States.
@@ -492,7 +494,7 @@ nba13.select('Age in 2013').hist(bins=np.arange(15, 45, 1))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/2/Variability_38_0.png)
+![png](../../../images/chapters/14/2/Variability_38_0.png)
 
 
 
@@ -809,5 +811,5 @@ plots.xticks(np.arange(-6, 17, 3));
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/2/Variability_58_0.png)
+![png](../../../images/chapters/14/2/Variability_58_0.png)
 

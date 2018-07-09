@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/09/4/Monty_Hall_Problem.ipynb
 title: '9.4 The Monty Hall Problem'
-permalink: 'chapters/09/4/monty-hall-problem'
+permalink: 'chapters/09/4/Monty_Hall_Problem'
 previouschapter:
-  url: chapters/09/3/simulation
+  url: chapters/09/3/Simulation
   title: '9.3 Simulation'
 nextchapter:
-  url: chapters/09/5/finding-probabilities
+  url: chapters/09/5/Finding_Probabilities
   title: '9.5 Finding Probabilities'
+redirect_from:
+  - 'chapters/09/4/monty-hall-problem'
 ---
 
 ### The Monty Hall Problem
@@ -20,7 +22,7 @@ The setting is a game show in which the contestant is faced with three closed do
 - The contestant makes an initial choice, but that door isn't opened.
 - At least one of the other two doors must have a goat behind it. Monty opens one of these doors to reveal a goat, displayed in all its glory in [Wikipedia](https://en.wikipedia.org/wiki/Monty_Hall_problem):
 
-![Monty Hall goat]({{ site.baseurl }}/images/monty_hall_goat.png)
+![Monty Hall goat](../../../images/monty_hall_goat.png)
 
 - There are two doors left, one of which was the contestant's original choice. One of the doors has the car behind it, and the other one has a goat. The contestant now gets to choose which of the two doors to open.
 
@@ -461,7 +463,7 @@ combined.barh(0)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/09/4/Monty_Hall_Problem_32_0.png)
+![png](../../../images/chapters/09/4/Monty_Hall_Problem_32_0.png)
 
 
 Notice how the three blue bars are almost equal – the original choice is equally likely to be any of the three available items. But the gold bar corresponding to `Car` is twice as long as the blue. 

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/08/3/Cross-Classifying_by_More_than_One_Variable.ipynb
 title: '8.3 Cross-Classifying'
-permalink: 'chapters/08/3/cross-classifying-by-more-than-one-variable'
+permalink: 'chapters/08/3/Cross-Classifying_by_More_than_One_Variable'
 previouschapter:
-  url: chapters/08/2/classifying-by-one-variable
+  url: chapters/08/2/Classifying_by_One_Variable
   title: '8.2 Classifying by One Variable'
 nextchapter:
-  url: chapters/08/4/joining-tables-by-columns
+  url: chapters/08/4/Joining_Tables_by_Columns
   title: '8.4 Joining Tables by Columns'
+redirect_from:
+  - 'chapters/08/3/cross-classifying-by-more-than-one-variable'
 ---
 
 ### Cross-Classifying by More than One Variable
@@ -661,5 +663,5 @@ distributions.select(0, 1, 4).barh(0)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/08/3/Cross-Classifying_by_More_than_One_Variable_36_0.png)
+![png](../../../images/chapters/08/3/Cross-Classifying_by_More_than_One_Variable_36_0.png)
 

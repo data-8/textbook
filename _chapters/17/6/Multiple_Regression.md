@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/17/6/Multiple_Regression.ipynb
 title: '17.6 Multiple Regression'
-permalink: 'chapters/17/6/multiple-regression'
+permalink: 'chapters/17/6/Multiple_Regression'
 previouschapter:
-  url: chapters/17/5/accuracy-of-the-classifier
+  url: chapters/17/5/Accuracy_of_the_Classifier
   title: '17.5 The Accuracy of the Classifier'
 nextchapter:
-  url: chapters/18/updating-predictions
+  url: chapters/18/Updating_Predictions
   title: '18. Updating Predictions'
+redirect_from:
+  - 'chapters/17/6/multiple-regression'
 ---
 
 Now that we have explored ways to use multiple attributes to predict a categorical variable, let us return to predicting a quantitative variable. Predicting a numerical quantity is called regression, and a commonly used method to use multiple attributes for regression is called *multiple linear regression*.
@@ -85,7 +87,7 @@ sales.hist('SalePrice', bins=32, unit='$')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/6/Multiple_Regression_3_0.png)
+![png](../../../images/chapters/17/6/Multiple_Regression_3_0.png)
 
 
 #### Correlation
@@ -99,7 +101,7 @@ sales.scatter('1st Flr SF', 'SalePrice')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/6/Multiple_Regression_5_0.png)
+![png](../../../images/chapters/17/6/Multiple_Regression_5_0.png)
 
 
 
@@ -330,7 +332,7 @@ plots.plot([0, 5e5], [0, 5e5]);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/6/Multiple_Regression_24_0.png)
+![png](../../../images/chapters/17/6/Multiple_Regression_24_0.png)
 
 
 A residual plot for multiple regression typically compares the errors (residuals) to the actual values of the predicted variable. We see in the residual plot below that we have systematically underestimated the value of expensive houses, shown by the many positive residual values on the right side of the graph.
@@ -343,7 +345,7 @@ plots.plot([0, 7e5], [0, 0]);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/6/Multiple_Regression_26_0.png)
+![png](../../../images/chapters/17/6/Multiple_Regression_26_0.png)
 
 
 As with simple linear regression, interpreting the result of a predictor is at least as important as making predictions. There are many lessons about interpreting multiple regression that are not included in this textbook. A natural next step after completing this text would be to study linear modeling and regression in further depth.
@@ -516,5 +518,5 @@ plots.plot([0, 7e5], [0, 0]);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/6/Multiple_Regression_39_0.png)
+![png](../../../images/chapters/17/6/Multiple_Regression_39_0.png)
 

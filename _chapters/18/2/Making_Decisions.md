@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/18/2/Making_Decisions.ipynb
 title: '18.2 Making Decisions'
-permalink: 'chapters/18/2/making-decisions'
+permalink: 'chapters/18/2/Making_Decisions'
 previouschapter:
-  url: chapters/18/1/more-likely-than-not-binary-classifier
+  url: chapters/18/1/More_Likely_than_Not_Binary_Classifier
   title: '18.1 A "More Likely Than Not" Binary Classifier'
 nextchapter:
   url: 
   title: ''
+redirect_from:
+  - 'chapters/18/2/making-decisions'
 ---
 
 ### Making Decisions
@@ -26,7 +28,7 @@ These errors can affect people's decisions. False positives can cause anxiety an
 ### A Test for a Rare Disease
 Suppose there is a large population and a disease that strikes a tiny proportion of the population. The tree diagram below summarizes information about such a disease and about a medical test for it.
 
-![Tree Rare Disease]({{ site.baseurl }}/images/tree_disease_rare.png)
+![Tree Rare Disease](../../../images/tree_disease_rare.png)
 
 Overall, only 4 in 1000 of the population has the disease. The test is quite accurate: it has a very small false positive rate of 5 in 1000, and a somewhat larger (though still small) false negative rate of 1 in 100.
 
@@ -115,7 +117,7 @@ That's the answer we got by using Bayes' Rule. The counts in the Positives colum
 
 The reason is that a huge fraction of the population doesn't have the disease in the first place. The tiny fraction of those that falsely test Positive are still greater in number than the people who correctly test Positive. This is easier to visualize in the tree diagram:
 
-![Tree Rare Disease]({{ site.baseurl }}/images/tree_disease_rare.png)
+![Tree Rare Disease](../../../images/tree_disease_rare.png)
 
 - The proportion of true Positives is a large fraction (0.99) of a tiny fraction (0.004) of the population.
 - The proportion of false Positives is a tiny fraction (0.005) of a large fraction (0.996) of the population.
@@ -139,7 +141,7 @@ Some researchers insist that all probabilities must be relative frequencies, but
 
 Suppose the doctor's subjective opinion is that there is a 5% chance that the patient has the disease. Then just the prior probabilities in the tree diagram will change:
 
-![Tree: Subjective Prior]({{ site.baseurl }}/images/tree_disease_subj.png)
+![Tree: Subjective Prior](../../../images/tree_disease_subj.png)
 
 Given that the patient tests Positive, the chance that he or she has the disease is given by Bayes' Rule.
 

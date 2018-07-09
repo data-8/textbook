@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/07/Visualization.ipynb
 title: '7. Visualization'
-permalink: 'chapters/07/visualization'
+permalink: 'chapters/07/Visualization'
 previouschapter:
-  url: chapters/06/4/example-gender-ratio-in-the-us-population
+  url: chapters/06/4/Example_Gender_Ratio_in_the_US_Population
   title: '6.4 Example: Trends in Gender'
 nextchapter:
-  url: chapters/07/1/visualizing-categorical-distributions
+  url: chapters/07/1/Visualizing_Categorical_Distributions
   title: '7.1 Categorical Distributions'
+redirect_from:
+  - 'chapters/07/visualization'
 ---
 
 ### Visualization
@@ -105,7 +107,7 @@ actors.scatter('Number of Movies', 'Total Gross')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/07/Visualization_7_0.png)
+![png](../../images/chapters/07/Visualization_7_0.png)
 
 
 The plot contains 50 points, one point for each actor in the table. You can see that it slopes upwards, in general. The more movies an actor has been in, the more the total gross of all of those movies – in general.
@@ -125,7 +127,7 @@ actors.scatter('Number of Movies', 'Average per Movie')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/07/Visualization_10_0.png)
+![png](../../images/chapters/07/Visualization_10_0.png)
 
 
 This is a markedly different picture and shows a *negative* association. In general, the more movies an actor has been in, the *less* the average receipt per movie.
@@ -144,7 +146,7 @@ no_outlier.scatter('Number of Movies', 'Average per Movie')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/07/Visualization_13_0.png)
+![png](../../images/chapters/07/Visualization_13_0.png)
 
 
 The negative association is still clearly visible. Let's identify the actors corresponding to the points that lie on the right hand side of the plot where the number of movies is large:
@@ -219,7 +221,7 @@ actors.where('Number of Movies', are.below(10))
 As an actor, Anthony Daniels might not have the stature of Robert DeNiro. But his 7 movies had an astonishingly high average receipt of nearly $452$ million dollars per movie.
 
 What were these movies? You might know about the droid C-3PO in Star Wars:
-![C-3PO]({{ site.baseurl }}/images/C-3PO_droid.png)
+![C-3PO](../../images/C-3PO_droid.png)
 That's [Anthony Daniels](https://en.wikipedia.org/wiki/Anthony_Daniels) inside the metallic suit. He plays C-3PO.
 
 Mr. Daniels' entire filmography (apart from cameos) consists of movies in the high-grossing Star Wars franchise. That explains both his high average receipt and his low number of movies.
@@ -302,7 +304,7 @@ movies_by_year.plot('Year', 'Number of Movies')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/07/Visualization_22_0.png)
+![png](../../images/chapters/07/Visualization_22_0.png)
 
 
 The graph rises sharply and then has a gentle upwards trend though the numbers vary noticeably from year to year. The sharp rise in the early 1980's is due in part to studios returning to the forefront of movie production after some years of filmmaker driven movies in the 1970's. 
@@ -322,7 +324,7 @@ century_21.plot('Year', 'Number of Movies')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/07/Visualization_25_0.png)
+![png](../../images/chapters/07/Visualization_25_0.png)
 
 
 The global financial crisis of 2008 has a visible effect – in 2009 there is a sharp drop in the number of movies released.
@@ -336,7 +338,7 @@ century_21.plot('Year', 'Total Gross')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/07/Visualization_27_0.png)
+![png](../../images/chapters/07/Visualization_27_0.png)
 
 
 The total domestic gross receipt was higher in 2009 than in 2008, even though there was a financial crisis and a much smaller number of movies were released.

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/13/1/Percentiles.ipynb
 title: '13.1 Percentiles'
-permalink: 'chapters/13/1/percentiles'
+permalink: 'chapters/13/1/Percentiles'
 previouschapter:
-  url: chapters/13/estimation
+  url: chapters/13/Estimation
   title: '13. Estimation'
 nextchapter:
-  url: chapters/13/2/bootstrap
+  url: chapters/13/2/Bootstrap
   title: '13.2 The Bootstrap'
+redirect_from:
+  - 'chapters/13/1/percentiles'
 ---
 
 ### Percentiles
@@ -150,7 +152,7 @@ scores_and_sections.select('Midterm').hist(bins=np.arange(-0.5, 25.6, 1))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/13/1/Percentiles_11_0.png)
+![png](../../../images/chapters/13/1/Percentiles_11_0.png)
 
 
 What was the 85th percentile of the scores? To use the `percentile` function, create an array `scores` containing the midterm scores, and find the 85th percentile:

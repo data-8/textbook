@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/06/4/Example_Gender_Ratio_in_the_US_Population.ipynb
 title: '6.4 Example: Trends in Gender'
-permalink: 'chapters/06/4/example-gender-ratio-in-the-us-population'
+permalink: 'chapters/06/4/Example_Gender_Ratio_in_the_US_Population'
 previouschapter:
-  url: chapters/06/3/example-trends-in-the-population-of-the-united-states
+  url: chapters/06/3/Example_Trends_in_the_Population_of_the_United_States
   title: '6.3 Example: Population Trends'
 nextchapter:
-  url: chapters/07/visualization
+  url: chapters/07/Visualization
   title: '7. Visualization'
+redirect_from:
+  - 'chapters/06/4/example-gender-ratio-in-the-us-population'
 ---
 
 # Example: Trends in Gender
@@ -679,5 +681,5 @@ ratios.plot('AGE')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/06/4/Example_Gender_Ratio_in_the_US_Population_32_0.png)
+![png](../../../images/chapters/06/4/Example_Gender_Ratio_in_the_US_Population_32_0.png)
 

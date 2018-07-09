@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/13/2/Bootstrap.ipynb
 title: '13.2 The Bootstrap'
-permalink: 'chapters/13/2/bootstrap'
+permalink: 'chapters/13/2/Bootstrap'
 previouschapter:
-  url: chapters/13/1/percentiles
+  url: chapters/13/1/Percentiles
   title: '13.1 Percentiles'
 nextchapter:
-  url: chapters/13/3/confidence-intervals
+  url: chapters/13/3/Confidence_Intervals
   title: '13.3 Confidence Intervals'
+redirect_from:
+  - 'chapters/13/2/bootstrap'
 ---
 
 ### The Bootstrap
@@ -211,7 +213,7 @@ sf2015.select('Total Compensation').hist(bins=sf_bins)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/13/2/Bootstrap_13_0.png)
+![png](../../../images/chapters/13/2/Bootstrap_13_0.png)
 
 
 While most of the values are below \\$300,000, a few are quite a bit higher. For example, the total compensation of the Chief Investment Officer was almost \\$650,000. That is why the horizontal axis stretches to \\$700,000.
@@ -281,7 +283,7 @@ our_sample.select('Total Compensation').hist(bins=sf_bins)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/13/2/Bootstrap_20_0.png)
+![png](../../../images/chapters/13/2/Bootstrap_20_0.png)
 
 
 
@@ -339,7 +341,7 @@ resample_1.select('Total Compensation').hist(bins=sf_bins)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/13/2/Bootstrap_26_0.png)
+![png](../../../images/chapters/13/2/Bootstrap_26_0.png)
 
 
 
@@ -426,7 +428,7 @@ plots.scatter(pop_median, 0, color='red', s=30);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/13/2/Bootstrap_35_0.png)
+![png](../../../images/chapters/13/2/Bootstrap_35_0.png)
 
 
 It is important to remember that the red dot is fixed: it is \\$110,305.79, the population median. The empirical histogram is the result of random draws, and will be situated randomly relative to the red dot. 
@@ -487,7 +489,7 @@ plots.scatter(pop_median, 0, color='red', s=30, zorder=2);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/13/2/Bootstrap_41_0.png)
+![png](../../../images/chapters/13/2/Bootstrap_41_0.png)
 
 
 The "middle 95%" interval of estimates captured the parameter in our example. But was that a fluke? 

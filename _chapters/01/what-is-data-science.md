@@ -7,6 +7,8 @@ previouschapter:
 nextchapter:
   url: chapters/01/1/intro
   title: '1.1 Introduction'
+redirect_from:
+  - 'chapters/01/what-is-data-science'
 ---
 What is Data Science
 ====================

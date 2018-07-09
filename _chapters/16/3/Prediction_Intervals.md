@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/16/3/Prediction_Intervals.ipynb
 title: '16.3 Prediction Intervals'
-permalink: 'chapters/16/3/prediction-intervals'
+permalink: 'chapters/16/3/Prediction_Intervals'
 previouschapter:
-  url: chapters/16/2/inference-for-the-true-slope
+  url: chapters/16/2/Inference_for_the_True_Slope
   title: '16.2 Inference for the True Slope'
 nextchapter:
-  url: chapters/17/classification
+  url: chapters/17/Classification
   title: '17. Classification'
+redirect_from:
+  - 'chapters/16/3/prediction-intervals'
 ---
 
 ### Prediction Intervals
@@ -178,7 +180,7 @@ Approximate 95%-confidence interval:
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/3/Prediction_Intervals_13_1.png)
+![png](../../../images/chapters/16/3/Prediction_Intervals_13_1.png)
 
 
 The figure above shows a bootstrap empirical histogram of the predicted birth weight of a baby at 300 gestational days, based on 5,000 repetitions of the bootstrap process. The empirical distribution is roughly normal. 
@@ -204,7 +206,7 @@ Approximate 95%-confidence interval:
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/3/Prediction_Intervals_16_1.png)
+![png](../../../images/chapters/16/3/Prediction_Intervals_16_1.png)
 
 
 Notice that this interval is narrower than the prediction interval at 300 gestational days. Let us investigate the reason for this.

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/17/3/Rows_of_Tables.ipynb
 title: '17.3 Rows of Tables'
-permalink: 'chapters/17/3/rows-of-tables'
+permalink: 'chapters/17/3/Rows_of_Tables'
 previouschapter:
-  url: chapters/17/2/training-and-testing
+  url: chapters/17/2/Training_and_Testing
   title: '17.2 Training and Testing'
 nextchapter:
-  url: chapters/17/4/implementing-the-classifier
+  url: chapters/17/4/Implementing_the_Classifier
   title: '17.4 Implementing the Classifier'
+redirect_from:
+  - 'chapters/17/3/rows-of-tables'
 ---
 
 ### Rows of Tables
@@ -146,7 +148,7 @@ plots.scatter(alice.item(0), alice.item(1), color='red', s=30);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/3/Rows_of_Tables_10_0.png)
+![png](../../../images/chapters/17/3/Rows_of_Tables_10_0.png)
 
 
 To find the distance between Alice's point and any of the other points, we only need the values of the attributes:

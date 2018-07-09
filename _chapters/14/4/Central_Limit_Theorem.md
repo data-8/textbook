@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/14/4/Central_Limit_Theorem.ipynb
 title: '14.4 The Central Limit Theorem'
-permalink: 'chapters/14/4/central-limit-theorem'
+permalink: 'chapters/14/4/Central_Limit_Theorem'
 previouschapter:
-  url: chapters/14/3/sd-and-the-normal-curve
+  url: chapters/14/3/SD_and_the_Normal_Curve
   title: '14.3 The SD and the Normal Curve'
 nextchapter:
-  url: chapters/14/5/variability-of-the-sample-mean
+  url: chapters/14/5/Variability_of_the_Sample_Mean
   title: '14.5 The Variability of the Sample Mean'
+redirect_from:
+  - 'chapters/14/4/central-limit-theorem'
 ---
 
 ### The Central Limit Theorem
@@ -152,7 +154,7 @@ red.select('Winnings: Red').hist(bins=np.arange(-1.5, 1.6, 1))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/4/Central_Limit_Theorem_8_0.png)
+![png](../../../images/chapters/14/4/Central_Limit_Theorem_8_0.png)
 
 
 Now suppose you bet many times on red. Your net winnings will be the sum of many draws made at random with replacement from the distribution above.
@@ -187,7 +189,7 @@ results.hist(bins=np.arange(-80, 50, 6))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/4/Central_Limit_Theorem_11_0.png)
+![png](../../../images/chapters/14/4/Central_Limit_Theorem_11_0.png)
 
 
 That's a roughly bell shaped histogram, even though the distribution we are drawing from is nowhere near bell shaped.
@@ -285,7 +287,7 @@ united.select('Delay').hist(bins=np.arange(-20, 300, 10))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/4/Central_Limit_Theorem_23_0.png)
+![png](../../../images/chapters/14/4/Central_Limit_Theorem_23_0.png)
 
 
 The mean delay was about 16.6 minutes and the SD was about 39.5 minutes. Notice how large the SD is, compared to the mean. Those large deviations on the right have an effect, even though they are a very small proportion of the data.
@@ -362,7 +364,7 @@ results.hist(bins=np.arange(10, 25, 0.5))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/4/Central_Limit_Theorem_31_0.png)
+![png](../../../images/chapters/14/4/Central_Limit_Theorem_31_0.png)
 
 
 Once again, we see a rough bell shape, even though we are drawing from a very skewed distribution. The bell is centered somewhere between 16 ad 17, as we expect.
@@ -446,7 +448,7 @@ results.hist(bins=np.arange(0.65, 0.85, 0.01))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/4/Central_Limit_Theorem_37_0.png)
+![png](../../../images/chapters/14/4/Central_Limit_Theorem_37_0.png)
 
 
 There's that normal curve again, as predicted by the Central Limit Theorem, centered at around 0.75 just as you would expect.
@@ -475,7 +477,7 @@ results.hist(bins=np.arange(0.65, 0.85, 0.01))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/4/Central_Limit_Theorem_40_0.png)
+![png](../../../images/chapters/14/4/Central_Limit_Theorem_40_0.png)
 
 
 Both distributions are approximately normal but one is narrower than the other. The proportions based on a sample size of 800 are more tightly clustered around 0.75 than those from a sample size of 200. Increasing the sample size has decreased the variability in the sample proportion.

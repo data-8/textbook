@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/05/3/More_on_Arrays.ipynb
 title: '5.3 More on Arrays'
-permalink: 'chapters/05/3/more-on-arrays'
+permalink: 'chapters/05/3/More_on_Arrays'
 previouschapter:
-  url: chapters/05/2/ranges
+  url: chapters/05/2/Ranges
   title: '5.2 Ranges'
 nextchapter:
-  url: chapters/06/tables
+  url: chapters/06/Tables
   title: '6. Tables'
+redirect_from:
+  - 'chapters/05/3/more-on-arrays'
 ---
 
 # More on Arrays
@@ -98,7 +100,7 @@ array([11.472, 12.016, 11.711, 11.436])
 
 
 
-<img src="{{ site.baseurl }}/images/array_subtraction.png" />
+<img src="../../../images/array_subtraction.png" />
 
 What we've seen in these examples are special cases of a general feature of arrays.
 

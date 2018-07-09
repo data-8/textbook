@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/10/1/Empirical_Distributions.ipynb
 title: '10.1 Empirical Distributions'
-permalink: 'chapters/10/1/empirical-distributions'
+permalink: 'chapters/10/1/Empirical_Distributions'
 previouschapter:
-  url: chapters/10/sampling-and-empirical-distributions
+  url: chapters/10/Sampling_and_Empirical_Distributions
   title: '10. Sampling and Empirical Distributions'
 nextchapter:
-  url: chapters/10/2/sampling-from-a-population
+  url: chapters/10/2/Sampling_from_a_Population
   title: '10.2 Sampling from a Population'
+redirect_from:
+  - 'chapters/10/1/empirical-distributions'
 ---
 
 ### Empirical Distributions
@@ -72,7 +74,7 @@ die.hist(bins = die_bins)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/1/Empirical_Distributions_3_0.png)
+![png](../../../images/chapters/10/1/Empirical_Distributions_3_0.png)
 
 
 Variables whose successive values are separated by the same fixed amount, such as the values on rolls of a die (successive values separated by 1), fall into a class of variables that are called *discrete*. The histogram above is called a *discrete* histogram. Its bins are specified by the array `die_bins` and ensure that each bar is centered over the corresponding integer value. 
@@ -165,7 +167,7 @@ empirical_hist_die(10)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/1/Empirical_Distributions_10_0.png)
+![png](../../../images/chapters/10/1/Empirical_Distributions_10_0.png)
 
 
 When the sample size increases, the empirical histogram begins to look more like the histogram of theoretical probabilities.
@@ -177,7 +179,7 @@ empirical_hist_die(100)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/1/Empirical_Distributions_12_0.png)
+![png](../../../images/chapters/10/1/Empirical_Distributions_12_0.png)
 
 
 
@@ -187,7 +189,7 @@ empirical_hist_die(1000)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/1/Empirical_Distributions_13_0.png)
+![png](../../../images/chapters/10/1/Empirical_Distributions_13_0.png)
 
 
 As we increase the number of rolls in the simulation, the area of each bar gets closer 16.67%, which is the area of each bar in the probability histogram.

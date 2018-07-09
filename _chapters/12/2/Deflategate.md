@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/12/2/Deflategate.ipynb
 title: '12.2 Deflategate'
-permalink: 'chapters/12/2/deflategate'
+permalink: 'chapters/12/2/Deflategate'
 previouschapter:
-  url: chapters/12/1/ab-testing
+  url: chapters/12/1/AB_Testing
   title: '12.1 A/B Testing'
 nextchapter:
-  url: chapters/12/3/causality
+  url: chapters/12/3/Causality
   title: '12.3 Causality'
+redirect_from:
+  - 'chapters/12/2/deflategate'
 ---
 
 ### Deflategate
@@ -512,7 +514,7 @@ Empirical P-value: 0.003
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/12/2/Deflategate_24_1.png)
+![png](../../../images/chapters/12/2/Deflategate_24_1.png)
 
 
 As in previous examples of this test, the bulk of the distribution is centered around 0. Under the null hypothesis, the Patriots' drops are a random sample of all 15 drops, and therefore so are the Colts'. Therefore the two sets of drops should be about equal on average, and therefore their difference should be around 0.

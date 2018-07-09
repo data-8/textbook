@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/08/Functions_and_Tables.ipynb
 title: '8. Functions and Tables'
-permalink: 'chapters/08/functions-and-tables'
+permalink: 'chapters/08/Functions_and_Tables'
 previouschapter:
-  url: chapters/07/3/overlaid-graphs
+  url: chapters/07/3/Overlaid_Graphs
   title: '7.3 Overlaid Graphs'
 nextchapter:
-  url: chapters/08/1/applying-a-function-to-a-column
+  url: chapters/08/1/Applying_a_Function_to_a_Column
   title: '8.1 Applying Functions to Columns'
+redirect_from:
+  - 'chapters/08/functions-and-tables'
 ---
 
 ### Functions and Tables
@@ -31,7 +33,7 @@ def double(x):
 
 We start any function definition by writing `def`.  Here is a breakdown of the other parts (the *syntax*) of this small function:
 
-![]({{ site.baseurl }}/images/function_definition.jpg)
+![](../../images/function_definition.jpg)
 
 When we run the cell above, no particular number is doubled, and the code inside the body of `double` is not yet evaluated.  In this respect, our function is analogous to a *recipe*.  Each time we follow the instructions in a recipe, we need to start with ingredients.  Each time we want to use our function to double a number, we need to specify a number.
 
@@ -244,7 +246,7 @@ The biggest difference is 5
 
 Here is what happens when we run that cell:
 
-<img src="{{ site.baseurl }}/images/function_execution.jpg" />
+<img src="../../images/function_execution.jpg" />
 
 ## Multiple Arguments
 

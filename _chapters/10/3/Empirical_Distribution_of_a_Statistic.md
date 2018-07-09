@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/10/3/Empirical_Distribution_of_a_Statistic.ipynb
 title: '10.3 Empirical Distibution of a Statistic'
-permalink: 'chapters/10/3/empirical-distribution-of-a-statistic'
+permalink: 'chapters/10/3/Empirical_Distribution_of_a_Statistic'
 previouschapter:
-  url: chapters/10/2/sampling-from-a-population
+  url: chapters/10/2/Sampling_from_a_Population
   title: '10.2 Sampling from a Population'
 nextchapter:
-  url: chapters/11/testing-hypotheses
+  url: chapters/11/Testing_Hypotheses
   title: '11. Testing Hypotheses'
+redirect_from:
+  - 'chapters/10/3/empirical-distribution-of-a-statistic'
 ---
 
 ### Empirical Distribution of a Statistic
@@ -32,7 +34,7 @@ plots.title('Population');
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/3/Empirical_Distribution_of_a_Statistic_2_0.png)
+![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_2_0.png)
 
 
 
@@ -44,7 +46,7 @@ plots.title('Sample of Size 1000');
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/3/Empirical_Distribution_of_a_Statistic_3_0.png)
+![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_3_0.png)
 
 
 The two histograms clearly resemble each other, though they are not identical. 
@@ -270,7 +272,7 @@ simulated_medians.hist(bins=np.arange(0.5, 5, 1))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/10/3/Empirical_Distribution_of_a_Statistic_25_0.png)
+![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_25_0.png)
 
 
 You can see that the sample median is very likely to be close to 2, which was the value of the population median. Since samples of 1000 flight delays are likely to resemble the population of delays, it is not surprising that the median delays of those samples should be close to the median delay in the population.

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/14/6/Choosing_a_Sample_Size.ipynb
 title: '14.6 Choosing a Sample Size'
-permalink: 'chapters/14/6/choosing-a-sample-size'
+permalink: 'chapters/14/6/Choosing_a_Sample_Size'
 previouschapter:
-  url: chapters/14/5/variability-of-the-sample-mean
+  url: chapters/14/5/Variability_of_the_Sample_Mean
   title: '14.5 The Variability of the Sample Mean'
 nextchapter:
-  url: chapters/15/prediction
+  url: chapters/15/Prediction
   title: '15. Prediction'
+redirect_from:
+  - 'chapters/14/6/choosing-a-sample-size'
 ---
 
 ### Choosing a Sample Size
@@ -131,7 +133,7 @@ zero_one_sds.scatter("Population Proportion of 1's")
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/6/Choosing_a_Sample_Size_6_0.png)
+![png](../../../images/chapters/14/6/Choosing_a_Sample_Size_6_0.png)
 
 
 **Summary:** The SD of a population of 1's and 0's is at most 0.5. That's the value of the SD when 50% of the population is coded 1 and the other 50% are coded 0.

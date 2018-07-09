@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/17/2/Training_and_Testing.ipynb
 title: '17.2 Training and Testing'
-permalink: 'chapters/17/2/training-and-testing'
+permalink: 'chapters/17/2/Training_and_Testing'
 previouschapter:
-  url: chapters/17/1/nearest-neighbors
+  url: chapters/17/1/Nearest_Neighbors
   title: '17.1 Nearest Neighbors'
 nextchapter:
-  url: chapters/17/3/rows-of-tables
+  url: chapters/17/3/Rows_of_Tables
   title: '17.3 Rows of Tables'
+redirect_from:
+  - 'chapters/17/2/training-and-testing'
 ---
 
 ### Training and Testing
@@ -35,7 +37,7 @@ ckd.scatter('White Blood Cell Count', 'Glucose', colors='Color')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/2/Training_and_Testing_2_0.png)
+![png](../../../images/chapters/17/2/Training_and_Testing_2_0.png)
 
 
 Earlier, we said that we expect to get some classifications wrong, because there's some intermingling of blue and gold points in the lower-left.
@@ -87,7 +89,7 @@ plt.ylim(-2, 6);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/17/2/Training_and_Testing_8_0.png)
+![png](../../../images/chapters/17/2/Training_and_Testing_8_0.png)
 
 
 We get the following classification regions and decision boundary:

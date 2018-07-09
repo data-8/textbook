@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/08/5/Bike_Sharing_in_the_Bay_Area.ipynb
 title: '8.5 Bike Sharing in the Bay Area'
-permalink: 'chapters/08/5/bike-sharing-in-the-bay-area'
+permalink: 'chapters/08/5/Bike_Sharing_in_the_Bay_Area'
 previouschapter:
-  url: chapters/08/4/joining-tables-by-columns
+  url: chapters/08/4/Joining_Tables_by_Columns
   title: '8.4 Joining Tables by Columns'
 nextchapter:
-  url: chapters/09/randomness
+  url: chapters/09/Randomness
   title: '9. Randomness'
+redirect_from:
+  - 'chapters/08/5/bike-sharing-in-the-bay-area'
 ---
 
 ### Bike Sharing in the Bay Area
@@ -91,7 +93,7 @@ commute.hist('Duration', unit='Second')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/08/5/Bike_Sharing_in_the_Bay_Area_3_0.png)
+![png](../../../images/chapters/08/5/Bike_Sharing_in_the_Bay_Area_3_0.png)
 
 
 We can get more detail by specifying a larger number of bins. But the overall shape doesn't change much.
@@ -103,7 +105,7 @@ commute.hist('Duration', bins=60, unit='Second')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/08/5/Bike_Sharing_in_the_Bay_Area_5_0.png)
+![png](../../../images/chapters/08/5/Bike_Sharing_in_the_Bay_Area_5_0.png)
 
 
 ### Exploring the Data with `group` and `pivot`
