@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/09/3/Simulation.ipynb
 title: '9.3 Simulation'
-permalink: 'chapters/09/3/simulation'
+permalink: 'chapters/09/3/Simulation'
 previouschapter:
-  url: chapters/09/2/iteration
+  url: chapters/09/2/Iteration
   title: '9.2 Iteration'
 nextchapter:
-  url: chapters/09/4/monty-hall-problem
+  url: chapters/09/4/Monty_Hall_Problem
   title: '9.4 The Monty Hall Problem'
+redirect_from:
+  - 'chapters/09/3/simulation'
 ---
 
 ### Simulation
@@ -239,7 +241,7 @@ simulation_results.hist('Number of Heads', bins = np.arange(30.5, 69.6, 1))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/09/3/Simulation_16_0.png)
+![png](../../../images/chapters/09/3/Simulation_16_0.png)
 
 
 Each bins has width 1 and is centered at each value of the number of heads.
@@ -335,7 +337,7 @@ results.hist('Sum of Two Rolls', bins = np.arange(1.5, 12.6, 1))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/09/3/Simulation_26_0.png)
+![png](../../../images/chapters/09/3/Simulation_26_0.png)
 
 
 Seven is the most common value, with the frequencies falling off symmetrically on either side.

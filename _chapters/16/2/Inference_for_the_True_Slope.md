@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/16/2/Inference_for_the_True_Slope.ipynb
 title: '16.2 Inference for the True Slope'
-permalink: 'chapters/16/2/inference-for-the-true-slope'
+permalink: 'chapters/16/2/Inference_for_the_True_Slope'
 previouschapter:
-  url: chapters/16/1/regression-model
+  url: chapters/16/1/Regression_Model
   title: '16.1 A Regression Model'
 nextchapter:
-  url: chapters/16/3/prediction-intervals
+  url: chapters/16/3/Prediction_Intervals
   title: '16.3 Prediction Intervals'
+redirect_from:
+  - 'chapters/16/2/inference-for-the-true-slope'
 ---
 
 ### Inference for the True Slope
@@ -23,7 +25,7 @@ scatter_fit(baby, 'Gestational Days', 'Birth Weight')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/2/Inference_for_the_True_Slope_1_0.png)
+![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_1_0.png)
 
 
 
@@ -89,7 +91,7 @@ Table().with_column('Bootstrap Slopes', slopes).hist(bins=20)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/2/Inference_for_the_True_Slope_8_0.png)
+![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_8_0.png)
 
 
 We can then construct an approximate 95% confidence interval for the slope of the true line, using the bootstrap percentile method. The confidence interval extends from the 2.5th percentile to the 97.5th percentile of the 5000 bootstrapped slopes.
@@ -164,7 +166,7 @@ Approximate 95%-confidence interval for the true slope:
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/2/Inference_for_the_True_Slope_15_1.png)
+![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_15_1.png)
 
 
 Now that we have a function that automates our process of estimating the slope of the true line in a regression model, we can use it on other variables as well.
@@ -180,7 +182,7 @@ scatter_fit(baby, 'Maternal Height', 'Birth Weight')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/2/Inference_for_the_True_Slope_17_0.png)
+![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_17_0.png)
 
 
 
@@ -216,7 +218,7 @@ Approximate 95%-confidence interval for the true slope:
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/2/Inference_for_the_True_Slope_20_1.png)
+![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_20_1.png)
 
 
 A 95% confidence interval for the true slope extends from about 1 ounce per inch to about 1.9 ounces per inch.
@@ -238,7 +240,7 @@ draw_and_compare(0, 10, 25)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/2/Inference_for_the_True_Slope_23_0.png)
+![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_23_0.png)
 
 
 Run the simulation a few times, keeping the slope of the true line 0 each time. You will notice that while the slope of the true line is 0, the slope of the regression line is typically not 0. The regression line sometimes slopes upwards, and sometimes downwards, each time giving us a false impression that the two variables are correlated.
@@ -282,7 +284,7 @@ scatter_fit(baby, 'Maternal Age', 'Birth Weight')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/2/Inference_for_the_True_Slope_29_0.png)
+![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_29_0.png)
 
 
 We can use `bootstrap_slope` to estimate the slope of the true line. The calculation shows that an approximate 95% bootstrap confidence interval for the true slope has a negative left end point and a positive right end point – in other words, the interval contains 0. 
@@ -302,7 +304,7 @@ Approximate 95%-confidence interval for the true slope:
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/16/2/Inference_for_the_True_Slope_31_1.png)
+![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_31_1.png)
 
 
 Because the interval contains 0, we cannot reject the null hypothesis that the slope of the true linear relation between maternal age and baby's birth weight is 0. Based on this analysis, it would be unwise to predict birth weight based on the regression model with maternal age as the predictor.

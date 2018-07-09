@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/13/4/Using_Confidence_Intervals.ipynb
 title: '13.4 Using Confidence Intervals'
-permalink: 'chapters/13/4/using-confidence-intervals'
+permalink: 'chapters/13/4/Using_Confidence_Intervals'
 previouschapter:
-  url: chapters/13/3/confidence-intervals
+  url: chapters/13/3/Confidence_Intervals
   title: '13.3 Confidence Intervals'
 nextchapter:
-  url: chapters/14/why-the-mean-matters
+  url: chapters/14/Why_the_Mean_Matters
   title: '14. Why the Mean Matters'
+redirect_from:
+  - 'chapters/13/4/using-confidence-intervals'
 ---
 
 
@@ -92,7 +94,7 @@ baby.select('Maternal Age').hist()
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/13/4/Using_Confidence_Intervals_5_0.png)
+![png](../../../images/chapters/13/4/Using_Confidence_Intervals_5_0.png)
 
 
 A small percent of the sampled ages are in the (26.9, 27.6) interval, and you would expect a similar small percent in the population. The interval just estimates one number: the *average* of all the ages in the population.
@@ -261,7 +263,7 @@ hodgkins.select('drop').hist(bins=np.arange(-20, 81, 20))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/13/4/Using_Confidence_Intervals_16_0.png)
+![png](../../../images/chapters/13/4/Using_Confidence_Intervals_16_0.png)
 
 
 
@@ -322,7 +324,7 @@ plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=8);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/13/4/Using_Confidence_Intervals_20_0.png)
+![png](../../../images/chapters/13/4/Using_Confidence_Intervals_20_0.png)
 
 
 The 99% confidence interval for the average drop in the population goes from about 17 to about 40. The interval doesn't contain 0. So we reject the null hypothesis.

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/01/3/Plotting_the_Classics.ipynb
 title: '1.3 Plotting the Classics'
-permalink: 'chapters/01/3/plotting-the-classics'
+permalink: 'chapters/01/3/Plotting_the_Classics'
 previouschapter:
   url: chapters/01/2/why-data-science
   title: '1.2 Why Data Science?'
 nextchapter:
-  url: chapters/01/3/1/literary-characters
+  url: chapters/01/3/1/Literary_Characters
   title: '1.3.1 Literary Characters'
+redirect_from:
+  - 'chapters/01/3/plotting-the-classics'
 ---
 
 # Plotting the classics

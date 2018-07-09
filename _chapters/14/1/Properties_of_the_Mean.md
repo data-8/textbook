@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/14/1/Properties_of_the_Mean.ipynb
 title: '14.1 Properties of the Mean'
-permalink: 'chapters/14/1/properties-of-the-mean'
+permalink: 'chapters/14/1/Properties_of_the_Mean'
 previouschapter:
-  url: chapters/14/why-the-mean-matters
+  url: chapters/14/Why_the_Mean_Matters
   title: '14. Why the Mean Matters'
 nextchapter:
-  url: chapters/14/2/variability
+  url: chapters/14/2/Variability
   title: '14.2 Variability'
+redirect_from:
+  - 'chapters/14/1/properties-of-the-mean'
 ---
 
 ### Properties of the Mean
@@ -270,7 +272,7 @@ sf2015.select('Total Compensation').hist(bins = np.arange(10000, 700000, 25000))
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/1/Properties_of_the_Mean_28_0.png)
+![png](../../../images/chapters/14/1/Properties_of_the_Mean_28_0.png)
 
 
 This histogram is skewed to the right; it has a right-hand tail. 

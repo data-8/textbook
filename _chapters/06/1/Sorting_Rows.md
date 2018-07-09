@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/06/1/Sorting_Rows.ipynb
 title: '6.1 Sorting Rows'
-permalink: 'chapters/06/1/sorting-rows'
+permalink: 'chapters/06/1/Sorting_Rows'
 previouschapter:
-  url: chapters/06/tables
+  url: chapters/06/Tables
   title: '6. Tables'
 nextchapter:
-  url: chapters/06/2/selecting-rows
+  url: chapters/06/2/Selecting_Rows
   title: '6.2 Selecting Rows'
+redirect_from:
+  - 'chapters/06/1/sorting-rows'
 ---
 
 # Sorting Rows

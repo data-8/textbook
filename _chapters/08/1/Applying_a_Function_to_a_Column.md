@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/08/1/Applying_a_Function_to_a_Column.ipynb
 title: '8.1 Applying Functions to Columns'
-permalink: 'chapters/08/1/applying-a-function-to-a-column'
+permalink: 'chapters/08/1/Applying_a_Function_to_a_Column'
 previouschapter:
-  url: chapters/08/functions-and-tables
+  url: chapters/08/Functions_and_Tables
   title: '8. Functions and Tables'
 nextchapter:
-  url: chapters/08/2/classifying-by-one-variable
+  url: chapters/08/2/Classifying_by_One_Variable
   title: '8.2 Classifying by One Variable'
+redirect_from:
+  - 'chapters/08/1/applying-a-function-to-a-column'
 ---
 
 ### Applying a Function to a Column
@@ -373,7 +375,7 @@ heights.scatter(0)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/08/1/Applying_a_Function_to_a_Column_23_0.png)
+![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_23_0.png)
 
 
 Now suppose Galton encountered a new couple, similar to those in his dataset, and wondered how tall their child would be. What would be a good way for him to go about predicting the child's height, given that the midparent height was, say, 68 inches?
@@ -396,7 +398,7 @@ _ = plots.scatter(68, 66.24, color='gold', s=40)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/08/1/Applying_a_Function_to_a_Column_25_0.png)
+![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_25_0.png)
 
 
 In order to calculate exactly where the gold dot should be, we first need to indentify all the points in the strip. These correspond to the rows where `MidParent` is between 67.5 inches and 68.5 inches.
@@ -599,7 +601,7 @@ heights_with_predictions.scatter('MidParent')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/08/1/Applying_a_Function_to_a_Column_39_0.png)
+![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_39_0.png)
 
 
 The graph of gold dots is called a *graph of averages,* because each gold dot is the center of a vertical strip like the one we drew earlier. Each one provides a prediction of a child's height given the midparent height. For example, the scatter shows that for a midparent height of 72 inches, the predicted height of the child would be somewhere between 68 inches and 69 inches, and indeed `predict_child(72)` returns 68.5.

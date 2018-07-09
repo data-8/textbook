@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/15/4/Least_Squares_Regression.ipynb
 title: '15.4 Least Squares Regression'
-permalink: 'chapters/15/4/least-squares-regression'
+permalink: 'chapters/15/4/Least_Squares_Regression'
 previouschapter:
-  url: chapters/15/3/method-of-least-squares
+  url: chapters/15/3/Method_of_Least_Squares
   title: '15.3 The Method of Least Squares'
 nextchapter:
-  url: chapters/15/5/visual-diagnostics
+  url: chapters/15/5/Visual_Diagnostics
   title: '15.5 Visual Diagnostics'
+redirect_from:
+  - 'chapters/15/4/least-squares-regression'
 ---
 
 ### Least Squares Regression
@@ -82,7 +84,7 @@ shotput.scatter('Weight Lifted')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/4/Least_Squares_Regression_3_0.png)
+![png](../../../images/chapters/15/4/Least_Squares_Regression_3_0.png)
 
 
 That's not a football shaped scatter plot. In fact, it seems to have a slight non-linear component. But if we insist on using a straight line to make our predictions, there is still one best straight line among all straight lines.
@@ -173,7 +175,7 @@ shotput.with_column('Best Straight Line', fitted).scatter('Weight Lifted')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/4/Least_Squares_Regression_11_0.png)
+![png](../../../images/chapters/15/4/Least_Squares_Regression_11_0.png)
 
 
 ### Nonlinear Regression
@@ -261,5 +263,5 @@ shotput.with_column('Best Quadratic Curve', shotput_fit).scatter(0)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/4/Least_Squares_Regression_21_0.png)
+![png](../../../images/chapters/15/4/Least_Squares_Regression_21_0.png)
 

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/12/3/Causality.ipynb
 title: '12.3 Causality'
-permalink: 'chapters/12/3/causality'
+permalink: 'chapters/12/3/Causality'
 previouschapter:
-  url: chapters/12/2/deflategate
+  url: chapters/12/2/Deflategate
   title: '12.2 Deflategate'
 nextchapter:
-  url: chapters/13/estimation
+  url: chapters/13/Estimation
   title: '13. Estimation'
+redirect_from:
+  - 'chapters/12/3/causality'
 ---
 
 ### Causality
@@ -187,11 +189,11 @@ We can't answer this just yet, because we don't get to see all 31 values in each
 
 Here is a good way to visualize the setting. Each patient has a two-sided ticket:
 
-![Two-sided ticket]({{ site.baseurl }}/images/causality1.png)
+![Two-sided ticket](../../../images/causality1.png)
 
 After the randomization, we get to see the right half of a randomly selected set of tickets, and the left half of the remaining group.
 
-![Half-tickets]({{ site.baseurl }}/images/causality2.png)
+![Half-tickets](../../../images/causality2.png)
 
 The table `observed_outcomes` collects the information about every patient's potential outcomes, leaving the unobserved half of each "ticket" blank.  (It's just another way of thinking about the `bta` table, carrying the same information.)
 
@@ -639,7 +641,7 @@ Empirical P-value: 0.95 %
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/12/3/Causality_29_1.png)
+![png](../../../images/chapters/12/3/Causality_29_1.png)
 
 
 The study reports a P-value of 0.009, or 0.9%, which is not far from our empirical value. 

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/09/2/Iteration.ipynb
 title: '9.2 Iteration'
-permalink: 'chapters/09/2/iteration'
+permalink: 'chapters/09/2/Iteration'
 previouschapter:
-  url: chapters/09/1/conditional-statements
+  url: chapters/09/1/Conditional_Statements
   title: '9.1 Conditional Statements'
 nextchapter:
-  url: chapters/09/3/simulation
+  url: chapters/09/3/Simulation
   title: '9.3 Simulation'
+redirect_from:
+  - 'chapters/09/2/iteration'
 ---
 
 ### Iteration

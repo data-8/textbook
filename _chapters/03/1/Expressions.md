@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/03/1/Expressions.ipynb
 title: '3.1 Expressions'
-permalink: 'chapters/03/1/expressions'
+permalink: 'chapters/03/1/Expressions'
 previouschapter:
   url: chapters/03/programming-in-python
   title: '3. Programming in Python'
 nextchapter:
-  url: chapters/03/2/names
+  url: chapters/03/2/Names
   title: '3.2 Names'
+redirect_from:
+  - 'chapters/03/1/expressions'
 ---
 
 # Expressions

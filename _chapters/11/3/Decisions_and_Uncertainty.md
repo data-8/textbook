@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/11/3/Decisions_and_Uncertainty.ipynb
 title: '11.3 Decisions and Uncertainty'
-permalink: 'chapters/11/3/decisions-and-uncertainty'
+permalink: 'chapters/11/3/Decisions_and_Uncertainty'
 previouschapter:
-  url: chapters/11/2/multiple-categories
+  url: chapters/11/2/Multiple_Categories
   title: '11.2 Multiple Categories'
 nextchapter:
-  url: chapters/12/comparing-two-samples
+  url: chapters/12/Comparing_Two_Samples
   title: '12. Comparing Two Samples'
+redirect_from:
+  - 'chapters/11/3/decisions-and-uncertainty'
 ---
 
 ### Decisions and Uncertainty
@@ -401,7 +403,7 @@ plots.scatter(observed_statistic, 0, color='red', s=30);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/11/3/Decisions_and_Uncertainty_21_0.png)
+![png](../../../images/chapters/11/3/Decisions_and_Uncertainty_21_0.png)
 
 
 As we said earlier, small values of the test statistic will make us lean towards the alternative hypothesis, that the average score in the section is too low for it to look like a random sample from the class.

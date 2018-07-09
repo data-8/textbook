@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/14/3/SD_and_the_Normal_Curve.ipynb
 title: '14.3 The SD and the Normal Curve'
-permalink: 'chapters/14/3/sd-and-the-normal-curve'
+permalink: 'chapters/14/3/SD_and_the_Normal_Curve'
 previouschapter:
-  url: chapters/14/2/variability
+  url: chapters/14/2/Variability
   title: '14.2 Variability'
 nextchapter:
-  url: chapters/14/4/central-limit-theorem
+  url: chapters/14/4/Central_Limit_Theorem
   title: '14.4 The Central Limit Theorem'
+redirect_from:
+  - 'chapters/14/3/sd-and-the-normal-curve'
 ---
 
 ### The SD and the Normal Curve
@@ -69,7 +71,7 @@ plots.xticks(positions);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/3/SD_and_the_Normal_Curve_5_0.png)
+![png](../../../images/chapters/14/3/SD_and_the_Normal_Curve_5_0.png)
 
 
 The last two lines of code in the cell above change the labeling of the horizontal axis. Now, the labels correspond to "average $\pm$ $z$ SDs" for $z = 0, \pm 1, \pm 2$, and $\pm 3$. Because of the shape of the distribution, the "center" has an unambiguous meaning and is clearly visible at 64.

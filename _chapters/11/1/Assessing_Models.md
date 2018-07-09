@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/11/1/Assessing_Models.ipynb
 title: '11.1 Assessing Models'
-permalink: 'chapters/11/1/assessing-models'
+permalink: 'chapters/11/1/Assessing_Models'
 previouschapter:
-  url: chapters/11/testing-hypotheses
+  url: chapters/11/Testing_Hypotheses
   title: '11. Testing Hypotheses'
 nextchapter:
-  url: chapters/11/2/multiple-categories
+  url: chapters/11/2/Multiple_Categories
   title: '11.2 Multiple Categories'
+redirect_from:
+  - 'chapters/11/1/assessing-models'
 ---
 
 ### Assessing Models
@@ -120,7 +122,7 @@ Table().with_column(
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/11/1/Assessing_Models_8_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_8_0.png)
 
 
 The histogram tells us what the model of random selection predicts about our statistic, the count of black men in the sample.
@@ -140,7 +142,7 @@ plots.scatter(8, 0, color='red', s=30);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/11/1/Assessing_Models_11_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_11_0.png)
 
 
 Thus the simulation shows that if we select a panel of 100 jurors at random from the eligible population, we are very unlikely to get counts of black men as low as the eight that were in Swain's jury panel. This is evidence that the model of random selection of the jurors in the panel is not consistent with the data from the panel. 
@@ -242,7 +244,7 @@ Table().with_column(
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/11/1/Assessing_Models_19_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_19_0.png)
 
 
 Look on the horizontal axis to see the typical values of the distance, as predicted by the model. They are rather small. For example, a high proportion of the distances are in the range 0 to 1, meaning that for a high proportion of the samples, the percent of purple-flowering plants is within 1% of 75%, that is, the sample percent is in the range 74% to 76%.
@@ -299,7 +301,7 @@ plots.scatter(observed_statistic, 0, color='red', s=30);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/11/1/Assessing_Models_26_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_26_0.png)
 
 
 The observed statistic is like a typical distance predicted by the model. By this measure, the data are consistent with the histogram that we generated under the assumptions of Mendel's model. This is evidence in favor of the model.

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/14/5/Variability_of_the_Sample_Mean.ipynb
 title: '14.5 The Variability of the Sample Mean'
-permalink: 'chapters/14/5/variability-of-the-sample-mean'
+permalink: 'chapters/14/5/Variability_of_the_Sample_Mean'
 previouschapter:
-  url: chapters/14/4/central-limit-theorem
+  url: chapters/14/4/Central_Limit_Theorem
   title: '14.4 The Central Limit Theorem'
 nextchapter:
-  url: chapters/14/6/choosing-a-sample-size
+  url: chapters/14/6/Choosing_a_Sample_Size
   title: '14.6 Choosing a Sample Size'
+redirect_from:
+  - 'chapters/14/5/variability-of-the-sample-mean'
 ---
 
 ### The Variability of the Sample Mean
@@ -93,7 +95,7 @@ SD of sample means: 3.90507237968
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/5/Variability_of_the_Sample_Mean_7_1.png)
+![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_7_1.png)
 
 
 
@@ -115,7 +117,7 @@ SD of sample means: 1.98326299651
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/5/Variability_of_the_Sample_Mean_8_1.png)
+![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_8_1.png)
 
 
 
@@ -137,7 +139,7 @@ SD of sample means: 1.60089096006
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/5/Variability_of_the_Sample_Mean_9_1.png)
+![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_9_1.png)
 
 
 You can see the Central Limit Theorem in action – the histograms of the sample means are roughly normal, even though the histogram of the delays themselves is far from normal.
@@ -270,7 +272,7 @@ sd_comparison.plot('Sample Size n')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/14/5/Variability_of_the_Sample_Mean_18_0.png)
+![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_18_0.png)
 
 
 There really are two curves there. But they are so close to each other that it looks as though there is just one.

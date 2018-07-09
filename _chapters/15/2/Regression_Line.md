@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/15/2/Regression_Line.ipynb
 title: '15.2 The Regression Line'
-permalink: 'chapters/15/2/regression-line'
+permalink: 'chapters/15/2/Regression_Line'
 previouschapter:
-  url: chapters/15/1/correlation
+  url: chapters/15/1/Correlation
   title: '15.1 Correlation'
 nextchapter:
-  url: chapters/15/3/method-of-least-squares
+  url: chapters/15/3/Method_of_Least_Squares
   title: '15.3 The Method of Least Squares'
+redirect_from:
+  - 'chapters/15/2/regression-line'
 ---
 
 ### The Regression Line
@@ -56,7 +58,7 @@ heights_with_predictions.scatter('MidParent')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/2/Regression_Line_4_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_4_0.png)
 
 
 ### Measuring in Standard Units
@@ -195,7 +197,7 @@ heights_with_su_predictions.scatter('MidParent SU')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/2/Regression_Line_14_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_14_0.png)
 
 
 This plot looks exactly like the plot drawn on the original scale. Only the numbers on the axes have changed. This confirms that we can understand the prediction process by just working in standard units.
@@ -227,7 +229,7 @@ regression_line(0.95)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/2/Regression_Line_21_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_21_0.png)
 
 
 
@@ -237,7 +239,7 @@ regression_line(0.6)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/2/Regression_Line_22_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_22_0.png)
 
 
 When $r$ is close to 1, the scatter plot, the 45 degree line, and the regression line are all very close to each other. But for more moderate values of $r$, the regression line is noticeably flatter.
@@ -268,7 +270,7 @@ $$
 $$
 
 
-![regline]({{ site.baseurl }}/images/regline.png)
+![regline](../../../images/regline.png)
 
 The slope and intercept of the regression line in original units can be derived from the diagram above. 
 
@@ -462,7 +464,7 @@ heights_with_predictions.scatter('MidParent')
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/2/Regression_Line_38_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_38_0.png)
 
 
 The grey dots show the regression predictions, all on the regression line. Notice how the line is very close to the gold graph of averages. For these data, the regression line does a good job of approximating the centers of the vertical strips.
@@ -489,7 +491,7 @@ heights.with_column('Fitted', fit(heights, 'MidParent', 'Child')).scatter('MidPa
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/2/Regression_Line_43_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_43_0.png)
 
 
 Another way to draw the line is to use the option `fit_line=True` with the Table method `scatter`.
@@ -501,7 +503,7 @@ heights.scatter('MidParent', fit_line=True)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/2/Regression_Line_45_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_45_0.png)
 
 
 ### Units of Measurement of the Slope
@@ -520,7 +522,7 @@ baby.scatter('Maternal Height', 'Maternal Pregnancy Weight', fit_line=True)
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/15/2/Regression_Line_48_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_48_0.png)
 
 
 
