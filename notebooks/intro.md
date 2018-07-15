@@ -10,13 +10,13 @@ Contributions by [David Wagner](https://www.cs.berkeley.edu/~daw/) and Henry Mil
 
 This is the textbook for the [Foundations of Data Science class at UC Berkeley][data8].
 
-[View this textbook online on Gitbooks.][gitbook]
+[View this textbook online on GitHub Pages.][ghpages]
 
 Old versions of this textbook:
 	[Fall 2017](http://inferentialthinking.com/v/fa17)
 
 [data8]: http://data8.org/
-[gitbook]: https://ds8.gitbooks.io/textbook/content/
+[ghpages]: https://inferentialthinking.com
 
 The contents of this book are licensed for free consumption under the following license:  
 [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
