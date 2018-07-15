@@ -34,7 +34,7 @@ div.MathJax_Display {
 
 // Sidebar
 div.sidebar {
-  width: calc(25% - 1em);
+  width: calc(25% - 2em);
   @media (min-width: 64em) {
     overflow-y: auto;
     height: calc( 100vh - 2em ) !important;
