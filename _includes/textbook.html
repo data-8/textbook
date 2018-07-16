@@ -60,7 +60,7 @@ function safeUrl(url)
 function updateInteractLink() {
     // hack to make this work since it expects a ? in the URL
     rest = getJsonFromUrl("?" + location.search.substr(1));
-    hubUrl = rest['hubUrl'];
+    hubUrl = rest['hub'];
     if (hubUrl !== undefined) {
       hubUrl = safeUrl(hubUrl);
       // Add HTTP text if omitted
