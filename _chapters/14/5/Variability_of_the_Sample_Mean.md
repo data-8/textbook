@@ -87,10 +87,10 @@ plots.ylim(0, 0.25);
 {:.output_stream}
 ```
 Sample size:  100
-Population mean: 16.6581555154
-Average of sample means:  16.662059
-Population SD: 39.4801998516
-SD of sample means: 3.90507237968
+Population mean: 16.658155515370705
+Average of sample means:  16.612564
+Population SD: 39.480199851609314
+SD of sample means: 3.8997187931829136
 
 ```
 
@@ -109,10 +109,10 @@ plots.ylim(0, 0.25);
 {:.output_stream}
 ```
 Sample size:  400
-Population mean: 16.6581555154
-Average of sample means:  16.67117625
-Population SD: 39.4801998516
-SD of sample means: 1.98326299651
+Population mean: 16.658155515370705
+Average of sample means:  16.650027499999997
+Population SD: 39.480199851609314
+SD of sample means: 1.9777759739145762
 
 ```
 
@@ -131,10 +131,10 @@ plots.ylim(0, 0.25);
 {:.output_stream}
 ```
 Sample size:  625
-Population mean: 16.6581555154
-Average of sample means:  16.68523712
-Population SD: 39.4801998516
-SD of sample means: 1.60089096006
+Population mean: 16.658155515370705
+Average of sample means:  16.68069616
+Population SD: 39.480199851609314
+SD of sample means: 1.5794443889422805
 
 ```
 
@@ -218,47 +218,38 @@ sd_comparison
     </thead>
     <tbody>
         <tr>
-            <td>25           </td> <td>7.95017                  </td> <td>7.89604       </td>
+            <td>25           </td> <td>7.80558                  </td> <td>7.89604       </td>
         </tr>
-    </tbody>
         <tr>
-            <td>50           </td> <td>5.53425                  </td> <td>5.58334       </td>
+            <td>50           </td> <td>5.60588                  </td> <td>5.58334       </td>
         </tr>
-    </tbody>
         <tr>
-            <td>75           </td> <td>4.54429                  </td> <td>4.55878       </td>
+            <td>75           </td> <td>4.58432                  </td> <td>4.55878       </td>
         </tr>
-    </tbody>
         <tr>
-            <td>100          </td> <td>3.96157                  </td> <td>3.94802       </td>
+            <td>100          </td> <td>3.93334                  </td> <td>3.94802       </td>
         </tr>
-    </tbody>
         <tr>
-            <td>125          </td> <td>3.51095                  </td> <td>3.53122       </td>
+            <td>125          </td> <td>3.51501                  </td> <td>3.53122       </td>
         </tr>
-    </tbody>
         <tr>
-            <td>150          </td> <td>3.23949                  </td> <td>3.22354       </td>
+            <td>150          </td> <td>3.22156                  </td> <td>3.22354       </td>
         </tr>
-    </tbody>
         <tr>
-            <td>175          </td> <td>3.00694                  </td> <td>2.98442       </td>
+            <td>175          </td> <td>2.95652                  </td> <td>2.98442       </td>
         </tr>
-    </tbody>
         <tr>
-            <td>200          </td> <td>2.74606                  </td> <td>2.79167       </td>
+            <td>200          </td> <td>2.83387                  </td> <td>2.79167       </td>
         </tr>
-    </tbody>
         <tr>
-            <td>225          </td> <td>2.63865                  </td> <td>2.63201       </td>
+            <td>225          </td> <td>2.61634                  </td> <td>2.63201       </td>
         </tr>
-    </tbody>
         <tr>
-            <td>250          </td> <td>2.51853                  </td> <td>2.49695       </td>
+            <td>250          </td> <td>2.49718                  </td> <td>2.49695       </td>
         </tr>
     </tbody>
 </table>
-<p>... (15 rows omitted)</p
+<p>... (15 rows omitted)</p>
 </div>
 
 
