@@ -12,4 +12,12 @@ dependencies:
     - pyyaml
     - nbformat
     - nbclean
-    - -r ../binder/requirements.txt
+    - numpy
+    - pandas
+    - scipy
+    - folium==0.2.1
+    - matplotlib
+    - datascience
+    - ipywidgets>=7.0.0
+    - bqplot
+    - nbinteract==0.0.12
