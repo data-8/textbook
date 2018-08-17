@@ -28,7 +28,7 @@ counts = Table().with_columns([
     ])
 
 # Plot the cumulative counts:
-# how many times in Chapter 1, how many times in Chapters 1 and 2, and so on.
+# how many times in Chapter 1, how many times in Chapters 2 and 3, and so on.
 
 cum_counts = counts.cumsum().with_column('Chapter', np.arange(1, 44, 1))
 cum_counts.plot(column_for_xticks=3)
