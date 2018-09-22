@@ -33,7 +33,7 @@ highs
 
 {:.output_data_text}
 ```
-array([13.6  , 14.387, 14.585, 15.164])
+array([ 13.6  ,  14.387,  14.585,  15.164])
 ```
 
 
@@ -52,7 +52,7 @@ lows
 
 {:.output_data_text}
 ```
-array([2.128, 2.371, 2.874, 3.728])
+array([ 2.128,  2.371,  2.874,  3.728])
 ```
 
 
@@ -77,7 +77,7 @@ make_array(
 
 {:.output_data_text}
 ```
-array([11.472, 12.016, 11.711, 11.436])
+array([ 11.472,  12.016,  11.711,  11.436])
 ```
 
 
@@ -95,7 +95,7 @@ highs - lows
 
 {:.output_data_text}
 ```
-array([11.472, 12.016, 11.711, 11.436])
+array([ 11.472,  12.016,  11.711,  11.436])
 ```
 
 
@@ -132,7 +132,7 @@ one_below_even = even - 1
 one_above_even = even + 1
 ```
 
-Remember that `np.prod` multiplies all the elements of an array together. Now we can calcuate Wallis' product, to a good approximation.
+Remember that `np.prod` multiplies all the elements of an array together. Now we can calculate Wallis' product, to a good approximation.
 
 
 {:.input_area}

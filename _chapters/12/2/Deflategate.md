@@ -44,45 +44,59 @@ football.show()
         <tr>
             <td>Patriots</td> <td>11.5    </td> <td>11.8    </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>10.85   </td> <td>11.2    </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.15   </td> <td>11.5    </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>10.7    </td> <td>11      </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.1    </td> <td>11.45   </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.6    </td> <td>11.95   </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.85   </td> <td>12.3    </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.1    </td> <td>11.55   </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>10.95   </td> <td>11.35   </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>10.5    </td> <td>10.9    </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>10.9    </td> <td>11.35   </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.7    </td> <td>12.35   </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.75   </td> <td>12.3    </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.5    </td> <td>12.95   </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.55   </td> <td>12.15   </td>
         </tr>
@@ -114,45 +128,59 @@ football.show()
         <tr>
             <td>Patriots</td> <td>11.65   </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.025  </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.325  </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>10.85   </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.275  </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.775  </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>12.075  </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.325  </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.15   </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>10.7    </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.125  </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.525  </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.525  </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.725  </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.35   </td>
         </tr>
@@ -163,7 +191,7 @@ football.show()
 
 At a glance, it seems apparent that the Patriots' footballs were at a lower pressure than the Colts' balls. Because some deflation is normal during the course of a game, the independent analysts decided to calculate the drop in pressure from the start of the game. Recall that the Patriots' balls had all started out at about 12.5 psi, and the Colts' balls at about 13.0 psi. Therefore the drop in pressure for the Patriots' balls was computed as 12.5 minus the pressure at half-time, and the drop in pressure for the Colts' balls was 13.0 minus the pressure at half-time.
 
-We can calcuate the drop in pressure for each football, by first setting up an array of the starting values. For this we will need an array consisting of 11 values each of which is 12.5, and another consisting of four values each of which is all 13. We will use the NumPy function `np.ones`, which takes a count as its argument and returns an array of that many elements, each of which is 1.
+We can calculate the drop in pressure for each football, by first setting up an array of the starting values. For this we will need an array consisting of 11 values each of which is 12.5, and another consisting of four values each of which is all 13. We will use the NumPy function `np.ones`, which takes a count as its argument and returns an array of that many elements, each of which is 1.
 
 
 {:.input_area}
@@ -176,7 +204,7 @@ np.ones(11)
 
 {:.output_data_text}
 ```
-array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
+array([ 1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.])
 ```
 
 
@@ -195,8 +223,8 @@ start
 
 {:.output_data_text}
 ```
-array([12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5,
-       13. , 13. , 13. , 13. ])
+array([ 12.5,  12.5,  12.5,  12.5,  12.5,  12.5,  12.5,  12.5,  12.5,
+        12.5,  12.5,  13. ,  13. ,  13. ,  13. ])
 ```
 
 
@@ -223,45 +251,59 @@ football.show()
         <tr>
             <td>Patriots</td> <td>11.65   </td> <td>0.85         </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.025  </td> <td>1.475        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.325  </td> <td>1.175        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>10.85   </td> <td>1.65         </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.275  </td> <td>1.225        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.775  </td> <td>0.725        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>12.075  </td> <td>0.425        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.325  </td> <td>1.175        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.15   </td> <td>1.35         </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>10.7    </td> <td>1.8          </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>11.125  </td> <td>1.375        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.525  </td> <td>0.475        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.525  </td> <td>0.475        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.725  </td> <td>0.275        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Colts   </td> <td>12.35   </td> <td>0.65         </td>
         </tr>
@@ -293,6 +335,7 @@ football.group('Team', np.average)
         <tr>
             <td>Colts   </td> <td>0.46875              </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>1.20227              </td>
         </tr>
@@ -356,49 +399,63 @@ original_and_shuffled.show()
     </thead>
     <tbody>
         <tr>
-            <td>Patriots</td> <td>0.85         </td> <td>0.475        </td>
+            <td>Patriots</td> <td>0.85         </td> <td>1.175        </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.475        </td> <td>0.65         </td>
+            <td>Patriots</td> <td>1.475        </td> <td>1.175        </td>
         </tr>
+    </tbody>
         <tr>
             <td>Patriots</td> <td>1.175        </td> <td>1.65         </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.65         </td> <td>0.85         </td>
+            <td>Patriots</td> <td>1.65         </td> <td>1.475        </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.225        </td> <td>1.175        </td>
+            <td>Patriots</td> <td>1.225        </td> <td>1.225        </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Patriots</td> <td>0.725        </td> <td>0.425        </td>
+            <td>Patriots</td> <td>0.725        </td> <td>0.475        </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Patriots</td> <td>0.425        </td> <td>1.225        </td>
+            <td>Patriots</td> <td>0.425        </td> <td>0.725        </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.175        </td> <td>0.725        </td>
+            <td>Patriots</td> <td>1.175        </td> <td>0.65         </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.35         </td> <td>0.275        </td>
+            <td>Patriots</td> <td>1.35         </td> <td>0.85         </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.8          </td> <td>1.375        </td>
+            <td>Patriots</td> <td>1.8          </td> <td>0.425        </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.375        </td> <td>1.35         </td>
+            <td>Patriots</td> <td>1.375        </td> <td>0.275        </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Colts   </td> <td>0.475        </td> <td>1.8          </td>
+            <td>Colts   </td> <td>0.475        </td> <td>1.375        </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Colts   </td> <td>0.475        </td> <td>1.175        </td>
+            <td>Colts   </td> <td>0.475        </td> <td>0.475        </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Colts   </td> <td>0.275        </td> <td>1.475        </td>
+            <td>Colts   </td> <td>0.275        </td> <td>1.8          </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Colts   </td> <td>0.65         </td> <td>0.475        </td>
+            <td>Colts   </td> <td>0.65         </td> <td>1.35         </td>
         </tr>
     </tbody>
 </table>
@@ -425,10 +482,11 @@ original_and_shuffled.group('Team', np.average)
     </thead>
     <tbody>
         <tr>
-            <td>Colts   </td> <td>0.46875              </td> <td>1.23125              </td>
+            <td>Colts   </td> <td>0.46875              </td> <td>1.25                 </td>
         </tr>
+    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.20227              </td> <td>0.925                </td>
+            <td>Patriots</td> <td>1.20227              </td> <td>0.918182             </td>
         </tr>
     </tbody>
 </table>
@@ -489,7 +547,7 @@ empirical_P
 
 {:.output_data_text}
 ```
-0.003
+0.0041
 ```
 
 
@@ -509,7 +567,7 @@ print('Empirical P-value:', empirical_P)
 {:.output_stream}
 ```
 Observed Difference: 0.733522727272728
-Empirical P-value: 0.003
+Empirical P-value: 0.0041
 
 ```
 
@@ -521,7 +579,7 @@ As in previous examples of this test, the bulk of the distribution is centered a
 
 But the observed value of the test statistic is quite far away from the heart of the distribution. By any reasonable cutoff for what is "small", the empirical P-value is small. So we end up rejecting the null hypothesis of randomness, and conclude that the Patriots drops were too large to reflect chance variation alone.
 
-The independent investiagtive team analyzed the data in several different ways, taking into account the laws of physics. The final report said, 
+The independent investigative team analyzed the data in several different ways, taking into account the laws of physics. The final report said, 
 
 > "[T]he average pressure drop of the Patriots game balls exceeded the average pressure drop of the Colts balls by 0.45 to 1.02 psi, depending on various possible assumptions regarding the gauges used, and assuming an initial pressure of 12.5 psi for the Patriots balls and 13.0 for the Colts balls."
 > 

@@ -207,7 +207,7 @@ There are 359 scores in the array. So next, find 85% of 359, which is 305.15.
 
 
 
-That's not an integer. By our definition, the median is the 306th element of `sorted_scores`, which, by Python's indexing convention, is item 305 of the array.
+That's not an integer. By our definition, the 85th percentile is the 306th element of `sorted_scores`, which, by Python's indexing convention, is item 305 of the array.
 
 
 {:.input_area}

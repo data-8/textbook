@@ -76,15 +76,15 @@ Now I want to do an example based on diagnosing breast cancer.  I was inspired b
 
 ![Brittany Wenger](http://i.huffpost.com/gen/701499/thumbs/o-GSF83-570.jpg?3)
 
-Brittany's science fair project was to build a classification algorithm to diagnose breast cancer.  She won grand prize for building an algorithm whose accuracy was almost 99%. 
+Brittany's [science fair project](https://sites.google.com/a/googlesciencefair.com/science-fair-2012-project-64a91af142a459cfb486ed5cb05f803b2eb41354-1333130785-87/home) was to build a classification algorithm to diagnose breast cancer.  She won grand prize for building an algorithm whose accuracy was almost 99%. 
 
 Let's see how well we can do, with the ideas we've learned in this course.
 
 So, let me tell you a little bit about the data set.  Basically, if a woman has a lump in her breast, the doctors may want to take a biopsy to see if it is cancerous.  There are several different procedures for doing that.  Brittany focused on fine needle aspiration (FNA), because it is less invasive than the alternatives.  The doctor gets a sample of the mass, puts it under a microscope, takes a picture, and a trained lab tech analyzes the picture to determine whether it is cancer or not.  We get a picture like one of the following:
 
-![benign](https://lh5.googleusercontent.com/sYFBBiw6XB2uEkQBTLCDqQvfi1vzId7q-EFvGIkeEqgaq-c7Q7HEaT5tdUIM8rU7l5-a9E_8gZzqDhnFEu7xV8MnXAeez41Ckq9DN0wO_S8nEY0rqek)
+![benign](../../../images/benign.png)
 
-![cancer](https://lh5.googleusercontent.com/OpQSE0LmsWmYTahY3XAwb0RTPUluMhwT_FEbKhF7OU27iVxHk6on9VTruCW2loeks6HICe3Chjg4zXZxp9ko0rQhC3X_QeThTZFyaQc87RTZaGzoc7Y)
+![cancer](../../../images/malignant.png)
 
 Unfortunately, distinguishing between benign vs malignant can be tricky.  So, researchers have studied the use of machine learning to help with this task.  The idea is that we'll ask the lab tech to analyze the image and compute various attributes: things like the typical size of a cell, how much variation there is among the cell sizes, and so on.  Then, we'll try to use this information to predict (classify) whether the sample is malignant or not.  We have a training set of past samples from women where the correct diagnosis is known, and we'll hope that our machine learning algorithm can use those to learn how to predict the diagnosis for future samples.
 

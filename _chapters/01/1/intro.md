@@ -20,7 +20,7 @@ data using computation. There are three core aspects of effective data
 analysis: exploration, prediction, and inference. This text develops a
 consistent approach to all three, introducing statistical ideas and fundamental
 ideas in computer science concurrently. We focus on a minimal set of core
-techniques that they apply to a vast range of real-world
+techniques that can be applied to a vast range of real-world
 applications. A foundation in data science requires not only understanding
 statistical and computational techniques, but also recognizing how they apply
 to real scenarios.
