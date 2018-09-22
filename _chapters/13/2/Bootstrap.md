@@ -247,7 +247,7 @@ sf2015.sort('Total Compensation', descending=True).show(2)
 
 Now let the parameter be the median of the total compensations.
 
-Since we have the luxury of having all of the data from the population, we can simply calcuate the parameter:
+Since we have the luxury of having all of the data from the population, we can simply calculate the parameter:
 
 
 {:.input_area}
@@ -298,7 +298,7 @@ est_median
 
 {:.output_data_text}
 ```
-105445.8
+108405.39
 ```
 
 
@@ -312,7 +312,7 @@ To see how different the estimate would be if the sample had come out differentl
 Somehow, we have to get another random sample without sampling from the population.
 
 ### The Bootstrap: Resampling from the Sample
-What we do have is a large random sample from the population. As we know, a large random sample is likely to resemeble the population from which it is drawn. This observation allows data scientists to *lift themselves up by their own bootstraps*: the sampling procedure can be replicated by *sampling from the sample*. 
+What we do have is a large random sample from the population. As we know, a large random sample is likely to resemble the population from which it is drawn. This observation allows data scientists to *lift themselves up by their own bootstraps*: the sampling procedure can be replicated by *sampling from the sample*. 
 
 Here are the steps of *the bootstrap method* for generating another random sample that resembles the population:
 
@@ -356,7 +356,7 @@ resampled_median_1
 
 {:.output_data_text}
 ```
-103455.64
+108366.9
 ```
 
 
@@ -376,7 +376,7 @@ resampled_median_2
 
 {:.output_data_text}
 ```
-103097.88
+110391.29
 ```
 
 
@@ -453,7 +453,7 @@ left
 
 {:.output_data_text}
 ```
-100464.0
+102285.4
 ```
 
 
@@ -470,7 +470,7 @@ right
 
 {:.output_data_text}
 ```
-111615.66
+115557.27
 ```
 
 
@@ -547,34 +547,34 @@ intervals
     </thead>
     <tbody>
         <tr>
-            <td>102330</td> <td>113834</td>
+            <td>104850 </td> <td>116807</td>
         </tr>
         <tr>
-            <td>101612</td> <td>114451</td>
+            <td>106560 </td> <td>115858</td>
         </tr>
         <tr>
-            <td>106331</td> <td>118127</td>
+            <td>100109 </td> <td>115978</td>
         </tr>
         <tr>
-            <td>105868</td> <td>120163</td>
+            <td>109391 </td> <td>120038</td>
         </tr>
         <tr>
-            <td>100758</td> <td>112200</td>
+            <td>101859 </td> <td>115358</td>
         </tr>
         <tr>
-            <td>108047</td> <td>116735</td>
+            <td>98604.9</td> <td>110325</td>
         </tr>
         <tr>
-            <td>103182</td> <td>116390</td>
+            <td>101024 </td> <td>113680</td>
         </tr>
         <tr>
-            <td>100796</td> <td>115891</td>
+            <td>105506 </td> <td>116921</td>
         </tr>
         <tr>
-            <td>105498</td> <td>117497</td>
+            <td>103487 </td> <td>117259</td>
         </tr>
         <tr>
-            <td>103013</td> <td>114231</td>
+            <td>102741 </td> <td>112957</td>
         </tr>
     </tbody>
 </table>
@@ -614,7 +614,7 @@ intervals.where('Left', are.below(pop_median)).where('Right', are.above(pop_medi
 
 {:.output_data_text}
 ```
-95
+97
 ```
 
 
