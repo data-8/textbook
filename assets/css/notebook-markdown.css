@@ -100,6 +100,10 @@ pre .p,pre .c
   color:#999 !important;
 }
 
+pre .bp {
+  color: #477DCA !important;
+}
+
 /* Black font text */
 pre .c1,pre .s1, pre .s,pre .s2,pre .mi, pre .mf, pre .p, pre .c, pre .m
 {
