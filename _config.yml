@@ -21,8 +21,8 @@ author: Berkeley DSEP
 email: ""
 description: ""
 
-baseurl: "/textbook" # the subpath of your site, e.g. /blog
-url: "https://www.predictablynoisy.com" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://www.inferentialthinking.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 #######################################################################################
 # Jupyter Book settings
