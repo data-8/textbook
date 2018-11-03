@@ -1,0 +1,248 @@
+# This file contains the order and numbering for all sections in the book.
+# _includes/sidebar.html renders this as a sidebar.
+#
+# Each entry has the following schema:
+#
+# title: Title of chapter or section
+# url: URL of section. Use absolute URLs to link between pages
+# class: (optional) a CSS class to add to this link
+# sections: Contains chapter's sections
+# not_numbered: true if the section shouldn't have a number in the sidebar
+#   (e.g. Introduction or appendices)
+# divider: true if this entry should just be rendered as a horizontal divider
+#   in the sidebar. All other values are ignored.
+
+- title: Introduction
+  url: /chapters/intro
+  not_numbered: true
+
+- divider: true
+
+- title: Data Science
+  url: /chapters/01/what-is-data-science
+  sections:
+  - title: Introduction
+    url: /chapters/01/1/intro
+    subsections:
+    - title: Computational Tools
+      url: /chapters/01/1/1/computational-tools
+    - title: Statistical Techniques
+      url: /chapters/01/1/2/statistical-techniques
+  - title: Why Data Science?
+    url: /chapters/01/2/why-data-science
+  - title: Plotting the Classics
+    url: /chapters/01/3/Plotting_the_Classics
+    subsections:
+    - title: Literary Characters
+      url: /chapters/01/3/1/Literary_Characters
+    - title: Another Kind of Character
+      url: /chapters/01/3/2/Another_Kind_Of_Character
+  
+- title: Causality and Experiments
+  url: /chapters/02/causality-and-experiments
+  sections:
+  - title: John Snow and the Broad Street Pump
+    url: /chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump
+  - title: "Snow\u2019s \u201CGrand Experiment\u201D"
+    url: /chapters/02/2/snow-s-grand-experiment
+  - title: Establishing Causality
+    url: /chapters/02/3/establishing-causality
+  - title: Randomization
+    url: /chapters/02/4/randomization
+  - title: Endnote
+    url: /chapters/02/5/endnote
+
+- title: Programming in Python
+  url: /chapters/03/programming-in-python
+  sections:
+  - title: Expressions
+    url: /chapters/03/1/Expressions
+  - title: Names
+    url: /chapters/03/2/Names
+    subsections:
+    - title: 'Example: Growth Rates'
+      url: /chapters/03/2/1/Growth
+  - title: Call Expressions
+    url: /chapters/03/3/Calls
+  - title: Introduction to Tables
+    url: /chapters/03/4/Introduction_to_Tables
+
+- title: Data Types
+  url: /chapters/04/Data_Types
+  sections:
+  - title: Numbers
+    url: /chapters/04/1/Numbers
+  - title: Strings
+    url: /chapters/04/2/Strings
+    subsections:
+    - title: String Methods
+      url: /chapters/04/2/1/String_Methods
+  - title: Comparisons
+    url: /chapters/04/3/Comparison
+
+- title: Sequences
+  url: /chapters/05/Sequences
+  sections:
+  - title: Arrays
+    url: /chapters/05/1/Arrays
+  - title: Ranges
+    url: /chapters/05/2/Ranges
+  - title: More on Arrays
+    url: /chapters/05/3/More_on_Arrays
+
+- title: Tables
+  url: /chapters/06/Tables
+  sections:
+  - title: Sorting Rows
+    url: /chapters/06/1/Sorting_Rows
+  - title: Selecting Rows
+    url: /chapters/06/2/Selecting_Rows
+  - title: 'Example: Population Trends'
+    url: /chapters/06/3/Example_Trends_in_the_Population_of_the_United_States
+  - title: 'Example: Trends in Gender'
+    url: /chapters/06/4/Example_Gender_Ratio_in_the_US_Population
+
+- title: Visualization
+  url: /chapters/07/Visualization
+  sections:
+  - title: Categorical Distributions
+    url: /chapters/07/1/Visualizing_Categorical_Distributions
+  - title: Numerical Distributions
+    url: /chapters/07/2/Visualizing_Numerical_Distributions
+  - title: Overlaid Graphs
+    url: /chapters/07/3/Overlaid_Graphs
+
+- title: Functions and Tables
+  url: /chapters/08/Functions_and_Tables
+  sections:
+  - title: Applying Functions to Columns
+    url: /chapters/08/1/Applying_a_Function_to_a_Column
+  - title: Classifying by One Variable
+    url: /chapters/08/2/Classifying_by_One_Variable
+  - title: Cross-Classifying
+    url: /chapters/08/3/Cross-Classifying_by_More_than_One_Variable
+  - title: Joining Tables by Columns
+    url: /chapters/08/4/Joining_Tables_by_Columns
+  - title: Bike Sharing in the Bay Area
+    url: /chapters/08/5/Bike_Sharing_in_the_Bay_Area
+
+- title: Randomness
+  url: /chapters/09/Randomness
+  sections:
+  - title: Conditional Statements
+    url: /chapters/09/1/Conditional_Statements
+  - title: Iteration
+    url: /chapters/09/2/Iteration
+  - title: Simulation
+    url: /chapters/09/3/Simulation
+  - title: The Monty Hall Problem
+    url: /chapters/09/4/Monty_Hall_Problem
+  - title: Finding Probabilities
+    url: /chapters/09/5/Finding_Probabilities
+
+- title: Sampling and Empirical Distributions
+  url: /chapters/10/Sampling_and_Empirical_Distributions
+  sections:
+  - title: Empirical Distributions
+    url: /chapters/10/1/Empirical_Distributions
+  - title: Sampling from a Population
+    url: /chapters/10/2/Sampling_from_a_Population
+  - title: Empirical Distibution of a Statistic
+    url: /chapters/10/3/Empirical_Distribution_of_a_Statistic
+
+- title: Testing Hypotheses
+  url: /chapters/11/Testing_Hypotheses
+  sections:
+  - title: Assessing Models
+    url: /chapters/11/1/Assessing_Models
+  - title: Multiple Categories
+    url: /chapters/11/2/Multiple_Categories
+  - title: Decisions and Uncertainty
+    url: /chapters/11/3/Decisions_and_Uncertainty
+
+- title: Comparing Two Samples
+  url: /chapters/12/Comparing_Two_Samples
+  sections:
+  - title: A/B Testing
+    url: /chapters/12/1/AB_Testing
+  - title: Deflategate
+    url: /chapters/12/2/Deflategate
+  - title: Causality
+    url: /chapters/12/3/Causality
+
+- title: Estimation
+  url: /chapters/13/Estimation
+  sections:
+  - title: Percentiles
+    url: /chapters/13/1/Percentiles
+  - title: The Bootstrap
+    url: /chapters/13/2/Bootstrap
+  - title: Confidence Intervals
+    url: /chapters/13/3/Confidence_Intervals
+  - title: Using Confidence Intervals
+    url: /chapters/13/4/Using_Confidence_Intervals
+  
+- title: Why the Mean Matters
+  url: /chapters/14/Why_the_Mean_Matters
+  sections:
+  - title: Properties of the Mean
+    url: /chapters/14/1/Properties_of_the_Mean
+  - title: Variability
+    url: /chapters/14/2/Variability
+  - title: The SD and the Normal Curve
+    url: /chapters/14/3/SD_and_the_Normal_Curve
+  - title: The Central Limit Theorem
+    url: /chapters/14/4/Central_Limit_Theorem
+  - title: The Variability of the Sample Mean
+    url: /chapters/14/5/Variability_of_the_Sample_Mean
+  - title: Choosing a Sample Size
+    url: /chapters/14/6/Choosing_a_Sample_Size
+
+- title: Prediction
+  url: /chapters/15/Prediction
+  sections:
+  - title: Correlation
+    url: /chapters/15/1/Correlation
+  - title: The Regression Line
+    url: /chapters/15/2/Regression_Line
+  - title: The Method of Least Squares
+    url: /chapters/15/3/Method_of_Least_Squares
+  - title: Least Squares Regression
+    url: /chapters/15/4/Least_Squares_Regression
+  - title: Visual Diagnostics
+    url: /chapters/15/5/Visual_Diagnostics
+  - title: Numerical Diagnostics
+    url: /chapters/15/6/Numerical_Diagnostics
+
+- title: Inference for Regression
+  url: /chapters/16/Inference_for_Regression
+  sections:
+  - title: A Regression Model
+    url: /chapters/16/1/Regression_Model
+  - title: Inference for the True Slope
+    url: /chapters/16/2/Inference_for_the_True_Slope
+  - title: Prediction Intervals
+    url: /chapters/16/3/Prediction_Intervals
+  
+- title: Classification
+  url: /chapters/17/Classification
+  sections:
+  - title: Nearest Neighbors
+    url: /chapters/17/1/Nearest_Neighbors
+  - title: Training and Testing
+    url: /chapters/17/2/Training_and_Testing
+  - title: Rows of Tables
+    url: /chapters/17/3/Rows_of_Tables
+  - title: Implementing the Classifier
+    url: /chapters/17/4/Implementing_the_Classifier
+  - title: The Accuracy of the Classifier
+    url: /chapters/17/5/Accuracy_of_the_Classifier
+  - title: Multiple Regression
+    url: /chapters/17/6/Multiple_Regression
+- title: Updating Predictions
+  url: /chapters/18/Updating_Predictions
+  sections:
+  - title: A "More Likely Than Not" Binary Classifier
+    url: /chapters/18/1/More_Likely_than_Not_Binary_Classifier
+  - title: Making Decisions
+    url: /chapters/18/2/Making_Decisions
