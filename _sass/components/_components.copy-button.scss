@@ -1,0 +1,16 @@
+/* Copy buttons */
+.copybtn {
+    padding: 0px 10px 0px 10px;
+    height: 100%;
+    max-height: 2em;
+    position: absolute;
+    right: -1px;
+    top: 4px;
+  }
+  
+div.highlight .copybtn {
+    opacity: 1;
+}
+div.highlight {
+    position: relative;
+}
