@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/08/2/classifying-by-one-variable"
-interact_link: /content/chapters/08/2/Classifying_by_One_Variable.ipynb
+interact_link: content/chapters/08/2/Classifying_by_One_Variable.ipynb
 title: 'Classifying by One Variable'
 prev_page:
   url: /chapters/08/1/Applying_a_Function_to_a_Column

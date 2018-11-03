@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/13/1/percentiles"
-interact_link: /content/chapters/13/1/Percentiles.ipynb
+interact_link: content/chapters/13/1/Percentiles.ipynb
 title: 'Percentiles'
 prev_page:
   url: /chapters/13/Estimation

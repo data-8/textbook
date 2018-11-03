@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/15/6/numerical-diagnostics"
-interact_link: /content/chapters/15/6/Numerical_Diagnostics.ipynb
+interact_link: content/chapters/15/6/Numerical_Diagnostics.ipynb
 title: 'Numerical Diagnostics'
 prev_page:
   url: /chapters/15/5/Visual_Diagnostics

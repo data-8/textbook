@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/18/1/more-likely-than-not-binary-classifier"
-interact_link: /content/chapters/18/1/More_Likely_than_Not_Binary_Classifier.ipynb
+interact_link: content/chapters/18/1/More_Likely_than_Not_Binary_Classifier.ipynb
 title: 'A "More Likely Than Not" Binary Classifier'
 prev_page:
   url: /chapters/18/Updating_Predictions

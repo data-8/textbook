@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/07/1/visualizing-categorical-distributions"
-interact_link: /content/chapters/07/1/Visualizing_Categorical_Distributions.ipynb
+interact_link: content/chapters/07/1/Visualizing_Categorical_Distributions.ipynb
 title: 'Categorical Distributions'
 prev_page:
   url: /chapters/07/Visualization

@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/08/4/joining-tables-by-columns"
-interact_link: /content/chapters/08/4/Joining_Tables_by_Columns.ipynb
+interact_link: content/chapters/08/4/Joining_Tables_by_Columns.ipynb
 title: 'Joining Tables by Columns'
 prev_page:
   url: /chapters/08/3/Cross-Classifying_by_More_than_One_Variable

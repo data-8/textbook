@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/05/1/arrays"
-interact_link: /content/chapters/05/1/Arrays.ipynb
+interact_link: content/chapters/05/1/Arrays.ipynb
 title: 'Arrays'
 prev_page:
   url: /chapters/05/Sequences

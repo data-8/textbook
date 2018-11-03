@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/06/1/sorting-rows"
-interact_link: /content/chapters/06/1/Sorting_Rows.ipynb
+interact_link: content/chapters/06/1/Sorting_Rows.ipynb
 title: 'Sorting Rows'
 prev_page:
   url: /chapters/06/Tables

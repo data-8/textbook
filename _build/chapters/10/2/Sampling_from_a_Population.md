@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/10/2/sampling-from-a-population"
-interact_link: /content/chapters/10/2/Sampling_from_a_Population.ipynb
+interact_link: content/chapters/10/2/Sampling_from_a_Population.ipynb
 title: 'Sampling from a Population'
 prev_page:
   url: /chapters/10/1/Empirical_Distributions

@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/10/3/empirical-distribution-of-a-statistic"
-interact_link: /content/chapters/10/3/Empirical_Distribution_of_a_Statistic.ipynb
+interact_link: content/chapters/10/3/Empirical_Distribution_of_a_Statistic.ipynb
 title: 'Empirical Distibution of a Statistic'
 prev_page:
   url: /chapters/10/2/Sampling_from_a_Population

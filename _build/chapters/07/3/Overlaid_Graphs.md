@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/07/3/overlaid-graphs"
-interact_link: /content/chapters/07/3/Overlaid_Graphs.ipynb
+interact_link: content/chapters/07/3/Overlaid_Graphs.ipynb
 title: 'Overlaid Graphs'
 prev_page:
   url: /chapters/07/2/Visualizing_Numerical_Distributions

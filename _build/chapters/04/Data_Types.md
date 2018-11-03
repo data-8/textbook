@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/04/data-types"
-interact_link: /content/chapters/04/Data_Types.ipynb
+interact_link: content/chapters/04/Data_Types.ipynb
 title: 'Data Types'
 prev_page:
   url: /chapters/03/4/Introduction_to_Tables

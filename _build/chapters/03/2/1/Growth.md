@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/03/2/1/growth"
-interact_link: /content/chapters/03/2/1/Growth.ipynb
+interact_link: content/chapters/03/2/1/Growth.ipynb
 title: 'Example: Growth Rates'
 prev_page:
   url: /chapters/03/2/Names

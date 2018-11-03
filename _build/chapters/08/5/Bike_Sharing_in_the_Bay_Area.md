@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/08/5/bike-sharing-in-the-bay-area"
-interact_link: /content/chapters/08/5/Bike_Sharing_in_the_Bay_Area.ipynb
+interact_link: content/chapters/08/5/Bike_Sharing_in_the_Bay_Area.ipynb
 title: 'Bike Sharing in the Bay Area'
 prev_page:
   url: /chapters/08/4/Joining_Tables_by_Columns

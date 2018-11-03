@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/06/4/example-gender-ratio-in-the-us-population"
-interact_link: /content/chapters/06/4/Example_Gender_Ratio_in_the_US_Population.ipynb
+interact_link: content/chapters/06/4/Example_Gender_Ratio_in_the_US_Population.ipynb
 title: 'Example: Trends in Gender'
 prev_page:
   url: /chapters/06/3/Example_Trends_in_the_Population_of_the_United_States

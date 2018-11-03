@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/12/3/causality"
-interact_link: /content/chapters/12/3/Causality.ipynb
+interact_link: content/chapters/12/3/Causality.ipynb
 title: 'Causality'
 prev_page:
   url: /chapters/12/2/Deflategate

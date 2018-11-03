@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/16/3/prediction-intervals"
-interact_link: /content/chapters/16/3/Prediction_Intervals.ipynb
+interact_link: content/chapters/16/3/Prediction_Intervals.ipynb
 title: 'Prediction Intervals'
 prev_page:
   url: /chapters/16/2/Inference_for_the_True_Slope

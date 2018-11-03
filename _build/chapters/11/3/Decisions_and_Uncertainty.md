@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/11/3/decisions-and-uncertainty"
-interact_link: /content/chapters/11/3/Decisions_and_Uncertainty.ipynb
+interact_link: content/chapters/11/3/Decisions_and_Uncertainty.ipynb
 title: 'Decisions and Uncertainty'
 prev_page:
   url: /chapters/11/2/Multiple_Categories

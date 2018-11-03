@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/12/1/ab-testing"
-interact_link: /content/chapters/12/1/AB_Testing.ipynb
+interact_link: content/chapters/12/1/AB_Testing.ipynb
 title: 'A/B Testing'
 prev_page:
   url: /chapters/12/Comparing_Two_Samples

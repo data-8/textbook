@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/10/1/empirical-distributions"
-interact_link: /content/chapters/10/1/Empirical_Distributions.ipynb
+interact_link: content/chapters/10/1/Empirical_Distributions.ipynb
 title: 'Empirical Distributions'
 prev_page:
   url: /chapters/10/Sampling_and_Empirical_Distributions

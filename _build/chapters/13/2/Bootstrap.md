@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/13/2/bootstrap"
-interact_link: /content/chapters/13/2/Bootstrap.ipynb
+interact_link: content/chapters/13/2/Bootstrap.ipynb
 title: 'The Bootstrap'
 prev_page:
   url: /chapters/13/1/Percentiles

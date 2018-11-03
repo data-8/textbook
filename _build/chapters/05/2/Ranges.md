@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/05/2/ranges"
-interact_link: /content/chapters/05/2/Ranges.ipynb
+interact_link: content/chapters/05/2/Ranges.ipynb
 title: 'Ranges'
 prev_page:
   url: /chapters/05/1/Arrays

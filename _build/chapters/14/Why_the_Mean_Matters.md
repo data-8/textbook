@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/14/why-the-mean-matters"
-interact_link: /content/chapters/14/Why_the_Mean_Matters.ipynb
+interact_link: content/chapters/14/Why_the_Mean_Matters.ipynb
 title: 'Why the Mean Matters'
 prev_page:
   url: /chapters/13/4/Using_Confidence_Intervals

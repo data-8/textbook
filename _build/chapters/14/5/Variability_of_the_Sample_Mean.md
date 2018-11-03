@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/14/5/variability-of-the-sample-mean"
-interact_link: /content/chapters/14/5/Variability_of_the_Sample_Mean.ipynb
+interact_link: content/chapters/14/5/Variability_of_the_Sample_Mean.ipynb
 title: 'The Variability of the Sample Mean'
 prev_page:
   url: /chapters/14/4/Central_Limit_Theorem

@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/16/inference-for-regression"
-interact_link: /content/chapters/16/Inference_for_Regression.ipynb
+interact_link: content/chapters/16/Inference_for_Regression.ipynb
 title: 'Inference for Regression'
 prev_page:
   url: /chapters/15/6/Numerical_Diagnostics

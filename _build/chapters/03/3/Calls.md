@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/03/3/calls"
-interact_link: /content/chapters/03/3/Calls.ipynb
+interact_link: content/chapters/03/3/Calls.ipynb
 title: 'Call Expressions'
 prev_page:
   url: /chapters/03/2/1/Growth

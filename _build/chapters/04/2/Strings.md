@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/04/2/strings"
-interact_link: /content/chapters/04/2/Strings.ipynb
+interact_link: content/chapters/04/2/Strings.ipynb
 title: 'Strings'
 prev_page:
   url: /chapters/04/1/Numbers

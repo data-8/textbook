@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/07/2/visualizing-numerical-distributions"
-interact_link: /content/chapters/07/2/Visualizing_Numerical_Distributions.ipynb
+interact_link: content/chapters/07/2/Visualizing_Numerical_Distributions.ipynb
 title: 'Numerical Distributions'
 prev_page:
   url: /chapters/07/1/Visualizing_Categorical_Distributions

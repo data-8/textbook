@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/14/2/variability"
-interact_link: /content/chapters/14/2/Variability.ipynb
+interact_link: content/chapters/14/2/Variability.ipynb
 title: 'Variability'
 prev_page:
   url: /chapters/14/1/Properties_of_the_Mean

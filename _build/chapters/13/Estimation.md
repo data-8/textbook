@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/13/estimation"
-interact_link: /content/chapters/13/Estimation.ipynb
+interact_link: content/chapters/13/Estimation.ipynb
 title: 'Estimation'
 prev_page:
   url: /chapters/12/3/Causality

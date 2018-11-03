@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/01/3/plotting-the-classics"
-interact_link: /content/chapters/01/3/Plotting_the_Classics.ipynb
+interact_link: content/chapters/01/3/Plotting_the_Classics.ipynb
 title: 'Plotting the Classics'
 prev_page:
   url: /chapters/01/2/why-data-science

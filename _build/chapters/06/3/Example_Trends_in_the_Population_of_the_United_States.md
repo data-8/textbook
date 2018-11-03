@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/06/3/example-trends-in-the-population-of-the-united-states"
-interact_link: /content/chapters/06/3/Example_Trends_in_the_Population_of_the_United_States.ipynb
+interact_link: content/chapters/06/3/Example_Trends_in_the_Population_of_the_United_States.ipynb
 title: 'Example: Population Trends'
 prev_page:
   url: /chapters/06/2/Selecting_Rows

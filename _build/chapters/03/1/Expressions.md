@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/03/1/expressions"
-interact_link: /content/chapters/03/1/Expressions.ipynb
+interact_link: content/chapters/03/1/Expressions.ipynb
 title: 'Expressions'
 prev_page:
   url: /chapters/03/programming-in-python

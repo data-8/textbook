@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/12/comparing-two-samples"
-interact_link: /content/chapters/12/Comparing_Two_Samples.ipynb
+interact_link: content/chapters/12/Comparing_Two_Samples.ipynb
 title: 'Comparing Two Samples'
 prev_page:
   url: /chapters/11/3/Decisions_and_Uncertainty

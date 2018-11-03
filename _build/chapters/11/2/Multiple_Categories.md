@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/11/2/multiple-categories"
-interact_link: /content/chapters/11/2/Multiple_Categories.ipynb
+interact_link: content/chapters/11/2/Multiple_Categories.ipynb
 title: 'Multiple Categories'
 prev_page:
   url: /chapters/11/1/Assessing_Models

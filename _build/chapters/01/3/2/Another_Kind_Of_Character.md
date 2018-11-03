@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/01/3/2/another-kind-of-character"
-interact_link: /content/chapters/01/3/2/Another_Kind_Of_Character.ipynb
+interact_link: content/chapters/01/3/2/Another_Kind_Of_Character.ipynb
 title: 'Another Kind of Character'
 prev_page:
   url: /chapters/01/3/1/Literary_Characters

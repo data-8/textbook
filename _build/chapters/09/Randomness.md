@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/09/randomness"
-interact_link: /content/chapters/09/Randomness.ipynb
+interact_link: content/chapters/09/Randomness.ipynb
 title: 'Randomness'
 prev_page:
   url: /chapters/08/5/Bike_Sharing_in_the_Bay_Area

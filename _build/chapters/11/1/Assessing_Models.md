@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/11/1/assessing-models"
-interact_link: /content/chapters/11/1/Assessing_Models.ipynb
+interact_link: content/chapters/11/1/Assessing_Models.ipynb
 title: 'Assessing Models'
 prev_page:
   url: /chapters/11/Testing_Hypotheses

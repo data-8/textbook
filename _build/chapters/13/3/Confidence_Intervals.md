@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/13/3/confidence-intervals"
-interact_link: /content/chapters/13/3/Confidence_Intervals.ipynb
+interact_link: content/chapters/13/3/Confidence_Intervals.ipynb
 title: 'Confidence Intervals'
 prev_page:
   url: /chapters/13/2/Bootstrap

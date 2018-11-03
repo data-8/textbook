@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/14/6/choosing-a-sample-size"
-interact_link: /content/chapters/14/6/Choosing_a_Sample_Size.ipynb
+interact_link: content/chapters/14/6/Choosing_a_Sample_Size.ipynb
 title: 'Choosing a Sample Size'
 prev_page:
   url: /chapters/14/5/Variability_of_the_Sample_Mean

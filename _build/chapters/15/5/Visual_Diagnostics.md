@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/15/5/visual-diagnostics"
-interact_link: /content/chapters/15/5/Visual_Diagnostics.ipynb
+interact_link: content/chapters/15/5/Visual_Diagnostics.ipynb
 title: 'Visual Diagnostics'
 prev_page:
   url: /chapters/15/4/Least_Squares_Regression

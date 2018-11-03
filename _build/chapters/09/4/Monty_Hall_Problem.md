@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/09/4/monty-hall-problem"
-interact_link: /content/chapters/09/4/Monty_Hall_Problem.ipynb
+interact_link: content/chapters/09/4/Monty_Hall_Problem.ipynb
 title: 'The Monty Hall Problem'
 prev_page:
   url: /chapters/09/3/Simulation

@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/06/tables"
-interact_link: /content/chapters/06/Tables.ipynb
+interact_link: content/chapters/06/Tables.ipynb
 title: 'Tables'
 prev_page:
   url: /chapters/05/3/More_on_Arrays

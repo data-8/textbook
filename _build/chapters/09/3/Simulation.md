@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/09/3/simulation"
-interact_link: /content/chapters/09/3/Simulation.ipynb
+interact_link: content/chapters/09/3/Simulation.ipynb
 title: 'Simulation'
 prev_page:
   url: /chapters/09/2/Iteration

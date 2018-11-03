@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/07/visualization"
-interact_link: /content/chapters/07/Visualization.ipynb
+interact_link: content/chapters/07/Visualization.ipynb
 title: 'Visualization'
 prev_page:
   url: /chapters/06/4/Example_Gender_Ratio_in_the_US_Population

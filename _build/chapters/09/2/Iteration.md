@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/09/2/iteration"
-interact_link: /content/chapters/09/2/Iteration.ipynb
+interact_link: content/chapters/09/2/Iteration.ipynb
 title: 'Iteration'
 prev_page:
   url: /chapters/09/1/Conditional_Statements

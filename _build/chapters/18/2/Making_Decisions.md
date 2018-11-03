@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/18/2/making-decisions"
-interact_link: /content/chapters/18/2/Making_Decisions.ipynb
+interact_link: content/chapters/18/2/Making_Decisions.ipynb
 title: 'Making Decisions'
 prev_page:
   url: /chapters/18/1/More_Likely_than_Not_Binary_Classifier

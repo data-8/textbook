@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/05/sequences"
-interact_link: /content/chapters/05/Sequences.ipynb
+interact_link: content/chapters/05/Sequences.ipynb
 title: 'Sequences'
 prev_page:
   url: /chapters/04/3/Comparison

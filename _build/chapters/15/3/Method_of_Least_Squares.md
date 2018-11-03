@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/15/3/method-of-least-squares"
-interact_link: /content/chapters/15/3/Method_of_Least_Squares.ipynb
+interact_link: content/chapters/15/3/Method_of_Least_Squares.ipynb
 title: 'The Method of Least Squares'
 prev_page:
   url: /chapters/15/2/Regression_Line

@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/15/2/regression-line"
-interact_link: /content/chapters/15/2/Regression_Line.ipynb
+interact_link: content/chapters/15/2/Regression_Line.ipynb
 title: 'The Regression Line'
 prev_page:
   url: /chapters/15/1/Correlation

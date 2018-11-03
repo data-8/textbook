@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/16/2/inference-for-the-true-slope"
-interact_link: /content/chapters/16/2/Inference_for_the_True_Slope.ipynb
+interact_link: content/chapters/16/2/Inference_for_the_True_Slope.ipynb
 title: 'Inference for the True Slope'
 prev_page:
   url: /chapters/16/1/Regression_Model

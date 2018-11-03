@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/chapters/09/1/conditional-statements"
-interact_link: /content/chapters/09/1/Conditional_Statements.ipynb
+interact_link: content/chapters/09/1/Conditional_Statements.ipynb
 title: 'Conditional Statements'
 prev_page:
   url: /chapters/09/Randomness
