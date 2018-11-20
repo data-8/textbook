@@ -147,13 +147,13 @@ The mean of the collection {2, 3, 3, 9} is 4.25, which is not the "halfway point
 
 To see this, notice that the mean can be calculated in different ways.
 
-\begin{align*}
+$$\begin{align*}
 \mbox{mean} ~ &=~ 4.25 \\ \\
 &=~ \frac{2 + 3 + 3 + 9}{4} \\ \\
 &=~ 2 \cdot \frac{1}{4} ~~ + ~~ 3 \cdot \frac{1}{4} ~~ + ~~ 3 \cdot \frac{1}{4} ~~ + ~~ 9 \cdot \frac{1}{4} \\ \\
 &=~ 2 \cdot \frac{1}{4} ~~ + ~~ 3 \cdot \frac{2}{4} ~~ + ~~ 9 \cdot \frac{1}{4} \\ \\
 &=~ 2 \cdot 0.25 ~~ + ~~ 3 \cdot 0.5 ~~ + ~~ 9 \cdot 0.25
-\end{align*}
+\end{align*}$$
 
 The last expression is an example of a general fact: when we calculate the mean, each distinct value in the collection is *weighted* by the proportion of times it appears in the collection.
 
