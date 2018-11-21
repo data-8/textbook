@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Choosing a Sample Size
 Candidate A is contesting an election. A polling organization wants to estimate the proportion of voters who will vote for her. Let's suppose that they plan to take a simple random sample of voters, though in reality their method of sampling would be more complex. How can they decide how large their sample should be, to get a desired level of accuracy?
 
@@ -52,6 +55,13 @@ $$
 If we knew the SD of the population, we'd be done. We could calculate the square root of the sample size, and then take the square to get the sample size. But we don't know the SD of the population. The population consists of 1 for each voter for Candidate A, and 0 for all other voters, and *we don't know what proportion of each kind there are.* That's what we're trying to estimate.
 
 So are we stuck? No, because we can *bound* the SD of the population. Here are histograms of two such distributions, one for an equal proportion of 1's and 0's, and one with 90% 1's and 10% 0's. Which one has the bigger SD? 
+
+
+
+
+
+![png](../../../images/chapters/14/6/Choosing_a_Sample_Size_4_0.png)
+
 
 Remember that the possible values in the population are only 0 and 1.
 
@@ -137,7 +147,7 @@ zero_one_sds.scatter("Population Proportion of 1's")
 
 
 
-![png](../../../images/chapters/14/6/Choosing_a_Sample_Size_6_0.png)
+![png](../../../images/chapters/14/6/Choosing_a_Sample_Size_8_0.png)
 
 
 **Summary:** The SD of a population of 1's and 0's is at most 0.5. That's the value of the SD when 50% of the population is coded 1 and the other 50% are coded 0.

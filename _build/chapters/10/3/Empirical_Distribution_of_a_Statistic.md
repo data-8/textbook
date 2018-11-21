@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Empirical Distribution of a Statistic
 The Law of Averages implies that with high probability, the empirical distribution of a large random sample will resemble the distribution of the population from which the sample was drawn.
 
@@ -38,7 +41,7 @@ plots.title('Population');
 
 
 
-![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_2_0.png)
+![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_3_0.png)
 
 
 
@@ -52,7 +55,7 @@ plots.title('Sample of Size 1000');
 
 
 
-![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_3_0.png)
+![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_4_0.png)
 
 
 The two histograms clearly resemble each other, though they are not identical. 
@@ -296,7 +299,7 @@ simulated_medians.hist(bins=np.arange(0.5, 5, 1))
 
 
 
-![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_25_0.png)
+![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_26_0.png)
 
 
 You can see that the sample median is very likely to be close to 2, which was the value of the population median. Since samples of 1000 flight delays are likely to resemble the population of delays, it is not surprising that the median delays of those samples should be close to the median delay in the population.

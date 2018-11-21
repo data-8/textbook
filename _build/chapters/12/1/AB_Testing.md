@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### A/B Testing
 In modern data analytics, deciding whether two numerical samples come from the same underlying distribution is called *A/B testing*. The name refers to the labels of the two samples, A and B.
 
@@ -131,7 +134,7 @@ smoking_and_birthweight.hist('Birth Weight', group = 'Maternal Smoker')
 
 
 
-![png](../../../images/chapters/12/1/AB_Testing_7_0.png)
+![png](../../../images/chapters/12/1/AB_Testing_8_0.png)
 
 
 The distribution of the weights of the babies born to mothers who smoked appears to be shifted slightly to the left of the distribution corresponding to non-smoking mothers. The weights of the babies of the mothers who smoked seem lower, on average than the weights of the babies of the non-smokers. 
@@ -473,7 +476,7 @@ Observed Difference: -9.266142572024918
 ```
 
 
-![png](../../../images/chapters/12/1/AB_Testing_27_1.png)
+![png](../../../images/chapters/12/1/AB_Testing_28_1.png)
 
 
 Notice how the distribution is centered around 0. This makes sense, because under the null hypothesis the two groups should have roughly the same average. Therefore the difference between the group averages should be around 0.
@@ -550,7 +553,7 @@ smoking_and_age.hist('Maternal Age', group = 'Maternal Smoker')
 
 
 
-![png](../../../images/chapters/12/1/AB_Testing_34_0.png)
+![png](../../../images/chapters/12/1/AB_Testing_35_0.png)
 
 
 
@@ -638,7 +641,7 @@ Observed Difference: -0.8076725017901509
 ```
 
 
-![png](../../../images/chapters/12/1/AB_Testing_41_1.png)
+![png](../../../images/chapters/12/1/AB_Testing_42_1.png)
 
 
 The empirical P-value of the test is the proportion of simulated differences that were equal to or less than the observed difference. This is because low values of the difference favor the alternative hypothesis that the smokers were younger on average.

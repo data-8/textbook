@@ -12,6 +12,12 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
 ### Correlation
 
 In this section we will develop a measure of how tightly clustered a scatter diagram is about a straight line. Formally, this is called measuring *linear association*.
@@ -100,7 +106,7 @@ hybrid.scatter('acceleration', 'msrp')
 
 
 
-![png](../../../images/chapters/15/1/Correlation_5_0.png)
+![png](../../../images/chapters/15/1/Correlation_7_0.png)
 
 
 Notice the positive association. The scatter of points is sloping upwards, indicating that cars with greater acceleration tended to cost more, on average; conversely, the cars that cost more tended to have greater acceleration on average. 
@@ -116,7 +122,7 @@ hybrid.scatter('mpg', 'msrp')
 
 
 
-![png](../../../images/chapters/15/1/Correlation_7_0.png)
+![png](../../../images/chapters/15/1/Correlation_9_0.png)
 
 
 Along with the negative association, the scatter diagram of price versus efficiency shows a non-linear relation between the two variables. The points appear to be clustered around a curve, not around a straight line. 
@@ -133,7 +139,7 @@ suv.scatter('mpg', 'msrp')
 
 
 
-![png](../../../images/chapters/15/1/Correlation_9_0.png)
+![png](../../../images/chapters/15/1/Correlation_11_0.png)
 
 
 
@@ -145,7 +151,7 @@ suv.scatter('acceleration', 'msrp')
 
 
 
-![png](../../../images/chapters/15/1/Correlation_10_0.png)
+![png](../../../images/chapters/15/1/Correlation_12_0.png)
 
 
 You will have noticed that we can derive useful information from the general orientation and shape of a scatter diagram even without paying attention to the units in which the variables were measured.
@@ -180,7 +186,7 @@ plots.ylim(-3, 3);
 
 
 
-![png](../../../images/chapters/15/1/Correlation_14_0.png)
+![png](../../../images/chapters/15/1/Correlation_16_0.png)
 
 
 
@@ -197,7 +203,7 @@ plots.ylim(-3, 3);
 
 
 
-![png](../../../images/chapters/15/1/Correlation_15_0.png)
+![png](../../../images/chapters/15/1/Correlation_17_0.png)
 
 
 The associations that we see in these figures are the same as those we saw before. Also, because the two scatter diagrams are now drawn on exactly the same scale, we can see that the linear relation in the second diagram is a little more fuzzy than in the first.
@@ -231,7 +237,7 @@ r_scatter(0.9)
 
 
 
-![png](../../../images/chapters/15/1/Correlation_19_0.png)
+![png](../../../images/chapters/15/1/Correlation_21_0.png)
 
 
 
@@ -243,7 +249,7 @@ r_scatter(0.25)
 
 
 
-![png](../../../images/chapters/15/1/Correlation_20_0.png)
+![png](../../../images/chapters/15/1/Correlation_22_0.png)
 
 
 
@@ -255,7 +261,7 @@ r_scatter(0)
 
 
 
-![png](../../../images/chapters/15/1/Correlation_21_0.png)
+![png](../../../images/chapters/15/1/Correlation_23_0.png)
 
 
 
@@ -267,7 +273,7 @@ r_scatter(-0.55)
 
 
 
-![png](../../../images/chapters/15/1/Correlation_22_0.png)
+![png](../../../images/chapters/15/1/Correlation_24_0.png)
 
 
 ### Calculating $r$
@@ -340,7 +346,7 @@ t.scatter(0, 1, s=30, color='red')
 
 
 
-![png](../../../images/chapters/15/1/Correlation_26_0.png)
+![png](../../../images/chapters/15/1/Correlation_28_0.png)
 
 
 **Step 1.** Convert each variable to standard units.
@@ -480,7 +486,7 @@ t.scatter('y', 'x', s=30, color='red')
 
 
 
-![png](../../../images/chapters/15/1/Correlation_35_0.png)
+![png](../../../images/chapters/15/1/Correlation_37_0.png)
 
 
 ### The `correlation` function
@@ -601,7 +607,7 @@ nonlinear.scatter('x', 'y', s=30, color='r')
 
 
 
-![png](../../../images/chapters/15/1/Correlation_49_0.png)
+![png](../../../images/chapters/15/1/Correlation_51_0.png)
 
 
 
@@ -638,7 +644,7 @@ line.scatter('x', 'y', s=30, color='r')
 
 
 
-![png](../../../images/chapters/15/1/Correlation_52_0.png)
+![png](../../../images/chapters/15/1/Correlation_54_0.png)
 
 
 
@@ -672,7 +678,7 @@ outlier.scatter('x', 'y', s=30, color='r')
 
 
 
-![png](../../../images/chapters/15/1/Correlation_54_0.png)
+![png](../../../images/chapters/15/1/Correlation_56_0.png)
 
 
 
@@ -764,7 +770,7 @@ sat2014.scatter('Critical Reading', 'Math')
 
 
 
-![png](../../../images/chapters/15/1/Correlation_59_0.png)
+![png](../../../images/chapters/15/1/Correlation_61_0.png)
 
 
 
@@ -795,3 +801,13 @@ Correlations based on aggregates and averages are called *ecological correlation
 
 In 2012, a [paper](http://www.biostat.jhsph.edu/courses/bio621/misc/Chocolate%20consumption%20cognitive%20function%20and%20nobel%20laurates%20%28NEJM%29.pdf) in the respected New England Journal of Medicine examined the relation between chocolate consumption and Nobel Prizes in a group of countries. The [Scientific American](http://blogs.scientificamerican.com/the-curious-wavefunction/chocolate-consumption-and-nobel-prizes-a-bizarre-juxtaposition-if-there-ever-was-one/) responded seriously whereas
 [others](http://www.reuters.com/article/2012/10/10/us-eat-chocolate-win-the-nobel-prize-idUSBRE8991MS20121010#vFdfFkbPVlilSjsB.97) were more relaxed. You are welcome to make your own decision! The following graph, provided in the paper, should motivate you to go and take a look.
+
+
+
+
+
+
+
+![png](../../../images/chapters/15/1/Correlation_65_0.png)
+
+

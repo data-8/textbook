@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Iteration
 It is often the case in programming – especially when dealing with randomness – that we want to repeat a process multiple times. For example, we might want to assign each person in a study to the treatment group or to control, based on tossing a coin. We can do this without actually tossing a coin for each person; we can just use `np.random.choice` instead.
 

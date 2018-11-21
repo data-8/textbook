@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### The SD and the Normal Curve
 
 We know that the mean is the balance point of the histogram. Unlike the mean, the SD is usually not easy to identify by looking at the histogram. 
@@ -79,7 +82,7 @@ plots.xticks(positions);
 
 
 
-![png](../../../images/chapters/14/3/SD_and_the_Normal_Curve_5_0.png)
+![png](../../../images/chapters/14/3/SD_and_the_Normal_Curve_6_0.png)
 
 
 The last two lines of code in the cell above change the labeling of the horizontal axis. Now, the labels correspond to "average $\pm$ $z$ SDs" for $z = 0, \pm 1, \pm 2$, and $\pm 3$. Because of the shape of the distribution, the "center" has an unambiguous meaning and is clearly visible at 64.
@@ -103,6 +106,13 @@ The standard normal curve has an impressive equation. But for now, it is best to
 $$
 \phi(z) = {\frac{1}{\sqrt{2 \pi}}} e^{-\frac{1}{2}z^2}, ~~ -\infty < z < \infty
 $$
+
+
+
+
+
+![png](../../../images/chapters/14/3/SD_and_the_Normal_Curve_11_0.png)
+
 
 As always when you examine a new histogram, start by looking at the horizontal axis. On the horizontal axis of the standard normal curve, the values are standard units. 
 
@@ -136,6 +146,13 @@ The fundamental function for finding areas under the normal curve is `stats.norm
 
 Let us use this function to find the area to the left of $z=1$ under the standard normal curve. 
 
+
+
+
+
+![png](../../../images/chapters/14/3/SD_and_the_Normal_Curve_16_0.png)
+
+
 The numerical value of the shaded area can be found by calling `stats.norm.cdf`.
 
 
@@ -162,6 +179,13 @@ The area to the right of $z=1$ is about 100% - 84% = 16%.
 
 
 
+
+
+![png](../../../images/chapters/14/3/SD_and_the_Normal_Curve_20_0.png)
+
+
+
+
 {:.input_area}
 ```python
 1 - stats.norm.cdf(1)
@@ -179,6 +203,13 @@ The area to the right of $z=1$ is about 100% - 84% = 16%.
 
 
 The area between $z=-1$ and $z=1$ can be computed in several different ways.  It is the gold area under the curve below. 
+
+
+
+
+
+![png](../../../images/chapters/14/3/SD_and_the_Normal_Curve_23_0.png)
+
 
 For example, we could calculate the area as "100% - two equal tails", which works out to roughly 100% - 2x16% = 68%.
 
@@ -203,6 +234,13 @@ stats.norm.cdf(1) - stats.norm.cdf(-1)
 
 
 By a similar calculation, we see that the area between $-2$ and 2 is about 95%.
+
+
+
+
+
+![png](../../../images/chapters/14/3/SD_and_the_Normal_Curve_27_0.png)
+
 
 
 

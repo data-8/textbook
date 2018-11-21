@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Confidence Intervals
 We have developed a method for estimating a parameter by using random sampling and the bootstrap. Our method produces an interval of estimates, to account for chance variability in the random sample. By providing an interval of estimates instead of just one estimate, we give ourselves some wiggle room.
 
@@ -176,7 +179,7 @@ ratios.select('Ratio BW/GD').hist()
 
 
 
-![png](../../../images/chapters/13/3/Confidence_Intervals_8_0.png)
+![png](../../../images/chapters/13/3/Confidence_Intervals_9_0.png)
 
 
 At first glance the histogram looks quite symmetric, with the density at its maximum over the interval 4 ounces per day to 4.5 ounces per day. But a closer look reveals that some of the ratios were quite large by comparison. The maximum value of the ratios was just over 0.78 ounces per day, almost double the typical value.
@@ -308,7 +311,7 @@ plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=8);
 
 
 
-![png](../../../images/chapters/13/3/Confidence_Intervals_18_0.png)
+![png](../../../images/chapters/13/3/Confidence_Intervals_19_0.png)
 
 
 This histogram and interval resembles those we drew in the previous section, with one big difference – there is no red dot showing where the parameter is. We don't know where that dot should be, or whether it is even in the interval.
@@ -329,7 +332,7 @@ baby.select('Maternal Age').hist()
 
 
 
-![png](../../../images/chapters/13/3/Confidence_Intervals_22_0.png)
+![png](../../../images/chapters/13/3/Confidence_Intervals_23_0.png)
 
 
 
@@ -421,7 +424,7 @@ plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=8);
 
 
 
-![png](../../../images/chapters/13/3/Confidence_Intervals_28_0.png)
+![png](../../../images/chapters/13/3/Confidence_Intervals_29_0.png)
 
 
 Once again, the average of the original sample (27.23 years) is close to the center of the interval. That's not very surprising, because each bootstrapped sample is drawn from that same original sample. The averages of the bootstrapped samples are about symmetrically distributed on either side of the average of the sample from which they were drawn.
@@ -437,7 +440,7 @@ baby.select('Maternal Age').hist()
 
 
 
-![png](../../../images/chapters/13/3/Confidence_Intervals_31_0.png)
+![png](../../../images/chapters/13/3/Confidence_Intervals_32_0.png)
 
 
 This is a consequence of the Central Limit Theorem of probability and statistics. In later sections, we will see what the theorem says.
@@ -475,7 +478,7 @@ plots.plot(make_array(left_80, right_80), make_array(0, 0), color='yellow', lw=8
 
 
 
-![png](../../../images/chapters/13/3/Confidence_Intervals_35_0.png)
+![png](../../../images/chapters/13/3/Confidence_Intervals_36_0.png)
 
 
 This 80% confidence interval is much shorter than the 95% confidence interval. It only goes from about 27.0 years to about 27.4 years. While that's a tight set of estimates, you know that this process only produces a good interval about 80% of the time. 
@@ -596,7 +599,7 @@ plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=8);
 
 
 
-![png](../../../images/chapters/13/3/Confidence_Intervals_46_0.png)
+![png](../../../images/chapters/13/3/Confidence_Intervals_47_0.png)
 
 
 ### Care in Using the Bootstrap

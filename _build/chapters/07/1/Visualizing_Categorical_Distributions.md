@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Visualizing Categorical Distributions
 
 Data come in many forms that are not numerical. Data can be pieces of music, or places on a map. They can also be categories into which you can place individuals. Here are some examples of *categorical* variables.
@@ -77,7 +80,7 @@ icecream.barh('Flavor', 'Number of Cartons')
 
 
 
-![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_5_0.png)
+![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_6_0.png)
 
 
 If the table consists just of a column of categories and a column of frequencies, as in `icecream`, the method call is even simpler. You can just specify the column containing the categories, and `barh` will use the values in the other column as frequencies.
@@ -91,7 +94,7 @@ icecream.barh('Flavor')
 
 
 
-![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_7_0.png)
+![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_8_0.png)
 
 
 ### Features of Categorical Distributions
@@ -112,7 +115,7 @@ icecream.sort('Number of Cartons', descending=True).barh('Flavor')
 
 
 
-![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_9_0.png)
+![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_10_0.png)
 
 
 This bar chart contains exactly the same information as the previous ones, but it is a little easier to read. While this is not a huge gain in reading a chart with just three bars, it can be quite significant when the number of categories is large.
@@ -265,7 +268,7 @@ studio_distribution.sort('count', descending=True).barh('Studio')
 
 
 
-![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_18_0.png)
+![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_19_0.png)
 
 
 Warner Brothers and Buena Vista are the most common studios among the top 200 movies. Warner Brothers produces the Harry Potter movies and Buena Vista produces Star Wars. 
@@ -282,7 +285,7 @@ movies_and_years.group('Year').sort('count', descending=True).barh('Year')
 
 
 
-![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_21_0.png)
+![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_22_0.png)
 
 
 All of the longest bars correspond to years after 2000. This is consistent with our observation that recent years should be among the most frequent.
@@ -303,7 +306,7 @@ movies_and_years.group('Year').barh('Year')
 
 
 
-![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_24_0.png)
+![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_25_0.png)
 
 
 Now the years are in increasing order. But there is still something disquieting about this bar chart. The bars at 1921 and 1937 are just as far apart from each other as the bars at 1937 and 1939. The bar chart doesn't show that none of the 200 movies were released in the years 1922 through 1936, nor in 1938. Such inconsistencies and omissions make the distribution in the early years hard to understand based on this visualization.

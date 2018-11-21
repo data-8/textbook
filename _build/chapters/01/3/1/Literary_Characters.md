@@ -12,6 +12,12 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
 # Literary Characters
 
 *The Adventures of Huckleberry Finn* describes a journey that Huck and Jim take along the Mississippi River. Tom Sawyer joins them towards the end as the action heats up. Having loaded the text, we can quickly visualize how many times these characters have each been mentioned at any point in the book.
@@ -38,7 +44,7 @@ plots.title('Cumulative Number of Times Each Name Appears', y=1.08);
 
 
 
-![png](../../../../images/chapters/01/3/1/Literary_Characters_1_0.png)
+![png](../../../../images/chapters/01/3/1/Literary_Characters_3_0.png)
 
 
 In the plot above, the horizontal axis shows chapter numbers and the vertical axis shows how many times each character has been mentioned up to and including that chapter. 
@@ -171,7 +177,7 @@ plots.title('Cumulative Number of Times Each Name Appears', y=1.08);
 
 
 
-![png](../../../../images/chapters/01/3/1/Literary_Characters_6_0.png)
+![png](../../../../images/chapters/01/3/1/Literary_Characters_8_0.png)
 
 
 Laurie is a young man who marries one of the girls in the end. See if you can use the plots to guess which one.

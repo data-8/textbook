@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Variability
 The mean tells us where a histogram balances. But in almost every histogram we have seen, the values spread out on both sides of the mean. How far from the mean can they be? To answer this question, we will develop a measure of variability about the mean.
 
@@ -338,7 +341,7 @@ nba13.select('Height').hist(bins=np.arange(68, 88, 1))
 
 
 
-![png](../../../images/chapters/14/2/Variability_21_0.png)
+![png](../../../images/chapters/14/2/Variability_22_0.png)
 
 
 It is no surprise that NBA players are tall! Their average height is just over 79 inches (6'7"), about 10 inches taller than the average height of men in the United States.
@@ -532,7 +535,7 @@ nba13.select('Age in 2013').hist(bins=np.arange(15, 45, 1))
 
 
 
-![png](../../../images/chapters/14/2/Variability_38_0.png)
+![png](../../../images/chapters/14/2/Variability_39_0.png)
 
 
 
@@ -869,5 +872,5 @@ plots.xticks(np.arange(-6, 17, 3));
 
 
 
-![png](../../../images/chapters/14/2/Variability_58_0.png)
+![png](../../../images/chapters/14/2/Variability_59_0.png)
 

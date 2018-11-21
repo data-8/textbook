@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Applying a Function to a Column
 
 We have seen many examples of creating new columns of tables by applying functions to existing columns or to other arrays. All of those functions took arrays as their arguments. But frequently we will want to convert the entries in a column by a function that doesn't take an array as its argument. For example, it might take just one number as its argument, as in the function `cut_off_at_100` defined below.
@@ -401,7 +404,7 @@ heights.scatter(0)
 
 
 
-![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_23_0.png)
+![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_24_0.png)
 
 
 Now suppose Galton encountered a new couple, similar to those in his dataset, and wondered how tall their child would be. What would be a good way for him to go about predicting the child's height, given that the midparent height was, say, 68 inches?
@@ -426,7 +429,7 @@ _ = plots.scatter(68, 66.24, color='gold', s=40)
 
 
 
-![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_25_0.png)
+![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_26_0.png)
 
 
 In order to calculate exactly where the gold dot should be, we first need to indentify all the points in the strip. These correspond to the rows where `MidParent` is between 67.5 inches and 68.5 inches.
@@ -645,7 +648,7 @@ heights_with_predictions.scatter('MidParent')
 
 
 
-![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_39_0.png)
+![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_40_0.png)
 
 
 The graph of gold dots is called a *graph of averages,* because each gold dot is the center of a vertical strip like the one we drew earlier. Each one provides a prediction of a child's height given the midparent height. For example, the scatter shows that for a midparent height of 72 inches, the predicted height of the child would be somewhere between 68 inches and 69 inches, and indeed `predict_child(72)` returns 68.5.

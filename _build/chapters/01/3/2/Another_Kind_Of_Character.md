@@ -12,6 +12,12 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
 # Another Kind of Character
 
 In some situations, the relationships between quantities allow us to make predictions. This text will explore how to make accurate predictions based on incomplete information and develop methods for combining multiple sources of uncertain information to make decisions.
@@ -174,7 +180,7 @@ plots.ylabel('Number of characters in chapter');
 
 
 
-![png](../../../../images/chapters/01/3/2/Another_Kind_Of_Character_7_0.png)
+![png](../../../../images/chapters/01/3/2/Another_Kind_Of_Character_9_0.png)
 
 
 The plot shows us that many but not all of the chapters of *Little Women* are longer than those of *Huckleberry Finn*, as we had observed by just looking at the numbers. But it also shows us something more. Notice how the blue points are roughly clustered around a straight line, as are the yellow points. Moreover, it looks as though both colors of points might be clustered around the *same* straight line.
