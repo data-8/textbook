@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Bike Sharing in the Bay Area
 
 We end this chapter by using all the methods we have learned to examine a new and large dataset. We will also introduce `map_table`, a powerful visualization tool.
@@ -97,7 +100,7 @@ commute.hist('Duration', unit='Second')
 
 
 
-![png](../../../images/chapters/08/5/Bike_Sharing_in_the_Bay_Area_3_0.png)
+![png](../../../images/chapters/08/5/Bike_Sharing_in_the_Bay_Area_4_0.png)
 
 
 We can get more detail by specifying a larger number of bins. But the overall shape doesn't change much.
@@ -111,7 +114,7 @@ commute.hist('Duration', bins=60, unit='Second')
 
 
 
-![png](../../../images/chapters/08/5/Bike_Sharing_in_the_Bay_Area_5_0.png)
+![png](../../../images/chapters/08/5/Bike_Sharing_in_the_Bay_Area_6_0.png)
 
 
 ### Exploring the Data with `group` and `pivot`

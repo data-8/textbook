@@ -12,6 +12,15 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
+
+
+
 ### Prediction Intervals
 One of the primary uses of regression is to make predictions for a new individual who was not part of our original sample but is similar to the sampled individuals. In the language of the model, we want to estimate $y$ for a new value of $x$.
 
@@ -22,6 +31,13 @@ The **fitted value** at a given value of $x$ is the regression estimate of $y$ b
 Suppose we try to predict a baby's birth weight based on the number of gestational days. As we saw in the previous section, the data fit the regression model fairly well and a 95% confidence interval for the slope of the true line doesn't contain 0. So it seems reasonable to carry out our prediction.
 
 The figure below shows where the prediction lies on the regression line. The red line is at $x = 300$.
+
+
+
+
+
+![png](../../../images/chapters/16/3/Prediction_Intervals_6_0.png)
+
 
 The height of the point where the red line hits the regression line is the fitted value at 300 gestational days. 
 
@@ -64,6 +80,13 @@ fit_300
 We have developed a method making one prediction of a new baby's birth weight based on the number of gestational days, using the data in our sample. But as data scientists, we know that the sample might have been different. Had the sample been different, the regression line would have been different too, and so would our prediction. To see how good our prediction is, we must get a sense of how variable the prediction can be.
 
 To do this, we must generate new samples. We can do that by bootstrapping the scatter plot as in the previous section. We will then fit the regression line to the scatter plot in each replication, and make a prediction based on each line. The figure below shows 10 such lines, and the corresponding predicted birth weight at 300 gestational days.
+
+
+
+
+
+![png](../../../images/chapters/16/3/Prediction_Intervals_12_0.png)
+
 
 The predictions vary from one line to the next. The table below shows the slope and intercept of each of the 10 lines, along with the prediction. 
 
@@ -190,7 +213,7 @@ Approximate 95%-confidence interval:
 ```
 
 
-![png](../../../images/chapters/16/3/Prediction_Intervals_13_1.png)
+![png](../../../images/chapters/16/3/Prediction_Intervals_18_1.png)
 
 
 The figure above shows a bootstrap empirical histogram of the predicted birth weight of a baby at 300 gestational days, based on 5,000 repetitions of the bootstrap process. The empirical distribution is roughly normal. 
@@ -218,7 +241,7 @@ Approximate 95%-confidence interval:
 ```
 
 
-![png](../../../images/chapters/16/3/Prediction_Intervals_16_1.png)
+![png](../../../images/chapters/16/3/Prediction_Intervals_21_1.png)
 
 
 Notice that this interval is narrower than the prediction interval at 300 gestational days. Let us investigate the reason for this.
@@ -246,6 +269,13 @@ np.mean(baby.column('Gestational Days'))
 So 285 is nearer to the center of the distribution than 300 is. Typically, the regression lines based on the bootstrap samples are closer to each other near the center of the distribution of the predictor variable. Therefore all of the predicted values are closer together as well. This explains the narrower width of the prediction interval. 
 
 You can see this in the figure below, which shows predictions at $x = 285$ and $x = 300$ for each of ten bootstrap replications. Typically, the lines are farther apart at $x = 300$ than at $x = 285$, and therefore the predictions at $x = 300$ are more variable.
+
+
+
+
+
+![png](../../../images/chapters/16/3/Prediction_Intervals_25_0.png)
+
 
 ### Words of caution
 

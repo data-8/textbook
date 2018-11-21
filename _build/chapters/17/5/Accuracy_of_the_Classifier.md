@@ -12,6 +12,15 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
+
+
+
 ### The Accuracy of the Classifier
 To see how well our classifier does, we might put 50% of the data into the training set and the other 50% into the test set.  Basically, we are setting aside some data for later use, so we can use it to measure the accuracy of our classifier.  We've been calling that the *test set*. Sometimes people will call the data that you set aside for testing a *hold-out set*, and they'll call this strategy for estimating accuracy the *hold-out method*.
 
@@ -176,10 +185,17 @@ patients_with_colors.scatter('Bland Chromatin', 'Single Epithelial Cell Size', c
 
 
 
-![png](../../../images/chapters/17/5/Accuracy_of_the_Classifier_12_0.png)
+![png](../../../images/chapters/17/5/Accuracy_of_the_Classifier_15_0.png)
 
 
 Oops.  That plot is utterly misleading, because there are a bunch of points that have identical values for both the x- and y-coordinates.  To make it easier to see all the data points, I'm going to add a little bit of random jitter to the x- and y-values.  Here's how that looks:
+
+
+
+
+
+![png](../../../images/chapters/17/5/Accuracy_of_the_Classifier_17_0.png)
+
 
 For instance, you can see there are lots of samples with chromatin = 2 and epithelial cell size = 2; all non-cancerous.
 

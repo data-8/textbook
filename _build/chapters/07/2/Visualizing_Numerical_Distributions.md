@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Visualizing Numerical Distributions
 
 Many of the variables that data scientists study are *quantitative* or *numerical*. Their values are numbers on which you can perform arithmetic. Examples that we have seen include the number of periods in chapters of a book, the amount of money made by movies, and the age of people in the United States.
@@ -176,7 +179,7 @@ millions.hist('Adjusted Gross', unit="Million Dollars")
 
 
 
-![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_6_0.png)
+![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_7_0.png)
 
 
 ### The Horizontal Axis
@@ -202,7 +205,7 @@ millions.hist('Adjusted Gross', bins=np.arange(300,2001,100), unit="Million Doll
 
 
 
-![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_8_0.png)
+![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_9_0.png)
 
 
 The horizontal axis of this figure is easier to read. The labels 200, 400, 600, and so on are centered at the corresponding values. The tallest bar is for movies that grossed between 300 million and 400 million dollars. 
@@ -320,7 +323,7 @@ bin_counts.hist('Adjusted Gross count', bin_column='bin', unit='Million Dollars'
 
 
 
-![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_13_0.png)
+![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_14_0.png)
 
 
 ### The Vertical Axis: Density Scale
@@ -438,7 +441,7 @@ millions.hist('Adjusted Gross', bins=uneven, unit="Million Dollars")
 
 
 
-![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_20_0.png)
+![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_21_0.png)
 
 
 Here are the counts in the three bins.
@@ -499,7 +502,7 @@ millions.hist('Adjusted Gross', bins=np.arange(300,2001,100), normed=False)
 
 
 
-![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_25_0.png)
+![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_26_0.png)
 
 
 While the count scale is perhaps more natural to interpret than the density scale, the chart becomes highly misleading when bins have different widths. Below, it appears (due to the count scale) that high-grossing movies are quite common, when in fact we have seen that they are relatively rare.
@@ -513,7 +516,7 @@ millions.hist('Adjusted Gross', bins=uneven, normed=False)
 
 
 
-![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_27_0.png)
+![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_28_0.png)
 
 
 Even though the method used is called `hist`, **the figure above is NOT A HISTOGRAM.** It misleadingly exaggerates the proportion of movies grossing at least 600 million dollars. The height of each bar is simply plotted at the number of movies in the bin, *without accounting for the difference in the widths of the bins*. 
@@ -530,7 +533,7 @@ millions.hist('Adjusted Gross', bins=very_uneven, normed=False)
 
 
 
-![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_29_0.png)
+![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_30_0.png)
 
 
 In this count-based figure, the shape of the distribution of movies is lost entirely.
@@ -585,7 +588,7 @@ millions.hist('Adjusted Gross', bins=uneven, unit="Million Dollars")
 
 
 
-![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_33_0.png)
+![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_34_0.png)
 
 
 To see this, let us split the [300, 400) bin into 10 narrower bins, each of width 10 million dollars.
@@ -600,7 +603,7 @@ millions.hist('Adjusted Gross', bins=some_tiny_bins, unit='Million Dollars')
 
 
 
-![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_35_0.png)
+![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_36_0.png)
 
 
 Some of the skinny bars are taller than 0.405 and others are shorter; the first two have heights of 0 because there are no data between 300 and 320. By putting a flat top at the level 0.405 across the whole bin, we are deciding to ignore the finer detail and are using the flat level as a rough approximation. Often, though not always, this is sufficient for understanding the general shape of the distribution.
@@ -626,7 +629,7 @@ millions.hist('Adjusted Gross', bins=uneven_again, unit='Million Dollars')
 
 
 
-![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_40_0.png)
+![png](../../../images/chapters/07/2/Visualizing_Numerical_Distributions_41_0.png)
 
 
 

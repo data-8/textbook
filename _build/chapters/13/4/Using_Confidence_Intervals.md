@@ -14,6 +14,9 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 
 
+
+
+
 {:.input_area}
 ```python
 def bootstrap_median(original_sample, label, replications):
@@ -104,7 +107,7 @@ baby.select('Maternal Age').hist()
 
 
 
-![png](../../../images/chapters/13/4/Using_Confidence_Intervals_5_0.png)
+![png](../../../images/chapters/13/4/Using_Confidence_Intervals_6_0.png)
 
 
 A small percent of the sampled ages are in the (26.9, 27.6) interval, and you would expect a similar small percent in the population. The interval just estimates one number: the *average* of all the ages in the population.
@@ -283,7 +286,7 @@ hodgkins.select('drop').hist(bins=np.arange(-20, 81, 20))
 
 
 
-![png](../../../images/chapters/13/4/Using_Confidence_Intervals_16_0.png)
+![png](../../../images/chapters/13/4/Using_Confidence_Intervals_17_0.png)
 
 
 
@@ -350,7 +353,7 @@ plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=8);
 
 
 
-![png](../../../images/chapters/13/4/Using_Confidence_Intervals_20_0.png)
+![png](../../../images/chapters/13/4/Using_Confidence_Intervals_21_0.png)
 
 
 The 99% confidence interval for the average drop in the population goes from about 17 to about 40. The interval doesn't contain 0. So we reject the null hypothesis.

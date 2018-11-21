@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Decisions and Uncertainty
 We have seen several examples of assessing models that involve chance, by comparing observed data to the predictions made by the models. In all of our examples, there has been no doubt about whether the data were consistent with the model's predictions. The data were either very far away from the predictions, or very close to them.
 
@@ -419,7 +422,7 @@ plots.scatter(observed_statistic, 0, color='red', s=30);
 
 
 
-![png](../../../images/chapters/11/3/Decisions_and_Uncertainty_21_0.png)
+![png](../../../images/chapters/11/3/Decisions_and_Uncertainty_22_0.png)
 
 
 As we said earlier, small values of the test statistic will make us lean towards the alternative hypothesis, that the average score in the section is too low for it to look like a random sample from the class.

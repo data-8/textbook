@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### The Regression Line
 The correlation coefficient $r$ doesn't just measure how clustered the points in a scatter plot are about a straight line. It also helps identify the straight line about which the points are clustered. In this section we will retrace the path that Galton and Pearson took to discover that line.
 
@@ -66,7 +69,7 @@ heights_with_predictions.scatter('MidParent')
 
 
 
-![png](../../../images/chapters/15/2/Regression_Line_4_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_5_0.png)
 
 
 ### Measuring in Standard Units
@@ -219,7 +222,7 @@ heights_with_su_predictions.scatter('MidParent SU')
 
 
 
-![png](../../../images/chapters/15/2/Regression_Line_14_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_15_0.png)
 
 
 This plot looks exactly like the plot drawn on the original scale. Only the numbers on the axes have changed. This confirms that we can understand the prediction process by just working in standard units.
@@ -229,9 +232,30 @@ Galton's scatter plot has a *football* shape – that is, it is roughly oval lik
 
 Here is a football shaped scatter plot with both variables measured in standard units. The 45 degree line is shown in red.
 
+
+
+
+
+![png](../../../images/chapters/15/2/Regression_Line_18_0.png)
+
+
 But the 45 degree line is not the line that picks off the centers of the vertical strips. You can see that in the figure below, where the vertical line at 1.5 standard units is shown in black. The points on the scatter plot near the black line all have heights roughly in the -2 to 3 range. The red line is too high to pick off the center.
 
+
+
+
+
+![png](../../../images/chapters/15/2/Regression_Line_20_0.png)
+
+
 So the 45 degree line is not the "graph of averages." That line is the green one shown below.
+
+
+
+
+
+![png](../../../images/chapters/15/2/Regression_Line_22_0.png)
+
 
 Both lines go through the origin (0, 0). The green line goes through the centers of the vertical strips (at least roughly), and is *flatter* than the red 45 degree line. 
 
@@ -246,6 +270,9 @@ The function that performs the simulation is called `regression_line` and takes 
 
 
 
+
+
+
 {:.input_area}
 ```python
 regression_line(0.95)
@@ -253,7 +280,7 @@ regression_line(0.95)
 
 
 
-![png](../../../images/chapters/15/2/Regression_Line_21_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_26_0.png)
 
 
 
@@ -265,7 +292,7 @@ regression_line(0.6)
 
 
 
-![png](../../../images/chapters/15/2/Regression_Line_22_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_27_0.png)
 
 
 When $r$ is close to 1, the scatter plot, the 45 degree line, and the regression line are all very close to each other. But for more moderate values of $r$, the regression line is noticeably flatter.
@@ -504,7 +531,7 @@ heights_with_predictions.scatter('MidParent')
 
 
 
-![png](../../../images/chapters/15/2/Regression_Line_38_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_43_0.png)
 
 
 The grey dots show the regression predictions, all on the regression line. Notice how the line is very close to the gold graph of averages. For these data, the regression line does a good job of approximating the centers of the vertical strips.
@@ -535,7 +562,7 @@ heights.with_column('Fitted', fit(heights, 'MidParent', 'Child')).scatter('MidPa
 
 
 
-![png](../../../images/chapters/15/2/Regression_Line_43_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_48_0.png)
 
 
 Another way to draw the line is to use the option `fit_line=True` with the Table method `scatter`.
@@ -549,7 +576,7 @@ heights.scatter('MidParent', fit_line=True)
 
 
 
-![png](../../../images/chapters/15/2/Regression_Line_45_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_50_0.png)
 
 
 ### Units of Measurement of the Slope
@@ -572,7 +599,7 @@ baby.scatter('Maternal Height', 'Maternal Pregnancy Weight', fit_line=True)
 
 
 
-![png](../../../images/chapters/15/2/Regression_Line_48_0.png)
+![png](../../../images/chapters/15/2/Regression_Line_53_0.png)
 
 
 

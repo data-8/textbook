@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Finding Probabilities
 Over the centuries, there has been considerable philosophical debate about what probabilities are. Some people think that probabilities are relative frequencies; others think they are long run relative frequencies; still others think that probabilities are a subjective measure of their own personal degree of uncertainty.
 
@@ -234,7 +237,7 @@ results.scatter('Rolls')
 
 
 
-![png](../../../images/chapters/09/5/Finding_Probabilities_14_0.png)
+![png](../../../images/chapters/09/5/Finding_Probabilities_15_0.png)
 
 
 In 50 rolls, you are almost certain to get at least one 6.

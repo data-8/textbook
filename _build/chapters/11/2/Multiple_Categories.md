@@ -12,6 +12,12 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
 ### Multiple Categories
 We have developed a way of assessing models about chance processes that generate data in two categories. The method extends to models involving data in multiple categories. The process of assessment is the same as before, the only difference being that we have to come up with a new statistic to simulate.
 
@@ -92,7 +98,7 @@ jury.barh('Ethnicity')
 
 
 
-![png](../../../images/chapters/11/2/Multiple_Categories_6_0.png)
+![png](../../../images/chapters/11/2/Multiple_Categories_8_0.png)
 
 
 ### Comparison with Panels Selected at Random
@@ -160,7 +166,7 @@ panels_and_sample.barh('Ethnicity')
 
 
 
-![png](../../../images/chapters/11/2/Multiple_Categories_10_0.png)
+![png](../../../images/chapters/11/2/Multiple_Categories_12_0.png)
 
 
 The bar chart shows that the distribution of the random sample resembles the eligible population but the distribution of the panels does not.
@@ -179,7 +185,7 @@ jury.barh('Ethnicity')
 
 
 
-![png](../../../images/chapters/11/2/Multiple_Categories_14_0.png)
+![png](../../../images/chapters/11/2/Multiple_Categories_16_0.png)
 
 
 For this we will compute a quantity called the *total variation distance* between two distributions. The calculation is as an extension of the calculation of the distance between two numbers.
@@ -405,7 +411,7 @@ Table().with_column('TVD', tvds).hist(bins=np.arange(0, 0.2, 0.005))
 
 
 
-![png](../../../images/chapters/11/2/Multiple_Categories_31_0.png)
+![png](../../../images/chapters/11/2/Multiple_Categories_33_0.png)
 
 
 ### Assessing the Model of Random Selection

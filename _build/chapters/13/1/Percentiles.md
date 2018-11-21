@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Percentiles
 Numerical data can be sorted in increasing or decreasing order. Thus the values of a numerical data set have a *rank order*. A percentile is the value at a particular rank.
 
@@ -162,7 +165,7 @@ scores_and_sections.select('Midterm').hist(bins=np.arange(-0.5, 25.6, 1))
 
 
 
-![png](../../../images/chapters/13/1/Percentiles_11_0.png)
+![png](../../../images/chapters/13/1/Percentiles_12_0.png)
 
 
 What was the 85th percentile of the scores? To use the `percentile` function, create an array `scores` containing the midterm scores, and find the 85th percentile:

@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 # Introduction to Tables
 
 We can now apply Python to analyze data. We will work with data stored in Table structures.
