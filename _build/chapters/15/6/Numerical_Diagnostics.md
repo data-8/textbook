@@ -86,7 +86,7 @@ round(correlation(dugong, 'Length', 'Residual'), 10)
 
 
 ### Average of Residuals
-**No matter what the shape of the scatter diagram, the average of the residulas is 0.**
+**No matter what the shape of the scatter diagram, the average of the residuals is 0.**
 
 This is analogous to the fact that if you take any list of numbers and calculate the list of deviations from average, the average of the deviations is 0.
 
