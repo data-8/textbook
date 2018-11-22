@@ -301,12 +301,13 @@ There really are two curves there. But they are so close to each other that it l
 What we are seeing is an instance of a general result. Remember that the graph above is based on 10,000 replications for each sample size. But there are many more than 10,000 samples of each size. The probability distribution of the sample mean is based on the means of *all possible samples* of a fixed size.
 
 **Fix a sample size.** If the samples are drawn at random with replacement from the population, then
+
 $$
 {\mbox{SD of all possible sample means}} ~=~
 \frac{\mbox{Population SD}}{\sqrt{\mbox{sample size}}}
 $$
 
-This is the standard deviation of the averages of all the possible samples that could be drawn. ***It measures roughly how far off the sample means are from the population mean.**
+This is the standard deviation of the averages of all the possible samples that could be drawn. **It measures roughly how far off the sample means are from the population mean.**
 
 ### The Central Limit Theorem for the Sample Mean
 If you draw a large random sample with replacement from a population, then, regardless of the distribution of the population, the probability distribution of the sample mean is roughly normal, centered at the population mean, with an SD equal to the population SD divided by the square root of the sample size.
