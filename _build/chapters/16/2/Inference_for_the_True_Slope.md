@@ -55,7 +55,7 @@ correlation(baby, 'Gestational Days', 'Birth Weight')
 
 {:.output_data_text}
 ```
-0.4075427933888511
+0.40754279338885108
 ```
 
 
@@ -77,7 +77,7 @@ slope(baby, 'Gestational Days', 'Birth Weight')
 
 {:.output_data_text}
 ```
-0.4665568769492152
+0.46655687694921522
 ```
 
 
@@ -138,7 +138,7 @@ left, right
 
 {:.output_data_text}
 ```
-(0.381060627379466, 0.5595037441253133)
+(0.38197210145802712, 0.55761740476799326)
 ```
 
 
@@ -192,9 +192,9 @@ bootstrap_slope(baby, 'Gestational Days', 'Birth Weight', 5000)
 
 {:.output_stream}
 ```
-Slope of regression line: 0.4665568769492152
+Slope of regression line: 0.466556876949
 Approximate 95%-confidence interval for the true slope:
-0.3813201356630064 0.5594238201413837
+0.380572038016 0.557421403703
 
 ```
 
@@ -250,9 +250,9 @@ bootstrap_slope(baby, 'Maternal Height', 'Birth Weight', 5000)
 
 {:.output_stream}
 ```
-Slope of regression line: 1.478019351928433
+Slope of regression line: 1.47801935193
 Approximate 95%-confidence interval for the true slope:
-1.042949234323049 1.9173758587398435
+1.06126275491 1.91323331768
 
 ```
 
@@ -313,7 +313,7 @@ slope(baby, 'Maternal Age', 'Birth Weight')
 
 {:.output_data_text}
 ```
-0.08500766941582513
+0.085007669415825132
 ```
 
 
@@ -344,9 +344,9 @@ bootstrap_slope(baby, 'Maternal Age', 'Birth Weight', 5000)
 
 {:.output_stream}
 ```
-Slope of regression line: 0.08500766941582513
+Slope of regression line: 0.0850076694158
 Approximate 95%-confidence interval for the true slope:
--0.10506862119925459 0.2701045874649713
+-0.103756440872 0.275003956722
 
 ```
 
