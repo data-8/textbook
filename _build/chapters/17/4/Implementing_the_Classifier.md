@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Implementing the Classifier
 We are now ready to impelment a $k$-nearest neighbor classifier based on multiple attributes. We have used only two attributes so far, for ease of visualization. But usually predictions will be based on many attributes. Here is an example that shows how multiple attributes can be better than pairs.
 
@@ -106,7 +109,7 @@ banknotes.scatter('WaveletVar', 'WaveletCurt', colors='Color')
 
 
 
-![png](../../../images/chapters/17/4/Implementing_the_Classifier_6_0.png)
+![png](../../../images/chapters/17/4/Implementing_the_Classifier_7_0.png)
 
 
 Pretty interesting!  Those two measurements do seem helpful for predicting whether the banknote is counterfeit or not.  However, in this example you can now see that there is some overlap between the blue cluster and the gold cluster.  This indicates that there will be some images where it's hard to tell whether the banknote is legitimate based on just these two numbers.  Still, you could use a $k$-nearest neighbor classifier to predict the legitimacy of a banknote.
@@ -124,7 +127,7 @@ banknotes.scatter('WaveletSkew', 'Entropy', colors='Color')
 
 
 
-![png](../../../images/chapters/17/4/Implementing_the_Classifier_8_0.png)
+![png](../../../images/chapters/17/4/Implementing_the_Classifier_9_0.png)
 
 
 There does seem to be a pattern, but it's a pretty complex one.  Nonetheless, the $k$-nearest neighbors classifier can still be used and will effectively "discover" patterns out of this.  This illustrates how powerful machine learning can be: it can effectively take advantage of even patterns that we would not have anticipated, or that we would have thought to "program into" the computer.
@@ -152,7 +155,7 @@ ax.scatter(banknotes.column('WaveletSkew'),
 
 
 
-![png](../../../images/chapters/17/4/Implementing_the_Classifier_11_0.png)
+![png](../../../images/chapters/17/4/Implementing_the_Classifier_12_0.png)
 
 
 Awesome!  With just 2 attributes, there was some overlap between the two clusters (which means that the classifier was bound to make some mistakes for pointers in the overlap).  But when we use these 3 attributes, the two clusters have almost no overlap.  In other words, a classifier that uses these 3 attributes will be more accurate than one that only uses the 2 attributes.
@@ -335,7 +338,7 @@ wine_with_colors.scatter('Flavanoids', 'Alcohol', colors='Color')
 
 
 
-![png](../../../images/chapters/17/4/Implementing_the_Classifier_26_0.png)
+![png](../../../images/chapters/17/4/Implementing_the_Classifier_27_0.png)
 
 
 The blue points (Class 1) are almost entirely separate from the gold ones. That is one indication of why the distance between two Class 1 wines would be smaller than the distance between wines of two different classes. We can see a similar phenomenon with a different pair of attributes too:
@@ -349,7 +352,7 @@ wine_with_colors.scatter('Alcalinity of Ash', 'Ash', colors='Color')
 
 
 
-![png](../../../images/chapters/17/4/Implementing_the_Classifier_28_0.png)
+![png](../../../images/chapters/17/4/Implementing_the_Classifier_29_0.png)
 
 
 But for some pairs the picture is more murky.
@@ -363,7 +366,7 @@ wine_with_colors.scatter('Magnesium', 'Total Phenols', colors='Color')
 
 
 
-![png](../../../images/chapters/17/4/Implementing_the_Classifier_30_0.png)
+![png](../../../images/chapters/17/4/Implementing_the_Classifier_31_0.png)
 
 
 Let's see if we can implement a classifier based on all of the attributes. After that, we'll see how accurate it is.

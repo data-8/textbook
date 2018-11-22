@@ -12,6 +12,18 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
 ### Numerical Diagnostics
 
 In addition to visualization, we can use numerical properties of residuals to assess the quality of regression. We will not prove these properties mathematically. Rather, we will observe them by computation and see what they tell us about the regression.
@@ -86,7 +98,7 @@ round(correlation(dugong, 'Length', 'Residual'), 10)
 
 
 ### Average of Residuals
-**No matter what the shape of the scatter diagram, the average of the residulas is 0.**
+**No matter what the shape of the scatter diagram, the average of the residuals is 0.**
 
 This is analogous to the fact that if you take any list of numbers and calculate the list of deviations from average, the average of the deviations is 0.
 
@@ -257,7 +269,7 @@ scatter_fit(heights, 'MidParent', 'Child')
 
 
 
-![png](../../../images/chapters/15/6/Numerical_Diagnostics_19_0.png)
+![png](../../../images/chapters/15/6/Numerical_Diagnostics_23_0.png)
 
 
 The fitted values range from about 64 to about 71, whereas the heights of all the children are quite a bit more variable, ranging from about 55 to 80.

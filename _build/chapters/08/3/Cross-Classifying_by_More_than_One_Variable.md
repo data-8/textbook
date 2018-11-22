@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Cross-Classifying by More than One Variable
 
 When individuals have multiple features, there are many different ways to classify them. For example, if we have a population of college students for each of whom we have recorded a major and the number of years in college, then the students could be classified by major, or by year, or by a combination of major and year.
@@ -695,5 +698,5 @@ distributions.select(0, 1, 4).barh(0)
 
 
 
-![png](../../../images/chapters/08/3/Cross-Classifying_by_More_than_One_Variable_36_0.png)
+![png](../../../images/chapters/08/3/Cross-Classifying_by_More_than_One_Variable_37_0.png)
 

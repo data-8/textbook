@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Overlaid Graphs
 
 In this chapter, we have learned how to visualize data by drawing graphs. A common use of such visualizations is to compare two datasets. In this section, we will see how to *overlay* plots, that is, draw them in a single graphic on a common pair of axes.
@@ -101,7 +104,7 @@ heights.scatter('son')
 
 
 
-![png](../../../images/chapters/07/3/Overlaid_Graphs_4_0.png)
+![png](../../../images/chapters/07/3/Overlaid_Graphs_5_0.png)
 
 
 Notice how we only specified the variable (sons' heights) on the common horizontal axis. Python drew two scatter plots: one each for the relation between this variable and the other two.
@@ -212,7 +215,7 @@ children.plot('AGE')
 
 
 
-![png](../../../images/chapters/07/3/Overlaid_Graphs_9_0.png)
+![png](../../../images/chapters/07/3/Overlaid_Graphs_10_0.png)
 
 
 On this scale, it's important to remember that we only have data at ages 0, 1, 2, and so on; the graphs "join the dots" in between.
@@ -280,7 +283,7 @@ usa_ca.barh('Ethnicity')
 
 
 
-![png](../../../images/chapters/07/3/Overlaid_Graphs_14_0.png)
+![png](../../../images/chapters/07/3/Overlaid_Graphs_15_0.png)
 
 
 While drawing the overlaid bar charts is straightforward, there is a bit too much information on this graph for us to be able to sort out similarities and differences between populations. It seems clear that the distributions of ethnicities for everyone in the U.S. and for children in the U.S. are more similar to each other than any other pair, but it's much easier to compare the populations one pair at a time. 
@@ -296,7 +299,7 @@ usa_ca.select('Ethnicity', 'USA All', 'CA All').barh('Ethnicity')
 
 
 
-![png](../../../images/chapters/07/3/Overlaid_Graphs_16_0.png)
+![png](../../../images/chapters/07/3/Overlaid_Graphs_17_0.png)
 
 
 The two distributions are quite different. California has higher proportions in the `Hispanic` and `Other` categories, and correspondingly lower proportions of `Black` and `White`. The differences are largely due to California's geographical location and patterns of immigration, both historically and in more recent decades. For example, the `Other` category in California includes a significant proportion of Asians and Pacific Islanders.
@@ -312,7 +315,7 @@ usa_ca.select('Ethnicity', 'CA All', 'CA Children').barh('Ethnicity')
 
 
 
-![png](../../../images/chapters/07/3/Overlaid_Graphs_18_0.png)
+![png](../../../images/chapters/07/3/Overlaid_Graphs_19_0.png)
 
 
 More complex datasets naturally give rise to varied and interesting visualizations, including overlaid graphs of different kinds. To analyze such data, it helps to have some more skills in data manipulation, so that we can get the data into a form that allows us to use methods like those in this section. In the next chapter we will develop some of these skills.

@@ -12,6 +12,12 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
 ### Rows of Tables
 Now that we have a qualitative understanding of nearest neighbor classification, it's time to implement our classifier.
 
@@ -158,7 +164,7 @@ plots.scatter(alice.item(0), alice.item(1), color='red', s=30);
 
 
 
-![png](../../../images/chapters/17/3/Rows_of_Tables_10_0.png)
+![png](../../../images/chapters/17/3/Rows_of_Tables_12_0.png)
 
 
 To find the distance between Alice's point and any of the other points, we only need the values of the attributes:
@@ -683,5 +689,12 @@ alice_5_nearest_neighbors
 Three of Alice's five nearest neighbors are blue points and two are gold. So a 5-nearest neighbor classifier would classify Alice as blue: it would predict that Alice has chronic kidney disease.
 
 The graph below zooms in on Alice and her five nearest neighbors. The two gold ones just inside the circle directly below the red point. The classifier says Alice is more like the three blue ones around her.
+
+
+
+
+
+![png](../../../images/chapters/17/3/Rows_of_Tables_49_0.png)
+
 
 We are well on our way to implementing our k-nearest neighbor classifier. In the next two sections we will put it together and assess its accuracy.

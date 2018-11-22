@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### The Variability of the Sample Mean
 By the Central Limit Theorem, the probability distribution of the mean of a large random sample is roughly normal. The bell curve is centered at the population mean. Some of the sample means are higher, and some lower, but the deviations from the population mean are roughly symmetric on either side, as we have seen repeatedly. Formally, probability theory shows that the sample mean is an *unbiased* estimate of the population mean.
 
@@ -45,6 +48,13 @@ pop_mean
 16.658155515370705
 ```
 
+
+
+
+
+
+
+![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_5_0.png)
 
 
 Now let's take random samples and look at the probability distribution of the sample mean. As usual, we will use simulation to get an empirical approximation to this distribution.
@@ -103,7 +113,7 @@ SD of sample means: 3.8997187931829136
 ```
 
 
-![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_7_1.png)
+![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_9_1.png)
 
 
 
@@ -127,7 +137,7 @@ SD of sample means: 1.9777759739145762
 ```
 
 
-![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_8_1.png)
+![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_10_1.png)
 
 
 
@@ -151,7 +161,7 @@ SD of sample means: 1.5794443889422805
 ```
 
 
-![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_9_1.png)
+![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_11_1.png)
 
 
 You can see the Central Limit Theorem in action – the histograms of the sample means are roughly normal, even though the histogram of the delays themselves is far from normal.
@@ -283,7 +293,7 @@ sd_comparison.plot('Sample Size n')
 
 
 
-![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_18_0.png)
+![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_20_0.png)
 
 
 There really are two curves there. But they are so close to each other that it looks as though there is just one.
@@ -291,12 +301,13 @@ There really are two curves there. But they are so close to each other that it l
 What we are seeing is an instance of a general result. Remember that the graph above is based on 10,000 replications for each sample size. But there are many more than 10,000 samples of each size. The probability distribution of the sample mean is based on the means of *all possible samples* of a fixed size.
 
 **Fix a sample size.** If the samples are drawn at random with replacement from the population, then
+
 $$
 {\mbox{SD of all possible sample means}} ~=~
 \frac{\mbox{Population SD}}{\sqrt{\mbox{sample size}}}
 $$
 
-This is the standard deviation of the averages of all the possible samples that could be drawn. ***It measures roughly how far off the sample means are from the population mean.**
+This is the standard deviation of the averages of all the possible samples that could be drawn. **It measures roughly how far off the sample means are from the population mean.**
 
 ### The Central Limit Theorem for the Sample Mean
 If you draw a large random sample with replacement from a population, then, regardless of the distribution of the population, the probability distribution of the sample mean is roughly normal, centered at the population mean, with an SD equal to the population SD divided by the square root of the sample size.

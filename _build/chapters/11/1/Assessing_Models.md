@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Assessing Models
 In data science, a "model" is a set of assumptions about data. Often, models include assumptions about chance processes used to generate data. 
 
@@ -130,7 +133,7 @@ Table().with_column(
 
 
 
-![png](../../../images/chapters/11/1/Assessing_Models_8_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_9_0.png)
 
 
 The histogram tells us what the model of random selection predicts about our statistic, the count of black men in the sample.
@@ -152,7 +155,7 @@ plots.scatter(8, 0, color='red', s=30);
 
 
 
-![png](../../../images/chapters/11/1/Assessing_Models_11_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_12_0.png)
 
 
 Thus the simulation shows that if we select a panel of 100 jurors at random from the eligible population, we are very unlikely to get counts of black men as low as the eight that were in Swain's jury panel. This is evidence that the model of random selection of the jurors in the panel is not consistent with the data from the panel. 
@@ -260,7 +263,7 @@ Table().with_column(
 
 
 
-![png](../../../images/chapters/11/1/Assessing_Models_19_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_20_0.png)
 
 
 Look on the horizontal axis to see the typical values of the distance, as predicted by the model. They are rather small. For example, a high proportion of the distances are in the range 0 to 1, meaning that for a high proportion of the samples, the percent of purple-flowering plants is within 1% of 75%, that is, the sample percent is in the range 74% to 76%.
@@ -323,7 +326,7 @@ plots.scatter(observed_statistic, 0, color='red', s=30);
 
 
 
-![png](../../../images/chapters/11/1/Assessing_Models_26_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_27_0.png)
 
 
 The observed statistic is like a typical distance predicted by the model. By this measure, the data are consistent with the histogram that we generated under the assumptions of Mendel's model. This is evidence in favor of the model.

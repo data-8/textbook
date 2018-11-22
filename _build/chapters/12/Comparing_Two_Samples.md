@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Comparing Two Samples
 We have seen several examples of assessing whether a single sample looks like random draws from a specified chance model. 
 - Did the Alameda County jury panels look like a random sample from the population of eligible jurors?

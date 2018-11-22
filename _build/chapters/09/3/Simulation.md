@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Simulation
 Simulation is the process of using a computer to mimic a physical experiment. In this class, those experiments will almost invariably involve chance. 
 
@@ -259,7 +262,7 @@ simulation_results.hist('Number of Heads', bins = np.arange(30.5, 69.6, 1))
 
 
 
-![png](../../../images/chapters/09/3/Simulation_16_0.png)
+![png](../../../images/chapters/09/3/Simulation_17_0.png)
 
 
 Each bins has width 1 and is centered at each value of the number of heads.
@@ -365,7 +368,7 @@ results.hist('Sum of Two Rolls', bins = np.arange(1.5, 12.6, 1))
 
 
 
-![png](../../../images/chapters/09/3/Simulation_26_0.png)
+![png](../../../images/chapters/09/3/Simulation_27_0.png)
 
 
 Seven is the most common value, with the frequencies falling off symmetrically on either side.

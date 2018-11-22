@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Empirical Distributions
 
 In data science, the word "empirical" means "observed". Empirical distributions are distributions of observed data, such as data in random samples.
@@ -78,7 +81,7 @@ die.hist(bins = die_bins)
 
 
 
-![png](../../../images/chapters/10/1/Empirical_Distributions_3_0.png)
+![png](../../../images/chapters/10/1/Empirical_Distributions_4_0.png)
 
 
 Variables whose successive values are separated by the same fixed amount, such as the values on rolls of a die (successive values separated by 1), fall into a class of variables that are called *discrete*. The histogram above is called a *discrete* histogram. Its bins are specified by the array `die_bins` and ensure that each bar is centered over the corresponding integer value. 
@@ -177,7 +180,7 @@ empirical_hist_die(10)
 
 
 
-![png](../../../images/chapters/10/1/Empirical_Distributions_10_0.png)
+![png](../../../images/chapters/10/1/Empirical_Distributions_11_0.png)
 
 
 When the sample size increases, the empirical histogram begins to look more like the histogram of theoretical probabilities.
@@ -191,7 +194,7 @@ empirical_hist_die(100)
 
 
 
-![png](../../../images/chapters/10/1/Empirical_Distributions_12_0.png)
+![png](../../../images/chapters/10/1/Empirical_Distributions_13_0.png)
 
 
 
@@ -203,7 +206,7 @@ empirical_hist_die(1000)
 
 
 
-![png](../../../images/chapters/10/1/Empirical_Distributions_13_0.png)
+![png](../../../images/chapters/10/1/Empirical_Distributions_14_0.png)
 
 
 As we increase the number of rolls in the simulation, the area of each bar gets closer to 16.67%, which is the area of each bar in the probability histogram.

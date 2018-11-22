@@ -12,6 +12,12 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
 ### Least Squares Regression
 In an earlier section, we developed formulas for the slope and intercept of the regression line through a *football shaped* scatter diagram. It turns out that the slope and intercept of the least squares line have the same formulas as those we developed, *regardless of the shape of the scatter plot*.
 
@@ -90,7 +96,7 @@ shotput.scatter('Weight Lifted')
 
 
 
-![png](../../../images/chapters/15/4/Least_Squares_Regression_3_0.png)
+![png](../../../images/chapters/15/4/Least_Squares_Regression_5_0.png)
 
 
 That's not a football shaped scatter plot. In fact, it seems to have a slight non-linear component. But if we insist on using a straight line to make our predictions, there is still one best straight line among all straight lines.
@@ -191,7 +197,7 @@ shotput.with_column('Best Straight Line', fitted).scatter('Weight Lifted')
 
 
 
-![png](../../../images/chapters/15/4/Least_Squares_Regression_11_0.png)
+![png](../../../images/chapters/15/4/Least_Squares_Regression_13_0.png)
 
 
 ### Nonlinear Regression
@@ -289,5 +295,5 @@ shotput.with_column('Best Quadratic Curve', shotput_fit).scatter(0)
 
 
 
-![png](../../../images/chapters/15/4/Least_Squares_Regression_21_0.png)
+![png](../../../images/chapters/15/4/Least_Squares_Regression_23_0.png)
 

@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### The Monty Hall Problem
 This [problem](https://en.wikipedia.org/wiki/Monty_Hall_problem) has flummoxed many people over the years, [mathematicians included](https://web.archive.org/web/20140413131827/http://www.decisionsciences.org/DecisionLine/Vol30/30_1/vazs30_1.pdf). Let's see if we can work it out by simulation.
 
@@ -497,7 +500,7 @@ combined.barh(0)
 
 
 
-![png](../../../images/chapters/09/4/Monty_Hall_Problem_32_0.png)
+![png](../../../images/chapters/09/4/Monty_Hall_Problem_33_0.png)
 
 
 Notice how the three blue bars are almost equal – the original choice is equally likely to be any of the three available items. But the gold bar corresponding to `Car` is twice as long as the blue. 

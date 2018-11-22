@@ -12,6 +12,12 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
 # Example: Trends in Gender
 
 We are now equipped with enough coding skills to examine features and trends in subgroups of the U.S. population. In this example, we will look at the distribution of males and females across age groups. We will continue using the `us_pop` table from the previous section.
@@ -711,5 +717,5 @@ ratios.plot('AGE')
 
 
 
-![png](../../../images/chapters/06/4/Example_Gender_Ratio_in_the_US_Population_32_0.png)
+![png](../../../images/chapters/06/4/Example_Gender_Ratio_in_the_US_Population_34_0.png)
 

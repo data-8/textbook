@@ -12,6 +12,12 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
+
+
+
 ### A Regression Model
 
 In brief, such models say that the underlying relation between the two variables is perfectly linear; this straight line is the *signal* that we would like to identify. However, we are not able to see the line clearly. What we see are points that are scattered around the line. In each of the points, the signal has been contaminated by *random noise*. Our inferential goal, therefore, is to separate the signal from the noise.
@@ -35,6 +41,9 @@ Run the simulation a few times, with different values for the slope and intercep
 
 
 
+
+
+
 {:.input_area}
 ```python
 # The true line,
@@ -47,7 +56,7 @@ draw_and_compare(4, -5, 10)
 
 
 
-![png](../../../images/chapters/16/1/Regression_Model_2_0.png)
+![png](../../../images/chapters/16/1/Regression_Model_5_0.png)
 
 
 In reality, of course, we will never see the true line. What the simulation shows that if the regression model looks plausible, and if we have a large sample, then the regression line is a good approximation to the true line.

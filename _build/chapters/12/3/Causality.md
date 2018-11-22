@@ -12,6 +12,9 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+
+
 ### Causality
 
 Our methods for comparing two samples have a powerful use in the analysis of randomized controlled experiments. Since the treatment and control groups are assigned randomly in such experiements, differences in their outcomes can be compared to what would happen just due to chance if the treatment had no effect at all. If the observed differences are more marked than what we would predict as purely due to chance, we will have evidence of *causation*. Because of the unbiased assignment of individuals to the treatment and control groups, differences in the outcomes of the two groups can be ascribed to the treatment.
@@ -669,7 +672,7 @@ Empirical P-value: 0.95 %
 ```
 
 
-![png](../../../images/chapters/12/3/Causality_29_1.png)
+![png](../../../images/chapters/12/3/Causality_30_1.png)
 
 
 The study reports a P-value of 0.009, or 0.9%, which is not far from our empirical value. 
