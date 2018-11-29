@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  deploy_site:
+    branches:
+      only:
+        - gh-pages
+    docker:
+      - image: circleci/python:3.6-stretch
+    steps:
+      - checkout
+      - run: |
+          cat ${DEPLOYMENT_PRIVATE_KEY} > ~/.ssh/id_rsa && \
+          chmod 0400 ~/.ssh/id_rsa
+
+      - run: git remote add live_textbook git@github.com:inferentialthinking/inferentialthinking.github.io.git
+      - run:
+          name: Updating inferentialthinking website
+          command: git push live_textbook gh-pages:master
+
+# Tell CircleCI to use this workflow when it builds the site
+workflows:
+  version: 2
+  default:
+    jobs:
+      - deploy_site
