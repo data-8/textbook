@@ -8,10 +8,12 @@ jobs:
       - image: circleci/python:3.6-stretch
     steps:
       - checkout
-      - run: |
-          echo "${DEPLOYMENT_PRIVATE_KEY}" > ~/.ssh/id_rsa && \
-          chmod 0400 ~/.ssh/id_rsa
+      # Add deployment key fingerprint for CircleCI to use for a push
+      - add_ssh_keys:
+          fingerprints:
+            - "25:11:c6:86:6a:aa:66:ed:d9:56:b0:df:51:ca:f4:18"
 
+      # Push to the inferentialthinking.github.io repository so it goes live
       - run: git remote add live_textbook git@github.com:inferentialthinking/inferentialthinking.github.io.git
       - run:
           name: Updating inferentialthinking website
