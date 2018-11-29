@@ -18,7 +18,7 @@ So, here's how the textbook deploy works:
 
   https://github.com/inferentialthinking/inferentialthinking.github.io
 
-  **You should not ever directly edit this repository** 
+  **You should not ever directly edit the inferentialthinking.github.io repository** 
 * Instead, updates to the textbook should be made at **this** repository (`github.com/data-8/texbook`)
 * When you make a change to this repository and push it to the `data-8/textbook` gh-pages
   branch, these changes should automatically be copied to https://github.com/inferentialthinking/inferentialthinking.github.io.
