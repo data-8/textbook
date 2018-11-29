@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  deploy_site:
+  build:
     branches:
       only:
         - gh-pages
@@ -16,10 +16,3 @@ jobs:
       - run:
           name: Updating inferentialthinking website
           command: git push live_textbook gh-pages:master
-
-# Tell CircleCI to use this workflow when it builds the site
-workflows:
-  version: 2
-  default:
-    jobs:
-      - deploy_site
