@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          cat ${DEPLOYMENT_PRIVATE_KEY} > ~/.ssh/id_rsa && \
+          echo "${DEPLOYMENT_PRIVATE_KEY}" > ~/.ssh/id_rsa && \
           chmod 0400 ~/.ssh/id_rsa
 
       - run: git remote add live_textbook git@github.com:inferentialthinking/inferentialthinking.github.io.git
