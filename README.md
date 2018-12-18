@@ -32,29 +32,25 @@ Here are steps to get started building the textbook on your own machine:
 
        conda env create -f environment.yml
 
-2. Once this is finished, activate the environment
+   This will install some Python and Ruby packages that are needed to build
+   the book.
+2. **Activate the conda environment** in order to have access to these packages.
 
        conda activate textbook
+3. **Initialize your Jekyll plugin**. To get the proper Jekyll packages to build your
+   book, run the following command:
 
-3. Ensure that a `SUMMARY.md` file exists in the root of the repository. This contains
-   a markdown list of bullet points and links. Each item corresponds to a chapter in the
-   textbook, and is used to build the table of contents in the sidebar.
+       make install
 
-   > If you **do not** have a `SUMMARY.md` file made for this textbook, you may create one
-     by hand, or generate one from the folders/files in `notebooks/` by running the following
-     script:
-   >
-   >    python scripts/generate_summary_from_folders.py
-
-3. Build the textbook by navigating to the root of the repository and running
+4. Build the textbook by navigating to the root of the repository and running
    the following command:
 
-       make textbook
+       make book
 
 This will:
 
-* Run `nbconvert` to turn the `.ipynb` files into markdown
-* Replace relative image file paths with a `{{ site.baseurl }}` base for Jekyll
+* Run `nbconvert` to turn the `.ipynb` files into markdown that Jekyll can build
+* Place images and the built markdown files into the `_build` folder
 * Clean up formatting issues for displaying properly
 * Generate the yaml for the site sidebar automatically
 
@@ -74,7 +70,8 @@ your newly-created Markdown files.
 
        make serve
 
-This should open up a port on your computer with a live version of the textbook.
+This should open up a port on your computer with a live version of the textbook. It will
+also generate the **HTML** version of your book in the `_site/` folder.
 
 ## Update the interact links for your JupyterHub
 
