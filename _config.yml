@@ -60,7 +60,7 @@ binder_repo_branch               : "gh-pages"  # The branch on which your textbo
 binderhub_interact_text          : "Interact"  # The text that interact buttons will contain.
 
 # Thebelab settings
-use_thebelab_button              : true  # If 'true', display a button to allow in-page running code cells with Thebelab
+use_thebelab_button              : false  # If 'true', display a button to allow in-page running code cells with Thebelab
 thebelab_button_text             : "Thebelab"  # The text to display inside the Thebelab initialization button
 
 
