@@ -18,3 +18,4 @@ gem 'guard-livereload', '~> 2.5.2'
 
 # Textbook plugins
 gem 'jekyll-redirect-from'
+gem 'jekyll-scholar'
