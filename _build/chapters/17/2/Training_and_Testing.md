@@ -54,7 +54,9 @@ ckd.scatter('White Blood Cell Count', 'Glucose', colors='Color')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/2/Training_and_Testing_7_0.png)
+
 
 
 Earlier, we said that we expect to get some classifications wrong, because there's some intermingling of blue and gold points in the lower-left.
@@ -110,7 +112,9 @@ plt.ylim(-2, 6);
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/2/Training_and_Testing_13_0.png)
+
 
 
 We get the following classification regions and decision boundary:
@@ -125,7 +129,9 @@ We get the following classification regions and decision boundary:
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/2/Training_and_Testing_17_0.png)
+
 
 
 Place the *test* data on this graph and you can see at once that while the classifier got almost all the points right, there are some mistakes.  For example, some blue points of the test set fall in the gold region of the classifier.
@@ -134,7 +140,9 @@ Place the *test* data on this graph and you can see at once that while the class
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/2/Training_and_Testing_19_0.png)
+
 
 
 Some errors notwithstanding, it looks like the classifier does fairly well on the test set. Assuming that the original sample was drawn randomly from the underlying population, the hope is that the classifier will perform with similar accuracy on the overall population, since the test set was chosen randomly from the original sample.

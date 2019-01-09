@@ -41,7 +41,9 @@ plots.title('Population');
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_3_0.png)
+
 
 
 
@@ -55,7 +57,9 @@ plots.title('Sample of Size 1000');
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_4_0.png)
+
 
 
 The two histograms clearly resemble each other, though they are not identical. 
@@ -79,7 +83,7 @@ np.median(united.column('Delay'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 2.0
 ```
@@ -99,7 +103,7 @@ united.where('Delay', are.below_or_equal_to(2)).num_rows/united.num_rows
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.5018444846292948
 ```
@@ -121,7 +125,7 @@ united.where('Delay', are.equal_to(2)).num_rows
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 480
 ```
@@ -146,7 +150,7 @@ np.median(sample_1000.column('Delay'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 2.0
 ```
@@ -169,7 +173,7 @@ np.median(united.sample(1000).column('Delay'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.0
 ```
@@ -200,7 +204,7 @@ np.median(united.sample(1000).column('Delay'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 2.0
 ```
@@ -243,7 +247,7 @@ simulated_medians
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -299,7 +303,9 @@ simulated_medians.hist(bins=np.arange(0.5, 5, 1))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_26_0.png)
+
 
 
 You can see that the sample median is very likely to be close to 2, which was the value of the population median. Since samples of 1000 flight delays are likely to resemble the population of delays, it is not surprising that the median delays of those samples should be close to the median delay in the population.

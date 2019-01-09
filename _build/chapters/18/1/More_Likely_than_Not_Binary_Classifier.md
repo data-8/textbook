@@ -54,7 +54,7 @@ students.show(3)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -90,7 +90,7 @@ students.pivot('Major', 'Year')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -135,7 +135,7 @@ In other words, the chance that we are correct is **the proportion of Third Year
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.5161290322580645
 ```
@@ -158,7 +158,7 @@ students.pivot('Major', 'Year')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -199,7 +199,7 @@ That is, the answer is **the proportion of Third Years among students who are De
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.5161290322580645
 ```
@@ -252,7 +252,7 @@ $$
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.4838709677419354
 ```

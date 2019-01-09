@@ -50,7 +50,7 @@ hybrid
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -106,7 +106,9 @@ hybrid.scatter('acceleration', 'msrp')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_7_0.png)
+
 
 
 Notice the positive association. The scatter of points is sloping upwards, indicating that cars with greater acceleration tended to cost more, on average; conversely, the cars that cost more tended to have greater acceleration on average. 
@@ -122,7 +124,9 @@ hybrid.scatter('mpg', 'msrp')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_9_0.png)
+
 
 
 Along with the negative association, the scatter diagram of price versus efficiency shows a non-linear relation between the two variables. The points appear to be clustered around a curve, not around a straight line. 
@@ -139,7 +143,9 @@ suv.scatter('mpg', 'msrp')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_11_0.png)
+
 
 
 
@@ -151,7 +157,9 @@ suv.scatter('acceleration', 'msrp')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_12_0.png)
+
 
 
 You will have noticed that we can derive useful information from the general orientation and shape of a scatter diagram even without paying attention to the units in which the variables were measured.
@@ -186,7 +194,9 @@ plots.ylim(-3, 3);
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_16_0.png)
+
 
 
 
@@ -203,7 +213,9 @@ plots.ylim(-3, 3);
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_17_0.png)
+
 
 
 The associations that we see in these figures are the same as those we saw before. Also, because the two scatter diagrams are now drawn on exactly the same scale, we can see that the linear relation in the second diagram is a little more fuzzy than in the first.
@@ -237,7 +249,9 @@ r_scatter(0.9)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_21_0.png)
+
 
 
 
@@ -249,7 +263,9 @@ r_scatter(0.25)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_22_0.png)
+
 
 
 
@@ -261,7 +277,9 @@ r_scatter(0)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_23_0.png)
+
 
 
 
@@ -273,7 +291,9 @@ r_scatter(-0.55)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_24_0.png)
+
 
 
 ### Calculating $r$
@@ -303,7 +323,7 @@ t
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -346,7 +366,9 @@ t.scatter(0, 1, s=30, color='red')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_28_0.png)
+
 
 
 **Step 1.** Convert each variable to standard units.
@@ -366,7 +388,7 @@ t_su
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -412,7 +434,7 @@ t_product
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -460,7 +482,7 @@ r
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.6174163971897709
 ```
@@ -486,7 +508,9 @@ t.scatter('y', 'x', s=30, color='red')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_37_0.png)
+
 
 
 ### The `correlation` function
@@ -514,7 +538,7 @@ correlation(t, 'x', 'y')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.6174163971897709
 ```
@@ -534,7 +558,7 @@ correlation(t, 'y', 'x')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.6174163971897709
 ```
@@ -554,7 +578,7 @@ correlation(suv, 'mpg', 'msrp')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -0.6667143635709919
 ```
@@ -572,7 +596,7 @@ correlation(suv, 'acceleration', 'msrp')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.48699799279959155
 ```
@@ -607,7 +631,9 @@ nonlinear.scatter('x', 'y', s=30, color='r')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_51_0.png)
+
 
 
 
@@ -621,7 +647,7 @@ correlation(nonlinear, 'x', 'y')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.0
 ```
@@ -644,7 +670,9 @@ line.scatter('x', 'y', s=30, color='r')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_54_0.png)
+
 
 
 
@@ -658,7 +686,7 @@ correlation(line, 'x', 'y')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 1.0
 ```
@@ -678,7 +706,9 @@ outlier.scatter('x', 'y', s=30, color='r')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_56_0.png)
+
 
 
 
@@ -692,7 +722,7 @@ correlation(outlier, 'x', 'y')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.0
 ```
@@ -714,7 +744,7 @@ sat2014
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -770,7 +800,9 @@ sat2014.scatter('Critical Reading', 'Math')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_61_0.png)
+
 
 
 
@@ -784,7 +816,7 @@ correlation(sat2014, 'Critical Reading', 'Math')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.9847558411067434
 ```
@@ -808,6 +840,8 @@ In 2012, a [paper](http://www.biostat.jhsph.edu/courses/bio621/misc/Chocolate%20
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/1/Correlation_65_0.png)
+
 
 

@@ -35,7 +35,7 @@ np.random.choice(two_groups)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'treatment'
 ```
@@ -55,7 +55,7 @@ np.random.choice(two_groups, 10)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array(['control', 'control', 'treatment', 'treatment', 'control',
        'treatment', 'treatment', 'control', 'control', 'treatment'],
@@ -87,7 +87,7 @@ In Python, Boolean values, named for the logician [George Boole](https://en.wiki
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```
@@ -116,7 +116,7 @@ Notice the two equal signs `==` in the comparison to determine equality. This is
 
 
 
-{:.output_traceback_line}
+{:.output .output_traceback_line}
 ```
   File "<ipython-input-5-e8c755f5e450>", line 1
     5 = 10/2
@@ -137,7 +137,7 @@ SyntaxError: can't assign to literal
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```
@@ -157,7 +157,7 @@ An expression can contain multiple comparisons, and they all must hold in order 
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```
@@ -179,7 +179,7 @@ min(x, y) <= (x+y)/2 <= max(x, y)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```
@@ -201,7 +201,7 @@ Strings can also be compared, and their order is alphabetical. A shorter string 
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```
@@ -221,7 +221,7 @@ np.random.choice(two_groups) == 'treatment'
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 False
 ```
@@ -245,7 +245,7 @@ tosses == 'Heads'
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([False,  True, False,  True,  True])
 ```
@@ -265,7 +265,7 @@ np.count_nonzero(tosses == 'Heads')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3
 ```

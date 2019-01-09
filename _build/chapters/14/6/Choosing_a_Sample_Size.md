@@ -60,7 +60,9 @@ So are we stuck? No, because we can *bound* the SD of the population. Here are h
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/6/Choosing_a_Sample_Size_4_0.png)
+
 
 
 Remember that the possible values in the population are only 0 and 1.
@@ -93,7 +95,7 @@ zero_one_sds
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -147,7 +149,9 @@ zero_one_sds.scatter("Population Proportion of 1's")
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/6/Choosing_a_Sample_Size_8_0.png)
+
 
 
 **Summary:** The SD of a population of 1's and 0's is at most 0.5. That's the value of the SD when 50% of the population is coded 1 and the other 50% are coded 0.

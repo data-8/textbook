@@ -181,7 +181,7 @@ results
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -237,7 +237,9 @@ results.scatter('Rolls')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/09/5/Finding_Probabilities_15_0.png)
+
 
 
 In 50 rolls, you are almost certain to get at least one 6.
@@ -253,7 +255,7 @@ results.where('Rolls', are.equal_to(50))
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>

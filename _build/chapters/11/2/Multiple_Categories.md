@@ -58,7 +58,7 @@ jury
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -98,7 +98,9 @@ jury.barh('Ethnicity')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/11/2/Multiple_Categories_8_0.png)
+
 
 
 ### Comparison with Panels Selected at Random
@@ -124,7 +126,7 @@ panels_and_sample
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -166,7 +168,9 @@ panels_and_sample.barh('Ethnicity')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/11/2/Multiple_Categories_12_0.png)
+
 
 
 The bar chart shows that the distribution of the random sample resembles the eligible population but the distribution of the panels does not.
@@ -185,7 +189,9 @@ jury.barh('Ethnicity')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/11/2/Multiple_Categories_16_0.png)
+
 
 
 For this we will compute a quantity called the *total variation distance* between two distributions. The calculation is as an extension of the calculation of the distance between two numbers.
@@ -208,7 +214,7 @@ jury_with_diffs
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -258,7 +264,7 @@ jury_with_diffs
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -298,7 +304,7 @@ jury_with_diffs.column('Absolute Difference').sum()/2
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.14
 ```
@@ -340,7 +346,7 @@ total_variation_distance(jury.column('Panels'), jury.column('Eligible'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.14
 ```
@@ -363,7 +369,7 @@ total_variation_distance(sample_distribution, eligible_population)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.020722642807983506
 ```
@@ -411,7 +417,9 @@ Table().with_column('TVD', tvds).hist(bins=np.arange(0, 0.2, 0.005))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/11/2/Multiple_Categories_33_0.png)
+
 
 
 ### Assessing the Model of Random Selection

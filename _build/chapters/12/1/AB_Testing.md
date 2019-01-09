@@ -35,7 +35,7 @@ baby
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -103,7 +103,7 @@ smoking_and_birthweight.group('Maternal Smoker')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -134,7 +134,9 @@ smoking_and_birthweight.hist('Birth Weight', group = 'Maternal Smoker')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/12/1/AB_Testing_8_0.png)
+
 
 
 The distribution of the weights of the babies born to mothers who smoked appears to be shifted slightly to the left of the distribution corresponding to non-smoking mothers. The weights of the babies of the mothers who smoked seem lower, on average than the weights of the babies of the non-smokers. 
@@ -167,7 +169,7 @@ means_table
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -200,7 +202,7 @@ observed_difference
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -9.266142572024918
 ```
@@ -228,7 +230,7 @@ smoking_and_birthweight
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -297,7 +299,7 @@ original_and_shuffled
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -358,7 +360,7 @@ all_group_means
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -393,7 +395,7 @@ difference
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 1.4119505766564515
 ```
@@ -424,7 +426,7 @@ difference
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -0.48756951109892555
 ```
@@ -469,14 +471,16 @@ plots.title('Prediction Under the Null Hypothesis');
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Observed Difference: -9.266142572024918
 
 ```
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/12/1/AB_Testing_28_1.png)
+
 
 
 Notice how the distribution is centered around 0. This makes sense, because under the null hypothesis the two groups should have roughly the same average. Therefore the difference between the group averages should be around 0.
@@ -499,7 +503,7 @@ empirical_P
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.0
 ```
@@ -553,7 +557,9 @@ smoking_and_age.hist('Maternal Age', group = 'Maternal Smoker')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/12/1/AB_Testing_35_0.png)
+
 
 
 
@@ -567,7 +573,7 @@ smoking_and_age.group('Maternal Smoker', np.average)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -602,7 +608,7 @@ observed_difference
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -0.8076725017901509
 ```
@@ -634,14 +640,16 @@ print('Observed Difference:', observed_difference)
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Observed Difference: -0.8076725017901509
 
 ```
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/12/1/AB_Testing_42_1.png)
+
 
 
 The empirical P-value of the test is the proportion of simulated differences that were equal to or less than the observed difference. This is because low values of the difference favor the alternative hypothesis that the smokers were younger on average.
@@ -658,7 +666,7 @@ empirical_P
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.01
 ```

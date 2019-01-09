@@ -43,7 +43,7 @@ pop_mean
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 16.658155515370705
 ```
@@ -54,7 +54,9 @@ pop_mean
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_5_0.png)
+
 
 
 Now let's take random samples and look at the probability distribution of the sample mean. As usual, we will use simulation to get an empirical approximation to this distribution.
@@ -102,7 +104,7 @@ plots.ylim(0, 0.25);
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Sample size:  100
 Population mean: 16.658155515370705
@@ -113,7 +115,9 @@ SD of sample means: 3.8997187931829136
 ```
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_9_1.png)
+
 
 
 
@@ -126,7 +130,7 @@ plots.ylim(0, 0.25);
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Sample size:  400
 Population mean: 16.658155515370705
@@ -137,7 +141,9 @@ SD of sample means: 1.9777759739145762
 ```
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_10_1.png)
+
 
 
 
@@ -150,7 +156,7 @@ plots.ylim(0, 0.25);
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Sample size:  625
 Population mean: 16.658155515370705
@@ -161,7 +167,9 @@ SD of sample means: 1.5794443889422805
 ```
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_11_1.png)
+
 
 
 You can see the Central Limit Theorem in action – the histograms of the sample means are roughly normal, even though the histogram of the delays themselves is far from normal.
@@ -186,7 +194,7 @@ pop_sd
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 39.480199851609314
 ```
@@ -237,7 +245,7 @@ sd_comparison
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -293,7 +301,9 @@ sd_comparison.plot('Sample Size n')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_20_0.png)
+
 
 
 There really are two curves there. But they are so close to each other that it looks as though there is just one.

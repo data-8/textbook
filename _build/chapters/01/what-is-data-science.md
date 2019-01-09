@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/chapters/01/what-is-data-science"
 title: 'Data Science'
 prev_page:
   url: /chapters/intro

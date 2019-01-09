@@ -70,7 +70,7 @@ abs ( 100 * (705 / 929) - 75)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.8880516684607045
 ```
@@ -136,7 +136,7 @@ scores
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -193,7 +193,7 @@ section_averages.show()
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -257,7 +257,7 @@ scores.group('Section')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -323,7 +323,7 @@ sampled_scores
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -381,7 +381,7 @@ np.average(sampled_scores.column('Midterm'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 16.666666666666668
 ```
@@ -422,7 +422,9 @@ plots.scatter(observed_statistic, 0, color='red', s=30);
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/11/3/Decisions_and_Uncertainty_22_0.png)
+
 
 
 As we said earlier, small values of the test statistic will make us lean towards the alternative hypothesis, that the average score in the section is too low for it to look like a random sample from the class.
@@ -449,7 +451,7 @@ np.count_nonzero(averages <= section_3_average)/repetitions
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.0587
 ```

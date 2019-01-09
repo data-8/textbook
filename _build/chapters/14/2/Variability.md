@@ -47,7 +47,7 @@ mean
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.75
 ```
@@ -74,7 +74,7 @@ calculation_steps
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -115,7 +115,7 @@ sum(deviations)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.0
 ```
@@ -137,7 +137,7 @@ np.mean(deviations)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.0
 ```
@@ -167,7 +167,7 @@ calculation_steps
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -207,7 +207,7 @@ variance
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 13.1875
 ```
@@ -236,7 +236,7 @@ sd
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.6314597615834874
 ```
@@ -262,7 +262,7 @@ np.std(any_numbers)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.6314597615834874
 ```
@@ -285,7 +285,7 @@ nba13
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -341,7 +341,9 @@ nba13.select('Height').hist(bins=np.arange(68, 88, 1))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/2/Variability_22_0.png)
+
 
 
 It is no surprise that NBA players are tall! Their average height is just over 79 inches (6'7"), about 10 inches taller than the average height of men in the United States.
@@ -358,7 +360,7 @@ mean_height
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 79.06534653465347
 ```
@@ -379,7 +381,7 @@ sd_height
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.4505971830275546
 ```
@@ -397,7 +399,7 @@ nba13.sort('Height', descending=True).show(3)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -433,7 +435,7 @@ Thabeet was about 8 inches above the average height.
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 7.934653465346528
 ```
@@ -453,7 +455,7 @@ That's a deviation from average, and it is about 2.3 times the standard deviatio
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 2.2995015194397923
 ```
@@ -473,7 +475,7 @@ nba13.sort('Height').show(3)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -507,7 +509,7 @@ nba13.sort('Height').show(3)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -2.9169868288775844
 ```
@@ -535,7 +537,9 @@ nba13.select('Age in 2013').hist(bins=np.arange(15, 45, 1))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/2/Variability_39_0.png)
+
 
 
 
@@ -552,7 +556,7 @@ mean_age, sd_age
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 (26.19009900990099, 4.321200441720307)
 ```
@@ -574,7 +578,7 @@ nba13.sort('Age in 2013', descending=True).show(3)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -610,7 +614,7 @@ Howard's age was about 3.2 SDs above average.
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.1958482778922357
 ```
@@ -628,7 +632,7 @@ nba13.sort('Age in 2013').show(3)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -662,7 +666,7 @@ nba13.sort('Age in 2013').show(3)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -2.589581103867081
 ```
@@ -732,7 +736,7 @@ united
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -792,7 +796,7 @@ united.sort('Delay', descending=True)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -853,7 +857,7 @@ within_3_sd.num_rows/united.num_rows
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.9790235081374322
 ```
@@ -872,5 +876,7 @@ plots.xticks(np.arange(-6, 17, 3));
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/2/Variability_59_0.png)
+
 

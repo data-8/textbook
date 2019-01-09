@@ -45,7 +45,7 @@ nba_salaries
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -101,7 +101,7 @@ nba_salaries.show(3)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -135,7 +135,7 @@ nba_salaries.sort('PLAYER').show(5)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -182,7 +182,7 @@ nba.sort('SALARY')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -244,7 +244,7 @@ nba.sort('SALARY', descending=True)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -303,7 +303,7 @@ help(nba.sort)
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Help on method sort in module datascience.tables:
 

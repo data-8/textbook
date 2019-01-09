@@ -48,7 +48,7 @@ correlation(heights, 'MidParent', 'Residual')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -2.719689807647064e-16
 ```
@@ -68,7 +68,7 @@ round(correlation(heights, 'MidParent', 'Residual'), 10)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -0.0
 ```
@@ -90,7 +90,7 @@ round(correlation(dugong, 'Length', 'Residual'), 10)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.0
 ```
@@ -117,7 +117,7 @@ round(np.mean(heights.column('Residual')), 10)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.0
 ```
@@ -137,7 +137,7 @@ round(np.mean(dugong.column('Residual')), 10)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.0
 ```
@@ -166,7 +166,7 @@ np.std(heights.column('Residual'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.3880799163953426
 ```
@@ -187,7 +187,7 @@ np.sqrt(1 - r**2) * np.std(heights.column('Child'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.388079916395342
 ```
@@ -208,7 +208,7 @@ r
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -0.5060703843771186
 ```
@@ -230,7 +230,7 @@ np.std(hybrid.column('residual')), np.sqrt(1 - r**2)*np.std(hybrid.column('mpg')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 (9.43273683343029, 9.43273683343029)
 ```
@@ -269,7 +269,9 @@ scatter_fit(heights, 'MidParent', 'Child')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/6/Numerical_Diagnostics_23_0.png)
+
 
 
 The fitted values range from about 64 to about 71, whereas the heights of all the children are quite a bit more variable, ranging from about 55 to 80.
@@ -287,7 +289,7 @@ correlation(heights, 'MidParent', 'Child')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.32094989606395924
 ```
@@ -307,7 +309,7 @@ np.std(heights.column('Fitted Value'))/np.std(heights.column('Child'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.32094989606395957
 ```
@@ -329,7 +331,7 @@ correlation(hybrid, 'acceleration', 'mpg')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -0.5060703843771186
 ```
@@ -347,7 +349,7 @@ np.std(hybrid.column('fitted mpg'))/np.std(hybrid.column('mpg'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.5060703843771186
 ```

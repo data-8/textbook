@@ -40,7 +40,7 @@ ckd
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -111,7 +111,7 @@ ckd
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -181,7 +181,9 @@ ckd.scatter('Hemoglobin', 'Glucose', colors='Color')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_11_0.png)
+
 
 
 Suppose Alice is a new patient who is not in the data set.  If I tell you Alice's hemoglobin level and blood glucose level, could you predict whether she has CKD?  It sure looks like it!  You can see a very clear pattern here: points in the lower-right tend to represent people who don't have CKD, and the rest tend to be folks with CKD.  To a human, the pattern is obvious.  But how can we program a computer to automatically detect patterns such as this one?
@@ -208,7 +210,9 @@ show_closest(alice)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_16_0.png)
+
 
 
 Thus our *nearest neighbor classifier* works like this:
@@ -233,7 +237,9 @@ show_closest(alice)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_19_0.png)
+
 
 
 Here are hundreds of new unclassified points, all in red.
@@ -245,7 +251,9 @@ Here are hundreds of new unclassified points, all in red.
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_22_0.png)
+
 
 
 Each of the red points has a nearest neighbor in the training set (the same blue and gold points as before). For some red points you can easily tell whether the nearest neighbor is blue or gold. For others, it's a little more tricky to make the decision by eye. Those are the points near the decision boundary.
@@ -266,7 +274,9 @@ The resulting graph shows which points will get classified as 'CKD' (all the blu
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_26_0.png)
+
 
 
 The decision boundary is where the classifier switches from turning the red points blue to turning them gold.
@@ -284,7 +294,9 @@ ckd.scatter('White Blood Cell Count', 'Glucose', colors='Color')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_29_0.png)
+
 
 
 As you can see, non-CKD individuals are all clustered in the lower-left.  Most of the patients with CKD are above or to the right of that cluster... but not all.  There are some patients with CKD who are in the lower left of the above figure (as indicated by the handful of blue dots scattered among the gold cluster).  What this means is that you can't tell for certain whether someone has CKD from just these two blood test measurements.

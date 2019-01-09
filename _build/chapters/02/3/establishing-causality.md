@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/chapters/02/3/establishing-causality"
 title: 'Establishing Causality'
 prev_page:
   url: /chapters/02/2/snow-s-grand-experiment

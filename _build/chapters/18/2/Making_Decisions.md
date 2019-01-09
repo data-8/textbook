@@ -55,7 +55,7 @@ We can answer this by applying Bayes' Rule and using our "more likely than not" 
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.44295302013422816
 ```
@@ -83,7 +83,7 @@ population(0.004).pivot('Test Result', 'True Condition')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -118,7 +118,7 @@ Among the Positives, the proportion that have the disease is:
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.4429530201342282
 ```
@@ -168,7 +168,7 @@ Given that the patient tests Positive, the chance that he or she has the disease
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.9124423963133641
 ```
@@ -195,7 +195,7 @@ population(0.05).pivot('Test Result', 'True Condition')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -228,7 +228,7 @@ In this artificially created population of 100,000 people, 5000 people (5%) have
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.9124423963133641
 ```
@@ -262,7 +262,7 @@ positive.where('True Condition', are.equal_to('Disease')).num_rows/positive.num_
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.906896551724138
 ```

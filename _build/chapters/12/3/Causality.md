@@ -40,7 +40,7 @@ bta.show()
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -159,7 +159,7 @@ bta.group('Group', np.mean)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -214,7 +214,7 @@ observed_outcomes.show()
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -351,7 +351,7 @@ bta.group('Group', np.average)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -384,7 +384,7 @@ observed_distance
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.475
 ```
@@ -415,7 +415,7 @@ bta_with_shuffled_results.show()
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -534,7 +534,7 @@ bta_with_shuffled_results.group('Group', np.average)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -571,7 +571,7 @@ simulated_distance
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.08750000000000002
 ```
@@ -641,7 +641,7 @@ empirical_P
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.00955
 ```
@@ -664,7 +664,7 @@ print('Empirical P-value:', round(empirical_P, 4) *100, '%')
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Observed Distance 0.475
 Empirical P-value: 0.95 %
@@ -672,7 +672,9 @@ Empirical P-value: 0.95 %
 ```
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/12/3/Causality_30_1.png)
+
 
 
 The study reports a P-value of 0.009, or 0.9%, which is not far from our empirical value. 

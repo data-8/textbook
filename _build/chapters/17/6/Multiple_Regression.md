@@ -41,7 +41,7 @@ sales.sort('SalePrice')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -97,7 +97,9 @@ sales.hist('SalePrice', bins=32, unit='$')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/6/Multiple_Regression_5_0.png)
+
 
 
 #### Correlation
@@ -113,7 +115,9 @@ sales.scatter('1st Flr SF', 'SalePrice')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/6/Multiple_Regression_7_0.png)
+
 
 
 
@@ -127,7 +131,7 @@ correlation(sales, 'SalePrice', '1st Flr SF')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.6424662541030225
 ```
@@ -145,7 +149,7 @@ for label in sales.labels:
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Correlation of SalePrice and SalePrice:	 1.0
 Correlation of 1st Flr SF and SalePrice:	 0.6424662541030225
@@ -174,7 +178,7 @@ correlation(sales.with_column('Both Floors', both_floors), 'SalePrice', 'Both Fl
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.7821920556134877
 ```
@@ -198,7 +202,7 @@ print(train.num_rows, 'training and', test.num_rows, 'test instances.')
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 1001 training and 1001 test instances.
 
@@ -221,7 +225,7 @@ print('Result:', predict(example_slopes, example_row))
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Predicting sale price for: Row(1st Flr SF=707, 2nd Flr SF=707, Total Bsmt SF=707.0, Garage Area=403.0, Wood Deck SF=100, Open Porch SF=35, Lot Area=7750, Year Built=2002, Yr Sold=2008)
 Using slopes: [ 9.70697704  8.68451487  9.48574052 11.65887763  9.76283493  7.75180442
@@ -241,7 +245,7 @@ print('Predicted sale price using random slopes:', predict(example_slopes, examp
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Actual sale price: 176000
 Predicted sale price using random slopes: 150011.62264018963
@@ -274,7 +278,7 @@ print('RMSE of all training examples using random slopes:', rmse_train(example_s
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 RMSE of all training examples using random slopes: 103585.76518182222
 
@@ -293,14 +297,14 @@ print('RMSE of all training examples using the best slopes:', rmse_train(best_sl
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 The best slopes for the training set:
 
 ```
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -316,7 +320,7 @@ The best slopes for the training set:
 </div>
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 RMSE of all training examples using the best slopes: 32283.50513136445
 
@@ -343,7 +347,7 @@ print('Test set RMSE for multiple linear regression:', rmse_linear)
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Test set RMSE for multiple linear regression: 29898.407434368237
 
@@ -364,7 +368,9 @@ plots.plot([0, 5e5], [0, 5e5]);
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/6/Multiple_Regression_26_0.png)
+
 
 
 A residual plot for multiple regression typically compares the errors (residuals) to the actual values of the predicted variable. We see in the residual plot below that we have systematically underestimated the value of expensive houses, shown by the many positive residual values on the right side of the graph.
@@ -379,7 +385,9 @@ plots.plot([0, 7e5], [0, 0]);
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/6/Multiple_Regression_28_0.png)
+
 
 
 As with simple linear regression, interpreting the result of a predictor is at least as important as making predictions. There are many lessons about interpreting multiple regression that are not included in this textbook. A natural next step after completing this text would be to study linear modeling and regression in further depth.
@@ -399,7 +407,7 @@ train_nn.show(3)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -456,7 +464,7 @@ closest(train_nn, example_nn_row, 5, 'SalePrice')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -502,7 +510,7 @@ predict_nn(example_nn_row)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 174700.0
 ```
@@ -520,7 +528,7 @@ print('Predicted sale price using nearest neighbors:', predict_nn(example_nn_row
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Actual sale price: 176000
 Predicted sale price using nearest neighbors: 174700.0
@@ -543,7 +551,7 @@ print('Test set RMSE for nearest neighbor regression:', rmse_nn)
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Test set RMSE for multiple linear regression:  29898.407434368237
 Test set RMSE for nearest neighbor regression: 33424.833033298106
@@ -564,5 +572,7 @@ plots.plot([0, 7e5], [0, 0]);
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/6/Multiple_Regression_41_0.png)
+
 

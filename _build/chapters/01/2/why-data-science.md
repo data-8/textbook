@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/chapters/01/2/why-data-science"
 title: 'Why Data Science?'
 prev_page:
   url: /chapters/01/1/2/statistical-techniques

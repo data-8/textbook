@@ -37,7 +37,7 @@ top.set_format(make_array(3, 4), NumberFormatter)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -104,7 +104,7 @@ top.take(make_array(3, 18, 100))
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -140,7 +140,7 @@ top.where('Title', are.containing('Harry Potter'))
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -228,7 +228,7 @@ top.take(np.arange(start, top.num_rows, 10))
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>

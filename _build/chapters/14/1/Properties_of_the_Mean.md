@@ -42,7 +42,7 @@ np.average(not_symmetric)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 4.25
 ```
@@ -60,7 +60,7 @@ np.mean(not_symmetric)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 4.25
 ```
@@ -98,7 +98,7 @@ sum(zero_one)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3
 ```
@@ -116,7 +116,7 @@ np.mean(zero_one)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.75
 ```
@@ -136,7 +136,7 @@ np.mean(make_array(True, True, True, False))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.75
 ```
@@ -177,7 +177,7 @@ not_symmetric
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([2, 3, 3, 9])
 ```
@@ -196,7 +196,7 @@ np.mean(same_distribution)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 4.25
 ```
@@ -209,7 +209,9 @@ The mean is a physical attribute of the histogram of the distribution. Here is t
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/1/Properties_of_the_Mean_17_0.png)
+
 
 
 Imagine the histogram as a figure made out of cardboard attached to a wire that runs along the horizontal axis, and imagine the bars as weights attached at the values 2, 3, and 9. Suppose you try to balance this figure on a point on the wire. If the point is near 2, the figure will tip over to the right. If the point is near 9, the figure will tip over to the left. Somewhere in between is the point where the figure will balance; that point is the 4.25, the mean.
@@ -224,7 +226,9 @@ Because the mean is a balance point, it is sometimes displayed as a *fulcrum* or
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/1/Properties_of_the_Mean_19_0.png)
+
 
 
 ### The Mean and the Median
@@ -247,7 +251,9 @@ symmetric = make_array(2, 3, 3, 4)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/1/Properties_of_the_Mean_22_0.png)
+
 
 
 
@@ -261,7 +267,7 @@ np.mean(symmetric)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.0
 ```
@@ -279,7 +285,7 @@ percentile(50, symmetric)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3
 ```
@@ -294,7 +300,9 @@ What if the distribution is not symmetric? Let's compare `symmetric` and `not_sy
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/1/Properties_of_the_Mean_26_0.png)
+
 
 
 The blue histogram represents the original `symmetric` distribution. The gold histogram of `not_symmetric` starts out the same as the blue at the left end, but its rightmost bar has slid over to the value 9. The brown part is where the two histograms overlap.
@@ -329,7 +337,9 @@ sf2015.select('Total Compensation').hist(bins = np.arange(10000, 700000, 25000))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/1/Properties_of_the_Mean_33_0.png)
+
 
 
 This histogram is skewed to the right; it has a right-hand tail. 
@@ -348,7 +358,7 @@ percentile(50, compensation)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 110305.79
 ```
@@ -366,7 +376,7 @@ np.mean(compensation)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 114725.98411824222
 ```

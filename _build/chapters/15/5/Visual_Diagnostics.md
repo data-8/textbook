@@ -67,7 +67,7 @@ heights
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -135,7 +135,9 @@ scatter_fit(heights, 'MidParent', 'Child')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_9_0.png)
+
 
 
 A *residual plot* can be drawn by plotting the residuals against the predictor variable. The function `residual_plot` does just that. 
@@ -166,7 +168,9 @@ residual_plot(heights, 'MidParent', 'Child')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_12_0.png)
+
 
 
 The midparent heights are on the horizontal axis, as in the original scatter plot. But now the vertical axis shows the residuals. Notice that the plot appears to be centered around the horizontal line at the level 0 (shown in dark blue). Notice also that the plot shows no upward or downward trend. We will observe later that this is true of all regressions.
@@ -193,11 +197,15 @@ regression_diagnostic_plots(heights, 'MidParent', 'Child')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_16_0.png)
 
 
 
+
+{:.output .output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_16_1.png)
+
 
 
 This residual plot indicates that linear regression was a reasonable method of estimation. Notice how the residuals are distributed fairly symmetrically above and below the horizontal line at 0, corresponding to the original scatter plot being roughly symmetrical above and below. Notice also that the vertical spread of the plot is fairly even across the most common values of the children's heights. In other words, apart from a few outlying points, the plot isn't narrower in some places and wider in others.
@@ -226,7 +234,7 @@ dugong
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -284,7 +292,7 @@ correlation(dugong, 'Length', 'Age')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.8296474554905714
 ```
@@ -302,11 +310,15 @@ regression_diagnostic_plots(dugong, 'Length', 'Age')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_24_0.png)
 
 
 
+
+{:.output .output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_24_1.png)
+
 
 
 While you can spot the non-linearity in the original scatter, it is more clearly evident in the residual plot.
@@ -330,11 +342,15 @@ regression_diagnostic_plots(hybrid, 'acceleration', 'mpg')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_27_0.png)
 
 
 
+
+{:.output .output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_27_1.png)
+
 
 
 Notice how the residual plot flares out towards the low end of the accelerations. In other words, the variability in the size of the errors is greater for low values of acceleration than for high values. Uneven variation is often more easily noticed in a residual plot than in the original scatter plot.

@@ -36,7 +36,9 @@ The figure below shows where the prediction lies on the regression line. The red
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/16/3/Prediction_Intervals_6_0.png)
+
 
 
 The height of the point where the red line hits the regression line is the fitted value at 300 gestational days. 
@@ -68,7 +70,7 @@ fit_300
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 129.2129241703143
 ```
@@ -85,7 +87,9 @@ To do this, we must generate new samples. We can do that by bootstrapping the sc
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/16/3/Prediction_Intervals_12_0.png)
+
 
 
 The predictions vary from one line to the next. The table below shows the slope and intercept of each of the 10 lines, along with the prediction. 
@@ -101,7 +105,7 @@ lines
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -204,7 +208,7 @@ bootstrap_prediction(baby, 'Gestational Days', 'Birth Weight', 300, 5000)
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Height of regression line at x=300: 129.2129241703143
 Approximate 95%-confidence interval:
@@ -213,7 +217,9 @@ Approximate 95%-confidence interval:
 ```
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/16/3/Prediction_Intervals_18_1.png)
+
 
 
 The figure above shows a bootstrap empirical histogram of the predicted birth weight of a baby at 300 gestational days, based on 5,000 repetitions of the bootstrap process. The empirical distribution is roughly normal. 
@@ -232,7 +238,7 @@ bootstrap_prediction(baby, 'Gestational Days', 'Birth Weight', 285, 5000)
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Height of regression line at x=285: 122.21457101607608
 Approximate 95%-confidence interval:
@@ -241,7 +247,9 @@ Approximate 95%-confidence interval:
 ```
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/16/3/Prediction_Intervals_21_1.png)
+
 
 
 Notice that this interval is narrower than the prediction interval at 300 gestational days. Let us investigate the reason for this.
@@ -259,7 +267,7 @@ np.mean(baby.column('Gestational Days'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 279.1013628620102
 ```
@@ -274,7 +282,9 @@ You can see this in the figure below, which shows predictions at $x = 285$ and $
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/16/3/Prediction_Intervals_25_0.png)
+
 
 
 ### Words of caution

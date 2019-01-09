@@ -40,7 +40,7 @@ cut_off_at_100(17)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 17
 ```
@@ -58,7 +58,7 @@ cut_off_at_100(117)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 100
 ```
@@ -76,7 +76,7 @@ cut_off_at_100(100)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 100
 ```
@@ -106,7 +106,7 @@ ages
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -153,7 +153,7 @@ ages.apply(cut_off_at_100, 'Age')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 17, 100,  52, 100,   6, 100])
 ```
@@ -177,7 +177,7 @@ ages.with_column(
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -227,7 +227,7 @@ cut_off_at_100
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 <function __main__.cut_off_at_100(x)>
 ```
@@ -259,7 +259,7 @@ cut_off
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 <function __main__.cut_off_at_100(x)>
 ```
@@ -289,7 +289,7 @@ galton
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -350,7 +350,7 @@ heights
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -404,7 +404,9 @@ heights.scatter(0)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_24_0.png)
+
 
 
 Now suppose Galton encountered a new couple, similar to those in his dataset, and wondered how tall their child would be. What would be a good way for him to go about predicting the child's height, given that the midparent height was, say, 68 inches?
@@ -429,7 +431,9 @@ _ = plots.scatter(68, 66.24, color='gold', s=40)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_26_0.png)
+
 
 
 In order to calculate exactly where the gold dot should be, we first need to indentify all the points in the strip. These correspond to the rows where `MidParent` is between 67.5 inches and 68.5 inches.
@@ -446,7 +450,7 @@ close_to_68
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -504,7 +508,7 @@ close_to_68.column('Child').mean()
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 66.24045801526718
 ```
@@ -542,7 +546,7 @@ predict_child(68)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 66.24045801526718
 ```
@@ -560,7 +564,7 @@ predict_child(74)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 70.41578947368421
 ```
@@ -592,7 +596,7 @@ heights_with_predictions
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -648,7 +652,9 @@ heights_with_predictions.scatter('MidParent')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_40_0.png)
+
 
 
 The graph of gold dots is called a *graph of averages,* because each gold dot is the center of a vertical strip like the one we drew earlier. Each one provides a prediction of a child's height given the midparent height. For example, the scatter shows that for a midparent height of 72 inches, the predicted height of the child would be somewhere between 68 inches and 69 inches, and indeed `predict_child(72)` returns 68.5.

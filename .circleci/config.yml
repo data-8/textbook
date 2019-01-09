@@ -18,3 +18,30 @@ jobs:
       - run:
           name: Updating inferentialthinking website
           command: git push live_textbook gh-pages:master
+  site:
+    docker:
+      - image: circleci/ruby:2.6
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+      
+      - run: gem install bundler
+      - run: bundle install
+
+      # Store bundle cache
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Build the website
+          command: bundle exec jekyll build --baseurl /0/html/
+
+      # Tell Circle to store the documentation output in a folder that we can access later
+      - store_artifacts:
+          path: _site/
+          destination: html
