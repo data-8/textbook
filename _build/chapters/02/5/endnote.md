@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/chapters/02/5/endnote"
 title: 'Endnote'
 prev_page:
   url: /chapters/02/4/randomization

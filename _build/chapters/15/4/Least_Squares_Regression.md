@@ -42,7 +42,7 @@ shotput
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -96,7 +96,9 @@ shotput.scatter('Weight Lifted')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/4/Least_Squares_Regression_5_0.png)
+
 
 
 That's not a football shaped scatter plot. In fact, it seems to have a slight non-linear component. But if we insist on using a straight line to make our predictions, there is still one best straight line among all straight lines.
@@ -114,7 +116,7 @@ slope(shotput, 'Weight Lifted', 'Shot Put Distance')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.09834382159781997
 ```
@@ -132,7 +134,7 @@ intercept(shotput, 'Weight Lifted', 'Shot Put Distance')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 5.959629098373952
 ```
@@ -166,7 +168,7 @@ minimize(shotput_linear_mse)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([0.09834382, 5.95962911])
 ```
@@ -197,7 +199,9 @@ shotput.with_column('Best Straight Line', fitted).scatter('Weight Lifted')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/4/Least_Squares_Regression_13_0.png)
+
 
 
 ### Nonlinear Regression
@@ -244,7 +248,7 @@ best
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([-1.04004838e-03,  2.82708045e-01, -1.53182115e+00])
 ```
@@ -268,7 +272,7 @@ meters. For example, if the athlete can lift 100 kilograms, the predicted distan
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 16.3382
 ```
@@ -295,5 +299,7 @@ shotput.with_column('Best Quadratic Curve', shotput_fit).scatter(0)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/15/4/Least_Squares_Regression_23_0.png)
+
 

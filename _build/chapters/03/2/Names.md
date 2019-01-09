@@ -29,7 +29,7 @@ a + b
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 30
 ```
@@ -51,7 +51,7 @@ half
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.5
 ```
@@ -72,7 +72,7 @@ half
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.5
 ```
@@ -98,7 +98,7 @@ sales_tax
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.475
 ```

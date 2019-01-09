@@ -33,7 +33,7 @@ us_pop
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -96,7 +96,7 @@ us_pop.where('SEX', are.equal_to(0)).where('AGE', are.between(97, 101))
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -144,7 +144,7 @@ all_ages
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -189,7 +189,7 @@ all_ages.with_column(
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -228,7 +228,7 @@ infants
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -267,7 +267,7 @@ infants.with_column(
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -313,7 +313,7 @@ females
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -371,7 +371,7 @@ males
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -429,7 +429,7 @@ males.column('AGE')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,
         13,  14,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,  25,
@@ -454,7 +454,7 @@ females.column('AGE')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,
         13,  14,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,  25,
@@ -485,7 +485,7 @@ ratios
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -545,7 +545,7 @@ ratios.where('AGE', are.above(75)).show()
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -651,7 +651,7 @@ males.where('AGE', are.between(98, 100))
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -682,7 +682,7 @@ females.where('AGE', are.between(98, 100))
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -717,5 +717,7 @@ ratios.plot('AGE')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/06/4/Example_Gender_Ratio_in_the_US_Population_34_0.png)
+
 

@@ -52,7 +52,7 @@ np.sort(sizes)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 6,  7,  9, 12, 17])
 ```
@@ -77,7 +77,7 @@ percentile(70, sizes)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 12
 ```
@@ -111,7 +111,7 @@ scores_and_sections
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -165,7 +165,9 @@ scores_and_sections.select('Midterm').hist(bins=np.arange(-0.5, 25.6, 1))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/13/1/Percentiles_12_0.png)
+
 
 
 What was the 85th percentile of the scores? To use the `percentile` function, create an array `scores` containing the midterm scores, and find the 85th percentile:
@@ -189,7 +191,7 @@ percentile(85, scores)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 22
 ```
@@ -221,7 +223,7 @@ There are 359 scores in the array. So next, find 85% of 359, which is 305.15.
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 305.15
 ```
@@ -243,7 +245,7 @@ sorted_scores.item(305)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 22
 ```
@@ -268,7 +270,7 @@ percentile(25, scores)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 11
 ```
@@ -286,7 +288,7 @@ percentile(50, scores)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 16
 ```
@@ -304,7 +306,7 @@ percentile(75, scores)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 20
 ```

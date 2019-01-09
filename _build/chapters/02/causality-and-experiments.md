@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/chapters/02/causality-and-experiments"
 title: 'Causality and Experiments'
 prev_page:
   url: /chapters/01/3/2/Another_Kind_Of_Character

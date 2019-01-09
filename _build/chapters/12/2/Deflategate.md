@@ -38,7 +38,7 @@ football.show()
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -124,7 +124,7 @@ football.show()
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -211,7 +211,7 @@ np.ones(11)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.])
 ```
@@ -232,7 +232,7 @@ start
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 12.5,  12.5,  12.5,  12.5,  12.5,  12.5,  12.5,  12.5,  12.5,
         12.5,  12.5,  13. ,  13. ,  13. ,  13. ])
@@ -253,7 +253,7 @@ football.show()
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -339,7 +339,7 @@ football.group('Team', np.average)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -386,7 +386,7 @@ observed_difference
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.733522727272728
 ```
@@ -409,7 +409,7 @@ original_and_shuffled.show()
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -494,7 +494,7 @@ original_and_shuffled.group('Team', np.average)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -572,7 +572,7 @@ empirical_P
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.0041
 ```
@@ -593,7 +593,7 @@ print('Empirical P-value:', empirical_P)
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Observed Difference: 0.733522727272728
 Empirical P-value: 0.0041
@@ -601,7 +601,9 @@ Empirical P-value: 0.0041
 ```
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/12/2/Deflategate_25_1.png)
+
 
 
 As in previous examples of this test, the bulk of the distribution is centered around 0. Under the null hypothesis, the Patriots' drops are a random sample of all 15 drops, and therefore so are the Colts'. Therefore the two sets of drops should be about equal on average, and therefore their difference should be around 0.

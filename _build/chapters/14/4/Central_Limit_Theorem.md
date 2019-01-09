@@ -37,7 +37,7 @@ wheel
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -112,7 +112,7 @@ red
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -168,7 +168,9 @@ red.select('Winnings: Red').hist(bins=np.arange(-1.5, 1.6, 1))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_10_0.png)
+
 
 
 Now suppose you bet many times on red. Your net winnings will be the sum of many draws made at random with replacement from the distribution above.
@@ -207,7 +209,9 @@ results.hist(bins=np.arange(-80, 50, 6))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_13_0.png)
+
 
 
 That's a roughly bell shaped histogram, even though the distribution we are drawing from is nowhere near bell shaped.
@@ -226,7 +230,7 @@ average_per_bet
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -0.05263157894736842
 ```
@@ -246,7 +250,7 @@ So in 400 bets you expect that your net gain will be about -\$21:
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -21.052631578947366
 ```
@@ -266,7 +270,7 @@ np.mean(results.column(0))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -20.859
 ```
@@ -288,7 +292,7 @@ np.std(results.column(0))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 20.257603979740548
 ```
@@ -317,7 +321,9 @@ united.select('Delay').hist(bins=np.arange(-20, 300, 10))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_25_0.png)
+
 
 
 The mean delay was about 16.6 minutes and the SD was about 39.5 minutes. Notice how large the SD is, compared to the mean. Those large deviations on the right have an effect, even though they are a very small proportion of the data.
@@ -336,7 +342,7 @@ mean_delay, sd_delay
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 (16.658155515370705, 39.480199851609314)
 ```
@@ -366,7 +372,7 @@ np.mean(delay.sample(400).column('Delay'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 15.77
 ```
@@ -404,7 +410,9 @@ results.hist(bins=np.arange(10, 25, 0.5))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_33_0.png)
+
 
 
 Once again, we see a rough bell shape, even though we are drawing from a very skewed distribution. The bell is centered somewhere between 16 ad 17, as we expect.
@@ -441,7 +449,7 @@ model
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -494,7 +502,9 @@ results.hist(bins=np.arange(0.65, 0.85, 0.01))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_39_0.png)
+
 
 
 There's that normal curve again, as predicted by the Central Limit Theorem, centered at around 0.75 just as you would expect.
@@ -527,7 +537,9 @@ results.hist(bins=np.arange(0.65, 0.85, 0.01))
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_42_0.png)
+
 
 
 Both distributions are approximately normal but one is narrower than the other. The proportions based on a sample size of 800 are more tightly clustered around 0.75 than those from a sample size of 200. Increasing the sample size has decreased the variability in the sample proportion.

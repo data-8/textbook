@@ -76,7 +76,7 @@ evaluate_accuracy(training_set, test_set, 5)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.9438202247191011
 ```
@@ -117,7 +117,7 @@ patients
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -185,7 +185,9 @@ patients_with_colors.scatter('Bland Chromatin', 'Single Epithelial Cell Size', c
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/5/Accuracy_of_the_Classifier_15_0.png)
+
 
 
 Oops.  That plot is utterly misleading, because there are a bunch of points that have identical values for both the x- and y-coordinates.  To make it easier to see all the data points, I'm going to add a little bit of random jitter to the x- and y-values.  Here's how that looks:
@@ -194,7 +196,9 @@ Oops.  That plot is utterly misleading, because there are a bunch of points that
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/5/Accuracy_of_the_Classifier_17_0.png)
+
 
 
 For instance, you can see there are lots of samples with chromatin = 2 and epithelial cell size = 2; all non-cancerous.
@@ -226,7 +230,7 @@ evaluate_accuracy(training_set, test_set, 5)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.9765395894428153
 ```

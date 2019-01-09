@@ -48,7 +48,7 @@ ckd.row(0)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 Row(Age=48, Blood Pressure=70, Specific Gravity=1.005, Albumin=4, Sugar=0, Red Blood Cells='normal', Pus Cell='abnormal', Pus Cell clumps='present', Bacteria='notpresent', Glucose=117, Blood Urea=56, Serum Creatinine=3.8, Sodium=111, Potassium=2.5, Hemoglobin=11.2, Packed Cell Volume=32, White Blood Cell Count=6700, Red Blood Cell Count=3.9, Hypertension='yes', Diabetes Mellitus='no', Coronary Artery Disease='no', Appetite='poor', Pedal Edema='yes', Anemia='yes', Class=1)
 ```
@@ -72,7 +72,7 @@ ckd.row(0).item(3)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 4
 ```
@@ -106,7 +106,7 @@ ckd
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -164,7 +164,9 @@ plots.scatter(alice.item(0), alice.item(1), color='red', s=30);
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/3/Rows_of_Tables_12_0.png)
+
 
 
 To find the distance between Alice's point and any of the other points, we only need the values of the attributes:
@@ -188,7 +190,7 @@ ckd_attributes
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -246,7 +248,7 @@ ckd_attributes.row(3)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 Row(Hemoglobin=0.5961076648232668, Glucose=-0.19065363034327712)
 ```
@@ -264,7 +266,7 @@ np.array(ckd_attributes.row(3))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 0.59610766, -0.19065363])
 ```
@@ -300,7 +302,7 @@ alice, patient3
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 (array([0. , 1.1]), array([ 0.59610766, -0.19065363]))
 ```
@@ -319,7 +321,7 @@ distance
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 1.421664918881847
 ```
@@ -351,7 +353,7 @@ distance(alice, patient3)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 1.421664918881847
 ```
@@ -377,7 +379,7 @@ t
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -430,7 +432,7 @@ max_abs(t.row(4))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.4996102825918697
 ```
@@ -450,7 +452,7 @@ t.apply(max_abs)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([0.4568837 , 1.15300352, 0.77013762, 0.59610766, 0.49961028])
 ```
@@ -480,7 +482,7 @@ alice
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([0. , 1.1])
 ```
@@ -510,7 +512,7 @@ distance_from_alice(ckd_attributes.row(3))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 1.421664918881847
 ```
@@ -539,7 +541,7 @@ ckd_with_distances
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -598,7 +600,7 @@ sorted_by_distance
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -657,7 +659,7 @@ alice_5_nearest_neighbors
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -694,7 +696,9 @@ The graph below zooms in on Alice and her five nearest neighbors. The two gold o
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/17/3/Rows_of_Tables_49_0.png)
+
 
 
 We are well on our way to implementing our k-nearest neighbor classifier. In the next two sections we will put it together and assess its accuracy.

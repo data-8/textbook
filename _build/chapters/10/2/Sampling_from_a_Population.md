@@ -35,7 +35,7 @@ united
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -93,7 +93,7 @@ united.column('Delay').min()
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -16
 ```
@@ -111,7 +111,7 @@ united.column('Delay').max()
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 580
 ```
@@ -128,7 +128,9 @@ united.select('Delay').hist(bins = delay_bins, unit = 'minute')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/10/2/Sampling_from_a_Population_6_0.png)
+
 
 
 For the purposes of this section, it is enough to zoom in on the bulk of the data and ignore the 0.8% of flights that had delays of more than 200 minutes. This restriction is just for visual convenience; the table still retains all the data.
@@ -144,7 +146,7 @@ united.where('Delay', are.above(200)).num_rows/united.num_rows
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.008390596745027125
 ```
@@ -161,7 +163,9 @@ united.select('Delay').hist(bins = delay_bins, unit = 'minute')
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/10/2/Sampling_from_a_Population_9_0.png)
+
 
 
 The height of the [0, 10) bar is just under 3% per minute, which means that just under 30% of the flights had delays between 0 and 10 minutes. That is confirmed by counting rows: 
@@ -177,7 +181,7 @@ united.where('Delay', are.between(0, 10)).num_rows/united.num_rows
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.2935985533453888
 ```
@@ -208,7 +212,9 @@ empirical_hist_delay(10)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/10/2/Sampling_from_a_Population_15_0.png)
+
 
 
 
@@ -220,7 +226,9 @@ empirical_hist_delay(100)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/10/2/Sampling_from_a_Population_16_0.png)
+
 
 
 The most consistently visible discrepancies are among the values that are rare in the population. In our example, those values are in the the right hand tail of the distribution. But as the sample size increases, even those values begin to appear in the sample in roughly the correct proportions.
@@ -234,7 +242,9 @@ empirical_hist_delay(1000)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/10/2/Sampling_from_a_Population_18_0.png)
+
 
 
 ### Convergence of the Empirical Histogram of the Sample

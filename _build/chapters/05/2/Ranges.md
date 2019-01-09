@@ -39,7 +39,7 @@ np.arange(5)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([0, 1, 2, 3, 4])
 ```
@@ -62,7 +62,7 @@ np.arange(3, 9)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([3, 4, 5, 6, 7, 8])
 ```
@@ -83,7 +83,7 @@ np.arange(3, 30, 5)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 3,  8, 13, 18, 23, 28])
 ```
@@ -105,7 +105,7 @@ np.arange(1.5, -2, -0.5)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 1.5,  1. ,  0.5,  0. , -0.5, -1. , -1.5])
 ```
@@ -141,7 +141,7 @@ by_four_to_20
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 1,  5,  9, 13, 17])
 ```
@@ -162,7 +162,7 @@ positive_term_denominators
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([   1,    5,    9, ..., 9989, 9993, 9997])
 ```
@@ -202,7 +202,7 @@ The overall sum is
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.1413926535917955
 ```

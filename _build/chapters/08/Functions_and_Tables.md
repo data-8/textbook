@@ -55,7 +55,7 @@ double(17)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 34
 ```
@@ -73,7 +73,7 @@ double(-0.6/4)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 -0.3
 ```
@@ -102,7 +102,7 @@ double(any_name)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 84
 ```
@@ -122,7 +122,7 @@ double(make_array(3, 4, 5))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 6,  8, 10])
 ```
@@ -142,24 +142,24 @@ x
 
 
 
-{:.output_traceback_line}
+{:.output .output_traceback_line}
 ```
 ---------------------------------------------------------------------------
 ```
 
-{:.output_traceback_line}
+{:.output .output_traceback_line}
 ```
 NameError                                 Traceback (most recent call last)
 ```
 
-{:.output_traceback_line}
+{:.output .output_traceback_line}
 ```
 <ipython-input-7-6fcf9dfbd479> in <module>()
 ----> 1 x
 
 ```
 
-{:.output_traceback_line}
+{:.output .output_traceback_line}
 ```
 NameError: name 'x' is not defined
 ```
@@ -204,7 +204,7 @@ percent(33, 200)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 16.5
 ```
@@ -238,7 +238,7 @@ percents(some_array)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([33.33, 47.62, 19.05])
 ```
@@ -263,7 +263,7 @@ print("The biggest difference is", big_diff)
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 The biggest difference is 5
 
@@ -293,7 +293,7 @@ print("Rounded to 3 decimal places:", percents(parts, 3))
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Rounded to 1 decimal place:  [28.6 14.3 57.1]
 Rounded to 2 decimal places: [28.57 14.29 57.14]
@@ -318,7 +318,7 @@ print("Rounded to the default number of decimal places:", percents(parts))
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Rounded to 1 decimal place: [28.6 14.3 57.1]
 Rounded to the default number of decimal places: [28.57 14.29 57.14]

@@ -106,7 +106,7 @@ is_goat('Goat 1')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```
@@ -124,7 +124,7 @@ is_goat('Goat 2')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```
@@ -142,7 +142,7 @@ is_goat('Car')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 False
 ```
@@ -183,7 +183,7 @@ make_array(original, other_one(original, goats), 'Car')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array(['Goat 1', 'Goat 2', 'Car'], dtype='<U6')
 ```
@@ -202,7 +202,7 @@ make_array(original, other_one(original, goats), 'Car')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array(['Goat 2', 'Goat 1', 'Car'], dtype='<U6')
 ```
@@ -224,7 +224,7 @@ make_array(original, throw_out, other_one(throw_out, goats))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array(['Car', 'Goat 2', 'Goat 1'], dtype='<U6')
 ```
@@ -279,7 +279,7 @@ monty_hall()
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array(['Car', 'Goat 1', 'Goat 2'], dtype='<U6')
 ```
@@ -334,7 +334,7 @@ results
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -392,7 +392,7 @@ results.group('Original Door Choice')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -426,7 +426,7 @@ results.group('Remaining Door')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -468,7 +468,7 @@ combined
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -500,7 +500,9 @@ combined.barh(0)
 
 
 
+{:.output .output_png}
 ![png](../../../images/chapters/09/4/Monty_Hall_Problem_33_0.png)
+
 
 
 Notice how the three blue bars are almost equal – the original choice is equally likely to be any of the three available items. But the gold bar corresponding to `Car` is twice as long as the blue. 

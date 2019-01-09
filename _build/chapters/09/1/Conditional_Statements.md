@@ -46,7 +46,7 @@ sign(3)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'Positive'
 ```
@@ -92,7 +92,7 @@ sign(-3)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'Negative'
 ```
@@ -129,7 +129,7 @@ sign(0)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'Neither positive nor negative'
 ```
@@ -166,7 +166,7 @@ sign(0)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'Neither positive nor negative'
 ```
@@ -224,7 +224,7 @@ other_one('red', colors)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'blue'
 ```
@@ -242,7 +242,7 @@ other_one('blue', colors)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'red'
 ```
@@ -260,7 +260,7 @@ other_one('potato', colors)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'The input is not valid.'
 ```

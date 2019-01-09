@@ -31,7 +31,7 @@ np.random.choice(make_array('Heads', 'Tails'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'Heads'
 ```
@@ -51,7 +51,7 @@ for i in np.arange(3):
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 0
 1
@@ -76,7 +76,7 @@ print(i)
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 0
 1
@@ -99,7 +99,7 @@ for i in np.arange(5):
 ```
 
 
-{:.output_stream}
+{:.output .output_stream}
 ```
 Heads
 Heads
@@ -129,7 +129,7 @@ np.append(pets, 'Another Pet')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array(['Cat', 'Dog', 'Another Pet'], dtype='<U11')
 ```
@@ -149,7 +149,7 @@ pets
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array(['Cat', 'Dog'], dtype='<U3')
 ```
@@ -170,7 +170,7 @@ pets
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array(['Cat', 'Dog', 'Another Pet'], dtype='<U11')
 ```
@@ -200,7 +200,7 @@ outcomes
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array(['Tails', 'Tails', 'Tails', 'Heads', 'Tails'], dtype='<U32')
 ```
@@ -244,7 +244,7 @@ outcomes
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array(['Heads', 'Heads', 'Heads', 'Tails', 'Heads'], dtype='<U32')
 ```
@@ -264,7 +264,7 @@ np.count_nonzero(outcomes == 'Heads')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 4
 ```
@@ -292,7 +292,7 @@ np.count_nonzero(outcomes == 'Heads')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 515
 ```

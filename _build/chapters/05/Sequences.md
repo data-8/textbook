@@ -35,7 +35,7 @@ highs
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 13.6  ,  14.387,  14.585,  15.164])
 ```
@@ -55,7 +55,7 @@ sum(highs)/len(highs)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 14.434000000000001
 ```

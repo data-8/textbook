@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/chapters/01/1/1/computational-tools"
 title: 'Computational Tools'
 prev_page:
   url: /chapters/01/1/intro

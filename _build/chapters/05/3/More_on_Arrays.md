@@ -36,7 +36,7 @@ highs
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 13.6  ,  14.387,  14.585,  15.164])
 ```
@@ -57,7 +57,7 @@ lows
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 2.128,  2.371,  2.874,  3.728])
 ```
@@ -84,7 +84,7 @@ make_array(
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 11.472,  12.016,  11.711,  11.436])
 ```
@@ -104,7 +104,7 @@ highs - lows
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([ 11.472,  12.016,  11.711,  11.436])
 ```
@@ -158,7 +158,7 @@ Remember that `np.prod` multiplies all the elements of an array together. Now we
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.1415910827951143
 ```

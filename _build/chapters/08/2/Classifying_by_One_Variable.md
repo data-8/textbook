@@ -41,7 +41,7 @@ cones
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -81,7 +81,7 @@ cones.group('Flavor')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -123,7 +123,7 @@ cones.group('Flavor', sum)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -162,7 +162,7 @@ cones.where('Flavor', are.equal_to('chocolate')).column('Price')
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 array([4.75, 6.55, 5.25])
 ```
@@ -180,7 +180,7 @@ sum(cones.where('Flavor', are.equal_to('chocolate')).column('Price'))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 16.55
 ```
@@ -218,7 +218,7 @@ price_totals
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -251,7 +251,7 @@ cones.group('Flavor', max)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -287,7 +287,7 @@ price_maxes
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -323,7 +323,7 @@ lengths
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -359,7 +359,7 @@ nba
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -420,7 +420,7 @@ teams_and_money.group('TEAM', sum)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -480,7 +480,7 @@ nba.group('POSITION')
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -525,7 +525,7 @@ positions_and_money.group('POSITION', np.mean)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>
@@ -569,7 +569,7 @@ nba.group('POSITION', np.mean)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>

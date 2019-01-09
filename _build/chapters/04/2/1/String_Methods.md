@@ -29,7 +29,7 @@ For example, the following method generates an uppercased version of a string.
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'LOUD'
 ```
@@ -49,7 +49,7 @@ Perhaps the most important method is `replace`, which replaces all instances of 
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'matchmaker'
 ```
@@ -72,7 +72,7 @@ u
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'degrade'
 ```
@@ -92,7 +92,7 @@ s
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'train'
 ```

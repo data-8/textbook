@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/chapters/02/4/randomization"
 title: 'Randomization'
 prev_page:
   url: /chapters/02/3/establishing-causality
