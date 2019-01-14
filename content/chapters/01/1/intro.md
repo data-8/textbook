@@ -34,7 +34,7 @@ Applying this approach requires learning to program a computer, and so this
 text interleaves a complete introduction to programming that assumes no prior
 knowledge. Readers with programming experience will find that we cover several
 topics in computation that do not appear in a typical introductory computer
-science curriculum. Data science also requires careful reasoning about
+science curriculum. Data science also requires careful reasoning about numerical
 quantities, but this text does not assume any background in mathematics or
 statistics beyond basic algebra. You will find very few equations in this text.
 Instead, techniques are described to readers in the same language in which they

@@ -1,7 +1,7 @@
 Observation and Visualization: John Snow and the Broad Street Pump
 ------------------------------------------------------------------
 
-One of the earliest examples of astute observation eventually leading to the
+One of the most powerful examples of astute observation eventually leading to the
 establishment of causality dates back more than 150 years. To get your mind into
 the right timeframe, try to imagine London in the 1850’s. It was the world’s
 wealthiest city but many of its people were desperately poor. Charles Dickens,
@@ -25,7 +25,7 @@ they were breathing the same air—and miasmas—as their neighbors, there was n
 compelling association between bad smells and the incidence of cholera.
 
 Snow had also noticed that the onset of the disease almost always involved
-vomiting and diarrhea. He therefore believed that that infection was carried by
+vomiting and diarrhea. He therefore believed that the infection was carried by
 something people ate or drank, not by the air that they breathed. His prime
 suspect was water contaminated by sewage.
 
@@ -34,9 +34,9 @@ London. As the deaths mounted, Snow recorded them diligently, using a method
 that went on to become standard in the study of how diseases spread: *he drew a
 map*. On a street map of the district, he recorded the location of each death.
 
-Here is Snow’s original map. Each black bar represents one death. The black
+Here is Snow’s original map. Each black bar represents one death. When there are multiple deaths at the same address, the bars corresponding to those deaths are stacked on top of each other. The black
 discs mark the locations of water pumps. The map displays a striking
-revelation–the deaths are roughly clustered around the Broad Street pump.
+revelation—the deaths are roughly clustered around the Broad Street pump.
 ![Snow’s Cholera Map](../../../images/snow_map.jpg)
 
 Snow studied his map carefully and investigated the apparent anomalies. All of

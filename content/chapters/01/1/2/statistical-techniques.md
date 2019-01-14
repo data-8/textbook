@@ -23,6 +23,6 @@ focusing too much attention on simplistic summaries such as average values.
 Computers enable a family of methods based on resampling that apply to a wide
 range of different inference problems, take into account all available
 information, and require few assumptions or conditions. Although these
-techniques have often been reserved for graduate courses in statistics, their
+techniques have often been reserved for advanced courses in statistics, their
 flexibility and simplicity are a natural fit for data science applications.
 

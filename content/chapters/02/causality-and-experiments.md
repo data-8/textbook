@@ -22,8 +22,7 @@ group of individuals, a factor of interest called a *treatment*, and an
 
 It is easiest to think of the individuals as people. In a study of whether
 chocolate is good for the health, the individuals would indeed be people, the
-treatment would be eating chocolate, and the outcome might be a measure of blood
-pressure. But individuals in observational studies need not be people. In a
+treatment would be eating chocolate, and the outcome might be a measure of heart disease. But individuals in observational studies need not be people. In a
 study of whether the death penalty has a deterrent effect, the individuals could
 be the 50 states of the union. A state law allowing the death penalty would be
 the treatment, and an outcome could be the state’s murder rate.

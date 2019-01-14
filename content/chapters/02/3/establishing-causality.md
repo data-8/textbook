@@ -8,14 +8,13 @@ two groups were comparable to each other, apart from the treatment.
 
 In order to establish whether it was the water supply that was causing cholera,
 Snow had to compare two groups that were similar to each other in all but one
-aspect–their water supply. Only then would he be able to ascribe the differences
+aspect—their water supply. Only then would he be able to ascribe the differences
 in their outcomes to the water supply. If the two groups had been different in
 some other way as well, it would have been difficult to point the finger at the
 water supply as the source of the disease.  For example, if the treatment group
 consisted of factory workers and the control group did not, then differences
 between the outcomes in the two groups could have been due to the water supply,
-or to factory work, or both, or to any other characteristic that made the groups
-different from each other. The final picture would have been much more fuzzy.
+or to factory work, or both. The final picture would have been much more fuzzy.
 
 Snow’s brilliance lay in identifying two groups that would make his comparison
 clear. He had set out to establish a causal relation between contaminated water
@@ -38,8 +37,8 @@ diseases.
 Let us now return to more modern times, armed with an important lesson that we
 have learned along the way:
 
-In an observational study, if the treatment and control groups differ in ways
-other than the treatment, it is difficult to make conclusions about causality.
+**In an observational study, if the treatment and control groups differ in ways
+other than the treatment, it is difficult to make conclusions about causality.**
 
 An underlying difference between the two groups (other than the treatment) is
 called a *confounding factor*, because it might confound you (that is, mess you
@@ -48,10 +47,9 @@ up) when you try to reach a conclusion.
 **Example: Coffee and lung cancer.** Studies in the 1960’s showed that coffee
 drinkers had higher rates of lung cancer than those who did not drink coffee.
 Because of this, some people identified coffee as a cause of lung cancer. But
-coffee does not cause lung cancer. The analysis contained a confounding factor –
-smoking. In those days, coffee drinkers were also likely to have been smokers,
+coffee does not cause lung cancer. The analysis contained a confounding factor—smoking. In those days, coffee drinkers were also likely to have been smokers,
 and smoking does cause lung cancer. Coffee drinking was associated with lung
 cancer, but it did not cause the disease.
 
 Confounding factors are common in observational studies. Good studies take great
-care to reduce confounding.
+care to reduce confounding and to account for its effects.

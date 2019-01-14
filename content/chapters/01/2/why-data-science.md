@@ -3,7 +3,7 @@ Why Data Science?
 
 Most important decisions are made with only partial information and uncertain
 outcomes. However, the degree of uncertainty for many decisions can be reduced
-sharply by public access to large data sets and the computational tools
+sharply by access to large data sets and the computational tools
 required to analyze them effectively. Data-driven decision making has already
 transformed a tremendous breadth of industries, including finance, advertising,
 manufacturing, and real estate. At the same time, a wide range of academic
@@ -15,7 +15,7 @@ their work, their scientific endeavors, and their personal decisions. Critical
 thinking has long been a hallmark of a rigorous education, but critiques are
 often most effective when supported by data. A critical analysis of any aspect
 of the world, may it be business or social science, involves inductive
-reasoning; conclusions can rarely been proven outright, only supported by
+reasoning; conclusions can rarely been proven outright, but only supported by
 the available evidence. Data science provides the means to make precise,
 reliable, and quantitative arguments about any set of observations. With
 unprecedented access to information and computing, critical thinking about

@@ -2,7 +2,7 @@ Snow’s “Grand Experiment”
 -------------------------
 
 Encouraged by what he had learned in Soho, Snow completed a more thorough
-analysis of cholera deaths. For some time, he had been gathering data on cholera
+analysis. For some time, he had been gathering data on cholera
 deaths in an area of London that was served by two water companies. The Lambeth
 water company drew its water upriver from where sewage was discharged into the
 River Thames. Its water was relatively clean. But the Southwark and Vauxhall
