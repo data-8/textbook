@@ -109,7 +109,7 @@ const RIGHT_ARROW_KEYCODE = 39
 
 const getPrevUrl = () => document.getElementById('js-page__nav__prev').href
 const getNextUrl = () => document.getElementById('js-page__nav__next').href
-document.addEventListener('keydown', event => {
+const initPageNav = (event) => {
   const keycode = event.which
 
   if (keycode === LEFT_ARROW_KEYCODE) {
@@ -117,7 +117,16 @@ document.addEventListener('keydown', event => {
   } else if (keycode === RIGHT_ARROW_KEYCODE) {
     Turbolinks.visit(getNextUrl())
   }
-})
+};
+
+var keyboardListener = false;
+const initListener = () => {
+  if (keyboardListener === false) {
+    document.addEventListener('keydown', initPageNav)
+    keyboardListener = true;
+  }
+}
+initFunction(initListener);
 
 /**
  * [5] Right sidebar scroll highlighting
@@ -141,4 +150,3 @@ highlightRightSidebar = function() {
 };
 
 initFunction(highlightRightSidebar);
-
