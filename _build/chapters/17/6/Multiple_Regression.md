@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/17/6/multiple-regression"
 interact_link: content/chapters/17/6/Multiple_Regression.ipynb
+kernel_name: python3
 title: 'Multiple Regression'
 prev_page:
   url: /chapters/17/5/Accuracy_of_the_Classifier

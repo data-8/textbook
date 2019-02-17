@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/14/4/central-limit-theorem"
 interact_link: content/chapters/14/4/Central_Limit_Theorem.ipynb
+kernel_name: python3
 title: 'The Central Limit Theorem'
 prev_page:
   url: /chapters/14/3/SD_and_the_Normal_Curve

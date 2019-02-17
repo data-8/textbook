@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/05/3/more-on-arrays"
 interact_link: content/chapters/05/3/More_on_Arrays.ipynb
+kernel_name: python3
 title: 'More on Arrays'
 prev_page:
   url: /chapters/05/2/Ranges

@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/18/updating-predictions"
 interact_link: content/chapters/18/Updating_Predictions.ipynb
+kernel_name: python3
 title: 'Updating Predictions'
 prev_page:
   url: /chapters/17/6/Multiple_Regression

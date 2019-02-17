@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/17/3/rows-of-tables"
 interact_link: content/chapters/17/3/Rows_of_Tables.ipynb
+kernel_name: python3
 title: 'Rows of Tables'
 prev_page:
   url: /chapters/17/2/Training_and_Testing

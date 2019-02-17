@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/14/3/sd-and-the-normal-curve"
 interact_link: content/chapters/14/3/SD_and_the_Normal_Curve.ipynb
+kernel_name: python3
 title: 'The SD and the Normal Curve'
 prev_page:
   url: /chapters/14/2/Variability

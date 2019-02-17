@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/09/randomness"
 interact_link: content/chapters/09/Randomness.ipynb
+kernel_name: python3
 title: 'Randomness'
 prev_page:
   url: /chapters/08/5/Bike_Sharing_in_the_Bay_Area
@@ -115,16 +116,17 @@ Notice the two equal signs `==` in the comparison to determine equality. This is
 ```
 
 
-
 {:.output .output_traceback_line}
 ```
-  File "<ipython-input-5-e8c755f5e450>", line 1
-    5 = 10/2
-            ^
-SyntaxError: can't assign to literal
+
+      File "<ipython-input-5-e8c755f5e450>", line 1
+        5 = 10/2
+                ^
+    SyntaxError: can't assign to literal
+
+
 
 ```
-
 
 
 

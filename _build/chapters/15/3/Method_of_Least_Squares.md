@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/15/3/method-of-least-squares"
 interact_link: content/chapters/15/3/Method_of_Least_Squares.ipynb
+kernel_name: python3
 title: 'The Method of Least Squares'
 prev_page:
   url: /chapters/15/2/Regression_Line

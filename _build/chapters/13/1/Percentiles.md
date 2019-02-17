@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/13/1/percentiles"
 interact_link: content/chapters/13/1/Percentiles.ipynb
+kernel_name: python3
 title: 'Percentiles'
 prev_page:
   url: /chapters/13/Estimation

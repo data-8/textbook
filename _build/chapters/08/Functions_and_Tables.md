@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/08/functions-and-tables"
 interact_link: content/chapters/08/Functions_and_Tables.ipynb
+kernel_name: python3
 title: 'Functions and Tables'
 prev_page:
   url: /chapters/07/3/Overlaid_Graphs
@@ -141,29 +142,21 @@ x
 ```
 
 
-
 {:.output .output_traceback_line}
 ```
----------------------------------------------------------------------------
-```
 
-{:.output .output_traceback_line}
-```
-NameError                                 Traceback (most recent call last)
-```
+    ---------------------------------------------------------------------------
 
-{:.output .output_traceback_line}
-```
-<ipython-input-7-6fcf9dfbd479> in <module>()
-----> 1 x
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-7-6fcf9dfbd479> in <module>()
+    ----> 1 x
+    
+
+    NameError: name 'x' is not defined
+
 
 ```
-
-{:.output .output_traceback_line}
-```
-NameError: name 'x' is not defined
-```
-
 
 **Docstrings.** Though `double` is relatively easy to understand, many functions perform complicated tasks and are difficult to use without explanation. (You may have discovered this yourself!) Therefore, a well-composed function has a name that evokes its behavior, as well as documentation.  In Python, this is called a *docstring* — a description of its behavior and expectations about its arguments. The docstring can also show example calls to the function, where the call is preceded by `>>>`.
 

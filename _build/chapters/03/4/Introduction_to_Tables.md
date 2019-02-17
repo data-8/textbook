@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/03/4/introduction-to-tables"
 interact_link: content/chapters/03/4/Introduction_to_Tables.ipynb
+kernel_name: python3
 title: 'Introduction to Tables'
 prev_page:
   url: /chapters/03/3/Calls

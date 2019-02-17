@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/13/2/bootstrap"
 interact_link: content/chapters/13/2/Bootstrap.ipynb
+kernel_name: python3
 title: 'The Bootstrap'
 prev_page:
   url: /chapters/13/1/Percentiles
