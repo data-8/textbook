@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/12/3/causality"
 interact_link: content/chapters/12/3/Causality.ipynb
+kernel_name: python3
 title: 'Causality'
 prev_page:
   url: /chapters/12/2/Deflategate

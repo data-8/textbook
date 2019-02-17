@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/08/1/applying-a-function-to-a-column"
 interact_link: content/chapters/08/1/Applying_a_Function_to_a_Column.ipynb
+kernel_name: python3
 title: 'Applying Functions to Columns'
 prev_page:
   url: /chapters/08/Functions_and_Tables

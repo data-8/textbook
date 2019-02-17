@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/06/2/selecting-rows"
 interact_link: content/chapters/06/2/Selecting_Rows.ipynb
+kernel_name: python3
 title: 'Selecting Rows'
 prev_page:
   url: /chapters/06/1/Sorting_Rows

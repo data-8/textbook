@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/09/5/finding-probabilities"
 interact_link: content/chapters/09/5/Finding_Probabilities.ipynb
+kernel_name: Python [Root]
 title: 'Finding Probabilities'
 prev_page:
   url: /chapters/09/4/Monty_Hall_Problem

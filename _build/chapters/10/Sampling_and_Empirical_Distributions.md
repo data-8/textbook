@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/10/sampling-and-empirical-distributions"
 interact_link: content/chapters/10/Sampling_and_Empirical_Distributions.ipynb
+kernel_name: Python [Root]
 title: 'Sampling and Empirical Distributions'
 prev_page:
   url: /chapters/09/5/Finding_Probabilities

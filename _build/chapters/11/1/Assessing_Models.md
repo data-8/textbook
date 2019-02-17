@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/11/1/assessing-models"
 interact_link: content/chapters/11/1/Assessing_Models.ipynb
+kernel_name: python3
 title: 'Assessing Models'
 prev_page:
   url: /chapters/11/Testing_Hypotheses

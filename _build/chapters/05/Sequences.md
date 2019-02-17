@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/05/sequences"
 interact_link: content/chapters/05/Sequences.ipynb
+kernel_name: python3
 title: 'Sequences'
 prev_page:
   url: /chapters/04/3/Comparison

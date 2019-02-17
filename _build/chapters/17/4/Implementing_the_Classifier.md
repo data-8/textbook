@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/17/4/implementing-the-classifier"
 interact_link: content/chapters/17/4/Implementing_the_Classifier.ipynb
+kernel_name: Python [Root]
 title: 'Implementing the Classifier'
 prev_page:
   url: /chapters/17/3/Rows_of_Tables

@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/12/2/deflategate"
 interact_link: content/chapters/12/2/Deflategate.ipynb
+kernel_name: python3
 title: 'Deflategate'
 prev_page:
   url: /chapters/12/1/AB_Testing

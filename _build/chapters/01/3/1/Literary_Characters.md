@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/01/3/1/literary-characters"
 interact_link: content/chapters/01/3/1/Literary_Characters.ipynb
+kernel_name: python3
 title: 'Literary Characters'
 prev_page:
   url: /chapters/01/3/Plotting_the_Classics

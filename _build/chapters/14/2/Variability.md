@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/14/2/variability"
 interact_link: content/chapters/14/2/Variability.ipynb
+kernel_name: python3
 title: 'Variability'
 prev_page:
   url: /chapters/14/1/Properties_of_the_Mean

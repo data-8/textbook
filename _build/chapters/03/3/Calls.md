@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/03/3/calls"
 interact_link: content/chapters/03/3/Calls.ipynb
+kernel_name: python3
 title: 'Call Expressions'
 prev_page:
   url: /chapters/03/2/1/Growth

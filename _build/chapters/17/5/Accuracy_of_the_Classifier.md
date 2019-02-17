@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/17/5/accuracy-of-the-classifier"
 interact_link: content/chapters/17/5/Accuracy_of_the_Classifier.ipynb
+kernel_name: python3
 title: 'The Accuracy of the Classifier'
 prev_page:
   url: /chapters/17/4/Implementing_the_Classifier

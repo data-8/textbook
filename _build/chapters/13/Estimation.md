@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/13/estimation"
 interact_link: content/chapters/13/Estimation.ipynb
+kernel_name: Python [Root]
 title: 'Estimation'
 prev_page:
   url: /chapters/12/3/Causality

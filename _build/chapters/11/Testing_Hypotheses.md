@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/11/testing-hypotheses"
 interact_link: content/chapters/11/Testing_Hypotheses.ipynb
+kernel_name: python3
 title: 'Testing Hypotheses'
 prev_page:
   url: /chapters/10/3/Empirical_Distribution_of_a_Statistic

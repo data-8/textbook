@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/08/functions-and-tables"
 interact_link: content/chapters/08/Functions_and_Tables.ipynb
+kernel_name: python3
 title: 'Functions and Tables'
 prev_page:
   url: /chapters/07/3/Overlaid_Graphs

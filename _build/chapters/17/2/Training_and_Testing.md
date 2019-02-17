@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/17/2/training-and-testing"
 interact_link: content/chapters/17/2/Training_and_Testing.ipynb
+kernel_name: python3
 title: 'Training and Testing'
 prev_page:
   url: /chapters/17/1/Nearest_Neighbors

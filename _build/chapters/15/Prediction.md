@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/15/prediction"
 interact_link: content/chapters/15/Prediction.ipynb
+kernel_name: Python [Root]
 title: 'Prediction'
 prev_page:
   url: /chapters/14/6/Choosing_a_Sample_Size

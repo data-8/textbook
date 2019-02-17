@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/04/1/numbers"
 interact_link: content/chapters/04/1/Numbers.ipynb
+kernel_name: python3
 title: 'Numbers'
 prev_page:
   url: /chapters/04/Data_Types

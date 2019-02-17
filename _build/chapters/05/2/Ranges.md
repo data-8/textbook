@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/05/2/ranges"
 interact_link: content/chapters/05/2/Ranges.ipynb
+kernel_name: python3
 title: 'Ranges'
 prev_page:
   url: /chapters/05/1/Arrays

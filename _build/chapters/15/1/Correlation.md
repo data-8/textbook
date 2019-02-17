@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/15/1/correlation"
 interact_link: content/chapters/15/1/Correlation.ipynb
+kernel_name: python3
 title: 'Correlation'
 prev_page:
   url: /chapters/15/Prediction

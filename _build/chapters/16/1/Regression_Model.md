@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/16/1/regression-model"
 interact_link: content/chapters/16/1/Regression_Model.ipynb
+kernel_name: python3
 title: 'A Regression Model'
 prev_page:
   url: /chapters/16/Inference_for_Regression

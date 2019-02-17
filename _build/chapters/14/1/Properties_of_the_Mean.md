@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/14/1/properties-of-the-mean"
 interact_link: content/chapters/14/1/Properties_of_the_Mean.ipynb
+kernel_name: python3
 title: 'Properties of the Mean'
 prev_page:
   url: /chapters/14/Why_the_Mean_Matters

@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/17/1/nearest-neighbors"
 interact_link: content/chapters/17/1/Nearest_Neighbors.ipynb
+kernel_name: python3
 title: 'Nearest Neighbors'
 prev_page:
   url: /chapters/17/Classification

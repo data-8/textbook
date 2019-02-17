@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/04/data-types"
 interact_link: content/chapters/04/Data_Types.ipynb
+kernel_name: python3
 title: 'Data Types'
 prev_page:
   url: /chapters/03/4/Introduction_to_Tables

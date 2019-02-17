@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/01/3/plotting-the-classics"
 interact_link: content/chapters/01/3/Plotting_the_Classics.ipynb
+kernel_name: python3
 title: 'Plotting the Classics'
 prev_page:
   url: /chapters/01/2/why-data-science

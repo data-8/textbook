@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/06/tables"
 interact_link: content/chapters/06/Tables.ipynb
+kernel_name: python3
 title: 'Tables'
 prev_page:
   url: /chapters/05/3/More_on_Arrays

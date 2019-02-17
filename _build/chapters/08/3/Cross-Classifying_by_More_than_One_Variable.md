@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/08/3/cross-classifying-by-more-than-one-variable"
 interact_link: content/chapters/08/3/Cross-Classifying_by_More_than_One_Variable.ipynb
+kernel_name: python3
 title: 'Cross-Classifying'
 prev_page:
   url: /chapters/08/2/Classifying_by_One_Variable

@@ -2,6 +2,7 @@
 redirect_from:
   - "/chapters/03/2/names"
 interact_link: content/chapters/03/2/Names.ipynb
+kernel_name: python3
 title: 'Names'
 prev_page:
   url: /chapters/03/1/Expressions
