@@ -189,36 +189,37 @@ A conditional statement can also have multiple clauses with multiple bodies, and
         
 There is always exactly one `if` clause, but there can be any number of `elif` clauses. Python will evaluate the `if` and `elif` expressions in the headers in order until one is found that is a true value, then execute the corresponding body. The `else` clause is optional. When an `else` header is provided, its *else body* is executed only if none of the header expressions of the previous clauses are true. The `else` clause must always come at the end (or not at all).
 
-### Example: "The Other One"
-We will now use conditional statements to define a function that seems rather artificial and contrary, but will come in handy later in the chapter. It takes an array with two elements (for example, `red` and `blue`), and another element to compare. If that element is `red`, the function returns `blue`. If the element is (for example) `blue`, the function returns `red`. That is why we'll call the function `other_one`.
+### Example: Betting on a Die
+Suppose I bet on a roll of a fair die. The rules of the game:
+
+- If the die shows 1 spot or 2 spots, I lose a dollar.
+- If the die shows 3 spots or 4 spots, I neither lose money nor gain money.
+- If the die shows 5 spots or 6 spots, I gain a dollar.
+
+We will now use conditional statements to define a function `one_bet` that takes the number of spots on the roll and returns my net gain.
 
 
 
 {:.input_area}
 ```python
-def other_one(x, a_b):
-    
-    """Compare x with the two elements of a_b;
-    if it is equal to one of them, return the other one;
-    if it is not equal to either of them, return an error message.
-    """
-    if x == a_b.item(0):
-        return a_b.item(1)
-    
-    elif x == a_b.item(1):
-        return a_b.item(0)
-    
-    else:
-        return 'The input is not valid.'
+def one_bet(x):
+    """Returns my net gain if the die shows x spots"""
+    if x <= 2:
+        return -1
+    elif x <= 4:
+        return 0
+    elif x <= 6:
+        return 1
 ```
 
 
+Let's check that the function does the right thing for each different number of spots.
+
 
 
 {:.input_area}
 ```python
-colors = make_array('red', 'blue')
-other_one('red', colors)
+one_bet(1), one_bet(2), one_bet(3), one_bet (4), one_bet(5), one_bet(6)
 ```
 
 
@@ -227,16 +228,34 @@ other_one('red', colors)
 
 {:.output .output_data_text}
 ```
-'blue'
+(-1, -1, 0, 0, 1, 1)
 ```
 
 
+
+As a review of how conditional statements work, let's see what `one_bet` does when the input is 3.
+
+- First it evaluates the `if` expression, which is `3 <= 2` which is `False`. So `one_bet` doesn't execute the `if` body.
+- Then it evaluates the first `elif` expression, which is `3 <= 4`, which is `True`. So `one_bet` executes the first `elif` body and returns 0.
+- Once the body has been executed, the process is complete. The next `elif` expression is not evaluated.
+
+If for some reason we use an input greater than 6, then the `if` expression evaluates to `False` as do both of the `elif` expressions. So `one_bet` does not execute the `if` body nor the two `elif` bodies, and there is no value when you make the call below.
 
 
 
 {:.input_area}
 ```python
-other_one('blue', colors)
+one_bet(17)
+```
+
+
+To play the game based on one roll of a die, you can use `np.random.choice` to generate the number of spots and then use that as the argument to `one_bet`. Run the cell a few times to see how the output changes.
+
+
+
+{:.input_area}
+```python
+one_bet(np.random.choice(np.arange(1, 7)))
 ```
 
 
@@ -245,25 +264,9 @@ other_one('blue', colors)
 
 {:.output .output_data_text}
 ```
-'red'
+-1
 ```
 
 
 
-
-
-{:.input_area}
-```python
-other_one('potato', colors)
-```
-
-
-
-
-
-{:.output .output_data_text}
-```
-'The input is not valid.'
-```
-
-
+At this point it is natural to want to collect the results of all the bets so that we can analyze them. In the next section we develop a way to do this without running the cell over and over again.
