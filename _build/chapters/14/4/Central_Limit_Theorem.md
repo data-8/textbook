@@ -217,7 +217,7 @@ results.hist(bins=np.arange(-80, 50, 6))
 
 That's a roughly bell shaped histogram, even though the distribution we are drawing from is nowhere near bell shaped.
 
-**Center.** The distribution is centered near -\$20, roughly. To see why, note that your winnings will be \\$1 on about 18/38 of the bets, and -\$1 on the remaining 20/38. So your average winnings per dollar bet will be roughly -5.26 cents:
+**Center.** The distribution is centered near -20 dollars, roughly. To see why, note that your winnings will be \\$1 on about 18/38 of the bets, and -$1 on the remaining 20/38. So your average winnings per dollar bet will be roughly -5.26 cents:
 
 
 
@@ -273,7 +273,7 @@ np.mean(results.column(0))
 
 {:.output .output_data_text}
 ```
--20.859
+-21.122
 ```
 
 
@@ -295,7 +295,7 @@ np.std(results.column(0))
 
 {:.output .output_data_text}
 ```
-20.257603979740548
+19.863723618697477
 ```
 
 
@@ -375,7 +375,7 @@ np.mean(delay.sample(400).column('Delay'))
 
 {:.output .output_data_text}
 ```
-15.77
+13.855
 ```
 
 

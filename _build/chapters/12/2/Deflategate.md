@@ -50,59 +50,45 @@ football.show()
         <tr>
             <td>Patriots</td> <td>11.5    </td> <td>11.8    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>10.85   </td> <td>11.2    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.15   </td> <td>11.5    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>10.7    </td> <td>11      </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.1    </td> <td>11.45   </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.6    </td> <td>11.95   </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.85   </td> <td>12.3    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.1    </td> <td>11.55   </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>10.95   </td> <td>11.35   </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>10.5    </td> <td>10.9    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>10.9    </td> <td>11.35   </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.7    </td> <td>12.35   </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.75   </td> <td>12.3    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.5    </td> <td>12.95   </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.55   </td> <td>12.15   </td>
         </tr>
@@ -136,59 +122,45 @@ football.show()
         <tr>
             <td>Patriots</td> <td>11.65   </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.025  </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.325  </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>10.85   </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.275  </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.775  </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>12.075  </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.325  </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.15   </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>10.7    </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.125  </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.525  </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.525  </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.725  </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.35   </td>
         </tr>
@@ -214,7 +186,7 @@ np.ones(11)
 
 {:.output .output_data_text}
 ```
-array([ 1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.])
+array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
 ```
 
 
@@ -235,8 +207,8 @@ start
 
 {:.output .output_data_text}
 ```
-array([ 12.5,  12.5,  12.5,  12.5,  12.5,  12.5,  12.5,  12.5,  12.5,
-        12.5,  12.5,  13. ,  13. ,  13. ,  13. ])
+array([12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5,
+       13. , 13. , 13. , 13. ])
 ```
 
 
@@ -265,59 +237,45 @@ football.show()
         <tr>
             <td>Patriots</td> <td>11.65   </td> <td>0.85         </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.025  </td> <td>1.475        </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.325  </td> <td>1.175        </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>10.85   </td> <td>1.65         </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.275  </td> <td>1.225        </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.775  </td> <td>0.725        </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>12.075  </td> <td>0.425        </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.325  </td> <td>1.175        </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.15   </td> <td>1.35         </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>10.7    </td> <td>1.8          </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>11.125  </td> <td>1.375        </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.525  </td> <td>0.475        </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.525  </td> <td>0.475        </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.725  </td> <td>0.275        </td>
         </tr>
-    </tbody>
         <tr>
             <td>Colts   </td> <td>12.35   </td> <td>0.65         </td>
         </tr>
@@ -351,7 +309,6 @@ football.group('Team', np.average)
         <tr>
             <td>Colts   </td> <td>0.46875              </td>
         </tr>
-    </tbody>
         <tr>
             <td>Patriots</td> <td>1.20227              </td>
         </tr>
@@ -394,17 +351,59 @@ observed_difference
 
 
 
-This positive difference reflects the fact that the average drop in pressure of the Patriots' balls was greater than that of the Colts.
+This positive difference reflects the fact that the average drop in pressure of the Patriots' footballs was greater than that of the Colts.
 
-### Predicting the Statistic Under the Null Hypothesis
-If the null hypothesis were true, then the Patriots' drops would be comparable to 11 drops drawn at random without replacement from all 15 drops, and the Colts' drops would be the remaining four. We can simulate this by randomly permuting all 15 drops and assigning each team the appropriate number of permuted values.
+The function `difference_of_means` takes three arguments:
+
+- the name of the table of data
+- the label of the column containing the numerical variable whose average is of interest
+- the label of the column containing the two group labels
+
+It returns the difference between the means of the two groups. 
+
+We have defined this function in an earlier section. The definition is repeated here for ease of reference.
 
 
 
 {:.input_area}
 ```python
-shuffled_drops = football.sample(with_replacement=False).column(1)
-original_and_shuffled = football.with_column('Shuffled Drop', shuffled_drops)
+def difference_of_means(table, label, group_label):
+    reduced = table.select(label, group_label)
+    means_table = reduced.group(group_label, np.average)
+    means = means_table.column(1)
+    return means.item(1) - means.item(0)
+```
+
+
+
+
+{:.input_area}
+```python
+difference_of_means(football, 'Pressure Drop', 'Team')
+```
+
+
+
+
+
+{:.output .output_data_text}
+```
+0.733522727272728
+```
+
+
+
+Notice that the difference has been calculated as Patriots' drops minus Colts' drops as before.
+
+### Predicting the Statistic Under the Null Hypothesis
+If the null hypothesis were true, then it shouldn't matter which footballs are labeled Patriots and which are labeled Colts. The distributions of the two sets of drops would be the same. We can simulate this by randomly shuffling the team labels.
+
+
+
+{:.input_area}
+```python
+shuffled_labels = football.sample(with_replacement=False).column(0)
+original_and_shuffled = football.with_column('Shuffled Label', shuffled_labels)
 original_and_shuffled.show()
 ```
 
@@ -414,68 +413,54 @@ original_and_shuffled.show()
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Team</th> <th>Pressure Drop</th> <th>Shuffled Drop</th>
+            <th>Team</th> <th>Pressure Drop</th> <th>Shuffled Label</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Patriots</td> <td>0.85         </td> <td>1.175        </td>
+            <td>Patriots</td> <td>0.85         </td> <td>Colts         </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.475        </td> <td>1.175        </td>
+            <td>Patriots</td> <td>1.475        </td> <td>Patriots      </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.175        </td> <td>1.65         </td>
+            <td>Patriots</td> <td>1.175        </td> <td>Patriots      </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.65         </td> <td>1.475        </td>
+            <td>Patriots</td> <td>1.65         </td> <td>Patriots      </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.225        </td> <td>1.225        </td>
+            <td>Patriots</td> <td>1.225        </td> <td>Patriots      </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Patriots</td> <td>0.725        </td> <td>0.475        </td>
+            <td>Patriots</td> <td>0.725        </td> <td>Patriots      </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Patriots</td> <td>0.425        </td> <td>0.725        </td>
+            <td>Patriots</td> <td>0.425        </td> <td>Patriots      </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.175        </td> <td>0.65         </td>
+            <td>Patriots</td> <td>1.175        </td> <td>Colts         </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.35         </td> <td>0.85         </td>
+            <td>Patriots</td> <td>1.35         </td> <td>Patriots      </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.8          </td> <td>0.425        </td>
+            <td>Patriots</td> <td>1.8          </td> <td>Patriots      </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Patriots</td> <td>1.375        </td> <td>0.275        </td>
+            <td>Patriots</td> <td>1.375        </td> <td>Colts         </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Colts   </td> <td>0.475        </td> <td>1.375        </td>
+            <td>Colts   </td> <td>0.475        </td> <td>Patriots      </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Colts   </td> <td>0.475        </td> <td>0.475        </td>
+            <td>Colts   </td> <td>0.475        </td> <td>Patriots      </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Colts   </td> <td>0.275        </td> <td>1.8          </td>
+            <td>Colts   </td> <td>0.275        </td> <td>Colts         </td>
         </tr>
-    </tbody>
         <tr>
-            <td>Colts   </td> <td>0.65         </td> <td>1.35         </td>
+            <td>Colts   </td> <td>0.65         </td> <td>Patriots      </td>
         </tr>
     </tbody>
 </table>
@@ -488,78 +473,77 @@ How do all the group averages compare?
 
 {:.input_area}
 ```python
-original_and_shuffled.group('Team', np.average)
+difference_of_means(original_and_shuffled, 'Pressure Drop', 'Shuffled Label')
 ```
 
 
 
 
 
-<div markdown="0" class="output output_html">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>Team</th> <th>Pressure Drop average</th> <th>Shuffled Drop average</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Colts   </td> <td>0.46875              </td> <td>1.25                 </td>
-        </tr>
-    </tbody>
-        <tr>
-            <td>Patriots</td> <td>1.20227              </td> <td>0.918182             </td>
-        </tr>
-    </tbody>
-</table>
-</div>
+{:.output .output_data_text}
+```
+0.11988636363636407
+```
 
 
 
-The two teams' average drop values are closer when the balls are randomly assigned to the two teams than they were for the balls actually used in the game.
 
+
+{:.input_area}
+```python
+difference_of_means(original_and_shuffled, 'Pressure Drop', 'Team')
+```
+
+
+
+
+
+{:.output .output_data_text}
+```
+0.733522727272728
+```
+
+
+
+The two teams' average drop values are closer when the team labels are randomly assigned to the footballs than they were for the two groups actually used in the game.
 
 ### Permutation Test
 It's time for a step that is now familiar. We will do repeated simulations of the test statistic under the null hypothesis, by repeatedly permuting the footballs and assigning random sets to the two teams.
 
-In the last section we defined a function called `permuted_sample_average_difference` to do this. Here is the definition again. The code is based on the steps we took to compare the averages of the shuffled data.
+Once again, we will use the function `one_simulated_difference` defined in an earlier section as follows.
 
 
 
 {:.input_area}
 ```python
-def permuted_sample_average_difference(table, label, group_label, repetitions):
-    
-    tbl = table.select(group_label, label)
-    
-    differences = make_array()
-    for i in np.arange(repetitions):
-        shuffled = tbl.sample(with_replacement = False).column(1)
-        original_and_shuffled = tbl.with_column('Shuffled Data', shuffled)
-
-        shuffled_means = original_and_shuffled.group(group_label, np.average).column(2)
-        simulated_difference = shuffled_means.item(1) - shuffled_means.item(0)
-    
-        differences = np.append(differences, simulated_difference)
-    
-    return differences   
+def one_simulated_difference(table, label, group_label):
+    shuffled_labels = table.sample(with_replacement = False
+                                                    ).column(group_label)
+    shuffled_table = table.select(label).with_column(
+        'Shuffled Label', shuffled_labels)
+    return difference_of_means(shuffled_table, label, 'Shuffled Label')   
 ```
 
+
+We can now use this function to create an array `differences` that contains 10,000 values of the test statistic simulated under the null hypothesis.
 
 
 
 {:.input_area}
 ```python
-differences = permuted_sample_average_difference(football, 'Pressure Drop', 'Team', 10000)
+differences = make_array()
+
+repetitions = 10000
+for i in np.arange(repetitions):
+    new_difference = one_simulated_difference(football, 'Pressure Drop', 'Team')
+    differences = np.append(differences, new_difference)
 ```
 
-
-The array `differences` contains 10,000 values of the test statistic simulated under the null hypothesis.
 
 ### Conclusion of the Test
 To calculate the empirical P-value, it's important to recall the alternative hypothesis, which is that the Patriots' drops are too large to be the result of chance variation alone.
 
-The "direction of the alternative" is towards large drops for the Patriots, with correspondingly large values for out test statistic "Patriots' average - Colts' average". So the P-value is the chance (computed under the null hypothesis) of getting a test statistic equal to our observed value of 0.73352272727272805 or *larger*.
+Larger drops for the Patriots favor the alternative hypothesis. So the P-value is the chance (computed under the null hypothesis) of getting a test statistic equal to our observed value of 0.733522727272728 or larger.
 
 
 
@@ -575,7 +559,7 @@ empirical_P
 
 {:.output .output_data_text}
 ```
-0.0041
+0.0043
 ```
 
 
@@ -597,13 +581,13 @@ print('Empirical P-value:', empirical_P)
 {:.output .output_stream}
 ```
 Observed Difference: 0.733522727272728
-Empirical P-value: 0.0041
+Empirical P-value: 0.0043
 
 ```
 
 
 {:.output .output_png}
-![png](../../../images/chapters/12/2/Deflategate_25_1.png)
+![png](../../../images/chapters/12/2/Deflategate_31_1.png)
 
 
 

@@ -2,7 +2,7 @@
 redirect_from:
   - "/chapters/11/2/multiple-categories"
 interact_link: content/chapters/11/2/Multiple_Categories.ipynb
-kernel_name: Python [Root]
+kernel_name: python3
 title: 'Multiple Categories'
 prev_page:
   url: /chapters/11/1/Assessing_Models
@@ -136,19 +136,19 @@ panels_and_sample
     </thead>
     <tbody>
         <tr>
-            <td>Asian    </td> <td>0.15    </td> <td>0.26  </td> <td>0.152787     </td>
+            <td>Asian    </td> <td>0.15    </td> <td>0.26  </td> <td>0.13214      </td>
         </tr>
         <tr>
-            <td>Black    </td> <td>0.18    </td> <td>0.08  </td> <td>0.166552     </td>
+            <td>Black    </td> <td>0.18    </td> <td>0.08  </td> <td>0.168617     </td>
         </tr>
         <tr>
-            <td>Latino   </td> <td>0.12    </td> <td>0.08  </td> <td>0.116999     </td>
+            <td>Latino   </td> <td>0.12    </td> <td>0.08  </td> <td>0.115623     </td>
         </tr>
         <tr>
-            <td>White    </td> <td>0.54    </td> <td>0.54  </td> <td>0.555403     </td>
+            <td>White    </td> <td>0.54    </td> <td>0.54  </td> <td>0.573985     </td>
         </tr>
         <tr>
-            <td>Other    </td> <td>0.01    </td> <td>0.04  </td> <td>0.00825877   </td>
+            <td>Other    </td> <td>0.01    </td> <td>0.04  </td> <td>0.00963524   </td>
         </tr>
     </tbody>
 </table>
@@ -298,7 +298,7 @@ jury_with_diffs
 
 {:.input_area}
 ```python
-jury_with_diffs.column('Absolute Difference').sum()/2
+jury_with_diffs.column('Absolute Difference').sum() / 2
 ```
 
 
@@ -372,7 +372,7 @@ total_variation_distance(sample_distribution, eligible_population)
 
 {:.output .output_data_text}
 ```
-0.020722642807983506
+0.0202202339986235
 ```
 
 
@@ -384,26 +384,32 @@ We are now ready to run a simulation to assess the model of random selection.
 ### Predicting the Statistic Under the Model of Random Selection
 The total variation distance between the distributions of the random sample and the eligible jurors is the statistic that we are using to measure the distance between the two distributions. By repeating the process of sampling, we can see how much the statistic varies across different random samples. 
 
-The code below simulates the statistic based on a large number of replications of the random sampling process, following our usual sequence of steps for simulation. The body of the `for` loop repeats the code we used to simulate one value of the statistics, and then appends the simulated value to the collection array `tvds`.
+The code below simulates the statistic based on a large number of replications of the random sampling process, following our usual sequence of steps for simulation. We first define a function that returns one simulated value of the total variation distance under the hypothesis of random selection. Then we use our function in a `for` loop to create an array `tvds` consisting of 5,000 such distances.
 
 
 
 {:.input_area}
 ```python
-# Simulate total variation distance between
-# distribution of sample selected at random
-# and distribution of eligible population
+# Simulate one simulated value of 
+# the total variation distance between
+# the distribution of a sample selected at random
+# and the distribution of the eligible population
 
-eligible_population = jury.column('Eligible')
-panel_size = 1453
+def one_simulated_tvd():
+    sample_distribution = sample_proportions(1453, eligible_population)
+    return total_variation_distance(sample_distribution, eligible_population)   
+```
 
+
+
+
+{:.input_area}
+```python
 tvds = make_array()
 
 repetitions = 5000
 for i in np.arange(repetitions):
-    sample_distribution = sample_proportions(panel_size, eligible_population)
-    new_tvd = total_variation_distance(sample_distribution, eligible_population)
-    tvds = np.append(tvds, new_tvd)
+    tvds = np.append(tvds, one_simulated_tvd())
 ```
 
 
@@ -419,7 +425,7 @@ Table().with_column('TVD', tvds).hist(bins=np.arange(0, 0.2, 0.005))
 
 
 {:.output .output_png}
-![png](../../../images/chapters/11/2/Multiple_Categories_33_0.png)
+![png](../../../images/chapters/11/2/Multiple_Categories_34_0.png)
 
 
 

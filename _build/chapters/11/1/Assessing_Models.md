@@ -73,7 +73,7 @@ sample_proportions(100, eligible_population)
 
 {:.output .output_data_text}
 ```
-array([0.28, 0.72])
+array([0.27, 0.73])
 ```
 
 
@@ -99,13 +99,26 @@ Run the cell a few times to see how the output varies.
 
 {:.output .output_data_text}
 ```
-24.0
+27.0
 ```
 
 
 
 #### Running the Simulation
-To get a sense of the variability without running the cell over and over, let's generate 10,000 simulated values of the count. The code follows the same steps that we have used in every simulation.
+To get a sense of the variability without running the cell over and over, let's generate 10,000 simulated values of the count. 
+
+The code follows the same steps that we have used in every simulation. First, we define a function to simulate one value of the count, using the code we wrote above.
+
+
+
+{:.input_area}
+```python
+def one_simulated_count():
+    return (100 * sample_proportions(100, eligible_population)).item(0)
+```
+
+
+Next, we create an array of 10,000 simulated counts by using a `for` loop.
 
 
 
@@ -115,8 +128,7 @@ counts = make_array()
 
 repetitions = 10000
 for i in np.arange(repetitions):
-    simulated_count = (100 * sample_proportions(100, eligible_population)).item(0)
-    counts = np.append(counts, simulated_count)
+    counts = np.append(counts, one_simulated_count())
 ```
 
 
@@ -135,13 +147,13 @@ Table().with_column(
 
 
 {:.output .output_png}
-![png](../../../images/chapters/11/1/Assessing_Models_9_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_11_0.png)
 
 
 
 The histogram tells us what the model of random selection predicts about our statistic, the count of black men in the sample.
 
-To generate each simulated count, we drew at 100 times at random from a population in which 26% were black. So, as you would expect, most of the simulated counts are around 26. They are not exactly 26 – there is some variation. The counts range between about 10 and 45. 
+To generate each simulated count, we drew at 100 times at random from a population in which 26% were black. So, as you would expect, most of the simulated counts are around 26. They are not exactly 26: there is some variation. The counts range from about 10 to about 45. 
 
 ### Comparing the Prediction and the Data
 Though the simulated counts are quite varied, very few of them came out to be eight or less. The value eight is far out in the left hand tail of the histogram. It's the red dot on the horizontal axis of the histogram.
@@ -159,11 +171,11 @@ plots.scatter(8, 0, color='red', s=30);
 
 
 {:.output .output_png}
-![png](../../../images/chapters/11/1/Assessing_Models_12_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_14_0.png)
 
 
 
-Thus the simulation shows that if we select a panel of 100 jurors at random from the eligible population, we are very unlikely to get counts of black men as low as the eight that were in Swain's jury panel. This is evidence that the model of random selection of the jurors in the panel is not consistent with the data from the panel. 
+The simulation shows that if we select a panel of 100 jurors at random from the eligible population, we are very unlikely to get counts of black men as low as the eight that were in Swain's jury panel. This is evidence that the model of random selection of the jurors in the panel is not consistent with the data from the panel. 
 
 When the data and a model are inconsistent, the model is hard to justify. After all, the data are real. The model is just a set of assumptions. When assumptions are at odds with reality, we have to question those assumptions.
 
@@ -216,12 +228,33 @@ The steps in the calculation:
 
 That's the statistic: the distance between the sample percent and 75.
 
+We will start by defining a function that takes a proportion and returns the absolute difference between the corresponding percent and 75.
+
+
+
+{:.input_area}
+```python
+def distance_from_75(p):
+    return abs(100*p - 75)
+```
+
+
+To simulate one value of the distance between the sample percent of purple-flowering plants and 75%, under the assumptions of Mendel's model, we have to first simulate the proportion of purple-flowering plants among 929 plants under the assumption of the model, and then calculate the discrepancy from 75%.
+
 
 
 {:.input_area}
 ```python
 model_proportions = [0.75, 0.25]
-abs(100 * sample_proportions(929, model_proportions).item(0) - 75)
+```
+
+
+
+
+{:.input_area}
+```python
+proportion_purple_in_sample = sample_proportions(929, model_proportions).item(0)
+distance_from_75(proportion_purple_in_sample)
 ```
 
 
@@ -230,7 +263,7 @@ abs(100 * sample_proportions(929, model_proportions).item(0) - 75)
 
 {:.output .output_data_text}
 ```
-0.6727664155005328
+1.7491926803014053
 ```
 
 
@@ -239,7 +272,20 @@ That's one simulated value of the distance between the sample percent of purple-
 
 #### Running the Simulation
 To get a sense of how variable the distance could be, we have to simulate it many more times.
-We will generate 10,000 values of the distance.
+
+We will generate 10,000 values of the distance. As before, we will first use the code we developed above to define a function that returns one simulated value Mendel's hypothesis.
+
+
+
+{:.input_area}
+```python
+def one_simulated_distance():
+    proportion_purple_in_sample = sample_proportions(929, model_proportions).item(0)
+    return distance_from_75(proportion_purple_in_sample)
+```
+
+
+Next, we will use a `for` loop to create 10,000 such simulated distances.
 
 
 
@@ -249,13 +295,12 @@ distances = make_array()
 
 repetitions = 10000
 for i in np.arange(repetitions):
-    one_distance = abs(100 * sample_proportions(929, model_proportions).item(0) - 75)
-    distances = np.append(distances, one_distance)
+    distances = np.append(distances, one_simulated_distance())
 ```
 
 
 ### The Prediction
-The empirical histogram of the simulated values shows the distribution of the distance as predicted by the model.
+The empirical histogram of the simulated values shows the distribution of the distance as predicted by Mendel's model.
 
 
 
@@ -269,7 +314,7 @@ Table().with_column(
 
 
 {:.output .output_png}
-![png](../../../images/chapters/11/1/Assessing_Models_20_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_29_0.png)
 
 
 
@@ -302,7 +347,7 @@ So the observed value of our statistic – the distance between Mendel's sample 
 
 {:.input_area}
 ```python
-observed_statistic = abs (100 * (705 / 929) - 75)
+observed_statistic = distance_from_75(705/929)
 observed_statistic
 ```
 
@@ -334,7 +379,7 @@ plots.scatter(observed_statistic, 0, color='red', s=30);
 
 
 {:.output .output_png}
-![png](../../../images/chapters/11/1/Assessing_Models_27_0.png)
+![png](../../../images/chapters/11/1/Assessing_Models_36_0.png)
 
 
 
