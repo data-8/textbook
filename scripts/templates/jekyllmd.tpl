@@ -32,12 +32,12 @@
 {% endblock data_text %}
 
 
-{% block error  %}
+{% block traceback_line  %}
 {:.output .output_traceback_line}
 ```
-{{- super() }}
+{{ line | strip_ansi }}
 ```
-{% endblock error  %}
+{% endblock traceback_line  %}
 
 {% block data_html %}
 <div markdown="0" class="output output_html">

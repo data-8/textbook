@@ -1,4 +1,5 @@
-"""A helper script to "clean up" all of your generated markdown and HTML files."""
+"""A helper script to "clean up" all of your notebooks and
+generated markdown files."""
 import shutil as sh
 import os.path as op
 
