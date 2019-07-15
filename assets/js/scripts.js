@@ -6,8 +6,6 @@
  * [3] Sidebar scroll preserving
  * [4] Keyboard navigation
  * [5] Right sidebar scroll highlighting
- * [6] Right sidebar scroll highlighting
- * [7] Add buttons to hide code cells
  */
 
 const togglerId = 'js-sidebar-toggle'
@@ -119,8 +117,14 @@ const initPageNav = (event) => {
   }
 };
 
-document.addEventListener('keydown', initPageNav)
-
+var keyboardListener = false;
+const initListener = () => {
+  if (keyboardListener === false) {
+    document.addEventListener('keydown', initPageNav)
+    keyboardListener = true;
+  }
+}
+initFunction(initListener);
 
 /**
  * [5] Right sidebar scroll highlighting
@@ -128,7 +132,7 @@ document.addEventListener('keydown', initPageNav)
 
 highlightRightSidebar = function() {
   var position = document.querySelector('.c-textbook__page').scrollTop;
-  position = position + (window.innerHeight / 3);  // + Manual offset
+  position = position + (window.innerHeight / 4);  // + Manual offset
 
   // Highlight the "active" menu item
   document.querySelectorAll('.c-textbook__content h2, .c-textbook__content h3').forEach((header, index) => {

@@ -24,10 +24,8 @@ clean:
 	python scripts/clean.py
 
 serve:
-	@echo "After the build completes, open http://127.0.0.1:4000/chapters/intro"
-	@echo "in your browser to view the book."
 	bundle exec guard
 
-site:
+build:
 	bundle exec jekyll build
 	touch _site/.nojekyll
