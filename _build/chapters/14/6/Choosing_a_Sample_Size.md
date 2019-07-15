@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/14/6/choosing-a-sample-size"
 interact_link: content/chapters/14/6/Choosing_a_Sample_Size.ipynb
 kernel_name: Python [Root]
+has_widgets: false
 title: 'Choosing a Sample Size'
 prev_page:
   url: /chapters/14/5/Variability_of_the_Sample_Mean
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -25,6 +31,8 @@ We are now in a position to answer this question, after making a few assumptions
 - The desired level of accuracy is that the width of the interval should be no more than 1%. That's pretty accurate! For example, the confidence interval (33.2%, 34%) would be fine but (33.2%, 35%) would not.
 
 We will work with the sample proportion of voters for Candidate A. Recall that a proportion is a mean, when the values in the population are only 0 (the type of individual you are not counting) or 1 (the type of individual you are counting).
+
+
 
 ### Width of Confidence Interval
 If we had a random sample, we could go about using the bootstrap to construct a confidence interval for the percent of voters for Candidate A. But we don't have a sample yet – we are trying to find out how big the sample has to be so that our confidence interval is as narrow as we want it to be.
@@ -52,6 +60,8 @@ $$
 \sqrt{\mbox{sample size}} ~ \ge ~ 4 \times \frac{\mbox{SD of the 0-1 population}}{0.01}
 $$
 
+
+
 ### The SD of a collection of 0's and 1's
 If we knew the SD of the population, we'd be done. We could calculate the square root of the sample size, and then take the square to get the sample size. But we don't know the SD of the population. The population consists of 1 for each voter for Candidate A, and 0 for all other voters, and *we don't know what proportion of each kind there are.* That's what we're trying to estimate.
 
@@ -59,10 +69,34 @@ So are we stuck? No, because we can *bound* the SD of the population. Here are h
 
 
 
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+# HIDDEN 
+pop_50 = make_array(1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
+pop_90 = make_array(1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
+coins = Table().with_columns(
+   "Proportion of 1's: 0.5", pop_50,
+   "Proportion of 1's: 0.9", pop_90,
+)
+coins.hist(bins=np.arange(-0.5, 1.6, 1))
+plots.scatter(0.5, -0.02, marker='^', color='darkblue', s=60)
+plots.scatter(0.9, -0.02, marker='^', color='gold', s=60)
+plots.ylim(-0.05, 1);
 
-{:.output .output_png}
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/14/6/Choosing_a_Sample_Size_4_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -76,7 +110,8 @@ The same observation would hold if we varied the proportion of 1's or let the pr
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sd = make_array()
 for i in np.arange(1, 10, 1):
@@ -90,9 +125,12 @@ zero_one_sds = Table().with_columns(
 )
 
 zero_one_sds
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -136,6 +174,11 @@ zero_one_sds
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Not surprisingly, the SD of a population with 10% 1's and 90% 0's is the same as that of a population with 90% 1's and 10% 0's. That's because you switch the bars of one histogram to get the other; there is no change in spread.
 
@@ -143,19 +186,29 @@ More importantly for our purposes, the SD increases as the proportion of 1's inc
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 zero_one_sds.scatter("Population Proportion of 1's")
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/6/Choosing_a_Sample_Size_8_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 **Summary:** The SD of a population of 1's and 0's is at most 0.5. That's the value of the SD when 50% of the population is coded 1 and the other 50% are coded 0.
+
+
 
 ### The Sample Size
 We know that 
@@ -169,3 +222,4 @@ $$
 $$
 
 So the sample size should be at least $200^2 = 40,000$. That's an enormous sample! But that's what you need if you want to guarantee great accuracy with high confidence no matter what the population looks like.
+

@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/17/3/rows-of-tables"
 interact_link: content/chapters/17/3/Rows_of_Tables.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Rows of Tables'
 prev_page:
   url: /chapters/17/2/Training_and_Testing
@@ -14,8 +15,17 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -26,33 +36,49 @@ Until this chapter, we have worked mostly with single columns of tables. But now
 
 So let's start by taking a closer look at rows.
 
+
+
 Here is the original table `ckd` containing data on patients who were tested for chronic kidney disease.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd = Table.read_table(path_data + 'ckd.csv').relabeled('Blood Glucose Random', 'Glucose')
+
 ```
+</div>
+
+</div>
+
 
 
 The data corresponding to the first patient is in row 0 of the table, consistent with Python's indexing system. The Table method `row` accesses the row by taking the index of the row as its argument:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd.row(0)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 Row(Age=48, Blood Pressure=70, Specific Gravity=1.005, Albumin=4, Sugar=0, Red Blood Cells='normal', Pus Cell='abnormal', Pus Cell clumps='present', Bacteria='notpresent', Glucose=117, Blood Urea=56, Serum Creatinine=3.8, Sodium=111, Potassium=2.5, Hemoglobin=11.2, Packed Cell Volume=32, White Blood Cell Count=6700, Red Blood Cell Count=3.9, Hypertension='yes', Diabetes Mellitus='no', Coronary Artery Disease='no', Appetite='poor', Pedal Edema='yes', Anemia='yes', Class=1)
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -64,19 +90,27 @@ However, rows share some characteristics with arrays.  You can use `item` to acc
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd.row(0).item(3)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 4
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -87,7 +121,8 @@ Recall that in the previous section we tried to classify the patients as 'CKD' o
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd = Table().with_columns(
     'Hemoglobin', standard_units(ckd.column('Hemoglobin')),
@@ -101,9 +136,12 @@ color_table = Table().with_columns(
 )
 ckd = ckd.join('Class', color_table)
 ckd
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -151,22 +189,35 @@ ckd
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Here is a scatter plot of the two attributes, along with a red point corresponding to Alice, a new patient. Her value of hemoglobin is 0 (that is, at the average) and glucose 1.1 (that is, 1.1 SDs above average).
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 alice = make_array(0, 1.1)
 ckd.scatter('Hemoglobin', 'Glucose', colors='Color')
 plots.scatter(alice.item(0), alice.item(1), color='red', s=30);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/3/Rows_of_Tables_12_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -174,20 +225,28 @@ To find the distance between Alice's point and any of the other points, we only 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd_attributes = ckd.select('Hemoglobin', 'Glucose')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd_attributes
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -235,46 +294,67 @@ ckd_attributes
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Each row consists of the coordinates of one point in our training sample. **Because the rows now consist only of numerical values**, it is possible to convert them to arrays.  For this, we use the function `np.array`, which converts any kind of sequential object, like a row, to an array. (Our old friend `make_array` is for *creating* arrays, not for *converting* other kinds of sequences to arrays.)
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd_attributes.row(3)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 Row(Hemoglobin=0.5961076648232668, Glucose=-0.19065363034327712)
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.array(ckd_attributes.row(3))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([ 0.59610766, -0.19065363])
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 This is very handy because we can now use array operations on the data in each row.
+
+
 
 ### Distance Between Points When There are Two Attributes
 The main calculation we need to do is to find the distance between Alice's point and any other point. For this, the first thing we need is a way to compute the distance between any pair of points. 
@@ -289,43 +369,59 @@ $$
 
 
 
+
+
 In the next section we'll see that this formula has a straightforward extension when there are more than two attributes. For now, let's use the formula and array operations to find the distance between Alice and the patient in Row 3.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 patient3 = np.array(ckd_attributes.row(3))
 alice, patient3
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 (array([0. , 1.1]), array([ 0.59610766, -0.19065363]))
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 distance = np.sqrt(np.sum((alice - patient3)**2))
 distance
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 1.421664918881847
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -333,35 +429,49 @@ We're going to need the distance between Alice and a bunch of points, so let's w
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def distance(point1, point2):
     """Returns the Euclidean distance between point1 and point2.
     
     Each argument is an array containing the coordinates of a point."""
     return np.sqrt(np.sum((point1 - point2)**2))
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 distance(alice, patient3)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 1.421664918881847
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 We have begun to build our classifier: the `distance` function is the first building block. Now let's work on the next piece.
+
+
 
 ### Using `apply` on an Entire Row
 Recall that if you want to apply a function to each element of a column of a table, one way to do that is by the call `table_name.apply(function_name, column_label)`. This evaluates to an array consisting of the values of the function when we call it on each element of the column. So each entry of the array is based on the corresponding row of the table.
@@ -370,13 +480,17 @@ If you use `apply` without specifying a column label, then the entire row is pas
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 t = ckd_attributes.take(np.arange(5))
 t
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -408,6 +522,11 @@ t
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Just as an example, suppose that for each patient we want to know how unusual their most unusual attribute is.  Concretely, if a patient's hemoglobin level is further from the average than her glucose level, we want to know how far it is from the average.  If her glucose level is further from the average than her hemoglobin level, we want to know how far that is from the average instead.
 
@@ -415,28 +534,40 @@ That's the same as taking the maximum of the absolute values of the two quantiti
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def max_abs(row):
     return np.max(np.abs(np.array(row)))
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 max_abs(t.row(4))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.4996102825918697
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -444,23 +575,33 @@ And now we can apply `max_abs` to each row of the table `t`:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 t.apply(max_abs)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([0.4568837 , 1.15300352, 0.77013762, 0.59610766, 0.49961028])
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 This way of using `apply` will help us create the next building block of our classifier.
+
+
 
 ### Alice's $k$ Nearest Neighbors
 If we want to classify Alice using a k-nearest neighbor classifier, we have to identify her $k$ nearest neighbors. What are the steps in this process? Suppose $k = 5$. Then the steps are:
@@ -474,19 +615,27 @@ Here's Alice:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 alice
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([0. , 1.1])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -494,29 +643,41 @@ What we need is a function that finds the distance between Alice and another poi
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def distance_from_alice(row):
     """Returns distance between Alice and a row of the attributes table"""
     return distance(alice, np.array(row))
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 distance_from_alice(ckd_attributes.row(3))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 1.421664918881847
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -524,21 +685,29 @@ Now we can `apply` the function `distance_from_alice` to each row of `ckd_attrib
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 distances = ckd_attributes.apply(distance_from_alice)
 ckd_with_distances = ckd.with_column('Distance from Alice', distances)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd_with_distances
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -586,18 +755,27 @@ ckd_with_distances
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 For Step 2, let's sort the table in increasing order of distance:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sorted_by_distance = ckd_with_distances.sort('Distance from Alice')
 sorted_by_distance
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -645,18 +823,27 @@ sorted_by_distance
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Step 3: The top 5 rows correspond to Alice's 5 nearest neighbors; you can replace 5 by any other positive integer.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 alice_5_nearest_neighbors = sorted_by_distance.take(np.arange(5))
 alice_5_nearest_neighbors
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -688,6 +875,11 @@ alice_5_nearest_neighbors
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Three of Alice's five nearest neighbors are blue points and two are gold. So a 5-nearest neighbor classifier would classify Alice as blue: it would predict that Alice has chronic kidney disease.
 
@@ -695,11 +887,20 @@ The graph below zooms in on Alice and her five nearest neighbors. The two gold o
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/17/3/Rows_of_Tables_49_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 We are well on our way to implementing our k-nearest neighbor classifier. In the next two sections we will put it together and assess its accuracy.
+

@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/18/1/more-likely-than-not-binary-classifier"
 interact_link: content/chapters/18/1/More_Likely_than_Not_Binary_Classifier.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'A "More Likely Than Not" Binary Classifier'
 prev_page:
   url: /chapters/18/Updating_Predictions
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -38,6 +44,8 @@ We have a pretty simple classifier! But now suppose I give you some additional i
 
 Would this knowledge change your classification?
 
+
+
 ### Updating the Prediction Based on New Information
 Now that we know the student has declared a major, it becomes important to look at the relation between year and major declaration. It's still true that more students are Second Years than Third Years. But it's also true that among the Third Years, a much higher percent have declared their major than among the Second Years. Our classifier has to take both of these observations into account.
 
@@ -45,15 +53,23 @@ To visualize this, we will use a table `students` that consists of one row for e
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 students.show(3)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -77,17 +93,26 @@ students.show(3)
 <p>... (97 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 To check that the proportions are correct, let's use `pivot` to cross-classify each student according to the two variables.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 students.pivot('Major', 'Year')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -107,6 +132,11 @@ students.pivot('Major', 'Year')
         </tr>
     </tbody>
 </table>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -127,19 +157,27 @@ In other words, the chance that we are correct is **the proportion of Third Year
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 32/(30+32)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.5161290322580645
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -150,12 +188,16 @@ So the calculation depends only on the proportions in the different categories, 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 students.pivot('Major', 'Year')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -178,8 +220,15 @@ students.pivot('Major', 'Year')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ![Students Tree Diagram](../../../images/tree_students.png)
+
+
 
 Like the pivot table, this diagram *partitions* the students into four distinct groups known as "branches". Notice that the "Third Year, Declared" branch contains the proportion 0.4 x 0.8 = 0.32 of the students, corresponding to the 32 students in the "Third Year, Declared" cell of the pivot table. The "Second Year, Declared" branch contains 0.6 x 0.5 = 0.3 of the students, corresponding to the 30 in the "Second Year, Declared" cell of the pivot table.
 
@@ -191,19 +240,27 @@ That is, the answer is **the proportion of Third Years among students who are De
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 (0.4 * 0.8)/(0.6 * 0.5  +  0.4 * 0.8)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.5161290322580645
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -219,6 +276,8 @@ We will state the rule in the context of our population of students. First, some
 **Posterior probabilities.** These are the chances of the two Year categories, *after* we have taken into account information about the Major declaration status. We computed one of these:
 
 The *posterior probability* that the student is a Third Year, given that the student has Declared, is denoted $P(\text{Third Year} ~\big{\vert}~ Declared)$ and is calculated as follows.
+
+
 
 $$
 \begin{align*}
@@ -244,19 +303,27 @@ $$
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 (0.6 * 0.5)/(0.6 * 0.5  +  0.4 * 0.8)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.4838709677419354
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -270,4 +337,7 @@ $$
 \mbox{posterior} ~ \propto ~ \mbox{prior} \times \mbox{likelihood}
 $$
 
+
+
 Formulas are great for efficiently describing calculations. But in settings like our example about students, it is simpler not to think in terms of formulas. Just use the tree diagram.
+

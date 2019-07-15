@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/09/1/conditional-statements"
 interact_link: content/chapters/09/1/Conditional_Statements.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Conditional Statements'
 prev_page:
   url: /chapters/09/Randomness
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -27,30 +33,42 @@ Let us start defining a function that returns the sign of a number.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def sign(x):
     
     if x > 0:
         return 'Positive'
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sign(3)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 'Positive'
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -58,17 +76,24 @@ This function returns the correct sign if the input is a positive number. But if
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sign(-3)
+
 ```
+</div>
+
+</div>
+
 
 
 So let us refine our function to return `Negative` if the input is a negative number. We can do this by adding an `elif` clause, where `elif` if Python's shorthand for the phrase "else, if".
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def sign(x):
     
@@ -77,26 +102,39 @@ def sign(x):
     
     elif x < 0:
         return 'Negative'
+
 ```
+</div>
+
+</div>
+
 
 
 Now `sign` returns the correct answer when the input is -3:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sign(-3)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 'Negative'
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -104,7 +142,8 @@ What if the input is 0? To deal with this case, we can add another `elif` clause
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def sign(x):
     
@@ -116,24 +155,35 @@ def sign(x):
     
     elif x == 0:
         return 'Neither positive nor negative'
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sign(0)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 'Neither positive nor negative'
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -141,7 +191,8 @@ Equivalently, we can replaced the final `elif` clause by an `else` clause, whose
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def sign(x):
     
@@ -153,24 +204,35 @@ def sign(x):
     
     else:
         return 'Neither positive nor negative'
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sign(0)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 'Neither positive nor negative'
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -189,6 +251,8 @@ A conditional statement can also have multiple clauses with multiple bodies, and
         
 There is always exactly one `if` clause, but there can be any number of `elif` clauses. Python will evaluate the `if` and `elif` expressions in the headers in order until one is found that is a true value, then execute the corresponding body. The `else` clause is optional. When an `else` header is provided, its *else body* is executed only if none of the header expressions of the previous clauses are true. The `else` clause must always come at the end (or not at all).
 
+
+
 ### Example: Betting on a Die
 Suppose I bet on a roll of a fair die. The rules of the game:
 
@@ -200,7 +264,8 @@ We will now use conditional statements to define a function `one_bet` that takes
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def one_bet(x):
     """Returns my net gain if the die shows x spots"""
@@ -210,26 +275,39 @@ def one_bet(x):
         return 0
     elif x <= 6:
         return 1
+
 ```
+</div>
+
+</div>
+
 
 
 Let's check that the function does the right thing for each different number of spots.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 one_bet(1), one_bet(2), one_bet(3), one_bet (4), one_bet(5), one_bet(6)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 (-1, -1, 0, 0, 1, 1)
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -243,30 +321,45 @@ If for some reason we use an input greater than 6, then the `if` expression eval
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 one_bet(17)
+
 ```
+</div>
+
+</div>
+
 
 
 To play the game based on one roll of a die, you can use `np.random.choice` to generate the number of spots and then use that as the argument to `one_bet`. Run the cell a few times to see how the output changes.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 one_bet(np.random.choice(np.arange(1, 7)))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -1
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 At this point it is natural to want to collect the results of all the bets so that we can analyze them. In the next section we develop a way to do this without running the cell over and over again.
+

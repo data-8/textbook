@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/01/3/1/literary-characters"
 interact_link: content/chapters/01/3/1/Literary_Characters.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Literary Characters'
 prev_page:
   url: /chapters/01/3/Plotting_the_Classics
@@ -14,8 +15,17 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -25,7 +35,8 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Count how many times the names Jim, Tom, and Huck appear in each chapter.
 
@@ -41,12 +52,19 @@ counts = Table().with_columns([
 cum_counts = counts.cumsum().with_column('Chapter', np.arange(1, 44, 1))
 cum_counts.plot(column_for_xticks=3)
 plots.title('Cumulative Number of Times Each Name Appears', y=1.08);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../../images/chapters/01/3/1/Literary_Characters_3_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -54,18 +72,24 @@ In the plot above, the horizontal axis shows chapter numbers and the vertical ax
 
 You can see that Jim is a central character by the large number of times his name appears. Notice how Tom is hardly mentioned for much of the book until he arrives and joins Huck and Jim, after Chapter 30. His curve and Jim's rise sharply at that point, as the action involving both of them intensifies. As for Huck, his name hardly appears at all, because he is the narrator. 
 
+
+
 *Little Women* is a story of four sisters growing up together during the civil war. In this book, chapter numbers are spelled out and chapter titles are written in all capital letters.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # The chapters of Little Women, in a table
 
 Table().with_column('Chapters', little_women_chapters)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -153,12 +177,18 @@ As spring came on, a new set of  ...</td>
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 We can track the mentions of main characters to learn about the plot of this book as well.  The protagonist Jo interacts with her sisters Meg, Beth, and Amy regularly, up until Chapter 27 when she moves to New York alone.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Counts of names in the chapters of Little Women
 
@@ -176,13 +206,21 @@ counts = Table().with_columns([
 cum_counts = counts.cumsum().with_column('Chapter', np.arange(1, 48, 1))
 cum_counts.plot(column_for_xticks=5)
 plots.title('Cumulative Number of Times Each Name Appears', y=1.08);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../../images/chapters/01/3/1/Literary_Characters_8_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Laurie is a young man who marries one of the girls in the end. See if you can use the plots to guess which one.
+

@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/14/4/central-limit-theorem"
 interact_link: content/chapters/14/4/Central_Limit_Theorem.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'The Central Limit Theorem'
 prev_page:
   url: /chapters/14/3/SD_and_the_Normal_Curve
@@ -14,8 +15,17 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -24,17 +34,23 @@ Very few of the data histograms that we have seen in this course have been bell 
 
 The examples below show two very different situations in which an approximate bell shape appears in such histograms.
 
+
+
 ### Net Gain in Roulette
 In an earlier section, the bell appeared as the rough shape of the total amount of money we would make if we placed the same bet repeatedly on different spins of a roulette wheel. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 wheel
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -82,34 +98,49 @@ wheel
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Recall that the bet on red pays even money, 1 to 1. We defined the function `red_winnings` that returns the net winnings on one \\$1 bet on red. Specifically, the function takes a color as its argument and returns 1 if the color is red. For all other colors it returns -1.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def red_winnings(color):
     if color == 'red':
         return 1
     else:
         return -1
+
 ```
+</div>
+
+</div>
+
 
 
 The table `red` shows each pocket's winnings on red.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 red = wheel.with_column(
     'Winnings: Red', wheel.apply(red_winnings, 'Color')
     )
 red
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -157,20 +188,33 @@ red
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Your net gain on one bet is one random draw from the `Winnings: Red` column. There is an 18/38 chance making \\$1, and a 20/38 chance of making -$1. This probability distribution is shown in the histogram below.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 red.select('Winnings: Red').hist(bins=np.arange(-1.5, 1.6, 1))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_10_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -182,7 +226,8 @@ The code below simulates your net gain if you bet \\$1 on red on 400 different s
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 num_bets = 400
 repetitions = 10000
@@ -198,20 +243,31 @@ for i in np.arange(repetitions):
 results = Table().with_column(
     'Net Gain on Red', net_gain_red
     )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 results.hist(bins=np.arange(-80, 50, 6))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_13_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -221,20 +277,28 @@ That's a roughly bell shaped histogram, even though the distribution we are draw
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 average_per_bet = 1*(18/38) + (-1)*(20/38)
 average_per_bet
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -0.05263157894736842
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -242,19 +306,27 @@ So in 400 bets you expect that your net gain will be about -\$21:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 400 * average_per_bet
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -21.052631578947366
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -262,19 +334,27 @@ For confirmation, we can compute the mean of the 10,000 simulated net gains:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(results.column(0))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -21.122
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -284,46 +364,68 @@ In the next section we will see where the \\$20 comes from. For now, let's confi
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.std(results.column(0))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 19.863723618697477
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 **Summary.** The net gain in 400 bets is the sum of the 400 amounts won on each individual bet. The probability distribution of that sum is approximately normal, with an average and an SD that we can approximate.
+
+
 
 ### Average Flight Delay
 The table `united` contains data on departure delays of 13,825 United Airlines domestic flights out of San Francisco airport in the summer of 2015. As we have seen before, the distribution of delays has a long right-hand tail.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united = Table.read_table(path_data + 'united_summer2015.csv')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united.select('Delay').hist(bins=np.arange(-20, 300, 10))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_25_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -331,22 +433,30 @@ The mean delay was about 16.6 minutes and the SD was about 39.5 minutes. Notice 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 mean_delay = np.mean(united.column('Delay'))
 sd_delay = np.std(united.column('Delay'))
 
 mean_delay, sd_delay
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 (16.658155515370705, 39.480199851609314)
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -356,27 +466,39 @@ In the sample, what could the average delay be? We expect it to be around 16 or 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 delay = united.select('Delay')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(delay.sample(400).column('Delay'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 13.855
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -384,7 +506,8 @@ The sample average varies according to how the sample comes out, so we will simu
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sample_size = 400
 repetitions = 10000
@@ -399,24 +522,37 @@ for i in np.arange(repetitions):
 results = Table().with_column(
     'Sample Mean', means
 )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 results.hist(bins=np.arange(10, 25, 0.5))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_33_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Once again, we see a rough bell shape, even though we are drawing from a very skewed distribution. The bell is centered somewhere between 16 ad 17, as we expect.
+
+
 
 ### Central Limit Theorem
 
@@ -428,6 +564,8 @@ As we noted when we were studying Chebychev's bounds, results that can be applie
 
 The Central Limit Theorem makes it possible to make inferences with very little knowledge about the population, provided we have a large random sample. That is why it is central to the field of statistical inference.
 
+
+
 ### Proportion of Purple Flowers
 Recall Mendel's probability model for the colors of the flowers of a species of pea plant. The model says that the flower colors of the plants are like draws made at random with replacement from {Purple, Purple, Purple, White}.
 
@@ -437,16 +575,20 @@ We can confirm this by simulation. Let's simulate the proportion of purple-flowe
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 colors = make_array('Purple', 'Purple', 'Purple', 'White')
 
 model = Table().with_column('Color', colors)
 
 model
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -475,10 +617,14 @@ model
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 props = make_array()
 
@@ -491,20 +637,31 @@ for i in np.arange(repetitions):
     props = np.append(props, new_prop)
     
 results = Table().with_column('Sample Proportion: 200', props)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 results.hist(bins=np.arange(0.65, 0.85, 0.01))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_39_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -514,7 +671,8 @@ How would this distribution change if we increased the sample size? Let's run th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 props2 = make_array()
 
@@ -526,20 +684,31 @@ for i in np.arange(repetitions):
     props2 = np.append(props2, new_prop)
     
 results = results.with_column('Sample Proportion: 800', props2)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 results.hist(bins=np.arange(0.65, 0.85, 0.01))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/4/Central_Limit_Theorem_42_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -548,3 +717,4 @@ Both distributions are approximately normal but one is narrower than the other. 
 This should not be surprising.  We have leaned many times on the intuition that a larger sample size generally reduces the variability of a statistic.  However, in the case of a sample average, we can *quantify* the relationship between sample size and variability.
 
 Exactly how does the sample size affect the variability of a sample average or proportion? That is the question we will examine in the next section.
+

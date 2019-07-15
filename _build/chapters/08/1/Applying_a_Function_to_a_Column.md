@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/08/1/applying-a-function-to-a-column"
 interact_link: content/chapters/08/1/Applying_a_Function_to_a_Column.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Applying Functions to Columns'
 prev_page:
   url: /chapters/08/Functions_and_Tables
@@ -14,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### Applying a Function to a Column
@@ -22,65 +28,89 @@ We have seen many examples of creating new columns of tables by applying functio
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def cut_off_at_100(x):
     """The smaller of x and 100"""
     return min(x, 100)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cut_off_at_100(17)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 17
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cut_off_at_100(117)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 100
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cut_off_at_100(100)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 100
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -90,20 +120,26 @@ In our earlier examples using Census data, we saw that the variable `AGE` had a 
 
 To use this function on many ages at once, we will have to be able to *refer* to the function itself, without actually calling it.  Analogously, we might show a cake recipe to a chef and ask her to use it to bake 6 cakes.  In that scenario, we are not using the recipe to bake any cakes ourselves; our role is merely to refer the chef to the recipe.  Similarly, we can ask a table to call `cut_off_at_100` on 6 different numbers in a column.
 
+
+
 First, we create the table `ages` with a column for people and one for their ages. For example, person `C` is 52 years old.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ages = Table().with_columns(
     'Person', make_array('A', 'B', 'C', 'D', 'E', 'F'),
     'Age', make_array(17, 117, 52, 100, 6, 101)
 )
 ages
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -138,6 +174,11 @@ ages
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ### `apply`
 
@@ -145,19 +186,27 @@ To cut off each of the ages at 100, we will use the a new Table method. The `app
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ages.apply(cut_off_at_100, 'Age')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([ 17, 100,  52, 100,   6, 100])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -167,14 +216,18 @@ This array, which has the same length as the original `Age` column of the `ages`
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ages.with_column(
     'Cut Off Age', ages.apply(cut_off_at_100, 'Age')
 )
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -209,6 +262,11 @@ ages.with_column(
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ### Functions as Values
 We've seen that Python has many kinds of values.  For example, `6` is a number value, `"cake"` is a text value, `Table()` is an empty table, and `ages` is a name for a table value (since we defined it above).
@@ -219,19 +277,27 @@ We can refer to any function by writing its name, without the parentheses or arg
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cut_off_at_100
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 <function __main__.cut_off_at_100(x)>
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -241,33 +307,49 @@ Just like we can define new names for other values, we can define new names for 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cut_off = cut_off_at_100
+
 ```
+</div>
+
+</div>
+
 
 
 Now `cut_off` is a name for a function.  It's the same function as `cut_off_at_100`, so the printed value is exactly the same.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cut_off
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 <function __main__.cut_off_at_100(x)>
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 Let us see another application of `apply`.
+
+
 
 ### Example: Prediction
 
@@ -279,14 +361,18 @@ The data below are Galton's carefully collected measurements on the heights of p
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Galton's data on heights of parents and their adult children
 galton = Table.read_table(path_data + 'galton.csv')
 galton
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -334,6 +420,11 @@ galton
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 A primary reason for collecting the data was to be able to predict the adult height of a child born to parents similar to those in the dataset. Let us try to do this, using midparent height as the variable on which to base our prediction. Thus midparent height is our *predictor* variable.
 
@@ -341,13 +432,17 @@ The table `heights` consists of just the midparent heights and child's heights. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights = galton.select(3, 7).relabeled(0, 'MidParent').relabeled(1, 'Child')
 heights
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -395,18 +490,29 @@ heights
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights.scatter(0)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_24_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -422,18 +528,26 @@ Ignore the code, and just focus on understanding the mental process of arriving 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights.scatter('MidParent')
 _ = plots.plot([67.5, 67.5], [50, 85], color='red', lw=2)
 _ = plots.plot([68.5, 68.5], [50, 85], color='red', lw=2)
 _ = plots.scatter(68, 66.24, color='gold', s=40)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_26_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -441,13 +555,17 @@ In order to calculate exactly where the gold dot should be, we first need to ind
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 close_to_68 = heights.where('MidParent', are.between(67.5, 68.5))
 close_to_68
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -495,24 +613,37 @@ close_to_68
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The predicted height of a child who has a midparent height of 68 inches is the average height of the children in these rows. That's 66.24 inches.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 close_to_68.column('Child').mean()
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 66.24045801526718
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -520,7 +651,8 @@ We now have a way to predict the height of a child given any value of the midpar
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def predict_child(mpht):
     """Predict the height of a child whose parents have a midparent height of mpht.
@@ -531,44 +663,63 @@ def predict_child(mpht):
     
     close_points = heights.where('MidParent', are.between(mpht-0.5, mpht + 0.5))
     return close_points.column('Child').mean()                       
+
 ```
+</div>
+
+</div>
+
 
 
 Given a midparent height of 68 inches, the function `predict_child` returns the same prediction (66.24 inches) as we got earlier. The advantage of defining the function is that we can easily change the value of the predictor and get a new prediction.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 predict_child(68)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 66.24045801526718
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 predict_child(74)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 70.41578947368421
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -576,24 +727,32 @@ How good are these predictions? We can get a sense of this by comparing the pred
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Apply predict_child to all the midparent heights
 
 heights_with_predictions = heights.with_column(
     'Prediction', heights.apply(predict_child, 'MidParent')
 )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights_with_predictions
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -641,29 +800,49 @@ heights_with_predictions
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 To see where the predictions lie relative to the observed data, we can draw overlaid scatter plots with `MidParent` as the common horizontal axis.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights_with_predictions.scatter('MidParent')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/08/1/Applying_a_Function_to_a_Column_40_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 The graph of gold dots is called a *graph of averages,* because each gold dot is the center of a vertical strip like the one we drew earlier. Each one provides a prediction of a child's height given the midparent height. For example, the scatter shows that for a midparent height of 72 inches, the predicted height of the child would be somewhere between 68 inches and 69 inches, and indeed `predict_child(72)` returns 68.5.
 
+
+
 Galton's calculations and visualizations were very similar to ours, except that he didn't have Python. He drew the graph of averages through the scatter diagram and noticed that it roughly followed a straight line. This straight line is now called the *regression line* and is one of the most common methods of making predictions. Galton's friend, the mathematician Karl Pearson, used these analyses to formalize the notion of *correlation*. 
 
+
+
 This example, like the one about John Snow's analysis of cholera deaths, shows how some of the fundamental concepts of modern data science have roots going back more than a century. Galton's methods such as the one we have used here are precursors to *nearest neighbor* prediction methods that now have powerful applications in diverse settings. The modern field of *machine learning* includes the automation of such methods to make predictions based on vast and rapidly evolving datasets. 
+
+
 
 <a id='footnotes'></a>
 ##### Footnotes
 [1] Galton multiplied the heights of all the women by 1.08 before taking the average height of the men and the women. For a discussion of this, see [Chance](http://chance.amstat.org/2013/09/1-pagano/), a magazine published by the American Statistical Association.
+

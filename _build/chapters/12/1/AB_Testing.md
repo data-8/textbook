@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/12/1/ab-testing"
 interact_link: content/chapters/12/1/AB_Testing.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'A/B Testing'
 prev_page:
   url: /chapters/12/Comparing_Two_Samples
@@ -14,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### A/B Testing
@@ -21,18 +27,24 @@ In modern data analytics, deciding whether two numerical samples come from the s
 
 We will develop the method in the context of an example. The data come from a sample of newborns in a large hospital system. We will treat it as if it were a simple random sample though the sampling was done in multiple stages. [Stat Labs](https://www.stat.berkeley.edu/~statlabs/) by Deborah Nolan and Terry Speed has details about a larger dataset from which this set is drawn. 
 
+
+
 ### Smokers and Nonsmokers
 The table `births` contains the following variables for 1,174 mother-baby pairs: the baby's birth weight in ounces, the number of gestational days, the mother's age in completed years, the mother's height in inches, pregnancy weight in pounds, and whether or not the mother smoked during pregnancy.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 births = Table.read_table(path_data + 'baby.csv')
 births
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -80,6 +92,11 @@ births
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 One of the aims of the study was to see whether maternal smoking was associated with birth weight. Let's see what we can say about the two variables.
 
@@ -87,20 +104,28 @@ We'll start by selecting just `Birth Weight` and `Maternal Smoker`. There are 71
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 smoking_and_birthweight = births.select('Maternal Smoker', 'Birth Weight')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 smoking_and_birthweight.group('Maternal Smoker')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -123,26 +148,41 @@ smoking_and_birthweight.group('Maternal Smoker')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Let's look at the distribution of the birth weights of the babies of the non-smoking mothers compared to those of the smoking mothers. To generate two overlaid histograms, we will use `hist` with the optional `group` argument which is a column label or index. The rows of the table are first grouped by this column and then a histogram is drawn for each one.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 smoking_and_birthweight.hist('Birth Weight', group = 'Maternal Smoker')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/12/1/AB_Testing_8_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 The distribution of the weights of the babies born to mothers who smoked appears to be based slightly to the left of the distribution corresponding to non-smoking mothers. The weights of the babies of the mothers who smoked seem lower on average than the weights of the babies of the non-smokers. 
 
 This raises the question of whether the difference reflects just chance variation or a difference in the distributions in the larger population. Could it be that there is no difference between the two distributions in the population, but we are seeing a difference in the samples just because of the mothers who happened to be selected?
+
+
 
 ### The Hypotheses
 We can try to answer this question by a test of hypotheses. The chance model that we will test says that there is no underlying difference in the popuations; the distributions in the samples are different just due to chance. 
@@ -153,6 +193,8 @@ Formally, this is the null hypothesis. We are going to have to figure out how to
 
 **Alternative hypothesis:** In the population, the babies of the mothers who smoke have a lower birth weight, on average, than the babies of the non-smokers.
 
+
+
 ### Test Statistic
 The alternative hypothesis compares the average birth weights of the two groups and says that the average for the mothers who smoke is smaller. Therefore it is reasonable for us to use the difference between the two group means as our statistic. 
 
@@ -162,13 +204,17 @@ The observed value of the test statistic is about $-9.27$ ounces.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 means_table = smoking_and_birthweight.group('Maternal Smoker', np.average)
 means_table
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -191,24 +237,35 @@ means_table
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 means = means_table.column(1)
 observed_difference = means.item(1) - means.item(0)
 observed_difference
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -9.266142572024918
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -222,37 +279,53 @@ It returns the difference between the means of the `True` group and the `False` 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def difference_of_means(table, label, group_label):
     reduced = table.select(label, group_label)
     means_table = reduced.group(group_label, np.average)
     means = means_table.column(1)
     return means.item(1) - means.item(0)
+
 ```
+</div>
+
+</div>
+
 
 
 To check that the function is working, let's use it to calculate the observed difference between the means of the two groups in the sample.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 difference_of_means(births, 'Birth Weight', 'Maternal Smoker')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -9.266142572024918
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 That's the same as the value of `observed_difference` calculated earlier.
+
+
 
 ### Predicting the Statistic Under the Null Hypothesis
 
@@ -266,12 +339,16 @@ Let's see how to do this. It's always a good idea to start with the data.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 smoking_and_birthweight
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -319,6 +396,11 @@ smoking_and_birthweight
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 There are 1,174 rows in the table. To shuffle all the labels, we will draw a random sample of 1,174 rows without replacement. Then the sample will include all the rows of the table, in random order. 
 
@@ -326,21 +408,29 @@ We can use the Table method `sample` with the optional `with_replacement=False` 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 shuffled_labels = smoking_and_birthweight.sample(with_replacement = False).column(0)
 original_and_shuffled = smoking_and_birthweight.with_column('Shuffled Label', shuffled_labels)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 original_and_shuffled
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -388,6 +478,11 @@ original_and_shuffled
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Each baby's mother now has a random smoker/non-smoker label in the column `Shuffled Label`, while her original label is in `Maternal Smoker`. If the null hypothesis is true, all the random re-arrangements of the labels should be equally likely.
 
@@ -395,14 +490,18 @@ Let's see how different the average weights are in the two randomly labeled grou
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 shuffled_only = original_and_shuffled.drop('Maternal Smoker')
 shuffled_group_means = shuffled_only.group('Shuffled Label', np.average)
 shuffled_group_means
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -425,42 +524,61 @@ shuffled_group_means
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The averages of the two randomly selected groups are quite a bit closer than the averages of the two original groups. We can use our function `difference_of_means` to find the two differences.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 difference_of_means(original_and_shuffled, 'Birth Weight', 'Shuffled Label')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -0.6306595365418843
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 difference_of_means(original_and_shuffled, 'Birth Weight', 'Maternal Smoker')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -9.266142572024918
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -476,7 +594,8 @@ It returns the difference between the means of two groups formed by randomly shu
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def one_simulated_difference(table, label, group_label):
     shuffled_labels = table.sample(with_replacement = False
@@ -484,26 +603,39 @@ def one_simulated_difference(table, label, group_label):
     shuffled_table = table.select(label).with_column(
         'Shuffled Label', shuffled_labels)
     return difference_of_means(shuffled_table, label, 'Shuffled Label')   
+
 ```
+</div>
+
+</div>
+
 
 
 Run the cell below a few times to see how the output changes.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 one_simulated_difference(births, 'Birth Weight', 'Maternal Smoker')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -1.8218839983545791
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -512,7 +644,8 @@ Tests based on random permutations of the data are called *permutation tests*. W
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 differences = make_array()
 
@@ -520,7 +653,12 @@ repetitions = 5000
 for i in np.arange(repetitions):
     new_difference = one_simulated_difference(births, 'Birth Weight', 'Maternal Smoker')
     differences = np.append(differences, new_difference)                               
+
 ```
+</div>
+
+</div>
+
 
 
 The array `differences` contains 5,000 simulated values of our test statistic: the difference between the mean weight in the smoking group and the mean weight in the non-smoking group, when the labels have been assigned at random. 
@@ -530,23 +668,33 @@ The histogram below shows the distribution of these 5,000 values. It is the empi
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_column('Difference Between Group Means', differences).hist()
 print('Observed Difference:', observed_difference)
 plots.title('Prediction Under the Null Hypothesis');
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Observed Difference: -9.266142572024918
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/12/1/AB_Testing_36_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -560,40 +708,58 @@ If you want to compute an empirical P-value, remember that low values of the sta
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 empirical_P = np.count_nonzero(differences <= observed_difference) / repetitions
 empirical_P
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.0
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 The empirical P-value is 0, meaning that none of the 5,000 permuted samples resulted in a difference of -9.27 or lower. This is only an approximation. The exact chance of getting a difference in that range is not 0 but it is vanishingly small.
+
+
 
 ### Another Permutation Test
 We can use the same method to compare other attributes of the smokers and the non-smokers, such as their ages. Histograms of the ages of the two groups show that in the sample, the mothers who smoked tended to be younger.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 smoking_and_age = births.select('Maternal Smoker', 'Maternal Age')
 smoking_and_age.hist('Maternal Age', group = 'Maternal Smoker')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/12/1/AB_Testing_41_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -601,20 +767,28 @@ The observed difference between the average ages is about $-0.8$ years.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 observed_age_difference = difference_of_means(births, 'Maternal Age', 'Maternal Smoker')
 observed_age_difference
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -0.8076725017901509
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -626,7 +800,8 @@ As before, we can use a permutation test to answer this question. If the underly
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 age_differences = make_array()
 
@@ -634,31 +809,46 @@ repetitions = 5000
 for i in np.arange(repetitions):
     new_difference = one_simulated_difference(births, 'Maternal Age', 'Maternal Smoker')
     age_differences = np.append(age_differences, new_difference)
+
 ```
+</div>
+
+</div>
+
 
 
 The observed difference is in the tail of the empirical distribution of the differences simulated under the null hypothesis. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_column('Difference Between Group Means', age_differences).hist()
 plots.scatter(observed_age_difference, 0, color='red', s=40)
 plots.title('Prediction Under the Null Hypothesis')
 print('Observed Difference:', observed_age_difference)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Observed Difference: -0.8076725017901509
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/12/1/AB_Testing_47_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -666,21 +856,30 @@ The empirical P-value of the test is the proportion of simulated differences tha
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 empirical_P = np.count_nonzero(age_differences <= observed_age_difference) / 5000
 empirical_P
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.0104
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 The empirical P-value is around 1% and therefore the result is statistically significant. The test supports the hypothesis that the smokers were younger on average.
+

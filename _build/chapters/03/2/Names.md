@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/03/2/names"
 interact_link: content/chapters/03/2/Names.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Names'
 prev_page:
   url: /chapters/03/1/Expressions
@@ -13,27 +14,36 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
 # Names
 
 Names are given to values in Python using an *assignment* statement. In an assignment, a name is followed by `=`, which is followed by any expression. The value of the expression to the right of `=` is *assigned* to the name. Once a name has a value assigned to it, the value will be substituted for that name in future expressions.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 a = 10
 b = 20
 a + b
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 30
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -41,21 +51,29 @@ A previously assigned name can be used in the expression to the right of `=`.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 quarter = 1/4
 half = 2 * quarter
 half
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.5
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -63,20 +81,28 @@ However, only the current value of an expression is assigned to a name. If that 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 quarter = 4
 half
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.5
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -84,7 +110,8 @@ Names must start with a letter, but can contain both letters and numbers. A name
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 purchase_price = 5
 state_tax_rate = 0.075
@@ -93,15 +120,21 @@ city_tax_rate = 0
 sales_tax_rate = state_tax_rate + county_tax_rate + city_tax_rate
 sales_tax = purchase_price * sales_tax_rate
 sales_tax
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.475
 ```
 
+
+</div>
+</div>
+</div>
 

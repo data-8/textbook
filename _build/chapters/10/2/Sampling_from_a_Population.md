@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/10/2/sampling-from-a-population"
 interact_link: content/chapters/10/2/Sampling_from_a_Population.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Sampling from a Population'
 prev_page:
   url: /chapters/10/1/Empirical_Distributions
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -26,13 +32,17 @@ There are 13,825 rows, each corresponding to a flight. The columns are the date 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united = Table.read_table(path_data + 'united_summer2015.csv')
 united
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -80,57 +90,82 @@ united
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 One flight departed 16 minutes early, and one was 580 minutes late. The other delay times were almost all between -10 minutes and 200 minutes, as the histogram below shows.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united.column('Delay').min()
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -16
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united.column('Delay').max()
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 580
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 delay_bins = np.append(np.arange(-20, 301, 10), 600)
 united.hist('Delay', bins = delay_bins, unit = 'minute')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/10/2/Sampling_from_a_Population_6_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -138,34 +173,48 @@ For the purposes of this section, it is enough to zoom in on the bulk of the dat
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united.where('Delay', are.above(200)).num_rows/united.num_rows
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.008390596745027125
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 delay_bins = np.arange(-20, 201, 10)
 united.hist('Delay', bins = delay_bins, unit = 'minute')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/10/2/Sampling_from_a_Population_9_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -173,19 +222,27 @@ The height of the [0, 10) bar is just under 3% per minute, which means that just
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united.where('Delay', are.between(0, 10)).num_rows/united.num_rows
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.2935985533453888
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -195,40 +252,60 @@ Let us now think of the 13,825 flights as a population, and draw random samples 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def empirical_hist_delay(n):
     united.sample(n).hist('Delay', bins = delay_bins, unit = 'minute')
+
 ```
+</div>
+
+</div>
+
 
 
 As we saw with the dice, as the sample size increases, the empirical histogram of the sample more closely resembles the histogram of the population. Compare these histograms to the population histogram above.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 empirical_hist_delay(10)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/10/2/Sampling_from_a_Population_15_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 empirical_hist_delay(100)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/10/2/Sampling_from_a_Population_16_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -236,15 +313,23 @@ The most consistently visible discrepancies are among the values that are rare i
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 empirical_hist_delay(1000)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/10/2/Sampling_from_a_Population_18_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -254,3 +339,4 @@ What we have observed in this section can be summarized as follows:
 For a large random sample, the empirical histogram of the sample resembles the histogram of the population, with high probability.
 
 This justifies the use of large random samples in statistical inference. The idea is that since a large random sample is likely to resemble the population from which it is drawn, quantities computed from the values in the sample are likely to be close to the corresponding quantities in the population.
+

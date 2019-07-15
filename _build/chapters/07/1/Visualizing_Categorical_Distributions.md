@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/07/1/visualizing-categorical-distributions"
 interact_link: content/chapters/07/1/Visualizing_Categorical_Distributions.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Categorical Distributions'
 prev_page:
   url: /chapters/07/Visualization
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -25,20 +31,26 @@ Data come in many forms that are not numerical. Data can be pieces of music, or 
 - The individuals are years, and the variable is the genre of the highest grossing movie of the year.
 - The individuals are survey respondents, and the variable is the response they choose from among "Not at all satisfied," "Somewhat satisfied," and "Very satisfied."
 
+
+
 The table `icecream` contains data on 30 cartons of ice-cream. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 icecream = Table().with_columns(
     'Flavor', make_array('Chocolate', 'Strawberry', 'Vanilla'),
     'Number of Cartons', make_array(16, 5, 9)
 )
 icecream
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -64,8 +76,15 @@ icecream
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The *values* of the categorical variable "flavor" are chocolate, strawberry, and vanilla. The table shows the number of cartons of each flavor. We call this a *distribution table*. A *distribution* shows all the values of a variable, along with the frequency of each one.
+
+
 
 ### Bar Chart
 The bar chart is a familiar way of visualizing categorical distributions. It displays a bar for each category. The bars are equally spaced and equally wide. The length of each bar is proportional to the frequency of the corresponding category.
@@ -74,15 +93,23 @@ We will draw bar charts with horizontal bars because it's easier to label the ba
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 icecream.barh('Flavor', 'Number of Cartons')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_6_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -90,15 +117,23 @@ If the table consists just of a column of categories and a column of frequencies
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 icecream.barh('Flavor')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_8_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -113,19 +148,29 @@ This means that we can draw a bar chart that is easier to interpret, by rearrang
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 icecream.sort('Number of Cartons', descending=True).barh('Flavor')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_10_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 This bar chart contains exactly the same information as the previous ones, but it is a little easier to read. While this is not a huge gain in reading a chart with just three bars, it can be quite significant when the number of categories is large.
+
+
 
 ### Grouping Categorical Data
 To construct the table `icecream`, someone had to look at all 30 cartons of ice-cream and count the number of each flavor. But if our data does not already include frequencies, we have to compute the frequencies before we can draw a bar chart. Here is an example where this is necessary.
@@ -136,13 +181,17 @@ There are 200 movies on the list. Here are the top ten according to unadjusted g
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 top = Table.read_table(path_data + 'top_movies.csv')
 top
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -190,6 +239,11 @@ top
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The Disney subsidiary Buena Vista shows up frequently in the top ten, as do Fox and Warner Brothers. Which studios will appear most frequently if we look among all 200 rows?
 
@@ -197,22 +251,32 @@ To figure this out, first notice that all we need is a table with the movies and
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 movies_and_studios = top.select('Title', 'Studio')
+
 ```
+</div>
+
+</div>
+
 
 
 The Table method `group` allows us to count how frequently each studio appears in the table, by calling each studio a category and assigning each row to one category. The `group` method takes as its argument the label of the column that contains the categories, and returns a table of counts of rows in each category. The column of counts is always called `count`, but you can change that if you like by using `relabeled`.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 movies_and_studios.group('Studio')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -260,6 +324,11 @@ movies_and_studios.group('Studio')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Thus `group` creates a distribution table that shows how the movies are distributed among the categories (studios). 
 
@@ -267,39 +336,59 @@ We can now use this table, along with the graphing skills that we acquired above
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 studio_distribution = movies_and_studios.group('Studio')
 studio_distribution.sort('count', descending=True).barh('Studio')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_19_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Warner Brothers and Buena Vista are the most common studios among the top 200 movies. Warner Brothers produces the Harry Potter movies and Buena Vista produces Star Wars. 
 
+
+
 Because total gross receipts are being measured in unadjusted dollars, it is not very surprising that the top movies are more frequently from recent years than from bygone decades. In absolute terms, movie tickets cost more now than they used to, and thus gross receipts are higher. This is borne out by a bar chart that show the distribution of the 200 movies by year of release.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 movies_and_years = top.select('Title', 'Year')
 movies_and_years.group('Year').sort('count', descending=True).barh('Year')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_22_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 All of the longest bars correspond to years after 2000. This is consistent with our observation that recent years should be among the most frequent.
+
+
 
 ### Towards numerical variables
 There is something unsettling about this chart. Though it does answer the question of which release years appear most frequently among the 200 top grossing movies, it doesn't list all the years in chronological order. It is treating `Year` as a categorical variable. 
@@ -310,18 +399,27 @@ By default, `barh` sorts the categories (years) from lowest to highest. So we wi
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 movies_and_years.group('Year').barh('Year')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/1/Visualizing_Categorical_Distributions_25_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Now the years are in increasing order. But there is still something disquieting about this bar chart. The bars at 1921 and 1937 are just as far apart from each other as the bars at 1937 and 1939. The bar chart doesn't show that none of the 200 movies were released in the years 1922 through 1936, nor in 1938. Such inconsistencies and omissions make the distribution in the early years hard to understand based on this visualization.
 
 Bar charts are intended as visualizations of categorical variables. When the variable is numerical, the numerical relations between its values have to be taken into account when we create visualizations. That is the topic of the next section.
+

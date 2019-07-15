@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/16/3/prediction-intervals"
 interact_link: content/chapters/16/3/Prediction_Intervals.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Prediction Intervals'
 prev_page:
   url: /chapters/16/2/Inference_for_the_True_Slope
@@ -14,11 +15,24 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -29,16 +43,28 @@ Our estimate is the height of the true line at $x$. Of course, we don't know the
 
 The **fitted value** at a given value of $x$ is the regression estimate of $y$ based on that value of $x$. In other words, the fitted value at a given value of $x$ is the height of the regression line at that $x$.
 
+
+
 Suppose we try to predict a baby's birth weight based on the number of gestational days. As we saw in the previous section, the data fit the regression model fairly well and a 95% confidence interval for the slope of the true line doesn't contain 0. So it seems reasonable to carry out our prediction.
+
+
 
 The figure below shows where the prediction lies on the regression line. The red line is at $x = 300$.
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/16/3/Prediction_Intervals_6_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -48,33 +74,47 @@ The function `fitted_value` computes this height. Like the functions `correlatio
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def fitted_value(table, x, y, given_x):
     a = slope(table, x, y)
     b = intercept(table, x, y)
     return a * given_x  + b
+
 ```
+</div>
+
+</div>
+
 
 
 The fitted value at 300 gestational days is about 129.2 ounces. In other words, for a pregnancy that has a duration of 300 gestational days, our estimate for the baby's weight is about 129.2 ounces.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 fit_300 = fitted_value(baby, 'Gestational Days', 'Birth Weight', 300)
 fit_300
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 129.2129241703143
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -86,10 +126,43 @@ To do this, we must generate new samples. We can do that by bootstrapping the sc
 
 
 
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+# HIDDEN 
 
+x = 300
 
-{:.output .output_png}
+lines = Table(['slope','intercept'])
+for i in range(10):
+    rep = baby.sample(with_replacement=True)
+    a = slope(rep, 'Gestational Days', 'Birth Weight')
+    b = intercept(rep, 'Gestational Days', 'Birth Weight')
+    lines.append([a, b])
+
+lines['prediction at x='+str(x)] = lines.column('slope')*x + lines.column('intercept')
+
+xlims = np.array([291, 309])
+left = xlims[0]*lines[0] + lines[1]
+right = xlims[1]*lines[0] + lines[1]
+fit_x = x*lines['slope'] + lines['intercept']
+
+for i in range(10):
+    plots.plot(xlims, np.array([left[i], right[i]]), lw=1)
+    plots.scatter(x, fit_x[i], s=30)
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/16/3/Prediction_Intervals_12_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -97,12 +170,16 @@ The predictions vary from one line to the next. The table below shows the slope 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lines
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -149,10 +226,17 @@ lines
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ### Bootstrap Prediction Interval
 
 If we increase the number of repetitions of the resampling process, we can generate an empirical histogram of the predictions. This will allow us to create an interval of predictions, using the same percentile method that we used create a bootstrap confidence interval for the slope.
+
+
 
 Let us define a function called ``bootstrap_prediction`` to do this. The function takes five arguments:
 - the name of the table
@@ -166,7 +250,8 @@ Finally, it draws the empirical histogram of all the predicted values, and print
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Bootstrap prediction of variable y at new_x
 # Data contained in table; prediction by regression of y based on x
@@ -198,28 +283,41 @@ def bootstrap_prediction(table, x, y, new_x, repetitions):
     print('Height of regression line at x='+str(new_x)+':', original)
     print('Approximate 95%-confidence interval:')
     print(left, right)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 bootstrap_prediction(baby, 'Gestational Days', 'Birth Weight', 300, 5000)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Height of regression line at x=300: 129.2129241703143
 Approximate 95%-confidence interval:
 127.241239628963 131.32562696740675
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/16/3/Prediction_Intervals_18_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -227,29 +325,41 @@ The figure above shows a bootstrap empirical histogram of the predicted birth we
 
 An approximate 95% prediction interval of scores has been constructed by taking the "middle 95%" of the predictions, that is, the interval from the 2.5th percentile to the 97.5th percentile of the predictions. The interval ranges from about 127 to about 131. The prediction based on the original sample was about 129, which is close to the center of the interval.
 
+
+
 ### The Effect of Changing the Value of the Predictor
 
 The figure below shows the histogram of 5,000 bootstrap predictions at 285 gestational days. The prediction based on the original sample is about 122 ounces, and the interval ranges from about 121 ounces to about 123 ounces. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 bootstrap_prediction(baby, 'Gestational Days', 'Birth Weight', 285, 5000)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Height of regression line at x=285: 122.21457101607608
 Approximate 95%-confidence interval:
 121.15227951418838 123.29668698463169
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/16/3/Prediction_Intervals_21_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -259,19 +369,27 @@ The mean number of gestational days is about 279 days:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(baby.column('Gestational Days'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 279.1013628620102
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -281,10 +399,18 @@ You can see this in the figure below, which shows predictions at $x = 285$ and $
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/16/3/Prediction_Intervals_25_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -295,3 +421,4 @@ All of the predictions and tests that we have performed in this chapter assume t
 If the scatter plot does not look like that, then perhaps the model does not hold for the data. If the model does not hold, then calculations that assume the model to be true are not valid.
 
 Therefore, we must first decide whether the regression model holds for our data, before we start making predictions based on the model or testing hypotheses about parameters of the model. A simple way is to do what we did in this section, which is to draw the scatter diagram of the two variables and see whether it looks roughly linear and evenly spread out around a line. We should also run the diagnostics we developed in the previous section using the residual plot.
+

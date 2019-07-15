@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/15/4/least-squares-regression"
 interact_link: content/chapters/15/4/Least_Squares_Regression.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Least Squares Regression'
 prev_page:
   url: /chapters/15/3/Method_of_Least_Squares
@@ -14,8 +15,17 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -26,20 +36,28 @@ We saw this in the example about Little Women, but let's confirm it in an exampl
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 shotput = Table.read_table(path_data + 'shotput.csv')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 shotput
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -87,18 +105,29 @@ shotput
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 shotput.scatter('Weight Lifted')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/4/Least_Squares_Regression_5_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -108,37 +137,51 @@ Our formulas for the slope and intercept of the regression line, derived for foo
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 slope(shotput, 'Weight Lifted', 'Shot Put Distance')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.09834382159781997
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 intercept(shotput, 'Weight Lifted', 'Shot Put Distance')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 5.959629098373952
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -148,31 +191,43 @@ We will define the function `shotput_linear_mse` to take an arbirtary slope and 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def shotput_linear_mse(any_slope, any_intercept):
     x = shotput.column('Weight Lifted')
     y = shotput.column('Shot Put Distance')
     fitted = any_slope*x + any_intercept
     return np.mean((y - fitted) ** 2)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minimize(shotput_linear_mse)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([0.09834382, 5.95962911])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -192,16 +247,24 @@ $$
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 fitted = fit(shotput, 'Weight Lifted', 'Shot Put Distance')
 shotput.with_column('Best Straight Line', fitted).scatter('Weight Lifted')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/4/Least_Squares_Regression_13_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -211,6 +274,8 @@ The graph above reinforces our earlier observation that the scatter plot is a bi
 We have to find the best quadratic function among all quadratic functions, instead of the best straight line among all straight lines. The method of least squares allows us to do this.
 
 The mathematics of this minimization is complicated and not easy to see just by examining the scatter plot. But numerical minimization is just as easy as it was with linear predictors! We can get the best quadratic predictor by once again using `minimize`. Let's see how this works.
+
+
 
 Recall that a quadratic function has the form
 
@@ -225,34 +290,48 @@ The function is called `shotput_quadratic_mse`. Notice that the definition is an
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def shotput_quadratic_mse(a, b, c):
     x = shotput.column('Weight Lifted')
     y = shotput.column('Shot Put Distance')
     fitted = a*(x**2) + b*x + c
     return np.mean((y - fitted) ** 2)
+
 ```
+</div>
+
+</div>
+
 
 
 We can now use `minimize` just as before to find the constants that minimize the mean squared error. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 best = minimize(shotput_quadratic_mse)
 best
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([-1.04004838e-03,  2.82708045e-01, -1.53182115e+00])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -264,19 +343,27 @@ meters. For example, if the athlete can lift 100 kilograms, the predicted distan
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 (-0.00104)*(100**2) + 0.2827*100 - 1.5318
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 16.3382
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -284,23 +371,34 @@ Here are the predictions for all the values of `Weight Lifted`. You can see that
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 x = shotput.column(0)
 shotput_fit = best.item(0)*(x**2) + best.item(1)*x + best.item(2)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 shotput.with_column('Best Quadratic Curve', shotput_fit).scatter(0)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/4/Least_Squares_Regression_23_0.png)
 
+</div>
+</div>
+</div>
 

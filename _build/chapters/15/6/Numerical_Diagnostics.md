@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/15/6/numerical-diagnostics"
 interact_link: content/chapters/15/6/Numerical_Diagnostics.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Numerical Diagnostics'
 prev_page:
   url: /chapters/15/5/Visual_Diagnostics
@@ -14,14 +15,43 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+# HIDDEN 
+
+galton = Table.read_table(path_data + 'galton.csv')
+heights = galton.select('midparentHeight', 'childHeight')
+heights = heights.relabel(0, 'MidParent').relabel(1, 'Child')
+dugong = Table.read_table('http://www.statsci.org/data/oz/dugongs.txt')
+dugong = dugong.move_to_start('Length')
+hybrid = Table.read_table(path_data + 'hybrid.csv')
+
+```
+</div>
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -30,6 +60,8 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 In addition to visualization, we can use numerical properties of residuals to assess the quality of regression. We will not prove these properties mathematically. Rather, we will observe them by computation and see what they tell us about the regression.
 
 All of the facts listed below hold for all shapes of scatter plots, whether or not they are linear.
+
+
 
 ### Residual Plots Show No Trend
 **For every linear regression, whether good or bad, the residual plot shows no trend. Overall, it is flat. In other words, the residuals and the predictor variable are uncorrelated.** 
@@ -40,19 +72,27 @@ You can see this in all the residual plots above. We can also calculate the corr
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(heights, 'MidParent', 'Residual')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -2.719689807647064e-16
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -60,41 +100,55 @@ That doesn't look like zero, but it is a tiny number that is 0 apart from roundi
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 round(correlation(heights, 'MidParent', 'Residual'), 10)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -0.0
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 dugong = dugong.with_columns(
        'Fitted Value', fit(dugong, 'Length', 'Age'),
        'Residual', residual(dugong, 'Length', 'Age')
 )
 round(correlation(dugong, 'Length', 'Residual'), 10)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.0
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -109,19 +163,27 @@ As a numerical example, here is the average of the residuals in the regression o
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 round(np.mean(heights.column('Residual')), 10)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.0
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -129,19 +191,27 @@ The same is true of the average of the residuals in the regression of the age of
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 round(np.mean(dugong.column('Residual')), 10)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.0
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -158,19 +228,27 @@ In the case of children's heights and midparent heights, the SD of the residuals
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.std(heights.column('Residual'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3.3880799163953426
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -178,20 +256,28 @@ That's the same as $\sqrt{1-r^2}$ times the SD of response variable:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 r = correlation(heights, 'MidParent', 'Child')
 np.sqrt(1 - r**2) * np.std(heights.column('Child'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3.388079916395342
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -199,42 +285,56 @@ The same is true for the regression of mileage on acceleration of hybrid cars. T
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 r = correlation(hybrid, 'acceleration', 'mpg')
 r
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -0.5060703843771186
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 hybrid = hybrid.with_columns(
      'fitted mpg', fit(hybrid, 'acceleration', 'mpg'),
      'residual', residual(hybrid, 'acceleration', 'mpg')
 )
 np.std(hybrid.column('residual')), np.sqrt(1 - r**2)*np.std(hybrid.column('mpg'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 (9.43273683343029, 9.43273683343029)
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -245,6 +345,8 @@ The extreme cases are when $r=1$ or $r=-1$. In both cases, $\sqrt{1-r^2} = 0$. T
 But usually $r$ is not at the extremes. If $r$ is neither $\pm 1$ nor 0, then $\sqrt{1-r^2}$ is a proper fraction, and the rough overall size of the error of the regression estimate is somewhere between 0 and the SD of $y$.
 
 The worst case is when $r = 0$. Then $\sqrt{1-r^2} =1$, and the SD of the residuals is equal to the SD of $y$. This is consistent with the observation that if $r=0$ then the regression line is a flat line at the average of $y$. In this situation, the root mean square error of regression is the root mean squared deviation from the average of $y$, which is the SD of $y$. In practical terms, if $r = 0$ then there is no linear association between the two variables, so there is no benefit in using linear regression.
+
+
 
 ### Another Way to Interpret $r$
 We can rewrite the result above to say that no matter what the shape of the scatter plot,
@@ -263,15 +365,23 @@ To see where the fraction comes in, notice that the fitted values are all on the
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scatter_fit(heights, 'MidParent', 'Child')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/6/Numerical_Diagnostics_23_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -281,19 +391,27 @@ To verify the result numerically, we just have to calculate both sides of the id
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(heights, 'MidParent', 'Child')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.32094989606395924
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -301,19 +419,27 @@ Here is ratio of the SD of the fitted values and the SD of the observed values o
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.std(heights.column('Fitted Value'))/np.std(heights.column('Child'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.32094989606395957
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -323,37 +449,51 @@ Where does the absolute value come in? First note that as SDs can't be negative,
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(hybrid, 'acceleration', 'mpg')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -0.5060703843771186
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.std(hybrid.column('fitted mpg'))/np.std(hybrid.column('mpg'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.5060703843771186
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -370,3 +510,4 @@ and therefore, by squaring both sides of our result,
 $$
 \frac{\mbox{variance of fitted values}}{\mbox{variance of }y} ~=~ r^2
 $$
+
