@@ -41,12 +41,7 @@ Here are steps to get started building the textbook on your own machine:
    If you have Ruby and bundle installed,
    install the dependencies by running
    `bundle install`, then running `gem pristine ...` for each warning.
-   Once the dependencies are installed, run
-
-   ```
-   jupyter-book build .
-   make site
-   ```
+   Once the dependencies are installed, run `make book` and then `make build`.
 
 **To preview your built site** using Jekyll on your computer, follow
 the steps on the [Jupyter Book guide](https://jupyter.org/jupyter-book/guide/03_build.html#build-the-books-site-html-locally-optional).
