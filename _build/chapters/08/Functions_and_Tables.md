@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/08/functions-and-tables"
 interact_link: content/chapters/08/Functions_and_Tables.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Functions and Tables'
 prev_page:
   url: /chapters/07/3/Overlaid_Graphs
@@ -14,32 +15,49 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### Functions and Tables
 
+
+
 We are building up a useful inventory of techniques for identifying patterns and themes in a data set by using functions already available in Python. We will now explore a core feature of the Python programming language: function definition.
 
 We have used functions extensively already in this text, but never defined a function of our own. The purpose of defining a function is to give a name to a computational process that may be applied multiple times. There are many situations in computing that require repeated computation. For example, it is often the case that we want to perform the same manipulation on every value in a column of a table.
+
+
 
 ### Defining a Function
 The definition of the `double` function below simply doubles a number.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Our first function definition
 
 def double(x):
     """ Double x """
     return 2*x
+
 ```
+</div>
+
+</div>
+
 
 
 We start any function definition by writing `def`.  Here is a breakdown of the other parts (the *syntax*) of this small function:
 
 ![](../../images/function_definition.jpg)
+
+
 
 When we run the cell above, no particular number is doubled, and the code inside the body of `double` is not yet evaluated.  In this respect, our function is analogous to a *recipe*.  Each time we follow the instructions in a recipe, we need to start with ingredients.  Each time we want to use our function to double a number, we need to specify a number.
 
@@ -47,37 +65,51 @@ We can call `double` in exactly the same way we have called other functions. Eac
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 double(17)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 34
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 double(-0.6/4)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -0.3
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -93,20 +125,28 @@ The argument to `double` can be any expression, as long as its value is a number
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 any_name = 42
 double(any_name)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 84
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -114,19 +154,27 @@ The argument can also be any value that can be doubled. For example, a whole arr
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 double(make_array(3, 4, 5))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([ 6,  8, 10])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -136,13 +184,17 @@ Therefore the name `x` isn't recognized outside the body of the function, even t
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 x
+
 ```
+</div>
 
-
-{:.output .output_traceback_line}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_traceback_line}
 ```
 
     ---------------------------------------------------------------------------
@@ -157,6 +209,11 @@ x
 
 
 ```
+</div>
+</div>
+</div>
+
+
 
 **Docstrings.** Though `double` is relatively easy to understand, many functions perform complicated tasks and are difficult to use without explanation. (You may have discovered this yourself!) Therefore, a well-composed function has a name that evokes its behavior, as well as documentation.  In Python, this is called a *docstring* — a description of its behavior and expectations about its arguments. The docstring can also show example calls to the function, where the call is preceded by `>>>`.
 
@@ -166,7 +223,8 @@ Here is a definition of a function called `percent` that takes two arguments. Th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # A function with more than one argument
 
@@ -183,24 +241,35 @@ def percent(x, total):
     16.67
     """
     return round((x/total)*100, 2)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 percent(33, 200)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 16.5
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -208,33 +277,47 @@ Contrast the function `percent` defined above with the function `percents` defin
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def percents(counts):
     """Convert the values in array_x to percents out of the total of array_x."""
     total = counts.sum()
     return np.round((counts/total)*100, 2)
+
 ```
+</div>
+
+</div>
+
 
 
 The function `percents` returns an array of percents that add up to 100 apart from rounding.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 some_array = make_array(7, 10, 4)
 percents(some_array)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([33.33, 47.62, 19.05])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -242,7 +325,8 @@ It is helpful to understand the steps Python takes to execute a function.  To fa
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def biggest_difference(array_x):
     """Find the biggest difference in absolute value between two adjacent elements of array_x."""
@@ -253,26 +337,38 @@ def biggest_difference(array_x):
 some_numbers = make_array(2, 4, 5, 6, 4, -1, 1)
 big_diff = biggest_difference(some_numbers)
 print("The biggest difference is", big_diff)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 The biggest difference is 5
-
 ```
+</div>
+</div>
+</div>
+
+
 
 Here is what happens when we run that cell:
 
 <img src="../../images/function_execution.jpg" />
 
+
+
 ## Multiple Arguments
+
+
 
 There can be multiple ways to generalize an expression or block of code, and so a function can take multiple arguments that each determine different aspects of the result. For example, the `percents` function we defined previously rounded to two decimal places every time. The following two-argument definition allows different calls to round to different amounts.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def percents(counts, decimal_places):
     """Convert the values in array_x to percents out of the total of array_x."""
@@ -283,22 +379,30 @@ parts = make_array(2, 1, 4)
 print("Rounded to 1 decimal place: ", percents(parts, 1))
 print("Rounded to 2 decimal places:", percents(parts, 2))
 print("Rounded to 3 decimal places:", percents(parts, 3))
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Rounded to 1 decimal place:  [28.6 14.3 57.1]
 Rounded to 2 decimal places: [28.57 14.29 57.14]
 Rounded to 3 decimal places: [28.571 14.286 57.143]
-
 ```
+</div>
+</div>
+</div>
+
+
 
 The flexibility of this new definition comes at a small price: each time the function is called, the number of decimal places must be specified. Default argument values allow a function to be called with a variable number of arguments; any argument that isn't specified in the call expression is given its default value, which is stated in the first line of the `def` statement. For example, in this final definition of `percents`, the optional argument `decimal_places` is given a default value of 2.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def percents(counts, decimal_places=2):
     """Convert the values in array_x to percents out of the total of array_x."""
@@ -308,15 +412,23 @@ def percents(counts, decimal_places=2):
 parts = make_array(2, 1, 4)
 print("Rounded to 1 decimal place:", percents(parts, 1))
 print("Rounded to the default number of decimal places:", percents(parts))
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Rounded to 1 decimal place: [28.6 14.3 57.1]
 Rounded to the default number of decimal places: [28.57 14.29 57.14]
-
 ```
+</div>
+</div>
+</div>
+
+
 
 ### Note: Methods
 Functions are called by placing argument expressions in parentheses after the function name. Any function that is defined in isolation is called in this way. You have also seen examples of methods, which are like functions but are called using dot notation, such as `some_table.sort(some_label)`. The functions that you define will always be called using the function name first, passing in all of the arguments.
+

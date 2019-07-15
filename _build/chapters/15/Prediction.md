@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/15/prediction"
 interact_link: content/chapters/15/Prediction.ipynb
 kernel_name: Python [Root]
+has_widgets: false
 title: 'Prediction'
 prev_page:
   url: /chapters/14/6/Choosing_a_Sample_Size
@@ -14,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### Prediction
@@ -22,11 +28,14 @@ An important aspect of data science is to find out what data can tell us about t
 
 To answer such questions, data scientists have developed methods for making *predictions*. In this chapter we will study one of the most commonly used ways of predicting the value of one variable based on the value of another.
 
+
+
 The foundations of the method were laid by [Sir Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton). As we saw in Section 7.1, Galton studied how physical characteristics are passed down from one generation to the next. Among his best known work is the prediction of the heights of adults based on the heights of their parents. We have studied the dataset that Galton collected for this. The table `heights` contains his data on the midparent height and child's height (all in inches) for a population of 934 adult "children".
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Galton's data on heights of parents and their adult children
 galton = Table.read_table(path_data + 'galton.csv')
@@ -34,17 +43,24 @@ heights = Table().with_columns(
     'MidParent', galton.column('midparentHeight'),
     'Child', galton.column('childHeight')
     )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -92,18 +108,29 @@ heights
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights.scatter('MidParent')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../images/chapters/15/Prediction_5_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -113,7 +140,8 @@ Our approach was to base the prediction on all the points that correspond to a m
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def predict_child(mpht):
     """Return a prediction of the height of a child 
@@ -125,37 +153,55 @@ def predict_child(mpht):
     
     close_points = heights.where('MidParent', are.between(mpht-0.5, mpht + 0.5))
     return close_points.column('Child').mean()                       
+
 ```
+</div>
+
+</div>
+
 
 
 We applied the function to the column of `Midparent` heights, visualized our results.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Apply predict_child to all the midparent heights
 
 heights_with_predictions = heights.with_column(
     'Prediction', heights.apply(predict_child, 'MidParent')
     )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Draw the original scatter plot along with the predicted values
 
 heights_with_predictions.scatter('MidParent')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../images/chapters/15/Prediction_10_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 The prediction at a given midparent height lies roughly at the center of the vertical strip of points at the given height. This method of prediction is called *regression.* Later in this chapter we will see where this term came from. We will also see whether we can avoid our arbitrary definitions of "closeness" being "within 0.5 inches". But first we will develop a measure that can be used in many settings to decide how good one variable will be as a predictor of another.
+

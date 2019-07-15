@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/17/5/accuracy-of-the-classifier"
 interact_link: content/chapters/17/5/Accuracy_of_the_Classifier.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'The Accuracy of the Classifier'
 prev_page:
   url: /chapters/17/4/Implementing_the_Classifier
@@ -14,11 +15,24 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -27,24 +41,33 @@ To see how well our classifier does, we might put 50% of the data into the train
 
 Note that this approach requires great discipline.  Before you start applying machine learning methods, you have to take some of your data and set it aside for testing.  You must avoid using the test set for developing your classifier: you shouldn't use it to help train your classifier or tweak its settings or for brainstorming ways to improve your classifier.  Instead, you should use it only once, at the very end, after you've finalized your classifier, when you want an unbiased estimate of its accuracy.
 
+
+
 ### Measuring the Accuracy of Our Wine Classifier
 OK, so let's apply the hold-out method to evaluate the effectiveness of the $k$-nearest neighbor classifier for identifying wines.  The data set has 178 wines, so we'll randomly permute the data set and put 89 of them in the training set and the remaining 89 in the test set.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 shuffled_wine = wine.sample(with_replacement=False) 
 training_set = shuffled_wine.take(np.arange(89))
 test_set  = shuffled_wine.take(np.arange(89, 178))
+
 ```
+</div>
+
+</div>
+
 
 
 We'll train the classifier using the 89 wines in the training set, and evaluate how well it performs on the test set. To make our lives easier, we'll write a function to evaluate a classifier on every wine in the test set:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def count_zero(array):
     """Counts the number of 0's in an array"""
@@ -61,30 +84,45 @@ def evaluate_accuracy(training, test, k):
         return classify(training, row, k)
     c = test_attributes.apply(classify_testrow)
     return count_equal(c, test.column('Class')) / test.num_rows
+
 ```
+</div>
+
+</div>
+
 
 
 Now for the grand reveal -- let's see how we did.  We'll arbitrarily use $k=5$.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 evaluate_accuracy(training_set, test_set, 5)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.9438202247191011
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 The accuracy rate isn't bad at all for a simple classifier.
+
+
 
 ### Breast Cancer Diagnosis
 
@@ -108,13 +146,17 @@ We end up with the following data set.  For the "Class" column, 1 means malignan
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 patients = Table.read_table(path_data + 'breast-cancer.csv').drop('ID')
 patients
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -162,32 +204,49 @@ patients
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 So we have 9 different attributes.  I don't know how to make a 9-dimensional scatterplot of all of them, so I'm going to pick two and plot them:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 color_table = Table().with_columns(
     'Class', make_array(1, 0),
     'Color', make_array('darkblue', 'gold')
 )
 patients_with_colors = patients.join('Class', color_table)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 patients_with_colors.scatter('Bland Chromatin', 'Single Epithelial Cell Size', colors='Color')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/5/Accuracy_of_the_Classifier_15_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -195,10 +254,18 @@ Oops.  That plot is utterly misleading, because there are a bunch of points that
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/17/5/Accuracy_of_the_Classifier_17_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -206,38 +273,55 @@ For instance, you can see there are lots of samples with chromatin = 2 and epith
 
 Keep in mind that the jittering is just for visualization purposes, to make it easier to get a feeling for the data.  We're ready to work with the data now, and we'll use the original (unjittered) data.
 
+
+
 First we'll create a training set and a test set. The data set has 683 patients, so we'll randomly permute the data set and put 342 of them in the training set and the remaining 341 in the test set.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 shuffled_patients = patients.sample(683, with_replacement=False) 
 training_set = shuffled_patients.take(np.arange(342))
 test_set  = shuffled_patients.take(np.arange(342, 683))
+
 ```
+</div>
+
+</div>
+
 
 
 Let's stick with 5 nearest neighbors, and see how well our classifier does.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 evaluate_accuracy(training_set, test_set, 5)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.9765395894428153
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
 Over 96% accuracy.  Not bad!  Once again, pretty darn good for such a simple technique.
 
 As a footnote, you might have noticed that Brittany Wenger did even better.  What techniques did she use? One key innovation is that she incorporated a confidence score into her results: her algorithm had a way to determine when it was not able to make a confident prediction, and for those patients, it didn't even try to predict their diagnosis.  Her algorithm was 99% accurate on the patients where it made a prediction -- so that extension seemed to help quite a bit.
+

@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/05/1/arrays"
 interact_link: content/chapters/05/1/Arrays.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Arrays'
 prev_page:
   url: /chapters/05/Sequences
@@ -14,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 # Arrays
@@ -24,21 +30,29 @@ Arrays can also contain strings or other types of values, but a single array can
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 english_parts_of_speech = make_array("noun", "pronoun", "verb", "adverb", "adjective", "conjunction", "preposition", "interjection")
 english_parts_of_speech
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array(['noun', 'pronoun', 'verb', 'adverb', 'adjective', 'conjunction',
        'preposition', 'interjection'], dtype='<U12')
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -46,7 +60,8 @@ Returning to the temperature data, we create arrays of average daily [high tempe
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baseline_high = 14.48
 highs = make_array(baseline_high - 0.880, 
@@ -54,16 +69,23 @@ highs = make_array(baseline_high - 0.880,
                    baseline_high + 0.105, 
                    baseline_high + 0.684)
 highs
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([13.6  , 14.387, 14.585, 15.164])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -71,77 +93,107 @@ Arrays can be used in arithmetic expressions to compute over their contents. Whe
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 (9/5) * highs + 32
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([56.48  , 57.8966, 58.253 , 59.2952])
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 <img src="../../../images/array_arithmetic.png" />
+
+
 
 Arrays also have *methods*, which are functions that operate on the array values. The `mean` of a collection of numbers is its average value: the sum divided by the length. Each pair of parentheses in the examples below is part of a call expression; it's calling a function with no arguments to perform a computation on the array called `highs`.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 highs.size
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 4
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 highs.sum()
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 57.736000000000004
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 highs.mean()
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 14.434000000000001
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -150,29 +202,43 @@ The `numpy` package, abbreviated `np` in programs, provides Python programmers w
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 import numpy as np
+
 ```
+</div>
+
+</div>
+
 
 
 For example, the `diff` function computes the difference between each adjacent pair of elements in an array. The first element of the `diff` is the second element minus the first. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.diff(highs)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([0.787, 0.198, 0.579])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -221,5 +287,6 @@ Each of these functions takes both an array of strings and a *search string*; ea
 | `np.char.find`       | The position within each element that a search string is found first             |
 | `np.char.rfind`      | The position within each element that a search string is found last              |
 | `np.char.startswith` | Whether each element starts with the search string  
+
 
 

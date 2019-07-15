@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/16/2/inference-for-the-true-slope"
 interact_link: content/chapters/16/2/Inference_for_the_True_Slope.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Inference for the True Slope'
 prev_page:
   url: /chapters/16/1/Regression_Model
@@ -14,14 +15,31 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -33,33 +51,47 @@ We will use our familiar sample of mothers and their newborn babies to develop a
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scatter_fit(baby, 'Gestational Days', 'Birth Weight')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_5_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(baby, 'Gestational Days', 'Birth Weight')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.40754279338885108
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -69,19 +101,27 @@ Does this reflect the fact that the true line has a positive slope? To answer th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 slope(baby, 'Gestational Days', 'Birth Weight')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.46655687694921522
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -91,6 +131,8 @@ We need another sample of points, so that we can draw the regression line throug
 
 You have guessed it – we will *bootstrap our original sample*. That will give us a bootstrapped scatter plot, through which we can draw a regression line.
 
+
+
 ### Bootstrapping the Scatter Plot
 We can simulate new samples by random sampling with replacement from the original sample, as many times as the original sample size. Each of these new samples will give us a scatter plot. We will call that a *bootstrapped scatter plot*, and for short, we will call the entire process *bootstrapping the scatter plot*.
 
@@ -98,10 +140,18 @@ Here is the original scatter diagram from the sample, and four replications of t
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_11_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -111,7 +161,8 @@ We can bootstrap the scatter plot a large number of times, and draw a regression
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 slopes = make_array()
 for i in np.arange(5000):
@@ -119,12 +170,19 @@ for i in np.arange(5000):
     bootstrap_slope = slope(bootstrap_sample, 'Gestational Days', 'Birth Weight')
     slopes = np.append(slopes, bootstrap_slope)
 Table().with_column('Bootstrap Slopes', slopes).hist(bins=20)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_13_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -132,25 +190,35 @@ We can then construct an approximate 95% confidence interval for the slope of th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 left = percentile(2.5, slopes)
 right = percentile(97.5, slopes)
 left, right
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 (0.38197210145802712, 0.55761740476799326)
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 An approximate 95% confidence interval for the true slope extends from about 0.38 ounces per day to about 0.56 ounces per day. 
+
+
 
 ### A Function to Bootstrap the Slope
 
@@ -158,7 +226,8 @@ Let us collect all the steps of our method of estimating the slope and define a 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def bootstrap_slope(table, x, y, repetitions):
     
@@ -184,30 +253,45 @@ def bootstrap_slope(table, x, y, repetitions):
     print('Slope of regression line:', observed_slope)
     print('Approximate 95%-confidence interval for the true slope:')
     print(left, right)
+
 ```
+</div>
+
+</div>
+
 
 
 When we call `bootstrap_slope` to find a confidence interval for the true slope when the response variable is birth weight and the predictor is gestational days, we get an interval very close to the one we obtained earlier: approximately 0.38 ounces per day to 0.56 ounces per day.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 bootstrap_slope(baby, 'Gestational Days', 'Birth Weight', 5000)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Slope of regression line: 0.466556876949
 Approximate 95%-confidence interval for the true slope:
 0.380572038016 0.557421403703
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_20_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -219,33 +303,47 @@ The regression model seems reasonable, based on the scatter plot, but the correl
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scatter_fit(baby, 'Maternal Height', 'Birth Weight')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_22_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(baby, 'Maternal Height', 'Birth Weight')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.20370417718968034
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -253,27 +351,39 @@ As before, we can use `bootstrap_slope` to estimate the slope of the true line i
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 bootstrap_slope(baby, 'Maternal Height', 'Birth Weight', 5000)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Slope of regression line: 1.47801935193
 Approximate 95%-confidence interval for the true slope:
 1.06126275491 1.91323331768
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_25_1.png)
+
+</div>
+</div>
+</div>
 
 
 
 A 95% confidence interval for the true slope extends from about 1 ounce per inch to about 1.9 ounces per inch.
+
+
 
 ### Could the True Slope Be 0?
 
@@ -287,19 +397,29 @@ Remember that the arguments to the function ``draw_and_compare`` are the slope a
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 draw_and_compare(0, 10, 25)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_28_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Run the simulation a few times, keeping the slope of the true line 0 each time. You will notice that while the slope of the true line is 0, the slope of the regression line is typically not 0. The regression line sometimes slopes upwards, and sometimes downwards, each time giving us a false impression that the two variables are correlated.
+
+
 
 To decide whether or not the slope that we are seeing is real, we would like to test the following hypotheses:
 
@@ -313,23 +433,33 @@ If it doesn't, then we can reject the null hypothesis (with the 5% cutoff for th
 
 If the confidence interval for the true slope does contain 0, then we don't have enough evidence to reject the null hypothesis. Perhaps the slope that we are seeing is spurious.
 
+
+
 Let's use this method in an example. Suppose we try to estimate the birth weight of the baby based on the mother's age. Based on the sample, the slope of the regression line for estimating birth weight based on maternal age is positive, about 0.08 ounces per year. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 slope(baby, 'Maternal Age', 'Birth Weight')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.085007669415825132
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -337,15 +467,23 @@ Though the slope is positive, it's pretty small. The regression line is so close
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scatter_fit(baby, 'Maternal Age', 'Birth Weight')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_34_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -353,24 +491,35 @@ We can use `bootstrap_slope` to estimate the slope of the true line. The calcula
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 bootstrap_slope(baby, 'Maternal Age', 'Birth Weight', 5000)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Slope of regression line: 0.0850076694158
 Approximate 95%-confidence interval for the true slope:
 -0.103756440872 0.275003956722
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/16/2/Inference_for_the_True_Slope_36_1.png)
+
+</div>
+</div>
+</div>
 
 
 
 Because the interval contains 0, we cannot reject the null hypothesis that the slope of the true linear relation between maternal age and baby's birth weight is 0. Based on this analysis, it would be unwise to predict birth weight based on the regression model with maternal age as the predictor.
+

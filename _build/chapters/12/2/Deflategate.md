@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/12/2/deflategate"
 interact_link: content/chapters/12/2/Deflategate.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Deflategate'
 prev_page:
   url: /chapters/12/1/AB_Testing
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -31,13 +37,17 @@ Here are the data. Each row corresponds to one football. Pressure is measured in
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 football = Table.read_table(path_data + 'deflategate.csv')
 football.show()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -96,20 +106,29 @@ football.show()
 </table>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 For each of the 15 balls that were inspected, the two officials got different results. It is not uncommon that repeated measurements on the same object yield different results, especially when the measurements are performed by different people. So we will assign to each the ball the average of the two measurements made on that ball.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 football = football.with_column(
     'Combined', (football.column(1)+football.column(2))/2
     ).drop(1, 2)
 football.show()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -168,6 +187,11 @@ football.show()
 </table>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 At a glance, it seems apparent that the Patriots' footballs were at a lower pressure than the Colts' balls. Because some deflation is normal during the course of a game, the independent analysts decided to calculate the drop in pressure from the start of the game. Recall that the Patriots' balls had all started out at about 12.5 psi, and the Colts' balls at about 13.0 psi. Therefore the drop in pressure for the Patriots' balls was computed as 12.5 minus the pressure at half-time, and the drop in pressure for the Colts' balls was 13.0 minus the pressure at half-time.
 
@@ -175,41 +199,55 @@ We can calculate the drop in pressure for each football, by first setting up an 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.ones(11)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 patriots_start = 12.5 * np.ones(11)
 colts_start = 13 * np.ones(4)
 start = np.append(patriots_start, colts_start)
 start
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5,
        13. , 13. , 13. , 13. ])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -217,14 +255,18 @@ The drop in pressure for each football is the difference between the starting pr
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 drop = start - football.column('Combined')
 football = football.with_column('Pressure Drop', drop)
 football.show()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -283,18 +325,27 @@ football.show()
 </table>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 It looks as though the Patriots' drops were larger than the Colts'. Let's look at the average drop in each of the two groups. We no longer need the combined scores.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 football = football.drop('Combined')
 football.group('Team', np.average)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -317,6 +368,11 @@ football.group('Team', np.average)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The average drop for the Patriots was about 1.2 psi compared to about 0.47 psi for the Colts. 
 
@@ -332,26 +388,36 @@ A natural statistic is the difference between the two average drops, which we wi
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 observed_means = football.group('Team', np.average).column(1)
 
 observed_difference = observed_means.item(1) - observed_means.item(0)
 observed_difference
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.733522727272728
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 This positive difference reflects the fact that the average drop in pressure of the Patriots' footballs was greater than that of the Colts.
+
+
 
 The function `difference_of_means` takes three arguments:
 
@@ -365,49 +431,67 @@ We have defined this function in an earlier section. The definition is repeated 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def difference_of_means(table, label, group_label):
     reduced = table.select(label, group_label)
     means_table = reduced.group(group_label, np.average)
     means = means_table.column(1)
     return means.item(1) - means.item(0)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 difference_of_means(football, 'Pressure Drop', 'Team')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.733522727272728
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 Notice that the difference has been calculated as Patriots' drops minus Colts' drops as before.
+
+
 
 ### Predicting the Statistic Under the Null Hypothesis
 If the null hypothesis were true, then it shouldn't matter which footballs are labeled Patriots and which are labeled Colts. The distributions of the two sets of drops would be the same. We can simulate this by randomly shuffling the team labels.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 shuffled_labels = football.sample(with_replacement=False).column(0)
 original_and_shuffled = football.with_column('Shuffled Label', shuffled_labels)
 original_and_shuffled.show()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -466,42 +550,61 @@ original_and_shuffled.show()
 </table>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 How do all the group averages compare?
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 difference_of_means(original_and_shuffled, 'Pressure Drop', 'Shuffled Label')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.11988636363636407
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 difference_of_means(original_and_shuffled, 'Pressure Drop', 'Team')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.733522727272728
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -514,7 +617,8 @@ Once again, we will use the function `one_simulated_difference` defined in an ea
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def one_simulated_difference(table, label, group_label):
     shuffled_labels = table.sample(with_replacement = False
@@ -522,14 +626,20 @@ def one_simulated_difference(table, label, group_label):
     shuffled_table = table.select(label).with_column(
         'Shuffled Label', shuffled_labels)
     return difference_of_means(shuffled_table, label, 'Shuffled Label')   
+
 ```
+</div>
+
+</div>
+
 
 
 We can now use this function to create an array `differences` that contains 10,000 values of the test statistic simulated under the null hypothesis.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 differences = make_array()
 
@@ -537,7 +647,12 @@ repetitions = 10000
 for i in np.arange(repetitions):
     new_difference = one_simulated_difference(football, 'Pressure Drop', 'Team')
     differences = np.append(differences, new_difference)
+
 ```
+</div>
+
+</div>
+
 
 
 ### Conclusion of the Test
@@ -547,20 +662,28 @@ Larger drops for the Patriots favor the alternative hypothesis. So the P-value i
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 empirical_P = np.count_nonzero(differences >= observed_difference) / 10000
 empirical_P
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.0043
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -568,26 +691,36 @@ That's a pretty small P-value. To visualize this, here is the empirical distribu
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_column('Difference Between Group Averages', differences).hist()
 plots.scatter(observed_difference, 0, color='red', s=30)
 plots.title('Prediction Under the Null Hypothesis')
 print('Observed Difference:', observed_difference)
 print('Empirical P-value:', empirical_P)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Observed Difference: 0.733522727272728
 Empirical P-value: 0.0043
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/12/2/Deflategate_31_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -603,6 +736,9 @@ The independent investigative team analyzed the data in several different ways, 
 
 Our analysis shows an average pressure drop of about 0.73 psi, which is close to the center of the interval "0.45 to 1.02 psi" and therefore consistent with the official analysis.
 
+
+
 Remember that our test of hypotheses does not establish the reason *why* the difference is not due to chance. Establishing causality is usually more complex than running a test of hypotheses.
 
 But the all-important question in the football world was about causation: the question was whether the excess drop of pressure in the Patriots' footballs was deliberate. If you are curious about the answer given by the investigators, here is the [full report](https://nfllabor.files.wordpress.com/2015/05/investigative-and-expert-reports-re-footballs-used-during-afc-championsh.pdf).
+

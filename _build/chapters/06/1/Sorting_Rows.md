@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/06/1/sorting-rows"
 interact_link: content/chapters/06/1/Sorting_Rows.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Sorting Rows'
 prev_page:
   url: /chapters/06/Tables
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -35,14 +41,18 @@ The first row shows that Paul Millsap, Power Forward for the Atlanta Hawks, had 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # This table can be found online: https://www.statcrunch.com/app/index.php?dataid=1843341
 nba_salaries = Table.read_table(path_data + 'nba_salaries.csv')
 nba_salaries
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -90,17 +100,26 @@ nba_salaries
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The table contains 417 rows, one for each player. Only 10 of the rows are displayed. The `show` method allows us to specify the number of rows, with the default (no specification) being all the rows of the table.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba_salaries.show(3)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -124,17 +143,26 @@ nba_salaries.show(3)
 <p>... (414 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 Glance through about 20 rows or so, and you will see that the rows are in alphabetical order by team name. It's also possible to list the same rows in alphabetical order by player name using the `sort` method. The argument to `sort` is a column label or index.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba_salaries.sort('PLAYER').show(5)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -164,6 +192,11 @@ nba_salaries.sort('PLAYER').show(5)
 <p>... (412 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 To examine the players' salaries, it would be much more helpful if the data were ordered by salary.
 
@@ -173,13 +206,17 @@ This arranges all the rows of the table in *increasing* order of salary, with th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba = nba_salaries.relabeled("'15-'16 SALARY", 'SALARY')
 nba.sort('SALARY')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -227,6 +264,11 @@ nba.sort('SALARY')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 These figures are somewhat difficult to compare as some of these players changed teams during the season and received salaries from more than one team; only the salary from the last team appears in the table. Point Guard Phil Pressey, for example, moved from Philadelphia to Phoenix during the year, and might be moving yet again to the Golden State Warriors. 
 
@@ -236,12 +278,16 @@ To order the rows of the table in *decreasing* order of salary, we must use `sor
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.sort('SALARY', descending=True)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -289,8 +335,15 @@ nba.sort('SALARY', descending=True)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Kobe Bryant, in his final season with the Lakers, was the highest paid at a salary of $\$25$ million. Notice that the MVP Stephen Curry doesn't appear among the top 10. He is quite a bit further down the list, as we will see later.
+
+
 
 ### Named Arguments
 
@@ -298,13 +351,17 @@ The `descending=True` portion of this call expression is called a *named argumen
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 help(nba.sort)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Help on method sort in module datascience.tables:
 
@@ -369,8 +426,12 @@ sort(column_or_label, descending=False, distinct=False) method of datascience.ta
     Red   | Round       | 7      | 1.75
     Blue  | Rectangular | 12     | 2
 
-
 ```
+</div>
+</div>
+</div>
+
+
 
 At the very top of this `help` text, the *signature* of the `sort` method appears:
 
@@ -383,3 +444,4 @@ This describes the positions, names, and default values of the three arguments t
     sort(column_or_label='SALARY', descending=True)
     
 When an argument is simply `True` or `False`, it's a useful convention to include the argument name so that it's more obvious what the argument value means.
+

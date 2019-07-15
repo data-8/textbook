@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/15/3/method-of-least-squares"
 interact_link: content/chapters/15/3/Method_of_Least_Squares.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'The Method of Least Squares'
 prev_page:
   url: /chapters/15/2/Regression_Line
@@ -14,8 +15,17 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -26,18 +36,24 @@ To address these questions, we need a reasonable definition of "best". Recall th
 
 In this section we will make this criterion precise and see if we can identify the best straight line under the criterion.
 
+
+
 Our first example is a dataset that has one row for every chapter of the novel "Little Women." The goal is to estimate the number of characters (that is, letters, spaces punctuation marks, and so on) based on the number of periods. Recall that we attempted to do this in the very first lecture of this course.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 little_women = Table.read_table(path_data + 'little_women.csv')
 little_women = little_women.move_to_start('Periods')
 little_women.show(3)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -61,18 +77,29 @@ little_women.show(3)
 <p>... (44 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 little_women.scatter('Periods', 'Characters')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/3/Method_of_Least_Squares_5_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -80,23 +107,33 @@ To explore the data, we will need to use the functions `correlation`, `slope`, `
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(little_women, 'Periods', 'Characters')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.9229576895854816
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 The scatter plot is remarkably close to linear, and the correlation is more than 0.92.
+
+
 
 ### Error in Estimation
 
@@ -104,16 +141,24 @@ The graph below shows the scatter plot and line that we developed in the previou
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_with_predictions = little_women.with_column('Linear Prediction', fit(little_women, 'Periods', 'Characters'))
 lw_with_predictions.scatter('Periods')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/3/Method_of_Least_Squares_10_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -121,22 +166,30 @@ Corresponding to each point on the scatter plot, there is an error of prediction
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 actual = lw_with_predictions.column('Characters')
 predicted = lw_with_predictions.column('Linear Prediction')
 errors = actual - predicted
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_with_predictions.with_column('Error', errors)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -184,41 +237,64 @@ lw_with_predictions.with_column('Error', errors)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 We can use `slope` and `intercept` to calculate the slope and intercept of the fitted line. The graph below shows the line (in light blue). The errors corresponding to four of the points are shown in red. There is nothing special about those four points. They were just chosen for clarity of the display. The function `lw_errors` takes a slope and an intercept (in that order) as its arguments and draws the figure. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_reg_slope = slope(little_women, 'Periods', 'Characters')
 lw_reg_intercept = intercept(little_women, 'Periods', 'Characters')
+
 ```
+</div>
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 print('Slope of Regression Line:    ', np.round(lw_reg_slope), 'characters per period')
 print('Intercept of Regression Line:', np.round(lw_reg_intercept), 'characters')
 lw_errors(lw_reg_slope, lw_reg_intercept)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Slope of Regression Line:     87.0 characters per period
 Intercept of Regression Line: 4745.0 characters
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/3/Method_of_Least_Squares_17_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -226,29 +302,43 @@ Had we used a different line to create our estimates, the errors would have been
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_errors(50, 10000)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/3/Method_of_Least_Squares_19_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_errors(-100, 50000)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/3/Method_of_Least_Squares_20_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -259,6 +349,8 @@ What we need now is one overall measure of the rough size of the errors. You wil
 If you use any arbitrary line to calculate your estimates, then some of your errors are likely to be positive and others negative. To avoid cancellation when measuring the rough size of the errors, we will take the mean of the squared errors rather than the mean of the errors themselves. 
 
 The mean squared error of estimation is a measure of roughly how big the squared errors are, but as we have noted earlier, its units are hard to interpret. Taking the square root yields the root mean square error (rmse), which is in the same units as the variable being predicted and therefore much easier to understand. 
+
+
 
 ### Minimizing the Root Mean Squared Error
 
@@ -274,7 +366,8 @@ To answer this question, we will start by defining a function `lw_rmse` to compu
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def lw_rmse(slope, intercept):
     lw_errors(slope, intercept)
@@ -283,46 +376,67 @@ def lw_rmse(slope, intercept):
     fitted = slope * x + intercept
     mse = np.mean((y - fitted) ** 2)
     print("Root mean squared error:", mse ** 0.5)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_rmse(50, 10000)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Root mean squared error: 4322.167831766537
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/3/Method_of_Least_Squares_24_1.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_rmse(-100, 50000)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Root mean squared error: 16710.11983735375
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/3/Method_of_Least_Squares_25_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -330,21 +444,31 @@ Bad lines have big values of rmse, as expected. But the rmse is much smaller if 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_rmse(90, 4000)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Root mean squared error: 2715.5391063834586
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/3/Method_of_Least_Squares_27_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -354,25 +478,37 @@ Here is the root mean squared error corresponding to the regression line. By a r
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_rmse(lw_reg_slope, lw_reg_intercept)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Root mean squared error: 2701.690785311856
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/3/Method_of_Least_Squares_29_1.png)
+
+</div>
+</div>
+</div>
 
 
 
 The proof of this statement requires abstract mathematics that is beyond the scope of this course. On the other hand, we do have a powerful tool – Python – that performs large numerical computations with ease. So we can use Python to confirm that the regression line minimizes the mean squared error.
+
+
 
 ### Numerical Optimization
 First note that a line that minimizes the root mean squared error is also a line that minimizes the squared error. The square root makes no difference to the minimization. So we will save ourselves a step of computation and just minimize the mean squared error (mse).
@@ -385,33 +521,47 @@ it will have an mse that depends on the slope $a$ and the intercept $b$. The fun
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def lw_mse(any_slope, any_intercept):
     x = little_women.column('Periods')
     y = little_women.column('Characters')
     fitted = any_slope*x + any_intercept
     return np.mean((y - fitted) ** 2)
+
 ```
+</div>
+
+</div>
+
 
 
 Let's check that `lw_mse` gets the right answer for the root mean squared error of the regression line. Remember that `lw_mse` returns the mean squared error, so we have to take the square root to get the rmse.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_mse(lw_reg_slope, lw_reg_intercept)**0.5
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 2701.690785311856
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -419,21 +569,31 @@ That's the same as the value we got by using `lw_rmse` earlier:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_rmse(lw_reg_slope, lw_reg_intercept)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Root mean squared error: 2701.690785311856
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/3/Method_of_Least_Squares_36_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -441,19 +601,27 @@ You can confirm that `lw_mse` returns the correct value for other slopes and int
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_mse(-100, 50000)**0.5
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 16710.11983735375
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -461,19 +629,27 @@ And here is the rmse for a line that is close to the regression line.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lw_mse(90, 4000)**0.5
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 2715.5391063834586
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -487,20 +663,28 @@ The call `minimize(lw_mse)` returns an array consisting of the slope and the int
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 best = minimize(lw_mse)
 best
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([  86.97784117, 4744.78484535])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -508,26 +692,35 @@ These values are the same as the values we calculated earlier by using the `slop
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 print("slope from formula:        ", lw_reg_slope)
 print("slope from minimize:       ", best.item(0))
 print("intercept from formula:    ", lw_reg_intercept)
 print("intercept from minimize:   ", best.item(1))
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 slope from formula:         86.97784125829821
 slope from minimize:        86.97784116615884
 intercept from formula:     4744.784796574928
 intercept from minimize:    4744.784845352655
-
 ```
+</div>
+</div>
+</div>
+
+
 
 ### The Least Squares Line
 
 Therefore, we have found not only that the regression line minimizes mean squared error, but also that minimizing mean squared error gives us the regression line. The regression line is the only line that minimizes mean squared error.
 
 That is why the regression line is sometimes called the "least squares line."
+

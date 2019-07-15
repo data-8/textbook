@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/06/tables"
 interact_link: content/chapters/06/Tables.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Tables'
 prev_page:
   url: /chapters/05/3/More_on_Arrays
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -26,22 +32,32 @@ In order to use tables, import all of the module called `datascience`, a module 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 from datascience import *
+
 ```
+</div>
+
+</div>
+
 
 
 Empty tables can be created using the `Table` function. An empty table is usefuly because it can be extended to contain new rows and columns.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -58,6 +74,11 @@ Table()
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The `with_columns` method on a table constructs a new table with additional labeled columns. Each column of a table is an array. To add one new column to a table, call `with_columns` with a label and an array. (The `with_column` method can be used with the same effect.)
 
@@ -65,12 +86,16 @@ Below, we begin each example with an empty table that has no columns.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_columns('Number of petals', make_array(8, 34, 5))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -96,20 +121,29 @@ Table().with_columns('Number of petals', make_array(8, 34, 5))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 To add two (or more) new columns, provide the label and array for each column. All columns must have the same length, or an error will occur.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_columns(
     'Number of petals', make_array(8, 34, 5),
     'Name', make_array('lotus', 'sunflower', 'rose')
 )
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -135,12 +169,18 @@ Table().with_columns(
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 We can give this table a name, and then extend the table with another column.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 flowers = Table().with_columns(
     'Number of petals', make_array(8, 34, 5),
@@ -150,9 +190,12 @@ flowers = Table().with_columns(
 flowers.with_columns(
     'Color', make_array('pink', 'yellow', 'red')
 )
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -178,17 +221,26 @@ flowers.with_columns(
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The `with_columns` method creates a new table each time it is called, so the original table is not affected. For example, the table `flowers` still has only the two columns that it had when it was created.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 flowers
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -214,6 +266,11 @@ flowers
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Creating tables in this way involves a lot of typing. If the data have already been entered somewhere, it is usually possible to use Python to read it into a table, instead of typing it all in cell by cell.
 
@@ -223,13 +280,17 @@ Below, we use the Table method `read_table` to read a CSV file that contains som
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard = Table.read_table(path_data + 'minard.csv')
 minard
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -270,8 +331,15 @@ minard
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 We will use this small table to demonstrate some useful Table methods. We will then use those same methods, and develop other methods, on much larger tables of data.
+
+
 
 ### The Size of the Table
 
@@ -279,37 +347,51 @@ The method `num_columns` gives the number of columns in the table, and `num_rows
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.num_columns
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 5
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.num_rows
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 8
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -318,19 +400,27 @@ The method `labels` can be used to list the labels of all the columns. With `min
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.labels
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 ('Longitude', 'Latitude', 'City', 'Direction', 'Survivors')
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -338,12 +428,16 @@ We can change column labels using the `relabeled` method. This creates a new tab
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.relabeled('City', 'City Name')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -384,17 +478,26 @@ minard.relabeled('City', 'City Name')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 However, this method does not change the original table. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -435,18 +538,27 @@ minard
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 A common pattern is to assign the original name `minard` to the new table, so that all future uses of `minard` will refer to the relabeled table.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard = minard.relabeled('City', 'City Name')
 minard
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -484,6 +596,11 @@ minard
         </tr>
     </tbody>
 </table>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -493,19 +610,27 @@ We can use a column's label to access the array of data in the column.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.column('Survivors')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([145000, 140000, 127100, 100000,  55000,  24000,  20000,  12000])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -513,19 +638,27 @@ The 5 columns are indexed 0, 1, 2, 3, and 4. The column `Survivors` can also be 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.column(4)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([145000, 140000, 127100, 100000,  55000,  24000,  20000,  12000])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -533,37 +666,51 @@ The 8 items in the array are indexed 0, 1, 2, and so on, up to 7. The items in t
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.column(4).item(0)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 145000
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.column(4).item(5)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 24000
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -572,16 +719,20 @@ Because columns are arrays, we can use array operations on them to discover new 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 initial = minard.column('Survivors').item(0)
 minard = minard.with_columns(
     'Percent Surviving', minard.column('Survivors')/initial
 )
 minard
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -622,17 +773,26 @@ minard
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 To make the proportions in the new columns appear as percents, we can use the method `set_format` with the option `PercentFormatter`. The `set_format` method takes `Formatter` objects, which exist for dates (`DateFormatter`), currencies (`CurrencyFormatter`), numbers, and percentages.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.set_format('Percent Surviving', PercentFormatter)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -673,18 +833,27 @@ minard.set_format('Percent Surviving', PercentFormatter)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ### Choosing Sets of Columns
 The method `select` creates a new table that contains only the specified columns.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.select('Longitude', 'Latitude')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -722,6 +891,11 @@ minard.select('Longitude', 'Latitude')
         </tr>
     </tbody>
 </table>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -730,12 +904,16 @@ The same selection can be made using column indices instead of labels.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.select(0, 1)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -776,17 +954,26 @@ minard.select(0, 1)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The result of using `select` is a new table, even when you select just one column.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.select('Survivors')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -827,24 +1014,37 @@ minard.select('Survivors')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Notice that the result is a table, unlike the result of `column`, which is an array.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.column('Survivors')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([145000, 140000, 127100, 100000,  55000,  24000,  20000,  12000])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -852,12 +1052,16 @@ Another way to create a new table consisting of a set of columns is to `drop` th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard.drop('Longitude', 'Latitude', 'Direction')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -898,17 +1102,26 @@ minard.drop('Longitude', 'Latitude', 'Direction')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Neither `select` nor `drop` change the original table. Instead, they create new smaller tables that share the same data. The fact that the original table is preserved is useful! You can generate multiple different tables that only consider certain columns without worrying that one analysis will affect the other.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 minard
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -949,5 +1162,11 @@ minard
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 All of the methods that we have used above can be applied to any table.
+

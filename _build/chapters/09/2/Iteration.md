@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/09/2/iteration"
 interact_link: content/chapters/09/2/Iteration.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Iteration'
 prev_page:
   url: /chapters/09/1/Conditional_Statements
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -27,7 +33,8 @@ The function `bet_on_one_roll` takes no argument. Each time it is called, it sim
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def bet_on_one_roll():
     """Returns my net gain on one bet"""
@@ -38,26 +45,39 @@ def bet_on_one_roll():
         return 0
     elif x <= 6:
         return 1
+
 ```
+</div>
+
+</div>
+
 
 
 Playing this game once is easy:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 bet_on_one_roll()
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 1
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -67,20 +87,28 @@ A more automated solution is to use a `for` statement to loop over the contents 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 for animal in make_array('cat', 'dog', 'rabbit'):
     print(animal)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 cat
 dog
 rabbit
-
 ```
+</div>
+</div>
+</div>
+
+
 
 It is helpful to write code that exactly replicates a `for` statement, without using the `for` statement.  This is called *unrolling* the loop.  
 
@@ -88,7 +116,8 @@ A `for` statement simple replicates the code inside it, but before each iteratio
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 animal = make_array('cat', 'dog', 'rabbit').item(0)
 print(animal)
@@ -96,16 +125,23 @@ animal = make_array('cat', 'dog', 'rabbit').item(1)
 print(animal)
 animal = make_array('cat', 'dog', 'rabbit').item(2)
 print(animal)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 cat
 dog
 rabbit
-
 ```
+</div>
+</div>
+</div>
+
+
 
 Notice that the name `animal` is arbitrary, just like any name we assign with `=`.
 
@@ -115,24 +151,34 @@ To repeat a process `n` times, it is common to use the sequence `np.arange(n)` i
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 for i in np.arange(5):
     print(bet_on_one_roll())
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 1
 1
 0
 -1
 1
-
 ```
+</div>
+</div>
+</div>
+
+
 
 In this case, we simply perform exactly the same (random) action several times, so the code in the body of our `for` statement does not actually refer to `i`.
+
+
 
 ### Augmenting Arrays
 
@@ -142,20 +188,28 @@ The `append` method in `NumPy` helps us do this. The call `np.append(array_name,
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 pets = make_array('Cat', 'Dog')
 np.append(pets, 'Another Pet')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array(['Cat', 'Dog', 'Another Pet'], dtype='<U11')
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -163,19 +217,27 @@ This keeps the array `pets` unchanged:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 pets
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array(['Cat', 'Dog'], dtype='<U3')
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -183,20 +245,28 @@ But often while using `for` loops it will be convenient to mutate an array – t
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 pets = np.append(pets, 'Another Pet')
 pets
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array(['Cat', 'Dog', 'Another Pet'], dtype='<U11')
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -205,7 +275,8 @@ We can now simulate five bets on the die and collect the results in an array tha
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 outcomes = make_array()
 
@@ -214,16 +285,23 @@ for i in np.arange(5):
     outcomes = np.append(outcomes, outcome_of_bet)
     
 outcomes
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([-1.,  0.,  0.,  1.,  0.])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -231,7 +309,8 @@ Let us rewrite the cell with the `for` statement unrolled:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 outcomes = make_array()
 
@@ -256,16 +335,23 @@ outcome_of_bet = bet_on_one_roll()
 outcomes = np.append(outcomes, outcome_of_bet)
 
 outcomes
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([ 0., -1.,  0.,  1., -1.])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -275,19 +361,27 @@ By capturing the results in an array we have given ourselves the ability to use 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.count_nonzero(outcomes)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -296,33 +390,47 @@ Iteration is a powerful technique. For example, we can see the variation in the 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 outcomes = make_array()
 
 for i in np.arange(300):
     outcome_of_bet = bet_on_one_roll()
     outcomes = np.append(outcomes, outcome_of_bet)
+
 ```
+</div>
+
+</div>
+
 
 
 The array `outcomes` contains the results of all 300 bets.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 len(outcomes)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 300
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -330,17 +438,26 @@ To see how often the three different possible results appeared, we can use the a
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 outcome_table = Table().with_column('Outcome', outcomes)
 outcome_table.group('Outcome').barh(0)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/09/2/Iteration_29_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Not surprisingly, each of the three outcomes -1, 0, and 1 appeared about about 100 of the 300 times, give or take. We will examine the "give or take" amounts more closely in later chapters.
+

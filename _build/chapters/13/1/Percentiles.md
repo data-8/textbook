@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/13/1/percentiles"
 interact_link: content/chapters/13/1/Percentiles.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Percentiles'
 prev_page:
   url: /chapters/13/Estimation
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -27,6 +33,8 @@ You also have to be careful about exactly how far up the list to go when the rel
 
 In this section, we will give a definition that works consistently for all ranks and all lists.
 
+
+
 ### A Numerical Example
 Before giving a general definition of all percentiles, we will define the 80th percentile of a collection of values to be the smallest value in the collection that is at least as large as 80% of all of the values.
 
@@ -34,29 +42,43 @@ For example, let's consider the sizes of the five largest continents – Africa,
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sizes = make_array(12, 17, 6, 9, 7)
+
 ```
+</div>
+
+</div>
+
 
 
 The 80th percentile is the smallest value that is at least as large as 80% of the elements of `sizes`, that is, four-fifths of the five elements. That's 12:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.sort(sizes)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([ 6,  7,  9, 12, 17])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -64,24 +86,34 @@ The 80th percentile is a value on the list, namely 12. You can see that 80% of t
 
 Analogously, the 70th percentile is the smallest value in the collection that is at least as large as 70% of the elements of `sizes`. Now 70% of 5 elements is "3.5 elements", so the 70th percentile is the 4th element on the list. That's 12, the same as the 80th percentile for these data.
 
+
+
 ### The `percentile` function
 The `percentile` function takes two arguments: a rank between 0 and 100, and a array. It returns the corresponding percentile of the array.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 percentile(70, sizes)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 12
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -97,18 +129,24 @@ In practical terms, suppose there are $n$ elements in the collection. To find th
 - If $k$ is an integer, take the $k$th element of the sorted collection.
 - If $k$ is not an integer, round it up to the next integer, and take that element of the sorted collection.
 
+
+
 ### Example
 The table `scores_and_sections` contains one row for each student in a class of 359 students. The columns are the student's discussion section and midterm score. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scores_and_sections = Table.read_table(path_data + 'scores_by_section.csv')
 scores_and_sections
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -156,18 +194,29 @@ scores_and_sections
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scores_and_sections.select('Midterm').hist(bins=np.arange(-0.5, 25.6, 1))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/1/Percentiles_12_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -175,27 +224,39 @@ What was the 85th percentile of the scores? To use the `percentile` function, cr
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scores = scores_and_sections.column(1)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 percentile(85, scores)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 22
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -205,29 +266,43 @@ First, put the scores in increasing order:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sorted_scores = np.sort(scores_and_sections.column(1))
+
 ```
+</div>
+
+</div>
+
 
 
 There are 359 scores in the array. So next, find 85% of 359, which is 305.15. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 0.85 * 359
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 305.15
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -235,25 +310,35 @@ That's not an integer. By our definition, the 85th percentile is the 306th eleme
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # The 306th element of the sorted array
 
 sorted_scores.item(305)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 22
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 That's the same as the answer we got by using `percentile`. In future, we will just use `percentile`.
+
+
 
 ### Quartiles
 The *first quartile* of a numercial collection is the 25th percentile. The terminology arises from *the first quarter*. The second quartile is the median, and the third quartile is the 75th percentile.
@@ -262,56 +347,77 @@ For our `scores` data, those values are:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 percentile(25, scores)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 11
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 percentile(50, scores)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 16
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 percentile(75, scores)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 20
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 Distributions of scores are sometimes summarized by the "middle 50%" interval, between the first and third quartiles. 
+

@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/17/classification"
 interact_link: content/chapters/17/Classification.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Classification'
 prev_page:
   url: /chapters/16/3/Prediction_Intervals
@@ -14,11 +15,18 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### Classification
 
 *[David Wagner](https://en.wikipedia.org/wiki/David_A._Wagner) is the primary author of this chapter.*
+
+
 
 *Machine learning* is a class of techniques for automatically finding patterns in data and using it to draw inferences or make predictions.  You have already seen linear regression, which is one kind of machine learning.  This chapter introduces a new one: *classification*.
 
@@ -41,3 +49,4 @@ When Amazon is predicting whether orders are fraudulent, each order corresponds 
 Classification requires data.  It involves looking for patterns, and to find patterns, you need data.  That's where the data science comes in.  In particular, we're going to assume that we have access to *training data*: a bunch of observations, where we know the class of each observation.  The collection of these pre-classified observations is also called a training set.  A classification algorithm is going to analyze the training set, and then come up with a classifier: an algorithm for predicting the class of future observations.
 
 Classifiers do not need to be perfect to be useful.  They can be useful even if their accuracy is less than 100%.  For instance, if the online dating site occasionally makes a bad recommendation, that's OK; their customers already expect to have to meet many people before they'll find someone they hit it off with.  Of course, you don't want the classifier to make too many errors &mdash; but it doesn't have to get the right answer every single time.
+

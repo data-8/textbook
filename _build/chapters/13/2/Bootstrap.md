@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/13/2/bootstrap"
 interact_link: content/chapters/13/2/Bootstrap.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'The Bootstrap'
 prev_page:
   url: /chapters/13/1/Percentiles
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -27,7 +33,11 @@ It looks as though the data scientist is stuck.
 
 Fortunately, a brilliant idea called *the bootstrap* can help her out. Since it is not feasible to generate new samples from the population, the bootstrap generates new random samples by a method called *resampling*: the new samples are drawn at random *from the original sample*.
 
+
+
 In this section, we will see how and why the bootstrap works. In the rest of the chapter, we will use the bootstrap for inference.
+
+
 
 
 
@@ -38,20 +48,28 @@ Compensation data for the calendar year 2015 are in the table `sf2015`.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sf2015 = Table.read_table(path_data + 'san_francisco_2015.csv')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sf2015
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -99,17 +117,26 @@ sf2015
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 There is one row for each of 42,979 employees. There are numerous columns containing information about City departmental affiliation and details of the different parts of the employee's compensation package. Here is the row correspoding to the late Edward Lee, the Mayor at that time.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sf2015.where('Job', are.equal_to('Mayor'))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -129,6 +156,11 @@ sf2015.where('Job', are.equal_to('Mayor'))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 We are going to study the final column, `Total Compensation`. That's the employee's salary plus the City's contribution towards his/her retirement and benefit plans.
 
@@ -136,12 +168,16 @@ Financial packages in a calendar year can sometimes be hard to understand as the
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sf2015.sort('Total Compensation')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -189,32 +225,49 @@ sf2015.sort('Total Compensation')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 For clarity of comparison, we will focus our attention on those who had at least the equivalent of a half-time job for the whole year. At a minimum wage of about \\$10 per hour, and 20 hours per week for 52 weeks, that's a salary of about \\$10,000.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sf2015 = sf2015.where('Salaries', are.above(10000))
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sf2015.num_rows
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 36569
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -223,16 +276,24 @@ Let this table of just over 36,500 rows be our population. Here is a histogram o
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sf_bins = np.arange(0, 700000, 25000)
 sf2015.select('Total Compensation').hist(bins=sf_bins)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/2/Bootstrap_14_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -240,12 +301,16 @@ While most of the values are below \\$300,000, a few are quite a bit higher. For
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sf2015.sort('Total Compensation', descending=True).show(2)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -266,6 +331,11 @@ sf2015.sort('Total Compensation', descending=True).show(2)
 <p>... (36567 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 Now let the parameter be the median of the total compensations.
 
@@ -273,20 +343,28 @@ Since we have the luxury of having all of the data from the population, we can s
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 pop_median = percentile(50, sf2015.column('Total Compensation'))
 pop_median
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 110305.79
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -296,40 +374,56 @@ From a practical perspective, there is no reason for us to draw a sample to esti
 
 In later sections, we will come down to earth and work in situations where the parameter is unknown. For now, we are all-knowing.
 
+
+
 ### A Random Sample and an Estimate
 Let us draw a sample of 500 employees at random without replacement, and let the median total compensation of the sampled employees serve as our estimate of the parameter.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 our_sample = sf2015.sample(500, with_replacement=False)
 our_sample.select('Total Compensation').hist(bins=sf_bins)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/2/Bootstrap_21_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 est_median = percentile(50, our_sample.column('Total Compensation'))
 est_median
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 108405.39
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -340,6 +434,8 @@ So now we have one estimate of the parameter. But had the sample come out differ
 To see how different the estimate would be if the sample had come out differently, we could just draw another sample from the population, but that would be cheating. We are trying to mimic real life, in which we won't have all the population data at hand.
 
 Somehow, we have to get another random sample without sampling from the population.
+
+
 
 ### The Bootstrap: Resampling from the Sample
 What we do have is a large random sample from the population. As we know, a large random sample is likely to resemble the population from which it is drawn. This observation allows data scientists to *lift themselves up by their own bootstraps*: the sampling procedure can be replicated by *sampling from the sample*. 
@@ -357,13 +453,21 @@ Why is this a good idea? By the law of averages, the distribution of the origina
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/2/Bootstrap_25_0.png)
 
+
+</div>
+</div>
+</div>
 
 
 
@@ -372,42 +476,60 @@ Recall that when the `sample` method is used without specifying a sample size, b
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 resample_1 = our_sample.sample()
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 resample_1.select('Total Compensation').hist(bins=sf_bins)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/2/Bootstrap_28_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 resampled_median_1 = percentile(50, resample_1.column('Total Compensation'))
 resampled_median_1
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 108366.9
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -415,21 +537,29 @@ By resampling, we have another estimate of the population median. By resampling 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 resample_2 = our_sample.sample()
 resampled_median_2 = percentile(50, resample_2.column('Total Compensation'))
 resampled_median_2
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 110391.29
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -440,7 +570,8 @@ Each time we resample and find the median, we *replicate* the bootstrap process.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def bootstrap_median(original_sample, label, replications):
     """Returns an array of bootstrapped sample medians:
@@ -456,24 +587,36 @@ def bootstrap_median(original_sample, label, replications):
         medians = np.append(medians, resampled_median)
         
     return medians
+
 ```
+</div>
+
+</div>
+
 
 
 We now replicate the bootstrap process 5,000 times. The array `bstrap_medians` contains the medians of all 5,000 bootstrap samples. Notice that the code takes longer to run than our previous code. It has a lot of resampling to do!
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 bstrap_medians = bootstrap_median(our_sample, 'Total Compensation', 5000)
+
 ```
+</div>
+
+</div>
+
 
 
 Here is the histogram of the 5000 medians. The red dot is the population parameter: it is the median of the entire population, which we happen to know but did not use in the bootstrap process.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 resampled_medians = Table().with_column('Bootstrap Sample Median', bstrap_medians)
 
@@ -482,18 +625,27 @@ resampled_medians = Table().with_column('Bootstrap Sample Median', bstrap_median
 resampled_medians.hist()
 
 plots.scatter(pop_median, 0, color='red', s=30);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/2/Bootstrap_37_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 It is important to remember that the red dot is fixed: it is \\$110,305.79, the population median. The empirical histogram is the result of random draws, and will be situated randomly relative to the red dot. 
 
 Remember also that the point of all these computations is to estimate the population median, which is the red dot. Our estimates are all the randomly generated sampled medians whose histogram you see above. We want those estimates to contain the parameter – it they don't, then they are off.
+
+
 
 ### Do the Estimates Capture the Parameter?
 
@@ -503,39 +655,53 @@ Here are the two ends of the "middle 95%" interval of resampled medians:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 left = percentile(2.5, bstrap_medians)
 left
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 102285.4
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 right = percentile(97.5, bstrap_medians)
 right
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 115557.27
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -543,7 +709,8 @@ The population median of \\$110,305 is between these two numbers. The interval a
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 #median_bins=np.arange(100000, 130000, 2500)
 #resampled_medians.hist(bins = median_bins)
@@ -551,12 +718,19 @@ resampled_medians.hist()
 
 plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=3, zorder=1)
 plots.scatter(pop_median, 0, color='red', s=30, zorder=2);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/2/Bootstrap_43_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -573,7 +747,8 @@ We will end up with 100 intervals, and count how many of them contain the popula
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # THE BIG SIMULATION: This one takes several minutes.
 
@@ -594,19 +769,28 @@ intervals = Table().with_columns(
     'Left', left_ends,
     'Right', right_ends
 )    
+
 ```
+</div>
+
+</div>
+
 
 
 For each of the 100 replications, we get one interval of estimates of the median.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 intervals
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -654,24 +838,37 @@ intervals
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The good intervals are those that contain the parameter we are trying to estimate. Typically the parameter is unknown, but in this section we happen to know what the parameter is.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 pop_median
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 110305.79
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -679,19 +876,27 @@ How many of the 100 intervals contain the population median? That's the number o
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 intervals.where('Left', are.below(pop_median)).where('Right', are.above(pop_median)).num_rows
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 97
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -707,10 +912,35 @@ Any method based on sampling has the possibility of being off. The beauty of met
 
 
 
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+# HIDDEN 
 
+replication_number = np.ndarray.astype(np.arange(1, 101), str)
+intervals2 = Table(replication_number).with_rows(make_array(left_ends, right_ends))
 
-{:.output .output_png}
+plots.figure(figsize=(8,8))
+for i in np.arange(100):
+    ends = intervals2.column(i)
+    plots.plot(ends, make_array(i+1, i+1), color='gold')
+plots.plot(make_array(pop_median, pop_median), make_array(0, 100), color='red', lw=2)
+plots.xlabel('Median (dollars)')
+plots.ylabel('Replication')
+plots.title('Population Median and Intervals of Estimates');
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/13/2/Bootstrap_53_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -726,3 +956,4 @@ That gives you one interval of estimates. Now if you repeat **the entire process
 In other words, this process of estimation captures the parameter about 95% of the time. 
 
 You can replace 95% by a different value, as long as it's not 100. Suppose you replace 95% by 80% and keep the sample size fixed at 500. Then your intervals of estimates will be shorter than those we simulated here, because the "middle 80%" is a smaller range than the "middle 95%". Only about 80% of your intervals will contain the parameter.
+

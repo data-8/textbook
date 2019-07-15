@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/13/4/using-confidence-intervals"
 interact_link: content/chapters/13/4/Using_Confidence_Intervals.ipynb
 kernel_name: Python [Root]
+has_widgets: false
 title: 'Using Confidence Intervals'
 prev_page:
   url: /chapters/13/3/Confidence_Intervals
@@ -14,11 +15,15 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def bootstrap_median(original_sample, label, replications):
     
@@ -36,12 +41,16 @@ def bootstrap_median(original_sample, label, replications):
         medians = np.append(medians, resampled_median)
         
     return medians
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def bootstrap_mean(original_sample, label, replications):
     
@@ -59,12 +68,16 @@ def bootstrap_mean(original_sample, label, replications):
         means = np.append(means, resampled_mean)
         
     return means
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def bootstrap_proportion(original_sample, label, replications):
     
@@ -83,7 +96,12 @@ def bootstrap_proportion(original_sample, label, replications):
         proportions = np.append(proportions, resampled_proportion)
         
     return proportions
+
 ```
+</div>
+
+</div>
+
 
 
 ### Using Confidence Intervals
@@ -93,29 +111,45 @@ It is important to resist the impulse to use confidence intervals for other purp
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baby = Table.read_table(path_data + 'baby.csv')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baby.select('Maternal Age').hist()
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/4/Using_Confidence_Intervals_6_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 A small percent of the sampled ages are in the (26.9, 27.6) interval, and you would expect a similar small percent in the population. The interval just estimates one number: the *average* of all the ages in the population.
 
+
+
 However, estimating a parameter by confidence intervals does have an important use besides just telling us roughly how big the parameter is. 
+
+
 
 ### Using a Confidence Interval to Test Hypotheses
 Our approximate 95% confidence interval for the average age in the population goes from 26.9 years to 27.6 years. Suppose someone wants to test the following hypotheses:
@@ -134,7 +168,11 @@ If you were using the 1% cutoff for the P-value, you would have to check if the 
 
 To a rough approximation, these statements are also true for population proportions, provided the sample is large.
 
+
+
 While we now have a way of using confidence intervals to test a particular kind of hypothesis, you might wonder about the value of testing whether or not the average age in a population is equal to 30. Indeed, the value isn't clear. But there are some situations in which a test of this kind of hypothesis is both natural and useful.
+
+
 
 We will study this in the context of data that are a subset of the information gathered in a randomized controlled trial about treatments for Hodgkin's disease. Hodgkin's disease is a cancer that typically affects young people. The disease is curable but the treatment can be very harsh. The purpose of the trial was to come up with dosage that would cure the cancer but minimize the adverse effects on the patients. 
 
@@ -148,20 +186,28 @@ This table ``hodgkins`` contains data on the effect that the treatment had on th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 hodgkins = Table.read_table(path_data + 'hodgkins.csv')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 hodgkins
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -209,6 +255,11 @@ hodgkins
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 We will compare the baseline and 15-month scores. As each row corresponds to one patient, we say that the sample of baseline scores and the sample of 15-month scores are *paired* - they are not just two sets of 22 values each, but 22 pairs of values, one for each patient.
 
@@ -216,22 +267,30 @@ At a glance, you can see that the 15-month scores tend to be lower than the base
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 hodgkins = hodgkins.with_column(
     'drop', hodgkins.column('base') - hodgkins.column('month15')
 )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 hodgkins
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -279,36 +338,53 @@ hodgkins
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 hodgkins.select('drop').hist(bins=np.arange(-20, 81, 20))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/4/Using_Confidence_Intervals_17_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(hodgkins.column('drop'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 28.615909090909096
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -324,7 +400,8 @@ To test this hypothesis with a 1% cutoff for the P-value, let's construct an app
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 bstrap_means = bootstrap_mean(hodgkins, 'drop', 10000)
 
@@ -332,34 +409,47 @@ left = percentile(0.5, bstrap_means)
 right = percentile(99.5, bstrap_means)
 
 make_array(left, right)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([17.22636364, 40.54045455])
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 resampled_means = Table().with_column(
     'Bootstrap Sample Mean', bstrap_means
 )
 resampled_means.hist()
 plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=8);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/4/Using_Confidence_Intervals_21_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -373,5 +463,8 @@ But notice that we have done better than simply concluding that the average drop
 
 In the next chapter, we will examine how the sample size affects accuracy. We will also examine how the empirical distributions of sample means so often come out bell shaped even though the distributions of the underlying data are not bell shaped at all.
 
+
+
 ### Endnote
 The terminology of a field usually comes from the leading researchers in that field. [Brad Efron](https://en.wikipedia.org/wiki/Bradley_Efron), who first proposed the bootstrap technique, used a term that has [American origins](https://en.wikipedia.org/wiki/Bootstrapping). Not to be outdone, Chinese statisticians have [proposed their own method](http://econpapers.repec.org/article/eeestapro/v_3a37_3ay_3a1998_3ai_3a4_3ap_3a321-329.htm).
+

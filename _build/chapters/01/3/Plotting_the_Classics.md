@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/01/3/plotting-the-classics"
 interact_link: content/chapters/01/3/Plotting_the_Classics.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Plotting the Classics'
 prev_page:
   url: /chapters/01/2/why-data-science
@@ -13,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -26,7 +32,8 @@ First, we read the text of both books into lists of chapters, called `huck_finn_
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Read two books, fast!
 
@@ -37,21 +44,30 @@ huck_finn_chapters = huck_finn_text.split('CHAPTER ')[44:]
 little_women_url = 'https://www.inferentialthinking.com/data/little_women.txt'
 little_women_text = read_url(little_women_url)
 little_women_chapters = little_women_text.split('CHAPTER ')[1:]
+
 ```
+</div>
+
+</div>
+
 
 
 While a computer cannot understand the text of a book, it can provide us with some insight into the structure of the text. The name `huck_finn_chapters` is currently bound to a list of all the chapters in the book. We can place them into a table to see how each chapter begins.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Display the chapters of Huckleberry Finn in a table.
 
 Table().with_column('Chapters', huck_finn_chapters)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -99,5 +115,11 @@ Table().with_column('Chapters', huck_finn_chapters)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Each chapter begins with a chapter number in Roman numerals, followed by the first sentence of the chapter. Project Gutenberg has printed the first word of each chapter in upper case. 
+

@@ -3,6 +3,7 @@ redirect_from:
   - "/chapters/05/sequences"
 interact_link: content/chapters/05/Sequences.ipynb
 kernel_name: python3
+has_widgets: false
 title: 'Sequences'
 prev_page:
   url: /chapters/04/3/Comparison
@@ -14,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 # Sequences
@@ -24,22 +30,30 @@ Calling the function `make_array` on several values places them into an *array*,
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baseline_high = 14.48
 highs = make_array(baseline_high - 0.880, baseline_high - 0.093,
                    baseline_high + 0.105, baseline_high + 0.684)
 highs
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([ 13.6  ,  14.387,  14.585,  15.164])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -47,19 +61,27 @@ Collections allow us to pass multiple values into a function using a single name
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sum(highs)/len(highs)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 14.434000000000001
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -72,3 +94,4 @@ The complete chart of daily high and low temperatures appears below.
 ### Mean of Daily Low Temperature
 
 ![Mean of Daily Low Temperature](http://berkeleyearth.lbl.gov/auto/Regional/TMIN/Figures/global-land-TMIN-Trend.png)
+
