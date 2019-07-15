@@ -42,6 +42,7 @@ $color-interact-button: #5a5a5a !default;
   /* [1] */
   .interact-button {
     @extend %interact-button;
+    margin-bottom: 4px;
   }
 }
 
