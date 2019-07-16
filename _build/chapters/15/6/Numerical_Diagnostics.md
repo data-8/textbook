@@ -30,7 +30,7 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 galton = Table.read_table(path_data + 'galton.csv')
 heights = galton.select('midparentHeight', 'childHeight')
 heights = heights.relabel(0, 'MidParent').relabel(1, 'Child')
-dugong = Table.read_table('http://www.statsci.org/data/oz/dugongs.txt')
+dugong = Table.read_table(path_data + 'dugongs.csv')
 dugong = dugong.move_to_start('Length')
 hybrid = Table.read_table(path_data + 'hybrid.csv')
 
@@ -355,10 +355,10 @@ $$
 \frac{\mbox{SD of residuals}}{\mbox{SD of }y} ~=~ \sqrt{1-r^2}
 $$
 
-A complentary result is that no matter what the shape of the scatter plot, the SD of the fitted values is a fraction of the SD of the observed values of $y$. The fraction is |r|.
+A complementary result is that no matter what the shape of the scatter plot, the SD of the fitted values is a fraction of the SD of the observed values of $y$. The fraction is $\vert r \vert$.
 
 $$
-\frac{\mbox{SD of fitted values}}{\mbox{SD of }y} ~=~ |r|
+\frac{\mbox{SD of fitted values}}{\mbox{SD of }y} ~=~ \vert r \vert
 $$
 
 To see where the fraction comes in, notice that the fitted values are all on the regression line whereas the observed values of $y$ are the heights of all the points in the scatter plot and are more variable.
@@ -497,7 +497,7 @@ np.std(hybrid.column('fitted mpg'))/np.std(hybrid.column('mpg'))
 
 
 
-The ratio of the two SDs is $|r|$. 
+The ratio of the two SDs is $\vert r \vert$. 
 
 A more standard way to express this result is to recall that 
 
