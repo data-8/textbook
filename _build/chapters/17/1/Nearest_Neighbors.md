@@ -220,7 +220,7 @@ ckd = ckd.join('Class', color_table)
 <div markdown="1" class="cell code_cell">
 <div class="input_area" markdown="1">
 ```python
-ckd.scatter('Hemoglobin', 'Glucose', colors='Color')
+ckd.scatter('Hemoglobin', 'Glucose', group='Color')
 
 ```
 </div>
@@ -397,7 +397,7 @@ However, the separation between the two classes won't always be quite so clean. 
 <div markdown="1" class="cell code_cell">
 <div class="input_area" markdown="1">
 ```python
-ckd.scatter('White Blood Cell Count', 'Glucose', colors='Color')
+ckd.scatter('White Blood Cell Count', 'Glucose', group='Color')
 
 ```
 </div>

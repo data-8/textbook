@@ -2,7 +2,7 @@
 redirect_from:
   - "/chapters/17/4/implementing-the-classifier"
 interact_link: content/chapters/17/4/Implementing_the_Classifier.ipynb
-kernel_name: Python [Root]
+kernel_name: python3
 has_widgets: false
 title: 'Implementing the Classifier'
 prev_page:
@@ -131,7 +131,7 @@ banknotes = banknotes.join('Class', color_table)
 <div markdown="1" class="cell code_cell">
 <div class="input_area" markdown="1">
 ```python
-banknotes.scatter('WaveletVar', 'WaveletCurt', colors='Color')
+banknotes.scatter('WaveletVar', 'WaveletCurt', group='Color')
 
 ```
 </div>
@@ -159,7 +159,7 @@ The patterns that show up in the data can get pretty wild.  For instance, here's
 <div markdown="1" class="cell code_cell">
 <div class="input_area" markdown="1">
 ```python
-banknotes.scatter('WaveletSkew', 'Entropy', colors='Color')
+banknotes.scatter('WaveletSkew', 'Entropy', group='Color')
 
 ```
 </div>
@@ -439,7 +439,7 @@ wine_with_colors = wine.join('Class', color_table)
 <div markdown="1" class="cell code_cell">
 <div class="input_area" markdown="1">
 ```python
-wine_with_colors.scatter('Flavanoids', 'Alcohol', colors='Color')
+wine_with_colors.scatter('Flavanoids', 'Alcohol', group='Color')
 
 ```
 </div>
@@ -463,7 +463,7 @@ The blue points (Class 1) are almost entirely separate from the gold ones. That 
 <div markdown="1" class="cell code_cell">
 <div class="input_area" markdown="1">
 ```python
-wine_with_colors.scatter('Alcalinity of Ash', 'Ash', colors='Color')
+wine_with_colors.scatter('Alcalinity of Ash', 'Ash', group='Color')
 
 ```
 </div>
@@ -487,7 +487,7 @@ But for some pairs the picture is more murky.
 <div markdown="1" class="cell code_cell">
 <div class="input_area" markdown="1">
 ```python
-wine_with_colors.scatter('Magnesium', 'Total Phenols', colors='Color')
+wine_with_colors.scatter('Magnesium', 'Total Phenols', group='Color')
 
 ```
 </div>

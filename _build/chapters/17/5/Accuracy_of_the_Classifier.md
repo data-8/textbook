@@ -110,7 +110,7 @@ evaluate_accuracy(training_set, test_set, 5)
 
 {:.output_data_text}
 ```
-0.9438202247191011
+0.898876404494382
 ```
 
 
@@ -233,7 +233,7 @@ patients_with_colors = patients.join('Class', color_table)
 <div markdown="1" class="cell code_cell">
 <div class="input_area" markdown="1">
 ```python
-patients_with_colors.scatter('Bland Chromatin', 'Single Epithelial Cell Size', colors='Color')
+patients_with_colors.scatter('Bland Chromatin', 'Single Epithelial Cell Size', group='Color')
 
 ```
 </div>
@@ -311,7 +311,7 @@ evaluate_accuracy(training_set, test_set, 5)
 
 {:.output_data_text}
 ```
-0.9765395894428153
+0.967741935483871
 ```
 
 

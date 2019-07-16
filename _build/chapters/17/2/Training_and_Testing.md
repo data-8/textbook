@@ -92,7 +92,7 @@ Suppose we use a 1-nearest neighbor classifier to predict whether a patient has 
 <div markdown="1" class="cell code_cell">
 <div class="input_area" markdown="1">
 ```python
-ckd.scatter('White Blood Cell Count', 'Glucose', colors='Color')
+ckd.scatter('White Blood Cell Count', 'Glucose', group='Color')
 
 ```
 </div>
@@ -166,7 +166,7 @@ Now let's construct our classifier based on the points in the training sample:
 <div markdown="1" class="cell code_cell">
 <div class="input_area" markdown="1">
 ```python
-training.scatter('White Blood Cell Count', 'Glucose', colors='Color')
+training.scatter('White Blood Cell Count', 'Glucose', group='Color')
 plt.xlim(-2, 6)
 plt.ylim(-2, 6);
 

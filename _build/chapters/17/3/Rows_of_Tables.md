@@ -203,7 +203,7 @@ Here is a scatter plot of the two attributes, along with a red point correspondi
 <div class="input_area" markdown="1">
 ```python
 alice = make_array(0, 1.1)
-ckd.scatter('Hemoglobin', 'Glucose', colors='Color')
+ckd.scatter('Hemoglobin', 'Glucose', group='Color')
 plots.scatter(alice.item(0), alice.item(1), color='red', s=30);
 
 ```
