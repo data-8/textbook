@@ -47,7 +47,7 @@ hybrid = Table.read_table(path_data + 'hybrid.csv')
 
 
 ### Visual Diagnostics
-Suppose a data scientist has decided to use linear regression to estimate values of one variable (called the response variable) based on another variable (called the predictor). To see how well this method of estimation performs, the data scientist must how far off the estimates are from the actual values. These differences are called *residuals*.
+Suppose a data scientist has decided to use linear regression to estimate values of one variable (called the response variable) based on another variable (called the predictor). To see how well this method of estimation performs, the data scientist must measure how far off the estimates are from the actual values. These differences are called *residuals*.
 
 $$
 \mbox{residual} ~=~ \mbox{observed value} ~-~ \mbox{regression estimate}
@@ -55,7 +55,7 @@ $$
 
 A residual is what's left over – the residue – after estimation. 
 
-Residuals are the vertical distances of the points from the regression line. There is one residual for each point in the scatter plot. The residual is the difference between the observed value of $y$ and the fitted value of $y$, so fr the point $(x, y)$,
+Residuals are the vertical distances of the points from the regression line. There is one residual for each point in the scatter plot. The residual is the difference between the observed value of $y$ and the fitted value of $y$, so for the point $(x, y)$,
 
 $$
 \mbox{residual} ~~ = ~~ y ~-~
