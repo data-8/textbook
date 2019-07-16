@@ -2,16 +2,23 @@
 redirect_from:
   - "/chapters/11/3/decisions-and-uncertainty"
 interact_link: content/chapters/11/3/Decisions_and_Uncertainty.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Decisions and Uncertainty'
 prev_page:
   url: /chapters/11/2/Multiple_Categories
   title: 'Multiple Categories'
 next_page:
-  url: /chapters/12/Comparing_Two_Samples
-  title: 'Comparing Two Samples'
+  url: /chapters/11/4/Error_Probabilities
+  title: 'Error Probabilities'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -23,6 +30,8 @@ But outcomes are not always so clear cut. How far is "far"? Exactly what does "c
 But first let us develop a general framework of decision making, into which all our examples will fit.
 
 What we have developed while assessing models are some of the fundamental concepts of statistical tests of hypotheses. Using statistical tests as a way of making decisions is standard in many fields and has a standard terminology. Here is the sequence of the steps in most statistical tests, along with some terminology and examples. You will see that they are consistent with the sequence of steps we have used for assessing models.
+
+
 
 ### Step 1: The Hypotheses
 
@@ -39,6 +48,8 @@ Under this hypothesis, we were able to simulate random samples, by using `sample
 **The alternative hypothesis.** This says that some reason other than chance made the data differ from the predictions of the model in the null hypothesis.
 
 In the example about Mendel's plants, the alternative hypothesis is simply that his model isn't good.
+
+
 
 ### Step 2: The Test Statistic
 
@@ -61,19 +72,27 @@ The **observed value of the test statistic** is the value of the statistic you g
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 abs ( 100 * (705 / 929) - 75)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.8880516684607045
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -87,6 +106,8 @@ By simulating the statistic repeatedly, we get a good sense of its possible valu
 
 As with all distributions, it is very useful to visualize this distribution by a histogram. We have done so in all our examples.
 
+
+
 ### Step 4. The Conclusion of the Test
 
 The choice between the null and alternative hypotheses depends on the comparison between what you computed in Steps 2 and 3: the observed value of the test statistic and its distribution as predicted by the null hypothesis. 
@@ -97,6 +118,8 @@ But if the two are not consistent with each other, as is the case in our example
 
 If the data do not support the null hypothesis, we say that the test *rejects* the null hypothesis.
 
+
+
 ### The Meaning of "Consistent"
 
 In the example about Alameda County juries, it was apparent that our observed test statistic was far from what was predicted by the null hypothesis. In the example about pea flowers, it is just as clear that the observed statistic is consistent with the distribution that the null predicts. So in both of the examples, it is clear which hypothesis to choose.
@@ -104,6 +127,8 @@ In the example about Alameda County juries, it was apparent that our observed te
 But sometimes the decision is not so clear. Whether the observed test statistic is consistent with its predicted distribution under the null hypothesis is a matter of judgment. We recommend that you provide your judgment along with the value of the test statistic and a graph of its predicted distribution under the null. That will allow your reader to make his or her own judgment about whether the two are consistent.
 
 Here is an example where the decision requires judgment.
+
+
 
 ### The GSI's Defense
 A Berkeley Statistics class of about 350 students was divided into 12 discussion sections led by Graduate Student Instructors (GSIs). After the midterm, students in Section 3 noticed that their scores were on average lower than the rest of the class. 
@@ -122,17 +147,23 @@ A natural statistic here is the average of the scores. Low values of the average
 
 Let's take a look at the data.
 
+
+
 The table `scores` contains the section number and midterm score for each student in the class. The midterm scores were integers in the range 0 through 25; 0 means that the student didn't take the test.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scores = Table.read_table(path_data + 'scores_by_section.csv')
 scores
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -180,18 +211,27 @@ scores
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 To find the average score in each section, we will use `group`.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 section_averages = scores.group('Section', np.average)
 section_averages.show()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -241,6 +281,11 @@ section_averages.show()
 </table>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 The average score of Section 3 is 13.667, which does look low compared to the other section averages. But is it lower than the average of a section of the same size selected at random from the class? 
 
@@ -248,12 +293,16 @@ To answer this, we can select a section at random from the class and find its av
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scores.group('Section')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -301,6 +350,11 @@ scores.group('Section')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Section 3 had 27 students. 
 
@@ -312,14 +366,29 @@ Remember that by default, `sample` draws with replacement. The optional argument
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scores_only = scores.drop('Section')
-sampled_scores = scores_only.sample(27, with_replacement=False)
-sampled_scores
+
 ```
+</div>
+
+</div>
 
 
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+random_sample = scores_only.sample(27, with_replacement=False)
+random_sample
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -332,38 +401,43 @@ sampled_scores
     </thead>
     <tbody>
         <tr>
-            <td>24     </td>
+            <td>20     </td>
         </tr>
         <tr>
-            <td>19     </td>
+            <td>14     </td>
+        </tr>
+        <tr>
+            <td>14     </td>
+        </tr>
+        <tr>
+            <td>25     </td>
+        </tr>
+        <tr>
+            <td>14     </td>
+        </tr>
+        <tr>
+            <td>12     </td>
+        </tr>
+        <tr>
+            <td>10     </td>
         </tr>
         <tr>
             <td>22     </td>
         </tr>
         <tr>
-            <td>13     </td>
+            <td>16     </td>
         </tr>
         <tr>
-            <td>11     </td>
-        </tr>
-        <tr>
-            <td>21     </td>
-        </tr>
-        <tr>
-            <td>14     </td>
-        </tr>
-        <tr>
-            <td>14     </td>
-        </tr>
-        <tr>
-            <td>21     </td>
-        </tr>
-        <tr>
-            <td>0      </td>
+            <td>15     </td>
         </tr>
     </tbody>
 </table>
 <p>... (17 rows omitted)</p>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -372,19 +446,27 @@ The average of these 27 randomly selected scores is
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-np.average(sampled_scores.column('Midterm'))
+np.average(random_sample.column('Midterm'))
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+
+{:.output_data_text}
+```
+16.814814814814813
 ```
 
 
-
-
-
-{:.output .output_data_text}
-```
-16.666666666666668
-```
+</div>
+</div>
+</div>
 
 
 
@@ -394,15 +476,34 @@ Now we can simulate the random sample average by repeating the calculation multp
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-averages = make_array()
+def random_sample_average():
+    random_sample = scores_only.sample(27, with_replacement=False)
+    return np.average(random_sample.column('Midterm'))
+
+```
+</div>
+
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+sample_averages = make_array()
 
 repetitions = 10000
 for i in np.arange(repetitions):
-    sampled_scores = scores_only.sample(27, with_replacement=False)
-    averages = np.append(averages, np.average(sampled_scores.column('Midterm')))
+    sample_averages = np.append(sample_averages, random_sample_average())
+
 ```
+</div>
+
+</div>
+
 
 
 Here is the histogram of the simulated averages. It shows the distribution of what the Section 3 average might have been, if Section 3 had been selected at random from the class. 
@@ -411,19 +512,27 @@ The observed Section 3 average score of 13.667 is shown as a red dot on the hori
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-sample_averages = Table().with_column('Sample Average', averages)
-sample_averages.hist()
+averages_tbl = Table().with_column('Sample Average', sample_averages)
+averages_tbl.hist(bins=20)
 
 observed_statistic = 13.667
 plots.scatter(observed_statistic, 0, color='red', s=30);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
+{:.output_png}
+![png](../../../images/chapters/11/3/Decisions_and_Uncertainty_24_0.png)
 
-{:.output .output_png}
-![png](../../../images/chapters/11/3/Decisions_and_Uncertainty_22_0.png)
+</div>
+</div>
+</div>
 
 
 
@@ -433,38 +542,46 @@ Is the observed statistic of 13.667 "too low" in relation to this distribution? 
 
 It's up to you to decide! Use your judgment. Go ahead – it's OK to do so.
 
+
+
 ### Conventional Cut-offs and the P-value
 If you don't want to make your own judgment, there are conventions that you can follow. These conventions tell us how far out into the tails is considered "too far". 
 
 The conventions are based on the area in the tail, starting at the observed statistic (the red dot) and looking in the direction that makes us lean toward the alternative (the left side, in this example). If the area of the tail is small, the observed statistic is far away from the values most commonly predicted by the null hypothesis.
 
-Remember that in a histogram, area represents percent. To find the area in the tail, we have to find the percent of sample averages that were less than or equal to the average score of Section 3, where the red dot is. The array `averages` contains the averages for all 10,000 repetitions of the random sampling, and `section_3_average` is 13.667, the average score of Section 3.
+Remember that in a histogram, area represents percent. To find the area in the tail, we have to find the percent of sample averages that were less than or equal to the average score of Section 3, where the red dot is. The array `sample_averages` contains the averages for all 10,000 repetitions of the random sampling, and `observed_statistic` is 13.667, the average score of Section 3.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-np.count_nonzero(averages <= section_3_average)/repetitions
+np.count_nonzero(sample_averages <= observed_statistic) / repetitions
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+
+{:.output_data_text}
+```
+0.0564
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.output .output_data_text}
-```
-0.0587
-```
-
-
-
-Just about 5.7% of the simulated random sample averages were 3.667 or below. If we had drawn the students of Section 3 at random from the whole class, the chance that their average would be 13.667 or lower is about 5.7%.
+About 5.7% of the simulated random sample averages were 3.667 or below. If we had drawn the students of Section 3 at random from the whole class, the chance that their average would be 13.667 or lower is about 5.7%.
 
 This chance has an impressive name. It is called the *observed significance level* of the test. That's a mouthful, and so it is commonly called the *P-value* of the test. 
 
-#### Definition of P-value ####
-
-The P-value is the chance, based on the model in the null hypothesis, that the test statistic is equal to the value that was observed in the data or is even further in the direction of the alternative.
+**Definition:** The P-value of a test is the chance, based on the model in the null hypothesis, that the test statistic will be equal to the observed value in the sample or even further in the direction that supports the alternative.**
 
 If a P-value is small, that means the tail beyond the observed statistic is small and so the observed statistic is far away from what the null predicts. This implies that the data support the alternative hypothesis better than they support the null.  
 
@@ -478,6 +595,8 @@ By this convention, our P-value of 5.7% is not considered small. So we have to c
 
 When you make a conclusion in this way, we recommend that you don't just say whether or not the result is statistically significant. Along with your conclusion, provide the observed statistic and the P-value as well, so that readers can use their own judgment.
 
+
+
 ### Historical Note on the Conventions
 
 The determination of statistical significance, as defined above, has become standard in statistical analyses in all fields of application. When a convention is so universally followed, it is interesting to examine how it arose. 
@@ -487,3 +606,10 @@ The method of statistical testing – choosing between hypotheses based on data 
 What was "convenient" for Sir Ronald became a cutoff that has acquired the status of a universal constant. No matter that Sir Ronald himself made the point that the value was his personal choice from among many: in an article in 1926, he wrote, "If one in twenty does not seem high enough odds, we may, if we prefer it draw the line at one in fifty (the 2 percent point), or one in a hundred (the 1 percent point). Personally, the author prefers to set a low standard of significance at the 5 percent point ..."
 
 Fisher knew that "low" is a matter of judgment and has no unique definition. We suggest that you follow his excellent example. Provide your data, make your judgment, and explain why you made it.
+
+Whether you use a conventional cutoff or your own judgment, it is important to keep the following points in mind.
+
+- Always provide the observed value of the test statistic and the P-value, so that readers can decide whether or not they think the P-value is small.
+- Don't look to defy convention only when the conventionally derived result is not to your liking.
+- Even if a test concludes that the data don't support the chance model in the null hypothesis, it typically doesn't explain *why* the model doesn't work.
+

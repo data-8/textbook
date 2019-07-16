@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/06/3/example-trends-in-the-population-of-the-united-states"
 interact_link: content/chapters/06/3/Example_Trends_in_the_Population_of_the_United_States.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Example: Population Trends'
 prev_page:
   url: /chapters/06/2/Selecting_Rows
@@ -13,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 # Example: Population Trends
@@ -21,7 +28,8 @@ We are now ready to work with large tables of data. The file below contains "Ann
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # As of Jan 2017, this census file is online here: 
 data = 'http://www2.census.gov/programs-surveys/popest/datasets/2010-2015/national/asrh/nc-est2015-agesex-res.csv'
@@ -31,9 +39,12 @@ data = 'http://www2.census.gov/programs-surveys/popest/datasets/2010-2015/nation
 
 full_census_table = Table.read_table(data)
 full_census_table
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -81,6 +92,11 @@ full_census_table
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Only the first 10 rows of the table are displayed. Later we will see how to display the entire table; however, this is typically not useful with large tables.
 
@@ -90,13 +106,17 @@ Typically, a public table will contain more information than necessary for a par
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 partial_census_table = full_census_table.select('SEX', 'AGE', 'POPESTIMATE2010', 'POPESTIMATE2014')
 partial_census_table
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -144,18 +164,27 @@ partial_census_table
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 We can also simplify the labels of the selected columns.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 us_pop = partial_census_table.relabeled('POPESTIMATE2010', '2010').relabeled('POPESTIMATE2014', '2014')
 us_pop
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -203,24 +232,37 @@ us_pop
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 We now have a table that is easy to work with. Each column of the table is an array of the same length, and so columns can be combined using arithmetic. Here is the change in population between 2010 and 2014.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 us_pop.column('2014') - us_pop.column('2010')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([  -1555,   -8112, -131198, ...,    6443,   12950, 4693244])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -228,7 +270,8 @@ Let us augment `us_pop` with a column that contains these changes, both in absol
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 change = us_pop.column('2014') - us_pop.column('2010')
 census = us_pop.with_columns(
@@ -236,9 +279,12 @@ census = us_pop.with_columns(
     'Percent Change', change/us_pop.column('2010')
 )
 census.set_format('Percent Change', PercentFormatter)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -286,17 +332,26 @@ census.set_format('Percent Change', PercentFormatter)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 **Sorting the data.** Let us sort the table in decreasing order of the absolute change in population.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 census.sort('Change', descending=True)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -344,6 +399,11 @@ census.sort('Change', descending=True)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Not surprisingly, the top row of the sorted table is the line that corresponds to the entire population: both sexes and all age groups. From 2010 to 2014, the population of the United States increased by about 9.5 million people, a change of just over 3%.
 
@@ -358,3 +418,4 @@ By far the greatest absolute change was among those in the 64-67 agegroup in 201
 - Those who were 64 to 67 years old in 2014 were born in the years 1947 to 1950, at the height of the post-WWII baby boom in the United States. 
 
 The post-war jump in births is the major reason for the large changes that we have observed.
+

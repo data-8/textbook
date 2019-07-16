@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/13/3/confidence-intervals"
 interact_link: content/chapters/13/3/Confidence_Intervals.ipynb
+kernel_name: Python [Root]
+has_widgets: false
 title: 'Confidence Intervals'
 prev_page:
   url: /chapters/13/2/Bootstrap
@@ -12,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -24,6 +31,8 @@ The situation in the previous example was a bit unusual. Because we happened to 
 
 But usually, data scientists don't know the value of the parameter. That is the reason they want to estimate it in the first place. In such situations, they provide an interval of estimates for the unknown parameter by using methods like the one we have developed. Because of statistical theory and demonstrations like the one we have seen, data scientists can be confident that their process of generating the interval results in a good interval a known percent of the time.
 
+
+
 ### Confidence Interval for a Population Median: Bootstrap Percentile Method
 
 We will now use the bootstrap method to estimate an unknown population median. The data come from a sample of newborns in a large hospital system; we will treat it as if it were a simple random sample though the sampling was done in multiple stages. [Stat Labs](https://www.stat.berkeley.edu/~statlabs/) by Deborah Nolan and Terry Speed has details about a larger dataset from which this set is drawn. 
@@ -32,20 +41,28 @@ The table `baby` contains the following variables for mother-baby pairs: the bab
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baby = Table.read_table(path_data + 'baby.csv')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baby
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -93,6 +110,11 @@ baby
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Birth weight is an important factor in the health of a newborn infant – smaller babies tend to need more medical care in their first days than larger newborns. It is therefore helpful to have an estimate of birth weight before the baby is born. One way to do this is to examine the relationship between birth weight and the number of gestational days. 
 
@@ -104,22 +126,30 @@ $$
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ratios = baby.select('Birth Weight', 'Gestational Days').with_column(
     'Ratio BW/GD', baby.column('Birth Weight')/baby.column('Gestational Days')
 )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ratios
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -167,20 +197,33 @@ ratios
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Here is a histogram of the ratios.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ratios.select('Ratio BW/GD').hist()
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/3/Confidence_Intervals_9_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -188,12 +231,16 @@ At first glance the histogram looks quite symmetric, with the density at its max
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ratios.sort('Ratio BW/GD', descending=True).take(0)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -213,24 +260,37 @@ ratios.sort('Ratio BW/GD', descending=True).take(0)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The median gives a sense of the typical ratio because it is unaffected by the very large or very small ratios. The median ratio in the sample is about 0.429 ounces per day.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.median(ratios.column(2))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.42907801418439717
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -242,7 +302,8 @@ Recall the function `bootstrap_median` defined in the previous section. We will 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def bootstrap_median(original_sample, label, replications):
     
@@ -260,37 +321,52 @@ def bootstrap_median(original_sample, label, replications):
         medians = np.append(medians, resampled_median)
         
     return medians
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Generate the medians from 5000 bootstrap samples
 bstrap_medians = bootstrap_median(ratios, 'Ratio BW/GD', 5000)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Get the endpoints of the 95% confidence interval
 left = percentile(2.5, bstrap_medians)
 right = percentile(97.5, bstrap_medians)
 
 make_array(left, right)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([0.42545455, 0.43272727])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -302,19 +378,27 @@ To visualize our results, let us draw the empirical histogram of our bootstrappe
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 resampled_medians = Table().with_column(
     'Bootstrap Sample Median', bstrap_medians
 )
 resampled_medians.hist(bins=15)
 plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=8);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/3/Confidence_Intervals_19_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -322,40 +406,58 @@ This histogram and interval resembles those we drew in the previous section, wit
 
 We just have an interval of estimates. It is a 95% confidence interval of estimates, because the process that generates it produces a good interval about 95% of the time. That certainly beats guessing at random!
 
+
+
 Keep in mind that this interval is an approximate 95% confidence interval. There are many approximations involved in its computation. The approximation is not bad, but it is not exact.
+
+
 
 ### Confidence Interval for a Population Mean: Bootstrap Percentile Method
 What we have done for medians can be done for means as well. Suppose we want to estimate the average age of the mothers in the population. A natural estimate is the average age of the mothers in the sample. Here is the distribution of their ages, and their average age which was about 27.2 years.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baby.select('Maternal Age').hist()
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/3/Confidence_Intervals_23_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(baby.column('Maternal Age'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 27.228279386712096
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -365,7 +467,8 @@ Let's estimate the unknown parameter by the bootstrap method. To do this, we wil
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def bootstrap_mean(original_sample, label, replications):
     
@@ -383,12 +486,16 @@ def bootstrap_mean(original_sample, label, replications):
         means = np.append(means, resampled_mean)
         
     return means
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Generate the means from 5000 bootstrap samples
 bstrap_means = bootstrap_mean(baby, 'Maternal Age', 5000)
@@ -398,16 +505,23 @@ left = percentile(2.5, bstrap_means)
 right = percentile(97.5, bstrap_means)
 
 make_array(left, right)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([26.89778535, 27.56218058])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -419,77 +533,111 @@ The empirical histogram of the 5,000 bootstrapped means is shown below, along wi
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 resampled_means = Table().with_column(
     'Bootstrap Sample Mean', bstrap_means
 )
 resampled_means.hist(bins=15)
 plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=8);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/3/Confidence_Intervals_29_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Once again, the average of the original sample (27.23 years) is close to the center of the interval. That's not very surprising, because each bootstrapped sample is drawn from that same original sample. The averages of the bootstrapped samples are about symmetrically distributed on either side of the average of the sample from which they were drawn.
 
+
+
 Notice also that the empirical histogram of the resampled means has roughly a symmetric bell shape, even though the histogram of the sampled ages was not symmetric at all:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baby.select('Maternal Age').hist()
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/3/Confidence_Intervals_32_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 This is a consequence of the Central Limit Theorem of probability and statistics. In later sections, we will see what the theorem says.
+
+
 
 ### An 80% Confidence Interval
 You can use the bootstrapped sample means to construct an interval of any level of confidence. For example, to construct an 80% confidence interval for the mean age in the population, you would take the "middle 80%" of the resampled means. So you would want 10% of the disribution in each of the two tails, and hence the endpoints would be the 10th and 90th percentiles of the resampled means.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 left_80 = percentile(10, bstrap_means)
 right_80 = percentile(90, bstrap_means)
 make_array(left_80, right_80)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([27.01192504, 27.44633731])
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 resampled_means.hist(bins=15)
 plots.plot(make_array(left_80, right_80), make_array(0, 0), color='yellow', lw=8);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/3/Confidence_Intervals_36_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -499,24 +647,34 @@ The earlier process produced a wider interval but we had more confidence in the 
 
 To get a narrow confidence interval at a high level of confidence, you'll have to start with a larger sample. We'll see why in the next chapter.
 
+
+
 ### Confidence Interval for a Population Proportion: Bootstrap Percentile Method
 In the sample, 39% of the mothers smoked during pregnancy.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baby.where('Maternal Smoker', are.equal_to(True)).num_rows/baby.num_rows
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.3909710391822828
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -524,20 +682,28 @@ For what follows is useful to observe that this proportion can also be calculate
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 smoking = baby.column('Maternal Smoker')
 np.count_nonzero(smoking)/len(smoking)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.3909710391822828
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -547,7 +713,8 @@ We will start by defining a function `bootstrap_proportion` that returns an arra
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def bootstrap_proportion(original_sample, label, replications):
     
@@ -566,14 +733,20 @@ def bootstrap_proportion(original_sample, label, replications):
         proportions = np.append(proportions, resampled_proportion)
         
     return proportions
+
 ```
+</div>
+
+</div>
+
 
 
 Let us use `bootstrap_proportion` to construct an approximate 95% confidence interval for the percent of smokers among the mothers in the population. The code is analogous to the corresponding code for the mean and median.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Generate the proportions from 5000 bootstrap samples
 bstrap_props = bootstrap_proportion(baby, 'Maternal Smoker', 5000)
@@ -583,16 +756,23 @@ left = percentile(2.5, bstrap_props)
 right = percentile(97.5, bstrap_props)
 
 make_array(left, right)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([0.3637138 , 0.41737649])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -600,19 +780,27 @@ The confidence interval goes from about 36% to about 42%. The original sample pe
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 resampled_proportions = Table().with_column(
     'Bootstrap Sample Proportion', bstrap_props
 )
 resampled_proportions.hist(bins=15)
 plots.plot(make_array(left, right), make_array(0, 0), color='yellow', lw=8);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/13/3/Confidence_Intervals_47_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -627,5 +815,6 @@ The bootstrap is an elegant and powerful method. Before using it, it is importan
     - The goal is to estimate the minimum or maximum value in the population, or a very low or very high percentile, or parameters that are greatly influenced by rare elements of the population.
     - The probability distribution of the statistic is not roughly bell shaped.
     - The original sample is very small, say less than 10 or 15.
+
 
 

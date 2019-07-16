@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/14/2/variability"
 interact_link: content/chapters/14/2/Variability.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Variability'
 prev_page:
   url: /chapters/14/1/Properties_of_the_Mean
@@ -13,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### Variability
@@ -20,37 +27,53 @@ The mean tells us where a histogram balances. But in almost every histogram we h
 
 We will start by describing how to calculate the measure. Then we will see why it is a good measure to calcualte.
 
+
+
 ### The Rough Size of Deviations from Average
 For simplicity, we will begin our calcuations in the context of a simple array `any_numbers` consisting of just four values. As you will see, our method will extend easily to any other array of values.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 any_numbers = make_array(1, 2, 2, 10)
+
 ```
+</div>
+
+</div>
+
 
 
 The goal is to measure roughly how far off the numbers are from their average. To do this, we first need the average: 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Step 1. The average.
 
 mean = np.mean(any_numbers)
 mean
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3.75
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -58,7 +81,8 @@ Next, let's find out how far each value is from the mean. These are called the *
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Step 2. The deviations from average.
 
@@ -68,9 +92,12 @@ calculation_steps = Table().with_columns(
         'Deviation from Average', deviations
         )
 calculation_steps
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -99,6 +126,11 @@ calculation_steps
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Some of the deviations are negative; those correspond to values that are below average. Positive deviations correspond to above-average values.
 
@@ -106,19 +138,27 @@ To calculate roughly how big the deviations are, it is natural to compute the me
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sum(deviations)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.0
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -128,19 +168,27 @@ Since the sum of the deviations is 0, the mean of the deviations will be 0 as we
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(deviations)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.0
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -152,7 +200,8 @@ So let's eliminate the signs by squaring all the deviations. Then we will take t
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Step 3. The squared deviations from average
 
@@ -161,9 +210,12 @@ calculation_steps = calculation_steps.with_column(
    'Squared Deviations from Average', squared_deviations
     )
 calculation_steps
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -192,25 +244,36 @@ calculation_steps
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Step 4. Variance = the mean squared deviation from average
 
 variance = np.mean(squared_deviations)
 variance
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 13.1875
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -222,7 +285,8 @@ So we return to the original scale by taking the positive square root of the var
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Step 5.
 # Standard Deviation:    root mean squared deviation from average
@@ -230,16 +294,23 @@ So we return to the original scale by taking the positive square root of the var
 
 sd = variance ** 0.5
 sd
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3.6314597615834874
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -253,19 +324,27 @@ The quantity that we have just computed is called the *standard deviation* of th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.std(any_numbers)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3.6314597615834874
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -275,13 +354,17 @@ To see what we can learn from the SD, let's move to a more interesting dataset t
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba13 = Table.read_table(path_data + 'nba2013.csv')
 nba13
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -329,20 +412,33 @@ nba13
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Here is a histogram of the players' heights.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba13.select('Height').hist(bins=np.arange(68, 88, 1))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/2/Variability_22_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -350,20 +446,28 @@ It is no surprise that NBA players are tall! Their average height is just over 7
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 mean_height = np.mean(nba13.column('Height'))
 mean_height
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 79.06534653465347
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -371,20 +475,28 @@ About how far off are the players' heights from the average? This is measured by
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sd_height = np.std(nba13.column('Height'))
 sd_height
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3.4505971830275546
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -392,12 +504,16 @@ The towering center Hasheem Thabeet of the Oklahoma City Thunder was the tallest
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba13.sort('Height', descending=True).show(3)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -421,24 +537,37 @@ nba13.sort('Height', descending=True).show(3)
 <p>... (502 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 Thabeet was about 8 inches above the average height.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 87 - mean_height
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 7.934653465346528
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -446,19 +575,27 @@ That's a deviation from average, and it is about 2.3 times the standard deviatio
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 (87 - mean_height)/sd_height
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 2.2995015194397923
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -468,12 +605,16 @@ At 69 inches tall, Isaiah Thomas was one of the two shortest NBA players in 2013
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba13.sort('Height').show(3)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -497,26 +638,39 @@ nba13.sort('Height').show(3)
 <p>... (502 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 (69 - mean_height)/sd_height
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -2.9169868288775844
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 What we have observed is that the tallest and shortest players were both just a few SDs away from the average height. This is an example of why the SD is a useful measure of spread. No matter what the shape of the histogram, the average and the SD together tell you a lot about where the histogram is situated on the number line.
+
+
 
 ### First main reason for measuring spread by the SD
 
@@ -524,42 +678,58 @@ What we have observed is that the tallest and shortest players were both just a 
 
 For now, resist the desire to know exactly what fuzzy words like "bulk" and "few" mean. We wil make them precise later in this section. Let's just examine the statement in the context of some more examples.
 
+
+
 We have already seen that *all* of the heights of the NBA players were in the range "average $\pm$ 3 SDs". 
 
 What about the ages? Here is a histogram of the distribution, along with the mean and SD of the ages.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba13.select('Age in 2013').hist(bins=np.arange(15, 45, 1))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/2/Variability_39_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ages = nba13.column('Age in 2013')
 mean_age = np.mean(ages)
 sd_age = np.std(ages)
 mean_age, sd_age
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 (26.19009900990099, 4.321200441720307)
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -571,12 +741,16 @@ Juwan Howard was the oldest player, at 40.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba13.sort('Age in 2013', descending=True).show(3)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -600,24 +774,37 @@ nba13.sort('Age in 2013', descending=True).show(3)
 <p>... (502 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 Howard's age was about 3.2 SDs above average.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 (40 - mean_age)/sd_age
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3.1958482778922357
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -625,12 +812,16 @@ The youngest was 15-year-old Jarvis Varnado, who won the NBA Championship that y
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba13.sort('Age in 2013').show(3)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -654,26 +845,39 @@ nba13.sort('Age in 2013').show(3)
 <p>... (502 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 (15 - mean_age)/sd_age
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -2.589581103867081
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 What we have observed for the heights and ages is true in great generality. For *all* lists, the bulk of the entries are no more than 2 or 3 SDs away from the average. 
+
+
 
 ### Chebychev's Bounds
 The Russian mathematician [Pafnuty Chebychev](https://en.wikipedia.org/wiki/Pafnuty_Chebyshev) (1821-1894) proved a result that makes our rough statements precise.
@@ -695,6 +899,8 @@ Specifically, it says that for every list:
 
 As we noted above, Chebychev's result gives a lower bound, not an exact answer or an approximation. For example, the percent of entries in the range "average $\pm ~2$ SDs" might be quite a bit larger than 75%. But it cannot be smaller.
 
+
+
 ### Standard units
 
 In the calculations above, the quantity $z$ measures *standard units*, the number of standard deviations above average.
@@ -710,12 +916,18 @@ As we will see, standard units are frequently used in data analysis. So it is us
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def standard_units(numbers_array):
     "Convert any array of numbers to standard units."
     return (numbers_array - np.mean(numbers_array))/np.std(numbers_array)    
+
 ```
+</div>
+
+</div>
+
 
 
 ### Example
@@ -723,16 +935,20 @@ As we saw in an earlier section, the table `united` contains a column `Delay` co
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united = Table.read_table(path_data + 'united_summer2015.csv')
 united = united.with_column(
     'Delay (Standard Units)', standard_units(united.column('Delay'))
 )
 united
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -780,6 +996,11 @@ united
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The standard units that we can see are consistent with what we expect based on Chebychev's bounds. Most are of quite small size; only one is above 6.
 
@@ -787,12 +1008,16 @@ But something rather alarming happens when we sort the delay times from highest 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united.sort('Delay', descending=True)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -840,6 +1065,11 @@ united.sort('Delay', descending=True)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 What this shows is that it is possible for data to be many SDs above average (and for flights to be delayed by almost 10 hours). The highest value of delay is more than 14 in standard units. 
 
@@ -847,20 +1077,28 @@ However, the proportion of these extreme values is small, and Chebychev's bounds
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 within_3_sd = united.where('Delay (Standard Units)', are.between(-3, 3))
 within_3_sd.num_rows/united.num_rows
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.9790235081374322
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -868,15 +1106,22 @@ The histogram of delay times is shown below, with the horizontal axis in standar
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united.hist('Delay (Standard Units)', bins=np.arange(-5, 15.5, 0.5))
 plots.xticks(np.arange(-6, 17, 3));
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/2/Variability_59_0.png)
 
+</div>
+</div>
+</div>
 

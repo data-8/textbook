@@ -16,53 +16,61 @@
 
 #######################################################################################
 # Jekyll site settings
-title: ""
+title: ''
 author: Berkeley DSEP
-email: ""
-description: ""
+email: ''
+description: >
 
-baseurl: "" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
-url: "https://www.inferentialthinking.com" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: ''              # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
+url: https://www.inferentialthinking.com # the base hostname & protocol for your site, e.g. http://example.com
 
 
 #######################################################################################
 # Jupyter Book settings
 
-# Notebook content settings
-hide_cell_text            : "# HIDE CODE AND OUTPUT"  # When building the textbook, any cells with this text inside will be hidden in the output markdown
-hide_code_text            : "# HIDDEN"  # When building the textbook, any cells with this text inside will have *only* their output shown (no code)
-use_hide_code_button      : true  # If True, a small button appears to the right of each cell that lets you hide its contents.
-
 # Sidebar settings
-show_sidebar              : true  # Show the sidebar. Only set to false if your only wish to host a single page.
+show_sidebar: true                # Show the sidebar. Only set to false if your only wish to host a single page.
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
-textbook_logo             : favicon.png  # A logo to be displayed at the top of your textbook sidebar
-sidebar_footer_text       : 'Powered by <a href="https://github.com/choldgraf/jupyter-book">Jupyter Book</a>'
+textbook_logo: favicon.png                        # A logo to be displayed at the top of your textbook sidebar
+textbook_logo_link: https://inferentialthinking.org                      # A link for the logo.
+sidebar_footer_text: Powered by <a href="https://github.com/choldgraf/jupyter-book">Jupyter
+  Book</a>
+number_toc_chapters: true         # Whether to add numbers to chapterse in your Table of Contents. If true, you can control this at the Chapter level in _data/toc.yml
+
+# Search settings
+search_max_words_in_content: 100   # In the search function, use at most this many words (too many words will make search slow)
 
 #######################################################################################
 # Interact link settings
 
 # General interact settings
-use_jupyterlab                   : false  # If 'true', interact links will use JupyterLab as the interface
+use_jupyterlab: false                     # If 'true', interact links will use JupyterLab as the interface
 
 # Jupyterhub link settings
-use_jupyterhub_button            : false  # If 'true', display a button that will direct users to a JupyterHub (that you provide)
-jupyterhub_url                   : ""  # The URL for your JupyterHub. If no URL, use ""
-jupyterhub_interact_text         : "Interact"  # The text that interact buttons will contain.
+use_jupyterhub_button: false              # If 'true', display a button that will direct users to a JupyterHub (that you provide)
+jupyterhub_url: ''                     # The URL for your JupyterHub. If no URL, use ""
+jupyterhub_interact_text: Interact             # The text that interact buttons will contain.
 
 # Binder link settings
-use_binder_button                : true  # If 'true', add a binder button for interactive links
-binderhub_url                    : "https://mybinder.org"  # The URL for your BinderHub. If no URL, use ""
-binder_repo_base                 : "https://github.com/"  # The site on which the textbook repository is hosted
-binder_repo_org                  : "data-8"  # The username or organization that owns this repository
-binder_repo_name                 : "textbook"  # The name of the repository on the web
-binder_repo_branch               : "gh-pages"  # The branch on which your textbook is hosted.
-binderhub_interact_text          : "Interact"  # The text that interact buttons will contain.
+use_binder_button: true                  # If 'true', add a binder button for interactive links
+binderhub_url: https://mybinder.org                        # The URL for your BinderHub. If no URL, use ""
+binder_repo_base: https://github.com/                     # The site on which the textbook repository is hosted
+binder_repo_org: data-8                       # The username or organization that owns this repository
+binder_repo_name: textbook                         # The name of the repository on the web
+binder_repo_branch: gh-pages                   # The branch on which your textbook is hosted.
+binderhub_interact_text: Interact              # The text that interact buttons will contain.
 
 # Thebelab settings
-use_thebelab_button              : false  # If 'true', display a button to allow in-page running code cells with Thebelab
-thebelab_button_text             : "Thebelab"  # The text to display inside the Thebelab initialization button
+use_thebelab_button: false               # If 'true', display a button to allow in-page running code cells with Thebelab
+thebelab_button_text: Thebelab                 # The text to display inside the Thebelab initialization button
+codemirror_theme: abcdef                     # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
+# nbinteract settings
+use_show_widgets_button: false                # If 'true', display a button to allow in-page running code cells with nbinteract
+
+# Download settings
+use_download_button: false                # If 'true', display a button to download a zip file for the notebook
+download_button_text: Download                # The text that download buttons will contain
 
 #######################################################################################
 # Jupyter book extensions and additional features
@@ -75,11 +83,17 @@ scholar:
 #######################################################################################
 # Jupyter book settings you probably don't need to change
 
-content_folder_name       : "content"  # The folder where your raw content (notebooks/markdown files) are located
-images_url                : "/assets/images" # Path to static image files
-css_url                   : "/assets/css" # Path to static CSS files
-js_url                    : "/assets/js" # Path to JS files
-custom_static_url         : "/assets/custom" # Path to user's custom CSS/JS files
+google_analytics:
+  mytrackingcode:
+
+#######################################################################################
+# Jupyter book settings you probably don't need to change
+
+content_folder_name: content           # The folder where your raw content (notebooks/markdown files) are located
+images_url: /assets/images                   # Path to static image files
+css_url: /assets/css                      # Path to static CSS files
+js_url: /assets/js                       # Path to JS files
+custom_static_url: /assets/custom            # Path to user's custom CSS/JS files
 
 
 #######################################################################################
@@ -87,15 +101,15 @@ custom_static_url         : "/assets/custom" # Path to user's custom CSS/JS file
 
 # Site settings
 defaults:
-  - scope:
-      path: ""
-    values:
-      layout: "default"
-      toc: true
-      toc_label: "  On this page"
-      toc_icon: "list-ul"
+- scope:
+    path: ''
+  values:
+    layout: default
+    toc: true
+    toc_label: '  On this page'
+    toc_icon: list-ul
 
-favicon_path: "favicon.png"
+favicon_path: favicon.png
 
 # Markdown Processing
 markdown: kramdown
@@ -115,18 +129,19 @@ collections:
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
 exclude:
-  - notebooks/
-  - add_section_numbers_to_book.py
-  - convert_notebooks_to_html_partial.py
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-  - scripts/
+- notebooks/
+- add_section_numbers_to_book.py
+- convert_notebooks_to_html_partial.py
+- Gemfile
+- Gemfile.lock
+- node_modules
+- vendor/bundle/
+- vendor/cache/
+- vendor/gems/
+- vendor/ruby/
+- scripts/
 
 plugins:
-  - jekyll-redirect-from
-  - jekyll-scholar
+- jekyll-redirect-from
+- jekyll-scholar
+jupyter_book_version: 0.5.2dev0

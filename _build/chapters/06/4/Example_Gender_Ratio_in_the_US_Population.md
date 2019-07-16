@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/06/4/example-gender-ratio-in-the-us-population"
 interact_link: content/chapters/06/4/Example_Gender_Ratio_in_the_US_Population.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Example: Trends in Gender'
 prev_page:
   url: /chapters/06/3/Example_Trends_in_the_Population_of_the_United_States
@@ -13,8 +15,17 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -24,12 +35,16 @@ We are now equipped with enough coding skills to examine features and trends in 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 us_pop
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -77,22 +92,33 @@ us_pop
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 As we know from having examined this dataset earlier, a [description of the table](http://www2.census.gov/programs-surveys/popest/datasets/2010-2015/national/asrh/nc-est2015-agesex-res.pdf) appears online. Here is a reminder of what the table contains. 
 
 Each row represents an age group. The `SEX` column contains numeric codes: `0` stands for the total, `1` for male, and `2` for female. The `AGE` column contains ages in completed years, but the special value `999` represents the entire population regardless of age. The rest of the columns contain estimates of the US population.
+
+
 
 ### Understanding `AGE` = 100
 As a preliminary, let's interpret data in the final age category in the table, where `AGE` is 100. The code below extracts the rows for the combined group of men and women (`SEX` code 0) for the highest ages.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 us_pop.where('SEX', are.equal_to(0)).where('AGE', are.between(97, 101))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -121,6 +147,11 @@ us_pop.where('SEX', are.equal_to(0)).where('AGE', are.between(97, 101))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Not surprisingly, the numbers of people are smaller at higher ages – for example, there are fewer 99-year-olds than 98-year-olds. 
 
@@ -128,19 +159,25 @@ It does come as a surprise, though, that the numbers for `AGE` 100 are quite a b
 
 The row with `AGE` 100 doesn't just represent 100-year-olds – it also includes those who are older than 100. That is why the numbers in that row are larger than in the row for the 99-year-olds.
 
+
+
 ### Overall Proportions of Males and Females
 We will now begin looking at gender ratios in 2014. First, let's look at all the age groups together. Remember that this means looking at the rows where the "age" is coded 999. The table `all_ages` contains this information. There are three rows: one for the total of both genders, one for males (`SEX` code 1), and one for females (`SEX` code 2).
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 us_pop_2014 = us_pop.drop('2010')
 all_ages = us_pop_2014.where('AGE', are.equal_to(999))
 all_ages
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -166,6 +203,11 @@ all_ages
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Row 0 of `all_ages` contains the total U.S. population in each of the two years. The United States had just under 319 million in 2014.
 
@@ -177,15 +219,19 @@ For comparability with other quantities, we will need to convert these counts to
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 pop_2014 = all_ages.column('2014').item(0)
 all_ages.with_column(
     'Proportion', all_ages.column('2014')/pop_2014
 ).set_format('Proportion', PercentFormatter)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -211,20 +257,31 @@ all_ages.with_column(
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ### Proportions of Boys and Girls among Infants
+
+
 
 When we look at infants, however, the opposite is true. Let's define infants to be babies who have not yet completed one year, represented in the row corresponding to `AGE` 0. Here are their numbers in the population. You can see that male infants outnumbered female infants.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 infants = us_pop_2014.where('AGE', are.equal_to(0))
 infants
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -250,20 +307,29 @@ infants
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 As before, we can convert these counts to percents out of the total numbers of infants. The resulting table shows that in 2014, just over 51% of infants in the U.S. were male. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 infants_2014 = infants.column('2014').item(0)
 infants.with_column(
     'Proportion', infants.column('2014')/infants_2014
 ).set_format('Proportion', PercentFormatter)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -289,10 +355,19 @@ infants.with_column(
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 In fact, it has long been observed that the proportion of boys among newborns is slightly more than 1/2. The reason for this is not thoroughly understood, and [scientists are still working on it](http://www.npr.org/sections/health-shots/2015/03/30/396384911/why-are-more-baby-boys-born-than-girls).
 
+
+
 ### Female:Male Gender Ratio at Each Age
+
+
 
 We have seen that while there are more baby boys than baby girls, there are more females than males overall. So it's clear that the split between genders must vary across age groups.
 
@@ -302,14 +377,18 @@ The tables `females` and `males` contain the data for each the two genders.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 females_all_rows = us_pop_2014.where('SEX', are.equal_to(2))
 females = females_all_rows.where('AGE', are.not_equal_to(999))
 females
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -357,17 +436,24 @@ females
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 males_all_rows = us_pop_2014.where('SEX', are.equal_to(1))
 males = males_all_rows.where('AGE', are.not_equal_to(999))
 males
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -415,21 +501,29 @@ males
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The plan now is to compare the number of women and the number of men at each age, for each of the two years. Array and Table methods give us straightforward ways to do this. Both of these tables have one row for each age.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 males.column('AGE')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,
         13,  14,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,  25,
@@ -442,19 +536,25 @@ array([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 females.column('AGE')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,
         13,  14,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,  25,
@@ -465,6 +565,11 @@ array([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,
         78,  79,  80,  81,  82,  83,  84,  85,  86,  87,  88,  89,  90,
         91,  92,  93,  94,  95,  96,  97,  98,  99, 100])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -472,16 +577,20 @@ For any given age, we can get the Female:Male gender ratio by dividing the numbe
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ratios = Table().with_columns(
     'AGE', females.column('AGE'),
     '2014 F:M RATIO', females.column('2014')/males.column('2014')
 )
 ratios
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -529,8 +638,15 @@ ratios
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 You can see from the display that the ratios are all around 0.96 for children aged nine or younger. When the Female:Male ratio is less than 1, there are fewer females than males. Thus what we are seeing is that there were fewer girls than boys in each of the age groups 0, 1, 2, and so on through 9. Moreover, in each of these age groups, there were about 96 girls for every 100 boys.
+
+
 
 So how can the overall proportion of females in the population be higher than the males? 
 
@@ -538,12 +654,16 @@ Something extraordinary happens when we examine the other end of the age range. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ratios.where('AGE', are.above(75)).show()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -632,6 +752,11 @@ ratios.where('AGE', are.above(75)).show()
 </table>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 Not only are all of these ratios greater than 1, signifying more women than men in all of these age groups, many of them are considerably greater than 1. 
 
@@ -642,12 +767,16 @@ If you are wondering how many people there were at these advanced ages, you can 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 males.where('AGE', are.between(98, 100))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -670,15 +799,22 @@ males.where('AGE', are.between(98, 100))
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 females.where('AGE', are.between(98, 100))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -701,6 +837,11 @@ females.where('AGE', are.between(98, 100))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The graph below shows the gender ratios plotted against age. The blue curve shows the 2014 ratio by age.
 
@@ -710,14 +851,21 @@ That females outnumber males in the U.S. is partly due to the marked gender imba
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ratios.plot('AGE')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/06/4/Example_Gender_Ratio_in_the_US_Population_34_0.png)
 
+</div>
+</div>
+</div>
 

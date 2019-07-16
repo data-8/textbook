@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/14/1/properties-of-the-mean"
 interact_link: content/chapters/14/1/Properties_of_the_Mean.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Properties of the Mean'
 prev_page:
   url: /chapters/14/Why_the_Mean_Matters
@@ -12,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -25,45 +32,63 @@ The methods `np.average` and `np.mean` return the mean of an array.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 not_symmetric = make_array(2, 3, 3, 9)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.average(not_symmetric)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 4.25
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(not_symmetric)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 4.25
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -79,47 +104,65 @@ The definition and the example above point to some properties of the mean.
 
 We will now study some other properties that are helpful in understanding the mean and its relation to other statistics.
 
+
+
 ### The Mean is a "Smoother"
 
 You can think of taking the mean as an "equalizing" or "smoothing" operation. For example, imagine the entries in `not_symmetric` above as the dollars in the pockets of four different people. To get the mean, you first put all of the money into one big pot and then divide it evenly among the four people. They had started out with different amounts of money in their pockets (\$2, \\$3, \\$3, and \\$9), but now each person has \\$4.25, the mean amount.
+
+
 
 ### Proportions are Means
 If a collection consists only of ones and zeroes, then the sum of the collection is the number of ones in it, and the mean of the collection is the proportion of ones.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 zero_one = make_array(1, 1, 1, 0)
 sum(zero_one)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(zero_one)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.75
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -127,23 +170,33 @@ You can replace 1 by the Boolean `True` and 0 by `False`:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(make_array(True, True, True, False))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.75
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 Because proportions are a special case of means, results about random sample means apply to random sample proportions as well.
+
+
 
 ### The Mean and the Histogram
 The mean of the collection {2, 3, 3, 9} is 4.25, which is not the "halfway point" of the data. So then what does the mean measure?
@@ -168,38 +221,52 @@ For example, here is another collection that has the same distribution as `not_s
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 not_symmetric
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([2, 3, 3, 9])
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 same_distribution = make_array(2, 2, 3, 3, 3, 3, 9, 9)
 np.mean(same_distribution)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 4.25
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -207,10 +274,18 @@ The mean is a physical attribute of the histogram of the distribution. Here is t
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/14/1/Properties_of_the_Mean_17_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -224,10 +299,18 @@ Because the mean is a balance point, it is sometimes displayed as a *fulcrum* or
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/14/1/Properties_of_the_Mean_19_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -241,54 +324,78 @@ The relationship is easy to see in a simple example. Here is a histogram of the 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 symmetric = make_array(2, 3, 3, 4)
+
 ```
+</div>
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/1/Properties_of_the_Mean_22_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(symmetric)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3.0
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 percentile(50, symmetric)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -298,10 +405,18 @@ What if the distribution is not symmetric? Let's compare `symmetric` and `not_sy
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/14/1/Properties_of_the_Mean_26_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -311,34 +426,54 @@ The median and mean of the blue distribution are both equal to 3. The median of 
 
 But the mean of the gold distribution is not 3: the gold histogram would not balance at 3. The balance point has shifted to the right, to 4.25.
 
+
+
 In the gold distribution, 3 out of 4 entries (75%) are below average. The student with a below average score can therefore take heart. He or she might be in the majority of the class.
 
+
+
 In general, **if the histogram has a tail on one side (the formal term is "skewed"), then the mean is pulled away from the median in the direction of the tail.**
+
+
 
 ### Example
 The table `sf2015` contains salary and benefits data for San Francisco City employees in 2015. As before, we will restrict our analysis to those who had the equivalent of at least half-time employment for the year.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sf2015 = Table.read_table(path_data + 'san_francisco_2015.csv').where('Salaries', are.above(10000))
+
 ```
+</div>
+
+</div>
+
 
 
 As we saw earlier, the highest compensation was above \\$600,000 but the vast majority of employees had compensations below \\$300,000.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sf2015.select('Total Compensation').hist(bins = np.arange(10000, 700000, 25000))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/1/Properties_of_the_Mean_33_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -348,41 +483,56 @@ The mean gets pulled away from the median in the direction of the tail. So we ex
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 compensation = sf2015.column('Total Compensation')
 percentile(50, compensation)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 110305.79
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.mean(compensation)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 114725.98411824222
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
 Distributions of incomes of large populations tend to be right skewed. When the bulk of a population has middle to low incomes, but a very small proportion has very high incomes, the histogram has a long, thin tail to the right. 
 
 The mean income is affected by this tail: the farther the tail stretches to the right, the larger the mean becomes. But the median is not affected by values at the extremes of the distribution. That is why economists often summarize income distributions by the median instead of the mean.
+

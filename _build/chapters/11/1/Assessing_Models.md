@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/11/1/assessing-models"
 interact_link: content/chapters/11/1/Assessing_Models.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Assessing Models'
 prev_page:
   url: /chapters/11/Testing_Hypotheses
@@ -13,12 +15,19 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### Assessing Models
 In data science, a "model" is a set of assumptions about data. Often, models include assumptions about chance processes used to generate data. 
 
 Sometimes, data scientists have to decide whether or not their models are good. In this section we will discuss two examples of making such decisions. In later sections we will use the methods developed here as the building blocks of a general framework for testing hypotheses.
+
+
 
 ### U.S. Supreme Court, 1965: Swain vs. Alabama
 
@@ -60,20 +69,28 @@ To see how to use this, remember that according to our model, the panel is selec
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 eligible_population = [0.26, 0.74]
 sample_proportions(100, eligible_population)
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+
+{:.output_data_text}
+```
+array([0.27, 0.73])
 ```
 
 
-
-
-
-{:.output .output_data_text}
-```
-array([0.28, 0.72])
-```
+</div>
+</div>
+</div>
 
 
 
@@ -85,38 +102,70 @@ Run the cell a few times to see how the output varies.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # count of black men in a simulated panel
 
 (100 * sample_proportions(100, eligible_population)).item(0)
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+
+{:.output_data_text}
+```
+27.0
 ```
 
 
-
-
-
-{:.output .output_data_text}
-```
-24.0
-```
+</div>
+</div>
+</div>
 
 
 
 #### Running the Simulation
-To get a sense of the variability without running the cell over and over, let's generate 10,000 simulated values of the count. The code follows the same steps that we have used in every simulation.
+To get a sense of the variability without running the cell over and over, let's generate 10,000 simulated values of the count. 
+
+The code follows the same steps that we have used in every simulation. First, we define a function to simulate one value of the count, using the code we wrote above.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+def one_simulated_count():
+    return (100 * sample_proportions(100, eligible_population)).item(0)
+
+```
+</div>
+
+</div>
+
+
+
+Next, we create an array of 10,000 simulated counts by using a `for` loop.
+
+
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 counts = make_array()
 
 repetitions = 10000
 for i in np.arange(repetitions):
-    simulated_count = (100 * sample_proportions(100, eligible_population)).item(0)
-    counts = np.append(counts, simulated_count)
+    counts = np.append(counts, one_simulated_count())
+
 ```
+</div>
+
+</div>
+
 
 
 ### The Prediction
@@ -124,51 +173,73 @@ To interpret the results of our simulation, we start as usual by visualizing the
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_column(
     'Count in a Random Sample', counts
 ).hist(bins = np.arange(5.5, 46.6, 1))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
+{:.output_png}
+![png](../../../images/chapters/11/1/Assessing_Models_11_0.png)
 
-{:.output .output_png}
-![png](../../../images/chapters/11/1/Assessing_Models_9_0.png)
+</div>
+</div>
+</div>
 
 
 
 The histogram tells us what the model of random selection predicts about our statistic, the count of black men in the sample.
 
-To generate each simulated count, we drew at 100 times at random from a population in which 26% were black. So, as you would expect, most of the simulated counts are around 26. They are not exactly 26 – there is some variation. The counts range between about 10 and 45. 
+To generate each simulated count, we drew at 100 times at random from a population in which 26% were black. So, as you would expect, most of the simulated counts are around 26. They are not exactly 26: there is some variation. The counts range from about 10 to about 45. 
+
+
 
 ### Comparing the Prediction and the Data
 Though the simulated counts are quite varied, very few of them came out to be eight or less. The value eight is far out in the left hand tail of the histogram. It's the red dot on the horizontal axis of the histogram.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_column(
     'Count in a Random Sample', counts
 ).hist(bins = np.arange(5.5, 46.6, 1))
 plots.scatter(8, 0, color='red', s=30);
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
+![png](../../../images/chapters/11/1/Assessing_Models_14_0.png)
+
+</div>
+</div>
+</div>
 
 
 
-{:.output .output_png}
-![png](../../../images/chapters/11/1/Assessing_Models_12_0.png)
-
-
-
-Thus the simulation shows that if we select a panel of 100 jurors at random from the eligible population, we are very unlikely to get counts of black men as low as the eight that were in Swain's jury panel. This is evidence that the model of random selection of the jurors in the panel is not consistent with the data from the panel. 
+The simulation shows that if we select a panel of 100 jurors at random from the eligible population, we are very unlikely to get counts of black men as low as the eight that were in Swain's jury panel. This is evidence that the model of random selection of the jurors in the panel is not consistent with the data from the panel. 
 
 When the data and a model are inconsistent, the model is hard to justify. After all, the data are real. The model is just a set of assumptions. When assumptions are at odds with reality, we have to question those assumptions.
 
 While it is *possible* that a panel like Robert Swain's could have been generated by chance, our simulation demonstrates that it is very unlikely. Thus our assessment is that the model of random draws is not supported by the evidence. Swain's jury panel does not look like the result of random sampling from the population of eligible jurors.
 
+
+
 This method of assessing models is very general. Here is an example in which we use it to assess a model in a completely different setting.
+
+
 
 ### Mendel's Pea Flowers
 [Gregor Mendel](https://en.wikipedia.org/wiki/Gregor_Mendel) (1822-1884) was an Austrian monk who is widely recognized as the founder of the modern field of genetics. Mendel performed careful and large-scale experiments on plants to come up with fundamental laws of genetics. 
@@ -217,81 +288,166 @@ That's the statistic: the distance between the sample percent and 75.
 
 
 
-{:.input_area}
+We will start by defining a function that takes a proportion and returns the absolute difference between the corresponding percent and 75.
+
+
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+def distance_from_75(p):
+    return abs(100*p - 75)
+
+```
+</div>
+
+</div>
+
+
+
+To simulate one value of the distance between the sample percent of purple-flowering plants and 75%, under the assumptions of Mendel's model, we have to first simulate the proportion of purple-flowering plants among 929 plants under the assumption of the model, and then calculate the discrepancy from 75%.
+
+
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 model_proportions = [0.75, 0.25]
-abs(100 * sample_proportions(929, model_proportions).item(0) - 75)
+
+```
+</div>
+
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+proportion_purple_in_sample = sample_proportions(929, model_proportions).item(0)
+distance_from_75(proportion_purple_in_sample)
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+
+{:.output_data_text}
+```
+1.7491926803014053
 ```
 
 
-
-
-
-{:.output .output_data_text}
-```
-0.6727664155005328
-```
+</div>
+</div>
+</div>
 
 
 
 That's one simulated value of the distance between the sample percent of purple-flowering plants and 75% as predicted by Mendel's model. 
 
+
+
 #### Running the Simulation
 To get a sense of how variable the distance could be, we have to simulate it many more times.
-We will generate 10,000 values of the distance.
+
+We will generate 10,000 values of the distance. As before, we will first use the code we developed above to define a function that returns one simulated value Mendel's hypothesis.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+def one_simulated_distance():
+    proportion_purple_in_sample = sample_proportions(929, model_proportions).item(0)
+    return distance_from_75(proportion_purple_in_sample)
+
+```
+</div>
+
+</div>
+
+
+
+Next, we will use a `for` loop to create 10,000 such simulated distances.
+
+
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 distances = make_array()
 
 repetitions = 10000
 for i in np.arange(repetitions):
-    one_distance = abs(100 * sample_proportions(929, model_proportions).item(0) - 75)
-    distances = np.append(distances, one_distance)
+    distances = np.append(distances, one_simulated_distance())
+
 ```
+</div>
+
+</div>
+
 
 
 ### The Prediction
-The empirical histogram of the simulated values shows the distribution of the distance as predicted by the model.
+The empirical histogram of the simulated values shows the distribution of the distance as predicted by Mendel's model.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_column(
     'Distance between Sample % and 75%', distances
 ).hist()
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
+{:.output_png}
+![png](../../../images/chapters/11/1/Assessing_Models_29_0.png)
 
-{:.output .output_png}
-![png](../../../images/chapters/11/1/Assessing_Models_20_0.png)
+</div>
+</div>
+</div>
 
 
 
 Look on the horizontal axis to see the typical values of the distance, as predicted by the model. They are rather small. For example, a high proportion of the distances are in the range 0 to 1, meaning that for a high proportion of the samples, the percent of purple-flowering plants is within 1% of 75%, that is, the sample percent is in the range 74% to 76%.
+
+
 
 ### Comparing the Prediction and the Data
 To assess the model, we have to compare this prediction with the data. Mendel recorded the number of purple and white flowering plants. Among the 929 plants that he grew, 705 were purple flowering. That's just about 75.89%.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 705 / 929
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.7588805166846071
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -299,20 +455,28 @@ So the observed value of our statistic – the distance between Mendel's sample 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-observed_statistic = abs (100 * (705 / 929) - 75)
+observed_statistic = distance_from_75(705/929)
 observed_statistic
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.8880516684607045
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -322,19 +486,28 @@ The cell below redraws the histogram with the observed value plotted on the hori
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_column(
     'Distance between Sample % and 75%', distances
 ).hist()
 plots.scatter(observed_statistic, 0, color='red', s=30);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
+{:.output_png}
+![png](../../../images/chapters/11/1/Assessing_Models_36_0.png)
 
-{:.output .output_png}
-![png](../../../images/chapters/11/1/Assessing_Models_27_0.png)
+</div>
+</div>
+</div>
 
 
 
 The observed statistic is like a typical distance predicted by the model. By this measure, the data are consistent with the histogram that we generated under the assumptions of Mendel's model. This is evidence in favor of the model.
+

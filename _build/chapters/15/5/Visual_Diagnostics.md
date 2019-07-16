@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/15/5/visual-diagnostics"
 interact_link: content/chapters/15/5/Visual_Diagnostics.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Visual Diagnostics'
 prev_page:
   url: /chapters/15/4/Least_Squares_Regression
@@ -13,16 +15,39 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+# HIDDEN 
+
+galton = Table.read_table(path_data + 'galton.csv')
+heights = galton.select('midparentHeight', 'childHeight')
+heights = heights.relabel(0, 'MidParent').relabel(1, 'Child')
+hybrid = Table.read_table(path_data + 'hybrid.csv')
+
+```
+</div>
+
+</div>
 
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
 ### Visual Diagnostics
-Suppose a data scientist has decided to use linear regression to estimate values of one variable (called the response variable) based on another variable (called the predictor). To see how well this method of estimation performs, the data scientist must how far off the estimates are from the actual values. These differences are called *residuals*.
+Suppose a data scientist has decided to use linear regression to estimate values of one variable (called the response variable) based on another variable (called the predictor). To see how well this method of estimation performs, the data scientist must measure how far off the estimates are from the actual values. These differences are called *residuals*.
 
 $$
 \mbox{residual} ~=~ \mbox{observed value} ~-~ \mbox{regression estimate}
@@ -30,7 +55,7 @@ $$
 
 A residual is what's left over – the residue – after estimation. 
 
-Residuals are the vertical distances of the points from the regression line. There is one residual for each point in the scatter plot. The residual is the difference between the observed value of $y$ and the fitted value of $y$, so fr the point $(x, y)$,
+Residuals are the vertical distances of the points from the regression line. There is one residual for each point in the scatter plot. The residual is the difference between the observed value of $y$ and the fitted value of $y$, so for the point $(x, y)$,
 
 $$
 \mbox{residual} ~~ = ~~ y ~-~
@@ -43,27 +68,37 @@ The function `residual` calculates the residuals. The calculation assumes all th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def residual(table, x, y):
     return table.column(y) - fit(table, x, y)
+
 ```
+</div>
+
+</div>
+
 
 
 Continuing our example of using Galton's data to estimate the heights of adult children (the response) based on the midparent height (the predictor), let us calculate the fitted values and the residuals.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights = heights.with_columns(
         'Fitted Value', fit(heights, 'MidParent', 'Child'),
         'Residual', residual(heights, 'MidParent', 'Child')
     )
 heights
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -111,32 +146,49 @@ heights
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 When there are so many variables to work with, it is always helpful to start with visualization. The function `scatter_fit` draws the scatter plot of the data, as well as the regression line. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def scatter_fit(table, x, y):
     table.scatter(x, y, s=15)
     plots.plot(table.column(x), fit(table, x, y), lw=4, color='gold')
     plots.xlabel(x)
     plots.ylabel(y)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 scatter_fit(heights, 'MidParent', 'Child')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_9_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -144,7 +196,8 @@ A *residual plot* can be drawn by plotting the residuals against the predictor v
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def residual_plot(table, x, y):
     x_array = table.column(x)
@@ -156,55 +209,82 @@ def residual_plot(table, x, y):
     xlims = make_array(min(x_array), max(x_array))
     plots.plot(xlims, make_array(0, 0), color='darkblue', lw=4)
     plots.title('Residual Plot')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 residual_plot(heights, 'MidParent', 'Child')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_12_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 The midparent heights are on the horizontal axis, as in the original scatter plot. But now the vertical axis shows the residuals. Notice that the plot appears to be centered around the horizontal line at the level 0 (shown in dark blue). Notice also that the plot shows no upward or downward trend. We will observe later that this is true of all regressions.
+
+
 
 ### Regression Diagnostics
 Residual plots help us make visual assessments of the quality of a linear regression analysis. Such assessments are called *diagnostics*. The function ``regression_diagnostic_plots`` draws the original scatter plot as well as the residual plot for ease of comparison.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def regression_diagnostic_plots(table, x, y):
     scatter_fit(table, x, y)
     residual_plot(table, x, y)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 regression_diagnostic_plots(heights, 'MidParent', 'Child')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_16_0.png)
 
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_16_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -214,8 +294,12 @@ In other words, the accuracy of the regression appears to be about the same acro
 
 **The residual plot of a good regression shows no pattern. The residuals look about the same, above and below the horizontal line at 0, across the range of the predictor variable.**
 
+
+
 ### Detecting Nonlinearity
 Drawing the scatter plot of the data usually gives an indication of whether the relation between the two variables is non-linear. Often, however, it is easier to spot non-linearity in a residual plot than in the original scatter plot. This is usually because of the scales of the two plots: the residual plot allows us to zoom in on the errors and hence makes it easier to spot patterns.
+
+
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Dugong_dugon.jpg"/>
 
@@ -223,14 +307,18 @@ Our data are a [dataset](http://www.statsci.org/data/oz/dugongs.html)  on the ag
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 dugong = Table.read_table('http://www.statsci.org/data/oz/dugongs.txt')
 dugong = dugong.move_to_start('Length')
 dugong
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -278,24 +366,37 @@ dugong
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 If we could measure the length of a dugong, what could we say about its age? Let's examine what our data say. Here is a regression of age (the response) on length (the predictor). The correlation between the two variables is substantial, at 0.83.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(dugong, 'Length', 'Age')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.8296474554905714
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -303,21 +404,31 @@ High correlation notwithstanding, the plot shows a curved pattern that is much m
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 regression_diagnostic_plots(dugong, 'Length', 'Age')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_24_0.png)
 
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_24_1.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -327,6 +438,8 @@ At the low end of the lengths, the residuals are almost all positive; then they 
 
 **When a residual plot shows a pattern, there may be a non-linear relation between the variables.**
 
+
+
 ### Detecting Heteroscedasticity
 
 *Heteroscedasticity* is a word that will surely be of interest to those who are preparing for Spelling Bees. For data scientists, its interest lies in its meaning, which is "uneven spread". 
@@ -335,24 +448,35 @@ Recall the table `hybrid` that contains data on hybrid cars in the U.S. Here is 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 regression_diagnostic_plots(hybrid, 'acceleration', 'mpg')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_27_0.png)
 
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/5/Visual_Diagnostics_27_1.png)
+
+</div>
+</div>
+</div>
 
 
 
 Notice how the residual plot flares out towards the low end of the accelerations. In other words, the variability in the size of the errors is greater for low values of acceleration than for high values. Uneven variation is often more easily noticed in a residual plot than in the original scatter plot.
 
 **If the residual plot shows uneven variation about the horizontal line at 0, the regression estimates are not equally accurate across the range of the predictor variable.**
+

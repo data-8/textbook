@@ -15,6 +15,8 @@
 - title: Introduction
   url: /chapters/intro
   not_numbered: true
+- title: Search
+  search: true
 
 - divider: true
 
@@ -37,7 +39,7 @@
       url: /chapters/01/3/1/Literary_Characters
     - title: Another Kind of Character
       url: /chapters/01/3/2/Another_Kind_Of_Character
-  
+
 - title: Causality and Experiments
   url: /chapters/02/causality-and-experiments
   sections:
@@ -159,6 +161,8 @@
     url: /chapters/11/2/Multiple_Categories
   - title: Decisions and Uncertainty
     url: /chapters/11/3/Decisions_and_Uncertainty
+  - title: Error Probabilities
+    url: /chapters/11/4/Error_Probabilities
 
 - title: Comparing Two Samples
   url: /chapters/12/Comparing_Two_Samples
@@ -181,7 +185,7 @@
     url: /chapters/13/3/Confidence_Intervals
   - title: Using Confidence Intervals
     url: /chapters/13/4/Using_Confidence_Intervals
-  
+
 - title: Why the Mean Matters
   url: /chapters/14/Why_the_Mean_Matters
   sections:
@@ -223,7 +227,7 @@
     url: /chapters/16/2/Inference_for_the_True_Slope
   - title: Prediction Intervals
     url: /chapters/16/3/Prediction_Intervals
-  
+
 - title: Classification
   url: /chapters/17/Classification
   sections:

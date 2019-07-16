@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/08/2/classifying-by-one-variable"
 interact_link: content/chapters/08/2/Classifying_by_One_Variable.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Classifying by One Variable'
 prev_page:
   url: /chapters/08/1/Applying_a_Function_to_a_Column
@@ -13,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### Classifying by One Variable
@@ -21,6 +28,8 @@ Data scientists often need to classify individuals into groups according to shar
 
 This section is about classifying individuals into categories that are not numerical. We begin by recalling the basic use of `group`. 
 
+
+
 ### Counting the Number in Each Category
 The `group` method with a single argument counts the number of rows for each category in a column. The result contains one row per unique value in the grouped column.
 
@@ -28,16 +37,20 @@ Here is a small table of data on ice cream cones. The `group` method can be used
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones = Table().with_columns(
     'Flavor', make_array('strawberry', 'chocolate', 'chocolate', 'strawberry', 'chocolate'),
     'Price', make_array(3.55, 4.75, 6.55, 5.25, 5.25)
 )
 cones
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -69,15 +82,22 @@ cones
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.group('Flavor')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -100,12 +120,19 @@ cones.group('Flavor')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 There are two distinct categories, chocolate and strawberry. The call to `group` creates a table of counts in each category. The column is called `count` by default, and contains the number of rows in each category.
 
 Notice that this can all be worked out from just the `Flavor` column. The `Price` column has not been used.
 
 But what if we wanted the total price of the cones of each different flavor? That's where the second argument of `group` comes in.
+
+
 
 ### Finding a Characteristic of Each Category
 The optional second argument of `group` names the function that will be used to aggregate values in other columns for all of those rows. For instance, `sum` will sum up the prices in all rows that match each category. This result also contains one row per unique value in the grouped column, but it has the same number of columns as the original table.
@@ -114,12 +141,16 @@ To find the total price of each flavor, we call `group` again, with `Flavor` as 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.group('Flavor', sum)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -142,6 +173,11 @@ cones.group('Flavor', sum)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 To create this new table, `group` has calculated the sum of the `Price` entries in all the rows corresponding to each distinct flavor. The prices in the three `chocolate` rows add up to $\$16.55$ (you can assume that price is being measured in dollars). The prices in the two `strawberry` rows have a total of $\$8.80$.
 
@@ -153,37 +189,51 @@ To see in more detail what `group` is doing, notice that you could have figured 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.where('Flavor', are.equal_to('chocolate')).column('Price')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([4.75, 6.55, 5.25])
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sum(cones.where('Flavor', are.equal_to('chocolate')).column('Price'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 16.55
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -191,7 +241,8 @@ This is what `group` is doing for each distinct value in `Flavor`.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # For each distinct value in `Flavor, access all the rows
 # and create an array of `Price`
@@ -212,9 +263,12 @@ price_totals = grouped_cones.with_column(
     'Sum of the Array', make_array(sum(cones_choc), sum(cones_strawb))
 )
 price_totals
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -237,17 +291,26 @@ price_totals
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 You can replace `sum` by any other functions that work on arrays. For example, you could use `max` to find the largest price in each category:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.group('Flavor', max)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -270,20 +333,29 @@ cones.group('Flavor', max)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Once again, `group` creates arrays of the prices in each `Flavor` category. But now it finds the `max` of each array:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 price_maxes = grouped_cones.with_column(
     'Max of the Array', make_array(max(cones_choc), max(cones_strawb))
 )
 price_maxes
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -306,20 +378,29 @@ price_maxes
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Indeed, the original call to `group` with just one argument has the same effect as using `len` as the function and then cleaning up the table.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 lengths = grouped_cones.with_column(
     'Length of the Array', make_array(len(cones_choc), len(cones_strawb))
 )
 lengths
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -342,20 +423,29 @@ lengths
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ### Example: NBA Salaries
 The table `nba` contains data on the 2015-2016 players in the National Basketball Association. We have examined these data earlier. Recall that salaries are measured in millions of dollars.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba1 = Table.read_table(path_data + 'nba_salaries.csv')
 nba = nba1.relabeled("'15-'16 SALARY", 'SALARY')
 nba
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -403,6 +493,11 @@ nba
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 **1.** How much money did each team pay for its players' salaries?
 
@@ -410,13 +505,17 @@ The only columns involved are `TEAM` and `SALARY`. We have to `group` the rows b
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 teams_and_money = nba.select('TEAM', 'SALARY')
 teams_and_money.group('TEAM', sum)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -464,6 +563,11 @@ teams_and_money.group('TEAM', sum)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 **2.** How many NBA players were there in each of the five positions?
 
@@ -471,12 +575,16 @@ We have to classify by `POSITION`, and count. This can be done with just one arg
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.group('POSITION')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -508,6 +616,11 @@ nba.group('POSITION')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 **3.** What was the average salary of the players at each of the five positions?
 
@@ -515,13 +628,17 @@ This time, we have to group by `POSITION` and take the mean of the salaries. For
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 positions_and_money = nba.select('POSITION', 'SALARY')
 positions_and_money.group('POSITION', np.mean)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -553,6 +670,11 @@ positions_and_money.group('POSITION', np.mean)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Center was the most highly paid position, at an average of over 6 million dollars.
 
@@ -560,12 +682,16 @@ If we had not selected the two columns as our first step, `group` would not atte
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.group('POSITION', np.mean)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -596,4 +722,8 @@ nba.group('POSITION', np.mean)
 </table>
 </div>
 
+
+</div>
+</div>
+</div>
 

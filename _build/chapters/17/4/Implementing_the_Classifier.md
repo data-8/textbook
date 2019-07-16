@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/17/4/implementing-the-classifier"
 interact_link: content/chapters/17/4/Implementing_the_Classifier.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Implementing the Classifier'
 prev_page:
   url: /chapters/17/3/Rows_of_Tables
@@ -13,10 +15,17 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### Implementing the Classifier
-We are now ready to impelment a $k$-nearest neighbor classifier based on multiple attributes. We have used only two attributes so far, for ease of visualization. But usually predictions will be based on many attributes. Here is an example that shows how multiple attributes can be better than pairs.
+We are now ready to implement a $k$-nearest neighbor classifier based on multiple attributes. We have used only two attributes so far, for ease of visualization. But usually predictions will be based on many attributes. Here is an example that shows how multiple attributes can be better than pairs.
+
+
 
 ### Banknote authentication
 
@@ -24,13 +33,17 @@ This time we'll look at predicting whether a banknote (e.g., a \\$20 bill) is co
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 banknotes = Table.read_table(path_data + 'banknote.csv')
 banknotes
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -78,39 +91,60 @@ banknotes
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Let's look at whether the first two numbers tell us anything about whether the banknote is counterfeit or not.  Here's a scatterplot:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 color_table = Table().with_columns(
     'Class', make_array(1, 0),
     'Color', make_array('darkblue', 'gold')
 )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 banknotes = banknotes.join('Class', color_table)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-banknotes.scatter('WaveletVar', 'WaveletCurt', colors='Color')
+banknotes.scatter('WaveletVar', 'WaveletCurt', group='Color')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/4/Implementing_the_Classifier_7_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -122,19 +156,29 @@ The patterns that show up in the data can get pretty wild.  For instance, here's
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-banknotes.scatter('WaveletSkew', 'Entropy', colors='Color')
+banknotes.scatter('WaveletSkew', 'Entropy', group='Color')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/4/Implementing_the_Classifier_9_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 There does seem to be a pattern, but it's a pretty complex one.  Nonetheless, the $k$-nearest neighbors classifier can still be used and will effectively "discover" patterns out of this.  This illustrates how powerful machine learning can be: it can effectively take advantage of even patterns that we would not have anticipated, or that we would have thought to "program into" the computer.
+
+
 
 ### Multiple attributes
 
@@ -148,19 +192,27 @@ For instance, let's see what happens if we try to predict whether a banknote is 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ax = plt.figure(figsize=(8,8)).add_subplot(111, projection='3d')
 ax.scatter(banknotes.column('WaveletSkew'), 
            banknotes.column('WaveletVar'), 
            banknotes.column('WaveletCurt'), 
            c=banknotes.column('Color'));
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/4/Implementing_the_Classifier_12_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -173,6 +225,8 @@ To sum up: you now know how to use $k$-nearest neighbor classification to predic
 1. identify some attributes that you think might help you predict the answer to the question.
 2. Gather a training set of examples where you know the values of the attributes as well as the correct prediction.
 3. To make predictions in the future, measure the value of the attributes and then use $k$-nearest neighbor classification to predict the answer to the question.
+
+
 
 ### Distance in Multiple Dimensions
 We know how to compute distance in 2-dimensional space. If we have a point at coordinates $(x_0,y_0)$ and another at $(x_1,y_1)$, the distance between them is
@@ -187,25 +241,34 @@ $$
 
 In $n$-dimensional space, things are a bit harder to visualize, but I think you can see how the formula generalized: we sum up the squares of the differences between each individual coordinate, and then take the square root of that.  
 
+
+
 In the last section, we defined the function `distance` which returned the distance between two points. We used it in two-dimensions, but the great news is that the function doesn't care how many dimensions there are! It just subtracts the two arrays of coordinates (no matter how long the arrays are), squares the differences and adds up, and then takes the square root. To work in multiple dimensions, we don't have to change the code at all.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def distance(point1, point2):
     """Returns the distance between point1 and point2
     where each argument is an array 
     consisting of the coordinates of the point"""
     return np.sqrt(np.sum((point1 - point2)**2))
+
 ```
+</div>
+
+</div>
+
 
 
 Let's use this on a [new dataset](https://archive.ics.uci.edu/ml/datasets/Wine). The table `wine` contains the chemical composition of 178 different Italian wines. The classes are the grape species, called cultivars. There are three classes but let's just see whether we can tell Class 1 apart from the other two.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 wine = Table.read_table(path_data + 'wine.csv')
 
@@ -218,17 +281,24 @@ def is_one(x):
         return 0
     
 wine = wine.with_column('Class', wine.apply(is_one, 0))
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 wine
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -276,32 +346,49 @@ wine
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The first two wines are both in Class 1. To find the distance between them, we first need a table of just the attributes:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 wine_attributes = wine.drop('Class')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 distance(np.array(wine_attributes.row(0)), np.array(wine_attributes.row(1)))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 31.265012394048398
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -309,19 +396,27 @@ The last wine in the table is of Class 0. Its distance from the first wine is:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 distance(np.array(wine_attributes.row(0)), np.array(wine_attributes.row(177)))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 506.05936766351834
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -329,23 +424,35 @@ That's quite a bit bigger! Let's do some visualization to see if Class 1 really 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 wine_with_colors = wine.join('Class', color_table)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-wine_with_colors.scatter('Flavanoids', 'Alcohol', colors='Color')
+wine_with_colors.scatter('Flavanoids', 'Alcohol', group='Color')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/4/Implementing_the_Classifier_27_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -353,15 +460,23 @@ The blue points (Class 1) are almost entirely separate from the gold ones. That 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-wine_with_colors.scatter('Alcalinity of Ash', 'Ash', colors='Color')
+wine_with_colors.scatter('Alcalinity of Ash', 'Ash', group='Color')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/4/Implementing_the_Classifier_29_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -369,19 +484,29 @@ But for some pairs the picture is more murky.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-wine_with_colors.scatter('Magnesium', 'Total Phenols', colors='Color')
+wine_with_colors.scatter('Magnesium', 'Total Phenols', group='Color')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/4/Implementing_the_Classifier_31_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Let's see if we can implement a classifier based on all of the attributes. After that, we'll see how accurate it is.
+
+
 
 ### A Plan for the Implementation
 It's time to write some code to implement the classifier.  The input is a `point` that we want to classify.  The classifier works by finding the $k$ nearest neighbors of `point` from the training set.  So, our approach will go like this:
@@ -394,7 +519,8 @@ So that will guide the structure of our Python code.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def closest(training, p, k):
     ...
@@ -406,7 +532,12 @@ def classify(training, p, k):
     kclosest = closest(training, p, k)
     kclosest.classes = kclosest.select('Class')
     return majority(kclosest)
+
 ```
+</div>
+
+</div>
+
 
 
 ### Implementation Step 1
@@ -416,7 +547,8 @@ That's what we did in the previous section with the point corresponding to Alice
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def distance(point1, point2):
     """Returns the distance between point1 and point2
@@ -445,7 +577,12 @@ def closest(training, new_point, k):
     sorted_by_distance = with_dists.sort('Distance')
     topk = sorted_by_distance.take(np.arange(k))
     return topk
+
 ```
+</div>
+
+</div>
+
 
 
 Let's see how this works on our `wine` data. We'll just take the first wine and find its five nearest neighbors among all the wines. Remember that since this wine is part of the dataset, it is its own nearest neighbor. So we should expect to see it at the top of the list, followed by four others.
@@ -454,22 +591,32 @@ First let's extract its attributes:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 special_wine = wine.drop('Class').row(0)
+
 ```
+</div>
+
+</div>
+
 
 
 And now let's find its 5 nearest neighbors.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 closest(wine, special_wine, 5)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -501,15 +648,23 @@ closest(wine, special_wine, 5)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Bingo! The first row is the nearest neighbor, which is itself – there's a 0 in the `Distance` column as expected. All five nearest neighbors are of Class 1, which is consistent with our earlier observation that Class 1 wines appear to be clumped together in some dimensions.
+
+
 
 ### Implementation Steps 2 and 3
 Next we need to take a "majority vote" of the nearest neighbors and assign our point the same class as the majority.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def majority(topkclasses):
     ones = topkclasses.where('Class', are.equal_to(1)).num_rows
@@ -523,24 +678,35 @@ def classify(training, new_point, k):
     closestk = closest(training, new_point, k)
     topkclasses = closestk.select('Class')
     return majority(topkclasses)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 classify(wine, special_wine, 5)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 1
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -548,23 +714,32 @@ If we change `special_wine` to be the last one in the dataset, is our classifier
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 special_wine = wine.drop('Class').row(177)
 classify(wine, special_wine, 5)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
 Yes! The classifier gets this one right too.
 
 But we don't yet know how it does with all the other wines, and in any case we know that testing on wines that are already part of the training set might be over-optimistic. In the final section of this chapter, we will separate the wines into a training and test set and then measure the accuracy of our classifier on the test set. 
+

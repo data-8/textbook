@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/13/estimation"
 interact_link: content/chapters/13/Estimation.ipynb
+kernel_name: Python [Root]
+has_widgets: false
 title: 'Estimation'
 prev_page:
   url: /chapters/12/3/Causality
@@ -12,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -37,4 +44,7 @@ But the value of any statistic depends on the sample, and the sample is based on
 
 In this chapter you will learn one way of answering this question. The answer will give you the tools to estimate a numerical parameter and quantify the amount of error in your estimate.
 
+
+
 We will start with a preliminary about percentiles. The most famous percentile is the median, often used in summaries of income data. Other percentiles will be important in the method of estimation that we are about to develop. So we will start by defining percentiles carefully.
+

@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/17/2/training-and-testing"
 interact_link: content/chapters/17/2/Training_and_Testing.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Training and Testing'
 prev_page:
   url: /chapters/17/1/Nearest_Neighbors
@@ -13,17 +15,55 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+# HIDDEN 
+ckd = Table.read_table(path_data + 'ckd.csv').relabeled('Blood Glucose Random', 'Glucose')
+ckd = Table().with_columns(
+    'Hemoglobin', standard_units(ckd.column('Hemoglobin')),
+    'Glucose', standard_units(ckd.column('Glucose')),
+    'White Blood Cell Count', standard_units(ckd.column('White Blood Cell Count')),
+    'Class', ckd.column('Class')
+)
+color_table = Table().with_columns(
+    'Class', make_array(1, 0),
+    'Color', make_array('darkblue', 'gold')
+)
+ckd = ckd.join('Class', color_table)
+
+```
+</div>
+
+</div>
 
 
 
@@ -38,6 +78,8 @@ One way is to wait for further medical tests on the patient and then check wheth
 
 Instead, we will try our classifier on some patients whose true classes are known.  Then, we will compute the proportion of the time our classifier was correct.  This proportion will serve as an estimate of the proportion of all new patients whose class our classifier will accurately predict.  This is called *testing*.
 
+
+
 ### Overly Optimistic "Testing"
 The training set offers a very tempting set of patients on whom to test out our classifier, because we know the class of each patient in the training set.
 
@@ -47,15 +89,23 @@ Suppose we use a 1-nearest neighbor classifier to predict whether a patient has 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-ckd.scatter('White Blood Cell Count', 'Glucose', colors='Color')
+ckd.scatter('White Blood Cell Count', 'Glucose', group='Color')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/2/Training_and_Testing_7_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -73,6 +123,8 @@ No, not so much. A new point in the lower-left might easily be mis-classified, a
 
 The lesson of this example is *not* to use the training set to test a classifier that is based on it.
 
+
+
 ### Generating a Test Set
 In earlier chapters, we saw that random sampling could be used to estimate the proportion of individuals in a population that met some criterion.  Unfortunately, we have just seen that the training set is not like a random sample from the population of all patients, in one important respect: Our classifier guesses correctly for a higher proportion of individuals in the training set than it does for individuals in the population.
 
@@ -85,35 +137,51 @@ So we will have three groups of individuals:
 - a separate testing set on which to try out our classifier and see what fraction of times it classifies correctly;
 - the underlying population of individuals for whom we don't know the true classes; the hope is that our classifier will succeed about as well for these individuals as it did for our testing set.
 
+
+
 How to generate the training and testing sets? You've guessed it – we'll select at random.
 
 There are 158 individuals in `ckd`. Let's use a random half of them for training and the other half for testing. To do this, we'll shuffle all the rows, take the first 79 as the training set, and the remaining 79 for testing.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 shuffled_ckd = ckd.sample(with_replacement=False)
 training = shuffled_ckd.take(np.arange(79))
 testing = shuffled_ckd.take(np.arange(79, 158))
+
 ```
+</div>
+
+</div>
+
 
 
 Now let's construct our classifier based on the points in the training sample:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-training.scatter('White Blood Cell Count', 'Glucose', colors='Color')
+training.scatter('White Blood Cell Count', 'Glucose', group='Color')
 plt.xlim(-2, 6)
 plt.ylim(-2, 6);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/2/Training_and_Testing_13_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -121,16 +189,32 @@ We get the following classification regions and decision boundary:
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/17/2/Training_and_Testing_17_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -138,11 +222,20 @@ Place the *test* data on this graph and you can see at once that while the class
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/17/2/Training_and_Testing_19_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Some errors notwithstanding, it looks like the classifier does fairly well on the test set. Assuming that the original sample was drawn randomly from the underlying population, the hope is that the classifier will perform with similar accuracy on the overall population, since the test set was chosen randomly from the original sample.
+

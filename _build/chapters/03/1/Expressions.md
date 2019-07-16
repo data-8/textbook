@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/03/1/expressions"
 interact_link: content/chapters/03/1/Expressions.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Expressions'
 prev_page:
   url: /chapters/03/programming-in-python
@@ -12,6 +14,7 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
 # Expressions
 
 Programming languages are much simpler than human languages. Nonetheless, there are some rules of grammar to learn in any language, and that is where we will begin. In this text, we will use the [Python](https://www.python.org/) programming language. Learning the grammar rules is essential, and the same rules used in the most basic programs are also central to more sophisticated programs.
@@ -20,19 +23,27 @@ Programs are made up of *expressions*, which describe to the computer how to com
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 3 * 4
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 12
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -40,40 +51,58 @@ The grammar rules of a programming language are rigid. In Python, the `*` symbol
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 3 * * 4
-```
-
-
-
-{:.output .output_traceback_line}
-```
-  File "<ipython-input-2-012ea60b41dd>", line 1
-    3 * * 4
-        ^
-SyntaxError: invalid syntax
 
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_traceback_line}
+```
+
+      File "<ipython-input-2-012ea60b41dd>", line 1
+        3 * * 4
+            ^
+    SyntaxError: invalid syntax
+
+
+
+```
+</div>
+</div>
+</div>
+
 
 
 Small changes to an expression can change its meaning entirely. Below, the space between the `*`'s has been removed. Because `**` appears between two numerical expressions, the expression is a well-formed *exponentiation* expression (the first number raised to the power of the second: 3 times 3 times 3 times 3). The symbols `*` and `**` are called *operators*, and the values they combine are called *operands*.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 3 ** 4
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 81
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -88,42 +117,59 @@ Small changes to an expression can change its meaning entirely. Below, the space
 | Remainder       | `%`      | `7 % 3`    | `1`       |
 | Exponentiation  | `**`     | `2 ** 0.5` | `1.41421` |
 
+
+
 Python expressions obey the same familiar rules of *precedence* as in algebra: multiplication and division occur before addition and subtraction. Parentheses can be used to group together smaller expressions within a larger expression.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 1 + 2 * 3 * 4 * 5 / 6 ** 3 + 7 + 8 - 9 + 10
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 17.555555555555557
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 1 + 2 * (3 * 4 * 5 / 6) ** 3 + 7 + 8 - 9 + 10
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 2017.0
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 This chapter introduces many types of expressions. Learning to program involves trying out everything you learn in combination, investigating the behavior of the computer. What happens if you divide by zero? What happens if you divide twice in a row? You don't always need to ask an expert (or the Internet); many of these details can be discovered by trying them out yourself. 
+

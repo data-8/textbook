@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/14/why-the-mean-matters"
 interact_link: content/chapters/14/Why_the_Mean_Matters.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Why the Mean Matters'
 prev_page:
   url: /chapters/13/4/Using_Confidence_Intervals
@@ -11,6 +13,7 @@ next_page:
   title: 'Properties of the Mean'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
+
 
 ### Why the Mean Matters
 In this course we have studied several different statistics, including total variation distance, the maximum, the median, and also the mean. Under clear assumptions about randomness, we have drawn empirical distributions of all of these statistics. Some, like the maximum and the total variation distance, have distributions that are clearly skewed in one direction or the other. But the empirical distribution of the sample mean has almost always turned out close to bell-shaped, regardless of the population being studied.
@@ -24,3 +27,4 @@ In this chapter, we will study means and what we can say about them with only mi
 - How is the sample size related to the variability of the sample mean?
 - Why do empirical distributions of random sample means come out bell shaped?
 - How can we use sample means effectively for inference?
+

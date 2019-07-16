@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/17/6/multiple-regression"
 interact_link: content/chapters/17/6/Multiple_Regression.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Multiple Regression'
 prev_page:
   url: /chapters/17/5/Accuracy_of_the_Classifier
@@ -13,8 +15,17 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -26,7 +37,8 @@ The following dataset of house prices and attributes was collected over several 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 all_sales = Table.read_table(path_data + 'house.csv')
 sales = all_sales.where('Bldg Type', '1Fam').where('Sale Condition', 'Normal').select(
@@ -35,9 +47,12 @@ sales = all_sales.where('Bldg Type', '1Fam').where('Sale Condition', 'Normal').s
     'Wood Deck SF', 'Open Porch SF', 'Lot Area', 
     'Year Built', 'Yr Sold')
 sales.sort('SalePrice')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -85,20 +100,33 @@ sales.sort('SalePrice')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 A histogram of sale prices shows a large amount of variability and a distribution that is clearly not normal. A long tail to the right contains a few houses that had very high prices. The short left tail does not contain any houses that sold for less than $35,000.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sales.hist('SalePrice', bins=32, unit='$')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/6/Multiple_Regression_5_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -108,33 +136,47 @@ No single attribute is sufficient to predict the sale price. For example, the ar
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sales.scatter('1st Flr SF', 'SalePrice')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/6/Multiple_Regression_7_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(sales, 'SalePrice', '1st Flr SF')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.6424662541030225
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -142,14 +184,18 @@ In fact, none of the individual attributes have a correlation with sale price th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 for label in sales.labels:
     print('Correlation of', label, 'and SalePrice:\t', correlation(sales, label, 'SalePrice'))
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Correlation of SalePrice and SalePrice:	 1.0
 Correlation of 1st Flr SF and SalePrice:	 0.6424662541030225
@@ -161,27 +207,39 @@ Correlation of Open Porch SF and SalePrice:	 0.3369094170263733
 Correlation of Lot Area and SalePrice:	 0.2908234551157694
 Correlation of Year Built and SalePrice:	 0.5651647537135916
 Correlation of Yr Sold and SalePrice:	 0.02594857908072111
-
 ```
+</div>
+</div>
+</div>
+
+
 
 However, combining attributes can provide higher correlation. In particular, if we sum the first floor and second floor areas, the result has a higher correlation than any single attribute alone.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 both_floors = sales.column(1) + sales.column(2)
 correlation(sales.with_column('Both Floors', both_floors), 'SalePrice', 'Both Floors')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.7821920556134877
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -195,24 +253,33 @@ Before we begin prediction, we split our data randomly into a training and test 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 train, test = sales.split(1001)
 print(train.num_rows, 'training and', test.num_rows, 'test instances.')
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 1001 training and 1001 test instances.
-
 ```
+</div>
+</div>
+</div>
+
+
 
 The slopes in multiple regression is an array that has one slope value for each attribute in an example. Predicting the sale price involves multiplying each attribute by the slope and summing the result.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def predict(slopes, row):
     return sum(slopes * np.array(row))
@@ -222,35 +289,50 @@ print('Predicting sale price for:', example_row)
 example_slopes = np.random.normal(10, 1, len(example_row))
 print('Using slopes:', example_slopes)
 print('Result:', predict(example_slopes, example_row))
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Predicting sale price for: Row(1st Flr SF=707, 2nd Flr SF=707, Total Bsmt SF=707.0, Garage Area=403.0, Wood Deck SF=100, Open Porch SF=35, Lot Area=7750, Year Built=2002, Yr Sold=2008)
 Using slopes: [ 9.70697704  8.68451487  9.48574052 11.65887763  9.76283493  7.75180442
  10.26963618 12.39555854  9.93561073]
 Result: 150011.62264018963
-
 ```
+</div>
+</div>
+</div>
+
+
 
 The result is an estimated sale price, which can be compared to the actual sale price to assess whether the slopes provide accurate predictions. Since the `example_slopes` above were chosen at random, we should not expect them to provide accurate predictions at all.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 print('Actual sale price:', test.column('SalePrice').item(0))
 print('Predicted sale price using random slopes:', predict(example_slopes, example_row))
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Actual sale price: 176000
 Predicted sale price using random slopes: 150011.62264018963
-
 ```
+</div>
+</div>
+</div>
+
+
 
 #### Least Squares Regression
 
@@ -258,7 +340,8 @@ The next step in performing multiple regression is to define the least squares o
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 train_prices = train.column(0)
 train_attributes = train.drop(0)
@@ -275,34 +358,47 @@ def rmse_train(slopes):
     return rmse(slopes, train_attributes, train_prices)
 
 print('RMSE of all training examples using random slopes:', rmse_train(example_slopes))
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 RMSE of all training examples using random slopes: 103585.76518182222
-
 ```
+</div>
+</div>
+</div>
+
+
 
 Finally, we use the `minimize` function to find the slopes with the lowest RMSE. Since the function we want to minimize, `rmse_train`, takes an array instead of a number, we must pass the `array=True` argument to `minimize`. When this argument is used, `minimize` also requires an initial guess of the slopes so that it knows the dimension of the input array. Finally, to speed up optimization, we indicate that `rmse_train` is a smooth function using the `smooth=True` attribute. Computation of the best slopes may take several minutes.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 best_slopes = minimize(rmse_train, start=example_slopes, smooth=True, array=True)
 print('The best slopes for the training set:')
 Table(train_attributes.labels).with_row(list(best_slopes)).show()
 print('RMSE of all training examples using the best slopes:', rmse_train(best_slopes))
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 The best slopes for the training set:
-
 ```
-
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -319,12 +415,19 @@ The best slopes for the training set:
 </table>
 </div>
 
-
-{:.output .output_stream}
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 RMSE of all training examples using the best slopes: 32283.50513136445
-
 ```
+</div>
+</div>
+</div>
+
+
 
 #### Interpreting Multiple Regression
 
@@ -334,7 +437,8 @@ The RMSE of around \\$30,000 means that our best linear prediction of the sale p
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 test_prices = test.column(0)
 test_attributes = test.drop(0)
@@ -344,32 +448,47 @@ def rmse_test(slopes):
 
 rmse_linear = rmse_test(best_slopes)
 print('Test set RMSE for multiple linear regression:', rmse_linear)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Test set RMSE for multiple linear regression: 29898.407434368237
-
 ```
+</div>
+</div>
+</div>
+
+
 
 If the predictions were perfect, then a scatter plot of the predicted and actual values would be a straight line with slope 1. We see that most dots fall near that line, but there is some error in the predictions.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def fit(row):
     return sum(best_slopes * np.array(row))
 
 test.with_column('Fitted', test.drop(0).apply(fit)).scatter('Fitted', 0)
 plots.plot([0, 5e5], [0, 5e5]);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/6/Multiple_Regression_26_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -377,20 +496,30 @@ A residual plot for multiple regression typically compares the errors (residuals
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 test.with_column('Residual', test_prices-test.drop(0).apply(fit)).scatter(0, 'Residual')
 plots.plot([0, 7e5], [0, 0]);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/6/Multiple_Regression_28_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 As with simple linear regression, interpreting the result of a predictor is at least as important as making predictions. There are many lessons about interpreting multiple regression that are not included in this textbook. A natural next step after completing this text would be to study linear modeling and regression in further depth.
+
+
 
 ## Nearest Neighbors for Regression
 
@@ -398,14 +527,18 @@ Another approach to predicting the sale price of a house is to use the price of 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 train_nn = train.select(0, 1, 2, 3, 4, 8)
 test_nn = test.select(0, 1, 2, 3, 4, 8)
 train_nn.show(3)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -429,12 +562,18 @@ train_nn.show(3)
 <p>... (998 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 The computation of closest neighbors is identical to a nearest-neighbor classifier. In this case, we will exclude the `'SalePrice'` rather than the `'Class'` column from the distance computation. The five nearest neighbors of the first test row are shown below.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def distance(pt1, pt2):
     """The distance between two points, represented as arrays."""
@@ -458,9 +597,12 @@ def closest(training, example, k, output):
 
 example_nn_row = test_nn.drop(0).row(0)
 closest(train_nn, example_nn_row, 5, 'SalePrice')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -492,28 +634,41 @@ closest(train_nn, example_nn_row, 5, 'SalePrice')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 One simple method for predicting the price is to average the prices of the nearest neighbors.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def predict_nn(example):
     """Return the majority class among the k nearest neighbors."""
     return np.average(closest(train_nn, example, 5, 'SalePrice').column('SalePrice'))
 
 predict_nn(example_nn_row)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 174700.0
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -521,19 +676,27 @@ Finally, we can inspect whether our prediction is close to the true sale price f
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 print('Actual sale price:', test_nn.column('SalePrice').item(0))
 print('Predicted sale price using nearest neighbors:', predict_nn(example_nn_row))
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Actual sale price: 176000
 Predicted sale price using nearest neighbors: 174700.0
-
 ```
+</div>
+</div>
+</div>
+
+
 
 #### Evaluation
 
@@ -541,22 +704,30 @@ To evaluate the performance of this approach for the whole test set, we apply `p
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nn_test_predictions = test_nn.drop('SalePrice').apply(predict_nn)
 rmse_nn = np.mean((test_prices - nn_test_predictions) ** 2) ** 0.5
 
 print('Test set RMSE for multiple linear regression: ', rmse_linear)
 print('Test set RMSE for nearest neighbor regression:', rmse_nn)
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Test set RMSE for multiple linear regression:  29898.407434368237
 Test set RMSE for nearest neighbor regression: 33424.833033298106
-
 ```
+</div>
+</div>
+</div>
+
+
 
 For these data, the errors of the two techniques are quite similar! For different data sets, one technique might outperform another. By computing the RMSE of both techniques on the same data, we can compare methods fairly. One note of caution: the difference in performance might not be due to the technique at all; it might be due to the random variation due to sampling the training and test sets in the first place.
 
@@ -564,15 +735,22 @@ Finally, we can draw a residual plot for these predictions. We still underestima
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 test.with_column('Residual', test_prices-nn_test_predictions).scatter(0, 'Residual')
 plots.plot([0, 7e5], [0, 0]);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/6/Multiple_Regression_41_0.png)
 
+</div>
+</div>
+</div>
 

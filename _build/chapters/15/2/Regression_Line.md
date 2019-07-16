@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/15/2/regression-line"
 interact_link: content/chapters/15/2/Regression_Line.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'The Regression Line'
 prev_page:
   url: /chapters/15/1/Correlation
@@ -13,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### The Regression Line
@@ -22,7 +29,8 @@ Galton's data on the heights of parents and their adult children showed a linear
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 galton = Table.read_table(path_data + 'galton.csv')
 
@@ -30,12 +38,16 @@ heights = Table().with_columns(
     'MidParent', galton.column('midparentHeight'),
     'Child', galton.column('childHeight')
     )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def predict_child(mpht):
     """Return a prediction of the height of a child 
@@ -47,30 +59,45 @@ def predict_child(mpht):
     
     close_points = heights.where('MidParent', are.between(mpht-0.5, mpht + 0.5))
     return close_points.column('Child').mean()   
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights_with_predictions = heights.with_column(
     'Prediction', heights.apply(predict_child, 'MidParent')
     )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights_with_predictions.scatter('MidParent')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_5_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -80,26 +107,34 @@ Let's see if we can find a way to identify this line. First, notice that linear 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def standard_units(xyz):
     "Convert any array of numbers to standard units."
     return (xyz - np.mean(xyz))/np.std(xyz)  
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights_SU = Table().with_columns(
     'MidParent SU', standard_units(heights.column('MidParent')),
     'Child SU', standard_units(heights.column('Child'))
 )
 heights_SU
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -147,6 +182,11 @@ heights_SU
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 On this scale, we can calculate our predictions exactly as before. But first we have to figure out how to convert our old definition of "close" points to a value on the new scale. We had said that midparent heights were "close" if they were within 0.5 inches of each other. Since standard units measure distances in units of SDs, we have to figure out how many SDs of midparent height correspond to 0.5 inches.
 
@@ -154,38 +194,52 @@ One SD of midparent heights is about 1.8 inches. So 0.5 inches is about 0.28 SDs
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sd_midparent = np.std(heights.column(0))
 sd_midparent
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 1.8014050969207571
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 0.5/sd_midparent
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.277561110965367
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -193,7 +247,8 @@ sd_midparent
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def predict_child_su(mpht_su):
     """Return a prediction of the height (in standard units) of a child 
@@ -202,34 +257,51 @@ def predict_child_su(mpht_su):
     close = 0.5/sd_midparent
     close_points = heights_SU.where('MidParent SU', are.between(mpht_su-close, mpht_su + close))
     return close_points.column('Child SU').mean()   
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights_with_su_predictions = heights_SU.with_column(
     'Prediction SU', heights_SU.apply(predict_child_su, 'MidParent SU')
     )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights_with_su_predictions.scatter('MidParent SU')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_15_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 This plot looks exactly like the plot drawn on the original scale. Only the numbers on the axes have changed. This confirms that we can understand the prediction process by just working in standard units.
+
+
 
 ### Identifying the Line in Standard Units
 Galton's scatter plot has a *football* shape – that is, it is roughly oval like an American football. Not all scatter plots are football shaped, not even those that show linear association. But in this section we will pretend we are Galton and work only with football shaped scatter plots. In the next section, we will generalize our analysis to other shapes of plots.
@@ -238,10 +310,18 @@ Here is a football shaped scatter plot with both variables measured in standard 
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_18_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -249,10 +329,18 @@ But the 45 degree line is not the line that picks off the centers of the vertica
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_20_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -260,10 +348,18 @@ So the 45 degree line is not the "graph of averages." That line is the green one
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_22_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -273,6 +369,8 @@ The slope of the 45 degree line is 1. So the slope of the green "graph of averag
 
 What value could that be? You've guessed it – it's $r$.
 
+
+
 ### The Regression Line, in Standard Units
 The green "graph of averages" line is called the *regression line*, for reasons we will explain shortly. But first, let's simulate some football shaped scatter plots with different values of $r$, and see how the line changes. In each case, the red 45 degree line has been drawn for comparison.
 
@@ -280,36 +378,56 @@ The function that performs the simulation is called `regression_line` and takes 
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 regression_line(0.95)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_26_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 regression_line(0.6)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_27_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 When $r$ is close to 1, the scatter plot, the 45 degree line, and the regression line are all very close to each other. But for more moderate values of $r$, the regression line is noticeably flatter.
+
+
 
 ### The Regression Effect
 In terms of prediction, this means that for a parents whose midparent height is at 1.5 standard units, our prediction of the child's height is somewhat *less* than 1.5 standard units. If the midparent height is 2 standard units, we predict that the child's height will be somewhat less than 2 standard units.
@@ -319,6 +437,8 @@ In other words, we predict that the child will be somewhat closer to average tha
 This didn't please Sir Francis Galton. He had been hoping that exceptionally tall parents would have children who were just as exceptionally tall. However, the data were clear, and Galton realized that the tall parents have children who are not quite as exceptionally tall, on average. Frustrated, Galton called this phenomenon "regression to mediocrity." 
 
 Galton also noticed that exceptionally short parents had children who were somewhat taller relative to their generation, on average. In general, individuals who are away from average on one variable are expected to be not quite as far away from average on the other. This is called the *regression effect*.
+
+
 
 ### The Equation of the Regression Line
 In regression, we use the value of one variable (which we will call $x$) to predict the value of another (which we will call $y$). When the variables $x$ and $y$ are measured in standard units, the regression line for predicting $y$ based on $x$ has slope $r$ and passes through the origin. Thus the equation of the regression line can be written as:
@@ -351,11 +471,14 @@ $$
 \mbox{average of }y ~-~ \mbox{slope} \cdot \mbox{average of }x
 $$
 
+
+
 The three functions below compute the correlation, slope, and intercept. All of them take three arguments: the name of the table, the label of the column containing $x$, and the label of the column containing $y$.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def correlation(t, label_x, label_y):
     return np.mean(standard_units(t.column(label_x))*standard_units(t.column(label_y)))
@@ -366,7 +489,12 @@ def slope(t, label_x, label_y):
 
 def intercept(t, label_x, label_y):
     return np.mean(t.column(label_y)) - slope(t, label_x, label_y)*np.mean(t.column(label_x))
+
 ```
+</div>
+
+</div>
+
 
 
 ### The Regression Line and Galton's Data
@@ -374,20 +502,28 @@ The correlation between midparent height and child's height is 0.32:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 galton_r = correlation(heights, 'MidParent', 'Child')
 galton_r
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.32094989606395924
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -395,21 +531,29 @@ We can also find the equation of the regression line for predicting the child's 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 galton_slope = slope(heights, 'MidParent', 'Child')
 galton_intercept = intercept(heights, 'MidParent', 'Child')
 galton_slope, galton_intercept
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 (0.637360896969479, 22.63624054958975)
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -425,19 +569,27 @@ For example, for a midparent height of 70.48 inches, the regression equation pre
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 galton_slope*70.48 + galton_intercept
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 67.55743656799862
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -445,12 +597,16 @@ Our original prediction, created by taking the average height of all children wh
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights_with_predictions.where('MidParent', are.equal_to(70.48)).show(3)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -474,20 +630,29 @@ heights_with_predictions.where('MidParent', are.equal_to(70.48)).show(3)
 <p>... (5 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 Here are all of the rows in Galton's table, along with our original predictions and the new regression predictions of the children's heights.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights_with_predictions = heights_with_predictions.with_column(
     'Regression Prediction', galton_slope*heights.column('MidParent') + galton_intercept
 )
 heights_with_predictions
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -535,51 +700,78 @@ heights_with_predictions
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights_with_predictions.scatter('MidParent')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_43_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 The grey dots show the regression predictions, all on the regression line. Notice how the line is very close to the gold graph of averages. For these data, the regression line does a good job of approximating the centers of the vertical strips.
+
+
 
 ### Fitted Values
 The predictions all lie on the line and are known as the "fitted values". The function `fit` takes the name of the table and the labels of $x$ and $y$, and returns an array of fitted values, one fitted value for each point in the scatter plot.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def fit(table, x, y):
     """Return the height of the regression line at each x value."""
     a = slope(table, x, y)
     b = intercept(table, x, y)
     return a * table.column(x) + b
+
 ```
+</div>
+
+</div>
+
 
 
 It is easier to see the line in the graph below than in the one above.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights.with_column('Fitted', fit(heights, 'MidParent', 'Child')).scatter('MidParent')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_48_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -587,15 +779,23 @@ Another way to draw the line is to use the option `fit_line=True` with the Table
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights.scatter('MidParent', fit_line=True)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_50_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -604,41 +804,59 @@ The slope is a ratio, and it worth taking a moment to study the units in which i
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baby = Table.read_table(path_data + 'baby.csv')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 baby.scatter('Maternal Height', 'Maternal Pregnancy Weight', fit_line=True)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/2/Regression_Line_53_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 slope(baby, 'Maternal Height', 'Maternal Pregnancy Weight')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 3.572846259275056
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -649,6 +867,8 @@ $$
 pounds more than our prediction for the shorter woman.
 
 Notice that the successive vertical strips in the scatter plot are one inch apart, because the heights have been rounded to the nearest inch. Another way to think about the slope is to take any two consecutive strips (which are necessarily 1 inch apart), corresponding to two groups of women who are separated by 1 inch in height. The slope of 3.57 pounds per inch means that the average pregnancy weight of the taller group is about 3.57 pounds more than that of the shorter group.
+
+
 
 
 ### Example
@@ -685,5 +905,8 @@ The slope of the line is measures the increase in the estimated height per unit 
 
 In general, the slope of the regression line can be interpreted as the average increase in $y$ per unit increase in $x$. Note that if the slope is negative, then for every unit increase in $x$, the average of $y$ decreases.
 
+
+
 ### Endnote
 Even though we won't establish the mathematical basis for the regression equation, we can see that it gives pretty good predictions when the scatter plot is football shaped. It is a surprising mathematical fact that no matter what the shape of the scatter plot, the same equation gives the "best" among all straight lines. That's the topic of the next section.
+

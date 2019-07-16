@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/16/inference-for-regression"
 interact_link: content/chapters/16/Inference_for_Regression.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Inference for Regression'
 prev_page:
   url: /chapters/15/6/Numerical_Diagnostics
@@ -12,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -24,3 +31,4 @@ But what if our data were only a sample from a larger population? If in the samp
 Such questions of inference and prediction arise if we believe that a scatter plot reflects the underlying relation between the two variables being plotted but does not specify the relation completely. For example, a scatter plot of birth weight versus gestational days shows us the precise relation between the two variables in our sample; but we might wonder whether that relation holds true, or almost true, for all babies in the population from which the sample was drawn, or indeed among babies in general.
 
 As always, inferential thinking begins with a careful examination of the assumptions about the data. Sets of assumptions are known as *models*. Sets of assumptions about randomness in roughly linear scatter plots are called *regression models*.
+

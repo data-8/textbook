@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/17/1/nearest-neighbors"
 interact_link: content/chapters/17/1/Nearest_Neighbors.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Nearest Neighbors'
 prev_page:
   url: /chapters/17/Classification
@@ -13,16 +15,31 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
 ### Nearest Neighbors
 In this section we'll develop the *nearest neighbor* method of classification. Just focus on the ideas for now and don't worry if some of the code is mysterious. Later in the chapter we'll see how to organize our ideas into code that performs the classification.
+
+
 
 ### Chronic kidney disease
 
@@ -30,13 +47,17 @@ Let's work through an example.  We're going to work with a data set that was col
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd = Table.read_table(path_data + 'ckd.csv').relabeled('Blood Glucose Random', 'Glucose')
 ckd
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -84,12 +105,18 @@ ckd
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Some of the variables are categorical (words like "abnormal"), and some quantitative. The quantitative variables all have different scales. We're going to want to make comparisons and estimate distances, often by eye, so let's select just a few of the variables and work in standard units. Then we won't have to worry about the scale of each of the different variables.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd = Table().with_columns(
     'Hemoglobin', standard_units(ckd.column('Hemoglobin')),
@@ -97,17 +124,24 @@ ckd = Table().with_columns(
     'White Blood Cell Count', standard_units(ckd.column('White Blood Cell Count')),
     'Class', ckd.column('Class')
 )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ckd
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -155,6 +189,11 @@ ckd
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Let's look at two columns in particular: the hemoglobin level (in the patient's blood), and the blood glucose level (at a random time in the day; without fasting specially for the blood test). 
 
@@ -162,31 +201,45 @@ We'll draw a scatter plot to visualize the relation between the two variables. B
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 color_table = Table().with_columns(
     'Class', make_array(1, 0),
     'Color', make_array('darkblue', 'gold')
 )
 ckd = ckd.join('Class', color_table)
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-ckd.scatter('Hemoglobin', 'Glucose', colors='Color')
+ckd.scatter('Hemoglobin', 'Glucose', group='Color')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_11_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Suppose Alice is a new patient who is not in the data set.  If I tell you Alice's hemoglobin level and blood glucose level, could you predict whether she has CKD?  It sure looks like it!  You can see a very clear pattern here: points in the lower-right tend to represent people who don't have CKD, and the rest tend to be folks with CKD.  To a human, the pattern is obvious.  But how can we program a computer to automatically detect patterns such as this one?
+
+
 
 ### A Nearest Neighbor Classifier
 
@@ -194,24 +247,38 @@ There are lots of kinds of patterns one might look for, and lots of algorithms f
 
 In other words, to classify Alice as CKD or not, we find the patient in the training set who is "nearest" to Alice, and then use that patient's diagnosis as our prediction for Alice.  The intuition is that if two points are near each other in the scatterplot, then the corresponding measurements are pretty similar, so we might expect them to receive the same diagnosis (more likely than not).  We don't know Alice's diagnosis, but we do know the diagnosis of all the patients in the training set, so we find the patient in the training set who is most similar to Alice, and use that patient's diagnosis to predict Alice's diagnosis.
 
+
+
 In the graph below, the red dot represents Alice. It is joined with a black line to the point that is nearest to it – its *nearest neighbor* in the training set. The figure is drawn by a function called `show_closest`. It takes an array that represents the $x$ and $y$ coordinates of Alice's point. Vary those to see how the closest point changes! Note especially when the closest point is blue and when it is gold.
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # In this example, Alice's Hemoglobin attribute is 0 and her Glucose is 1.5.
 alice = make_array(0, 1.5)
 show_closest(alice)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_16_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -221,6 +288,8 @@ Thus our *nearest neighbor classifier* works like this:
 
 The scatterplot suggests that this nearest neighbor classifier should be pretty accurate.  Points in the lower-right will tend to receive a "no CKD" diagnosis, as their nearest neighbor will be a gold point.  The rest of the points will tend to receive a "CKD" diagnosis, as their nearest neighbor will be a blue point.  So the nearest neighbor strategy seems to capture our intuition pretty well, for this example.
 
+
+
 ### Decision boundary
 
 Sometimes a helpful way to visualize a classifier is to map out the kinds of attributes where the classifier would predict 'CKD', and the kinds where it would predict 'not CKD'.  We end up with some boundary between the two, where points on one side of the boundary will be classified 'CKD' and points on the other side will be classified 'not CKD'.  This boundary is called the *decision boundary*.  Each different classifier will have a different decision boundary; the decision boundary is just a way to visualize what criteria the classifier is using to classify points.
@@ -229,16 +298,24 @@ For example, suppose the coordinates of Alice's point are (0, 1.5). Notice that 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 alice = make_array(0, 0.97)
 show_closest(alice)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_19_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -246,13 +323,25 @@ Here are hundreds of new unclassified points, all in red.
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_22_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -266,20 +355,38 @@ The resulting graph shows which points will get classified as 'CKD' (all the blu
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_26_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 The decision boundary is where the classifier switches from turning the red points blue to turning them gold.
+
+
 
 ### k-Nearest Neighbors
 
@@ -287,15 +394,23 @@ However, the separation between the two classes won't always be quite so clean. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-ckd.scatter('White Blood Cell Count', 'Glucose', colors='Color')
+ckd.scatter('White Blood Cell Count', 'Glucose', group='Color')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/17/1/Nearest_Neighbors_29_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -312,3 +427,4 @@ Its predictions will be pretty similar to our intuitive strategy, but occasional
 There is a simple generalization of the nearest neighbor classifier that fixes this anomaly.  It is called the *k-nearest neighbor classifier*.  To predict Alice's diagnosis, rather than looking at just the one neighbor closest to her, we can look at the 3 points that are closest to her, and use the diagnosis for each of those 3 points to predict Alice's diagnosis.  In particular, we'll use the majority value among those 3 diagnoses as our prediction for Alice's diagnosis.  Of course, there's nothing special about the number 3: we could use 4, or 5, or more.  (It's often convenient to pick an odd number, so that we don't have to deal with ties.)  In general, we pick a number $k$, and our predicted diagnosis for Alice is based on the $k$ patients in the training set who are closest to Alice.  Intuitively, these are the $k$ patients whose blood test results were most similar to Alice, so it seems reasonable to use their diagnoses to predict Alice's diagnosis.
 
 The $k$-nearest neighbor classifier will now behave just like our intuitive strategy above.
+

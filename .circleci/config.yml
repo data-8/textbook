@@ -1,9 +1,6 @@
 version: 2
 jobs:
-  build:
-    branches:
-      only:
-        - gh-pages
+  deploy:
     docker:
       - image: circleci/python:3.6-stretch
     steps:
@@ -18,22 +15,37 @@ jobs:
       - run:
           name: Updating inferentialthinking website
           command: git push live_textbook gh-pages:master
-  site:
+
+  demo_site:
     docker:
       - image: circleci/ruby:2.6
     steps:
+      # Attach the built markdown files
+      - checkout
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /tmp/workspace
+
+      # Grab the the built markdown from the last step
+      - run:
+          name: Copy over built site files
+          command: |
+            rm -rf ./_build
+            cp -r /tmp/workspace/_build ./
+
+      # Build the site's HTML w/ the base_url for CircleCI artifacts
       - checkout
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-{{ checksum "./Gemfile.lock" }}
             - rails-demo-bundle-v2-
-      
+
       - run: gem install bundler
       - run: bundle install
 
       # Store bundle cache
       - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: rails-demo-bundle-v2-{{ checksum "./Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -43,5 +55,67 @@ jobs:
 
       # Tell Circle to store the documentation output in a folder that we can access later
       - store_artifacts:
-          path: _site/
+          path: ./_site/
           destination: html
+
+      - store_artifacts:
+          path: ./_build/
+          destination: _build
+
+  build_markdown:
+    docker:
+      - image: circleci/python:3.6-stretch
+    steps:
+      # Get our data and merge with upstream
+      - run: sudo apt-get update
+      - checkout
+      # Update our path
+      - run: echo "export PATH=~/.local/bin:$PATH" >> $BASH_ENV
+      # Restore cached files to speed things up
+      - restore_cache:
+          keys:
+            - cache-pip
+
+      # Install the packages needed to build our documentation
+      # This will depend on your particular package!
+      - run: pip install --user jupyter-book
+
+      # Cache some files for a speedup in subsequent builds
+      - save_cache:
+          key: cache-pip
+          paths:
+            - ~/.cache/pip
+
+      - run:
+          name: Build site markdown
+          command: jupyter-book build .
+
+      # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./_build/
+
+
+# Tell CircleCI to use this workflow when it builds the site
+workflows:
+  version: 2
+  default:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - gh-pages
+      - build_markdown:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - demo_site:
+          requires:
+            - build_markdown
+          filters:
+              branches:
+                ignore:
+                  - gh-pages

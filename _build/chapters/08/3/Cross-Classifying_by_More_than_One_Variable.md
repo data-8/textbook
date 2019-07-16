@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/08/3/cross-classifying-by-more-than-one-variable"
 interact_link: content/chapters/08/3/Cross-Classifying_by_More_than_One_Variable.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Cross-Classifying'
 prev_page:
   url: /chapters/08/2/Classifying_by_One_Variable
@@ -13,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### Cross-Classifying by More than One Variable
@@ -21,12 +28,15 @@ When individuals have multiple features, there are many different ways to classi
 
 The `group` method also allows us to classify individuals according to multiple variables. This is called *cross-classifying*.
 
+
+
 ### Two Variables: Counting the Number in Each Paired Category
 The table `more_cones` records the flavor, color, and price of six ice cream cones.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 more_cones = Table().with_columns(
     'Flavor', make_array('strawberry', 'chocolate', 'chocolate', 'strawberry', 'chocolate', 'bubblegum'),
@@ -35,9 +45,12 @@ more_cones = Table().with_columns(
 )
 
 more_cones
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -72,17 +85,26 @@ more_cones
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 We know how to use `group` to count the number of cones of each flavor:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 more_cones.group('Flavor')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -108,19 +130,30 @@ more_cones.group('Flavor')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 But now each cone has a color as well. To classify the cones by both flavor and color, we will pass a list of labels as an argument to `group`. The resulting table has one row for every *unique combination* of values that appear together in the grouped columns. As before, a single argument (a list, in this case, but an array would work too) gives row counts.
+
+
 
 Although there are six cones, there are only four unique combinations of flavor and color. Two of the cones were dark brown chocolate, and two pink strawberry.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 more_cones.group(['Flavor', 'Color'])
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -149,18 +182,27 @@ more_cones.group(['Flavor', 'Color'])
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ### Two Variables: Finding a Characteristic of Each Paired Category
 A second argument aggregates all other columns that are not in the list of grouped columns.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 more_cones.group(['Flavor', 'Color'], sum)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -189,8 +231,15 @@ more_cones.group(['Flavor', 'Color'], sum)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 **Three or More Variables.** You can use `group` to classify rows by three or more categorical variables. Just include them all in the list that is the first argument. But cross-classifying by multiple variables can become complex, as the number of distinct combinations of categories can be quite large. 
+
+
 
 ### Pivot Tables: Rearranging the Output of `group`
 Many uses of cross-classification involve just two categorical variables, like `Flavor` and `Color` in the example above. In these cases it is possible to display the results of the classification in a different kind of table, called a *pivot table*. Pivot tables, also known as *contingency tables*, make it easier to work with data that have been classified according to two variables.
@@ -199,12 +248,16 @@ Recall the use of `group` to count the number of cones in each paired category o
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 more_cones.group(['Flavor', 'Color'])
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -233,17 +286,26 @@ more_cones.group(['Flavor', 'Color'])
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The same data can be displayed differenly using the Table method `pivot`. Ignore the code for a moment, and just examine the table of outcomes.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 more_cones.pivot('Flavor', 'Color')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -269,10 +331,17 @@ more_cones.pivot('Flavor', 'Color')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Notice how this table displays all nine possible pairs of flavor and color, including pairs like "dark brown bubblegum" that don't exist in our data. Notice also that the count in each pair appears in the body of the table: to find the number of light brown chocolate cones, run your eye along the row `light brown` until it meets the column `chocolate`.
 
 The `group` method takes a list of two labels because it is flexible: it could take one or three or more. On the other hand, `pivot` always takes two column labels, one to determine the columns and one to determine the rows.
+
+
 
 **`pivot`** 
 
@@ -284,12 +353,16 @@ An example will help clarify this. Here is `pivot` being used to find the total 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 more_cones.pivot('Flavor', 'Color', values='Price', collect=sum)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -315,17 +388,26 @@ more_cones.pivot('Flavor', 'Color', values='Price', collect=sum)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 And here is `group` doing the same thing.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 more_cones.group(['Flavor', 'Color'], sum)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -354,8 +436,15 @@ more_cones.group(['Flavor', 'Color'], sum)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Though the numbers in both tables are the same, table produced by `pivot` is easier to read and lends itself more easily to analysis. The advantage of `pivot` is that it places grouped values into adjacent columns, so that they can be combined and compared.
+
+
 
 ### Example: Education and Income of Californian Adults
 The State of California's Open Data Portal is a rich source of information about the lives of Californians. It is our source of a [dataset](http://data.ca.gov/dataset/ca-educational-attainment-personal-income) on educational attainment and personal income among Californians over the years 2008 to 2014. The data are derived from the U.S. Census Current Population Survey.
@@ -364,14 +453,18 @@ For each year, the table records the `Population Count` of Californians in many 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 full_table = Table.read_table(path_data + 'educ_inc.csv')
 ca_2014 = full_table.where('Year', are.equal_to('1/1/14 0:00')).where('Age', are.not_equal_to('00 to 17'))
 ca_2014
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -419,6 +512,11 @@ ca_2014
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Each row of the table corresponds to a combination of age, gender, educational level, and income. There are 127 such combinations in all! 
 
@@ -426,13 +524,17 @@ As a first step it is a good idea to start with just one or two variables. We wi
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 educ_inc = ca_2014.select('Educational Attainment', 'Personal Income', 'Population Count')
 educ_inc
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -480,19 +582,28 @@ educ_inc
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Let's start by looking at educational level alone. The categories of this variable have been subdivided by the different levels of income. So we will group the table by `Educational Attainment` and `sum` the `Population Count` in each category.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 education = educ_inc.select('Educational Attainment', 'Population Count')
 educ_totals = education.group('Educational Attainment', sum)
 educ_totals
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -521,31 +632,46 @@ educ_totals
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 There are only four categories of educational attainment. The counts are so large that is is more helpful to look at percents. For this, we will use the function `percents` that we defined in an earlier section. It converts an array of numbers to an array of percents out of the total in the input array.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def percents(array_x):
     return np.round( (array_x/sum(array_x))*100, 2)
+
 ```
+</div>
+
+</div>
+
 
 
 We now have the distribution of educational attainment among adult Californians. More than 30% have a Bachelor's degree or higher, while almost 16% lack a high school diploma.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 educ_distribution = educ_totals.with_column(
     'Population Percent', percents(educ_totals.column(1))
 )
 educ_distribution
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -574,18 +700,27 @@ educ_distribution
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 By using `pivot`, we can get a contingency table (a table of counts) of adult Californians cross-classified by `Educational Attainment` and `Personal Income`.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 totals = educ_inc.pivot('Educational Attainment', 'Personal Income', values='Population Count', collect=sum)
 totals
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -626,12 +761,18 @@ totals
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Here you see the power of `pivot` over other cross-classification methods. Each column of counts is a distribution of personal income at a specific level of educational attainment. Converting the counts to percents allows us to compare the four distributions.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 distributions = totals.select(0).with_columns(
     "Bachelor's degree or higher", percents(totals.column(1)),
@@ -641,9 +782,12 @@ distributions = totals.select(0).with_columns(
     )
 
 distributions
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -684,6 +828,11 @@ distributions
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 At a glance, you can see that over 35% of those with Bachelor's degrees or higher had incomes of $\$75,000$ and over, whereas fewer than 10% of the people in the other education categories had that level of income. 
 
@@ -691,14 +840,21 @@ The bar chart below compares the personal income distributions of adult Californ
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 distributions.select(0, 1, 4).barh(0)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/08/3/Cross-Classifying_by_More_than_One_Variable_37_0.png)
 
+</div>
+</div>
+</div>
 

@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/09/3/simulation"
 interact_link: content/chapters/09/3/Simulation.ipynb
+kernel_name: Python [Root]
+has_widgets: false
 title: 'Simulation'
 prev_page:
   url: /chapters/09/2/Iteration
@@ -12,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -41,6 +48,8 @@ That's it! Once you have carried out the steps above, your simulation is done. T
 
 At this point you can use the collection array as you would any other array. You can visualize the distribution of the simulated values, count how many simulated values fall into a particular category, and so on.
 
+
+
 ### Number of Heads in 100 Tosses
 It is natural to expect that in 100 tosses of a coin, there will be 50 heads, give or take a few. 
 
@@ -58,10 +67,16 @@ We have to figure out how to make one set of 100 tosses and count the number of 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 coin = make_array('Heads', 'Tails')
+
 ```
+</div>
+
+</div>
+
 
 
 In our earlier example we used `np.random.choice` and a `for` loop to generate multiple tosses. But sets of coin tosses are needed so often in data science that `np.random.choice` simulates them for us if we include a second argument that is the number of times to toss.
@@ -70,21 +85,29 @@ Here are the results of 10 tosses.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 ten_tosses = np.random.choice(coin, 10)
 ten_tosses
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array(['Tails', 'Heads', 'Heads', 'Tails', 'Tails', 'Heads', 'Tails',
        'Tails', 'Heads', 'Tails'], dtype='<U5')
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -92,19 +115,27 @@ We can count the number of heads by using `np.count_nonzero` as before:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.count_nonzero(ten_tosses == 'Heads')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 4
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -112,21 +143,29 @@ Our goal is to simulate the number of heads in 100 tosses, not 10. To do that we
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 outcomes = np.random.choice(coin, 100)
 num_heads = np.count_nonzero(outcomes == 'Heads')
 num_heads
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 45
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -141,7 +180,8 @@ We are ready to write the code to execute the entire simulation.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # An empty array to collect the simulated values
 heads = make_array()
@@ -161,26 +201,39 @@ for i in repetitions_sequence:
     heads = np.append(heads, num_heads)  
 
 # That's it! The simulation is done.
+
 ```
+</div>
+
+</div>
+
 
 
 Check that the array `heads` contains 10,000 entries, one for each repetition of the experiment.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 len(heads)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 10000
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -188,23 +241,31 @@ To get a sense of the variability in the number of heads in 100 tosses, we can c
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 simulation_results = Table().with_column(
     'Repetition', np.arange(1, num_repetitions + 1),
     'Number of Heads', heads
 )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 simulation_results
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -252,18 +313,29 @@ simulation_results
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 simulation_results.hist('Number of Heads', bins = np.arange(30.5, 69.6, 1))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/09/3/Simulation_17_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -277,12 +349,15 @@ While in theory it is *possible* that the number of heads can be anywhere betwee
 
 This is an instance of a more general phenomenon about the variability in coin tossing, as we will see later in the course.
 
+
+
 ### A More Compact Version of the Code
 We wrote the code for the simulation to show each of the steps in detail. Here are the same steps written in a more compact form. You can see that the code starts out the same way as before, but then some steps are combined.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heads = make_array()
 
@@ -291,24 +366,35 @@ num_repetitions = 10000
 for i in np.arange(num_repetitions):
     outcomes = np.random.choice(coin, 100)
     heads = np.append(heads, np.count_nonzero(outcomes == 'Heads'))
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heads
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 array([52., 45., 48., ..., 48., 44., 51.])
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -321,20 +407,28 @@ Step 2 is the one in which we simulate one pair of rolls and add up the number o
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 die = np.arange(1, 7)
 sum(np.random.choice(die, 2))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 8
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -342,7 +436,8 @@ That simulates one value of the sum of two rolls. We are now all set to run the 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 moves = make_array()
 
@@ -351,14 +446,20 @@ num_repetitions = 10000
 for i in np.arange(num_repetitions):
     one_move = sum(np.random.choice(die, 2))
     moves = np.append(moves, one_move)
+
 ```
+</div>
+
+</div>
+
 
 
 Here is a histogram of the results.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 results = Table().with_column(
     'Repetition', np.arange(1, num_repetitions + 1),
@@ -366,13 +467,21 @@ results = Table().with_column(
 )
 
 results.hist('Sum of Two Rolls', bins = np.arange(1.5, 12.6, 1))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/09/3/Simulation_27_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 Seven is the most common value, with the frequencies falling off symmetrically on either side.
+

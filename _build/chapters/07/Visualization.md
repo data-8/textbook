@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/07/visualization"
 interact_link: content/chapters/07/Visualization.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Visualization'
 prev_page:
   url: /chapters/06/4/Example_Gender_Ratio_in_the_US_Population
@@ -13,15 +15,26 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### Visualization
+
+
 
 Tables are a powerful way of organizing and visualizing data. However, large tables of numbers can be difficult to interpret, no matter how organized they are. Sometimes it is much easier to interpret graphs than numbers.
 
 In this chapter we will develop some of the fundamental graphical methods of data analysis. Our source of data is the [Internet Movie Database](http://www.imdb.com), an online database that contains information about movies, television shows, video games, and so on. The site [Box Office Mojo](http://www.boxofficemojo.com) provides many summaries of IMDB data, some of which we have adapted. We have also used data summaries from [The Numbers](http://www.the-numbers.com), a site with a tagline that says it is "where data and the movie business meet."
 
+
+
 ### Scatter Plots and Line Graphs
+
+
 
 The table `actors` contains data on Hollywood actors, both male and female. The columns are:
 
@@ -40,13 +53,17 @@ The table has 50 rows, corresponding to the 50 top grossing actors. The table is
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 actors = Table.read_table(path_data + 'actors.csv')
 actors
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -94,11 +111,18 @@ actors
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 **Terminology.**
 A *variable* is a formal name for what we have been calling a "feature", such as 'number of movies.' The term *variable* emphasizes that the feature can have different values for different individuals – the numbers of movies that actors have been in varies across all the actors.
 
 Variables that have numerical values, such as 'number of movies' or 'average gross receipts per movie' are called *quantitative* or *numerical* variables.
+
+
 
 ### Scatter Plots
 A *scatter plot* displays the relation between two numerical variables. You saw an example of a scatter plot in an early section where we looked at the number of periods and number of characters in two classic novels.
@@ -107,15 +131,23 @@ The Table method `scatter` draws a scatter plot consisting of one point for each
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 actors.scatter('Number of Movies', 'Total Gross')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../images/chapters/07/Visualization_8_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -127,19 +159,29 @@ Of course there is some variability. Some actors have high numbers of movies but
 
 Later in the course we will study how to quantify association. For the moment, we will just think about it qualitatively.
 
+
+
 Now that we have explored how the number of movies is related to the *total* gross receipt, let's turn our attention to how it is related to the *average* gross receipt per movie.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 actors.scatter('Number of Movies', 'Average per Movie')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../images/chapters/07/Visualization_11_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -147,22 +189,32 @@ This is a markedly different picture and shows a *negative* association. In gene
 
 Also, one of the points is quite high and off to the left of the plot. It corresponds to one actor who has a low number of movies and high average per movie. This point is an *outlier*. It lies outside the general range of the data. Indeed, it is quite far from all the other points in the plot.
 
+
+
 We will examine the negative association further by looking at points at the right and left ends of the plot. 
 
 For the right end, let's zoom in on the main body of the plot by just looking at the portion that doesn't have the outlier.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 no_outlier = actors.where('Number of Movies', are.above(10))
 no_outlier.scatter('Number of Movies', 'Average per Movie')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../images/chapters/07/Visualization_14_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -170,12 +222,16 @@ The negative association is still clearly visible. Let's identify the actors cor
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 actors.where('Number of Movies', are.above(60))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -204,6 +260,11 @@ actors.where('Number of Movies', are.above(60))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The great actor Robert DeNiro has the highest number of movies and the lowest average receipt per movie. Other fine actors are at points that are not very far away, but DeNiro's is at the extreme end.
 
@@ -213,12 +274,16 @@ To approach this argument from a different direction, let us now take a look at 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 actors.where('Number of Movies', are.below(10))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -238,6 +303,11 @@ actors.where('Number of Movies', are.below(10))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 As an actor, Anthony Daniels might not have the stature of Robert DeNiro. But his 7 movies had an astonishingly high average receipt of nearly $452$ million dollars per movie.
 
@@ -248,6 +318,8 @@ That's [Anthony Daniels](https://en.wikipedia.org/wiki/Anthony_Daniels) inside t
 Mr. Daniels' entire filmography (apart from cameos) consists of movies in the high-grossing Star Wars franchise. That explains both his high average receipt and his low number of movies.
 
 Variables such as genre and production budget have an effect on the association between the number of movies and the average receipt per movie. This example is a reminder that studying the association between two variables often involves understanding other related variables as well. 
+
+
 
 ### Line Graphs
 Line graphs are among the most common visualizations and are often used to study chronological trends and patterns.
@@ -263,13 +335,17 @@ The table `movies_by_year` contains data on movies produced by U.S. studios in e
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 movies_by_year = Table.read_table(path_data + 'movies_by_year.csv')
 movies_by_year
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -317,20 +393,33 @@ movies_by_year
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The Table method `plot` produces a line graph. Its two arguments are the same as those for `scatter`: first the column on the horizontal axis, then the column on the vertical. Here is a line graph of the number of movies released each year over the years 1980 through 2015.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 movies_by_year.plot('Year', 'Number of Movies')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../images/chapters/07/Visualization_23_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -340,23 +429,35 @@ Our focus will be on more recent years. In keeping with the theme of movies, the
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 century_21 = movies_by_year.where('Year', are.above(1999))
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 century_21.plot('Year', 'Number of Movies')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../images/chapters/07/Visualization_26_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -366,15 +467,23 @@ The dollar figures, however, didn't suffer much.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 century_21.plot('Year', 'Total Gross')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../images/chapters/07/Visualization_28_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -386,12 +495,16 @@ In 2009, another reason for high box office receipts was the movie Avatar and it
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 century_21.where('Year', are.equal_to(2009))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -410,4 +523,8 @@ century_21.where('Year', are.equal_to(2009))
 </table>
 </div>
 
+
+</div>
+</div>
+</div>
 

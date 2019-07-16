@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/10/3/empirical-distribution-of-a-statistic"
 interact_link: content/chapters/10/3/Empirical_Distribution_of_a_Statistic.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Empirical Distibution of a Statistic'
 prev_page:
   url: /chapters/10/2/Sampling_from_a_Population
@@ -12,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -24,45 +31,65 @@ As a reminder, here is the histogram of the delays of all the flights in `united
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united = Table.read_table(path_data + 'united_summer2015.csv')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 delay_bins = np.arange(-20, 201, 10)
-united.select('Delay').hist(bins = delay_bins, unit = 'minute')
+united.hist('Delay', bins = delay_bins, unit = 'minute')
 plots.title('Population');
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_3_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sample_1000 = united.sample(1000)
-sample_1000.select('Delay').hist(bins = delay_bins, unit = 'minute')
+sample_1000.hist('Delay', bins = delay_bins, unit = 'minute')
 plots.title('Sample of Size 1000');
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_4_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 The two histograms clearly resemble each other, though they are not identical. 
+
+
 
 ### Parameter
 Frequently, we are interested in numerical quantities associated with a population.
@@ -74,19 +101,27 @@ Numerical quantities associated with a population are called *parameters*. For t
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.median(united.column('Delay'))
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 2.0
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -94,19 +129,27 @@ The `NumPy` function `median` returns the median (half-way point) of an array. A
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-united.where('Delay', are.below_or_equal_to(2)).num_rows/united.num_rows
+united.where('Delay', are.below_or_equal_to(2)).num_rows / united.num_rows
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.5018444846292948
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -116,24 +159,32 @@ Half of all flights left no more than 2 minutes after their scheduled departure 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united.where('Delay', are.equal_to(2)).num_rows
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 480
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 ### Statistic
-In many situations, we will be interested in figuring out the value of an unknown parameter. For this, we will rely on data from a large random sample from the population.
+In many situations, we will be interested in figuring out the value of an unknown parameter. For this, we will rely on data from a large random sample drawn from the population.
 
 A *statistic* (note the singular!) is any number computed using the data in a sample. The sample median, therefore, is a statistic. 
 
@@ -141,19 +192,27 @@ Remember that `sample_1000` contains a random sample of 1000 flights from `unite
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.median(sample_1000.column('Delay'))
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+
+{:.output_data_text}
+```
+3.0
 ```
 
 
-
-
-
-{:.output .output_data_text}
-```
-2.0
-```
+</div>
+</div>
+</div>
 
 
 
@@ -164,50 +223,59 @@ A fundamental consideration in using any statistic based on a random sample is t
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 np.median(united.sample(1000).column('Delay'))
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+
+{:.output_data_text}
+```
+2.0
 ```
 
 
-
-
-
-{:.output .output_data_text}
-```
-3.0
-```
+</div>
+</div>
+</div>
 
 
 
 Run the cell above a few times to see how the answer varies. Often it is equal to 2, the same value as the population parameter. But sometimes it is different.
 
+
+
 **Just how different could the statistic have been?** One way to answer this is to simulate the statistic many times and note the values. A histogram of those values will tell us about the distribution of the statistic.
 
 Let's recall the main steps in a simulation.
+
+
 
 ### Simulating a Statistic
 We will simulate the sample median using the steps we set up in an earlier chapter when we started studying simulation. You can replace the sample size of 1000 by any other sample size, and the sample median by any other statistic.
 
 **Step 1: Decide which statistic to simulate.** We have already decided that: we are going to simulate the median of a random sample of size 1000 drawn from the population of flight delays.
 
-**Step 2: Write the code to generate one value of the statistic.** Draw a random sample of size 1000 and compute the median of the sample. We did this in the code cell above. Here it is again for reference.
+**Step 2: Write the code to generate one value of the statistic.** Draw a random sample of size 1000 and compute the median of the sample. We did this in the code cell above. Here it is again, encapsulated in a function.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-np.median(united.sample(1000).column('Delay'))
+def random_sample_median():
+    return np.median(united.sample(1000).column('Delay'))
+
 ```
+</div>
 
-
-
-
-
-{:.output .output_data_text}
-```
-2.0
-```
+</div>
 
 
 
@@ -219,31 +287,42 @@ The simulation takes a noticeable amount of time to run. That is because it is p
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 medians = make_array()
 
 for i in np.arange(5000):
-    new_median = np.median(united.sample(1000).column('Delay'))
-    medians = np.append(medians, new_median)
+    medians = np.append(medians, random_sample_median())
+
 ```
+</div>
+
+</div>
+
 
 
 The simulation is done. All 5,000 simulated sample medians have been collected in the array `medians`. Now it's time to visualize the results. 
 
+
+
 ### Visualization
 
-Here are the simulated values displayed in the table `simulated_medians`.
+Here are the simulated random sample medians displayed in the table `simulated_medians`.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 simulated_medians = Table().with_column('Sample Median', medians)
 simulated_medians
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -256,38 +335,43 @@ simulated_medians
     </thead>
     <tbody>
         <tr>
+            <td>2            </td>
+        </tr>
+        <tr>
+            <td>2            </td>
+        </tr>
+        <tr>
+            <td>2.5          </td>
+        </tr>
+        <tr>
+            <td>1            </td>
+        </tr>
+        <tr>
+            <td>2            </td>
+        </tr>
+        <tr>
             <td>3            </td>
         </tr>
         <tr>
-            <td>3            </td>
-        </tr>
-        <tr>
             <td>2            </td>
-        </tr>
-        <tr>
-            <td>4            </td>
         </tr>
         <tr>
             <td>3            </td>
         </tr>
         <tr>
-            <td>2            </td>
+            <td>1            </td>
         </tr>
         <tr>
-            <td>2            </td>
-        </tr>
-        <tr>
-            <td>2            </td>
-        </tr>
-        <tr>
-            <td>4            </td>
-        </tr>
-        <tr>
-            <td>2            </td>
+            <td>3            </td>
         </tr>
     </tbody>
 </table>
 <p>... (4990 rows omitted)</p>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -296,30 +380,41 @@ We can also visualize the simulated data using a histogram. The histogram is cal
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 simulated_medians.hist(bins=np.arange(0.5, 5, 1))
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_26_0.png)
 
+</div>
+</div>
+</div>
 
 
-You can see that the sample median is very likely to be close to 2, which was the value of the population median. Since samples of 1000 flight delays are likely to resemble the population of delays, it is not surprising that the median delays of those samples should be close to the median delay in the population.
+
+You can see that the sample median is very likely to be about 2, which was the value of the population median. Since samples of 1000 flight delays are likely to resemble the population of delays, it is not surprising that the median delays of those samples should be close to the median delay in the population.
 
 This is an example of how a statistic can provide a good estimate of a parameter.
+
+
 
 ### The Power of Simulation
 
 If we could generate all possible random samples of size 1000, we would know all possible values of the statistic (the sample median), as well as the probabilities of all those values. We could visualize all the values and probabilities in the probability histogram of the statistic.
 
-But in many situations (including this one), the number of all possible samples is large enough to exceed the capacity of the computer, and purely mathematical calculations of the probabilities can be intractably difficult.
+But in many situations including this one, the number of all possible samples is large enough to exceed the capacity of the computer, and purely mathematical calculations of the probabilities can be intractably difficult.
 
 This is where empirical histograms come in.
 
-We know that by the Law of Averages, the empirical histogram of the statistic is likely to resemble the probability histogram of the statistic, if the sample size is large and if you repeat the sampling process numerous times.
+We know that by the Law of Averages, the empirical histogram of the statistic is likely to resemble the probability histogram of the statistic, if the sample size is large and if you repeat the random sampling process numerous times.
 
 This means that simulating random processes repeatedly is a way of approximating probability distributions *without figuring out the probabilities mathematically or generating all possible random samples*. Thus computer simulations become a powerful tool in data science. They can help data scientists understand the properties of random quantities that would be complicated to analyze in other ways.
+

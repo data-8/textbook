@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/14/5/variability-of-the-sample-mean"
 interact_link: content/chapters/14/5/Variability_of_the_Sample_Mean.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'The Variability of the Sample Mean'
 prev_page:
   url: /chapters/14/4/Central_Limit_Theorem
@@ -13,6 +15,11 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
+
+
+</div>
+
 
 
 ### The Variability of the Sample Mean
@@ -20,42 +27,62 @@ By the Central Limit Theorem, the probability distribution of the mean of a larg
 
 In our simulations, we also noticed that the means of larger samples tend to be more tightly clustered around the population mean than means of smaller samples. In this section, we will quantify the variability of the sample mean and develop a relation between the variability and the sample size.
 
+
+
 Let's start with our table of flight delays. The mean delay is about 16.7 minutes, and the distribution of delays is skewed to the right.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 united = Table.read_table(path_data + 'united_summer2015.csv')
 delay = united.select('Delay')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 pop_mean = np.mean(delay.column('Delay'))
 pop_mean
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 16.658155515370705
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
+<div markdown="1" class="cell code_cell">
 
 
-{:.output .output_png}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+{:.output_png}
 ![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_5_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -65,7 +92,8 @@ We will define a function `simulate_sample_mean` to do this, because we are goin
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 """Empirical distribution of random sample means"""
 
@@ -89,92 +117,125 @@ def simulate_sample_mean(table, label, sample_size, repetitions):
     print("Average of sample means: ", np.mean(means))
     print("Population SD:", np.std(table.column(label)))
     print("SD of sample means:", np.std(means))
+
 ```
+</div>
+
+</div>
+
 
 
 Let us simulate the mean of a random sample of 100 delays, then of 400 delays, and finally of 625 delays. We will perform 10,000 repetitions of each of these process. The `xlim` and `ylim` lines set the axes consistently in all the plots for ease of comparison. You can just ignore those two lines of code in each cell.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 simulate_sample_mean(delay, 'Delay', 100, 10000)
 plots.xlim(5, 35)
 plots.ylim(0, 0.25);
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Sample size:  100
 Population mean: 16.658155515370705
 Average of sample means:  16.612564
 Population SD: 39.480199851609314
 SD of sample means: 3.8997187931829136
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_9_1.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 simulate_sample_mean(delay, 'Delay', 400, 10000)
 plots.xlim(5, 35)
 plots.ylim(0, 0.25);
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Sample size:  400
 Population mean: 16.658155515370705
 Average of sample means:  16.650027499999997
 Population SD: 39.480199851609314
 SD of sample means: 1.9777759739145762
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_10_1.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 simulate_sample_mean(delay, 'Delay', 625, 10000)
 plots.xlim(5, 35)
 plots.ylim(0, 0.25);
+
 ```
+</div>
 
-
-{:.output .output_stream}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+{:.output_stream}
 ```
 Sample size:  625
 Population mean: 16.658155515370705
 Average of sample means:  16.68069616
 Population SD: 39.480199851609314
 SD of sample means: 1.5794443889422805
-
 ```
+</div>
+</div>
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_11_1.png)
+
+</div>
+</div>
+</div>
 
 
 
 You can see the Central Limit Theorem in action – the histograms of the sample means are roughly normal, even though the histogram of the delays themselves is far from normal.
 
 You can also see that each of the three histograms of the sample means is centered very close to the population mean. In each case, the "average of sample means" is very close to 16.66 minutes, the population mean. Both values are provided in the printout above each histogram. As expected, the sample mean is an unbiased estimate of the population mean.
+
+
 
 ### The SD of All the Sample Means
 
@@ -184,20 +245,28 @@ The SD of the population of all delays is about 40 minutes.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 pop_sd = np.std(delay.column('Delay'))
 pop_sd
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 39.480199851609314
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -207,13 +276,16 @@ Now look at the SD of all 10,000 sample means, when the sample size is 100. That
 
 It seems like a good idea to compare the SD of the empirical distribution of the sample means to the quantity "population SD divided by the square root of the sample size."
 
+
+
 Here are the numerical values. For each sample size in the first column, 10,000 random samples of that size were drawn, and the 10,000 sample means were calculated. The second column contains the SD of those 10,000 sample means. The third column contains the result of the calculation "population SD divided by the square root of the sample size."
 
 The cell takes a while to run, as it's a large simulation. But you'll soon see that it's worth the wait.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 repetitions = 10000
 sample_sizes = np.arange(25, 626, 25)
@@ -231,17 +303,24 @@ sd_comparison = Table().with_columns(
     'SD of 10,000 Sample Means', sd_means,
     'pop_sd/sqrt(n)', pop_sd/np.sqrt(sample_sizes)
 )
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sd_comparison
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -289,20 +368,33 @@ sd_comparison
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The values in the second and third columns are very close. If we plot each of those columns with the sample size on the horizontal axis, the two graphs are essentially indistinguishable.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sd_comparison.plot('Sample Size n')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/14/5/Variability_of_the_Sample_Mean_20_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -319,8 +411,12 @@ $$
 
 This is the standard deviation of the averages of all the possible samples that could be drawn. **It measures roughly how far off the sample means are from the population mean.**
 
+
+
 ### The Central Limit Theorem for the Sample Mean
 If you draw a large random sample with replacement from a population, then, regardless of the distribution of the population, the probability distribution of the sample mean is roughly normal, centered at the population mean, with an SD equal to the population SD divided by the square root of the sample size.
+
+
 
 ### The Accuracy of the Sample Mean
 The SD of all possible sample means measures how variable the sample mean can be. As such, it is taken as a measure of the accuracy of the sample mean as an estimate of the population mean. The smaller the SD, the more accurate the estimate.
@@ -329,9 +425,12 @@ The formula shows that:
 - The population size doesn't affect the accuracy of the sample mean. The population size doesn't appear anywhere in the formula.
 - The population SD is a constant; it's the same for every sample drawn from the population. The sample size can be varied. Because the sample size appears in the denominator, the variability of the sample mean *decreases* as the sample size increases, and hence the accuracy increases.
 
+
+
 ### The Square Root Law
 From the table of SD comparisons, you can see that the SD of the means of random samples of 25 flight delays is about 8 minutes. If you multiply the sample size by 4, you'll get samples of size 100. The SD of the means of all of those samples is about 4 minutes. That's smaller than 8 minutes, but it's not 4 times as small; it's only 2 times as small. That's because the sample size in the denominator has a square root over it. The sample size increased by a factor of 4, but the SD went down by a factor of $2 = \sqrt{4}$. In other words, the accuracy went up by a factor of $2 = \sqrt{4}$.
 
 In general, when you multiply the sample size by a factor, the accuracy of the sample mean goes up by the square root of that factor.
 
 So to increase accuracy by a factor of 10, you have to multiply sample size by a factor of 100. Accuracy doesn't come cheap!
+

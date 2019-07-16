@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/15/1/correlation"
 interact_link: content/chapters/15/1/Correlation.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Correlation'
 prev_page:
   url: /chapters/15/Prediction
@@ -13,14 +15,25 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
 ### Correlation
 
 In this section we will develop a measure of how tightly clustered a scatter diagram is about a straight line. Formally, this is called measuring *linear association*.
+
+
 
 The table `hybrid` contains data on hybrid passenger cars sold in the United States from 1997 to 2013. The data were adapted from the online data archive of [Prof. Larry Winner](http://www.stat.ufl.edu/%7Ewinner/) of the University of Florida. The columns:
 
@@ -33,20 +46,28 @@ The table `hybrid` contains data on hybrid passenger cars sold in the United Sta
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 hybrid = Table.read_table(path_data + 'hybrid.csv')
+
 ```
+</div>
+
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 hybrid
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -94,20 +115,33 @@ hybrid
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The graph below is a scatter plot of `msrp` *versus* `acceleration`. That means `msrp` is plotted on the vertical axis and `accelaration` on the horizontal.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 hybrid.scatter('acceleration', 'msrp')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_7_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -117,15 +151,23 @@ The scatter diagram of MSRP versus mileage shows a negative association. Hybrid 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 hybrid.scatter('mpg', 'msrp')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_9_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -135,30 +177,44 @@ If we restrict the data just to the SUV class, however, the association between 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 suv = hybrid.where('class', 'SUV')
 suv.scatter('mpg', 'msrp')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_11_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 suv.scatter('acceleration', 'msrp')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_12_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -170,19 +226,26 @@ Recall that in an earlier section we defined the function `standard_units` to co
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def standard_units(any_numbers):
     "Convert any array of numbers to standard units."
     return (any_numbers - np.mean(any_numbers))/np.std(any_numbers)  
+
 ```
+</div>
+
+</div>
+
 
 
 We can use this function to re-draw the two scatter diagrams for SUVs, with all the variables measured in standard units.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_columns(
     'mpg (standard units)',  standard_units(suv.column('mpg')), 
@@ -190,18 +253,24 @@ Table().with_columns(
 ).scatter(0, 1)
 plots.xlim(-3, 3)
 plots.ylim(-3, 3);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_16_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 Table().with_columns(
     'acceleration (standard units)', standard_units(suv.column('acceleration')), 
@@ -209,18 +278,27 @@ Table().with_columns(
 ).scatter(0, 1)
 plots.xlim(-3, 3)
 plots.ylim(-3, 3);
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_17_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 The associations that we see in these figures are the same as those we saw before. Also, because the two scatter diagrams are now drawn on exactly the same scale, we can see that the linear relation in the second diagram is a little more fuzzy than in the first.
 
 We will now define a measure that uses standard units to quantify the kinds of association that we have seen.
+
+
 
 ### The correlation coefficient
 
@@ -234,6 +312,8 @@ Here are some mathematical facts about $r$ that we will just observe by simulati
 - $r$ measures the extent to which the scatter plot clusters around a straight line.
 - $r = 1$ if the scatter diagram is a perfect straight line sloping upwards, and $r = -1$ if the scatter diagram is a perfect straight line sloping downwards.
 
+
+
 The function ``r_scatter`` takes a value of $r$ as its argument and simulates a scatter plot with a correlation very close to $r$. Because of randomness in the simulation, the correlation is not expected to be exactly equal to $r$.
 
 Call ``r_scatter`` a few times, with different values of $r$ as the argument, and see how the scatter plot changes. 
@@ -242,57 +322,83 @@ When $r=1$ the scatter plot is perfectly linear and slopes upward. When $r=-1$, 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 r_scatter(0.9)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_21_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 r_scatter(0.25)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_22_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 r_scatter(0)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_23_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 r_scatter(-0.55)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_24_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -308,7 +414,8 @@ Here are the steps in the calculation. We will apply the steps to a simple table
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 x = np.arange(1, 7, 1)
 y = make_array(2, 3, 1, 5, 2, 7)
@@ -317,9 +424,12 @@ t = Table().with_columns(
         'y', y
     )
 t
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -354,20 +464,33 @@ t
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Based on the scatter diagram, we expect that $r$ will be positive but not equal to 1.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 t.scatter(0, 1, s=30, color='red')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_28_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -375,16 +498,20 @@ t.scatter(0, 1, s=30, color='red')
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 t_su = t.with_columns(
         'x (standard units)', standard_units(x),
         'y (standard units)', standard_units(y)
     )
 t_su
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -419,18 +546,27 @@ t_su
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 **Step 2.** Multiply each pair of standard units.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 t_product = t_su.with_column('product of standard units', t_su.column(2) * t_su.column(3))
 t_product
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -465,31 +601,46 @@ t_product
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 **Step 3.** $r$ is the average of the products computed in Step 2.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # r is the average of the products of standard units
 
 r = np.mean(t_product.column(4))
 r
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.6174163971897709
 ```
 
 
+</div>
+</div>
+</div>
+
+
 
 As expected, $r$ is positive but not equal to 1.
+
+
 
 ### Properties of $r$
 
@@ -501,15 +652,23 @@ The calculation shows that:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 t.scatter('y', 'x', s=30, color='red')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_37_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -518,30 +677,44 @@ We are going to be calculating correlations repeatedly, so it will help to defin
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 def correlation(t, x, y):
     return np.mean(standard_units(t.column(x))*standard_units(t.column(y)))
+
 ```
+</div>
+
+</div>
+
 
 
 Let's call the function on the ``x`` and ``y`` columns of ``t``. The function returns the same answer to the correlation between $x$ and $y$ as we got by direct application of the formula for $r$. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(t, 'x', 'y')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.6174163971897709
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -549,19 +722,27 @@ As we noticed, the order in which the variables are specified doesn't matter.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(t, 'y', 'x')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.6174163971897709
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -569,37 +750,51 @@ Calling ``correlation`` on columns of the table ``suv`` gives us the correlation
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(suv, 'mpg', 'msrp')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 -0.6667143635709919
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(suv, 'acceleration', 'msrp')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.48699799279959155
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -608,18 +803,25 @@ These values confirm what we had observed:
 - There is a negative association between price and efficiency, whereas the association between price and acceleration is positive.
 - The linear relation between price and acceleration is a little weaker (correlation about 0.5) than between price and mileage (correlation about -0.67). 
 
+
+
 Correlation is a simple and powerful concept, but it is sometimes misused. Before using $r$, it is important to be aware of what correlation does and does not measure.
+
+
 
 ### Association is not Causation
 
 Correlation only measures association. Correlation does not imply causation. Though the correlation between the weight and the math ability of children in a school district may be positive, that does not mean that doing math makes children heavier or that putting on weight improves the children's math skills. Age is a confounding variable: older children are both heavier and better at math than younger children, on average.
+
+
 
 ### Correlation Measures *Linear* Association
 Correlation measures only one kind of association â€“ linear. Variables that have strong non-linear association might have very low correlation. Here is an example of variables that have a perfect quadratic relation $y = x^2$ but have correlation equal to 0.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 new_x = np.arange(-4, 4.1, 0.5)
 nonlinear = Table().with_columns(
@@ -627,30 +829,43 @@ nonlinear = Table().with_columns(
         'y', new_x**2
     )
 nonlinear.scatter('x', 'y', s=30, color='r')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_51_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(nonlinear, 'x', 'y')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.0
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -659,73 +874,99 @@ Outliers can have a big effect on correlation. Here is an example where a scatte
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 line = Table().with_columns(
         'x', make_array(1, 2, 3, 4),
         'y', make_array(1, 2, 3, 4)
     )
 line.scatter('x', 'y', s=30, color='r')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_54_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(line, 'x', 'y')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 1.0
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 outlier = Table().with_columns(
         'x', make_array(1, 2, 3, 4, 5),
         'y', make_array(1, 2, 3, 4, 0)
     )
 outlier.scatter('x', 'y', s=30, color='r')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_56_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(outlier, 'x', 'y')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.0
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -734,13 +975,17 @@ Correlations based on aggregated data can be misleading. As an example, here are
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sat2014 = Table.read_table(path_data + 'sat2014.csv').sort('State')
 sat2014
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -788,38 +1033,57 @@ sat2014
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The scatter diagram of Math scores versus Critical Reading scores is very tightly clustered around a straight line; the correlation is close to 0.985. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 sat2014.scatter('Critical Reading', 'Math')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_61_0.png)
 
+</div>
+</div>
+</div>
 
 
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 correlation(sat2014, 'Critical Reading', 'Math')
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 0.9847558411067434
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -829,6 +1093,8 @@ The data consist of average scores in each state. But states don't take tests â€
 
 Correlations based on aggregates and averages are called *ecological correlations* and are frequently reported. As we have just seen, they must be interpreted with care.
 
+
+
 ### Serious or tongue-in-cheek?
 
 In 2012, a [paper](http://www.biostat.jhsph.edu/courses/bio621/misc/Chocolate%20consumption%20cognitive%20function%20and%20nobel%20laurates%20%28NEJM%29.pdf) in the respected New England Journal of Medicine examined the relation between chocolate consumption and Nobel Prizes in a group of countries. The [Scientific American](http://blogs.scientificamerican.com/the-curious-wavefunction/chocolate-consumption-and-nobel-prizes-a-bizarre-juxtaposition-if-there-ever-was-one/) responded seriously whereas
@@ -836,12 +1102,19 @@ In 2012, a [paper](http://www.biostat.jhsph.edu/courses/bio621/misc/Chocolate%20
 
 
 
+<div markdown="1" class="cell code_cell">
+
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/15/1/Correlation_65_0.png)
 
 
+</div>
+</div>
+</div>
 

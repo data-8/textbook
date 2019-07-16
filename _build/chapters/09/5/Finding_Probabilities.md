@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/09/5/finding-probabilities"
 interact_link: content/chapters/09/5/Finding_Probabilities.ipynb
+kernel_name: Python [Root]
+has_widgets: false
 title: 'Finding Probabilities'
 prev_page:
   url: /chapters/09/4/Monty_Hall_Problem
@@ -12,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -26,12 +33,16 @@ Math is the main tool for finding probabilities exactly, though computers are us
 
 We will use the standard notation $P(\mbox{event})$ to denote the probability that "event" happens, and we will use the words "chance" and "probability" interchangeably.
 
+
+
 ### When an Event Doesn't Happen
 If the chance that event happens is 40%, then the chance that it doesn't happen is 60%. This natural calculation can be described in general as follows:
 
 $$
 P(\mbox{an event doesn't happen}) ~=~ 1 - P(\mbox{the event happens})
 $$
+
+
 
 ### When All Outcomes are Equally Likely
 If you are rolling an ordinary die, a natural assumption is that all six faces are equally likely. Then probabilities of how one roll comes out can be easily calculated as a ratio. For example, the chance that the die shows an even number is
@@ -47,6 +58,8 @@ P(\mbox{die shows a multiple of 3}) ~=~
 ~=~ \frac{2}{6}
 $$
 
+
+
 In general,
 $$
 P(\mbox{an event happens}) ~=~
@@ -54,9 +67,15 @@ P(\mbox{an event happens}) ~=~
 {\#\{\mbox{all outcomes}\}}
 $$
 
+
+
 provided all the outcomes are equally likely.
 
+
+
 Not all random phenomena are as simple as one roll of a die. The two main rules of probability, developed below, allow mathematicians to find probabilities even in complex situations.
+
+
 
 ### When Two Events Must Both Happen
 Suppose you have a box that contains three tickets: one red, one blue, and one green. Suppose you draw two tickets at random without replacement; that is, you shuffle the three tickets, draw one, shuffle the remaining two, and draw another from those two. What is the chance you get the green ticket first, followed by the red one?
@@ -66,6 +85,8 @@ $$
 P(\mbox{green first, then red}) ~=~ 
 \frac{\#\{\mbox{GR}\}}{\#\{\mbox{RB, BR, RG, GR, BG, GB}\}} ~=~ \frac{1}{6}
 $$
+
+
 
 But there is another way of arriving at the answer, by thinking about the event in two stages. First, the green ticket has to be drawn. That has chance $1/3$, which means that the green ticket is drawn first in about $1/3$ of all repetitions of the experiment. But that doesn't complete the event. *Among the 1/3 of repetitions when green is drawn first*, the red ticket has to be drawn next. That happens in about $1/2$ of those repetitions, and so:
 $$
@@ -78,6 +99,8 @@ P(\mbox{green first, then red}) ~=~ \frac{1}{3} ~\times~ \frac{1}{2}
 ~=~ \frac{1}{6}
 $$
 
+
+
 The factor of $1/2$ is called " the conditional chance that the red ticket appears second, given that the green ticket appeared first."
 
 In general, we have the **multiplication rule**:
@@ -88,6 +111,8 @@ P(\mbox{the other event happens, given that the first one happened})
 $$
 
 Thus, when there are two conditions – one event must happen, as well as another – the chance is *a fraction of a fraction*, which is smaller than either of the two component fractions. The more conditions that have to be satisfied, the less likely they are to all be satisfied.
+
+
 
 ### When an Event Can Happen in Two Different Ways
 Suppose instead we want the chance that one of the two tickets is green and the other red. This event doesn't specify the order in which the colors must appear. So they can appear in either order. 
@@ -113,9 +138,13 @@ provided the event happens in exactly one of the two ways.
 
 Thus, when an event can happen in one of two different ways, the chance that it happens is a sum of chances, and hence bigger than the chance of either of the individual ways.
 
+
+
 The multiplication rule has a natural extension to more than two events, as we will see below. So also the addition rule has a natural extension to events that can happen in one of several different ways.
 
 We end the section with examples that use combinations of all these rules.
+
+
 
 ### At Least One Success
 Data scientists often work with random samples from populations. A question that sometimes arises is about the likelihood that a particular individual in the population is selected to be in the sample. To work out the chance, that individual is called a "success," and the problem is to find the chance that the sample contains a success.
@@ -167,7 +196,8 @@ The table below shows these probabilities as the number of rolls increases from 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 rolls = np.arange(1, 51, 1)
 results = Table().with_columns(
@@ -175,9 +205,12 @@ results = Table().with_columns(
     'Chance of at least one 6', 1 - (5/6)**rolls
 )
 results
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -225,20 +258,33 @@ results
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The chance that a 6 appears at least once rises rapidly as the number of rolls increases.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 results.scatter('Rolls')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/09/5/Finding_Probabilities_15_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -246,12 +292,16 @@ In 50 rolls, you are almost certain to get at least one 6.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 results.where('Rolls', are.equal_to(50))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -271,5 +321,11 @@ results.where('Rolls', are.equal_to(50))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Calculations like these can be used to find the chance that a particular individual is selected in a random sample. The exact calculation will depend on the sampling scheme. But what we have observed above can usually be generalized: increasing the size of the random sample increases the chance that an individual is selected.
+

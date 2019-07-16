@@ -10,7 +10,6 @@
  *
  * Notebook styling:
  *
- * [3]: Add a border around cell input to distinguish it from the output.
  * [4]: Some tables are too wide for the page on smaller screens so we let the
  *   user scroll horizontally.
  * [5]: Inline code snippets (usually variable names) should have a gray bg.
@@ -39,23 +38,30 @@
  * Jupyter notebook styling
  */
 
-div.input_area {
+div.highlighter-rouge {
   // Ensures that items within this div can be positioned absolutely
   position: relative;
 }
 
-.input_area pre,
-.output_text pre {
+div.c-textbook__content > div.highlighter-rouge > div.highlight pre,
+div.input_area > div.highlighter-rouge > div.highlight > pre,
+div.output_wrapper pre {
   background-color: $color-light-gray;
   font-size: 0.9em;
   margin-bottom: $spacing-unit-small;
   padding: $spacing-unit-small;
   overflow-x: auto;
+  border: 1px solid $color-dark-gray;
 }
 
-.input_area pre {
-  /* [3] */
-  border: 1px solid $color-dark-gray;
+// If we've got intentionally non-highlighted markup, make sure that the lines wrap
+pre code.language-no-highlight {
+  white-space: pre-wrap;
+}
+
+div.output_wrapper pre {
+  border: 1px solid $color-light-gray !important;
+  background-color: #fcfcfc !important;
 }
 
 .output_html {
@@ -66,6 +72,7 @@ div.input_area {
 /* [5] */
 code {
   padding: 4px;
+  overflow-x: auto;
   @include inuit-font-size(14px);
 }
 

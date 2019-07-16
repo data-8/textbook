@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/06/2/selecting-rows"
 interact_link: content/chapters/06/2/Selecting_Rows.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Selecting Rows'
 prev_page:
   url: /chapters/06/1/Sorting_Rows
@@ -13,14 +15,25 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 
+<div markdown="1" class="cell code_cell">
 
 
+</div>
+
+
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
 # Selecting Rows
 
 Often, we would like to extract just those rows that correspond to entries with a particular feature. For example, we might want only the rows corresponding to the Warriors, or to players who earned more than $\$10$ million. Or we might just want the top five earners.
+
+
 
 ### Specified Rows
 The Table method `take` does just that – it takes a specified set of rows. Its argument is a row index or array of indices, and it creates a new table consisting of only those rows.
@@ -29,12 +42,16 @@ For example, if we wanted just the first row of `nba`, we could use `take` as fo
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -82,15 +99,22 @@ nba
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.take(0)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -110,6 +134,11 @@ nba.take(0)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 This is a new table with just the single row that we specified.
 
@@ -117,12 +146,16 @@ We could also get the fourth, fifth, and sixth rows by specifying a range of ind
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.take(np.arange(3, 6))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -148,17 +181,26 @@ nba.take(np.arange(3, 6))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 If we want a table of the top 5 highest paid players, we can first sort the list by salary and then `take` the first five rows:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.sort('SALARY', descending=True).take(np.arange(5))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -190,6 +232,11 @@ nba.sort('SALARY', descending=True).take(np.arange(5))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ### Rows Corresponding to a Specified Feature
 More often, we will want to access data in a set of rows that have a certain feature, but whose indices we don't know ahead of time. For example, we might want data on all the players who made more than $\$10$ million, but we don't want to spend time counting rows in the sorted table.
@@ -204,12 +251,16 @@ In the first example, we extract the data for all those who earned more than $\$
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('SALARY', are.above(10))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -257,6 +308,11 @@ nba.where('SALARY', are.above(10))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The use of the argument `are.above(10)` ensured that each selected row had a value of `SALARY` that was greater than 10.
 
@@ -264,12 +320,16 @@ There are 69 rows in the new table, corresponding to the 69 players who made mor
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('SALARY', are.above(10)).sort('SALARY')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -317,17 +377,26 @@ nba.where('SALARY', are.above(10)).sort('SALARY')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 How much did Stephen Curry make? For the answer, we have to access the row where the value of `PLAYER` is equal to `Stephen Curry`. That is placed a table consisting of just one line:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('PLAYER', are.equal_to('Stephen Curry'))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -347,6 +416,11 @@ nba.where('PLAYER', are.equal_to('Stephen Curry'))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Curry made just under $\$11.4$ million dollars. That's a lot of money, but it's less than half the salary of LeBron James. You'll find that salary in the "Top 5" table earlier in this section, or you could find it replacing `'Stephen Curry'` by `'LeBron James'` in the line of code above.
 
@@ -354,12 +428,16 @@ In the code, `are` is used again, but this time with the *predicate* `equal_to` 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('TEAM', are.equal_to('Golden State Warriors')).show()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -415,6 +493,11 @@ nba.where('TEAM', are.equal_to('Golden State Warriors')).show()
 </table>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 This portion of the table is already sorted by salary, because the original table listed players sorted by salary within the same team. The `.show()` at the end of the line ensures that all rows are shown, not just the first 10.
 
@@ -422,12 +505,16 @@ It is so common to ask for the rows for which some column is equal to some value
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('TEAM', 'Denver Nuggets') # equivalent to nba.where('TEAM', are.equal_to('Denver Nuggets'))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -475,18 +562,27 @@ nba.where('TEAM', 'Denver Nuggets') # equivalent to nba.where('TEAM', are.equal_
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ### Multiple Features
 You can access rows that have multiple specified features, by using `where` repeatedly. For example, here is a way to extract all the Point Guards whose salaries were over $\$15$ million.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('POSITION', 'PG').where('SALARY', are.above(15))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -518,6 +614,11 @@ nba.where('POSITION', 'PG').where('SALARY', are.above(15))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 ### General Form
 By now you will have realized that the general way to create a new table by selecting rows with a given feature is to use `where` and `are` with the appropriate condition:
@@ -526,12 +627,16 @@ By now you will have realized that the general way to create a new table by sele
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('SALARY', are.between(10, 10.3))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -560,19 +665,30 @@ nba.where('SALARY', are.between(10, 10.3))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Notice that the table above includes Danny Green who made $\$10$ million, but *not* Monta Ellis who made $\$10.3$ million. As elsewhere in Python, the range `between` includes the left end but not the right.
+
+
 
 If we specify a condition that isn't satisfied by any row, we get a table with column labels but no rows.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('PLAYER', are.equal_to('Barack Obama'))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -586,6 +702,11 @@ nba.where('PLAYER', are.equal_to('Barack Obama'))
     <tbody>
     </tbody>
 </table>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -605,6 +726,8 @@ Here are some predicates of `are` that you might find useful. Note that `x` and 
 | `are.between_or_equal_to(x, y)` | Greater than or equal to `x`, and less than or equal to `y` |
 | `are.containing(S)`        | Contains the string `S`                   |         
 
+
+
 You can also specify the negation of any of these conditions, by using `.not_` before the condition:
 
 | **Predicate**              | Description                              |
@@ -612,20 +735,30 @@ You can also specify the negation of any of these conditions, by using `.not_` b
 | `are.not_equal_to(Z)`      | Not equal to `Z`                         |    
 | `are.not_above(x)`         | Not above `x`                            |
 
+
+
 ... and so on. The usual rules of logic apply – for example, "not above x" is the same as "below or equal to x".
 
+
+
 We end the section with a series of examples. 
+
+
 
 The use of `are.containing` can help save some typing. For example, you can just specify `Warriors` instead of `Golden State Warriors`:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('TEAM', are.containing('Warriors')).show()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -681,17 +814,26 @@ nba.where('TEAM', are.containing('Warriors')).show()
 </table>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 You can extract data for all the guards, both Point Guards and Shooting Guards:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('POSITION', are.containing('G'))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -739,18 +881,27 @@ nba.where('POSITION', are.containing('G'))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 You can get all the players who were not Cleveland Cavaliers and had a salary of no less than $\$20$ million:
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 other_than_Cavs = nba.where('TEAM', are.not_equal_to('Cleveland Cavaliers'))
 other_than_Cavs.where('SALARY', are.not_below(20))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -791,6 +942,11 @@ other_than_Cavs.where('SALARY', are.not_below(20))
         </tr>
     </tbody>
 </table>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -799,12 +955,16 @@ The same table can be created in many ways. Here is another, and no doubt you ca
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 other_than_Cavs.where('SALARY', are.above_or_equal_to(20))
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -848,5 +1008,11 @@ other_than_Cavs.where('SALARY', are.above_or_equal_to(20))
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 As you can see, the use of `where` with `are` gives you great flexibility in accessing rows with features that interest you. Don't hesitate to experiment!
+

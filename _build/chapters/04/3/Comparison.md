@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/04/3/comparison"
 interact_link: content/chapters/04/3/Comparison.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Comparisons'
 prev_page:
   url: /chapters/04/2/1/String_Methods
@@ -12,25 +14,34 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
 # Comparisons
 
 Boolean values most often arise from comparison operators. Python includes a variety of operators that compare values. For example, `3` is larger than `1 + 1`.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 3 > 1 + 1
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 True
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -45,23 +56,33 @@ The value `True` indicates that the comparison is valid; Python has confirmed th
 | Equal              | ==       | 3 == 3       | 3 == 2        |
 | Not equal          | !=       | 3 != 2       | 2 != 2        |
 
+
+
 An expression can contain multiple comparisons, and they all must hold in order for the whole expression to be `True`. For example, we can express that `1+1` is between `1` and `3` using the following expression.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 1 < 1 + 1 < 3
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 True
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -69,21 +90,29 @@ The average of two numbers is always between the smaller number and the larger n
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 x = 12
 y = 5
 min(x, y) <= (x+y)/2 <= max(x, y)
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 True
 ```
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -91,18 +120,25 @@ Strings can also be compared, and their order is alphabetical. A shorter string 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 "Dog" > "Catastrophe" > "Cat"
+
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
 True
 ```
 
+
+</div>
+</div>
+</div>
 

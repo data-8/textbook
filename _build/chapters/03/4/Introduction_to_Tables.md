@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/03/4/introduction-to-tables"
 interact_link: content/chapters/03/4/Introduction_to_Tables.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Introduction to Tables'
 prev_page:
   url: /chapters/03/3/Calls
@@ -12,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -29,12 +36,16 @@ The table `cones` has been imported for us; later we will see how, but here we w
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -69,6 +80,11 @@ cones
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The table has six rows. Each row corresponds to one ice cream cone. The ice cream cones are the *individuals*.
 
@@ -82,12 +98,16 @@ For example, if you want to see just the first two rows of a table, you can use 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.show(2)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -108,20 +128,31 @@ cones.show(2)
 <p>... (4 rows omitted)</p>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 You can replace 2 by any number of rows. If you ask for more than six, you will only get six, because `cones` only has six rows.
+
+
 
 ### Choosing Sets of Columns
 The method `select` creates a new table consisting of only the specified columns.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.select('Flavor')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -156,17 +187,26 @@ cones.select('Flavor')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 This leaves the original table unchanged.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -198,6 +238,11 @@ cones
         </tr>
     </tbody>
 </table>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -206,12 +251,16 @@ You can select more than one column, by separating the column labels by commas.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.select('Flavor', 'Price')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -243,6 +292,11 @@ cones.select('Flavor', 'Price')
         </tr>
     </tbody>
 </table>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -251,12 +305,16 @@ You can also *drop* columns you don't want. The table above can be created by dr
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.drop('Color')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -288,6 +346,11 @@ cones.drop('Color')
         </tr>
     </tbody>
 </table>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -296,14 +359,18 @@ You can name this new table and look at it again by just typing its name.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 no_colors = cones.drop('Color')
 
 no_colors
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -338,21 +405,34 @@ no_colors
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Like `select`, the `drop` method creates a smaller table and leaves the original table unchanged. In order to explore your data, you can create any number of smaller tables by using choosing or dropping columns. It will do no harm to your original data table.
 
+
+
 ### Sorting Rows
+
+
 
 The `sort` method creates a new table by arranging the rows of the original table in ascending order of the values in the specified column. Here the `cones` table has been sorted in ascending order of the price of the cones.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.sort('Price')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -384,6 +464,11 @@ cones.sort('Price')
         </tr>
     </tbody>
 </table>
+</div>
+
+
+</div>
+</div>
 </div>
 
 
@@ -394,12 +479,16 @@ By default, `sort` sorts in increasing order of the values in the specified colu
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.sort('Price', descending=True)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -434,8 +523,15 @@ cones.sort('Price', descending=True)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Like `select` and `drop`, the `sort` method leaves the original table unchanged.
+
+
 
 ### Selecting Rows that Satisfy a Condition
 The `where` method creates a new table consisting only of the rows that satisfy a given condition. In this section we will work with a very simple condition, which is that the value in a specified column must be equal to a value that we also specify. Thus the `where` method has two arguments.
@@ -444,12 +540,16 @@ The code in the cell below creates a table consisting only of the rows correspon
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.where('Flavor', 'chocolate')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -475,6 +575,11 @@ cones.where('Flavor', 'chocolate')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The arguments, separated by a comma, are the label of the column and the value we are looking for in that column. The `where` method can also be used when the condition that the rows must satisfy is more complicated. In those situations the call will be a little more complicated as well.
 
@@ -482,12 +587,16 @@ It is important to provide the value exactly. For example, if we specify `Chocol
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 cones.where('Flavor', 'Chocolate')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -504,10 +613,19 @@ cones.where('Flavor', 'Chocolate')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Like all the other table methods in this section, `where` leaves the original table unchanged.
 
+
+
 ### Example: Salaries in the NBA
+
+
 
 "The NBA is the highest paying professional sports league in the world," [reported CNN](http://edition.cnn.com/2015/12/04/sport/gallery/highest-paid-nba-players/) in March 2016. The table `nba` contains the [salaries of all National Basketball Association players](https://www.statcrunch.com/app/index.php?dataid=1843341) in 2015-2016.
 
@@ -526,12 +644,16 @@ The first row shows that Paul Millsap, Power Forward for the Atlanta Hawks, had 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -579,17 +701,26 @@ nba
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Fans of Stephen Curry can find his row by using `where`.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.where('PLAYER', 'Stephen Curry')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -609,18 +740,27 @@ nba.where('PLAYER', 'Stephen Curry')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 We can also create a new table called `warriors` consisting of just the data for the Golden State Warriors.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 warriors = nba.where('TEAM', 'Golden State Warriors')
 warriors
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -668,17 +808,26 @@ warriors
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 By default, the first 10 lines of a table are displayed. You can use `show` to display more or fewer. To display the entire table, use `show` with no argument in the parentheses.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 warriors.show()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -734,17 +883,26 @@ warriors.show()
 </table>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 The `nba` table is sorted in alphabetical order of the team names. To see how the players were paid in 2015-2016, it is useful to sort the data by salary. Remember that by default, the sorting is in increasing order.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.sort('SALARY')
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -792,6 +950,11 @@ nba.sort('SALARY')
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 These figures are somewhat difficult to compare as some of these players changed teams during the season and received salaries from more than one team; only the salary from the last team appears in the table.  
 
@@ -799,12 +962,16 @@ The CNN report is about the other end of the salary scale – the players who ar
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 nba.sort('SALARY', descending=True)
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -852,5 +1019,11 @@ nba.sort('SALARY', descending=True)
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 Kobe Bryant, since retired, was the highest earning NBA player in 2015-2016.
+

@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/09/4/monty-hall-problem"
 interact_link: content/chapters/09/4/Monty_Hall_Problem.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'The Monty Hall Problem'
 prev_page:
   url: /chapters/09/3/Simulation
@@ -12,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -31,6 +38,8 @@ The setting is a game show in which the contestant is faced with three closed do
 
 The contestant has a decision to make. Which door should she choose to open, if she wants the car? Should she stick with her initial choice, or switch to the other door? That is the Monty Hall problem.
 
+
+
 ### The Solution
 
 In any problem involving chances, the assumptions about randomness are important. It's reasonable to assume that there is a 1/3 chance that the contestant's initial choice is the door that has the car behind it. 
@@ -46,349 +55,249 @@ That's it. End of story.
 
 Not convinced? Then let's simulate the game and see how the results turn out.
 
+
+
 ### Simulation
 The simulation will be more complex that those we have done so far. Let's break it down.
 
 ### Step 1: What to Simulate
 For each play we will simulate what's behind all three doors:
 - the one the contestant first picks
-- the one that Monty throws out
+- the one that Monty opens
 - the remaining door
+
 So we will be keeping track of three quantitites, not just one.
+
+
 
 ### Step 2: Simulating One Play
 The bulk of our work consists of simulating one play of the game. This involves several pieces.
 
-#### The Doors
-We start by setting up two useful arrays – `doors` and `goats` – that will allow us to distinguish the three doors and the two goats.
+#### The Goats
+We start by setting up an array `goats` that contains unimaginative names for the two goats.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-doors = make_array('Car', 'Goat 1', 'Goat 2')
-goats = make_array('Goat 1', 'Goat 2')
+goats = make_array('first goat', 'second goat')
+
 ```
+</div>
 
-
-#### Identifying Goats
-
-We are going to have to recognize whether a door has a goat behind it or not. We can just label each door with what's behind it; the contestant can't see what we are doing! 
-
-The function `is_goat` takes a door label and returns a Boolean signifying whether or not it is a goat.
+</div>
 
 
 
-{:.input_area}
+To help Monty conduct the game, we are going to have to identify which goat is selected and which one is revealed behind the open door. The function `other_goat` takes one goat and returns the other.
+
+
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-def is_goat(door_name):
-
-    if door_name == "Goat 1":
-        return True
-    elif door_name == "Goat 2":
-        return True
-    else:
-        return False
+def other_goat(x):
+    if x == 'first goat':
+        return 'second goat'
+    elif x == 'second goat':
+        return 'first goat'
 
 ```
+</div>
+
+</div>
 
 
-Let's check that this function can indeed tell goats from cars.
+
+Let's confirm that the function works.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-is_goat('Goat 1')
+other_goat('first goat'), other_goat('second goat'), other_goat('watermelon')
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+
+{:.output_data_text}
+```
+('second goat', 'first goat', None)
 ```
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.output .output_data_text}
-```
-True
-```
+The string `'watermelon'` is not the name of one of the goats, so when `'watermelon'` is the input then `other_goat` does nothing.
 
 
 
+#### The Options
+The array `hidden_behind_doors` contains the set of things that could be behind the doors.
 
 
-{:.input_area}
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-is_goat('Goat 2')
+hidden_behind_doors = make_array('car', 'first goat', 'second goat')
+
 ```
+</div>
+
+</div>
 
 
 
+We are now ready to simulate one play. To do this, we will define a function `monty_hall_game` that takes no arguments. When the function is called, it plays Monty's game once and returns a list consisting of:
+
+- the contestant's guess
+- what Monty reveals when he opens a door
+- what remains behind the other door
+
+The game starts with the contestant choosing one door at random. In doing so, the contestant makes a random choice from among the car, the first goat, and the second goat.
+
+If the contestant happens to pick one of the goats, then the other goat is revealed and the car is behind the remaining door.
+
+If the contestant happens to pick the car, then Monty reveals one of the goats and the other goat is behind the remaining door.
 
 
-{:.output .output_data_text}
-```
-True
-```
 
-
-
-
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-is_goat('Car')
-```
-
-
-
-
-
-{:.output .output_data_text}
-```
-False
-```
-
-
-
-#### One Play
-
-If the contestant's original choice is a door with a goat, Monty must throw out the other goat, and what will remain is the car. If the original choice is the door with a car, Monty must throw out one of the two goats, and what will remain is the other goat. 
-
-It is clear, therefore, that the function `other_one` defined in an earlier section will be useful. It takes a string and a two-element array; if the string is equal to one of the elements, it returns the other one.
-
-
-
-{:.input_area}
-```python
-def other_one(x, a_b):
-    if x == a_b.item(0):
-        return a_b.item(1)
-    elif x == a_b.item(1):
-        return a_b.item(0)
-    else:
-        return 'Input Not Valid'
-```
-
-
-If the contestant's original choice is a goat, then the outcome of the game could be one of the following two:
-
-
-
-{:.input_area}
-```python
-original = 'Goat 1'
-make_array(original, other_one(original, goats), 'Car')
-```
-
-
-
-
-
-{:.output .output_data_text}
-```
-array(['Goat 1', 'Goat 2', 'Car'], dtype='<U6')
-```
-
-
-
-
-
-{:.input_area}
-```python
-original = 'Goat 2'
-make_array(original, other_one(original, goats), 'Car')
-```
-
-
-
-
-
-{:.output .output_data_text}
-```
-array(['Goat 2', 'Goat 1', 'Car'], dtype='<U6')
-```
-
-
-
-If the original choice happens to be the car, then let's assume Monty throws out one of the two goats at random, and the other goat is behind the remaining door.
-
-
-
-{:.input_area}
-```python
-original = 'Car'
-throw_out = np.random.choice(goats)
-make_array(original, throw_out, other_one(throw_out, goats))
-```
-
-
-
-
-
-{:.output .output_data_text}
-```
-array(['Car', 'Goat 2', 'Goat 1'], dtype='<U6')
-```
-
-
-
-#### A Function to Simulate One Play
-Now we define a function `monty_hall` that simulates the game and returns an array of three strings in this order: 
-- what is behind the contestant's original choice of door
-- what Monty throws out
-- what is behind the remaining door
-
-We can now put all this code together into a single function `monty_hall` to simulate the result of one game. The function takes no arguments. 
-
-The contestant's original choice will be a door chosen at random from among the three doors. 
-
-To check whether the original choice is a goat or not, we first write a little function named `is_goat`.
-
-
-
-{:.input_area}
-```python
-def monty_hall():
-
-    """ Play the Monty Hall game once
-    and return an array of three strings:
+def monty_hall_game():
+    """Return 
+    [contestant's guess, what Monty reveals, what remains behind the other door]"""
     
-    original choice, what Monty throws out, what remains
-    """
+    contestant_guess = np.random.choice(hidden_behind_doors)
     
-    original = np.random.choice(doors)
+    if contestant_guess == 'first goat':
+        return [contestant_guess, 'second goat', 'car']
     
-    if is_goat(original):
-        return make_array(original, other_one(original, goats), 'Car')
+    if contestant_guess == 'second goat':
+        return [contestant_guess, 'first goat', 'car']
     
-    else:
-        throw_out = np.random.choice(goats)
-        return make_array(original, throw_out, other_one(throw_out, goats))
+    if contestant_guess == 'car':
+        revealed = np.random.choice(goats)
+        return [contestant_guess, revealed, other_goat(revealed)]
+
 ```
+</div>
+
+</div>
 
 
-Let's play the game a few times! Here is one outcome. You should run the cell several times to see how the outcome changes.
+
+Let's play! Run the cell several times and see how the results change.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-monty_hall()
+monty_hall_game()
+
+```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
+
+
+{:.output_data_text}
+```
+['second goat', 'first goat', 'car']
 ```
 
 
-
-
-
-{:.output .output_data_text}
-```
-array(['Car', 'Goat 1', 'Goat 2'], dtype='<U6')
-```
+</div>
+</div>
+</div>
 
 
 
 ### Step 3: Number of Repetitions
-To gauge the frequency with which the different outcomes occur, we have to play the games many times and collect the results. Let's run 10,000 repetitions.
+To gauge the frequency with which the different results occur, we have to play the game many times and collect the results. Let's run 10,000 repetitions.
 
 ### Step 4: Coding the Simulation
-It's time to run the simulation. We will start by defining three empty arrays, one each for the original choice, what Monty throws out, and what remains. 
+It's time to run the whole simulation. 
+
+We will play the game 10,000 times and collect the results in a table. Each row of the table will contain the result of one play. 
+
+One way to grow a table by adding a new row is to use the `append` method. If `my_table` is a table and `new_row` is a list containing the entries in a new row, then `my_table.append(new_row)` adds the new row to the bottom of `my_table`. 
+
+Note that `append` does not create a new table. It changes `my_table` to have one more row than it did before.
+
+First let's create a table `games` that has three empty columns. We can do this by just specifying a list of the column labels, as follows.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-original = make_array()     # original choice
-throw_out = make_array()    # what Monty throws out
-remains = make_array()      # what remains
+games = Table(['Guess', 'Revealed', 'Remaining'])
 
-num_repetitions = 10000
-
-for i in np.arange(num_repetitions): 
-    result = monty_hall()    # the result of one game
-    
-    # Collect the results in the appropriate arrays
-    original = np.append(original, result.item(0))
-    throw_out = np.append(throw_out, result.item(1))
-    remains = np.append(remains, result.item(2))
 ```
+</div>
 
-
-The simulation is done. As always, the majority of the work is in generating the simulated outcome of one repetition.
-
-### Visualization
-
-We can now put all the results into one table for ease of visualization.
-
-
-
-{:.input_area}
-```python
-results = Table().with_columns(
-    'Original Door Choice', original,
-    'Monty Throws Out', throw_out,
-    'Remaining Door', remains
-)
-results
-```
-
-
-
-
-
-<div markdown="0" class="output output_html">
-<table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th>Original Door Choice</th> <th>Monty Throws Out</th> <th>Remaining Door</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
-        </tr>
-        <tr>
-            <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
-        </tr>
-        <tr>
-            <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
-        </tr>
-        <tr>
-            <td>Goat 1              </td> <td>Goat 2          </td> <td>Car           </td>
-        </tr>
-        <tr>
-            <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
-        </tr>
-        <tr>
-            <td>Goat 1              </td> <td>Goat 2          </td> <td>Car           </td>
-        </tr>
-        <tr>
-            <td>Goat 1              </td> <td>Goat 2          </td> <td>Car           </td>
-        </tr>
-        <tr>
-            <td>Car                 </td> <td>Goat 1          </td> <td>Goat 2        </td>
-        </tr>
-        <tr>
-            <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
-        </tr>
-        <tr>
-            <td>Goat 2              </td> <td>Goat 1          </td> <td>Car           </td>
-        </tr>
-    </tbody>
-</table>
-<p>... (9990 rows omitted)</p>
 </div>
 
 
+
+Notice that we have chosen the order of the columns to be the same as the order in which `monty_hall_game` returns the result of one game.
+
+Now we can add 10,000 rows to `trials`. Each row will represent the result of one play of Monty's game.
+
+
+
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
+```python
+# Play the game 10000 times and 
+# record the results in the table games
+
+for i in np.arange(10000):
+    games.append(monty_hall_game())
+
+```
+</div>
+
+</div>
+
+
+
+The simulation is done. Notice how short the code is. The majority of the work was done in simulating the outcome of one game.
+
+
+
+### Visualization
 
 To see whether the contestant should stick with her original choice or switch, let's see how frequently the car is behind each of her two options.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-results.group('Original Door Choice')
+original_choice = games.group('Guess')
+original_choice
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -396,33 +305,41 @@ results.group('Original Door Choice')
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Original Door Choice</th> <th>count</th>
+            <th>Guess</th> <th>count</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Car                 </td> <td>3348 </td>
+            <td>car        </td> <td>3268 </td>
         </tr>
         <tr>
-            <td>Goat 1              </td> <td>3395 </td>
+            <td>first goat </td> <td>3372 </td>
         </tr>
         <tr>
-            <td>Goat 2              </td> <td>3257 </td>
+            <td>second goat</td> <td>3360 </td>
         </tr>
     </tbody>
 </table>
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-results.group('Remaining Door')
+remaining_door = games.group('Remaining')
+remaining_door
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -430,41 +347,48 @@ results.group('Remaining Door')
 <table border="1" class="dataframe">
     <thead>
         <tr>
-            <th>Remaining Door</th> <th>count</th>
+            <th>Remaining</th> <th>count</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Car           </td> <td>6652 </td>
+            <td>car        </td> <td>6732 </td>
         </tr>
         <tr>
-            <td>Goat 1        </td> <td>1713 </td>
+            <td>first goat </td> <td>1615 </td>
         </tr>
         <tr>
-            <td>Goat 2        </td> <td>1635 </td>
+            <td>second goat</td> <td>1653 </td>
         </tr>
     </tbody>
 </table>
 </div>
 
 
+</div>
+</div>
+</div>
 
-As our solution said, the car is behind the remaining door two-thirds of the time, to a pretty good approximation. The contestant is twice as likely to get the car if she switches than if she sticks with her original choice.
+
+
+As our earlier solution said, the car is behind the remaining door two-thirds of the time, to a pretty good approximation. The contestant is twice as likely to get the car if she switches than if she sticks with her original choice.
 
 To see this graphically, we can join the two tables above and draw overlaid bar charts.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
-results_o = results.group('Original Door Choice')
-results_r = results.group('Remaining Door')
-joined = results_o.join('Original Door Choice', results_r, 'Remaining Door')
+joined = original_choice.join('Guess', remaining_door, 'Remaining')
 combined = joined.relabeled(0, 'Item').relabeled(1, 'Original Door').relabeled(2, 'Remaining Door')
 combined
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -477,34 +401,46 @@ combined
     </thead>
     <tbody>
         <tr>
-            <td>Car   </td> <td>3348         </td> <td>6652          </td>
+            <td>car        </td> <td>3268         </td> <td>6732          </td>
         </tr>
         <tr>
-            <td>Goat 1</td> <td>3395         </td> <td>1713          </td>
+            <td>first goat </td> <td>3372         </td> <td>1615          </td>
         </tr>
         <tr>
-            <td>Goat 2</td> <td>3257         </td> <td>1635          </td>
+            <td>second goat</td> <td>3360         </td> <td>1653          </td>
         </tr>
     </tbody>
 </table>
 </div>
 
 
+</div>
+</div>
+</div>
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 combined.barh(0)
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
+{:.output_png}
+![png](../../../images/chapters/09/4/Monty_Hall_Problem_27_0.png)
 
-{:.output .output_png}
-![png](../../../images/chapters/09/4/Monty_Hall_Problem_33_0.png)
+</div>
+</div>
+</div>
 
 
 
 Notice how the three blue bars are almost equal – the original choice is equally likely to be any of the three available items. But the gold bar corresponding to `Car` is twice as long as the blue. 
 
 The simulation confirms that the contestant is twice as likely to win if she switches.
+

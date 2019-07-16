@@ -2,6 +2,8 @@
 redirect_from:
   - "/chapters/07/3/overlaid-graphs"
 interact_link: content/chapters/07/3/Overlaid_Graphs.ipynb
+kernel_name: python3
+has_widgets: false
 title: 'Overlaid Graphs'
 prev_page:
   url: /chapters/07/2/Visualizing_Numerical_Distributions
@@ -12,6 +14,11 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
+
+<div markdown="1" class="cell code_cell">
+
+
+</div>
 
 
 
@@ -30,6 +37,8 @@ More commonly, we will first select only the columns needed for our graph, and t
 `name_of_table.method(column_label_of_common_axis)`
 
 
+
+
 ### Scatter Plots
 
 [Franics Galton](https://en.wikipedia.org/wiki/Francis_Galton) (1822-1911) was an English polymath who was a pioneer in the analysis of relations between numerical variables. He was particularly interested in the controversial area of eugenics – indeed, he coined that term – which involves understading how physical traits are passed down from one generation to the next. 
@@ -38,13 +47,17 @@ Galton meticulously collected copious amounts of data, some of which we will ana
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights = Table.read_table(path_data + 'galton_subset.csv')
 heights
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -92,20 +105,33 @@ heights
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 The `scatter` method allows us to visualize how the sons' heights are related to the heights of both their parents. In the graph, the sons' heights will form the common horizontal axis. 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 heights.scatter('son')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/3/Overlaid_Graphs_5_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -113,13 +139,16 @@ Notice how we only specified the variable (sons' heights) on the common horizont
 
 Both the gold and the blue scatter plots slope upwards and show a positive association between the sons' heights and the heights of both their parents. The blue (fathers) plot is in general higher than the gold, because the fathers were in general taller than the mothers.
 
+
+
 ### Line Plots
 
 Our next example involves data on children of more recent times. We will return to the Census data table `us_pop`, created below again for reference. From this, we will extract the counts of all children in each of the age categories 0 through 18 years.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 # Read the full Census table
 census_url = 'http://www2.census.gov/programs-surveys/popest/datasets/2010-2015/national/asrh/nc-est2015-agesex-res.csv'
@@ -132,9 +161,12 @@ us_pop = partial_census_table.relabeled('POPESTIMATE2010', '2010').relabeled('PO
 # Access the rows corresponding to all children, ages 0-18
 children = us_pop.where('SEX', are.equal_to(0)).where('AGE', are.below(19)).drop('SEX')
 children.show()
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 <div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
@@ -205,20 +237,33 @@ children.show()
 </table>
 </div>
 
+</div>
+</div>
+</div>
+
+
 
 We can now draw two overlaid line plots, showing the numbers of children in the different age groups for each of the years 2010 and 2014. The method call is analogous to the `scatter` call in the previous example.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 children.plot('AGE')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/3/Overlaid_Graphs_10_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -227,6 +272,8 @@ On this scale, it's important to remember that we only have data at ages 0, 1, 2
 The graphs cross each other in a few places: for example, there were more 4-year-olds in 2010 than in 2014, and there were more 14-year-olds in 2014 than in 2010.
 
 Of course, the 14-year-olds in 2014 mostly consist of the 10-year-olds in 2010. To see this, look at the gold graph at `AGE` 14 and the blue graph at `AGE` 10. Indeed, you will notice that the entire gold graph (2014) looks like the blue graph (2010) slid over to the right by 4 years. The slide is accompanied by a slight rise due to the net effect of children who entered the country between 2010 and 2014 outnumbering those who left. Fortunately at these ages there is not much loss of life.
+
+
 
 ### Bar Charts
 
@@ -238,13 +285,17 @@ Here is a table adapted from their data for the United States and California. Th
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 usa_ca = Table.read_table(path_data + 'usa_ca_2014.csv')
 usa_ca
+
 ```
+</div>
 
-
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
 
@@ -273,6 +324,11 @@ usa_ca
 </div>
 
 
+</div>
+</div>
+</div>
+
+
 
 It is natural to want to compare these distributions. It makes sense to compare the columns directly, because all the entries are proportions and are therefore on the same scale.
 
@@ -280,15 +336,23 @@ The method `barh` allows us to visualize the comparisons by drawing multiple bar
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 usa_ca.barh('Ethnicity')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/3/Overlaid_Graphs_15_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -298,15 +362,23 @@ Let's start by comparing the entire populations of the U.S.A. and California.
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 usa_ca.select('Ethnicity', 'USA All', 'CA All').barh('Ethnicity')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/3/Overlaid_Graphs_17_0.png)
+
+</div>
+</div>
+</div>
 
 
 
@@ -316,16 +388,25 @@ As you can see from the graph, almost 40% of the Californian population in 2014 
 
 
 
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input_area" markdown="1">
 ```python
 usa_ca.select('Ethnicity', 'CA All', 'CA Children').barh('Ethnicity')
+
 ```
+</div>
 
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
-
-{:.output .output_png}
+{:.output_png}
 ![png](../../../images/chapters/07/3/Overlaid_Graphs_19_0.png)
+
+</div>
+</div>
+</div>
 
 
 
 More complex datasets naturally give rise to varied and interesting visualizations, including overlaid graphs of different kinds. To analyze such data, it helps to have some more skills in data manipulation, so that we can get the data into a form that allows us to use methods like those in this section. In the next chapter we will develop some of these skills.
+
