@@ -194,7 +194,7 @@ red
 
 
 
-Your net gain on one bet is one random draw from the `Winnings: Red` column. There is an 18/38 chance making \\$1, and a 20/38 chance of making -$1. This probability distribution is shown in the histogram below.
+Your net gain on one bet is one random draw from the `Winnings: Red` column. There is an 18/38 chance making \\$1, and a 20/38 chance of making -\$1. This probability distribution is shown in the histogram below.
 
 
 
