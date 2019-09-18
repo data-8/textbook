@@ -28,10 +28,14 @@ url: https://www.inferentialthinking.com # the base hostname & protocol for your
 #######################################################################################
 # Jupyter Book settings
 
+# Main page settings
+footer_text: This page was created by <a href="https://github.com/jupyter/jupyter-book/graphs/contributors">The
+  Jupyter Book Community</a>
+
 # Sidebar settings
 show_sidebar: true                # Show the sidebar. Only set to false if your only wish to host a single page.
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
-textbook_logo: favicon.png                        # A logo to be displayed at the top of your textbook sidebar
+textbook_logo: favicon.png                        # A logo to be displayed at the top of your textbook sidebar. Should be square
 textbook_logo_link: https://inferentialthinking.org                      # A link for the logo.
 sidebar_footer_text: Powered by <a href="https://github.com/choldgraf/jupyter-book">Jupyter
   Book</a>
@@ -66,10 +70,10 @@ thebelab_button_text: Thebelab                 # The text to display inside the 
 codemirror_theme: abcdef                     # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
 # nbinteract settings
-use_show_widgets_button: false                # If 'true', display a button to allow in-page running code cells with nbinteract
+use_show_widgets_button: false               # If 'true', display a button to allow in-page running code cells with nbinteract
 
 # Download settings
-use_download_button: false                # If 'true', display a button to download a zip file for the notebook
+use_download_button: false               # If 'true', display a button to download a zip file for the notebook
 download_button_text: Download                # The text that download buttons will contain
 
 #######################################################################################
@@ -84,11 +88,7 @@ scholar:
 # Jupyter book settings you probably don't need to change
 
 google_analytics:
-  mytrackingcode:
-
-#######################################################################################
-# Jupyter book settings you probably don't need to change
-
+  mytrackingcode: ''
 content_folder_name: content           # The folder where your raw content (notebooks/markdown files) are located
 images_url: /assets/images                   # Path to static image files
 css_url: /assets/css                      # Path to static CSS files
@@ -144,4 +144,4 @@ exclude:
 plugins:
 - jekyll-redirect-from
 - jekyll-scholar
-jupyter_book_version: 0.5.2dev0
+jupyter_book_version: 0.6.1dev0
