@@ -1,0 +1,633 @@
+---
+redirect_from:
+  - "/chapters/10/3/empirical-distribution-of-a-statistic"
+interact_link: content/chapters/10/3/Empirical_Distribution_of_a_Statistic.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Empirical Distibution of a Statistic
+prev_page:
+  url: /chapters/10/2/Sampling_from_a_Population.html
+  title: |-
+    Sampling from a Population
+next_page:
+  url: /chapters/11/Testing_Hypotheses.html
+  title: |-
+    Testing Hypotheses
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Empirical-Distribution-of-a-Statistic">Empirical Distribution of a Statistic<a class="anchor-link" href="#Empirical-Distribution-of-a-Statistic"> </a></h3><p>The Law of Averages implies that with high probability, the empirical distribution of a large random sample will resemble the distribution of the population from which the sample was drawn.</p>
+<p>The resemblance is visible in two histograms: the empirical histogram of a large random sample is likely to resemble the histogram of the population.</p>
+<p>As a reminder, here is the histogram of the delays of all the flights in <code>united</code>, and an empirical histogram of the delays of a random sample of 1,000 of these flights.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">united</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;united_summer2015.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">delay_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">united</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">delay_bins</span><span class="p">,</span> <span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;minute&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Population&#39;</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_3_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_1000</span> <span class="o">=</span> <span class="n">united</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">sample_1000</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">delay_bins</span><span class="p">,</span> <span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;minute&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sample of Size 1000&#39;</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_4_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The two histograms clearly resemble each other, though they are not identical.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Parameter">Parameter<a class="anchor-link" href="#Parameter"> </a></h3><p>Frequently, we are interested in numerical quantities associated with a population.</p>
+<ul>
+<li>In a population of voters, what percent will vote for Candidate A?</li>
+<li>In a population of Facebook users, what is the largest number of Facebook friends that the users have?</li>
+<li>In a population of United flights, what is the median departure delay?</li>
+</ul>
+<p>Numerical quantities associated with a population are called <em>parameters</em>. For the population of flights in <code>united</code>, we know the value of the parameter "median delay":</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">united</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.0</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>NumPy</code> function <code>median</code> returns the median (half-way point) of an array. Among all the flights in <code>united</code>, the median delay was 2 minutes. That is, about 50% of flights in the population had delays of 2 or fewer minutes:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">united</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">below_or_equal_to</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">num_rows</span> <span class="o">/</span> <span class="n">united</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.5018444846292948</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Half of all flights left no more than 2 minutes after their scheduled departure time. That's a very short delay!</p>
+<p><strong>Note.</strong> The percent isn't exactly 50 because of "ties," that is, flights that had delays of exactly 2 minutes. There were 480 such flights. Ties are quite common in data sets, and we will not worry about them in this course.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">united</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>480</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Statistic">Statistic<a class="anchor-link" href="#Statistic"> </a></h3><p>In many situations, we will be interested in figuring out the value of an unknown parameter. For this, we will rely on data from a large random sample drawn from the population.</p>
+<p>A <em>statistic</em> (note the singular!) is any number computed using the data in a sample. The sample median, therefore, is a statistic.</p>
+<p>Remember that <code>sample_1000</code> contains a random sample of 1000 flights from <code>united</code>. The observed value of the sample median is:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">sample_1000</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.0</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our sample – one set of 1,000 flights – gave us one observed value of the statistic. This raises an important problem of inference:</p>
+<p><strong>The statistic could have been different.</strong>
+A fundamental consideration in using any statistic based on a random sample is that <em>the sample could have come out differently</em>, and therefore the statistic could have come out differently too.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">united</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.0</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Run the cell above a few times to see how the answer varies. Often it is equal to 2, the same value as the population parameter. But sometimes it is different.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Just how different could the statistic have been?</strong> One way to answer this is to simulate the statistic many times and note the values. A histogram of those values will tell us about the distribution of the statistic.</p>
+<p>Let's recall the main steps in a simulation.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Simulating-a-Statistic">Simulating a Statistic<a class="anchor-link" href="#Simulating-a-Statistic"> </a></h3><p>We will simulate the sample median using the steps we set up in an earlier chapter when we started studying simulation. You can replace the sample size of 1000 by any other sample size, and the sample median by any other statistic.</p>
+<p><strong>Step 1: Decide which statistic to simulate.</strong> We have already decided that: we are going to simulate the median of a random sample of size 1000 drawn from the population of flight delays.</p>
+<p><strong>Step 2: Write the code to generate one value of the statistic.</strong> Draw a random sample of size 1000 and compute the median of the sample. We did this in the code cell above. Here it is again, encapsulated in a function.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">random_sample_median</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">united</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Step 3: Decide how many simulated values to generate.</strong> Let's do 5,000 repetitions.</p>
+<p><strong>Step 4: Write the code to generate an array of simulated values.</strong> As in all simulations, we start by creating an empty array in which we will collect our results. We will then set up a <code>for</code> loop for generating all the simulated values. The body of the loop will consist of generating one simulated value of the sample median, and appending it to our collection array.</p>
+<p>The simulation takes a noticeable amount of time to run. That is because it is performing 5000 repetitions of the process of drawing a sample of size 1000 and computing its median. That's a lot of sampling and repeating!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">medians</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5000</span><span class="p">):</span>
+    <span class="n">medians</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">medians</span><span class="p">,</span> <span class="n">random_sample_median</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The simulation is done. All 5,000 simulated sample medians have been collected in the array <code>medians</code>. Now it's time to visualize the results.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Visualization">Visualization<a class="anchor-link" href="#Visualization"> </a></h3><p>Here are the simulated random sample medians displayed in the table <code>simulated_medians</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simulated_medians</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Sample Median&#39;</span><span class="p">,</span> <span class="n">medians</span><span class="p">)</span>
+<span class="n">simulated_medians</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Sample Median</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>2            </td>
+        </tr>
+        <tr>
+            <td>2            </td>
+        </tr>
+        <tr>
+            <td>2.5          </td>
+        </tr>
+        <tr>
+            <td>1            </td>
+        </tr>
+        <tr>
+            <td>2            </td>
+        </tr>
+        <tr>
+            <td>3            </td>
+        </tr>
+        <tr>
+            <td>2            </td>
+        </tr>
+        <tr>
+            <td>3            </td>
+        </tr>
+        <tr>
+            <td>1            </td>
+        </tr>
+        <tr>
+            <td>3            </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (4990 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also visualize the simulated data using a histogram. The histogram is called an <em>empirical histogram of the statistic</em>. It displays the <em>empirical distribution</em> of the statistic. Remember that <em>empirical</em> means <em>observed</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simulated_medians</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/10/3/Empirical_Distribution_of_a_Statistic_26_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can see that the sample median is very likely to be about 2, which was the value of the population median. Since samples of 1000 flight delays are likely to resemble the population of delays, it is not surprising that the median delays of those samples should be close to the median delay in the population.</p>
+<p>This is an example of how a statistic can provide a good estimate of a parameter.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Power-of-Simulation">The Power of Simulation<a class="anchor-link" href="#The-Power-of-Simulation"> </a></h3><p>If we could generate all possible random samples of size 1000, we would know all possible values of the statistic (the sample median), as well as the probabilities of all those values. We could visualize all the values and probabilities in the probability histogram of the statistic.</p>
+<p>But in many situations including this one, the number of all possible samples is large enough to exceed the capacity of the computer, and purely mathematical calculations of the probabilities can be intractably difficult.</p>
+<p>This is where empirical histograms come in.</p>
+<p>We know that by the Law of Averages, the empirical histogram of the statistic is likely to resemble the probability histogram of the statistic, if the sample size is large and if you repeat the random sampling process numerous times.</p>
+<p>This means that simulating random processes repeatedly is a way of approximating probability distributions <em>without figuring out the probabilities mathematically or generating all possible random samples</em>. Thus computer simulations become a powerful tool in data science. They can help data scientists understand the properties of random quantities that would be complicated to analyze in other ways.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

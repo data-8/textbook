@@ -1,0 +1,451 @@
+---
+redirect_from:
+  - "/chapters/18/1/more-likely-than-not-binary-classifier"
+interact_link: content/chapters/18/1/More_Likely_than_Not_Binary_Classifier.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  A "More Likely Than Not" Binary Classifier
+prev_page:
+  url: /chapters/18/Updating_Predictions.html
+  title: |-
+    Updating Predictions
+next_page:
+  url: /chapters/18/2/Making_Decisions.html
+  title: |-
+    Making Decisions
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="A-&quot;More-Likely-Than-Not&quot;-Binary-Classifier">A "More Likely Than Not" Binary Classifier<a class="anchor-link" href="#A-&quot;More-Likely-Than-Not&quot;-Binary-Classifier"> </a></h3><p>Let's try to use data to classify a point into one of two categories, choosing the category that we think is more likely than not. To do this, we not only need the data but also a clear description of how chances are involved.</p>
+<p>We will start out in a simple artifical setting just to develop the main technique, and then move to a more intriguing example.</p>
+<p>Suppose there is a university class with the following composition:</p>
+<ul>
+<li>60% of the students are Second Years and the remaining 40% are Third Years</li>
+<li>50% of the Second Years have declared their major</li>
+<li>80% of the Third Years have declared their major</li>
+</ul>
+<p>Now suppose <strong>I pick a student at random from the class</strong>. Can you classify the student as Second Year or Third Year, using our "more likely than not" criterion?</p>
+<p>You can, because the student is picked at random and so you know that the chance that the student is a Second Year is 60%. That's greater than the 40% chance of being a Third Year, so you would classify the student as Second Year.</p>
+<p>The information about the majors is irrelevant, as we already know the proportions of Second and Third Years in the class.</p>
+<p>We have a pretty simple classifier! But now suppose I give you some additional information about the student who was picked:</p>
+<p><strong>The student has declared a major.</strong></p>
+<p>Would this knowledge change your classification?</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Updating-the-Prediction-Based-on-New-Information">Updating the Prediction Based on New Information<a class="anchor-link" href="#Updating-the-Prediction-Based-on-New-Information"> </a></h3><p>Now that we know the student has declared a major, it becomes important to look at the relation between year and major declaration. It's still true that more students are Second Years than Third Years. But it's also true that among the Third Years, a much higher percent have declared their major than among the Second Years. Our classifier has to take both of these observations into account.</p>
+<p>To visualize this, we will use a table <code>students</code> that consists of one row for each of 100 students whose years and majors have the same proportions as given in the data.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">students</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Year</th> <th>Major</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Second</td> <td>Undeclared</td>
+        </tr>
+        <tr>
+            <td>Second</td> <td>Undeclared</td>
+        </tr>
+        <tr>
+            <td>Second</td> <td>Undeclared</td>
+        </tr>
+    </tbody>
+</table>
+<p>... (97 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To check that the proportions are correct, let's use <code>pivot</code> to cross-classify each student according to the two variables.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">students</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;Major&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Year</th> <th>Declared</th> <th>Undeclared</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Second</td> <td>30      </td> <td>30        </td>
+        </tr>
+        <tr>
+            <td>Third </td> <td>32      </td> <td>8         </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The total count is 100 students, of whom 60 are Second Years and 40 are Third Years. Among the Second Years, 50% are in each of the Major categories. Among the 40 Third Years, 20% are Undeclared and 80% Declared. So this population of 100 students has the same proportions as the class in our problem, and we can assume that our student has been picked at random from among all 100 students.</p>
+<p>We have to pick which row the student is most likely to be in. When we knew nothing more about the student, he or she could be in any of the four cells, and therefore were more likely to be in the top row (Second Year) because that contains more students.</p>
+<p>But now we know that the student has declared a major, so the space of possible outcomes has decreased: now the student can only be in one of the two Declared cells.</p>
+<p>There are 62 students in those cells, and 32 out of the 62 are Third Years. That's more than half, even though not by much.</p>
+<p>So, in the light of the new information about the student's major, we have to update our prediction and now classify the student as a Third Year.</p>
+<p>What is the chance that our classification is correct? We will be right for all the 32 Third Years who are Declared, and wrong for the 30 Second Years who are Declared. The chance that we are correct is therefore about 0.516.</p>
+<p>In other words, the chance that we are correct is <strong>the proportion of Third Years among the students who have Declared</strong>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">32</span><span class="o">/</span><span class="p">(</span><span class="mi">30</span><span class="o">+</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.5161290322580645</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Tree-Diagram">Tree Diagram<a class="anchor-link" href="#Tree-Diagram"> </a></h3><p>The proportion that we have just calculated was based on a class of 100 students. But there's no reason the class couldn't have had 200 students, for example, as long as all the proportions in the cells were correct. Then our calculation would just have been 64/(60 + 64) which is 0.516 as before.</p>
+<p>So the calculation depends only on the proportions in the different categories, not on the counts. The proportions can be visualized in a <em>tree diagram</em>, shown directly below the pivot table for ease of comparison.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">students</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;Major&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Year</th> <th>Declared</th> <th>Undeclared</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Second</td> <td>30      </td> <td>30        </td>
+        </tr>
+        <tr>
+            <td>Third </td> <td>32      </td> <td>8         </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="../../../images/tree_students.png" alt="Students Tree Diagram"></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Like the pivot table, this diagram <em>partitions</em> the students into four distinct groups known as "branches". Notice that the "Third Year, Declared" branch contains the proportion 0.4 x 0.8 = 0.32 of the students, corresponding to the 32 students in the "Third Year, Declared" cell of the pivot table. The "Second Year, Declared" branch contains 0.6 x 0.5 = 0.3 of the students, corresponding to the 30 in the "Second Year, Declared" cell of the pivot table.</p>
+<p>We know that the student who was picked belongs to a "Declared" branch; that is, the student is either in the top branch or the third from top. Those two branches now form our reduced space of possibilities, and all chances have to be calculated relative to the total chance of this reduced space.</p>
+<p>So, given that the student is Declared, the chance of them being a Third Year can be calculated directly from the tree. The answer is the proportion in the "Third Year, Declared" branch relative to the total proportion in the two "Declared" branches.</p>
+<p>That is, the answer is <strong>the proportion of Third Years among students who are Declared</strong>, as before.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="mf">0.4</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.6</span> <span class="o">*</span> <span class="mf">0.5</span>  <span class="o">+</span>  <span class="mf">0.4</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.5161290322580645</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bayes'-Rule">Bayes' Rule<a class="anchor-link" href="#Bayes'-Rule"> </a></h3><p>The method that we have just used is due to the Reverend <a href="https://en.wikipedia.org/wiki/Thomas_Bayes">Thomas Bayes</a> (1701-1761). His method solved what was called an "inverse probability" problem: given new data, how can you update chances you had found earlier? Though Bayes lived three centuries ago, his method is <a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">widely used now</a> in machine learning.</p>
+<p>We will state the rule in the context of our population of students. First, some terminology:</p>
+<p><strong>Prior probabilities.</strong> Before we knew the chosen student's major declaration status, the chance that the student was a Second Year was 60% and the chance that the student was a Third Year was 40%. These are the <em>prior</em> probabilities of the two categories.</p>
+<p><strong>Likelihoods.</strong> These are the chances of the Major status, given the category of student; thus they can be read off the tree diagram. For example, the likelihood of Declared status given that the student is a Second Year is 0.5.</p>
+<p><strong>Posterior probabilities.</strong> These are the chances of the two Year categories, <em>after</em> we have taken into account information about the Major declaration status. We computed one of these:</p>
+<p>The <em>posterior probability</em> that the student is a Third Year, given that the student has Declared, is denoted $P(\text{Third Year} ~\big{\vert}~ Declared)$ and is calculated as follows.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+\begin{align*}
+P(Third Year ~\big{\vert}~ Declared) 
+~ &amp;=~ \frac{ 0.4 \times 0.8}{0.6 \times 0.5 ~+~ 0.4 \times  0.8} \\ \\
+&amp;=~ \frac{\mbox{(prior probability of Third Year)} \times
+\mbox{(likelihood of Declared given Third Year)}}
+{\mbox{total probability of Declared}}
+\end{align*}
+$$<p>The other posterior probability is</p>
+$$
+\begin{align*}
+P(\mbox{Second Year} ~\big{\vert}~ \mbox{Declared})
+~ &amp;=~ \frac{ 0.6 \times 0.5}{0.6 \times 0.5 ~+~ 0.4 \times  0.8} \\ \\
+&amp;=~ \frac{\mbox{(prior probability of Second Year)} \times
+\mbox{(likelihood of Declared given Second Year)}}
+{\mbox{total probability of Declared}}
+\end{align*}
+$$
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="mf">0.6</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.6</span> <span class="o">*</span> <span class="mf">0.5</span>  <span class="o">+</span>  <span class="mf">0.4</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.4838709677419354</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's about 0.484, which is less than half, consistent with our classification of Third Year.</p>
+<p>Notice that both the posterior probabilities have the same denominator: the chance of the new information, which is that the student has Declared.</p>
+<p>Because of this, Bayes' method is sometimes summarized as a statement about proportionality:</p>
+$$
+\mbox{posterior} ~ \propto ~ \mbox{prior} \times \mbox{likelihood}
+$$
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Formulas are great for efficiently describing calculations. But in settings like our example about students, it is simpler not to think in terms of formulas. Just use the tree diagram.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

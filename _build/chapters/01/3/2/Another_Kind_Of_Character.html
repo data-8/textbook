@@ -1,0 +1,318 @@
+---
+redirect_from:
+  - "/chapters/01/3/2/another-kind-of-character"
+interact_link: content/chapters/01/3/2/Another_Kind_Of_Character.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Another Kind of Character
+prev_page:
+  url: /chapters/01/3/1/Literary_Characters.html
+  title: |-
+    Literary Characters
+next_page:
+  url: /chapters/02/causality-and-experiments.html
+  title: |-
+    Causality and Experiments
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Another-Kind-of-Character">Another Kind of Character<a class="anchor-link" href="#Another-Kind-of-Character"> </a></h1><p>In some situations, the relationships between quantities allow us to make predictions. This text will explore how to make accurate predictions based on incomplete information and develop methods for combining multiple sources of uncertain information to make decisions.</p>
+<p>As an example of visualizing information derived from multiple sources, let us first use the computer to get some information that would be tedious to acquire by hand. In the context of novels, the word "character" has a second meaning: a printed symbol such as a letter or number or punctuation symbol. Here, we ask the computer to count the number of characters and the number of periods in each chapter of both <em>Huckleberry Finn</em> and <em>Little Women</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># In each chapter, count the number of all characters;</span>
+<span class="c1"># call this the &quot;length&quot; of the chapter.</span>
+<span class="c1"># Also count the number of periods.</span>
+
+<span class="n">chars_periods_huck_finn</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s1">&#39;Huck Finn Chapter Length&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">huck_finn_chapters</span><span class="p">],</span>
+        <span class="s1">&#39;Number of Periods&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+<span class="n">chars_periods_little_women</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s1">&#39;Little Women Chapter Length&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">little_women_chapters</span><span class="p">],</span>
+        <span class="s1">&#39;Number of Periods&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here are the data for <em>Huckleberry Finn</em>. Each row of the table corresponds to one chapter of the novel and displays the number of characters as well as the number of periods in the chapter. Not surprisingly, chapters with fewer characters also tend to have fewer periods, in general: the shorter the chapter, the fewer sentences there tend to be, and vice versa. The relation is not entirely predictable, however, as sentences are of varying lengths and can involve other punctuation such as question marks.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chars_periods_huck_finn</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Huck Finn Chapter Length</th> <th>Number of Periods</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>7026                    </td> <td>66               </td>
+        </tr>
+        <tr>
+            <td>11982                   </td> <td>117              </td>
+        </tr>
+        <tr>
+            <td>8529                    </td> <td>72               </td>
+        </tr>
+        <tr>
+            <td>6799                    </td> <td>84               </td>
+        </tr>
+        <tr>
+            <td>8166                    </td> <td>91               </td>
+        </tr>
+        <tr>
+            <td>14550                   </td> <td>125              </td>
+        </tr>
+        <tr>
+            <td>13218                   </td> <td>127              </td>
+        </tr>
+        <tr>
+            <td>22208                   </td> <td>249              </td>
+        </tr>
+        <tr>
+            <td>8081                    </td> <td>71               </td>
+        </tr>
+        <tr>
+            <td>7036                    </td> <td>70               </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (33 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here are the corresponding data for <em>Little Women</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chars_periods_little_women</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Little Women Chapter Length</th> <th>Number of Periods</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>21759                      </td> <td>189              </td>
+        </tr>
+        <tr>
+            <td>22148                      </td> <td>188              </td>
+        </tr>
+        <tr>
+            <td>20558                      </td> <td>231              </td>
+        </tr>
+        <tr>
+            <td>25526                      </td> <td>195              </td>
+        </tr>
+        <tr>
+            <td>23395                      </td> <td>255              </td>
+        </tr>
+        <tr>
+            <td>14622                      </td> <td>140              </td>
+        </tr>
+        <tr>
+            <td>14431                      </td> <td>131              </td>
+        </tr>
+        <tr>
+            <td>22476                      </td> <td>214              </td>
+        </tr>
+        <tr>
+            <td>33767                      </td> <td>337              </td>
+        </tr>
+        <tr>
+            <td>18508                      </td> <td>185              </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (37 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can see that the chapters of <em>Little Women</em> are in general longer than those of <em>Huckleberry Finn</em>. Let us see if these two simple variables – the length and number of periods in each chapter – can tell us anything more about the two books. One way to do this is to plot both sets of data on the same axes.</p>
+<p>In the plot below, there is a dot for each chapter in each book. Blue dots correspond to <em>Huckleberry Finn</em> and gold dots to <em>Little Women</em>. The horizontal axis represents the number of periods and the vertical axis represents the number of characters.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">chars_periods_huck_finn</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> 
+              <span class="n">chars_periods_huck_finn</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> 
+              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">chars_periods_little_women</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> 
+              <span class="n">chars_periods_little_women</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> 
+              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of periods in chapter&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of characters in chapter&#39;</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../../images/chapters/01/3/2/Another_Kind_Of_Character_9_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The plot shows us that many but not all of the chapters of <em>Little Women</em> are longer than those of <em>Huckleberry Finn</em>, as we had observed by just looking at the numbers. But it also shows us something more. Notice how the blue points are roughly clustered around a straight line, as are the yellow points. Moreover, it looks as though both colors of points might be clustered around the <em>same</em> straight line.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now look at all the chapters that contain about 100 periods. The plot shows that those chapters contain about 10,000 characters to about 15,000 characters, roughly. That's about 100 to 150 characters per period.</p>
+<p>Indeed, it appears from looking at the plot that on average both books tend to have somewhere between 100 and 150 characters between periods, as a very rough estimate. Perhaps these two great 19th century novels were signaling something so very familiar to us now: the 140-character limit of Twitter.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

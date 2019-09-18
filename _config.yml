@@ -88,7 +88,7 @@ scholar:
 # Jupyter book settings you probably don't need to change
 
 google_analytics:
-  mytrackingcode: ''
+  mytrackingcode: 'UA-148221575-1'
 content_folder_name: content           # The folder where your raw content (notebooks/markdown files) are located
 images_url: /assets/images                   # Path to static image files
 css_url: /assets/css                      # Path to static CSS files

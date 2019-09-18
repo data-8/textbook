@@ -1,0 +1,1279 @@
+---
+redirect_from:
+  - "/chapters/17/3/rows-of-tables"
+interact_link: content/chapters/17/3/Rows_of_Tables.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Rows of Tables
+prev_page:
+  url: /chapters/17/2/Training_and_Testing.html
+  title: |-
+    Training and Testing
+next_page:
+  url: /chapters/17/4/Implementing_the_Classifier.html
+  title: |-
+    Implementing the Classifier
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Rows-of-Tables">Rows of Tables<a class="anchor-link" href="#Rows-of-Tables"> </a></h3><p>Now that we have a qualitative understanding of nearest neighbor classification, it's time to implement our classifier.</p>
+<p>Until this chapter, we have worked mostly with single columns of tables. But now we have to see whether one <em>individual</em> is "close" to another. Data for individuals are contained in <em>rows</em> of tables.</p>
+<p>So let's start by taking a closer look at rows.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is the original table <code>ckd</code> containing data on patients who were tested for chronic kidney disease.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;ckd.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s1">&#39;Blood Glucose Random&#39;</span><span class="p">,</span> <span class="s1">&#39;Glucose&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The data corresponding to the first patient is in row 0 of the table, consistent with Python's indexing system. The Table method <code>row</code> accesses the row by taking the index of the row as its argument:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Row(Age=48, Blood Pressure=70, Specific Gravity=1.005, Albumin=4, Sugar=0, Red Blood Cells=&#39;normal&#39;, Pus Cell=&#39;abnormal&#39;, Pus Cell clumps=&#39;present&#39;, Bacteria=&#39;notpresent&#39;, Glucose=117, Blood Urea=56, Serum Creatinine=3.8, Sodium=111, Potassium=2.5, Hemoglobin=11.2, Packed Cell Volume=32, White Blood Cell Count=6700, Red Blood Cell Count=3.9, Hypertension=&#39;yes&#39;, Diabetes Mellitus=&#39;no&#39;, Coronary Artery Disease=&#39;no&#39;, Appetite=&#39;poor&#39;, Pedal Edema=&#39;yes&#39;, Anemia=&#39;yes&#39;, Class=1)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Rows have their very own data type: they are <em>row objects</em>. Notice how the display shows not only the values in the row but also the labels of the corresponding columns.</p>
+<p>Rows are in general <strong>not arrays</strong>, as their elements can be of different types. For example, some of the elements of the row above are strings (like <code>'abnormal'</code>) and some are numerical. So the row can't be converted into an array.</p>
+<p>However, rows share some characteristics with arrays.  You can use <code>item</code> to access a particular element of a row. For example, to access the Albumin level of Patient 0, we can look at the labels in the printout of the row above to find that it's item 3:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>4</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Converting-Rows-to-Arrays-(When-Possible)">Converting Rows to Arrays (When Possible)<a class="anchor-link" href="#Converting-Rows-to-Arrays-(When-Possible)"> </a></h3><p>Rows whose elements are all numerical (or all strings) can be converted to arrays.  Converting a row to an array gives us access to arithmetic operations and other nice NumPy functions, so it is often useful.</p>
+<p>Recall that in the previous section we tried to classify the patients as 'CKD' or 'not CKD', based on two attributes <code>Hemoglobin</code> and <code>Glucose</code>, both measured in standard units.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Hemoglobin&#39;</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Hemoglobin&#39;</span><span class="p">)),</span>
+    <span class="s1">&#39;Glucose&#39;</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Glucose&#39;</span><span class="p">)),</span>
+    <span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Class&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">color_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="s1">&#39;gold&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">ckd</span> <span class="o">=</span> <span class="n">ckd</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="n">color_table</span><span class="p">)</span>
+<span class="n">ckd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Class</th> <th>Hemoglobin</th> <th>Glucose</th> <th>Color</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0    </td> <td>0.456884  </td> <td>0.133751   </td> <td>gold </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>1.153     </td> <td>-0.947597  </td> <td>gold </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.770138  </td> <td>-0.762223  </td> <td>gold </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.596108  </td> <td>-0.190654  </td> <td>gold </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>-0.239236 </td> <td>-0.49961   </td> <td>gold </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>-0.0304002</td> <td>-0.159758  </td> <td>gold </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.282854  </td> <td>-0.00527964</td> <td>gold </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.108824  </td> <td>-0.623193  </td> <td>gold </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.0740178 </td> <td>-0.515058  </td> <td>gold </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.83975   </td> <td>-0.422371  </td> <td>gold </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (148 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is a scatter plot of the two attributes, along with a red point corresponding to Alice, a new patient. Her value of hemoglobin is 0 (that is, at the average) and glucose 1.1 (that is, 1.1 SDs above average).</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alice</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ckd</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Hemoglobin&#39;</span><span class="p">,</span> <span class="s1">&#39;Glucose&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">alice</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">alice</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/17/3/Rows_of_Tables_12_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To find the distance between Alice's point and any of the other points, we only need the values of the attributes:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd_attributes</span> <span class="o">=</span> <span class="n">ckd</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Hemoglobin&#39;</span><span class="p">,</span> <span class="s1">&#39;Glucose&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd_attributes</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Hemoglobin</th> <th>Glucose</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0.456884  </td> <td>0.133751   </td>
+        </tr>
+        <tr>
+            <td>1.153     </td> <td>-0.947597  </td>
+        </tr>
+        <tr>
+            <td>0.770138  </td> <td>-0.762223  </td>
+        </tr>
+        <tr>
+            <td>0.596108  </td> <td>-0.190654  </td>
+        </tr>
+        <tr>
+            <td>-0.239236 </td> <td>-0.49961   </td>
+        </tr>
+        <tr>
+            <td>-0.0304002</td> <td>-0.159758  </td>
+        </tr>
+        <tr>
+            <td>0.282854  </td> <td>-0.00527964</td>
+        </tr>
+        <tr>
+            <td>0.108824  </td> <td>-0.623193  </td>
+        </tr>
+        <tr>
+            <td>0.0740178 </td> <td>-0.515058  </td>
+        </tr>
+        <tr>
+            <td>0.83975   </td> <td>-0.422371  </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (148 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each row consists of the coordinates of one point in our training sample. <strong>Because the rows now consist only of numerical values</strong>, it is possible to convert them to arrays.  For this, we use the function <code>np.array</code>, which converts any kind of sequential object, like a row, to an array. (Our old friend <code>make_array</code> is for <em>creating</em> arrays, not for <em>converting</em> other kinds of sequences to arrays.)</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd_attributes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Row(Hemoglobin=0.5961076648232668, Glucose=-0.19065363034327712)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ckd_attributes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 0.59610766, -0.19065363])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is very handy because we can now use array operations on the data in each row.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Distance-Between-Points-When-There-are-Two-Attributes">Distance Between Points When There are Two Attributes<a class="anchor-link" href="#Distance-Between-Points-When-There-are-Two-Attributes"> </a></h3><p>The main calculation we need to do is to find the distance between Alice's point and any other point. For this, the first thing we need is a way to compute the distance between any pair of points.</p>
+<p>How do we do this?  In 2-dimensional space, it's pretty easy.  If we have a point at coordinates $(x_0,y_0)$ and another at $(x_1,y_1)$, the distance between them is</p>
+$$
+D = \sqrt{(x_0-x_1)^2 + (y_0-y_1)^2}
+$$<p>(Where did this come from?  It comes from the Pythogorean theorem: we have a right triangle with side lengths $x_0-x_1$ and $y_0-y_1$, and we want to find the length of the hypotenuse.)</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the next section we'll see that this formula has a straightforward extension when there are more than two attributes. For now, let's use the formula and array operations to find the distance between Alice and the patient in Row 3.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patient3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ckd_attributes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">alice</span><span class="p">,</span> <span class="n">patient3</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(array([0. , 1.1]), array([ 0.59610766, -0.19065363]))</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">alice</span> <span class="o">-</span> <span class="n">patient3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">distance</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.421664918881847</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We're going to need the distance between Alice and a bunch of points, so let's write a function called <code>distance</code> that computes the distance between any pair of points. The function will take two arrays, each containing the $(x, y)$ coordinates of a point.  (Remember, those are really the Hemoglobin and Glucose levels of a patient.)</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the Euclidean distance between point1 and point2.</span>
+<span class="sd">    </span>
+<span class="sd">    Each argument is an array containing the coordinates of a point.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">point1</span> <span class="o">-</span> <span class="n">point2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distance</span><span class="p">(</span><span class="n">alice</span><span class="p">,</span> <span class="n">patient3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.421664918881847</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We have begun to build our classifier: the <code>distance</code> function is the first building block. Now let's work on the next piece.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Using-apply-on-an-Entire-Row">Using <code>apply</code> on an Entire Row<a class="anchor-link" href="#Using-apply-on-an-Entire-Row"> </a></h3><p>Recall that if you want to apply a function to each element of a column of a table, one way to do that is by the call <code>table_name.apply(function_name, column_label)</code>. This evaluates to an array consisting of the values of the function when we call it on each element of the column. So each entry of the array is based on the corresponding row of the table.</p>
+<p>If you use <code>apply</code> without specifying a column label, then the entire row is passed to the function. Let's see how this works on a very small table <code>t</code> containing the information about the first five patients in the training sample.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">ckd_attributes</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">t</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Hemoglobin</th> <th>Glucose</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0.456884  </td> <td>0.133751 </td>
+        </tr>
+        <tr>
+            <td>1.153     </td> <td>-0.947597</td>
+        </tr>
+        <tr>
+            <td>0.770138  </td> <td>-0.762223</td>
+        </tr>
+        <tr>
+            <td>0.596108  </td> <td>-0.190654</td>
+        </tr>
+        <tr>
+            <td>-0.239236 </td> <td>-0.49961 </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Just as an example, suppose that for each patient we want to know how unusual their most unusual attribute is.  Concretely, if a patient's hemoglobin level is further from the average than her glucose level, we want to know how far it is from the average.  If her glucose level is further from the average than her hemoglobin level, we want to know how far that is from the average instead.</p>
+<p>That's the same as taking the maximum of the absolute values of the two quantities. To do this for a particular row, we can convert the row to an array and use array operations.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">max_abs</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">max_abs</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.4996102825918697</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And now we can apply <code>max_abs</code> to each row of the table <code>t</code>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">max_abs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0.4568837 , 1.15300352, 0.77013762, 0.59610766, 0.49961028])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This way of using <code>apply</code> will help us create the next building block of our classifier.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Alice's-$k$-Nearest-Neighbors">Alice's $k$ Nearest Neighbors<a class="anchor-link" href="#Alice's-$k$-Nearest-Neighbors"> </a></h3><p>If we want to classify Alice using a k-nearest neighbor classifier, we have to identify her $k$ nearest neighbors. What are the steps in this process? Suppose $k = 5$. Then the steps are:</p>
+<ul>
+<li><strong>Step 1.</strong> Find the distance between Alice and each point in the training sample.</li>
+<li><strong>Step 2.</strong> Sort the data table in increasing order of the distances.</li>
+<li><strong>Step 3.</strong> Take the top 5 rows of the sorted table.</li>
+</ul>
+<p>Steps 2 and 3 seem straightforward, provided we have the distances. So let's focus on Step 1.</p>
+<p>Here's Alice:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alice</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0. , 1.1])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What we need is a function that finds the distance between Alice and another point whose coordinates are contained in a row. The function <code>distance</code> returns the distance between any two points whose coordinates are in arrays. We can use that to define <code>distance_from_alice</code>, which takes a row as its argument and returns the distance between that row and Alice.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">distance_from_alice</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns distance between Alice and a row of the attributes table&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">distance</span><span class="p">(</span><span class="n">alice</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distance_from_alice</span><span class="p">(</span><span class="n">ckd_attributes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.421664918881847</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can <code>apply</code> the function <code>distance_from_alice</code> to each row of <code>ckd_attributes</code>, and augment the table <code>ckd</code> with the distances. Step 1 is complete!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distances</span> <span class="o">=</span> <span class="n">ckd_attributes</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">distance_from_alice</span><span class="p">)</span>
+<span class="n">ckd_with_distances</span> <span class="o">=</span> <span class="n">ckd</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Distance from Alice&#39;</span><span class="p">,</span> <span class="n">distances</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd_with_distances</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Class</th> <th>Hemoglobin</th> <th>Glucose</th> <th>Color</th> <th>Distance from Alice</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0    </td> <td>0.456884  </td> <td>0.133751   </td> <td>gold </td> <td>1.06882            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>1.153     </td> <td>-0.947597  </td> <td>gold </td> <td>2.34991            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.770138  </td> <td>-0.762223  </td> <td>gold </td> <td>2.01519            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.596108  </td> <td>-0.190654  </td> <td>gold </td> <td>1.42166            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>-0.239236 </td> <td>-0.49961   </td> <td>gold </td> <td>1.6174             </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>-0.0304002</td> <td>-0.159758  </td> <td>gold </td> <td>1.26012            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.282854  </td> <td>-0.00527964</td> <td>gold </td> <td>1.1409             </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.108824  </td> <td>-0.623193  </td> <td>gold </td> <td>1.72663            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.0740178 </td> <td>-0.515058  </td> <td>gold </td> <td>1.61675            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.83975   </td> <td>-0.422371  </td> <td>gold </td> <td>1.73862            </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (148 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For Step 2, let's sort the table in increasing order of distance:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sorted_by_distance</span> <span class="o">=</span> <span class="n">ckd_with_distances</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;Distance from Alice&#39;</span><span class="p">)</span>
+<span class="n">sorted_by_distance</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Class</th> <th>Hemoglobin</th> <th>Glucose</th> <th>Color</th> <th>Distance from Alice</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1    </td> <td>0.83975   </td> <td>1.2151   </td> <td>darkblue</td> <td>0.847601           </td>
+        </tr>
+        <tr>
+            <td>1    </td> <td>-0.970162 </td> <td>1.27689  </td> <td>darkblue</td> <td>0.986156           </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>-0.0304002</td> <td>0.0874074</td> <td>gold    </td> <td>1.01305            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.14363   </td> <td>0.0874074</td> <td>gold    </td> <td>1.02273            </td>
+        </tr>
+        <tr>
+            <td>1    </td> <td>-0.413266 </td> <td>2.04928  </td> <td>darkblue</td> <td>1.03534            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.387272  </td> <td>0.118303 </td> <td>gold    </td> <td>1.05532            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.456884  </td> <td>0.133751 </td> <td>gold    </td> <td>1.06882            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.178436  </td> <td>0.0410639</td> <td>gold    </td> <td>1.07386            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.00440582</td> <td>0.025616 </td> <td>gold    </td> <td>1.07439            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>-0.169624 </td> <td>0.025616 </td> <td>gold    </td> <td>1.08769            </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (148 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Step 3: The top 5 rows correspond to Alice's 5 nearest neighbors; you can replace 5 by any other positive integer.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alice_5_nearest_neighbors</span> <span class="o">=</span> <span class="n">sorted_by_distance</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">alice_5_nearest_neighbors</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Class</th> <th>Hemoglobin</th> <th>Glucose</th> <th>Color</th> <th>Distance from Alice</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1    </td> <td>0.83975   </td> <td>1.2151   </td> <td>darkblue</td> <td>0.847601           </td>
+        </tr>
+        <tr>
+            <td>1    </td> <td>-0.970162 </td> <td>1.27689  </td> <td>darkblue</td> <td>0.986156           </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>-0.0304002</td> <td>0.0874074</td> <td>gold    </td> <td>1.01305            </td>
+        </tr>
+        <tr>
+            <td>0    </td> <td>0.14363   </td> <td>0.0874074</td> <td>gold    </td> <td>1.02273            </td>
+        </tr>
+        <tr>
+            <td>1    </td> <td>-0.413266 </td> <td>2.04928  </td> <td>darkblue</td> <td>1.03534            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Three of Alice's five nearest neighbors are blue points and two are gold. So a 5-nearest neighbor classifier would classify Alice as blue: it would predict that Alice has chronic kidney disease.</p>
+<p>The graph below zooms in on Alice and her five nearest neighbors. The two gold ones just inside the circle directly below the red point. The classifier says Alice is more like the three blue ones around her.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/17/3/Rows_of_Tables_49_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are well on our way to implementing our k-nearest neighbor classifier. In the next two sections we will put it together and assess its accuracy.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

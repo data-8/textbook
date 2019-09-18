@@ -1,0 +1,706 @@
+---
+redirect_from:
+  - "/chapters/15/5/visual-diagnostics"
+interact_link: content/chapters/15/5/Visual_Diagnostics.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Visual Diagnostics
+prev_page:
+  url: /chapters/15/4/Least_Squares_Regression.html
+  title: |-
+    Least Squares Regression
+next_page:
+  url: /chapters/15/6/Numerical_Diagnostics.html
+  title: |-
+    Numerical Diagnostics
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># HIDDEN </span>
+
+<span class="n">galton</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;galton.csv&#39;</span><span class="p">)</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="n">galton</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;midparentHeight&#39;</span><span class="p">,</span> <span class="s1">&#39;childHeight&#39;</span><span class="p">)</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+<span class="n">hybrid</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;hybrid.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Visual-Diagnostics">Visual Diagnostics<a class="anchor-link" href="#Visual-Diagnostics"> </a></h3><p>Suppose a data scientist has decided to use linear regression to estimate values of one variable (called the response variable) based on another variable (called the predictor). To see how well this method of estimation performs, the data scientist must measure how far off the estimates are from the actual values. These differences are called <em>residuals</em>.</p>
+$$
+\mbox{residual} ~=~ \mbox{observed value} ~-~ \mbox{regression estimate}
+$$<p>A residual is what's left over – the residue – after estimation.</p>
+<p>Residuals are the vertical distances of the points from the regression line. There is one residual for each point in the scatter plot. The residual is the difference between the observed value of $y$ and the fitted value of $y$, so for the point $(x, y)$,</p>
+$$
+\mbox{residual} ~~ = ~~ y ~-~
+\mbox{fitted value of }y
+~~ = ~~ y ~-~
+\mbox{height of regression line at }x
+$$<p>The function <code>residual</code> calculates the residuals. The calculation assumes all the relevant functions we have already defined: <code>standard_units</code>, <code>correlation</code>, <code>slope</code>, <code>intercept</code>, and <code>fit</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">residual</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="n">fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Continuing our example of using Galton's data to estimate the heights of adult children (the response) based on the midparent height (the predictor), let us calculate the fitted values and the residuals.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+        <span class="s1">&#39;Fitted Value&#39;</span><span class="p">,</span> <span class="n">fit</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;Residual&#39;</span><span class="p">,</span> <span class="n">residual</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="n">heights</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>MidParent</th> <th>Child</th> <th>Fitted Value</th> <th>Residual</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>75.43    </td> <td>73.2 </td> <td>70.7124     </td> <td>2.48763  </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69.2 </td> <td>70.7124     </td> <td>-1.51237 </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69   </td> <td>70.7124     </td> <td>-1.71237 </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69   </td> <td>70.7124     </td> <td>-1.71237 </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>73.5 </td> <td>69.5842     </td> <td>3.91576  </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>72.5 </td> <td>69.5842     </td> <td>2.91576  </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>65.5 </td> <td>69.5842     </td> <td>-4.08424 </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>65.5 </td> <td>69.5842     </td> <td>-4.08424 </td>
+        </tr>
+        <tr>
+            <td>72.06    </td> <td>71   </td> <td>68.5645     </td> <td>2.43553  </td>
+        </tr>
+        <tr>
+            <td>72.06    </td> <td>68   </td> <td>68.5645     </td> <td>-0.564467</td>
+        </tr>
+    </tbody>
+</table>
+<p>... (924 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When there are so many variables to work with, it is always helpful to start with visualization. The function <code>scatter_fit</code> draws the scatter plot of the data, as well as the regression line.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">scatter_fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scatter_fit</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/5/Visual_Diagnostics_9_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <em>residual plot</em> can be drawn by plotting the residuals against the predictor variable. The function <code>residual_plot</code> does just that.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">residual_plot</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">x_array</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">x_array</span><span class="p">,</span>
+            <span class="s1">&#39;residuals&#39;</span><span class="p">,</span> <span class="n">residual</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;residuals&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">xlims</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x_array</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">x_array</span><span class="p">))</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlims</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Residual Plot&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">residual_plot</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/5/Visual_Diagnostics_12_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The midparent heights are on the horizontal axis, as in the original scatter plot. But now the vertical axis shows the residuals. Notice that the plot appears to be centered around the horizontal line at the level 0 (shown in dark blue). Notice also that the plot shows no upward or downward trend. We will observe later that this is true of all regressions.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Regression-Diagnostics">Regression Diagnostics<a class="anchor-link" href="#Regression-Diagnostics"> </a></h3><p>Residual plots help us make visual assessments of the quality of a linear regression analysis. Such assessments are called <em>diagnostics</em>. The function <code>regression_diagnostic_plots</code> draws the original scatter plot as well as the residual plot for ease of comparison.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">regression_diagnostic_plots</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">scatter_fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">residual_plot</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/5/Visual_Diagnostics_16_0.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/5/Visual_Diagnostics_16_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This residual plot indicates that linear regression was a reasonable method of estimation. Notice how the residuals are distributed fairly symmetrically above and below the horizontal line at 0, corresponding to the original scatter plot being roughly symmetrical above and below. Notice also that the vertical spread of the plot is fairly even across the most common values of the children's heights. In other words, apart from a few outlying points, the plot isn't narrower in some places and wider in others.</p>
+<p>In other words, the accuracy of the regression appears to be about the same across the observed range of the predictor variable.</p>
+<p><strong>The residual plot of a good regression shows no pattern. The residuals look about the same, above and below the horizontal line at 0, across the range of the predictor variable.</strong></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Detecting-Nonlinearity">Detecting Nonlinearity<a class="anchor-link" href="#Detecting-Nonlinearity"> </a></h3><p>Drawing the scatter plot of the data usually gives an indication of whether the relation between the two variables is non-linear. Often, however, it is easier to spot non-linearity in a residual plot than in the original scatter plot. This is usually because of the scales of the two plots: the residual plot allows us to zoom in on the errors and hence makes it easier to spot patterns.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Dugong_dugon.jpg"/></p>
+<p>Our data are a <a href="http://www.statsci.org/data/oz/dugongs.html">dataset</a>  on the age and length of dugongs, which are marine mammals related to manatees and sea cows (image from <a href="https://commons.wikimedia.org/wiki/File:Dugong_dugon.jpg">Wikimedia Commons</a>). The data are in a table called <code>dugong</code>. Age is measured in years and length in meters. Because dugongs tend not to keep track of their birthdays, ages are estimated based on variables such as the condition of their teeth.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dugong</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;http://www.statsci.org/data/oz/dugongs.txt&#39;</span><span class="p">)</span>
+<span class="n">dugong</span> <span class="o">=</span> <span class="n">dugong</span><span class="o">.</span><span class="n">move_to_start</span><span class="p">(</span><span class="s1">&#39;Length&#39;</span><span class="p">)</span>
+<span class="n">dugong</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Length</th> <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1.8   </td> <td>1   </td>
+        </tr>
+        <tr>
+            <td>1.85  </td> <td>1.5 </td>
+        </tr>
+        <tr>
+            <td>1.87  </td> <td>1.5 </td>
+        </tr>
+        <tr>
+            <td>1.77  </td> <td>1.5 </td>
+        </tr>
+        <tr>
+            <td>2.02  </td> <td>2.5 </td>
+        </tr>
+        <tr>
+            <td>2.27  </td> <td>4   </td>
+        </tr>
+        <tr>
+            <td>2.15  </td> <td>5   </td>
+        </tr>
+        <tr>
+            <td>2.26  </td> <td>5   </td>
+        </tr>
+        <tr>
+            <td>2.35  </td> <td>7   </td>
+        </tr>
+        <tr>
+            <td>2.47  </td> <td>8   </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (17 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we could measure the length of a dugong, what could we say about its age? Let's examine what our data say. Here is a regression of age (the response) on length (the predictor). The correlation between the two variables is substantial, at 0.83.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">&#39;Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.8296474554905714</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>High correlation notwithstanding, the plot shows a curved pattern that is much more visible in the residual plot.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">&#39;Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/5/Visual_Diagnostics_24_0.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/5/Visual_Diagnostics_24_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>While you can spot the non-linearity in the original scatter, it is more clearly evident in the residual plot.</p>
+<p>At the low end of the lengths, the residuals are almost all positive; then they are almost all negative; then positive again at the high end of lengths. In other words the regression estimates have a pattern of being too high, then too low, then too high. That means it would have been better to use a curve instead of a straight line to estimate the ages.</p>
+<p><strong>When a residual plot shows a pattern, there may be a non-linear relation between the variables.</strong></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Detecting-Heteroscedasticity">Detecting Heteroscedasticity<a class="anchor-link" href="#Detecting-Heteroscedasticity"> </a></h3><p><em>Heteroscedasticity</em> is a word that will surely be of interest to those who are preparing for Spelling Bees. For data scientists, its interest lies in its meaning, which is "uneven spread".</p>
+<p>Recall the table <code>hybrid</code> that contains data on hybrid cars in the U.S. Here is a regression of fuel efficiency on the rate of acceleration. The association is negative: cars that accelearate quickly tend to be less efficient.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regression_diagnostic_plots</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">&#39;acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;mpg&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/5/Visual_Diagnostics_27_0.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/5/Visual_Diagnostics_27_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice how the residual plot flares out towards the low end of the accelerations. In other words, the variability in the size of the errors is greater for low values of acceleration than for high values. Uneven variation is often more easily noticed in a residual plot than in the original scatter plot.</p>
+<p><strong>If the residual plot shows uneven variation about the horizontal line at 0, the regression estimates are not equally accurate across the range of the predictor variable.</strong></p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

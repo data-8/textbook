@@ -1,0 +1,1269 @@
+---
+redirect_from:
+  - "/chapters/12/1/ab-testing"
+interact_link: content/chapters/12/1/AB_Testing.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  A/B Testing
+prev_page:
+  url: /chapters/12/Comparing_Two_Samples.html
+  title: |-
+    Comparing Two Samples
+next_page:
+  url: /chapters/12/2/Deflategate.html
+  title: |-
+    Deflategate
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="A/B-Testing">A/B Testing<a class="anchor-link" href="#A/B-Testing"> </a></h3><p>In modern data analytics, deciding whether two numerical samples come from the same underlying distribution is called <em>A/B testing</em>. The name refers to the labels of the two samples, A and B.</p>
+<p>We will develop the method in the context of an example. The data come from a sample of newborns in a large hospital system. We will treat it as if it were a simple random sample though the sampling was done in multiple stages. <a href="https://www.stat.berkeley.edu/~statlabs/">Stat Labs</a> by Deborah Nolan and Terry Speed has details about a larger dataset from which this set is drawn.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Smokers-and-Nonsmokers">Smokers and Nonsmokers<a class="anchor-link" href="#Smokers-and-Nonsmokers"> </a></h3><p>The table <code>births</code> contains the following variables for 1,174 mother-baby pairs: the baby's birth weight in ounces, the number of gestational days, the mother's age in completed years, the mother's height in inches, pregnancy weight in pounds, and whether or not the mother smoked during pregnancy.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">births</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;baby.csv&#39;</span><span class="p">)</span>
+<span class="n">births</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Birth Weight</th> <th>Gestational Days</th> <th>Maternal Age</th> <th>Maternal Height</th> <th>Maternal Pregnancy Weight</th> <th>Maternal Smoker</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>120         </td> <td>284             </td> <td>27          </td> <td>62             </td> <td>100                      </td> <td>False          </td>
+        </tr>
+        <tr>
+            <td>113         </td> <td>282             </td> <td>33          </td> <td>64             </td> <td>135                      </td> <td>False          </td>
+        </tr>
+        <tr>
+            <td>128         </td> <td>279             </td> <td>28          </td> <td>64             </td> <td>115                      </td> <td>True           </td>
+        </tr>
+        <tr>
+            <td>108         </td> <td>282             </td> <td>23          </td> <td>67             </td> <td>125                      </td> <td>True           </td>
+        </tr>
+        <tr>
+            <td>136         </td> <td>286             </td> <td>25          </td> <td>62             </td> <td>93                       </td> <td>False          </td>
+        </tr>
+        <tr>
+            <td>138         </td> <td>244             </td> <td>33          </td> <td>62             </td> <td>178                      </td> <td>False          </td>
+        </tr>
+        <tr>
+            <td>132         </td> <td>245             </td> <td>23          </td> <td>65             </td> <td>140                      </td> <td>False          </td>
+        </tr>
+        <tr>
+            <td>120         </td> <td>289             </td> <td>25          </td> <td>62             </td> <td>125                      </td> <td>False          </td>
+        </tr>
+        <tr>
+            <td>143         </td> <td>299             </td> <td>30          </td> <td>66             </td> <td>136                      </td> <td>True           </td>
+        </tr>
+        <tr>
+            <td>140         </td> <td>351             </td> <td>27          </td> <td>68             </td> <td>120                      </td> <td>False          </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (1164 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One of the aims of the study was to see whether maternal smoking was associated with birth weight. Let's see what we can say about the two variables.</p>
+<p>We'll start by selecting just <code>Birth Weight</code> and <code>Maternal Smoker</code>. There are 715 non-smokers among the women in the sample, and 459 smokers.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">smoking_and_birthweight</span> <span class="o">=</span> <span class="n">births</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">smoking_and_birthweight</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Maternal Smoker</th> <th>count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>False          </td> <td>715  </td>
+        </tr>
+        <tr>
+            <td>True           </td> <td>459  </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's look at the distribution of the birth weights of the babies of the non-smoking mothers compared to those of the smoking mothers. To generate two overlaid histograms, we will use <code>hist</code> with the optional <code>group</code> argument which is a column label or index. The rows of the table are first grouped by this column and then a histogram is drawn for each one.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">smoking_and_birthweight</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;Birth Weight&#39;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/12/1/AB_Testing_8_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The distribution of the weights of the babies born to mothers who smoked appears to be based slightly to the left of the distribution corresponding to non-smoking mothers. The weights of the babies of the mothers who smoked seem lower on average than the weights of the babies of the non-smokers.</p>
+<p>This raises the question of whether the difference reflects just chance variation or a difference in the distributions in the larger population. Could it be that there is no difference between the two distributions in the population, but we are seeing a difference in the samples just because of the mothers who happened to be selected?</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Hypotheses">The Hypotheses<a class="anchor-link" href="#The-Hypotheses"> </a></h3><p>We can try to answer this question by a test of hypotheses. The chance model that we will test says that there is no underlying difference in the popuations; the distributions in the samples are different just due to chance.</p>
+<p>Formally, this is the null hypothesis. We are going to have to figure out how to simulate a useful statistic under this hypothesis. But as a start, let's just state the two natural hypotheses.</p>
+<p><strong>Null hypothesis:</strong> In the population, the distribution of birth weights of babies is the same for mothers who don't smoke as for mothers who do. The difference in the sample is due to chance.</p>
+<p><strong>Alternative hypothesis:</strong> In the population, the babies of the mothers who smoke have a lower birth weight, on average, than the babies of the non-smokers.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Test-Statistic">Test Statistic<a class="anchor-link" href="#Test-Statistic"> </a></h3><p>The alternative hypothesis compares the average birth weights of the two groups and says that the average for the mothers who smoke is smaller. Therefore it is reasonable for us to use the difference between the two group means as our statistic.</p>
+<p>We will do the subtraction in the order "average weight of the smoking group $-$ average weight of the non-smoking group". Small values (that is, large negative values) of this statistic will favor the alternative hypothesis.</p>
+<p>The observed value of the test statistic is about $-9.27$ ounces.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">means_table</span> <span class="o">=</span> <span class="n">smoking_and_birthweight</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+<span class="n">means_table</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Maternal Smoker</th> <th>Birth Weight average</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>False          </td> <td>123.085             </td>
+        </tr>
+        <tr>
+            <td>True           </td> <td>113.819             </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">means</span> <span class="o">=</span> <span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">observed_difference</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">means</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">observed_difference</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-9.266142572024918</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are going compute such differences repeatedly in our simulations below, so we will define a function to do the job. The function takes three arguments:</p>
+<ul>
+<li>the name of the table of data</li>
+<li>the label of the column that contains the numerical variable whose average is of interest</li>
+<li>the label of the column that contains the Boolean variable for grouping</li>
+</ul>
+<p>It returns the difference between the means of the <code>True</code> group and the <code>False</code> group.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">difference_of_means</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">group_label</span><span class="p">):</span>
+    <span class="n">reduced</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">group_label</span><span class="p">)</span>
+    <span class="n">means_table</span> <span class="o">=</span> <span class="n">reduced</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">group_label</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">means</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">means</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To check that the function is working, let's use it to calculate the observed difference between the means of the two groups in the sample.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">difference_of_means</span><span class="p">(</span><span class="n">births</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-9.266142572024918</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's the same as the value of <code>observed_difference</code> calculated earlier.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Predicting-the-Statistic-Under-the-Null-Hypothesis">Predicting the Statistic Under the Null Hypothesis<a class="anchor-link" href="#Predicting-the-Statistic-Under-the-Null-Hypothesis"> </a></h3><p>To see how the statistic should vary under the null hypothesis, we have to figure out how to simulate the statistic under that hypothesis. A clever method based on <em>random permutations</em> does just that.</p>
+<p>If there were no difference between the two distributions in the underlying population, then whether a birth weight has the label <code>True</code> or <code>False</code> with respect to maternal smoking should make no difference to the average. The idea, then, is to shuffle all the labels randomly among the mothers. This is called <em>random permutation</em>.</p>
+<p>Take the difference of the two new group means: the mean weight of the babies whose mothers have been randomly labeled smokers and the mean weight of the babies of the remaining mothers who have all been randomly labeled non-smokers. This is a simulated value of the test statistic under the null hypothesis.</p>
+<p>Let's see how to do this. It's always a good idea to start with the data.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">smoking_and_birthweight</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Maternal Smoker</th> <th>Birth Weight</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>False          </td> <td>120         </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>113         </td>
+        </tr>
+        <tr>
+            <td>True           </td> <td>128         </td>
+        </tr>
+        <tr>
+            <td>True           </td> <td>108         </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>136         </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>138         </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>132         </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>120         </td>
+        </tr>
+        <tr>
+            <td>True           </td> <td>143         </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>140         </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (1164 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are 1,174 rows in the table. To shuffle all the labels, we will draw a random sample of 1,174 rows without replacement. Then the sample will include all the rows of the table, in random order.</p>
+<p>We can use the Table method <code>sample</code> with the optional <code>with_replacement=False</code> argument. We don't have to specify a sample size, because by default, <code>sample</code> draws as many times as there are rows in the table.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shuffled_labels</span> <span class="o">=</span> <span class="n">smoking_and_birthweight</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">original_and_shuffled</span> <span class="o">=</span> <span class="n">smoking_and_birthweight</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Shuffled Label&#39;</span><span class="p">,</span> <span class="n">shuffled_labels</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">original_and_shuffled</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Maternal Smoker</th> <th>Birth Weight</th> <th>Shuffled Label</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>False          </td> <td>120         </td> <td>False         </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>113         </td> <td>False         </td>
+        </tr>
+        <tr>
+            <td>True           </td> <td>128         </td> <td>True          </td>
+        </tr>
+        <tr>
+            <td>True           </td> <td>108         </td> <td>False         </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>136         </td> <td>True          </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>138         </td> <td>True          </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>132         </td> <td>True          </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>120         </td> <td>False         </td>
+        </tr>
+        <tr>
+            <td>True           </td> <td>143         </td> <td>True          </td>
+        </tr>
+        <tr>
+            <td>False          </td> <td>140         </td> <td>True          </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (1164 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each baby's mother now has a random smoker/non-smoker label in the column <code>Shuffled Label</code>, while her original label is in <code>Maternal Smoker</code>. If the null hypothesis is true, all the random re-arrangements of the labels should be equally likely.</p>
+<p>Let's see how different the average weights are in the two randomly labeled groups.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shuffled_only</span> <span class="o">=</span> <span class="n">original_and_shuffled</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">)</span>
+<span class="n">shuffled_group_means</span> <span class="o">=</span> <span class="n">shuffled_only</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Shuffled Label&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+<span class="n">shuffled_group_means</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Shuffled Label</th> <th>Birth Weight average</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>False         </td> <td>119.709             </td>
+        </tr>
+        <tr>
+            <td>True          </td> <td>119.078             </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The averages of the two randomly selected groups are quite a bit closer than the averages of the two original groups. We can use our function <code>difference_of_means</code> to find the two differences.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">difference_of_means</span><span class="p">(</span><span class="n">original_and_shuffled</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Shuffled Label&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-0.6306595365418843</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">difference_of_means</span><span class="p">(</span><span class="n">original_and_shuffled</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-9.266142572024918</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But could a different shuffle have resulted in a larger difference between the group averages? To get a sense of the variability, we must simulate the difference many times.</p>
+<p>As always, we will start by defining a function that simulates one value of the test statistic under the null hypothesis. This is just a matter of collecting the code that we wrote above. But because we will later want to use the same process for comparing means of other variables, we will define a function that takes three arguments:</p>
+<ul>
+<li>the name of the table of data</li>
+<li>the label of the column that contains the numerical variable</li>
+<li>the label of the column that contains the Boolean variable for grouping</li>
+</ul>
+<p>It returns the difference between the means of two groups formed by randomly shuffling all the labels.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">one_simulated_difference</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">group_label</span><span class="p">):</span>
+    <span class="n">shuffled_labels</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span> <span class="o">=</span> <span class="kc">False</span>
+                                                    <span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">group_label</span><span class="p">)</span>
+    <span class="n">shuffled_table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+        <span class="s1">&#39;Shuffled Label&#39;</span><span class="p">,</span> <span class="n">shuffled_labels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">difference_of_means</span><span class="p">(</span><span class="n">shuffled_table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="s1">&#39;Shuffled Label&#39;</span><span class="p">)</span>   
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Run the cell below a few times to see how the output changes.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">one_simulated_difference</span><span class="p">(</span><span class="n">births</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-1.8218839983545791</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Permutation-Test">Permutation Test<a class="anchor-link" href="#Permutation-Test"> </a></h3><p>Tests based on random permutations of the data are called <em>permutation tests</em>. We are performing one in this example. In the cell below, we will simulate our test statistic – the difference between the averages of the two groups – many times and collect the differences in an array.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">differences</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+    <span class="n">new_difference</span> <span class="o">=</span> <span class="n">one_simulated_difference</span><span class="p">(</span><span class="n">births</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">)</span>
+    <span class="n">differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">differences</span><span class="p">,</span> <span class="n">new_difference</span><span class="p">)</span>                               
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The array <code>differences</code> contains 5,000 simulated values of our test statistic: the difference between the mean weight in the smoking group and the mean weight in the non-smoking group, when the labels have been assigned at random.</p>
+<h3 id="Conclusion-of-the-Test">Conclusion of the Test<a class="anchor-link" href="#Conclusion-of-the-Test"> </a></h3><p>The histogram below shows the distribution of these 5,000 values. It is the empirical distribution of the test statistic simulated under the null hypothesis. This is a prediction about the test statistic, based on the null hypothesis.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Difference Between Group Means&#39;</span><span class="p">,</span> <span class="n">differences</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Observed Difference:&#39;</span><span class="p">,</span> <span class="n">observed_difference</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Prediction Under the Null Hypothesis&#39;</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Observed Difference: -9.266142572024918
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/12/1/AB_Testing_36_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice how the distribution is centered around 0. This makes sense, because under the null hypothesis the two groups should have roughly the same average. Therefore the difference between the group averages should be around 0.</p>
+<p>The observed difference in the original sample is about $-9.27$ ounces, which doesn't even appear on the horizontal scale of the histogram. The observed value of the statistic and the predicted behavior of the statistic under the null hypothesis are inconsistent.</p>
+<p>The conclusion of the test is that the data favor the alternative over the null. The average birth weight of babies born to mothers who smoke is less than the average birth weight of babies born to non-smokers.</p>
+<p>If you want to compute an empirical P-value, remember that low values of the statistic favor the alternative hypothesis.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">empirical_P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">differences</span> <span class="o">&lt;=</span> <span class="n">observed_difference</span><span class="p">)</span> <span class="o">/</span> <span class="n">repetitions</span>
+<span class="n">empirical_P</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The empirical P-value is 0, meaning that none of the 5,000 permuted samples resulted in a difference of -9.27 or lower. This is only an approximation. The exact chance of getting a difference in that range is not 0 but it is vanishingly small.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Another-Permutation-Test">Another Permutation Test<a class="anchor-link" href="#Another-Permutation-Test"> </a></h3><p>We can use the same method to compare other attributes of the smokers and the non-smokers, such as their ages. Histograms of the ages of the two groups show that in the sample, the mothers who smoked tended to be younger.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">smoking_and_age</span> <span class="o">=</span> <span class="n">births</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">,</span> <span class="s1">&#39;Maternal Age&#39;</span><span class="p">)</span>
+<span class="n">smoking_and_age</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;Maternal Age&#39;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/12/1/AB_Testing_41_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The observed difference between the average ages is about $-0.8$ years.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">observed_age_difference</span> <span class="o">=</span> <span class="n">difference_of_means</span><span class="p">(</span><span class="n">births</span><span class="p">,</span> <span class="s1">&#39;Maternal Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">)</span>
+<span class="n">observed_age_difference</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-0.8076725017901509</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember that the difference is calculated as the mean age of the smokers minus the mean age of the non-smokers. The negative sign shows that the smokers are younger on average.</p>
+<p>Is this difference due to chance, or does it reflect an underlying difference in the population?</p>
+<p>As before, we can use a permutation test to answer this question. If the underlying distributions of ages in the two groups are the same, then the empirical distribution of the difference based on permuted samples will predict how the statistic should vary due to chance.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">age_differences</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+    <span class="n">new_difference</span> <span class="o">=</span> <span class="n">one_simulated_difference</span><span class="p">(</span><span class="n">births</span><span class="p">,</span> <span class="s1">&#39;Maternal Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Maternal Smoker&#39;</span><span class="p">)</span>
+    <span class="n">age_differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">age_differences</span><span class="p">,</span> <span class="n">new_difference</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The observed difference is in the tail of the empirical distribution of the differences simulated under the null hypothesis.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Difference Between Group Means&#39;</span><span class="p">,</span> <span class="n">age_differences</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">observed_age_difference</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Prediction Under the Null Hypothesis&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Observed Difference:&#39;</span><span class="p">,</span> <span class="n">observed_age_difference</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Observed Difference: -0.8076725017901509
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/12/1/AB_Testing_47_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The empirical P-value of the test is the proportion of simulated differences that were equal to or less than the observed difference. This is because low values of the difference favor the alternative hypothesis that the smokers were younger on average.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">empirical_P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">age_differences</span> <span class="o">&lt;=</span> <span class="n">observed_age_difference</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5000</span>
+<span class="n">empirical_P</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0104</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The empirical P-value is around 1% and therefore the result is statistically significant. The test supports the hypothesis that the smokers were younger on average.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

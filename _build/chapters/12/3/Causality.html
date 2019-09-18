@@ -1,0 +1,1052 @@
+---
+redirect_from:
+  - "/chapters/12/3/causality"
+interact_link: content/chapters/12/3/Causality.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Causality
+prev_page:
+  url: /chapters/12/2/Deflategate.html
+  title: |-
+    Deflategate
+next_page:
+  url: /chapters/13/Estimation.html
+  title: |-
+    Estimation
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Causality">Causality<a class="anchor-link" href="#Causality"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our methods for comparing two samples have a powerful use in the analysis of randomized controlled experiments. Since the treatment and control groups are assigned randomly in such experiements, differences in their outcomes can be compared to what would happen just due to chance if the treatment had no effect at all. If the observed differences are more marked than what we would predict as purely due to chance, we will have evidence of <em>causation</em>. Because of the unbiased assignment of individuals to the treatment and control groups, differences in the outcomes of the two groups can be ascribed to the treatment.</p>
+<p>The key to the analysis of randomized controlled experiments is understanding exactly how chance enters the picture. This helps us set up clear null and alternative hypotheses. Once that's done, we can simply use the methods of the previous sections to complete the analysis.</p>
+<p>Let's see how to do this in an example.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Treating-Chronic-Back-Pain:-A-Randomized-Controlled-Trial">Treating Chronic Back Pain: A Randomized Controlled Trial<a class="anchor-link" href="#Treating-Chronic-Back-Pain:-A-Randomized-Controlled-Trial"> </a></h3><p>Low-back pain in adults can be very persistent and hard to treat. Common methods run the gamut from corticosteroids to acupuncture. A <a href="https://www.ncbi.nlm.nih.gov/pubmed/11376175">randomized controlled trial (RCT)</a> examined the effect of using Botulinum Toxin A as a treatment. Botulinum toxin is a neurotoxic protein that causes the disease botulism; <a href="https://en.wikipedia.org/wiki/Botulinum_toxin">Wikipedia</a> says that botulinum "is the most acutely lethal toxin known." There are seven types of botulinum toxin. Botulinum Toxin A is one of the types that can cause disease in humans, but it is also used in medicine to treat various diseases involving the muscles. The RCT analyzed by Foster, Clapp, and Jabbari in 2001 examined it as a treatment for low back pain.</p>
+<p>Thirty one patients with low-back pain were randomized into treatment and control groups, with 15 in the treatment group and 16 in control. The control group was given normal saline, and the trials were run double-blind so that neither doctors nor patients knew which group they were in.</p>
+<p>Eight weeks after the start of the study, nine of the 15 in the treatment group and two of the 16 in the control group had pain relief (according to a precise definition used by the researchers). These data are in the table <code>bta</code> and appear to show that the treatment has a clear benefit.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bta</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;bta.csv&#39;</span><span class="p">)</span>
+<span class="n">bta</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Group</th> <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Control  </td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember that counting is the same as adding zeros and ones. The sum of 1's in the control group is the number of control group patients who had pain relief. So the <em>average</em> of the number of 1's is the <em>proportion</em> of control group patients who had pain relief.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bta</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Group&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Group</th> <th>Result average</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Control  </td> <td>0.125         </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0.6           </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the treatment group, 60% of the patients had pain relief, compared to only 12.5% in the control group. None of the patients suffered any side effects.</p>
+<p>So the indications are that botulinum toxin A did better than the saline. But the conclusion isn't yet a slam-dunk. The patients were assigned at random into the two groups, so perhaps the difference could just be due to chance?</p>
+<p>To understand what this means, we have to consider the possibility that among the 31 patients in the study, some were simply better able to recover than others, even without any help from the treatment. What if an unusually large proportion of such patients got assigned to the treatment group, just by chance? Then even if the treatment did nothing more than the saline in the control group, the results of the treatment group might look better than those of the control group.</p>
+<p>To account for this possibility, let's start by carefully setting up the chance model.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Potential-Outcomes">Potential Outcomes<a class="anchor-link" href="#Potential-Outcomes"> </a></h3><p>Before the patients are randomized into the two groups, our minds instinctively imagine two possible outcomes for each patient: the outcome that the patient would have if assigned to the treatment group, and the outcome that the same patient would have if assigned to the control group. These are called the two <em>potential outcomes</em> of the patient.</p>
+<p>Thus there are 31 potential treatment outcomes and 31 potential control outcomes. The question is about the distributions of these two sets of 31 outcomes each. Are they the same, or are they different?</p>
+<p>We can't answer this just yet, because we don't get to see all 31 values in each group. We just get to see a randomly selected 16 of the potential control outcomes, and the treatment outcomes of <em>the remaining</em> 15 patients.</p>
+<p>Here is a good way to visualize the setting. Each patient has a two-sided ticket:</p>
+<p><img src="../../../images/causality1.png" alt="Two-sided ticket"></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>After the randomization, we get to see the right half of a randomly selected set of tickets, and the left half of the remaining group.</p>
+<p><img src="../../../images/causality2.png" alt="Half-tickets"></p>
+<p>The table <code>observed_outcomes</code> collects the information about every patient's potential outcomes, leaving the unobserved half of each "ticket" blank.  (It's just another way of thinking about the <code>bta</code> table, carrying the same information.)</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">observed_outcomes</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s2">&quot;observed_outcomes.csv&quot;</span><span class="p">)</span>
+<span class="n">observed_outcomes</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Group</th> <th>Outcome if assigned treatment</th> <th>Outcome if assigned control</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>1                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>1                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>Unknown                      </td> <td>0                          </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0                            </td> <td>Unknown                    </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Hypotheses">The Hypotheses<a class="anchor-link" href="#The-Hypotheses"> </a></h3><p>The question is whether the treatment does anything. In terms of the table <code>observed_outcomes</code>, the question is whether the distribution of the 31 "treatment" values in Column 1  (including the unknown ones) is different from the distribution of the 31 "control" values in Column 2 (again including the unknown ones).</p>
+<p><strong>Null Hypothesis:</strong> The distribution of all 31 potential "treatment" outcomes is the same as that of all 31 potential "control" outcomes. Botulinum toxin A does nothing different from saline; the difference in the two samples is just due to chance.</p>
+<p><strong>Alternative Hypothesis:</strong> The distribution of 31 potential "treatment" outcomes is different from that of the 31 control outcomes. The treatment does something different from the control.</p>
+<p>There are 31 observed outcomes jointly in the two groups. If the null hypothesis were true, it wouldn't matter which of those 31 outcomes were labeled "treatment" and which "control." Any random subset of 16 out of the 31 values could be called "control" and the remaining 15 "treatment".</p>
+<p>We can simulate this. We can randomly permute the 31 values, split them into two groups of 16 and 15, and see how different the distributions in the two groups are. Since the data are zeros and ones, we can just see how different the two proportions are.</p>
+<p>That's exactly what we did for A/B testing in the previous section. Sample A is now the control group and Sample B the treatment group. We will carry out the test below showing the details of all the steps. You should confirm that they are the same as the steps carried out for A/B testing.</p>
+<h3 id="The-Test-Statistic">The Test Statistic<a class="anchor-link" href="#The-Test-Statistic"> </a></h3><p>If the two group proportions are very different from each other, we will lean towards the alternative hypothesis that the two underlying distributions are different. So our test statistic will be the distance between the two group proportions, that is, the absolute value of the difference between them.</p>
+<p>Large values of the test statistic will favor the alternative hypothesis over the null.</p>
+<p>Since the two group proportions were 0.6 and 0.125, the observed value of the test statistic is $\big{\vert} 0.6 - 0.125 \big{\vert} = 0.475$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bta</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Group&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Group</th> <th>Result average</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Control  </td> <td>0.125         </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0.6           </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">observed_proportions</span> <span class="o">=</span> <span class="n">bta</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Group&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">observed_distance</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">observed_proportions</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">observed_proportions</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">observed_distance</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.475</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we have done before, we will define a function that takes the following arguments:</p>
+<ul>
+<li>the name of the table of data</li>
+<li>the column label of the numerical variable</li>
+<li>the column label of the group labels</li>
+</ul>
+<p>and returns the absolute difference between the two group proportions.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">group_label</span><span class="p">):</span>
+    <span class="n">reduced</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">group_label</span><span class="p">)</span>
+    <span class="n">proportions</span> <span class="o">=</span> <span class="n">reduced</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">group_label</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">proportions</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">proportions</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distance</span><span class="p">(</span><span class="n">bta</span><span class="p">,</span> <span class="s1">&#39;Result&#39;</span><span class="p">,</span> <span class="s1">&#39;Group&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.475</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Predicting-the-Statistic-Under-the-Null-Hypothesis">Predicting the Statistic Under the Null Hypothesis<a class="anchor-link" href="#Predicting-the-Statistic-Under-the-Null-Hypothesis"> </a></h3><p>We can simulate results under the null hypothesis, to see how our test statistic should come out if the null hypothesis is true.</p>
+<h4 id="Generating-One-Value-of-the-Statistic">Generating One Value of the Statistic<a class="anchor-link" href="#Generating-One-Value-of-the-Statistic"> </a></h4><p>The simulation follows exactly the same process we used in the previous section. We start by randomly permuting the all group labels and then attaching the shuffled labels to the 0/1 results.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shuffled_labels</span> <span class="o">=</span> <span class="n">bta</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bta_with_shuffled_labels</span> <span class="o">=</span> <span class="n">bta</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Shuffled Label&#39;</span><span class="p">,</span> <span class="n">shuffled_labels</span><span class="p">)</span>
+<span class="n">bta_with_shuffled_labels</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Group</th> <th>Result</th> <th>Shuffled Label</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Control  </td> <td>1     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>1     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Control  </td> <td>0     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>1     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td> <td>Treatment     </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td> <td>Control       </td>
+        </tr>
+        <tr>
+            <td>Treatment</td> <td>0     </td> <td>Control       </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can now find the distance between the two proportions after the group labels have been shuffled.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distance</span><span class="p">(</span><span class="n">bta_with_shuffled_labels</span><span class="p">,</span> <span class="s1">&#39;Result&#39;</span><span class="p">,</span> <span class="s1">&#39;Shuffled Label&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.041666666666666685</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is quite different from the distance between the two original proportions.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distance</span><span class="p">(</span><span class="n">bta_with_shuffled_labels</span><span class="p">,</span> <span class="s1">&#39;Result&#39;</span><span class="p">,</span> <span class="s1">&#39;Group&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.475</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Permutation-Test">Permutation Test<a class="anchor-link" href="#Permutation-Test"> </a></h3><p>If we shuffled the labels again, how different would the new distance be? To answer this, we will define a function that simulates one simulated value of the distance under the hypothesis of random draws from the same underlying distribution. And then we will collect 20,000 such simulated values in an array.</p>
+<p>You can see that we are doing exactly what we did in our previous examples of the permutation test.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">one_simulated_distance</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">group_label</span><span class="p">):</span>
+    <span class="n">shuffled_labels</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span> <span class="o">=</span> <span class="kc">False</span>
+                                                    <span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">group_label</span><span class="p">)</span>
+    <span class="n">shuffled_table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+        <span class="s1">&#39;Shuffled Label&#39;</span><span class="p">,</span> <span class="n">shuffled_labels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">distance</span><span class="p">(</span><span class="n">shuffled_table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="s1">&#39;Shuffled Label&#39;</span><span class="p">)</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distances</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">20000</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+    <span class="n">new_distance</span> <span class="o">=</span> <span class="n">one_simulated_distance</span><span class="p">(</span><span class="n">bta</span><span class="p">,</span> <span class="s1">&#39;Result&#39;</span><span class="p">,</span> <span class="s1">&#39;Group&#39;</span><span class="p">)</span>
+    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">new_distance</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Conclusion-of-the-Test">Conclusion of the Test<a class="anchor-link" href="#Conclusion-of-the-Test"> </a></h3><p>The array <code>distances</code> contains 20,000 values of our test statistic simulated under the null hypothesis.</p>
+<p>To find the P-value of the test, remember that large values of the test statistic favor the alternative hypothesis. So the empirical P-value is the proportion of simulated statistics that were equal to or larger than the observed statistic.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">empirical_P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">distances</span> <span class="o">&gt;=</span> <span class="n">observed_distance</span><span class="p">)</span> <span class="o">/</span> <span class="n">repetitions</span>
+<span class="n">empirical_P</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0085</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a small P-value. The observed statistic, shown as the red dot below, is in the tail of the empirical histogram of the test statistic generated under the null hypothesis.</p>
+<p>The result is statistically significant. The test favors the alternative hypothesis over the null. The evidence supports the hypothesis that the treatment is doing something.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">distances</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">observed_distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Prediction Under the Null Hypothesis&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Observed Distance&#39;</span><span class="p">,</span> <span class="n">observed_distance</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Empirical P-value:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">empirical_P</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;%&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Observed Distance 0.475
+Empirical P-value: 0.8500000000000001 %
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/12/3/Causality_30_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The study reports a P-value of 0.009, or 0.9%, which is not far from our empirical value.</p>
+<h3 id="Causality">Causality<a class="anchor-link" href="#Causality"> </a></h3><p>Because the trials were randomized, the test is evidence that the treatment <em>causes</em> the difference. The random assignment of patients to the two groups ensures that there is no confounding variable that could affect the conclusion of causality.</p>
+<p>If the treatment had not been randomly assigned, our test would still point toward an <em>association</em> between the treatment and back pain outcomes among our 31 patients.  But beware: without randomization, this association would not imply that the treatment caused a change in back pain outcomes.  For example, if the patients themselves had chosen whether to administer the treatment, perhaps the patients experiencing more pain would be more likely to choose the treatment <em>and</em> more likely to experience some reduction in pain even without medication.  Pre-existing pain would then be a <em>confounding factor</em> in the analysis.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="A-Meta-Analysis">A Meta-Analysis<a class="anchor-link" href="#A-Meta-Analysis"> </a></h3><p>While the RCT does provide evidence that the botulinum toxin A treatment helped patients, a study of 31 patients isn't enough to establish the effectiveness of a medical treatment. This is not just because of the small sample size.  Our results in this section are valid for the 31 patients in the study, but we are really interested in the population of <em>all possible patients</em>.  If the 31 patients were a random sample from that larger population, our confidence interval would be valid for that population.  But they were not a random sample.</p>
+<p>In 2011, a group of researchers performed a <a href="https://www.ncbi.nlm.nih.gov/pubmed/21249702">meta-analysis</a> of the studies on the treatment. That is, they identified all the available studies of such treatments for low-back pain and summarized the collated results.</p>
+<p>There were several studies but not many could be included in a scientifically sound manner: "We excluded evidence from nineteen studies due to non-randomisation, incomplete or unpublished data." Only three randomized controlled trials remained, one of which is the one we have studied in this section. The meta-analysis gave it the highest assessment among all the studies (LBP stands for low-back pain): "We identified three studies that investigated the merits of BoNT for LBP, but only one had a low risk of bias and evaluated patients with non-specific LBP (N = 31)."</p>
+<p>Putting it all together, the meta-analysis concluded, "There is low quality evidence that BoNT injections improved pain, function, or both better than saline injections and very low quality evidence that they were better than acupuncture or steroid injections. ...  Further research is very likely to have an important impact on the estimate of effect and our confidence in it. Future trials should standardize patient populations, treatment protocols and comparison groups, enlist more participants and include long-term outcomes, cost-benefit analysis and clinical relevance of findings."</p>
+<p>It takes a lot of careful work to establish that a medical treatment has a beneficial effect. Knowing how to analyze randomized controlled trials is a crucial part of this work. Now that you know how to do that, you are well positioned to help medical and other professions establish cause-and-effect relations.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

@@ -1,0 +1,306 @@
+---
+redirect_from:
+  - "/chapters/03/1/expressions"
+interact_link: content/chapters/03/1/Expressions.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Expressions
+prev_page:
+  url: /chapters/03/programming-in-python.html
+  title: |-
+    Programming in Python
+next_page:
+  url: /chapters/03/2/Names.html
+  title: |-
+    Names
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Expressions">Expressions<a class="anchor-link" href="#Expressions"> </a></h1><p>Programming languages are much simpler than human languages. Nonetheless, there are some rules of grammar to learn in any language, and that is where we will begin. In this text, we will use the <a href="https://www.python.org/">Python</a> programming language. Learning the grammar rules is essential, and the same rules used in the most basic programs are also central to more sophisticated programs.</p>
+<p>Programs are made up of <em>expressions</em>, which describe to the computer how to combine pieces of data. For example, a multiplication expression consists of a <code>*</code> symbol between two numerical expressions. Expressions, such as <code>3 * 4</code>, are <em>evaluated</em> by the computer. The value (the result of <em>evaluation</em>) of the last expression in each cell, <code>12</code> in this case, is displayed below the cell.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>12</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The grammar rules of a programming language are rigid. In Python, the <code>*</code> symbol cannot appear twice in a row. The computer will not try to interpret an expression that differs from its prescribed expression structures. Instead, it will show a <code>SyntaxError</code> error. The <em>Syntax</em> of a language is its set of grammar rules, and a <code>SyntaxError</code> indicates that an expression structure doesn't match any of the rules of the language.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">3</span> <span class="o">*</span> <span class="o">*</span> <span class="mi">4</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;&lt;ipython-input-2-012ea60b41dd&gt;&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
+<span class="ansi-red-fg">    3 * * 4</span>
+        ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Small changes to an expression can change its meaning entirely. Below, the space between the <code>*</code>'s has been removed. Because <code>**</code> appears between two numerical expressions, the expression is a well-formed <em>exponentiation</em> expression (the first number raised to the power of the second: 3 times 3 times 3 times 3). The symbols <code>*</code> and <code>**</code> are called <em>operators</em>, and the values they combine are called <em>operands</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">3</span> <span class="o">**</span> <span class="mi">4</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>81</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Common Operators.</strong> Data science often involves combining numerical values, and the set of operators in a programming language are designed to so that expressions can be used to express any sort of arithmetic. In Python, the following operators are essential.</p>
+<table>
+<thead><tr>
+<th>Expression Type</th>
+<th>Operator</th>
+<th>Example</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Addition</td>
+<td><code>+</code></td>
+<td><code>2 + 3</code></td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td><code>-</code></td>
+<td><code>2 - 3</code></td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td><code>*</code></td>
+<td><code>2 * 3</code></td>
+<td><code>6</code></td>
+</tr>
+<tr>
+<td>Division</td>
+<td><code>/</code></td>
+<td><code>7 / 3</code></td>
+<td><code>2.66667</code></td>
+</tr>
+<tr>
+<td>Remainder</td>
+<td><code>%</code></td>
+<td><code>7 % 3</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>Exponentiation</td>
+<td><code>**</code></td>
+<td><code>2 ** 0.5</code></td>
+<td><code>1.41421</code></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Python expressions obey the same familiar rules of <em>precedence</em> as in algebra: multiplication and division occur before addition and subtraction. Parentheses can be used to group together smaller expressions within a larger expression.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">-</span> <span class="mi">9</span> <span class="o">+</span> <span class="mi">10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>17.555555555555557</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">-</span> <span class="mi">9</span> <span class="o">+</span> <span class="mi">10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2017.0</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This chapter introduces many types of expressions. Learning to program involves trying out everything you learn in combination, investigating the behavior of the computer. What happens if you divide by zero? What happens if you divide twice in a row? You don't always need to ask an expert (or the Internet); many of these details can be discovered by trying them out yourself.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

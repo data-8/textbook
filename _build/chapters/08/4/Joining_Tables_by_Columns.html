@@ -1,0 +1,573 @@
+---
+redirect_from:
+  - "/chapters/08/4/joining-tables-by-columns"
+interact_link: content/chapters/08/4/Joining_Tables_by_Columns.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Joining Tables by Columns
+prev_page:
+  url: /chapters/08/3/Cross-Classifying_by_More_than_One_Variable.html
+  title: |-
+    Cross-Classifying
+next_page:
+  url: /chapters/08/5/Bike_Sharing_in_the_Bay_Area.html
+  title: |-
+    Bike Sharing in the Bay Area
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Joining-Tables-by-Columns">Joining Tables by Columns<a class="anchor-link" href="#Joining-Tables-by-Columns"> </a></h3><p>Often, data about the same individuals is maintained in more than one table. For example, one university office might have data about each student's time to completion of degree, while another has data about the student's tuition and financial aid.</p>
+<p>To understand the students' experience, it may be helpful to put the two datasets together. If the data are in two tables, each with one row per student, then we would want to put the columns together, making sure to match the rows so that each student's information remains on a single row.</p>
+<p>Let us do this in the context of a simple example, and then use the method with a larger dataset.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The table <code>cones</code> is one we have encountered earlier. Now suppose each flavor of ice cream comes with a rating that is in a separate table.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cones</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;strawberry&#39;</span><span class="p">,</span> <span class="s1">&#39;vanilla&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;strawberry&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Price&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mf">3.55</span><span class="p">,</span> <span class="mf">4.75</span><span class="p">,</span> <span class="mf">6.55</span><span class="p">,</span> <span class="mf">5.25</span><span class="p">,</span> <span class="mf">5.75</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">cones</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>strawberry</td> <td>3.55 </td>
+        </tr>
+        <tr>
+            <td>vanilla   </td> <td>4.75 </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>6.55 </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>5.25 </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>5.75 </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Kind&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;strawberry&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;vanilla&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Stars&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">ratings</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Kind</th> <th>Stars</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>strawberry</td> <td>2.5  </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>3.5  </td>
+        </tr>
+        <tr>
+            <td>vanilla   </td> <td>4    </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each of the tables has a column that contains ice cream flavors: <code>cones</code> has the column <code>Flavor</code>, and <code>ratings</code> has the column <code>Kind</code>. The entries in these columns can be used to link the two tables.</p>
+<p>The method <code>join</code> creates a new table in which each cone in the <code>cones</code> table is augmented with the Stars information in the <code>ratings</code> table.  For each cone in <code>cones</code>, <code>join</code> finds a row in <code>ratings</code> whose <code>Kind</code> matches the cone's <code>Flavor</code>. We have to tell <code>join</code> to use those columns for matching.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rated</span> <span class="o">=</span> <span class="n">cones</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">ratings</span><span class="p">,</span> <span class="s1">&#39;Kind&#39;</span><span class="p">)</span>
+<span class="n">rated</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Price</th> <th>Stars</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chocolate </td> <td>6.55 </td> <td>3.5  </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>5.75 </td> <td>3.5  </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>3.55 </td> <td>2.5  </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>5.25 </td> <td>2.5  </td>
+        </tr>
+        <tr>
+            <td>vanilla   </td> <td>4.75 </td> <td>4    </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each cone now has not only its price but also the rating of its flavor.</p>
+<p>In general, a call to <code>join</code> that augments a table (say <code>table1</code>) with information from another table (say <code>table2</code>) looks like this:</p>
+
+<pre><code>table1.join(table1_column_for_joining, table2, table2_column_for_joining)
+
+</code></pre>
+<p>The new table <code>rated</code> allows us to work out the price per star, which you can think of as an informal measure of value. Low values are good – they mean that you are paying less for each rating star.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rated</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;$/Star&#39;</span><span class="p">,</span> <span class="n">rated</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">rated</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Stars&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Price</th> <th>Stars</th> <th>$/Star</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>vanilla   </td> <td>4.75 </td> <td>4    </td> <td>1.1875 </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>3.55 </td> <td>2.5  </td> <td>1.42   </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>5.75 </td> <td>3.5  </td> <td>1.64286</td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>6.55 </td> <td>3.5  </td> <td>1.87143</td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>5.25 </td> <td>2.5  </td> <td>2.1    </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Though strawberry has the lowest rating among the three flavors, the less expensive strawberry cone does well on this measure because it doesn't cost a lot per star.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Side note.</strong> Does the order we list the two tables matter? Let's try it.  As you see it, this changes the order that the columns appear in, and can potentially changes the order of the rows, but it doesn't make any fundamental difference.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;Kind&#39;</span><span class="p">,</span> <span class="n">cones</span><span class="p">,</span> <span class="s1">&#39;Flavor&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Kind</th> <th>Stars</th> <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chocolate </td> <td>3.5  </td> <td>6.55 </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>3.5  </td> <td>5.75 </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>2.5  </td> <td>3.55 </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>2.5  </td> <td>5.25 </td>
+        </tr>
+        <tr>
+            <td>vanilla   </td> <td>4    </td> <td>4.75 </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Also note that the join will only contain information about items that appear in both tables. Let's see an example. Suppose there is a table of reviews of some ice cream cones, and we have found the average review for each flavor.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">reviews</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;vanilla&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;vanilla&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Stars&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">reviews</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Stars</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>vanilla  </td> <td>5    </td>
+        </tr>
+        <tr>
+            <td>chocolate</td> <td>3    </td>
+        </tr>
+        <tr>
+            <td>vanilla  </td> <td>5    </td>
+        </tr>
+        <tr>
+            <td>chocolate</td> <td>4    </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">average_review</span> <span class="o">=</span> <span class="n">reviews</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+<span class="n">average_review</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Stars average</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chocolate</td> <td>3.5          </td>
+        </tr>
+        <tr>
+            <td>vanilla  </td> <td>5            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can join <code>cones</code> and <code>average_review</code> by providing the labels of the columns by which to join.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cones</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">average_review</span><span class="p">,</span> <span class="s1">&#39;Flavor&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Price</th> <th>Stars average</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chocolate</td> <td>6.55 </td> <td>3.5          </td>
+        </tr>
+        <tr>
+            <td>chocolate</td> <td>5.75 </td> <td>3.5          </td>
+        </tr>
+        <tr>
+            <td>vanilla  </td> <td>4.75 </td> <td>5            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice how the strawberry cones have disappeared. None of the reviews are for strawberry cones, so there is nothing to which the <code>strawberry</code> rows can be joined. This might be a problem, or it might not be - that depends on the analysis we are trying to perform with the joined table.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

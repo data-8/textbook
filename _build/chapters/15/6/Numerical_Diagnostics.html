@@ -1,0 +1,732 @@
+---
+redirect_from:
+  - "/chapters/15/6/numerical-diagnostics"
+interact_link: content/chapters/15/6/Numerical_Diagnostics.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Numerical Diagnostics
+prev_page:
+  url: /chapters/15/5/Visual_Diagnostics.html
+  title: |-
+    Visual Diagnostics
+next_page:
+  url: /chapters/16/Inference_for_Regression.html
+  title: |-
+    Inference for Regression
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># HIDDEN </span>
+
+<span class="n">galton</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;galton.csv&#39;</span><span class="p">)</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="n">galton</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;midparentHeight&#39;</span><span class="p">,</span> <span class="s1">&#39;childHeight&#39;</span><span class="p">)</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+<span class="n">dugong</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;dugongs.csv&#39;</span><span class="p">)</span>
+<span class="n">dugong</span> <span class="o">=</span> <span class="n">dugong</span><span class="o">.</span><span class="n">move_to_start</span><span class="p">(</span><span class="s1">&#39;Length&#39;</span><span class="p">)</span>
+<span class="n">hybrid</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;hybrid.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Numerical-Diagnostics">Numerical Diagnostics<a class="anchor-link" href="#Numerical-Diagnostics"> </a></h3><p>In addition to visualization, we can use numerical properties of residuals to assess the quality of regression. We will not prove these properties mathematically. Rather, we will observe them by computation and see what they tell us about the regression.</p>
+<p>All of the facts listed below hold for all shapes of scatter plots, whether or not they are linear.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Residual-Plots-Show-No-Trend">Residual Plots Show No Trend<a class="anchor-link" href="#Residual-Plots-Show-No-Trend"> </a></h3><p><strong>For every linear regression, whether good or bad, the residual plot shows no trend. Overall, it is flat. In other words, the residuals and the predictor variable are uncorrelated.</strong></p>
+<p>You can see this in all the residual plots above. We can also calculate the correlation between the predictor variable and the residuals in each case.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-2.719689807647064e-16</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That doesn't look like zero, but it is a tiny number that is 0 apart from rounding error due to computation. Here it is again, correct to 10 decimal places. The minus sign is because of the rounding that above.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Residual&#39;</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-0.0</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dugong</span> <span class="o">=</span> <span class="n">dugong</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+       <span class="s1">&#39;Fitted Value&#39;</span><span class="p">,</span> <span class="n">fit</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">&#39;Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">),</span>
+       <span class="s1">&#39;Residual&#39;</span><span class="p">,</span> <span class="n">residual</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">&#39;Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">round</span><span class="p">(</span><span class="n">correlation</span><span class="p">(</span><span class="n">dugong</span><span class="p">,</span> <span class="s1">&#39;Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Residual&#39;</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Average-of-Residuals">Average of Residuals<a class="anchor-link" href="#Average-of-Residuals"> </a></h3><p><strong>No matter what the shape of the scatter diagram, the average of the residuals is 0.</strong></p>
+<p>This is analogous to the fact that if you take any list of numbers and calculate the list of deviations from average, the average of the deviations is 0.</p>
+<p>In all the residual plots above, you have seen the horizontal line at 0 going through the center of the plot. That is a visualization of this fact.</p>
+<p>As a numerical example, here is the average of the residuals in the regression of children's heights based on parents' heights in Galton's dataset.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)),</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The same is true of the average of the residuals in the regression of the age of dugongs on their length. The mean of the residuals is 0, apart from rounding error.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dugong</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)),</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="SD-of-the-Residuals">SD of the Residuals<a class="anchor-link" href="#SD-of-the-Residuals"> </a></h3><p><strong>No matter what the shape of the scatter plot, the SD of the residuals is a fraction of the SD of the response variable. The fraction is  $\sqrt{1-r^2}$.</strong></p>
+$$
+\mbox{SD of residuals} ~=~ \sqrt{1 - r^2} \cdot \mbox{SD of }y
+$$<p>We will soon see how this measures the accuracy of the regression estimate. But first, let's confirm it by example.</p>
+<p>In the case of children's heights and midparent heights, the SD of the residuals is about 3.39 inches.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.3880799163953426</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's the same as $\sqrt{1-r^2}$ times the SD of response variable:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Child&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.388079916395342</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The same is true for the regression of mileage on acceleration of hybrid cars. The correlation $r$ is negative (about -0.5), but $r^2$ is positive and therefore $\sqrt{1-r^2}$ is a fraction.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">&#39;acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;mpg&#39;</span><span class="p">)</span>
+<span class="n">r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-0.5060703843771186</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hybrid</span> <span class="o">=</span> <span class="n">hybrid</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+     <span class="s1">&#39;fitted mpg&#39;</span><span class="p">,</span> <span class="n">fit</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">&#39;acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;mpg&#39;</span><span class="p">),</span>
+     <span class="s1">&#39;residual&#39;</span><span class="p">,</span> <span class="n">residual</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">&#39;acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;mpg&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">hybrid</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;residual&#39;</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">hybrid</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;mpg&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(9.43273683343029, 9.43273683343029)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let us see how the SD of the residuals is a measure of how good the regression is. Remember that the average of the residuals is 0. Therefore the smaller the SD of the residuals is, the closer the residuals are to 0. In other words, if the SD of the residuals is small, the overall size of the errors in regression is small.</p>
+<p>The extreme cases are when $r=1$ or $r=-1$. In both cases, $\sqrt{1-r^2} = 0$. Therefore the residuals have an average of 0 and an SD of 0 as well, and therefore the residuals are all equal to 0. The regression line does a perfect job of estimation. As we saw earlier in this chapter, if $r = \pm 1$, the scatter plot is a perfect straight line and is the same as the regression line, so indeed there is no error in the regression estimate.</p>
+<p>But usually $r$ is not at the extremes. If $r$ is neither $\pm 1$ nor 0, then $\sqrt{1-r^2}$ is a proper fraction, and the rough overall size of the error of the regression estimate is somewhere between 0 and the SD of $y$.</p>
+<p>The worst case is when $r = 0$. Then $\sqrt{1-r^2} =1$, and the SD of the residuals is equal to the SD of $y$. This is consistent with the observation that if $r=0$ then the regression line is a flat line at the average of $y$. In this situation, the root mean square error of regression is the root mean squared deviation from the average of $y$, which is the SD of $y$. In practical terms, if $r = 0$ then there is no linear association between the two variables, so there is no benefit in using linear regression.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Another-Way-to-Interpret-$r$">Another Way to Interpret $r$<a class="anchor-link" href="#Another-Way-to-Interpret-$r$"> </a></h3><p>We can rewrite the result above to say that no matter what the shape of the scatter plot,</p>
+$$
+\frac{\mbox{SD of residuals}}{\mbox{SD of }y} ~=~ \sqrt{1-r^2}
+$$<p>A complementary result is that no matter what the shape of the scatter plot, the SD of the fitted values is a fraction of the SD of the observed values of $y$. The fraction is $\vert r \vert$.</p>
+$$
+\frac{\mbox{SD of fitted values}}{\mbox{SD of }y} ~=~ \vert r \vert
+$$<p>To see where the fraction comes in, notice that the fitted values are all on the regression line whereas the observed values of $y$ are the heights of all the points in the scatter plot and are more variable.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scatter_fit</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/6/Numerical_Diagnostics_23_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The fitted values range from about 64 to about 71, whereas the heights of all the children are quite a bit more variable, ranging from about 55 to 80.</p>
+<p>To verify the result numerically, we just have to calculate both sides of the identity.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.32094989606395924</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is ratio of the SD of the fitted values and the SD of the observed values of birth weight:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Fitted Value&#39;</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Child&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.32094989606395957</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The ratio is equal to $r$, confirming our result.</p>
+<p>Where does the absolute value come in? First note that as SDs can't be negative, nor can a ratio of SDs. So what happens when $r$ is negative? The example of fuel efficiency and acceleration will show us.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="s1">&#39;acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;mpg&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-0.5060703843771186</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">hybrid</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;fitted mpg&#39;</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">hybrid</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;mpg&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.5060703843771186</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The ratio of the two SDs is $\vert r \vert$.</p>
+<p>A more standard way to express this result is to recall that</p>
+$$
+\mbox{variance} ~=~ \mbox{mean squared deviation from average} ~=~ \mbox{SD}^2
+$$<p>and therefore, by squaring both sides of our result,</p>
+$$
+\frac{\mbox{variance of fitted values}}{\mbox{variance of }y} ~=~ r^2
+$$
+</div>
+</div>
+</div>
+</div>
+
+ 
+

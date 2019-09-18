@@ -1,0 +1,628 @@
+---
+redirect_from:
+  - "/chapters/09/4/monty-hall-problem"
+interact_link: content/chapters/09/4/Monty_Hall_Problem.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  The Monty Hall Problem
+prev_page:
+  url: /chapters/09/3/Simulation.html
+  title: |-
+    Simulation
+next_page:
+  url: /chapters/09/5/Finding_Probabilities.html
+  title: |-
+    Finding Probabilities
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Monty-Hall-Problem">The Monty Hall Problem<a class="anchor-link" href="#The-Monty-Hall-Problem"> </a></h3><p>This <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">problem</a> has flummoxed many people over the years, <a href="https://web.archive.org/web/20140413131827/http://www.decisionsciences.org/DecisionLine/Vol30/30_1/vazs30_1.pdf">mathematicians included</a>. Let's see if we can work it out by simulation.</p>
+<p>The setting is derived from a television game show called "Let's Make a Deal". Monty Hall hosted this show in the 1960's, and it has since led to a number of spin-offs. An exciting part of the show was that while the contestants had the chance to win great prizes, they might instead end up with "zonks" that were less desirable. This is the basis for what is now known as <em>the Monty Hall problem</em>.</p>
+<p>The setting is a game show in which the contestant is faced with three closed doors. Behind one of the doors is a fancy car, and behind each of the other two there is a goat. The contestant doesn't know where the car is, and has to attempt to find it under the following rules.</p>
+<ul>
+<li>The contestant makes an initial choice, but that door isn't opened.</li>
+<li>At least one of the other two doors must have a goat behind it. Monty opens one of these doors to reveal a goat, displayed in all its glory in <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">Wikipedia</a>:</li>
+</ul>
+<p><img src="../../../images/monty_hall_goat.png" alt="Monty Hall goat"></p>
+<ul>
+<li>There are two doors left, one of which was the contestant's original choice. One of the doors has the car behind it, and the other one has a goat. The contestant now gets to choose which of the two doors to open.</li>
+</ul>
+<p>The contestant has a decision to make. Which door should she choose to open, if she wants the car? Should she stick with her initial choice, or switch to the other door? That is the Monty Hall problem.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Solution">The Solution<a class="anchor-link" href="#The-Solution"> </a></h3><p>In any problem involving chances, the assumptions about randomness are important. It's reasonable to assume that there is a 1/3 chance that the contestant's initial choice is the door that has the car behind it.</p>
+<p>The solution to the problem is quite straightforward under this assumption, though the straightforward solution doesn't convince everyone. Here it is anyway.</p>
+<ul>
+<li>The chance that the car is behind the originally chosen door is 1/3.</li>
+<li>The car is behind either the originally chosen door or the door that remains. It can't be anywhere else.</li>
+<li>Therefore, the chance that the car is behind the door that remains is 2/3.</li>
+<li>Therefore, the contestant should switch.</li>
+</ul>
+<p>That's it. End of story.</p>
+<p>Not convinced? Then let's simulate the game and see how the results turn out.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Simulation">Simulation<a class="anchor-link" href="#Simulation"> </a></h3><p>The simulation will be more complex that those we have done so far. Let's break it down.</p>
+<h3 id="Step-1:-What-to-Simulate">Step 1: What to Simulate<a class="anchor-link" href="#Step-1:-What-to-Simulate"> </a></h3><p>For each play we will simulate what's behind all three doors:</p>
+<ul>
+<li>the one the contestant first picks</li>
+<li>the one that Monty opens</li>
+<li>the remaining door</li>
+</ul>
+<p>So we will be keeping track of three quantitites, not just one.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-2:-Simulating-One-Play">Step 2: Simulating One Play<a class="anchor-link" href="#Step-2:-Simulating-One-Play"> </a></h3><p>The bulk of our work consists of simulating one play of the game. This involves several pieces.</p>
+<h4 id="The-Goats">The Goats<a class="anchor-link" href="#The-Goats"> </a></h4><p>We start by setting up an array <code>goats</code> that contains unimaginative names for the two goats.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goats</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;first goat&#39;</span><span class="p">,</span> <span class="s1">&#39;second goat&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To help Monty conduct the game, we are going to have to identify which goat is selected and which one is revealed behind the open door. The function <code>other_goat</code> takes one goat and returns the other.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">other_goat</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;first goat&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;second goat&#39;</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;second goat&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;first goat&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's confirm that the function works.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">other_goat</span><span class="p">(</span><span class="s1">&#39;first goat&#39;</span><span class="p">),</span> <span class="n">other_goat</span><span class="p">(</span><span class="s1">&#39;second goat&#39;</span><span class="p">),</span> <span class="n">other_goat</span><span class="p">(</span><span class="s1">&#39;watermelon&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(&#39;second goat&#39;, &#39;first goat&#39;, None)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The string <code>'watermelon'</code> is not the name of one of the goats, so when <code>'watermelon'</code> is the input then <code>other_goat</code> does nothing.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="The-Options">The Options<a class="anchor-link" href="#The-Options"> </a></h4><p>The array <code>hidden_behind_doors</code> contains the set of things that could be behind the doors.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hidden_behind_doors</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;car&#39;</span><span class="p">,</span> <span class="s1">&#39;first goat&#39;</span><span class="p">,</span> <span class="s1">&#39;second goat&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are now ready to simulate one play. To do this, we will define a function <code>monty_hall_game</code> that takes no arguments. When the function is called, it plays Monty's game once and returns a list consisting of:</p>
+<ul>
+<li>the contestant's guess</li>
+<li>what Monty reveals when he opens a door</li>
+<li>what remains behind the other door</li>
+</ul>
+<p>The game starts with the contestant choosing one door at random. In doing so, the contestant makes a random choice from among the car, the first goat, and the second goat.</p>
+<p>If the contestant happens to pick one of the goats, then the other goat is revealed and the car is behind the remaining door.</p>
+<p>If the contestant happens to pick the car, then Monty reveals one of the goats and the other goat is behind the remaining door.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">monty_hall_game</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return </span>
+<span class="sd">    [contestant&#39;s guess, what Monty reveals, what remains behind the other door]&quot;&quot;&quot;</span>
+    
+    <span class="n">contestant_guess</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">hidden_behind_doors</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">contestant_guess</span> <span class="o">==</span> <span class="s1">&#39;first goat&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">contestant_guess</span><span class="p">,</span> <span class="s1">&#39;second goat&#39;</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">contestant_guess</span> <span class="o">==</span> <span class="s1">&#39;second goat&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">contestant_guess</span><span class="p">,</span> <span class="s1">&#39;first goat&#39;</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">contestant_guess</span> <span class="o">==</span> <span class="s1">&#39;car&#39;</span><span class="p">:</span>
+        <span class="n">revealed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">goats</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">contestant_guess</span><span class="p">,</span> <span class="n">revealed</span><span class="p">,</span> <span class="n">other_goat</span><span class="p">(</span><span class="n">revealed</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's play! Run the cell several times and see how the results change.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">monty_hall_game</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;second goat&#39;, &#39;first goat&#39;, &#39;car&#39;]</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-3:-Number-of-Repetitions">Step 3: Number of Repetitions<a class="anchor-link" href="#Step-3:-Number-of-Repetitions"> </a></h3><p>To gauge the frequency with which the different results occur, we have to play the game many times and collect the results. Let's run 10,000 repetitions.</p>
+<h3 id="Step-4:-Coding-the-Simulation">Step 4: Coding the Simulation<a class="anchor-link" href="#Step-4:-Coding-the-Simulation"> </a></h3><p>It's time to run the whole simulation.</p>
+<p>We will play the game 10,000 times and collect the results in a table. Each row of the table will contain the result of one play.</p>
+<p>One way to grow a table by adding a new row is to use the <code>append</code> method. If <code>my_table</code> is a table and <code>new_row</code> is a list containing the entries in a new row, then <code>my_table.append(new_row)</code> adds the new row to the bottom of <code>my_table</code>.</p>
+<p>Note that <code>append</code> does not create a new table. It changes <code>my_table</code> to have one more row than it did before.</p>
+<p>First let's create a table <code>games</code> that has three empty columns. We can do this by just specifying a list of the column labels, as follows.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">games</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">&#39;Guess&#39;</span><span class="p">,</span> <span class="s1">&#39;Revealed&#39;</span><span class="p">,</span> <span class="s1">&#39;Remaining&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that we have chosen the order of the columns to be the same as the order in which <code>monty_hall_game</code> returns the result of one game.</p>
+<p>Now we can add 10,000 rows to <code>trials</code>. Each row will represent the result of one play of Monty's game.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Play the game 10000 times and </span>
+<span class="c1"># record the results in the table games</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">games</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">monty_hall_game</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The simulation is done. Notice how short the code is. The majority of the work was done in simulating the outcome of one game.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Visualization">Visualization<a class="anchor-link" href="#Visualization"> </a></h3><p>To see whether the contestant should stick with her original choice or switch, let's see how frequently the car is behind each of her two options.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">original_choice</span> <span class="o">=</span> <span class="n">games</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Guess&#39;</span><span class="p">)</span>
+<span class="n">original_choice</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Guess</th> <th>count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>car        </td> <td>3268 </td>
+        </tr>
+        <tr>
+            <td>first goat </td> <td>3372 </td>
+        </tr>
+        <tr>
+            <td>second goat</td> <td>3360 </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">remaining_door</span> <span class="o">=</span> <span class="n">games</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Remaining&#39;</span><span class="p">)</span>
+<span class="n">remaining_door</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Remaining</th> <th>count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>car        </td> <td>6732 </td>
+        </tr>
+        <tr>
+            <td>first goat </td> <td>1615 </td>
+        </tr>
+        <tr>
+            <td>second goat</td> <td>1653 </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As our earlier solution said, the car is behind the remaining door two-thirds of the time, to a pretty good approximation. The contestant is twice as likely to get the car if she switches than if she sticks with her original choice.</p>
+<p>To see this graphically, we can join the two tables above and draw overlaid bar charts.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">joined</span> <span class="o">=</span> <span class="n">original_choice</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;Guess&#39;</span><span class="p">,</span> <span class="n">remaining_door</span><span class="p">,</span> <span class="s1">&#39;Remaining&#39;</span><span class="p">)</span>
+<span class="n">combined</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Item&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Original Door&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Remaining Door&#39;</span><span class="p">)</span>
+<span class="n">combined</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Item</th> <th>Original Door</th> <th>Remaining Door</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>car        </td> <td>3268         </td> <td>6732          </td>
+        </tr>
+        <tr>
+            <td>first goat </td> <td>3372         </td> <td>1615          </td>
+        </tr>
+        <tr>
+            <td>second goat</td> <td>3360         </td> <td>1653          </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">combined</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/09/4/Monty_Hall_Problem_27_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice how the three blue bars are almost equal – the original choice is equally likely to be any of the three available items. But the gold bar corresponding to <code>Car</code> is twice as long as the blue.</p>
+<p>The simulation confirms that the contestant is twice as likely to win if she switches.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

@@ -1,0 +1,707 @@
+---
+redirect_from:
+  - "/chapters/09/3/simulation"
+interact_link: content/chapters/09/3/Simulation.ipynb
+kernel_name: Python [Root]
+has_widgets: false
+title: |-
+  Simulation
+prev_page:
+  url: /chapters/09/2/Iteration.html
+  title: |-
+    Iteration
+next_page:
+  url: /chapters/09/4/Monty_Hall_Problem.html
+  title: |-
+    The Monty Hall Problem
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Simulation">Simulation<a class="anchor-link" href="#Simulation"> </a></h3><p>Simulation is the process of using a computer to mimic a physical experiment. In this class, those experiments will almost invariably involve chance.</p>
+<p>We have seen how to simulate the results of tosses of a coin. The steps in that simulation were examples of the steps that will constitute every simulation we do in this course. In this section we will set out those steps and follow them in examples.</p>
+<h3 id="Step-1:-What-to-Simulate">Step 1: What to Simulate<a class="anchor-link" href="#Step-1:-What-to-Simulate"> </a></h3><p>Specify the quantity you want to simulate. For example, you might decide that you want to simulate the outcomes of tosses of a coin.</p>
+<h3 id="Step-2:-Simulating-One-Value">Step 2: Simulating One Value<a class="anchor-link" href="#Step-2:-Simulating-One-Value"> </a></h3><p>Figure out how to simulate <em>one</em> value of the quantity you specified in Step 1. In our example, you have to figure out how to simulate the outcome of <em>one</em> toss of a coin. If your quantity is more complicated, you might need several lines of code to come up with one simulated value.</p>
+<h3 id="Step-3:-Number-of-Repetitions">Step 3: Number of Repetitions<a class="anchor-link" href="#Step-3:-Number-of-Repetitions"> </a></h3><p>Decide how many times you want to simulate the quantity. You will have to repeat Step 2 that many times. In one of our earlier examples we had decided to simulate the outcomes of 1000 tosses of a coin, and so we needed 1000 repetitions of generating the outcome of a single toss.</p>
+<h3 id="Step-4:-Coding-the-Simulation">Step 4: Coding the Simulation<a class="anchor-link" href="#Step-4:-Coding-the-Simulation"> </a></h3><p>Put it all together in code.</p>
+<ul>
+<li>Create an empty array in which to collect all the simulated values. We will call this the collection array.</li>
+<li>Create a "repetitions sequence," that is, a sequence whose length is the number of repetitions you specified in Step 3. For <code>n</code> repetitions we will almost always use the sequence <code>np.arange(n)</code>.</li>
+<li>Create a <code>for</code> loop. For each element of the repetitions sequence:<ul>
+<li>Simulate <em>one</em> value based on the code you developed in Step 2.</li>
+<li>Augment the collection array with this simulated value.</li>
+</ul>
+</li>
+</ul>
+<p>That's it! Once you have carried out the steps above, your simulation is done. The collection array contains all the simulated values.</p>
+<p>At this point you can use the collection array as you would any other array. You can visualize the distribution of the simulated values, count how many simulated values fall into a particular category, and so on.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Number-of-Heads-in-100-Tosses">Number of Heads in 100 Tosses<a class="anchor-link" href="#Number-of-Heads-in-100-Tosses"> </a></h3><p>It is natural to expect that in 100 tosses of a coin, there will be 50 heads, give or take a few.</p>
+<p>But how many is "a few"? What's the chance of getting exactly 50 heads? Questions like these matter in data science not only because they are about interesting aspects of randomness, but also because they can be used in analyzing experiments where assignments to treatment and control groups are decided by the toss of a coin.</p>
+<p>In this example we will simulate the number of heads in 100 tosses of a coin. The histogram of our results will give us some insight into how many heads are likely.</p>
+<p>Let's get started on the simulation, following the steps above.</p>
+<h3 id="Step-1:-What-to-Simulate">Step 1: What to Simulate<a class="anchor-link" href="#Step-1:-What-to-Simulate"> </a></h3><p>The quantity we are going to simulate is the number of heads in 100 tosses.</p>
+<h3 id="Step-2:-Simulating-One-Value">Step 2: Simulating One Value<a class="anchor-link" href="#Step-2:-Simulating-One-Value"> </a></h3><p>We have to figure out how to make one set of 100 tosses and count the number of heads. Let's start by creating a coin.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">coin</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;Heads&#39;</span><span class="p">,</span> <span class="s1">&#39;Tails&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In our earlier example we used <code>np.random.choice</code> and a <code>for</code> loop to generate multiple tosses. But sets of coin tosses are needed so often in data science that <code>np.random.choice</code> simulates them for us if we include a second argument that is the number of times to toss.</p>
+<p>Here are the results of 10 tosses.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ten_tosses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">coin</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">ten_tosses</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Tails&#39;, &#39;Heads&#39;, &#39;Heads&#39;, &#39;Tails&#39;, &#39;Tails&#39;, &#39;Heads&#39;, &#39;Tails&#39;,
+       &#39;Tails&#39;, &#39;Heads&#39;, &#39;Tails&#39;], dtype=&#39;&lt;U5&#39;)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can count the number of heads by using <code>np.count_nonzero</code> as before:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">ten_tosses</span> <span class="o">==</span> <span class="s1">&#39;Heads&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>4</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our goal is to simulate the number of heads in 100 tosses, not 10. To do that we can just repeat the same code, replacing 10 by 100.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">outcomes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">coin</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">num_heads</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">outcomes</span> <span class="o">==</span> <span class="s1">&#39;Heads&#39;</span><span class="p">)</span>
+<span class="n">num_heads</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>45</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-3:-Number-of-Repetitions">Step 3: Number of Repetitions<a class="anchor-link" href="#Step-3:-Number-of-Repetitions"> </a></h3><p>How many repetitions we want is up to us. The more we use, the more reliable our simulations will be, but the longer it will take to run the code. Python is pretty fast at tossing coins. Let's go for 10,000 repetitions. That means we are going to do the following 10,000 times:</p>
+<ul>
+<li>Toss a coin 100 times and count the number of heads.</li>
+</ul>
+<p>That's a lot of tossing! It's good that we have Python to do it for us.</p>
+<h3 id="Step-4:-Coding-the-Simulation">Step 4: Coding the Simulation<a class="anchor-link" href="#Step-4:-Coding-the-Simulation"> </a></h3><p>We are ready to write the code to execute the entire simulation.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># An empty array to collect the simulated values</span>
+<span class="n">heads</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="c1"># Repetitions sequence</span>
+<span class="n">num_repetitions</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">repetitions_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_repetitions</span><span class="p">)</span>
+
+<span class="c1"># for loop</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">repetitions_sequence</span><span class="p">:</span>
+    
+    <span class="c1"># simulate one value</span>
+    <span class="n">outcomes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">coin</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">num_heads</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">outcomes</span> <span class="o">==</span> <span class="s1">&#39;Heads&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># augment the collection array with the simulated value</span>
+    <span class="n">heads</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">heads</span><span class="p">,</span> <span class="n">num_heads</span><span class="p">)</span>  
+
+<span class="c1"># That&#39;s it! The simulation is done.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Check that the array <code>heads</code> contains 10,000 entries, one for each repetition of the experiment.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">heads</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>10000</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To get a sense of the variability in the number of heads in 100 tosses, we can collect the results in a table and draw a histogram.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simulation_results</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Repetition&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_repetitions</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="s1">&#39;Number of Heads&#39;</span><span class="p">,</span> <span class="n">heads</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simulation_results</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Repetition</th> <th>Number of Heads</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1         </td> <td>46             </td>
+        </tr>
+        <tr>
+            <td>2         </td> <td>54             </td>
+        </tr>
+        <tr>
+            <td>3         </td> <td>53             </td>
+        </tr>
+        <tr>
+            <td>4         </td> <td>52             </td>
+        </tr>
+        <tr>
+            <td>5         </td> <td>58             </td>
+        </tr>
+        <tr>
+            <td>6         </td> <td>48             </td>
+        </tr>
+        <tr>
+            <td>7         </td> <td>45             </td>
+        </tr>
+        <tr>
+            <td>8         </td> <td>44             </td>
+        </tr>
+        <tr>
+            <td>9         </td> <td>43             </td>
+        </tr>
+        <tr>
+            <td>10        </td> <td>47             </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (9990 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simulation_results</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;Number of Heads&#39;</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">30.5</span><span class="p">,</span> <span class="mf">69.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/choldgraf/anaconda/envs/textbook/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The &#39;normed&#39; kwarg is deprecated, and has been replaced by the &#39;density&#39; kwarg.
+  warnings.warn(&#34;The &#39;normed&#39; kwarg is deprecated, and has been &#34;
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/09/3/Simulation_17_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each bins has width 1 and is centered at each value of the number of heads.</p>
+<p>Not surprisingly, the histogram looks roughly symmetric around 50 heads. The height of the bar at 50 is about 8% per unit. Since each bin is 1 unit wide, this is the same as saying that about 8% of the repetitions produced exactly 50 heads. That's not a huge percent, but it's the largest compared to the percent at every other number of heads.</p>
+<p>The histogram also shows that in almost all of the repetitions, the number of heads in 100 tosses was somewhere between 35 and 65. Indeed, the bulk of the repetitions produced numbers of heads in the range 45 to 55.</p>
+<p>While in theory it is <em>possible</em> that the number of heads can be anywhere between 0 and 100, the simulation shows that the range of <em>probable</em> values is much smaller.</p>
+<p>This is an instance of a more general phenomenon about the variability in coin tossing, as we will see later in the course.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="A-More-Compact-Version-of-the-Code">A More Compact Version of the Code<a class="anchor-link" href="#A-More-Compact-Version-of-the-Code"> </a></h3><p>We wrote the code for the simulation to show each of the steps in detail. Here are the same steps written in a more compact form. You can see that the code starts out the same way as before, but then some steps are combined.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heads</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="n">num_repetitions</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_repetitions</span><span class="p">):</span>
+    <span class="n">outcomes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">coin</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">heads</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">heads</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">outcomes</span> <span class="o">==</span> <span class="s1">&#39;Heads&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heads</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([52., 45., 48., ..., 48., 44., 51.])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Moves-in-Monopoly">Moves in Monopoly<a class="anchor-link" href="#Moves-in-Monopoly"> </a></h3><p>Each move in the game Monopoly is determined by the total number of spots of two rolls of a die. If you play Monopoly, what should you expect to get when you roll the die two times?</p>
+<p>We can explore this by simulating the sum of two rolls of a die. We will run the simulation 10,000 times as we did in the previous example. Notice that is this paragraph we have completed Steps 1 and 3 of our simulation process.</p>
+<p>Step 2 is the one in which we simulate one pair of rolls and add up the number of spots.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">die</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">die</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That simulates one value of the sum of two rolls. We are now all set to run the simulation according to the steps that are now familiar.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">moves</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="n">num_repetitions</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_repetitions</span><span class="p">):</span>
+    <span class="n">one_move</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">die</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">moves</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">moves</span><span class="p">,</span> <span class="n">one_move</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is a histogram of the results.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Repetition&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_repetitions</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="s1">&#39;Sum of Two Rolls&#39;</span><span class="p">,</span> <span class="n">moves</span>
+<span class="p">)</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;Sum of Two Rolls&#39;</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">12.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/choldgraf/anaconda/envs/textbook/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The &#39;normed&#39; kwarg is deprecated, and has been replaced by the &#39;density&#39; kwarg.
+  warnings.warn(&#34;The &#39;normed&#39; kwarg is deprecated, and has been &#34;
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/09/3/Simulation_27_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Seven is the most common value, with the frequencies falling off symmetrically on either side.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

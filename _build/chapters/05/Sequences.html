@@ -1,0 +1,134 @@
+---
+redirect_from:
+  - "/chapters/05/sequences"
+interact_link: content/chapters/05/Sequences.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Sequences
+prev_page:
+  url: /chapters/04/3/Comparison.html
+  title: |-
+    Comparisons
+next_page:
+  url: /chapters/05/1/Arrays.html
+  title: |-
+    Arrays
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sequences">Sequences<a class="anchor-link" href="#Sequences"> </a></h1><p>Values can be grouped together into collections, which allows programmers to organize those values and refer to all of them with a single name. By grouping values together, we can write code that performs a computation on many pieces of data at once.</p>
+<p>Calling the function <code>make_array</code> on several values places them into an <em>array</em>, which is a kind of sequential collection. Below, we collect four different temperatures into an array called <code>highs</code>. These are the <a href="http://berkeleyearth.lbl.gov/regions/global-land">estimated average daily high temperatures</a> over all land on Earth (in degrees Celsius) for the decades surrounding 1850, 1900, 1950, and 2000, respectively, expressed as deviations from the average absolute high temperature between 1951 and 1980, which was 14.48 degrees.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baseline_high</span> <span class="o">=</span> <span class="mf">14.48</span>
+<span class="n">highs</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="n">baseline_high</span> <span class="o">-</span> <span class="mf">0.880</span><span class="p">,</span> <span class="n">baseline_high</span> <span class="o">-</span> <span class="mf">0.093</span><span class="p">,</span>
+                   <span class="n">baseline_high</span> <span class="o">+</span> <span class="mf">0.105</span><span class="p">,</span> <span class="n">baseline_high</span> <span class="o">+</span> <span class="mf">0.684</span><span class="p">)</span>
+<span class="n">highs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 13.6  ,  14.387,  14.585,  15.164])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Collections allow us to pass multiple values into a function using a single name. For instance, the <code>sum</code> function computes the sum of all values in a collection, and the <code>len</code> function computes its length. (That's the number of values we put in it.) Using them together, we can compute the average of a collection.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">highs</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">highs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>14.434000000000001</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The complete chart of daily high and low temperatures appears below.</p>
+<h3 id="Mean-of-Daily-High-Temperature">Mean of Daily High Temperature<a class="anchor-link" href="#Mean-of-Daily-High-Temperature"> </a></h3><p><img src="http://berkeleyearth.lbl.gov/auto/Regional/TMAX/Figures/global-land-TMAX-Trend.png" alt="Mean of Daily High Temperature"></p>
+<h3 id="Mean-of-Daily-Low-Temperature">Mean of Daily Low Temperature<a class="anchor-link" href="#Mean-of-Daily-Low-Temperature"> </a></h3><p><img src="http://berkeleyearth.lbl.gov/auto/Regional/TMIN/Figures/global-land-TMIN-Trend.png" alt="Mean of Daily Low Temperature"></p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

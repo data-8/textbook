@@ -1,0 +1,465 @@
+---
+redirect_from:
+  - "/chapters/03/2/1/growth"
+interact_link: content/chapters/03/2/1/Growth.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Example: Growth Rates
+prev_page:
+  url: /chapters/03/2/Names.html
+  title: |-
+    Names
+next_page:
+  url: /chapters/03/3/Calls.html
+  title: |-
+    Call Expressions
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Example:-Growth-Rates">Example: Growth Rates<a class="anchor-link" href="#Example:-Growth-Rates"> </a></h1><p>The relationship between two measurements of the same quantity taken at different times is often expressed as a <em>growth rate</em>. For example, the United States federal government <a href="http://www.bls.gov/opub/mlr/2013/article/industry-employment-and-output-projections-to-2022-1.htm">employed</a> 2,766,000 people in 2002 and 2,814,000 people in 2012. To compute a growth rate, we must first decide which value to treat as the <code>initial</code> amount. For values over time, the earlier value is a natural choice. Then, we divide the difference between the <code>changed</code> and <code>initial</code> amount by the <code>initial</code> amount.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">initial</span> <span class="o">=</span> <span class="mi">2766000</span>
+<span class="n">changed</span> <span class="o">=</span> <span class="mi">2814000</span>
+<span class="p">(</span><span class="n">changed</span> <span class="o">-</span> <span class="n">initial</span><span class="p">)</span> <span class="o">/</span> <span class="n">initial</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.01735357917570499</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is also typical to subtract one from the ratio of the two measurements, which yields the same value.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">changed</span><span class="o">/</span><span class="n">initial</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.017353579175704903</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This value is the growth rate over 10 years. A useful property of growth rates is that they don't change even if the values are expressed in different units. So, for example, we can express the same relationship between thousands of people in 2002 and 2012.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">initial</span> <span class="o">=</span> <span class="mi">2766</span>
+<span class="n">changed</span> <span class="o">=</span> <span class="mi">2814</span>
+<span class="p">(</span><span class="n">changed</span><span class="o">/</span><span class="n">initial</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.017353579175704903</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In 10 years, the number of employees of the US Federal Government has increased by only 1.74%. In that time, the total expenditures of the US Federal Government increased from \$2.37 trillion to \$3.38 trillion in 2012.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">initial</span> <span class="o">=</span> <span class="mf">2.37</span>
+<span class="n">changed</span> <span class="o">=</span> <span class="mf">3.38</span>
+<span class="p">(</span><span class="n">changed</span><span class="o">/</span><span class="n">initial</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.4261603375527425</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A 42.6% increase in the federal budget is much larger than the 1.74% increase in federal employees. In fact, the number of federal employees has grown much more slowly than the population of the United States, which increased 9.21% in the same time period from 287.6 million people in 2002 to 314.1 million in 2012.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">initial</span> <span class="o">=</span> <span class="mf">287.6</span>
+<span class="n">changed</span> <span class="o">=</span> <span class="mf">314.1</span>
+<span class="p">(</span><span class="n">changed</span><span class="o">/</span><span class="n">initial</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.09214186369958277</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A growth rate can be negative, representing a decrease in some value. For example, the number of manufacturing jobs in the US decreased from 15.3 million in 2002 to 11.9 million in 2012, a -22.2% growth rate.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">initial</span> <span class="o">=</span> <span class="mf">15.3</span>
+<span class="n">changed</span> <span class="o">=</span> <span class="mf">11.9</span>
+<span class="p">(</span><span class="n">changed</span><span class="o">/</span><span class="n">initial</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-0.2222222222222222</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>An annual growth rate is a growth rate of some quantity over a single year. An annual growth rate of 0.035, accumulated each year for 10 years, gives a much larger ten-year growth rate of 0.41 (or 41%).</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mf">1.035</span> <span class="o">*</span> <span class="mf">1.035</span> <span class="o">*</span> <span class="mf">1.035</span> <span class="o">*</span> <span class="mf">1.035</span> <span class="o">*</span> <span class="mf">1.035</span> <span class="o">*</span> <span class="mf">1.035</span> <span class="o">*</span> <span class="mf">1.035</span> <span class="o">*</span> <span class="mf">1.035</span> <span class="o">*</span> <span class="mf">1.035</span> <span class="o">*</span> <span class="mf">1.035</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.410598760621121</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This same computation can be expressed using names and exponents.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">annual_growth_rate</span> <span class="o">=</span> <span class="mf">0.035</span>
+<span class="n">ten_year_growth_rate</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">annual_growth_rate</span><span class="p">)</span> <span class="o">**</span> <span class="mi">10</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">ten_year_growth_rate</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.410598760621121</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Likewise, a ten-year growth rate can be used to compute an equivalent annual growth rate. Below, <code>t</code> is the number of years that have passed between measurements. The following computes the annual growth rate of federal expenditures over the last 10 years.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">initial</span> <span class="o">=</span> <span class="mf">2.37</span>
+<span class="n">changed</span> <span class="o">=</span> <span class="mf">3.38</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="p">(</span><span class="n">changed</span><span class="o">/</span><span class="n">initial</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.03613617208346853</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The total growth over 10 years is equivalent to a 3.6% increase each year.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In summary, a growth rate <code>g</code> is used to describe the relative size of an <code>initial</code> amount and a <code>changed</code> amount after some amount of time <code>t</code>. To compute $changed$, apply the growth rate <code>g</code> repeatedly, <code>t</code> times using exponentiation.</p>
+<p><code>initial * (1 + g) ** t</code></p>
+<p>To compute <code>g</code>, raise the total growth to the power of <code>1/t</code> and subtract one.</p>
+<p><code>(changed/initial) ** (1/t) - 1</code></p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

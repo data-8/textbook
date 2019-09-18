@@ -1,10 +1,12 @@
-# Requirements for the demo notebooks
-# Useful for MyBinder configuration
-pandas
+bs4
+tqdm
+notebook
 numpy
-datascience
-folium
-matplotlib
-nbinteract
-scipy
 jupyter-book
+datascience
+pyyaml
+ruamel.yaml
+nbformat
+nbclean
+nbgitpuller
+-r ./binder/requirements.txt

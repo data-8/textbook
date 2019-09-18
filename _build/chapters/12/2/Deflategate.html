@@ -1,0 +1,1001 @@
+---
+redirect_from:
+  - "/chapters/12/2/deflategate"
+interact_link: content/chapters/12/2/Deflategate.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Deflategate
+prev_page:
+  url: /chapters/12/1/AB_Testing.html
+  title: |-
+    A/B Testing
+next_page:
+  url: /chapters/12/3/Causality.html
+  title: |-
+    Causality
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Deflategate">Deflategate<a class="anchor-link" href="#Deflategate"> </a></h3><p>On January 18, 2015, the Indianapolis Colts and the New England Patriots played the American Football Conference (AFC) championship game to determine which of those teams would play in the Super Bowl. After the game, there were allegations that the Patriots' footballs had not been inflated as much as the regulations required; they were softer. This could be an advantage, as softer balls might be easier to catch.</p>
+<p>For several weeks, the world of American football was consumed by accusations, denials, theories, and suspicions: the press labeled the topic Deflategate, after the Watergate political scandal of the 1970's. The National Football League (NFL) commissioned an independent analysis. In this example, we will perform our own analysis of the data.</p>
+<p>Pressure is often measured in pounds per square inch (psi). NFL rules stipulate that game balls must be inflated to have pressures in the range 12.5 psi and 13.5 psi. Each team plays with 12 balls. Teams have the responsibility of maintaining the pressure in their own footballs, but game officials inspect the balls. Before the start of the AFC game, all the Patriots' balls were at about 12.5 psi. Most of the Colts' balls were at about 13.0 psi. However, these pre-game data were not recorded.</p>
+<p>During the second quarter, the Colts intercepted a Patriots ball. On the sidelines, they measured the pressure of the ball and determined that it was below the 12.5 psi threshold. Promptly, they informed officials.</p>
+<p>At half-time, all the game balls were collected for inspection. Two officials, Clete Blakeman and Dyrol Prioleau, measured the pressure in each of the balls.</p>
+<p>Here are the data. Each row corresponds to one football. Pressure is measured in psi. The Patriots ball that had been intercepted by the Colts was not inspected at half-time. Nor were most of the Colts' balls – the officials simply ran out of time and had to relinquish the balls for the start of second half play.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">football</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;deflategate.csv&#39;</span><span class="p">)</span>
+<span class="n">football</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Team</th> <th>Blakeman</th> <th>Prioleau</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Patriots</td> <td>11.5    </td> <td>11.8    </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>10.85   </td> <td>11.2    </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.15   </td> <td>11.5    </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>10.7    </td> <td>11      </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.1    </td> <td>11.45   </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.6    </td> <td>11.95   </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.85   </td> <td>12.3    </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.1    </td> <td>11.55   </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>10.95   </td> <td>11.35   </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>10.5    </td> <td>10.9    </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>10.9    </td> <td>11.35   </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.7    </td> <td>12.35   </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.75   </td> <td>12.3    </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.5    </td> <td>12.95   </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.55   </td> <td>12.15   </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For each of the 15 balls that were inspected, the two officials got different results. It is not uncommon that repeated measurements on the same object yield different results, especially when the measurements are performed by different people. So we will assign to each the ball the average of the two measurements made on that ball.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">football</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Combined&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">football</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">football</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">football</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Team</th> <th>Combined</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Patriots</td> <td>11.65   </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.025  </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.325  </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>10.85   </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.275  </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.775  </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>12.075  </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.325  </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.15   </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>10.7    </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.125  </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.525  </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.525  </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.725  </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.35   </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At a glance, it seems apparent that the Patriots' footballs were at a lower pressure than the Colts' balls. Because some deflation is normal during the course of a game, the independent analysts decided to calculate the drop in pressure from the start of the game. Recall that the Patriots' balls had all started out at about 12.5 psi, and the Colts' balls at about 13.0 psi. Therefore the drop in pressure for the Patriots' balls was computed as 12.5 minus the pressure at half-time, and the drop in pressure for the Colts' balls was 13.0 minus the pressure at half-time.</p>
+<p>We can calculate the drop in pressure for each football, by first setting up an array of the starting values. For this we will need an array consisting of 11 values each of which is 12.5, and another consisting of four values each of which is all 13. We will use the NumPy function <code>np.ones</code>, which takes a count as its argument and returns an array of that many elements, each of which is 1.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patriots_start</span> <span class="o">=</span> <span class="mf">12.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">colts_start</span> <span class="o">=</span> <span class="mi">13</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">patriots_start</span><span class="p">,</span> <span class="n">colts_start</span><span class="p">)</span>
+<span class="n">start</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5,
+       13. , 13. , 13. , 13. ])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The drop in pressure for each football is the difference between the starting pressure and the combined pressure measurement.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">drop</span> <span class="o">=</span> <span class="n">start</span> <span class="o">-</span> <span class="n">football</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Combined&#39;</span><span class="p">)</span>
+<span class="n">football</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Pressure Drop&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="p">)</span>
+<span class="n">football</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Team</th> <th>Combined</th> <th>Pressure Drop</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Patriots</td> <td>11.65   </td> <td>0.85         </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.025  </td> <td>1.475        </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.325  </td> <td>1.175        </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>10.85   </td> <td>1.65         </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.275  </td> <td>1.225        </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.775  </td> <td>0.725        </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>12.075  </td> <td>0.425        </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.325  </td> <td>1.175        </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.15   </td> <td>1.35         </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>10.7    </td> <td>1.8          </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>11.125  </td> <td>1.375        </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.525  </td> <td>0.475        </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.525  </td> <td>0.475        </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.725  </td> <td>0.275        </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>12.35   </td> <td>0.65         </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It looks as though the Patriots' drops were larger than the Colts'. Let's look at the average drop in each of the two groups. We no longer need the combined scores.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">football</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Combined&#39;</span><span class="p">)</span>
+<span class="n">football</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Team&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Team</th> <th>Pressure Drop average</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Colts   </td> <td>0.46875              </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>1.20227              </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The average drop for the Patriots was about 1.2 psi compared to about 0.47 psi for the Colts.</p>
+<p>The question now is why the Patriots' footballs had a larger drop in pressure, on average, than the Colts footballs. Could it be due to chance?</p>
+<h3 id="The-Hypotheses">The Hypotheses<a class="anchor-link" href="#The-Hypotheses"> </a></h3><p>How does chance come in here? Nothing was being selected at random. But we can make a chance model by hypothesizing that the 11 Patriots' drops look like a random sample of 11 out of all the 15 drops, with the Colts' drops being the remaining four. That's a completely specified chance model under which we can simulate data. So it's the <strong>null hypothesis</strong>.</p>
+<p>For the alternative, we can take the position that the Patriots' drops are too large, on average, to resemble a random sample drawn from all the drops.</p>
+<h3 id="Test-Statistic">Test Statistic<a class="anchor-link" href="#Test-Statistic"> </a></h3><p>A natural statistic is the difference between the two average drops, which we will compute as "average drop for Patriots - average drop for Colts". Large values of this statistic will favor the alternative hypothesis.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">observed_means</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Team&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">observed_difference</span> <span class="o">=</span> <span class="n">observed_means</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">observed_means</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">observed_difference</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.733522727272728</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This positive difference reflects the fact that the average drop in pressure of the Patriots' footballs was greater than that of the Colts.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The function <code>difference_of_means</code> takes three arguments:</p>
+<ul>
+<li>the name of the table of data</li>
+<li>the label of the column containing the numerical variable whose average is of interest</li>
+<li>the label of the column containing the two group labels</li>
+</ul>
+<p>It returns the difference between the means of the two groups.</p>
+<p>We have defined this function in an earlier section. The definition is repeated here for ease of reference.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">difference_of_means</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">group_label</span><span class="p">):</span>
+    <span class="n">reduced</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">group_label</span><span class="p">)</span>
+    <span class="n">means_table</span> <span class="o">=</span> <span class="n">reduced</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">group_label</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">means_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">means</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">means</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">difference_of_means</span><span class="p">(</span><span class="n">football</span><span class="p">,</span> <span class="s1">&#39;Pressure Drop&#39;</span><span class="p">,</span> <span class="s1">&#39;Team&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.733522727272728</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that the difference has been calculated as Patriots' drops minus Colts' drops as before.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Predicting-the-Statistic-Under-the-Null-Hypothesis">Predicting the Statistic Under the Null Hypothesis<a class="anchor-link" href="#Predicting-the-Statistic-Under-the-Null-Hypothesis"> </a></h3><p>If the null hypothesis were true, then it shouldn't matter which footballs are labeled Patriots and which are labeled Colts. The distributions of the two sets of drops would be the same. We can simulate this by randomly shuffling the team labels.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shuffled_labels</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">original_and_shuffled</span> <span class="o">=</span> <span class="n">football</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Shuffled Label&#39;</span><span class="p">,</span> <span class="n">shuffled_labels</span><span class="p">)</span>
+<span class="n">original_and_shuffled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Team</th> <th>Pressure Drop</th> <th>Shuffled Label</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Patriots</td> <td>0.85         </td> <td>Colts         </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>1.475        </td> <td>Patriots      </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>1.175        </td> <td>Patriots      </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>1.65         </td> <td>Patriots      </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>1.225        </td> <td>Patriots      </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>0.725        </td> <td>Patriots      </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>0.425        </td> <td>Patriots      </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>1.175        </td> <td>Colts         </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>1.35         </td> <td>Patriots      </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>1.8          </td> <td>Patriots      </td>
+        </tr>
+        <tr>
+            <td>Patriots</td> <td>1.375        </td> <td>Colts         </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>0.475        </td> <td>Patriots      </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>0.475        </td> <td>Patriots      </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>0.275        </td> <td>Colts         </td>
+        </tr>
+        <tr>
+            <td>Colts   </td> <td>0.65         </td> <td>Patriots      </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>How do all the group averages compare?</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">difference_of_means</span><span class="p">(</span><span class="n">original_and_shuffled</span><span class="p">,</span> <span class="s1">&#39;Pressure Drop&#39;</span><span class="p">,</span> <span class="s1">&#39;Shuffled Label&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.11988636363636407</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">difference_of_means</span><span class="p">(</span><span class="n">original_and_shuffled</span><span class="p">,</span> <span class="s1">&#39;Pressure Drop&#39;</span><span class="p">,</span> <span class="s1">&#39;Team&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.733522727272728</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The two teams' average drop values are closer when the team labels are randomly assigned to the footballs than they were for the two groups actually used in the game.</p>
+<h3 id="Permutation-Test">Permutation Test<a class="anchor-link" href="#Permutation-Test"> </a></h3><p>It's time for a step that is now familiar. We will do repeated simulations of the test statistic under the null hypothesis, by repeatedly permuting the footballs and assigning random sets to the two teams.</p>
+<p>Once again, we will use the function <code>one_simulated_difference</code> defined in an earlier section as follows.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">one_simulated_difference</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">group_label</span><span class="p">):</span>
+    <span class="n">shuffled_labels</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span> <span class="o">=</span> <span class="kc">False</span>
+                                                    <span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">group_label</span><span class="p">)</span>
+    <span class="n">shuffled_table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+        <span class="s1">&#39;Shuffled Label&#39;</span><span class="p">,</span> <span class="n">shuffled_labels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">difference_of_means</span><span class="p">(</span><span class="n">shuffled_table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="s1">&#39;Shuffled Label&#39;</span><span class="p">)</span>   
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can now use this function to create an array <code>differences</code> that contains 10,000 values of the test statistic simulated under the null hypothesis.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">differences</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+    <span class="n">new_difference</span> <span class="o">=</span> <span class="n">one_simulated_difference</span><span class="p">(</span><span class="n">football</span><span class="p">,</span> <span class="s1">&#39;Pressure Drop&#39;</span><span class="p">,</span> <span class="s1">&#39;Team&#39;</span><span class="p">)</span>
+    <span class="n">differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">differences</span><span class="p">,</span> <span class="n">new_difference</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Conclusion-of-the-Test">Conclusion of the Test<a class="anchor-link" href="#Conclusion-of-the-Test"> </a></h3><p>To calculate the empirical P-value, it's important to recall the alternative hypothesis, which is that the Patriots' drops are too large to be the result of chance variation alone.</p>
+<p>Larger drops for the Patriots favor the alternative hypothesis. So the P-value is the chance (computed under the null hypothesis) of getting a test statistic equal to our observed value of 0.733522727272728 or larger.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">empirical_P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">differences</span> <span class="o">&gt;=</span> <span class="n">observed_difference</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10000</span>
+<span class="n">empirical_P</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0043</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's a pretty small P-value. To visualize this, here is the empirical distribution of the test statistic under the null hypothesis, with the observed statistic marked on the horizontal axis.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Difference Between Group Averages&#39;</span><span class="p">,</span> <span class="n">differences</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">observed_difference</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Prediction Under the Null Hypothesis&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Observed Difference:&#39;</span><span class="p">,</span> <span class="n">observed_difference</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Empirical P-value:&#39;</span><span class="p">,</span> <span class="n">empirical_P</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Observed Difference: 0.733522727272728
+Empirical P-value: 0.0043
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/12/2/Deflategate_31_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As in previous examples of this test, the bulk of the distribution is centered around 0. Under the null hypothesis, the Patriots' drops are a random sample of all 15 drops, and therefore so are the Colts'. Therefore the two sets of drops should be about equal on average, and therefore their difference should be around 0.</p>
+<p>But the observed value of the test statistic is quite far away from the heart of the distribution. By any reasonable cutoff for what is "small", the empirical P-value is small. So we end up rejecting the null hypothesis of randomness, and conclude that the Patriots drops were too large to reflect chance variation alone.</p>
+<p>The independent investigative team analyzed the data in several different ways, taking into account the laws of physics. The final report said,</p>
+<blockquote><p>"[T]he average pressure drop of the Patriots game balls exceeded the average pressure drop of the Colts balls by 0.45 to 1.02 psi, depending on various possible assumptions regarding the gauges used, and assuming an initial pressure of 12.5 psi for the Patriots balls and 13.0 for the Colts balls."</p>
+<p>-- <em>Investigative report commissioned by the NFL regarding the AFC Championship game on January 18, 2015</em></p>
+</blockquote>
+<p>Our analysis shows an average pressure drop of about 0.73 psi, which is close to the center of the interval "0.45 to 1.02 psi" and therefore consistent with the official analysis.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember that our test of hypotheses does not establish the reason <em>why</em> the difference is not due to chance. Establishing causality is usually more complex than running a test of hypotheses.</p>
+<p>But the all-important question in the football world was about causation: the question was whether the excess drop of pressure in the Patriots' footballs was deliberate. If you are curious about the answer given by the investigators, here is the <a href="https://nfllabor.files.wordpress.com/2015/05/investigative-and-expert-reports-re-footballs-used-during-afc-championsh.pdf">full report</a>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

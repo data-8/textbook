@@ -1,0 +1,1355 @@
+---
+redirect_from:
+  - "/chapters/15/2/regression-line"
+interact_link: content/chapters/15/2/Regression_Line.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  The Regression Line
+prev_page:
+  url: /chapters/15/1/Correlation.html
+  title: |-
+    Correlation
+next_page:
+  url: /chapters/15/3/Method_of_Least_Squares.html
+  title: |-
+    The Method of Least Squares
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Regression-Line">The Regression Line<a class="anchor-link" href="#The-Regression-Line"> </a></h3><p>The correlation coefficient $r$ doesn't just measure how clustered the points in a scatter plot are about a straight line. It also helps identify the straight line about which the points are clustered. In this section we will retrace the path that Galton and Pearson took to discover that line.</p>
+<p>Galton's data on the heights of parents and their adult children showed a linear association. The linearity was confirmed when our predictions of the children's heights based on the midparent heights roughly followed a straight line.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">galton</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;galton.csv&#39;</span><span class="p">)</span>
+
+<span class="n">heights</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="n">galton</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;midparentHeight&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Child&#39;</span><span class="p">,</span> <span class="n">galton</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;childHeight&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict_child</span><span class="p">(</span><span class="n">mpht</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a prediction of the height of a child </span>
+<span class="sd">    whose parents have a midparent height of mpht.</span>
+<span class="sd">    </span>
+<span class="sd">    The prediction is the average height of the children </span>
+<span class="sd">    whose midparent height is in the range mpht plus or minus 0.5 inches.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">close_points</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">mpht</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">mpht</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">close_points</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Child&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>   
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_with_predictions</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Prediction&#39;</span><span class="p">,</span> <span class="n">heights</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">predict_child</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_with_predictions</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_5_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Measuring-in-Standard-Units">Measuring in Standard Units<a class="anchor-link" href="#Measuring-in-Standard-Units"> </a></h3><p>Let's see if we can find a way to identify this line. First, notice that linear association doesn't depend on the units of measurement – we might as well measure both variables in standard units.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">standard_units</span><span class="p">(</span><span class="n">xyz</span><span class="p">):</span>
+    <span class="s2">&quot;Convert any array of numbers to standard units.&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">xyz</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xyz</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>  
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_SU</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;MidParent SU&#39;</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">)),</span>
+    <span class="s1">&#39;Child SU&#39;</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Child&#39;</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="n">heights_SU</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>MidParent SU</th> <th>Child SU</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>3.45465     </td> <td>1.80416  </td>
+        </tr>
+        <tr>
+            <td>3.45465     </td> <td>0.686005 </td>
+        </tr>
+        <tr>
+            <td>3.45465     </td> <td>0.630097 </td>
+        </tr>
+        <tr>
+            <td>3.45465     </td> <td>0.630097 </td>
+        </tr>
+        <tr>
+            <td>2.47209     </td> <td>1.88802  </td>
+        </tr>
+        <tr>
+            <td>2.47209     </td> <td>1.60848  </td>
+        </tr>
+        <tr>
+            <td>2.47209     </td> <td>-0.348285</td>
+        </tr>
+        <tr>
+            <td>2.47209     </td> <td>-0.348285</td>
+        </tr>
+        <tr>
+            <td>1.58389     </td> <td>1.18917  </td>
+        </tr>
+        <tr>
+            <td>1.58389     </td> <td>0.350559 </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (924 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On this scale, we can calculate our predictions exactly as before. But first we have to figure out how to convert our old definition of "close" points to a value on the new scale. We had said that midparent heights were "close" if they were within 0.5 inches of each other. Since standard units measure distances in units of SDs, we have to figure out how many SDs of midparent height correspond to 0.5 inches.</p>
+<p>One SD of midparent heights is about 1.8 inches. So 0.5 inches is about 0.28 SDs.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sd_midparent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">sd_midparent</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.8014050969207571</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mf">0.5</span><span class="o">/</span><span class="n">sd_midparent</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.277561110965367</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are now ready to modify our prediction function to make predictions on the standard units scale. All that has changed is that we are using the table of values in standard units, and defining "close" as above.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict_child_su</span><span class="p">(</span><span class="n">mpht_su</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a prediction of the height (in standard units) of a child </span>
+<span class="sd">    whose parents have a midparent height of mpht_su in standard units.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">close</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">/</span><span class="n">sd_midparent</span>
+    <span class="n">close_points</span> <span class="o">=</span> <span class="n">heights_SU</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;MidParent SU&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">mpht_su</span><span class="o">-</span><span class="n">close</span><span class="p">,</span> <span class="n">mpht_su</span> <span class="o">+</span> <span class="n">close</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">close_points</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Child SU&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>   
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_with_su_predictions</span> <span class="o">=</span> <span class="n">heights_SU</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Prediction SU&#39;</span><span class="p">,</span> <span class="n">heights_SU</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">predict_child_su</span><span class="p">,</span> <span class="s1">&#39;MidParent SU&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_with_su_predictions</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;MidParent SU&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_15_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This plot looks exactly like the plot drawn on the original scale. Only the numbers on the axes have changed. This confirms that we can understand the prediction process by just working in standard units.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Identifying-the-Line-in-Standard-Units">Identifying the Line in Standard Units<a class="anchor-link" href="#Identifying-the-Line-in-Standard-Units"> </a></h3><p>Galton's scatter plot has a <em>football</em> shape – that is, it is roughly oval like an American football. Not all scatter plots are football shaped, not even those that show linear association. But in this section we will pretend we are Galton and work only with football shaped scatter plots. In the next section, we will generalize our analysis to other shapes of plots.</p>
+<p>Here is a football shaped scatter plot with both variables measured in standard units. The 45 degree line is shown in red.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_18_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But the 45 degree line is not the line that picks off the centers of the vertical strips. You can see that in the figure below, where the vertical line at 1.5 standard units is shown in black. The points on the scatter plot near the black line all have heights roughly in the -2 to 3 range. The red line is too high to pick off the center.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_20_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So the 45 degree line is not the "graph of averages." That line is the green one shown below.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_22_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Both lines go through the origin (0, 0). The green line goes through the centers of the vertical strips (at least roughly), and is <em>flatter</em> than the red 45 degree line.</p>
+<p>The slope of the 45 degree line is 1. So the slope of the green "graph of averages" line is a value that is positive but less than 1.</p>
+<p>What value could that be? You've guessed it – it's $r$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Regression-Line,-in-Standard-Units">The Regression Line, in Standard Units<a class="anchor-link" href="#The-Regression-Line,-in-Standard-Units"> </a></h3><p>The green "graph of averages" line is called the <em>regression line</em>, for reasons we will explain shortly. But first, let's simulate some football shaped scatter plots with different values of $r$, and see how the line changes. In each case, the red 45 degree line has been drawn for comparison.</p>
+<p>The function that performs the simulation is called <code>regression_line</code> and takes $r$ as its argument.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regression_line</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_26_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regression_line</span><span class="p">(</span><span class="mf">0.6</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_27_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When $r$ is close to 1, the scatter plot, the 45 degree line, and the regression line are all very close to each other. But for more moderate values of $r$, the regression line is noticeably flatter.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Regression-Effect">The Regression Effect<a class="anchor-link" href="#The-Regression-Effect"> </a></h3><p>In terms of prediction, this means that for a parents whose midparent height is at 1.5 standard units, our prediction of the child's height is somewhat <em>less</em> than 1.5 standard units. If the midparent height is 2 standard units, we predict that the child's height will be somewhat less than 2 standard units.</p>
+<p>In other words, we predict that the child will be somewhat closer to average than the parents were.</p>
+<p>This didn't please Sir Francis Galton. He had been hoping that exceptionally tall parents would have children who were just as exceptionally tall. However, the data were clear, and Galton realized that the tall parents have children who are not quite as exceptionally tall, on average. Frustrated, Galton called this phenomenon "regression to mediocrity."</p>
+<p>Galton also noticed that exceptionally short parents had children who were somewhat taller relative to their generation, on average. In general, individuals who are away from average on one variable are expected to be not quite as far away from average on the other. This is called the <em>regression effect</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Equation-of-the-Regression-Line">The Equation of the Regression Line<a class="anchor-link" href="#The-Equation-of-the-Regression-Line"> </a></h3><p>In regression, we use the value of one variable (which we will call $x$) to predict the value of another (which we will call $y$). When the variables $x$ and $y$ are measured in standard units, the regression line for predicting $y$ based on $x$ has slope $r$ and passes through the origin. Thus the equation of the regression line can be written as:</p>
+$$
+\mbox{estimate of }y ~=~ r \cdot x ~~~
+\mbox{when both variables are measured in standard units}
+$$<p>In the original units of the data, this becomes</p>
+$$
+\frac{\mbox{estimate of}~y ~-~\mbox{average of}~y}{\mbox{SD of}~y}
+~=~ r \times 
+\frac{\mbox{the given}~x ~-~\mbox{average of}~x}{\mbox{SD of}~x}
+$$<p><img src="../../../images/regline.png" alt="regline"></p>
+<p>The slope and intercept of the regression line in original units can be derived from the diagram above.</p>
+$$
+\mathbf{\mbox{slope of the regression line}} ~=~ r \cdot
+\frac{\mbox{SD of }y}{\mbox{SD of }x}
+$$$$
+\mathbf{\mbox{intercept of the regression line}} ~=~
+\mbox{average of }y ~-~ \mbox{slope} \cdot \mbox{average of }x
+$$
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The three functions below compute the correlation, slope, and intercept. All of them take three arguments: the name of the table, the label of the column containing $x$, and the label of the column containing $y$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">correlation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">label_x</span><span class="p">,</span> <span class="n">label_y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">standard_units</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label_x</span><span class="p">))</span><span class="o">*</span><span class="n">standard_units</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label_y</span><span class="p">)))</span>
+
+<span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">label_x</span><span class="p">,</span> <span class="n">label_y</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">label_x</span><span class="p">,</span> <span class="n">label_y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label_y</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label_x</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">intercept</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">label_x</span><span class="p">,</span> <span class="n">label_y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label_y</span><span class="p">))</span> <span class="o">-</span> <span class="n">slope</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">label_x</span><span class="p">,</span> <span class="n">label_y</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label_x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Regression-Line-and-Galton's-Data">The Regression Line and Galton's Data<a class="anchor-link" href="#The-Regression-Line-and-Galton's-Data"> </a></h3><p>The correlation between midparent height and child's height is 0.32:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">galton_r</span> <span class="o">=</span> <span class="n">correlation</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+<span class="n">galton_r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.32094989606395924</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also find the equation of the regression line for predicting the child's height based on midparent height.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">galton_slope</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+<span class="n">galton_intercept</span> <span class="o">=</span> <span class="n">intercept</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+<span class="n">galton_slope</span><span class="p">,</span> <span class="n">galton_intercept</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(0.637360896969479, 22.63624054958975)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The equation of the regression line is</p>
+$$
+\mbox{estimate of child's height} ~=~ 0.64 \cdot \mbox{midparent height} ~+~ 22.64
+$$<p>This is also known as the <em>regression equation.</em> The principal use of the regression equation is to predict $y$ based on $x$.</p>
+<p>For example, for a midparent height of 70.48 inches, the regression equation predicts the child's height to be 67.56 inches.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">galton_slope</span><span class="o">*</span><span class="mf">70.48</span> <span class="o">+</span> <span class="n">galton_intercept</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>67.55743656799862</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our original prediction, created by taking the average height of all children who had midparent heights close to 70.48, came out to be pretty close: 67.63 inches compared to the regression line's prediction of 67.55 inches.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_with_predictions</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="mf">70.48</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>MidParent</th> <th>Child</th> <th>Prediction</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>70.48    </td> <td>74   </td> <td>67.6342   </td>
+        </tr>
+        <tr>
+            <td>70.48    </td> <td>70   </td> <td>67.6342   </td>
+        </tr>
+        <tr>
+            <td>70.48    </td> <td>68   </td> <td>67.6342   </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (5 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here are all of the rows in Galton's table, along with our original predictions and the new regression predictions of the children's heights.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_with_predictions</span> <span class="o">=</span> <span class="n">heights_with_predictions</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Regression Prediction&#39;</span><span class="p">,</span> <span class="n">galton_slope</span><span class="o">*</span><span class="n">heights</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">galton_intercept</span>
+<span class="p">)</span>
+<span class="n">heights_with_predictions</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>MidParent</th> <th>Child</th> <th>Prediction</th> <th>Regression Prediction</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>75.43    </td> <td>73.2 </td> <td>70.1      </td> <td>70.7124              </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69.2 </td> <td>70.1      </td> <td>70.7124              </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69   </td> <td>70.1      </td> <td>70.7124              </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69   </td> <td>70.1      </td> <td>70.7124              </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>73.5 </td> <td>70.4158   </td> <td>69.5842              </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>72.5 </td> <td>70.4158   </td> <td>69.5842              </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>65.5 </td> <td>70.4158   </td> <td>69.5842              </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>65.5 </td> <td>70.4158   </td> <td>69.5842              </td>
+        </tr>
+        <tr>
+            <td>72.06    </td> <td>71   </td> <td>68.5025   </td> <td>68.5645              </td>
+        </tr>
+        <tr>
+            <td>72.06    </td> <td>68   </td> <td>68.5025   </td> <td>68.5645              </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (924 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_with_predictions</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_43_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The grey dots show the regression predictions, all on the regression line. Notice how the line is very close to the gold graph of averages. For these data, the regression line does a good job of approximating the centers of the vertical strips.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fitted-Values">Fitted Values<a class="anchor-link" href="#Fitted-Values"> </a></h3><p>The predictions all lie on the line and are known as the "fitted values". The function <code>fit</code> takes the name of the table and the labels of $x$ and $y$, and returns an array of fitted values, one fitted value for each point in the scatter plot.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the height of the regression line at each x value.&quot;&quot;&quot;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">intercept</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is easier to see the line in the graph below than in the one above.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Fitted&#39;</span><span class="p">,</span> <span class="n">fit</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_48_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Another way to draw the line is to use the option <code>fit_line=True</code> with the Table method <code>scatter</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_50_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Units-of-Measurement-of-the-Slope">Units of Measurement of the Slope<a class="anchor-link" href="#Units-of-Measurement-of-the-Slope"> </a></h3><p>The slope is a ratio, and it worth taking a moment to study the units in which it is measured. Our example comes from the familiar dataset about mothers who gave birth in a hospital system. The scatter plot of pregnancy weights versus heights looks like a football that has been used in one game too many, but it's close enough to a football that we can justify putting our fitted line through it. In later sections we will see how to make such justifications more formal.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;baby.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baby</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Maternal Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Maternal Pregnancy Weight&#39;</span><span class="p">,</span> <span class="n">fit_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/2/Regression_Line_53_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slope</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">&#39;Maternal Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Maternal Pregnancy Weight&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.572846259275056</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The slope of the regression line is <strong>3.57 pounds per inch</strong>. This means that for two women who are 1 inch apart in height, our prediction of pregnancy weight will differ by 3.57 pounds. For a woman who is 2 inches taller than another, our prediction of pregnancy weight will be 
+$$
+2 \times 3.57 ~=~ 7.14
+$$
+pounds more than our prediction for the shorter woman.</p>
+<p>Notice that the successive vertical strips in the scatter plot are one inch apart, because the heights have been rounded to the nearest inch. Another way to think about the slope is to take any two consecutive strips (which are necessarily 1 inch apart), corresponding to two groups of women who are separated by 1 inch in height. The slope of 3.57 pounds per inch means that the average pregnancy weight of the taller group is about 3.57 pounds more than that of the shorter group.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example">Example<a class="anchor-link" href="#Example"> </a></h3><p>Suppose that our goal is to use regression to estimate the height of a basset hound based on its weight, using a sample that looks consistent with the regression model. Suppose the observed correlation $r$ is 0.5, and that the summary statistics for the two variables are as in the table below:</p>
+<table>
+<thead><tr>
+<th style="text-align:right"></th>
+<th style="text-align:center"><strong>average</strong></th>
+<th style="text-align:center"><strong>SD</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">height</td>
+<td style="text-align:center">14 inches</td>
+<td style="text-align:center">2 inches</td>
+</tr>
+<tr>
+<td style="text-align:right">weight</td>
+<td style="text-align:center">50 pounds</td>
+<td style="text-align:center">5 pounds</td>
+</tr>
+</tbody>
+</table>
+<p>To calculate the equation of the regression line, we need the slope and the intercept.</p>
+$$
+\mbox{slope} ~=~ \frac{r \cdot \mbox{SD of }y}{\mbox{SD of }x} ~=~
+\frac{0.5 \cdot 2 \mbox{ inches}}{5 \mbox{ pounds}} ~=~ 0.2 ~\mbox{inches per pound}
+$$$$
+\mbox{intercept} ~=~ \mbox{average of }y - \mbox{slope}\cdot \mbox{average of } x
+~=~ 14 \mbox{ inches} ~-~ 0.2 \mbox{ inches per pound} \cdot 50 \mbox{ pounds}
+~=~ 4 \mbox{ inches}
+$$<p>The equation of the regression line allows us to calculate the estimated height, in inches,
+based on a given weight in pounds:</p>
+$$
+\mbox{estimated height} ~=~ 0.2 \cdot \mbox{given weight} ~+~ 4
+$$<p>The slope of the line is measures the increase in the estimated height per unit increase in weight. The slope is positive, and it is important to note that this does not mean that we think basset hounds get taller if they put on weight. The slope reflects the difference in the average heights of two groups of dogs that are 1 pound apart in weight. Specifically, consider a group of dogs whose weight is $w$ pounds, and the group whose weight is $w+1$ pounds. The second group is estimated to be 0.2 inches taller, on average. This is true for all values of $w$ in the sample.</p>
+<p>In general, the slope of the regression line can be interpreted as the average increase in $y$ per unit increase in $x$. Note that if the slope is negative, then for every unit increase in $x$, the average of $y$ decreases.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Endnote">Endnote<a class="anchor-link" href="#Endnote"> </a></h3><p>Even though we won't establish the mathematical basis for the regression equation, we can see that it gives pretty good predictions when the scatter plot is football shaped. It is a surprising mathematical fact that no matter what the shape of the scatter plot, the same equation gives the "best" among all straight lines. That's the topic of the next section.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

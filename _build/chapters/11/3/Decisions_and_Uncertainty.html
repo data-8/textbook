@@ -1,0 +1,785 @@
+---
+redirect_from:
+  - "/chapters/11/3/decisions-and-uncertainty"
+interact_link: content/chapters/11/3/Decisions_and_Uncertainty.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Decisions and Uncertainty
+prev_page:
+  url: /chapters/11/2/Multiple_Categories.html
+  title: |-
+    Multiple Categories
+next_page:
+  url: /chapters/11/4/Error_Probabilities.html
+  title: |-
+    Error Probabilities
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Decisions-and-Uncertainty">Decisions and Uncertainty<a class="anchor-link" href="#Decisions-and-Uncertainty"> </a></h3><p>We have seen several examples of assessing models that involve chance, by comparing observed data to the predictions made by the models. In all of our examples, there has been no doubt about whether the data were consistent with the model's predictions. The data were either very far away from the predictions, or very close to them.</p>
+<p>But outcomes are not always so clear cut. How far is "far"? Exactly what does "close" mean? While these questions don't have universal answers, there are guidelines and conventions that you can follow. In this section we will describe some of them.</p>
+<p>But first let us develop a general framework of decision making, into which all our examples will fit.</p>
+<p>What we have developed while assessing models are some of the fundamental concepts of statistical tests of hypotheses. Using statistical tests as a way of making decisions is standard in many fields and has a standard terminology. Here is the sequence of the steps in most statistical tests, along with some terminology and examples. You will see that they are consistent with the sequence of steps we have used for assessing models.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-1:-The-Hypotheses">Step 1: The Hypotheses<a class="anchor-link" href="#Step-1:-The-Hypotheses"> </a></h3><p>All statistical tests attempt to choose between two views of the world. Specifically, the choice is between two views about how the data were generated. These two views are called <em>hypotheses</em>.</p>
+<p><strong>The null hypothesis.</strong> This is a clearly defined model about chances. It says that the data were generated at random under clearly specified assumptions about the randomness. The word "null" reinforces the idea that if the data look different from what the null hypothesis predicts, the difference is due to <em>nothing</em> but chance.</p>
+<p>From a practical perspective, <strong>the null hypothesis is a hypothesis under which you can simulate data.</strong></p>
+<p>In the example about Mendel's model for the colors of pea plants, the null hypothesis is that the assumptions of his model are good: each plant has a 75% chance of having purple flowers, independent of all other plants.</p>
+<p>Under this hypothesis, we were able to simulate random samples, by using <code>sample_proportions(929, [0.75, 0.25])</code>. We used a sample size of 929 because that's the number of plants Mendel grew.</p>
+<p><strong>The alternative hypothesis.</strong> This says that some reason other than chance made the data differ from the predictions of the model in the null hypothesis.</p>
+<p>In the example about Mendel's plants, the alternative hypothesis is simply that his model isn't good.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-2:-The-Test-Statistic">Step 2: The Test Statistic<a class="anchor-link" href="#Step-2:-The-Test-Statistic"> </a></h3><p>In order to decide between the two hypothesis, we must choose a statistic that we can use to make the decision. This is called the <strong>test statistic</strong>.</p>
+<p>In the example of Mendel's plants, our statistic was the absolute difference between the sample percent and 75% which was predicted by his model.</p>
+$$
+\big{\vert} \text{sample percent of purple-flowering plants} - 75 \big{\vert}
+$$<p>To see how to make the choice in general, look at the alternative hypothesis. What values of the statistic will make you think that the alternative hypothesis is a better choice than the null?</p>
+<ul>
+<li>If the answer is "big values," you might have a good choice of statistic. </li>
+<li>So also if the answer is "small values." </li>
+<li>But if the answer is "both big values and small values," we recommend that you look again at your statistic and see if taking an absolute value can change the answer to just "big values".</li>
+</ul>
+<p>In the case of the pea plants, a sample percent of around 75% will be consistent with the model, but percents much bigger or much less than 75 will make you think that the model isn't good. This indicates that the statistic should be the <em>distance</em> between the sample percent and 75, that is, the absolute value of the difference between them. Big values of the distance will make you lean towards the alternative.</p>
+<p>The <strong>observed value of the test statistic</strong> is the value of the statistic you get from the data in the study, not a simulated value. Among Mendel's 929 plants, 705 had purple flowers. The observed value of the test statistic was therefore</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">abs</span> <span class="p">(</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="mi">705</span> <span class="o">/</span> <span class="mi">929</span><span class="p">)</span> <span class="o">-</span> <span class="mi">75</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.8880516684607045</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-3:-The-Distribution-of-the-Test-Statistic,-Under-the-Null-Hypothesis">Step 3: The Distribution of the Test Statistic, Under the Null Hypothesis<a class="anchor-link" href="#Step-3:-The-Distribution-of-the-Test-Statistic,-Under-the-Null-Hypothesis"> </a></h3><p>The main computational aspect of a test of hypotheses is figuring out <em>what the values of the test statistic might be if the null hypothesis were true</em>.</p>
+<p>The test statistic is simulated based on the assumptions of the model in the null hypothesis. That model involves chance, so the statistic comes out differently when you simulate it multiple times.</p>
+<p>By simulating the statistic repeatedly, we get a good sense of its possible values and which ones are more likely than others. In other words, we get a good approximation to the probability distribution of the statistic, as predicted by the model in the null hypothesis.</p>
+<p>As with all distributions, it is very useful to visualize this distribution by a histogram. We have done so in all our examples.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-4.-The-Conclusion-of-the-Test">Step 4. The Conclusion of the Test<a class="anchor-link" href="#Step-4.-The-Conclusion-of-the-Test"> </a></h3><p>The choice between the null and alternative hypotheses depends on the comparison between what you computed in Steps 2 and 3: the observed value of the test statistic and its distribution as predicted by the null hypothesis.</p>
+<p>If the two are consistent with each other, then the observed test statistic is in line with what the null hypothesis predicts. In other words, the test does not point towards the alternative hypothesis; the null hypothesis is better supported by the data. This was the case with the assessment of Mendel's model.</p>
+<p>But if the two are not consistent with each other, as is the case in our example about Alameda County jury panels, then the data do not support the null hypothesis. That is why we concluded that the jury panels were not selected at random. Something other than chance affected their composition.</p>
+<p>If the data do not support the null hypothesis, we say that the test <em>rejects</em> the null hypothesis.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Meaning-of-&quot;Consistent&quot;">The Meaning of "Consistent"<a class="anchor-link" href="#The-Meaning-of-&quot;Consistent&quot;"> </a></h3><p>In the example about Alameda County juries, it was apparent that our observed test statistic was far from what was predicted by the null hypothesis. In the example about pea flowers, it is just as clear that the observed statistic is consistent with the distribution that the null predicts. So in both of the examples, it is clear which hypothesis to choose.</p>
+<p>But sometimes the decision is not so clear. Whether the observed test statistic is consistent with its predicted distribution under the null hypothesis is a matter of judgment. We recommend that you provide your judgment along with the value of the test statistic and a graph of its predicted distribution under the null. That will allow your reader to make his or her own judgment about whether the two are consistent.</p>
+<p>Here is an example where the decision requires judgment.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-GSI's-Defense">The GSI's Defense<a class="anchor-link" href="#The-GSI's-Defense"> </a></h3><p>A Berkeley Statistics class of about 350 students was divided into 12 discussion sections led by Graduate Student Instructors (GSIs). After the midterm, students in Section 3 noticed that their scores were on average lower than the rest of the class.</p>
+<p>In such situations, students tend to grumble about the section's GSI. Surely, they feel, there must have been something wrong with the GSI's teaching. Or else why would their section have done worse than others?</p>
+<p>The GSI, typically more experienced about statistical variation, often has a different perspective: if you simply draw a section of students at random from the whole class, their average score could resemble the score that the students are unhappy about, just by chance.</p>
+<p>The GSI's position is a clearly stated chance model. We can simulate data under this model. Let's test it out.</p>
+<p><strong>Null Hypothesis.</strong> The average score of the students in Section 3 is like the average score of the same number of students picked at random from the class.</p>
+<p><strong>Alternative Hypothesis.</strong> No, it's too low.</p>
+<p>A natural statistic here is the average of the scores. Low values of the average will make us lean towards the alternative.</p>
+<p>Let's take a look at the data.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The table <code>scores</code> contains the section number and midterm score for each student in the class. The midterm scores were integers in the range 0 through 25; 0 means that the student didn't take the test.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;scores_by_section.csv&#39;</span><span class="p">)</span>
+<span class="n">scores</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Section</th> <th>Midterm</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1      </td> <td>22     </td>
+        </tr>
+        <tr>
+            <td>2      </td> <td>12     </td>
+        </tr>
+        <tr>
+            <td>2      </td> <td>23     </td>
+        </tr>
+        <tr>
+            <td>2      </td> <td>14     </td>
+        </tr>
+        <tr>
+            <td>1      </td> <td>20     </td>
+        </tr>
+        <tr>
+            <td>3      </td> <td>25     </td>
+        </tr>
+        <tr>
+            <td>4      </td> <td>19     </td>
+        </tr>
+        <tr>
+            <td>1      </td> <td>24     </td>
+        </tr>
+        <tr>
+            <td>5      </td> <td>8      </td>
+        </tr>
+        <tr>
+            <td>6      </td> <td>14     </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (349 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To find the average score in each section, we will use <code>group</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">section_averages</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Section&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+<span class="n">section_averages</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Section</th> <th>Midterm average</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1      </td> <td>15.5938        </td>
+        </tr>
+        <tr>
+            <td>2      </td> <td>15.125         </td>
+        </tr>
+        <tr>
+            <td>3      </td> <td>13.6667        </td>
+        </tr>
+        <tr>
+            <td>4      </td> <td>14.7667        </td>
+        </tr>
+        <tr>
+            <td>5      </td> <td>17.4545        </td>
+        </tr>
+        <tr>
+            <td>6      </td> <td>15.0312        </td>
+        </tr>
+        <tr>
+            <td>7      </td> <td>16.625         </td>
+        </tr>
+        <tr>
+            <td>8      </td> <td>16.3103        </td>
+        </tr>
+        <tr>
+            <td>9      </td> <td>14.5667        </td>
+        </tr>
+        <tr>
+            <td>10     </td> <td>15.2353        </td>
+        </tr>
+        <tr>
+            <td>11     </td> <td>15.8077        </td>
+        </tr>
+        <tr>
+            <td>12     </td> <td>15.7333        </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The average score of Section 3 is 13.667, which does look low compared to the other section averages. But is it lower than the average of a section of the same size selected at random from the class?</p>
+<p>To answer this, we can select a section at random from the class and find its average. To select a section at random to we need to know how big Section 3 is, which we can by once again using <code>group</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Section&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Section</th> <th>count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1      </td> <td>32   </td>
+        </tr>
+        <tr>
+            <td>2      </td> <td>32   </td>
+        </tr>
+        <tr>
+            <td>3      </td> <td>27   </td>
+        </tr>
+        <tr>
+            <td>4      </td> <td>30   </td>
+        </tr>
+        <tr>
+            <td>5      </td> <td>33   </td>
+        </tr>
+        <tr>
+            <td>6      </td> <td>32   </td>
+        </tr>
+        <tr>
+            <td>7      </td> <td>24   </td>
+        </tr>
+        <tr>
+            <td>8      </td> <td>29   </td>
+        </tr>
+        <tr>
+            <td>9      </td> <td>30   </td>
+        </tr>
+        <tr>
+            <td>10     </td> <td>34   </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (2 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Section 3 had 27 students.</p>
+<p>Now we can figure out how to create one simulated value of our test statistic, the random sample average.</p>
+<p>First we have to select 27 scores at random without replacement. Since the data are already in a table, we will use the Table method <code>sample</code>.</p>
+<p>Remember that by default, <code>sample</code> draws with replacement. The optional argument <code>with_replacement = False</code> produces a random sample drawn without replacement.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores_only</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Section&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">random_sample</span> <span class="o">=</span> <span class="n">scores_only</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">random_sample</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Midterm</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>20     </td>
+        </tr>
+        <tr>
+            <td>14     </td>
+        </tr>
+        <tr>
+            <td>14     </td>
+        </tr>
+        <tr>
+            <td>25     </td>
+        </tr>
+        <tr>
+            <td>14     </td>
+        </tr>
+        <tr>
+            <td>12     </td>
+        </tr>
+        <tr>
+            <td>10     </td>
+        </tr>
+        <tr>
+            <td>22     </td>
+        </tr>
+        <tr>
+            <td>16     </td>
+        </tr>
+        <tr>
+            <td>15     </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (17 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The average of these 27 randomly selected scores is</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">random_sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Midterm&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>16.814814814814813</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's the average of 27 randomly selected scores. The cell below collects the code necessary for generating this random average.</p>
+<p>Now we can simulate the random sample average by repeating the calculation multple times.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">random_sample_average</span><span class="p">():</span>
+    <span class="n">random_sample</span> <span class="o">=</span> <span class="n">scores_only</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">random_sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Midterm&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_averages</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+    <span class="n">sample_averages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample_averages</span><span class="p">,</span> <span class="n">random_sample_average</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is the histogram of the simulated averages. It shows the distribution of what the Section 3 average might have been, if Section 3 had been selected at random from the class.</p>
+<p>The observed Section 3 average score of 13.667 is shown as a red dot on the horizontal axis. You can ignore the last line of code; it just draws the dot.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">averages_tbl</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Sample Average&#39;</span><span class="p">,</span> <span class="n">sample_averages</span><span class="p">)</span>
+<span class="n">averages_tbl</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">observed_statistic</span> <span class="o">=</span> <span class="mf">13.667</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">observed_statistic</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/11/3/Decisions_and_Uncertainty_24_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we said earlier, small values of the test statistic will make us lean towards the alternative hypothesis, that the average score in the section is too low for it to look like a random sample from the class.</p>
+<p>Is the observed statistic of 13.667 "too low" in relation to this distribution? In other words, is the red far enough out into the left hand tail of the histogram for you to think that it is "too far"?</p>
+<p>It's up to you to decide! Use your judgment. Go ahead – it's OK to do so.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Conventional-Cut-offs-and-the-P-value">Conventional Cut-offs and the P-value<a class="anchor-link" href="#Conventional-Cut-offs-and-the-P-value"> </a></h3><p>If you don't want to make your own judgment, there are conventions that you can follow. These conventions tell us how far out into the tails is considered "too far".</p>
+<p>The conventions are based on the area in the tail, starting at the observed statistic (the red dot) and looking in the direction that makes us lean toward the alternative (the left side, in this example). If the area of the tail is small, the observed statistic is far away from the values most commonly predicted by the null hypothesis.</p>
+<p>Remember that in a histogram, area represents percent. To find the area in the tail, we have to find the percent of sample averages that were less than or equal to the average score of Section 3, where the red dot is. The array <code>sample_averages</code> contains the averages for all 10,000 repetitions of the random sampling, and <code>observed_statistic</code> is 13.667, the average score of Section 3.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">sample_averages</span> <span class="o">&lt;=</span> <span class="n">observed_statistic</span><span class="p">)</span> <span class="o">/</span> <span class="n">repetitions</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0564</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>About 5.7% of the simulated random sample averages were 13.667 or below. If we had drawn the students of Section 3 at random from the whole class, the chance that their average would be 13.667 or lower is about 5.7%.</p>
+<p>This chance has an impressive name. It is called the <em>observed significance level</em> of the test. That's a mouthful, and so it is commonly called the <em>P-value</em> of the test.</p>
+<p><strong>Definition:</strong> The P-value of a test is the chance, based on the model in the null hypothesis, that the test statistic will be equal to the observed value in the sample or even further in the direction that supports the alternative.**</p>
+<p>If a P-value is small, that means the tail beyond the observed statistic is small and so the observed statistic is far away from what the null predicts. This implies that the data support the alternative hypothesis better than they support the null.</p>
+<p>How small is "small"? According to the conventions:</p>
+<ul>
+<li><p>If the P-value is less than 5%, it is considered small and the result is called "statistically significant."</p>
+</li>
+<li><p>If the P-value is even smaller – less than 1% – the result is called "highly statistically significant."</p>
+</li>
+</ul>
+<p>By this convention, our P-value of 5.7% is not considered small. So we have to conclude that the GSI's defense holds good – the average score of Section 3 is like those generated by random chance. Formally, the result of the test is not statistically significant.</p>
+<p>When you make a conclusion in this way, we recommend that you don't just say whether or not the result is statistically significant. Along with your conclusion, provide the observed statistic and the P-value as well, so that readers can use their own judgment.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Historical-Note-on-the-Conventions">Historical Note on the Conventions<a class="anchor-link" href="#Historical-Note-on-the-Conventions"> </a></h3><p>The determination of statistical significance, as defined above, has become standard in statistical analyses in all fields of application. When a convention is so universally followed, it is interesting to examine how it arose.</p>
+<p>The method of statistical testing – choosing between hypotheses based on data in random samples – was developed by Sir Ronald Fisher in the early 20th century. Sir Ronald might have set the convention for statistical significance somewhat unwittingly, in the following statement in his 1925 book <em>Statistical Methods for Research Workers</em>. About the 5% level, he wrote, "It is convenient to take this point as a limit in judging whether a deviation is to be considered significant or not."</p>
+<p>What was "convenient" for Sir Ronald became a cutoff that has acquired the status of a universal constant. No matter that Sir Ronald himself made the point that the value was his personal choice from among many: in an article in 1926, he wrote, "If one in twenty does not seem high enough odds, we may, if we prefer it draw the line at one in fifty (the 2 percent point), or one in a hundred (the 1 percent point). Personally, the author prefers to set a low standard of significance at the 5 percent point ..."</p>
+<p>Fisher knew that "low" is a matter of judgment and has no unique definition. We suggest that you follow his excellent example. Provide your data, make your judgment, and explain why you made it.</p>
+<p>Whether you use a conventional cutoff or your own judgment, it is important to keep the following points in mind.</p>
+<ul>
+<li>Always provide the observed value of the test statistic and the P-value, so that readers can decide whether or not they think the P-value is small.</li>
+<li>Don't look to defy convention only when the conventionally derived result is not to your liking.</li>
+<li>Even if a test concludes that the data don't support the chance model in the null hypothesis, it typically doesn't explain <em>why</em> the model doesn't work.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

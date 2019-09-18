@@ -15,8 +15,6 @@
 - title: Introduction
   url: /chapters/intro
   not_numbered: true
-- title: Search
-  search: true
 
 - divider: true
 
