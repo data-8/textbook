@@ -1,0 +1,635 @@
+---
+redirect_from:
+  - "/chapters/16/3/prediction-intervals"
+interact_link: content/chapters/16/3/Prediction_Intervals.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Prediction Intervals
+prev_page:
+  url: /chapters/16/2/Inference_for_the_True_Slope.html
+  title: |-
+    Inference for the True Slope
+next_page:
+  url: /chapters/17/Classification.html
+  title: |-
+    Classification
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Prediction-Intervals">Prediction Intervals<a class="anchor-link" href="#Prediction-Intervals"> </a></h3><p>One of the primary uses of regression is to make predictions for a new individual who was not part of our original sample but is similar to the sampled individuals. In the language of the model, we want to estimate $y$ for a new value of $x$.</p>
+<p>Our estimate is the height of the true line at $x$. Of course, we don't know the true line. What we have as a substitute is the regression line through our sample of points.</p>
+<p>The <strong>fitted value</strong> at a given value of $x$ is the regression estimate of $y$ based on that value of $x$. In other words, the fitted value at a given value of $x$ is the height of the regression line at that $x$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Suppose we try to predict a baby's birth weight based on the number of gestational days. As we saw in the previous section, the data fit the regression model fairly well and a 95% confidence interval for the slope of the true line doesn't contain 0. So it seems reasonable to carry out our prediction.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The figure below shows where the prediction lies on the regression line. The red line is at $x = 300$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/16/3/Prediction_Intervals_6_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The height of the point where the red line hits the regression line is the fitted value at 300 gestational days.</p>
+<p>The function <code>fitted_value</code> computes this height. Like the functions <code>correlation</code>, <code>slope</code>, and <code>intercept</code>, its arguments include the name of the table and the labels of the $x$ and $y$ columns. But it also requires a fourth argument, which is the value of $x$ at which the estimate will be made.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fitted_value</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">given_x</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">intercept</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">given_x</span>  <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The fitted value at 300 gestational days is about 129.2 ounces. In other words, for a pregnancy that has a duration of 300 gestational days, our estimate for the baby's weight is about 129.2 ounces.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fit_300</span> <span class="o">=</span> <span class="n">fitted_value</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">&#39;Gestational Days&#39;</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">fit_300</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>129.2129241703143</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Variability-of-the-Prediction">The Variability of the Prediction<a class="anchor-link" href="#The-Variability-of-the-Prediction"> </a></h3><p>We have developed a method making one prediction of a new baby's birth weight based on the number of gestational days, using the data in our sample. But as data scientists, we know that the sample might have been different. Had the sample been different, the regression line would have been different too, and so would our prediction. To see how good our prediction is, we must get a sense of how variable the prediction can be.</p>
+<p>To do this, we must generate new samples. We can do that by bootstrapping the scatter plot as in the previous section. We will then fit the regression line to the scatter plot in each replication, and make a prediction based on each line. The figure below shows 10 such lines, and the corresponding predicted birth weight at 300 gestational days.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># HIDDEN </span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">300</span>
+
+<span class="n">lines</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="s1">&#39;slope&#39;</span><span class="p">,</span><span class="s1">&#39;intercept&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">rep</span> <span class="o">=</span> <span class="n">baby</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">rep</span><span class="p">,</span> <span class="s1">&#39;Gestational Days&#39;</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">intercept</span><span class="p">(</span><span class="n">rep</span><span class="p">,</span> <span class="s1">&#39;Gestational Days&#39;</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">)</span>
+    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
+
+<span class="n">lines</span><span class="p">[</span><span class="s1">&#39;prediction at x=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;slope&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">lines</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;intercept&#39;</span><span class="p">)</span>
+
+<span class="n">xlims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">291</span><span class="p">,</span> <span class="mi">309</span><span class="p">])</span>
+<span class="n">left</span> <span class="o">=</span> <span class="n">xlims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">right</span> <span class="o">=</span> <span class="n">xlims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fit_x</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">lines</span><span class="p">[</span><span class="s1">&#39;slope&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">lines</span><span class="p">[</span><span class="s1">&#39;intercept&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlims</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">left</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">right</span><span class="p">[</span><span class="n">i</span><span class="p">]]),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fit_x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/16/3/Prediction_Intervals_12_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The predictions vary from one line to the next. The table below shows the slope and intercept of each of the 10 lines, along with the prediction.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lines</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>slope</th> <th>intercept</th> <th>prediction at x=300</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0.45313 </td> <td>-6.4802  </td> <td>129.459            </td>
+        </tr>
+        <tr>
+            <td>0.380348</td> <td>13.8783  </td> <td>127.983            </td>
+        </tr>
+        <tr>
+            <td>0.371561</td> <td>15.565   </td> <td>127.033            </td>
+        </tr>
+        <tr>
+            <td>0.501393</td> <td>-20.6304 </td> <td>129.787            </td>
+        </tr>
+        <tr>
+            <td>0.523362</td> <td>-26.7984 </td> <td>130.21             </td>
+        </tr>
+        <tr>
+            <td>0.435213</td> <td>-2.38498 </td> <td>128.179            </td>
+        </tr>
+        <tr>
+            <td>0.510679</td> <td>-22.7834 </td> <td>130.42             </td>
+        </tr>
+        <tr>
+            <td>0.454862</td> <td>-8.25145 </td> <td>128.207            </td>
+        </tr>
+        <tr>
+            <td>0.519532</td> <td>-26.4801 </td> <td>129.379            </td>
+        </tr>
+        <tr>
+            <td>0.528918</td> <td>-28.3326 </td> <td>130.343            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bootstrap-Prediction-Interval">Bootstrap Prediction Interval<a class="anchor-link" href="#Bootstrap-Prediction-Interval"> </a></h3><p>If we increase the number of repetitions of the resampling process, we can generate an empirical histogram of the predictions. This will allow us to create an interval of predictions, using the same percentile method that we used create a bootstrap confidence interval for the slope.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us define a function called <code>bootstrap_prediction</code> to do this. The function takes five arguments:</p>
+<ul>
+<li>the name of the table</li>
+<li>the column labels of the predictor and response variables, in that order</li>
+<li>the value of $x$ at which to make the prediction</li>
+<li>the desired number of bootstrap repetitions</li>
+</ul>
+<p>In each repetition, the function bootstraps the original scatter plot and finds the predicted value of $y$ based on the specified value of $x$. Specifically, it calls the function <code>fitted_value</code> that we defined earlier in this section to find the fitted value at the specified $x$.</p>
+<p>Finally, it draws the empirical histogram of all the predicted values, and prints the interval consisting of the "middle 95%" of the predicted values. It also prints the predicted value based on the regression line through the original scatter plot.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Bootstrap prediction of variable y at new_x</span>
+<span class="c1"># Data contained in table; prediction by regression of y based on x</span>
+<span class="c1"># repetitions = number of bootstrap replications of the original scatter plot</span>
+
+<span class="k">def</span> <span class="nf">bootstrap_prediction</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">new_x</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+    
+    <span class="c1"># For each repetition:</span>
+    <span class="c1"># Bootstrap the scatter; </span>
+    <span class="c1"># get the regression prediction at new_x; </span>
+    <span class="c1"># augment the predictions list</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">bootstrap_sample</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+        <span class="n">bootstrap_prediction</span> <span class="o">=</span> <span class="n">fitted_value</span><span class="p">(</span><span class="n">bootstrap_sample</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">new_x</span><span class="p">)</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">bootstrap_prediction</span><span class="p">)</span>
+        
+    <span class="c1"># Find the ends of the approximate 95% prediction interval</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">percentile</span><span class="p">(</span><span class="mf">97.5</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+    
+    <span class="c1"># Prediction based on original sample</span>
+    <span class="n">original</span> <span class="o">=</span> <span class="n">fitted_value</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">new_x</span><span class="p">)</span>
+    
+    <span class="c1"># Display results</span>
+    <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Prediction&#39;</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;predictions at x=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">new_x</span><span class="p">))</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">),</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">8</span><span class="p">);</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Height of regression line at x=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">new_x</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">original</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Approximate 95</span><span class="si">%-c</span><span class="s1">onfidence interval:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_prediction</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">&#39;Gestational Days&#39;</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/choldgraf/anaconda/envs/textbook/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The &#39;normed&#39; kwarg is deprecated, and has been replaced by the &#39;density&#39; kwarg.
+  warnings.warn(&#34;The &#39;normed&#39; kwarg is deprecated, and has been &#34;
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Height of regression line at x=300: 129.2129241703143
+Approximate 95%-confidence interval:
+127.241239628963 131.32562696740675
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/16/3/Prediction_Intervals_18_2.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The figure above shows a bootstrap empirical histogram of the predicted birth weight of a baby at 300 gestational days, based on 5,000 repetitions of the bootstrap process. The empirical distribution is roughly normal.</p>
+<p>An approximate 95% prediction interval of scores has been constructed by taking the "middle 95%" of the predictions, that is, the interval from the 2.5th percentile to the 97.5th percentile of the predictions. The interval ranges from about 127 to about 131. The prediction based on the original sample was about 129, which is close to the center of the interval.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Effect-of-Changing-the-Value-of-the-Predictor">The Effect of Changing the Value of the Predictor<a class="anchor-link" href="#The-Effect-of-Changing-the-Value-of-the-Predictor"> </a></h3><p>The figure below shows the histogram of 5,000 bootstrap predictions at 285 gestational days. The prediction based on the original sample is about 122 ounces, and the interval ranges from about 121 ounces to about 123 ounces.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_prediction</span><span class="p">(</span><span class="n">baby</span><span class="p">,</span> <span class="s1">&#39;Gestational Days&#39;</span><span class="p">,</span> <span class="s1">&#39;Birth Weight&#39;</span><span class="p">,</span> <span class="mi">285</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/choldgraf/anaconda/envs/textbook/lib/python3.6/site-packages/matplotlib/axes/_axes.py:6462: UserWarning: The &#39;normed&#39; kwarg is deprecated, and has been replaced by the &#39;density&#39; kwarg.
+  warnings.warn(&#34;The &#39;normed&#39; kwarg is deprecated, and has been &#34;
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Height of regression line at x=285: 122.21457101607608
+Approximate 95%-confidence interval:
+121.15227951418838 123.29668698463169
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/16/3/Prediction_Intervals_21_2.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that this interval is narrower than the prediction interval at 300 gestational days. Let us investigate the reason for this.</p>
+<p>The mean number of gestational days is about 279 days:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">baby</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Gestational Days&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>279.1013628620102</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So 285 is nearer to the center of the distribution than 300 is. Typically, the regression lines based on the bootstrap samples are closer to each other near the center of the distribution of the predictor variable. Therefore all of the predicted values are closer together as well. This explains the narrower width of the prediction interval.</p>
+<p>You can see this in the figure below, which shows predictions at $x = 285$ and $x = 300$ for each of ten bootstrap replications. Typically, the lines are farther apart at $x = 300$ than at $x = 285$, and therefore the predictions at $x = 300$ are more variable.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/16/3/Prediction_Intervals_25_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Words-of-caution">Words of caution<a class="anchor-link" href="#Words-of-caution"> </a></h3><p>All of the predictions and tests that we have performed in this chapter assume that the regression model holds. Specifically, the methods assume that the scatter plot resembles points generated by starting with points that are on a straight line and then pushing them off the line by adding random normal noise.</p>
+<p>If the scatter plot does not look like that, then perhaps the model does not hold for the data. If the model does not hold, then calculations that assume the model to be true are not valid.</p>
+<p>Therefore, we must first decide whether the regression model holds for our data, before we start making predictions based on the model or testing hypotheses about parameters of the model. A simple way is to do what we did in this section, which is to draw the scatter diagram of the two variables and see whether it looks roughly linear and evenly spread out around a line. We should also run the diagnostics we developed in the previous section using the residual plot.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

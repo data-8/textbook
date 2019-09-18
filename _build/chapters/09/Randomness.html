@@ -1,0 +1,607 @@
+---
+redirect_from:
+  - "/chapters/09/randomness"
+interact_link: content/chapters/09/Randomness.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Randomness
+prev_page:
+  url: /chapters/08/5/Bike_Sharing_in_the_Bay_Area.html
+  title: |-
+    Bike Sharing in the Bay Area
+next_page:
+  url: /chapters/09/1/Conditional_Statements.html
+  title: |-
+    Conditional Statements
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Randomness">Randomness<a class="anchor-link" href="#Randomness"> </a></h3><p>In the previous chapters we developed skills needed to make insightful descriptions of data. Data scientists also have to be able to understand randomness. For example, they have to be able to assign individuals to treatment and control groups at random, and then try to say whether any observed differences in the outcomes of the two groups are simply due to the random assignment or genuinely due to the treatment.</p>
+<p>In this chapter, we begin our analysis of randomness. To start off, we will use Python to make choices at random. In <code>numpy</code> there is a sub-module called <code>random</code> that contains many functions that involve random selection. One of these functions is called <code>choice</code>. It picks one item at random from an array, and it is equally likely to pick any of the items. The function call is <code>np.random.choice(array_name)</code>, where <code>array_name</code> is the name of the array from which to make the choice.</p>
+<p>Thus the following code evaluates to <code>treatment</code> with chance 50%, and <code>control</code> with chance 50%.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">two_groups</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;treatment&#39;</span><span class="p">,</span> <span class="s1">&#39;control&#39;</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">two_groups</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;treatment&#39;</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The big difference between the code above and all the other code we have run thus far is that the code above doesn't always return the same value. It can return either <code>treatment</code> or <code>control</code>, and we don't know ahead of time which one it will pick. We can repeat the process by providing a second argument, the number of times to repeat the process.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">two_groups</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;control&#39;, &#39;control&#39;, &#39;treatment&#39;, &#39;treatment&#39;, &#39;control&#39;,
+       &#39;treatment&#39;, &#39;treatment&#39;, &#39;control&#39;, &#39;control&#39;, &#39;treatment&#39;],
+      dtype=&#39;&lt;U9&#39;)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A fundamental question about random events is whether or not they occur. For example:</p>
+<ul>
+<li>Did an individual get assigned to the treatment group, or not?</li>
+<li>Is a gambler going to win money, or not?</li>
+<li>Has a poll made an accurate prediction, or not?</li>
+</ul>
+<p>Once the event has occurred, you can answer "yes" or "no" to all these questions. In programming, it is conventional to do this by labeling statements as True or False. For example, if an individual did get assigned to the treatment group, then the statement, "The individual was assigned to the treatment group" would be <code>True</code>. If not, it would be <code>False</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Booleans-and-Comparison">Booleans and Comparison<a class="anchor-link" href="#Booleans-and-Comparison"> </a></h3><p>In Python, Boolean values, named for the logician <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>, represent truth and take only two possible values: <code>True</code> and <code>False</code>. Whether problems involve randomness or not, Boolean values most often arise from comparison operators. Python includes a variety of operators that compare values. For example, <code>3</code> is larger than <code>1 + 1</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The value <code>True</code> indicates that the comparison is valid; Python has confirmed this simple fact about the relationship between <code>3</code> and <code>1+1</code>. The full set of common comparison operators are listed below.</p>
+<table>
+<thead><tr>
+<th>Comparison</th>
+<th>Operator</th>
+<th>True example</th>
+<th>False Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Less than</td>
+<td>&lt;</td>
+<td>2 &lt; 3</td>
+<td>2 &lt; 2</td>
+</tr>
+<tr>
+<td>Greater than</td>
+<td>&gt;</td>
+<td>3 &gt; 2</td>
+<td>3 &gt; 3</td>
+</tr>
+<tr>
+<td>Less than or equal</td>
+<td>&lt;=</td>
+<td>2 &lt;= 2</td>
+<td>3 &lt;= 2</td>
+</tr>
+<tr>
+<td>Greater or equal</td>
+<td>&gt;=</td>
+<td>3 &gt;= 3</td>
+<td>2 &gt;= 3</td>
+</tr>
+<tr>
+<td>Equal</td>
+<td>==</td>
+<td>3 == 3</td>
+<td>3 == 2</td>
+</tr>
+<tr>
+<td>Not equal</td>
+<td>!=</td>
+<td>3 != 2</td>
+<td>2 != 2</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice the two equal signs <code>==</code> in the comparison to determine equality. This is necessary because Python already uses <code>=</code> to mean assignment to a name, as we have seen. It can't use the same symbol for a different purpose. Thus if you want to check whether 5 is equal to the 10/2, then you have to be careful: <code>5 = 10/2</code> returns an error message because Python assumes you are trying to assign the value of the expression 10/2 to a name that is the numeral 5. Instead, you must use <code>5 == 10/2</code>, which evaluates to <code>True</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">5</span> <span class="o">=</span> <span class="mi">10</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;&lt;ipython-input-5-e8c755f5e450&gt;&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
+<span class="ansi-red-fg">    5 = 10/2</span>
+            ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> can&#39;t assign to literal
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">5</span> <span class="o">==</span> <span class="mi">10</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>An expression can contain multiple comparisons, and they all must hold in order for the whole expression to be <code>True</code>. For example, we can express that <code>1+1</code> is between <code>1</code> and <code>3</code> using the following expression.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">3</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The average of two numbers is always between the smaller number and the larger number. We express this relationship for the numbers <code>x</code> and <code>y</code> below. You can try different values of <code>x</code> and <code>y</code> to confirm this relationship.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Comparing-Strings">Comparing Strings<a class="anchor-link" href="#Comparing-Strings"> </a></h3><p>Strings can also be compared, and their order is alphabetical. A shorter string is less than a longer string that begins with the shorter string.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;Dog&#39;</span> <span class="o">&gt;</span> <span class="s1">&#39;Catastrophe&#39;</span> <span class="o">&gt;</span> <span class="s1">&#39;Cat&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's return to random selection. Recall the array <code>two_groups</code> which consists of just two elements, <code>treatment</code> and <code>control</code>. To see whether a randomly assigned individual went to the treatment group, you can use a comparison:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">two_groups</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;treatment&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As before, the random choice will not always be the same, so the result of the comparison won't always be the same either. It will depend on whether <code>treatment</code> or <code>control</code> was chosen. With any cell that involves random selection, it is a good idea to run the cell several times to get a sense of the variability in the result.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Comparing-an-Array-and-a-Value">Comparing an Array and a Value<a class="anchor-link" href="#Comparing-an-Array-and-a-Value"> </a></h3><p>Recall that we can perform arithmetic operations on many numbers in an array at once.  For example, <code>make_array(0, 5, 2)*2</code> is equivalent to <code>make_array(0, 10, 4)</code>.  In similar fashion, if we compare an array and one value, each element of the array is compared to that value, and the comparison evaluates to an array of Booleans.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tosses</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;Tails&#39;</span><span class="p">,</span> <span class="s1">&#39;Heads&#39;</span><span class="p">,</span> <span class="s1">&#39;Tails&#39;</span><span class="p">,</span> <span class="s1">&#39;Heads&#39;</span><span class="p">,</span> <span class="s1">&#39;Heads&#39;</span><span class="p">)</span>
+<span class="n">tosses</span> <span class="o">==</span> <span class="s1">&#39;Heads&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([False,  True, False,  True,  True])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>numpy</code> method <code>count_nonzero</code> evaluates to the number of non-zero (that is, <code>True</code>) elements of the array.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">tosses</span> <span class="o">==</span> <span class="s1">&#39;Heads&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+

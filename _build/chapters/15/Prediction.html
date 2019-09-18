@@ -1,0 +1,297 @@
+---
+redirect_from:
+  - "/chapters/15/prediction"
+interact_link: content/chapters/15/Prediction.ipynb
+kernel_name: Python [Root]
+has_widgets: false
+title: |-
+  Prediction
+prev_page:
+  url: /chapters/14/6/Choosing_a_Sample_Size.html
+  title: |-
+    Choosing a Sample Size
+next_page:
+  url: /chapters/15/1/Correlation.html
+  title: |-
+    Correlation
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Prediction">Prediction<a class="anchor-link" href="#Prediction"> </a></h3><p>An important aspect of data science is to find out what data can tell us about the future. What do data about climate and pollution say about temperatures a few decades from now? Based on a person's internet profile, which websites are likely to interest them? How can a patient's medical history be used to judge how well he or she will respond to a treatment?</p>
+<p>To answer such questions, data scientists have developed methods for making <em>predictions</em>. In this chapter we will study one of the most commonly used ways of predicting the value of one variable based on the value of another.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The foundations of the method were laid by <a href="https://en.wikipedia.org/wiki/Francis_Galton">Sir Francis Galton</a>. As we saw in Section 7.1, Galton studied how physical characteristics are passed down from one generation to the next. Among his best known work is the prediction of the heights of adults based on the heights of their parents. We have studied the dataset that Galton collected for this. The table <code>heights</code> contains his data on the midparent height and child's height (all in inches) for a population of 934 adult "children".</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Galton&#39;s data on heights of parents and their adult children</span>
+<span class="n">galton</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;galton.csv&#39;</span><span class="p">)</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="n">galton</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;midparentHeight&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Child&#39;</span><span class="p">,</span> <span class="n">galton</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;childHeight&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>MidParent</th> <th>Child</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>75.43    </td> <td>73.2 </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69.2 </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69   </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69   </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>73.5 </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>72.5 </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>65.5 </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>65.5 </td>
+        </tr>
+        <tr>
+            <td>72.06    </td> <td>71   </td>
+        </tr>
+        <tr>
+            <td>72.06    </td> <td>68   </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (924 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../images/chapters/15/Prediction_5_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The primary reason for collecting the data was to be able to predict the adult height of a child born to parents similar to those in the dataset. We made these predictions in Section 7.1, after noticing the positive association between the two variables.</p>
+<p>Our approach was to base the prediction on all the points that correspond to a midparent height of around the midparent height of the new person. To do this, we wrote a function called <code>predict_child</code> which takes a midparent height as its argument and returns the average height of all the children who had midparent heights within half an inch of the argument.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict_child</span><span class="p">(</span><span class="n">mpht</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a prediction of the height of a child </span>
+<span class="sd">    whose parents have a midparent height of mpht.</span>
+<span class="sd">    </span>
+<span class="sd">    The prediction is the average height of the children </span>
+<span class="sd">    whose midparent height is in the range mpht plus or minus 0.5 inches.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">close_points</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">mpht</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">mpht</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">close_points</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Child&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>                       
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We applied the function to the column of <code>Midparent</code> heights, visualized our results.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Apply predict_child to all the midparent heights</span>
+
+<span class="n">heights_with_predictions</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Prediction&#39;</span><span class="p">,</span> <span class="n">heights</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">predict_child</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Draw the original scatter plot along with the predicted values</span>
+
+<span class="n">heights_with_predictions</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../images/chapters/15/Prediction_10_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The prediction at a given midparent height lies roughly at the center of the vertical strip of points at the given height. This method of prediction is called <em>regression.</em> Later in this chapter we will see where this term came from. We will also see whether we can avoid our arbitrary definitions of "closeness" being "within 0.5 inches". But first we will develop a measure that can be used in many settings to decide how good one variable will be as a predictor of another.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

@@ -1,0 +1,674 @@
+---
+redirect_from:
+  - "/chapters/14/5/variability-of-the-sample-mean"
+interact_link: content/chapters/14/5/Variability_of_the_Sample_Mean.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  The Variability of the Sample Mean
+prev_page:
+  url: /chapters/14/4/Central_Limit_Theorem.html
+  title: |-
+    The Central Limit Theorem
+next_page:
+  url: /chapters/14/6/Choosing_a_Sample_Size.html
+  title: |-
+    Choosing a Sample Size
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Variability-of-the-Sample-Mean">The Variability of the Sample Mean<a class="anchor-link" href="#The-Variability-of-the-Sample-Mean"> </a></h3><p>By the Central Limit Theorem, the probability distribution of the mean of a large random sample is roughly normal. The bell curve is centered at the population mean. Some of the sample means are higher, and some lower, but the deviations from the population mean are roughly symmetric on either side, as we have seen repeatedly. Formally, probability theory shows that the sample mean is an <em>unbiased</em> estimate of the population mean.</p>
+<p>In our simulations, we also noticed that the means of larger samples tend to be more tightly clustered around the population mean than means of smaller samples. In this section, we will quantify the variability of the sample mean and develop a relation between the variability and the sample size.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's start with our table of flight delays. The mean delay is about 16.7 minutes, and the distribution of delays is skewed to the right.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">united</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;united_summer2015.csv&#39;</span><span class="p">)</span>
+<span class="n">delay</span> <span class="o">=</span> <span class="n">united</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">delay</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">))</span>
+<span class="n">pop_mean</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>16.658155515370705</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/mnt/c/Users/chold/github/forks/python/viz/matplotlib/lib/matplotlib/axes/_axes.py:6250: MatplotlibDeprecationWarning: 
+The &#39;normed&#39; kwarg was deprecated in Matplotlib 2.1 and will be removed in 3.1. Use &#39;density&#39; instead.
+  alternative=&#34;&#39;density&#39;&#34;, removal=&#34;3.1&#34;)
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/14/5/Variability_of_the_Sample_Mean_5_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's take random samples and look at the probability distribution of the sample mean. As usual, we will use simulation to get an empirical approximation to this distribution.</p>
+<p>We will define a function <code>simulate_sample_mean</code> to do this, because we are going to vary the sample size later. The arguments are the name of the table, the label of the column containing the variable, the sample size, and the number of simulations.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;Empirical distribution of random sample means&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">simulate_sample_mean</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+    
+    <span class="n">means</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">new_sample</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span>
+        <span class="n">new_sample_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">new_sample</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+        <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">means</span><span class="p">,</span> <span class="n">new_sample_mean</span><span class="p">)</span>
+
+    <span class="n">sample_means</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Sample Means&#39;</span><span class="p">,</span> <span class="n">means</span><span class="p">)</span>
+    
+    <span class="c1"># Display empirical histogram and print all relevant quantities</span>
+    <span class="n">sample_means</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample Means&#39;</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sample Size &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sample_size</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sample size: &quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Population mean:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average of sample means: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">means</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Population SD:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">label</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SD of sample means:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">means</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us simulate the mean of a random sample of 100 delays, then of 400 delays, and finally of 625 delays. We will perform 10,000 repetitions of each of these process. The <code>xlim</code> and <code>ylim</code> lines set the axes consistently in all the plots for ease of comparison. You can just ignore those two lines of code in each cell.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simulate_sample_mean</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="s1">&#39;Delay&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/mnt/c/Users/chold/github/forks/python/viz/matplotlib/lib/matplotlib/axes/_axes.py:6250: MatplotlibDeprecationWarning: 
+The &#39;normed&#39; kwarg was deprecated in Matplotlib 2.1 and will be removed in 3.1. Use &#39;density&#39; instead.
+  alternative=&#34;&#39;density&#39;&#34;, removal=&#34;3.1&#34;)
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Sample size:  100
+Population mean: 16.658155515370705
+Average of sample means:  16.612564
+Population SD: 39.480199851609314
+SD of sample means: 3.8997187931829136
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/14/5/Variability_of_the_Sample_Mean_9_2.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simulate_sample_mean</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="s1">&#39;Delay&#39;</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/mnt/c/Users/chold/github/forks/python/viz/matplotlib/lib/matplotlib/axes/_axes.py:6250: MatplotlibDeprecationWarning: 
+The &#39;normed&#39; kwarg was deprecated in Matplotlib 2.1 and will be removed in 3.1. Use &#39;density&#39; instead.
+  alternative=&#34;&#39;density&#39;&#34;, removal=&#34;3.1&#34;)
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Sample size:  400
+Population mean: 16.658155515370705
+Average of sample means:  16.650027499999997
+Population SD: 39.480199851609314
+SD of sample means: 1.9777759739145762
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/14/5/Variability_of_the_Sample_Mean_10_2.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simulate_sample_mean</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="s1">&#39;Delay&#39;</span><span class="p">,</span> <span class="mi">625</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/mnt/c/Users/chold/github/forks/python/viz/matplotlib/lib/matplotlib/axes/_axes.py:6250: MatplotlibDeprecationWarning: 
+The &#39;normed&#39; kwarg was deprecated in Matplotlib 2.1 and will be removed in 3.1. Use &#39;density&#39; instead.
+  alternative=&#34;&#39;density&#39;&#34;, removal=&#34;3.1&#34;)
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Sample size:  625
+Population mean: 16.658155515370705
+Average of sample means:  16.68069616
+Population SD: 39.480199851609314
+SD of sample means: 1.5794443889422805
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/14/5/Variability_of_the_Sample_Mean_11_2.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can see the Central Limit Theorem in action – the histograms of the sample means are roughly normal, even though the histogram of the delays themselves is far from normal.</p>
+<p>You can also see that each of the three histograms of the sample means is centered very close to the population mean. In each case, the "average of sample means" is very close to 16.66 minutes, the population mean. Both values are provided in the printout above each histogram. As expected, the sample mean is an unbiased estimate of the population mean.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-SD-of-All-the-Sample-Means">The SD of All the Sample Means<a class="anchor-link" href="#The-SD-of-All-the-Sample-Means"> </a></h3><p>You can also see that the histograms get narrower, and hence taller, as the sample size increases. We have seen that before, but now we will pay closer attention to the measure of spread.</p>
+<p>The SD of the population of all delays is about 40 minutes.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">delay</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">))</span>
+<span class="n">pop_sd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>39.480199851609314</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Take a look at the SDs in the sample mean histograms above. In all three of them, the SD of the population of delays is about 40 minutes, because all the samples were taken from the same population.</p>
+<p>Now look at the SD of all 10,000 sample means, when the sample size is 100. That SD is about one-tenth of the population SD. When the sample size is 400, the SD of all the sample means is about one-twentieth of the population SD. When the sample size is 625, the SD of the sample means is about one-twentyfifth of the population SD.</p>
+<p>It seems like a good idea to compare the SD of the empirical distribution of the sample means to the quantity "population SD divided by the square root of the sample size."</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here are the numerical values. For each sample size in the first column, 10,000 random samples of that size were drawn, and the 10,000 sample means were calculated. The second column contains the SD of those 10,000 sample means. The third column contains the result of the calculation "population SD divided by the square root of the sample size."</p>
+<p>The cell takes a while to run, as it's a large simulation. But you'll soon see that it's worth the wait.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repetitions</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">sample_sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">626</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+
+<span class="n">sd_means</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">sample_sizes</span><span class="p">:</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">means</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">delay</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">)))</span>
+    <span class="n">sd_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sd_means</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">means</span><span class="p">))</span>
+
+<span class="n">sd_comparison</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Sample Size n&#39;</span><span class="p">,</span> <span class="n">sample_sizes</span><span class="p">,</span>
+    <span class="s1">&#39;SD of 10,000 Sample Means&#39;</span><span class="p">,</span> <span class="n">sd_means</span><span class="p">,</span>
+    <span class="s1">&#39;pop_sd/sqrt(n)&#39;</span><span class="p">,</span> <span class="n">pop_sd</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sample_sizes</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sd_comparison</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Sample Size n</th> <th>SD of 10,000 Sample Means</th> <th>pop_sd/sqrt(n)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>25           </td> <td>7.80558                  </td> <td>7.89604       </td>
+        </tr>
+        <tr>
+            <td>50           </td> <td>5.60588                  </td> <td>5.58334       </td>
+        </tr>
+        <tr>
+            <td>75           </td> <td>4.58432                  </td> <td>4.55878       </td>
+        </tr>
+        <tr>
+            <td>100          </td> <td>3.93334                  </td> <td>3.94802       </td>
+        </tr>
+        <tr>
+            <td>125          </td> <td>3.51501                  </td> <td>3.53122       </td>
+        </tr>
+        <tr>
+            <td>150          </td> <td>3.22156                  </td> <td>3.22354       </td>
+        </tr>
+        <tr>
+            <td>175          </td> <td>2.95652                  </td> <td>2.98442       </td>
+        </tr>
+        <tr>
+            <td>200          </td> <td>2.83387                  </td> <td>2.79167       </td>
+        </tr>
+        <tr>
+            <td>225          </td> <td>2.61634                  </td> <td>2.63201       </td>
+        </tr>
+        <tr>
+            <td>250          </td> <td>2.49718                  </td> <td>2.49695       </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (15 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The values in the second and third columns are very close. If we plot each of those columns with the sample size on the horizontal axis, the two graphs are essentially indistinguishable.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sd_comparison</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Sample Size n&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/14/5/Variability_of_the_Sample_Mean_20_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There really are two curves there. But they are so close to each other that it looks as though there is just one.</p>
+<p>What we are seeing is an instance of a general result. Remember that the graph above is based on 10,000 replications for each sample size. But there are many more than 10,000 samples of each size. The probability distribution of the sample mean is based on the means of <em>all possible samples</em> of a fixed size.</p>
+<p><strong>Fix a sample size.</strong> If the samples are drawn at random with replacement from the population, then</p>
+$$
+{\mbox{SD of all possible sample means}} ~=~
+\frac{\mbox{Population SD}}{\sqrt{\mbox{sample size}}}
+$$<p>This is the standard deviation of the averages of all the possible samples that could be drawn. <strong>It measures roughly how far off the sample means are from the population mean.</strong></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Central-Limit-Theorem-for-the-Sample-Mean">The Central Limit Theorem for the Sample Mean<a class="anchor-link" href="#The-Central-Limit-Theorem-for-the-Sample-Mean"> </a></h3><p>If you draw a large random sample with replacement from a population, then, regardless of the distribution of the population, the probability distribution of the sample mean is roughly normal, centered at the population mean, with an SD equal to the population SD divided by the square root of the sample size.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Accuracy-of-the-Sample-Mean">The Accuracy of the Sample Mean<a class="anchor-link" href="#The-Accuracy-of-the-Sample-Mean"> </a></h3><p>The SD of all possible sample means measures how variable the sample mean can be. As such, it is taken as a measure of the accuracy of the sample mean as an estimate of the population mean. The smaller the SD, the more accurate the estimate.</p>
+<p>The formula shows that:</p>
+<ul>
+<li>The population size doesn't affect the accuracy of the sample mean. The population size doesn't appear anywhere in the formula.</li>
+<li>The population SD is a constant; it's the same for every sample drawn from the population. The sample size can be varied. Because the sample size appears in the denominator, the variability of the sample mean <em>decreases</em> as the sample size increases, and hence the accuracy increases.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Square-Root-Law">The Square Root Law<a class="anchor-link" href="#The-Square-Root-Law"> </a></h3><p>From the table of SD comparisons, you can see that the SD of the means of random samples of 25 flight delays is about 8 minutes. If you multiply the sample size by 4, you'll get samples of size 100. The SD of the means of all of those samples is about 4 minutes. That's smaller than 8 minutes, but it's not 4 times as small; it's only 2 times as small. That's because the sample size in the denominator has a square root over it. The sample size increased by a factor of 4, but the SD went down by a factor of $2 = \sqrt{4}$. In other words, the accuracy went up by a factor of $2 = \sqrt{4}$.</p>
+<p>In general, when you multiply the sample size by a factor, the accuracy of the sample mean goes up by the square root of that factor.</p>
+<p>So to increase accuracy by a factor of 10, you have to multiply sample size by a factor of 100. Accuracy doesn't come cheap!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

@@ -11,7 +11,10 @@ help:
 
 
 install:
-	gem install bundler
+	# Check to see whether bundler is already installed. If not, install it.
+	if [ hash bundler 2>/dev/null ]; then \
+	gem install bundler;\
+	fi
 	bundle install
 
 book:
@@ -24,8 +27,6 @@ clean:
 	python scripts/clean.py
 
 serve:
-	@echo "After the build completes, open http://127.0.0.1:4000/chapters/intro"
-	@echo "in your browser to view the book."
 	bundle exec guard
 
 build:

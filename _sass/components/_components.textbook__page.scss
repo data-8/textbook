@@ -4,7 +4,7 @@
  *
  * Most of the textbook content is styled using this component.
  *
- * [1]: Don't add horizontal padding since the content lies within a .o-wrapper
+ * [1]: Within-textbook__page layout
  * [2]: Since we use JS to focus the page on load, hide the outline to avoid
  *   visual cruft.
  *
@@ -15,24 +15,63 @@
  * [5]: Inline code snippets (usually variable names) should have a gray bg.
  */
 
-.c-textbook__page {
-  /* [1] */
-  padding: $spacing-unit-small 0;
-  overflow-x: auto;
-  @include mq($from: tablet) {
-    padding-left: $spacing-unit-small;
-    padding-right: $spacing-unit;
-  }
+/**
+ * [1] Within-textbook__page layout
+*/
 
-  @include mq($from: desktop) {
-    padding-right: $right-sidebar-width;
-  }
+div.jb_cell {
+  width: 100%;
+  position: relative;
 
-  &:focus {
-    /* [2] */
-    outline: none;
+  @include mq($from: laptop) {
+    width: $textbook-page-with-sidebar-width;
   }
 }
+
+// Right margin
+div.jb_cell {
+  &.tag_popout {
+    .cell {
+      border-left: 3px solid #c3c3c3;
+      padding-left: 5%
+    }
+
+    // On laptops, pop out to the right instead of in-line
+    @include mq($from: laptop) {
+      width: calc(100% - #{$textbook-page-with-sidebar-width});
+      font-size: .8em;
+      position: relative;
+      float: right;
+      padding-left: $spacing-unit-large * .8;
+      clear: both;
+
+      h1, h2, h3, h4, h5, h6 {
+          margin: .5em 0px 0px 0px;
+      }
+
+      // This prevents *sequential* popouts from creating a bunch of white-space when stacked
+      & + div.tag_popout {
+        height: 0px;
+      }
+
+      // Remove the border when we pop-out to the right
+      .cell {
+        border-left: none;
+        padding-left: 0;
+      }
+    }
+  }
+
+  &.tag_full_width {
+    width: 100%;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+
 
 /**
  * Jupyter notebook styling
@@ -43,8 +82,8 @@ div.highlighter-rouge {
   position: relative;
 }
 
-div.c-textbook__content > div.highlighter-rouge > div.highlight pre,
-div.input_area > div.highlighter-rouge > div.highlight > pre,
+div.inner_cell div.highlight > pre,
+div.highlighter-rouge > div.highlight > pre,
 div.output_wrapper pre {
   background-color: $color-light-gray;
   font-size: 0.9em;
@@ -57,6 +96,10 @@ div.output_wrapper pre {
 // If we've got intentionally non-highlighted markup, make sure that the lines wrap
 pre code.language-no-highlight {
   white-space: pre-wrap;
+}
+
+div.output_wrapper {
+  margin-bottom: $spacing-unit-small;
 }
 
 div.output_wrapper pre {

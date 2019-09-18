@@ -1,0 +1,943 @@
+---
+redirect_from:
+  - "/chapters/08/2/classifying-by-one-variable"
+interact_link: content/chapters/08/2/Classifying_by_One_Variable.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Classifying by One Variable
+prev_page:
+  url: /chapters/08/1/Applying_a_Function_to_a_Column.html
+  title: |-
+    Applying Functions to Columns
+next_page:
+  url: /chapters/08/3/Cross-Classifying_by_More_than_One_Variable.html
+  title: |-
+    Cross-Classifying
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Classifying-by-One-Variable">Classifying by One Variable<a class="anchor-link" href="#Classifying-by-One-Variable"> </a></h3><p>Data scientists often need to classify individuals into groups according to shared features, and then identify some characteristics of the groups. For example, in the example using Galton's data on heights, we saw that it was useful to classify families according to the parents' midparent heights, and then find the average height of the children in each group.</p>
+<p>This section is about classifying individuals into categories that are not numerical. We begin by recalling the basic use of <code>group</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Counting-the-Number-in-Each-Category">Counting the Number in Each Category<a class="anchor-link" href="#Counting-the-Number-in-Each-Category"> </a></h3><p>The <code>group</code> method with a single argument counts the number of rows for each category in a column. The result contains one row per unique value in the grouped column.</p>
+<p>Here is a small table of data on ice cream cones. The <code>group</code> method can be used to list the distinct flavors and provide the counts of each flavor.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cones</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;strawberry&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;strawberry&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Price&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mf">3.55</span><span class="p">,</span> <span class="mf">4.75</span><span class="p">,</span> <span class="mf">6.55</span><span class="p">,</span> <span class="mf">5.25</span><span class="p">,</span> <span class="mf">5.25</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">cones</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>strawberry</td> <td>3.55 </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>4.75 </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>6.55 </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>5.25 </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>5.25 </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cones</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chocolate </td> <td>3    </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>2    </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are two distinct categories, chocolate and strawberry. The call to <code>group</code> creates a table of counts in each category. The column is called <code>count</code> by default, and contains the number of rows in each category.</p>
+<p>Notice that this can all be worked out from just the <code>Flavor</code> column. The <code>Price</code> column has not been used.</p>
+<p>But what if we wanted the total price of the cones of each different flavor? That's where the second argument of <code>group</code> comes in.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Finding-a-Characteristic-of-Each-Category">Finding a Characteristic of Each Category<a class="anchor-link" href="#Finding-a-Characteristic-of-Each-Category"> </a></h3><p>The optional second argument of <code>group</code> names the function that will be used to aggregate values in other columns for all of those rows. For instance, <code>sum</code> will sum up the prices in all rows that match each category. This result also contains one row per unique value in the grouped column, but it has the same number of columns as the original table.</p>
+<p>To find the total price of each flavor, we call <code>group</code> again, with <code>Flavor</code> as its first argument as before. But this time there is a second argument: the function name <code>sum</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cones</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Price sum</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chocolate </td> <td>16.55    </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>8.8      </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To create this new table, <code>group</code> has calculated the sum of the <code>Price</code> entries in all the rows corresponding to each distinct flavor. The prices in the three <code>chocolate</code> rows add up to $\$16.55$ (you can assume that price is being measured in dollars). The prices in the two `strawberry` rows have a total of $\$8.80$.</p>
+<p>The label of the newly created "sum" column is <code>Price sum</code>, which is created by taking the label of the column being summed, and appending the word <code>sum</code>.</p>
+<p>Because <code>group</code> finds the <code>sum</code> of all columns other than the one with the categories, there is no need to specify that it has to <code>sum</code> the prices.</p>
+<p>To see in more detail what <code>group</code> is doing, notice that you could have figured out the total prices yourself, not only by mental arithmetic but also using code. For example, to find the total price of all the chocolate cones, you could start by creating a new table consisting of only the chocolate cones, and then accessing the column of prices:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cones</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="s1">&#39;chocolate&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([4.75, 6.55, 5.25])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">cones</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="s1">&#39;chocolate&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Price&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>16.55</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is what <code>group</code> is doing for each distinct value in <code>Flavor</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># For each distinct value in `Flavor, access all the rows</span>
+<span class="c1"># and create an array of `Price`</span>
+
+<span class="n">cones_choc</span> <span class="o">=</span> <span class="n">cones</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="s1">&#39;chocolate&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span>
+<span class="n">cones_strawb</span> <span class="o">=</span> <span class="n">cones</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="s1">&#39;strawberry&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the arrays in a table</span>
+
+<span class="n">grouped_cones</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;strawberry&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Array of All the Prices&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="n">cones_choc</span><span class="p">,</span> <span class="n">cones_strawb</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Append a column with the sum of the `Price` values in each array</span>
+
+<span class="n">price_totals</span> <span class="o">=</span> <span class="n">grouped_cones</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Sum of the Array&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">cones_choc</span><span class="p">),</span> <span class="nb">sum</span><span class="p">(</span><span class="n">cones_strawb</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="n">price_totals</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Array of All the Prices</th> <th>Sum of the Array</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chocolate </td> <td>[4.75 6.55 5.25]       </td> <td>16.55           </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>[3.55 5.25]            </td> <td>8.8             </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can replace <code>sum</code> by any other functions that work on arrays. For example, you could use <code>max</code> to find the largest price in each category:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cones</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Price max</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chocolate </td> <td>6.55     </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>5.25     </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once again, <code>group</code> creates arrays of the prices in each <code>Flavor</code> category. But now it finds the <code>max</code> of each array:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">price_maxes</span> <span class="o">=</span> <span class="n">grouped_cones</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Max of the Array&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">cones_choc</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">cones_strawb</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="n">price_maxes</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Array of All the Prices</th> <th>Max of the Array</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chocolate </td> <td>[4.75 6.55 5.25]       </td> <td>6.55            </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>[3.55 5.25]            </td> <td>5.25            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Indeed, the original call to <code>group</code> with just one argument has the same effect as using <code>len</code> as the function and then cleaning up the table.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lengths</span> <span class="o">=</span> <span class="n">grouped_cones</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Length of the Array&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cones_choc</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">cones_strawb</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="n">lengths</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Array of All the Prices</th> <th>Length of the Array</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chocolate </td> <td>[4.75 6.55 5.25]       </td> <td>3                  </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>[3.55 5.25]            </td> <td>2                  </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-NBA-Salaries">Example: NBA Salaries<a class="anchor-link" href="#Example:-NBA-Salaries"> </a></h3><p>The table <code>nba</code> contains data on the 2015-2016 players in the National Basketball Association. We have examined these data earlier. Recall that salaries are measured in millions of dollars.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba1</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;nba_salaries.csv&#39;</span><span class="p">)</span>
+<span class="n">nba</span> <span class="o">=</span> <span class="n">nba1</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s2">&quot;&#39;15-&#39;16 SALARY&quot;</span><span class="p">,</span> <span class="s1">&#39;SALARY&#39;</span><span class="p">)</span>
+<span class="n">nba</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>PLAYER</th> <th>POSITION</th> <th>TEAM</th> <th>SALARY</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Paul Millsap    </td> <td>PF      </td> <td>Atlanta Hawks</td> <td>18.6717</td>
+        </tr>
+        <tr>
+            <td>Al Horford      </td> <td>C       </td> <td>Atlanta Hawks</td> <td>12     </td>
+        </tr>
+        <tr>
+            <td>Tiago Splitter  </td> <td>C       </td> <td>Atlanta Hawks</td> <td>9.75625</td>
+        </tr>
+        <tr>
+            <td>Jeff Teague     </td> <td>PG      </td> <td>Atlanta Hawks</td> <td>8      </td>
+        </tr>
+        <tr>
+            <td>Kyle Korver     </td> <td>SG      </td> <td>Atlanta Hawks</td> <td>5.74648</td>
+        </tr>
+        <tr>
+            <td>Thabo Sefolosha </td> <td>SF      </td> <td>Atlanta Hawks</td> <td>4      </td>
+        </tr>
+        <tr>
+            <td>Mike Scott      </td> <td>PF      </td> <td>Atlanta Hawks</td> <td>3.33333</td>
+        </tr>
+        <tr>
+            <td>Kent Bazemore   </td> <td>SF      </td> <td>Atlanta Hawks</td> <td>2      </td>
+        </tr>
+        <tr>
+            <td>Dennis Schroder </td> <td>PG      </td> <td>Atlanta Hawks</td> <td>1.7634 </td>
+        </tr>
+        <tr>
+            <td>Tim Hardaway Jr.</td> <td>SG      </td> <td>Atlanta Hawks</td> <td>1.30452</td>
+        </tr>
+    </tbody>
+</table>
+<p>... (407 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>1.</strong> How much money did each team pay for its players' salaries?</p>
+<p>The only columns involved are <code>TEAM</code> and <code>SALARY</code>. We have to <code>group</code> the rows by <code>TEAM</code> and then <code>sum</code> the salaries of the groups.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">teams_and_money</span> <span class="o">=</span> <span class="n">nba</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;TEAM&#39;</span><span class="p">,</span> <span class="s1">&#39;SALARY&#39;</span><span class="p">)</span>
+<span class="n">teams_and_money</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;TEAM&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>TEAM</th> <th>SALARY sum</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Atlanta Hawks        </td> <td>69.5731   </td>
+        </tr>
+        <tr>
+            <td>Boston Celtics       </td> <td>50.2855   </td>
+        </tr>
+        <tr>
+            <td>Brooklyn Nets        </td> <td>57.307    </td>
+        </tr>
+        <tr>
+            <td>Charlotte Hornets    </td> <td>84.1024   </td>
+        </tr>
+        <tr>
+            <td>Chicago Bulls        </td> <td>78.8209   </td>
+        </tr>
+        <tr>
+            <td>Cleveland Cavaliers  </td> <td>102.312   </td>
+        </tr>
+        <tr>
+            <td>Dallas Mavericks     </td> <td>65.7626   </td>
+        </tr>
+        <tr>
+            <td>Denver Nuggets       </td> <td>62.4294   </td>
+        </tr>
+        <tr>
+            <td>Detroit Pistons      </td> <td>42.2118   </td>
+        </tr>
+        <tr>
+            <td>Golden State Warriors</td> <td>94.0851   </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (20 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>2.</strong> How many NBA players were there in each of the five positions?</p>
+<p>We have to classify by <code>POSITION</code>, and count. This can be done with just one argument to group:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;POSITION&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>POSITION</th> <th>count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>C       </td> <td>69   </td>
+        </tr>
+        <tr>
+            <td>PF      </td> <td>85   </td>
+        </tr>
+        <tr>
+            <td>PG      </td> <td>85   </td>
+        </tr>
+        <tr>
+            <td>SF      </td> <td>82   </td>
+        </tr>
+        <tr>
+            <td>SG      </td> <td>96   </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>3.</strong> What was the average salary of the players at each of the five positions?</p>
+<p>This time, we have to group by <code>POSITION</code> and take the mean of the salaries. For clarity, we will work with a table of just the positions and the salaries.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">positions_and_money</span> <span class="o">=</span> <span class="n">nba</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;POSITION&#39;</span><span class="p">,</span> <span class="s1">&#39;SALARY&#39;</span><span class="p">)</span>
+<span class="n">positions_and_money</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;POSITION&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>POSITION</th> <th>SALARY mean</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>C       </td> <td>6.08291    </td>
+        </tr>
+        <tr>
+            <td>PF      </td> <td>4.95134    </td>
+        </tr>
+        <tr>
+            <td>PG      </td> <td>5.16549    </td>
+        </tr>
+        <tr>
+            <td>SF      </td> <td>5.53267    </td>
+        </tr>
+        <tr>
+            <td>SG      </td> <td>3.9882     </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Center was the most highly paid position, at an average of over 6 million dollars.</p>
+<p>If we had not selected the two columns as our first step, <code>group</code> would not attempt to "average" the categorical columns in <code>nba</code>. (It is impossible to average two strings like "Atlanta Hawks" and "Boston Celtics".) It performs arithmetic only on numerical columns and leaves the rest blank.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;POSITION&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>POSITION</th> <th>PLAYER mean</th> <th>TEAM mean</th> <th>SALARY mean</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>C       </td> <td>           </td> <td>         </td> <td>6.08291    </td>
+        </tr>
+        <tr>
+            <td>PF      </td> <td>           </td> <td>         </td> <td>4.95134    </td>
+        </tr>
+        <tr>
+            <td>PG      </td> <td>           </td> <td>         </td> <td>5.16549    </td>
+        </tr>
+        <tr>
+            <td>SF      </td> <td>           </td> <td>         </td> <td>5.53267    </td>
+        </tr>
+        <tr>
+            <td>SG      </td> <td>           </td> <td>         </td> <td>3.9882     </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+

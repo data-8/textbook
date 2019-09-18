@@ -1,0 +1,1143 @@
+---
+redirect_from:
+  - "/chapters/08/3/cross-classifying-by-more-than-one-variable"
+interact_link: content/chapters/08/3/Cross-Classifying_by_More_than_One_Variable.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Cross-Classifying
+prev_page:
+  url: /chapters/08/2/Classifying_by_One_Variable.html
+  title: |-
+    Classifying by One Variable
+next_page:
+  url: /chapters/08/4/Joining_Tables_by_Columns.html
+  title: |-
+    Joining Tables by Columns
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cross-Classifying-by-More-than-One-Variable">Cross-Classifying by More than One Variable<a class="anchor-link" href="#Cross-Classifying-by-More-than-One-Variable"> </a></h3><p>When individuals have multiple features, there are many different ways to classify them. For example, if we have a population of college students for each of whom we have recorded a major and the number of years in college, then the students could be classified by major, or by year, or by a combination of major and year.</p>
+<p>The <code>group</code> method also allows us to classify individuals according to multiple variables. This is called <em>cross-classifying</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Two-Variables:-Counting-the-Number-in-Each-Paired-Category">Two Variables: Counting the Number in Each Paired Category<a class="anchor-link" href="#Two-Variables:-Counting-the-Number-in-Each-Paired-Category"> </a></h3><p>The table <code>more_cones</code> records the flavor, color, and price of six ice cream cones.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;strawberry&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;strawberry&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;bubblegum&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;light brown&#39;</span><span class="p">,</span> <span class="s1">&#39;dark brown&#39;</span><span class="p">,</span> <span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;dark brown&#39;</span><span class="p">,</span> <span class="s1">&#39;pink&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Price&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mf">3.55</span><span class="p">,</span> <span class="mf">4.75</span><span class="p">,</span> <span class="mf">5.25</span><span class="p">,</span> <span class="mf">5.25</span><span class="p">,</span> <span class="mf">5.25</span><span class="p">,</span> <span class="mf">4.75</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">more_cones</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Color</th> <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>strawberry</td> <td>pink       </td> <td>3.55 </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>light brown</td> <td>4.75 </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>dark brown </td> <td>5.25 </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>pink       </td> <td>5.25 </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>dark brown </td> <td>5.25 </td>
+        </tr>
+        <tr>
+            <td>bubblegum </td> <td>pink       </td> <td>4.75 </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We know how to use <code>group</code> to count the number of cones of each flavor:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>bubblegum </td> <td>1    </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>3    </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>2    </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But now each cone has a color as well. To classify the cones by both flavor and color, we will pass a list of labels as an argument to <code>group</code>. The resulting table has one row for every <em>unique combination</em> of values that appear together in the grouped columns. As before, a single argument (a list, in this case, but an array would work too) gives row counts.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Although there are six cones, there are only four unique combinations of flavor and color. Two of the cones were dark brown chocolate, and two pink strawberry.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">group</span><span class="p">([</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="s1">&#39;Color&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Color</th> <th>count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>bubblegum </td> <td>pink       </td> <td>1    </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>dark brown </td> <td>2    </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>light brown</td> <td>1    </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>pink       </td> <td>2    </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Two-Variables:-Finding-a-Characteristic-of-Each-Paired-Category">Two Variables: Finding a Characteristic of Each Paired Category<a class="anchor-link" href="#Two-Variables:-Finding-a-Characteristic-of-Each-Paired-Category"> </a></h3><p>A second argument aggregates all other columns that are not in the list of grouped columns.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">group</span><span class="p">([</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="s1">&#39;Color&#39;</span><span class="p">],</span> <span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Color</th> <th>Price sum</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>bubblegum </td> <td>pink       </td> <td>4.75     </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>dark brown </td> <td>10.5     </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>light brown</td> <td>4.75     </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>pink       </td> <td>8.8      </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Three or More Variables.</strong> You can use <code>group</code> to classify rows by three or more categorical variables. Just include them all in the list that is the first argument. But cross-classifying by multiple variables can become complex, as the number of distinct combinations of categories can be quite large.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Pivot-Tables:-Rearranging-the-Output-of-group">Pivot Tables: Rearranging the Output of <code>group</code><a class="anchor-link" href="#Pivot-Tables:-Rearranging-the-Output-of-group"> </a></h3><p>Many uses of cross-classification involve just two categorical variables, like <code>Flavor</code> and <code>Color</code> in the example above. In these cases it is possible to display the results of the classification in a different kind of table, called a <em>pivot table</em>. Pivot tables, also known as <em>contingency tables</em>, make it easier to work with data that have been classified according to two variables.</p>
+<p>Recall the use of <code>group</code> to count the number of cones in each paired category of flavor and color:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">group</span><span class="p">([</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="s1">&#39;Color&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Color</th> <th>count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>bubblegum </td> <td>pink       </td> <td>1    </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>dark brown </td> <td>2    </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>light brown</td> <td>1    </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>pink       </td> <td>2    </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The same data can be displayed differenly using the Table method <code>pivot</code>. Ignore the code for a moment, and just examine the table of outcomes.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="s1">&#39;Color&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Color</th> <th>bubblegum</th> <th>chocolate</th> <th>strawberry</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>dark brown </td> <td>0        </td> <td>2        </td> <td>0         </td>
+        </tr>
+        <tr>
+            <td>light brown</td> <td>0        </td> <td>1        </td> <td>0         </td>
+        </tr>
+        <tr>
+            <td>pink       </td> <td>1        </td> <td>0        </td> <td>2         </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice how this table displays all nine possible pairs of flavor and color, including pairs like "dark brown bubblegum" that don't exist in our data. Notice also that the count in each pair appears in the body of the table: to find the number of light brown chocolate cones, run your eye along the row <code>light brown</code> until it meets the column <code>chocolate</code>.</p>
+<p>The <code>group</code> method takes a list of two labels because it is flexible: it could take one or three or more. On the other hand, <code>pivot</code> always takes two column labels, one to determine the columns and one to determine the rows.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong><code>pivot</code></strong></p>
+<p>The <code>pivot</code> method is closely related to the <code>group</code> method: it groups together rows that share a combination of values. It differs from <code>group</code> because it organizes the resulting values in a grid. The first argument to <code>pivot</code> is the label of a column that contains the values that will be used to form new columns in the result. The second argument is the label of a column used for the rows. The result gives the count of all rows of the original table that share the combination of column and row values.</p>
+<p>Like <code>group</code>, <code>pivot</code> can be used with additional arguments to find characteristics of each paired category. An optional third argument called <code>values</code> indicates a column of values that will replace the counts in each cell of the grid. All of these values will not be displayed, however; the fourth argument <code>collect</code> indicates how to collect them all into one aggregated value to be displayed in the cell.</p>
+<p>An example will help clarify this. Here is <code>pivot</code> being used to find the total price of the cones in each cell.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;Price&#39;</span><span class="p">,</span> <span class="n">collect</span><span class="o">=</span><span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Color</th> <th>bubblegum</th> <th>chocolate</th> <th>strawberry</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>dark brown </td> <td>0        </td> <td>10.5     </td> <td>0         </td>
+        </tr>
+        <tr>
+            <td>light brown</td> <td>0        </td> <td>4.75     </td> <td>0         </td>
+        </tr>
+        <tr>
+            <td>pink       </td> <td>4.75     </td> <td>0        </td> <td>8.8       </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And here is <code>group</code> doing the same thing.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">more_cones</span><span class="o">.</span><span class="n">group</span><span class="p">([</span><span class="s1">&#39;Flavor&#39;</span><span class="p">,</span> <span class="s1">&#39;Color&#39;</span><span class="p">],</span> <span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Flavor</th> <th>Color</th> <th>Price sum</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>bubblegum </td> <td>pink       </td> <td>4.75     </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>dark brown </td> <td>10.5     </td>
+        </tr>
+        <tr>
+            <td>chocolate </td> <td>light brown</td> <td>4.75     </td>
+        </tr>
+        <tr>
+            <td>strawberry</td> <td>pink       </td> <td>8.8      </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Though the numbers in both tables are the same, table produced by <code>pivot</code> is easier to read and lends itself more easily to analysis. The advantage of <code>pivot</code> is that it places grouped values into adjacent columns, so that they can be combined and compared.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Education-and-Income-of-Californian-Adults">Example: Education and Income of Californian Adults<a class="anchor-link" href="#Example:-Education-and-Income-of-Californian-Adults"> </a></h3><p>The State of California's Open Data Portal is a rich source of information about the lives of Californians. It is our source of a <a href="http://data.ca.gov/dataset/ca-educational-attainment-personal-income">dataset</a> on educational attainment and personal income among Californians over the years 2008 to 2014. The data are derived from the U.S. Census Current Population Survey.</p>
+<p>For each year, the table records the <code>Population Count</code> of Californians in many different combinations of age, gender, educational attainment, and personal income. We will study only the data for the year 2014.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">full_table</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;educ_inc.csv&#39;</span><span class="p">)</span>
+<span class="n">ca_2014</span> <span class="o">=</span> <span class="n">full_table</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="s1">&#39;1/1/14 0:00&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">not_equal_to</span><span class="p">(</span><span class="s1">&#39;00 to 17&#39;</span><span class="p">))</span>
+<span class="n">ca_2014</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Year</th> <th>Age</th> <th>Gender</th> <th>Educational Attainment</th> <th>Personal Income</th> <th>Population Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1/1/14 0:00</td> <td>18 to 64 </td> <td>Female</td> <td>No high school diploma        </td> <td>H: 75,000 and over </td> <td>2058            </td>
+        </tr>
+        <tr>
+            <td>1/1/14 0:00</td> <td>65 to 80+</td> <td>Male  </td> <td>No high school diploma        </td> <td>H: 75,000 and over </td> <td>2153            </td>
+        </tr>
+        <tr>
+            <td>1/1/14 0:00</td> <td>65 to 80+</td> <td>Female</td> <td>No high school diploma        </td> <td>G: 50,000 to 74,999</td> <td>4666            </td>
+        </tr>
+        <tr>
+            <td>1/1/14 0:00</td> <td>65 to 80+</td> <td>Female</td> <td>High school or equivalent     </td> <td>H: 75,000 and over </td> <td>7122            </td>
+        </tr>
+        <tr>
+            <td>1/1/14 0:00</td> <td>65 to 80+</td> <td>Female</td> <td>No high school diploma        </td> <td>F: 35,000 to 49,999</td> <td>7261            </td>
+        </tr>
+        <tr>
+            <td>1/1/14 0:00</td> <td>65 to 80+</td> <td>Male  </td> <td>No high school diploma        </td> <td>G: 50,000 to 74,999</td> <td>8569            </td>
+        </tr>
+        <tr>
+            <td>1/1/14 0:00</td> <td>18 to 64 </td> <td>Female</td> <td>No high school diploma        </td> <td>G: 50,000 to 74,999</td> <td>14635           </td>
+        </tr>
+        <tr>
+            <td>1/1/14 0:00</td> <td>65 to 80+</td> <td>Male  </td> <td>No high school diploma        </td> <td>F: 35,000 to 49,999</td> <td>15212           </td>
+        </tr>
+        <tr>
+            <td>1/1/14 0:00</td> <td>65 to 80+</td> <td>Male  </td> <td>College, less than 4-yr degree</td> <td>B: 5,000 to 9,999  </td> <td>15423           </td>
+        </tr>
+        <tr>
+            <td>1/1/14 0:00</td> <td>65 to 80+</td> <td>Female</td> <td>Bachelor's degree or higher   </td> <td>A: 0 to 4,999      </td> <td>15459           </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (117 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each row of the table corresponds to a combination of age, gender, educational level, and income. There are 127 such combinations in all!</p>
+<p>As a first step it is a good idea to start with just one or two variables. We will focus on just one pair: educational attainment and personal income.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">educ_inc</span> <span class="o">=</span> <span class="n">ca_2014</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Educational Attainment&#39;</span><span class="p">,</span> <span class="s1">&#39;Personal Income&#39;</span><span class="p">,</span> <span class="s1">&#39;Population Count&#39;</span><span class="p">)</span>
+<span class="n">educ_inc</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Educational Attainment</th> <th>Personal Income</th> <th>Population Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>No high school diploma        </td> <td>H: 75,000 and over </td> <td>2058            </td>
+        </tr>
+        <tr>
+            <td>No high school diploma        </td> <td>H: 75,000 and over </td> <td>2153            </td>
+        </tr>
+        <tr>
+            <td>No high school diploma        </td> <td>G: 50,000 to 74,999</td> <td>4666            </td>
+        </tr>
+        <tr>
+            <td>High school or equivalent     </td> <td>H: 75,000 and over </td> <td>7122            </td>
+        </tr>
+        <tr>
+            <td>No high school diploma        </td> <td>F: 35,000 to 49,999</td> <td>7261            </td>
+        </tr>
+        <tr>
+            <td>No high school diploma        </td> <td>G: 50,000 to 74,999</td> <td>8569            </td>
+        </tr>
+        <tr>
+            <td>No high school diploma        </td> <td>G: 50,000 to 74,999</td> <td>14635           </td>
+        </tr>
+        <tr>
+            <td>No high school diploma        </td> <td>F: 35,000 to 49,999</td> <td>15212           </td>
+        </tr>
+        <tr>
+            <td>College, less than 4-yr degree</td> <td>B: 5,000 to 9,999  </td> <td>15423           </td>
+        </tr>
+        <tr>
+            <td>Bachelor's degree or higher   </td> <td>A: 0 to 4,999      </td> <td>15459           </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (117 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's start by looking at educational level alone. The categories of this variable have been subdivided by the different levels of income. So we will group the table by <code>Educational Attainment</code> and <code>sum</code> the <code>Population Count</code> in each category.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">education</span> <span class="o">=</span> <span class="n">educ_inc</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Educational Attainment&#39;</span><span class="p">,</span> <span class="s1">&#39;Population Count&#39;</span><span class="p">)</span>
+<span class="n">educ_totals</span> <span class="o">=</span> <span class="n">education</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;Educational Attainment&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
+<span class="n">educ_totals</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Educational Attainment</th> <th>Population Count sum</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Bachelor's degree or higher   </td> <td>8525698             </td>
+        </tr>
+        <tr>
+            <td>College, less than 4-yr degree</td> <td>7775497             </td>
+        </tr>
+        <tr>
+            <td>High school or equivalent     </td> <td>6294141             </td>
+        </tr>
+        <tr>
+            <td>No high school diploma        </td> <td>4258277             </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are only four categories of educational attainment. The counts are so large that is is more helpful to look at percents. For this, we will use the function <code>percents</code> that we defined in an earlier section. It converts an array of numbers to an array of percents out of the total in the input array.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percents</span><span class="p">(</span><span class="n">array_x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span> <span class="p">(</span><span class="n">array_x</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">array_x</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now have the distribution of educational attainment among adult Californians. More than 30% have a Bachelor's degree or higher, while almost 16% lack a high school diploma.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">educ_distribution</span> <span class="o">=</span> <span class="n">educ_totals</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Population Percent&#39;</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">educ_totals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="n">educ_distribution</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Educational Attainment</th> <th>Population Count sum</th> <th>Population Percent</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Bachelor's degree or higher   </td> <td>8525698             </td> <td>31.75             </td>
+        </tr>
+        <tr>
+            <td>College, less than 4-yr degree</td> <td>7775497             </td> <td>28.96             </td>
+        </tr>
+        <tr>
+            <td>High school or equivalent     </td> <td>6294141             </td> <td>23.44             </td>
+        </tr>
+        <tr>
+            <td>No high school diploma        </td> <td>4258277             </td> <td>15.86             </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By using <code>pivot</code>, we can get a contingency table (a table of counts) of adult Californians cross-classified by <code>Educational Attainment</code> and <code>Personal Income</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">totals</span> <span class="o">=</span> <span class="n">educ_inc</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;Educational Attainment&#39;</span><span class="p">,</span> <span class="s1">&#39;Personal Income&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;Population Count&#39;</span><span class="p">,</span> <span class="n">collect</span><span class="o">=</span><span class="nb">sum</span><span class="p">)</span>
+<span class="n">totals</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Personal Income</th> <th>Bachelor's degree or higher</th> <th>College, less than 4-yr degree</th> <th>High school or equivalent</th> <th>No high school diploma</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>A: 0 to 4,999      </td> <td>575491                     </td> <td>985011                        </td> <td>1161873                  </td> <td>1204529               </td>
+        </tr>
+        <tr>
+            <td>B: 5,000 to 9,999  </td> <td>326020                     </td> <td>810641                        </td> <td>626499                   </td> <td>597039                </td>
+        </tr>
+        <tr>
+            <td>C: 10,000 to 14,999</td> <td>452449                     </td> <td>798596                        </td> <td>692661                   </td> <td>664607                </td>
+        </tr>
+        <tr>
+            <td>D: 15,000 to 24,999</td> <td>773684                     </td> <td>1345257                       </td> <td>1252377                  </td> <td>875498                </td>
+        </tr>
+        <tr>
+            <td>E: 25,000 to 34,999</td> <td>693884                     </td> <td>1091642                       </td> <td>929218                   </td> <td>464564                </td>
+        </tr>
+        <tr>
+            <td>F: 35,000 to 49,999</td> <td>1122791                    </td> <td>1112421                       </td> <td>782804                   </td> <td>260579                </td>
+        </tr>
+        <tr>
+            <td>G: 50,000 to 74,999</td> <td>1594681                    </td> <td>883826                        </td> <td>525517                   </td> <td>132516                </td>
+        </tr>
+        <tr>
+            <td>H: 75,000 and over </td> <td>2986698                    </td> <td>748103                        </td> <td>323192                   </td> <td>58945                 </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here you see the power of <code>pivot</code> over other cross-classification methods. Each column of counts is a distribution of personal income at a specific level of educational attainment. Converting the counts to percents allows us to compare the four distributions.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distributions</span> <span class="o">=</span> <span class="n">totals</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s2">&quot;Bachelor&#39;s degree or higher&quot;</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">totals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span>
+    <span class="s1">&#39;College, less than 4-yr degree&#39;</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">totals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span>
+    <span class="s1">&#39;High school or equivalent&#39;</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">totals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span>
+    <span class="s1">&#39;No high school diploma&#39;</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">totals</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>   
+    <span class="p">)</span>
+
+<span class="n">distributions</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Personal Income</th> <th>Bachelor's degree or higher</th> <th>College, less than 4-yr degree</th> <th>High school or equivalent</th> <th>No high school diploma</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>A: 0 to 4,999      </td> <td>6.75                       </td> <td>12.67                         </td> <td>18.46                    </td> <td>28.29                 </td>
+        </tr>
+        <tr>
+            <td>B: 5,000 to 9,999  </td> <td>3.82                       </td> <td>10.43                         </td> <td>9.95                     </td> <td>14.02                 </td>
+        </tr>
+        <tr>
+            <td>C: 10,000 to 14,999</td> <td>5.31                       </td> <td>10.27                         </td> <td>11                       </td> <td>15.61                 </td>
+        </tr>
+        <tr>
+            <td>D: 15,000 to 24,999</td> <td>9.07                       </td> <td>17.3                          </td> <td>19.9                     </td> <td>20.56                 </td>
+        </tr>
+        <tr>
+            <td>E: 25,000 to 34,999</td> <td>8.14                       </td> <td>14.04                         </td> <td>14.76                    </td> <td>10.91                 </td>
+        </tr>
+        <tr>
+            <td>F: 35,000 to 49,999</td> <td>13.17                      </td> <td>14.31                         </td> <td>12.44                    </td> <td>6.12                  </td>
+        </tr>
+        <tr>
+            <td>G: 50,000 to 74,999</td> <td>18.7                       </td> <td>11.37                         </td> <td>8.35                     </td> <td>3.11                  </td>
+        </tr>
+        <tr>
+            <td>H: 75,000 and over </td> <td>35.03                      </td> <td>9.62                          </td> <td>5.13                     </td> <td>1.38                  </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At a glance, you can see that over 35% of those with Bachelor's degrees or higher had incomes of $\$75,000$ and over, whereas fewer than 10% of the people in the other education categories had that level of income.</p>
+<p>The bar chart below compares the personal income distributions of adult Californians who have no high diploma with those who have completed a Bachelor's degree or higher. The difference in the distributions is striking. There is a clear positive association between educational attainment and personal income.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distributions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/08/3/Cross-Classifying_by_More_than_One_Variable_37_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+

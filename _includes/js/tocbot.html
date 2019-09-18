@@ -1,5 +1,19 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" async></script>
 <script>
-var initToc = function () {
+const initToc = () => {
+  if (window.tocbot === undefined) {
+    setTimeout(initToc, 250)
+    return
+  }
+
+  // Check whether we have any sidebar content. If not, then show the sidebar earlier.
+  var SIDEBAR_CONTENT_TAGS = ['.tag_full_width', '.tag_popout'];
+  var sidebar_content_query = SIDEBAR_CONTENT_TAGS.join(', ')
+  if (document.querySelectorAll(sidebar_content_query).length === 0) {
+    document.querySelector('nav.onthispage').classList.add('no_sidebar_content')
+  }
+
+  // Initialize the TOC bot
   tocbot.init({
     tocSelector: 'nav.onthispage',
     contentSelector: '.c-textbook__content',
@@ -10,7 +24,7 @@ var initToc = function () {
     activeListItemClass: "",  // Not using
     activeLinkClass: "", // Not using
   });
-  tocbot.refresh();
+
 }
 initFunction(initToc);
 </script>

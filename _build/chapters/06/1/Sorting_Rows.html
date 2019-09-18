@@ -1,0 +1,580 @@
+---
+redirect_from:
+  - "/chapters/06/1/sorting-rows"
+interact_link: content/chapters/06/1/Sorting_Rows.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Sorting Rows
+prev_page:
+  url: /chapters/06/Tables.html
+  title: |-
+    Tables
+next_page:
+  url: /chapters/06/2/Selecting_Rows.html
+  title: |-
+    Selecting Rows
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sorting-Rows">Sorting Rows<a class="anchor-link" href="#Sorting-Rows"> </a></h1><p>"The NBA is the highest paying professional sports league in the world," <a href="http://edition.cnn.com/2015/12/04/sport/gallery/highest-paid-nba-players/">reported CNN</a> in March 2016. The table <code>nba_salaries</code> contains the salaries of all National Basketball Association players in 2015-2016.</p>
+<p>Each row represents one player. The columns are:</p>
+<table>
+<thead><tr>
+<th><strong>Column Label</strong></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PLAYER</code></td>
+<td>Player's name</td>
+</tr>
+<tr>
+<td><code>POSITION</code></td>
+<td>Player's position on team</td>
+</tr>
+<tr>
+<td><code>TEAM</code></td>
+<td>Team name</td>
+</tr>
+<tr>
+<td><code>'15-'16 SALARY</code></td>
+<td>Player's salary in 2015-2016, in millions of dollars</td>
+</tr>
+</tbody>
+</table>
+<p>The code for the positions is PG (Point Guard), SG (Shooting Guard), PF (Power Forward), SF (Small Forward), and C (Center). But what follows doesn't involve details about how basketball is played.</p>
+<p>The first row shows that Paul Millsap, Power Forward for the Atlanta Hawks, had a salary of almost $\$18.7$ million in 2015-2016.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This table can be found online: https://www.statcrunch.com/app/index.php?dataid=1843341</span>
+<span class="n">nba_salaries</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;nba_salaries.csv&#39;</span><span class="p">)</span>
+<span class="n">nba_salaries</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>PLAYER</th> <th>POSITION</th> <th>TEAM</th> <th>'15-'16 SALARY</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Paul Millsap    </td> <td>PF      </td> <td>Atlanta Hawks</td> <td>18.6717       </td>
+        </tr>
+        <tr>
+            <td>Al Horford      </td> <td>C       </td> <td>Atlanta Hawks</td> <td>12            </td>
+        </tr>
+        <tr>
+            <td>Tiago Splitter  </td> <td>C       </td> <td>Atlanta Hawks</td> <td>9.75625       </td>
+        </tr>
+        <tr>
+            <td>Jeff Teague     </td> <td>PG      </td> <td>Atlanta Hawks</td> <td>8             </td>
+        </tr>
+        <tr>
+            <td>Kyle Korver     </td> <td>SG      </td> <td>Atlanta Hawks</td> <td>5.74648       </td>
+        </tr>
+        <tr>
+            <td>Thabo Sefolosha </td> <td>SF      </td> <td>Atlanta Hawks</td> <td>4             </td>
+        </tr>
+        <tr>
+            <td>Mike Scott      </td> <td>PF      </td> <td>Atlanta Hawks</td> <td>3.33333       </td>
+        </tr>
+        <tr>
+            <td>Kent Bazemore   </td> <td>SF      </td> <td>Atlanta Hawks</td> <td>2             </td>
+        </tr>
+        <tr>
+            <td>Dennis Schroder </td> <td>PG      </td> <td>Atlanta Hawks</td> <td>1.7634        </td>
+        </tr>
+        <tr>
+            <td>Tim Hardaway Jr.</td> <td>SG      </td> <td>Atlanta Hawks</td> <td>1.30452       </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (407 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The table contains 417 rows, one for each player. Only 10 of the rows are displayed. The <code>show</code> method allows us to specify the number of rows, with the default (no specification) being all the rows of the table.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba_salaries</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>PLAYER</th> <th>POSITION</th> <th>TEAM</th> <th>'15-'16 SALARY</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Paul Millsap  </td> <td>PF      </td> <td>Atlanta Hawks</td> <td>18.6717       </td>
+        </tr>
+        <tr>
+            <td>Al Horford    </td> <td>C       </td> <td>Atlanta Hawks</td> <td>12            </td>
+        </tr>
+        <tr>
+            <td>Tiago Splitter</td> <td>C       </td> <td>Atlanta Hawks</td> <td>9.75625       </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (414 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Glance through about 20 rows or so, and you will see that the rows are in alphabetical order by team name. It's also possible to list the same rows in alphabetical order by player name using the <code>sort</code> method. The argument to <code>sort</code> is a column label or index.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba_salaries</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;PLAYER&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>PLAYER</th> <th>POSITION</th> <th>TEAM</th> <th>'15-'16 SALARY</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Aaron Brooks  </td> <td>PG      </td> <td>Chicago Bulls         </td> <td>2.25          </td>
+        </tr>
+        <tr>
+            <td>Aaron Gordon  </td> <td>PF      </td> <td>Orlando Magic         </td> <td>4.17168       </td>
+        </tr>
+        <tr>
+            <td>Aaron Harrison</td> <td>SG      </td> <td>Charlotte Hornets     </td> <td>0.525093      </td>
+        </tr>
+        <tr>
+            <td>Adreian Payne </td> <td>PF      </td> <td>Minnesota Timberwolves</td> <td>1.93884       </td>
+        </tr>
+        <tr>
+            <td>Al Horford    </td> <td>C       </td> <td>Atlanta Hawks         </td> <td>12            </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (412 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To examine the players' salaries, it would be much more helpful if the data were ordered by salary.</p>
+<p>To do this, we will first simplify the label of the column of salaries (just for convenience), and then sort by the new label <code>SALARY</code>.</p>
+<p>This arranges all the rows of the table in <em>increasing</em> order of salary, with the lowest salary appearing first. The output is a new table with the same columns as the original but with the rows rearranged.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span> <span class="o">=</span> <span class="n">nba_salaries</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s2">&quot;&#39;15-&#39;16 SALARY&quot;</span><span class="p">,</span> <span class="s1">&#39;SALARY&#39;</span><span class="p">)</span>
+<span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;SALARY&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>PLAYER</th> <th>POSITION</th> <th>TEAM</th> <th>SALARY</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Thanasis Antetokounmpo</td> <td>SF      </td> <td>New York Knicks     </td> <td>0.030888</td>
+        </tr>
+        <tr>
+            <td>Jordan McRae          </td> <td>SG      </td> <td>Phoenix Suns        </td> <td>0.049709</td>
+        </tr>
+        <tr>
+            <td>Cory Jefferson        </td> <td>PF      </td> <td>Phoenix Suns        </td> <td>0.049709</td>
+        </tr>
+        <tr>
+            <td>Elliot Williams       </td> <td>SG      </td> <td>Memphis Grizzlies   </td> <td>0.055722</td>
+        </tr>
+        <tr>
+            <td>Orlando Johnson       </td> <td>SG      </td> <td>Phoenix Suns        </td> <td>0.055722</td>
+        </tr>
+        <tr>
+            <td>Phil Pressey          </td> <td>PG      </td> <td>Phoenix Suns        </td> <td>0.055722</td>
+        </tr>
+        <tr>
+            <td>Keith Appling         </td> <td>PG      </td> <td>Orlando Magic       </td> <td>0.061776</td>
+        </tr>
+        <tr>
+            <td>Sean Kilpatrick       </td> <td>SG      </td> <td>Denver Nuggets      </td> <td>0.099418</td>
+        </tr>
+        <tr>
+            <td>Erick Green           </td> <td>PG      </td> <td>Utah Jazz           </td> <td>0.099418</td>
+        </tr>
+        <tr>
+            <td>Jeff Ayres            </td> <td>PF      </td> <td>Los Angeles Clippers</td> <td>0.111444</td>
+        </tr>
+    </tbody>
+</table>
+<p>... (407 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These figures are somewhat difficult to compare as some of these players changed teams during the season and received salaries from more than one team; only the salary from the last team appears in the table. Point Guard Phil Pressey, for example, moved from Philadelphia to Phoenix during the year, and might be moving yet again to the Golden State Warriors.</p>
+<p>The CNN report is about the other end of the salary scale – the players who are among the highest paid in the world.</p>
+<p>To order the rows of the table in <em>decreasing</em> order of salary, we must use <code>sort</code> with the option <code>descending=True</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;SALARY&#39;</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>PLAYER</th> <th>POSITION</th> <th>TEAM</th> <th>SALARY</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Kobe Bryant    </td> <td>SF      </td> <td>Los Angeles Lakers   </td> <td>25     </td>
+        </tr>
+        <tr>
+            <td>Joe Johnson    </td> <td>SF      </td> <td>Brooklyn Nets        </td> <td>24.8949</td>
+        </tr>
+        <tr>
+            <td>LeBron James   </td> <td>SF      </td> <td>Cleveland Cavaliers  </td> <td>22.9705</td>
+        </tr>
+        <tr>
+            <td>Carmelo Anthony</td> <td>SF      </td> <td>New York Knicks      </td> <td>22.875 </td>
+        </tr>
+        <tr>
+            <td>Dwight Howard  </td> <td>C       </td> <td>Houston Rockets      </td> <td>22.3594</td>
+        </tr>
+        <tr>
+            <td>Chris Bosh     </td> <td>PF      </td> <td>Miami Heat           </td> <td>22.1927</td>
+        </tr>
+        <tr>
+            <td>Chris Paul     </td> <td>PG      </td> <td>Los Angeles Clippers </td> <td>21.4687</td>
+        </tr>
+        <tr>
+            <td>Kevin Durant   </td> <td>SF      </td> <td>Oklahoma City Thunder</td> <td>20.1586</td>
+        </tr>
+        <tr>
+            <td>Derrick Rose   </td> <td>PG      </td> <td>Chicago Bulls        </td> <td>20.0931</td>
+        </tr>
+        <tr>
+            <td>Dwyane Wade    </td> <td>SG      </td> <td>Miami Heat           </td> <td>20     </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (407 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Kobe Bryant, in his final season with the Lakers, was the highest paid at a salary of $\$25$ million. Notice that the MVP Stephen Curry doesn't appear among the top 10. He is quite a bit further down the list, as we will see later.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Named-Arguments">Named Arguments<a class="anchor-link" href="#Named-Arguments"> </a></h3><p>The <code>descending=True</code> portion of this call expression is called a <em>named argument</em>. When a function or method is called, each argument has both a position and a name. Both are evident from the help text of a function or method.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">nba</span><span class="o">.</span><span class="n">sort</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on method sort in module datascience.tables:
+
+sort(column_or_label, descending=False, distinct=False) method of datascience.tables.Table instance
+    Return a Table of rows sorted according to the values in a column.
+    
+    Args:
+        ``column_or_label``: the column whose values are used for sorting.
+    
+        ``descending``: if True, sorting will be in descending, rather than
+            ascending order.
+    
+        ``distinct``: if True, repeated values in ``column_or_label`` will
+            be omitted.
+    
+    Returns:
+        An instance of ``Table`` containing rows sorted based on the values
+        in ``column_or_label``.
+    
+    &gt;&gt;&gt; marbles = Table().with_columns(
+    ...    &#34;Color&#34;, make_array(&#34;Red&#34;, &#34;Green&#34;, &#34;Blue&#34;, &#34;Red&#34;, &#34;Green&#34;, &#34;Green&#34;),
+    ...    &#34;Shape&#34;, make_array(&#34;Round&#34;, &#34;Rectangular&#34;, &#34;Rectangular&#34;, &#34;Round&#34;, &#34;Rectangular&#34;, &#34;Round&#34;),
+    ...    &#34;Amount&#34;, make_array(4, 6, 12, 7, 9, 2),
+    ...    &#34;Price&#34;, make_array(1.30, 1.30, 2.00, 1.75, 1.40, 1.00))
+    &gt;&gt;&gt; marbles
+    Color | Shape       | Amount | Price
+    Red   | Round       | 4      | 1.3
+    Green | Rectangular | 6      | 1.3
+    Blue  | Rectangular | 12     | 2
+    Red   | Round       | 7      | 1.75
+    Green | Rectangular | 9      | 1.4
+    Green | Round       | 2      | 1
+    &gt;&gt;&gt; marbles.sort(&#34;Amount&#34;)
+    Color | Shape       | Amount | Price
+    Green | Round       | 2      | 1
+    Red   | Round       | 4      | 1.3
+    Green | Rectangular | 6      | 1.3
+    Red   | Round       | 7      | 1.75
+    Green | Rectangular | 9      | 1.4
+    Blue  | Rectangular | 12     | 2
+    &gt;&gt;&gt; marbles.sort(&#34;Amount&#34;, descending = True)
+    Color | Shape       | Amount | Price
+    Blue  | Rectangular | 12     | 2
+    Green | Rectangular | 9      | 1.4
+    Red   | Round       | 7      | 1.75
+    Green | Rectangular | 6      | 1.3
+    Red   | Round       | 4      | 1.3
+    Green | Round       | 2      | 1
+    &gt;&gt;&gt; marbles.sort(3) # the Price column
+    Color | Shape       | Amount | Price
+    Green | Round       | 2      | 1
+    Red   | Round       | 4      | 1.3
+    Green | Rectangular | 6      | 1.3
+    Green | Rectangular | 9      | 1.4
+    Red   | Round       | 7      | 1.75
+    Blue  | Rectangular | 12     | 2
+    &gt;&gt;&gt; marbles.sort(3, distinct = True)
+    Color | Shape       | Amount | Price
+    Green | Round       | 2      | 1
+    Red   | Round       | 4      | 1.3
+    Green | Rectangular | 9      | 1.4
+    Red   | Round       | 7      | 1.75
+    Blue  | Rectangular | 12     | 2
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At the very top of this <code>help</code> text, the <em>signature</em> of the <code>sort</code> method appears:</p>
+
+<pre><code>sort(column_or_label, descending=False, distinct=False)
+
+</code></pre>
+<p>This describes the positions, names, and default values of the three arguments to <code>sort</code>. When calling this method, you can use either positional arguments or named arguments, so the following three calls do exactly the same thing.</p>
+
+<pre><code>sort('SALARY', True)
+sort('SALARY', descending=True)
+sort(column_or_label='SALARY', descending=True)
+
+</code></pre>
+<p>When an argument is simply <code>True</code> or <code>False</code>, it's a useful convention to include the argument name so that it's more obvious what the argument value means.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

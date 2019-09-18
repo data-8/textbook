@@ -1,0 +1,507 @@
+---
+redirect_from:
+  - "/chapters/05/1/arrays"
+interact_link: content/chapters/05/1/Arrays.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Arrays
+prev_page:
+  url: /chapters/05/Sequences.html
+  title: |-
+    Sequences
+next_page:
+  url: /chapters/05/2/Ranges.html
+  title: |-
+    Ranges
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Arrays">Arrays<a class="anchor-link" href="#Arrays"> </a></h1><p>While there are many kinds of collections in Python, we will work primarily with arrays in this class. We've already seen that the <code>make_array</code> function can be used to create arrays of numbers.</p>
+<p>Arrays can also contain strings or other types of values, but a single array can only contain a single kind of data. (It usually doesn't make sense to group together unlike data anyway.)  For example:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">english_parts_of_speech</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="s2">&quot;noun&quot;</span><span class="p">,</span> <span class="s2">&quot;pronoun&quot;</span><span class="p">,</span> <span class="s2">&quot;verb&quot;</span><span class="p">,</span> <span class="s2">&quot;adverb&quot;</span><span class="p">,</span> <span class="s2">&quot;adjective&quot;</span><span class="p">,</span> <span class="s2">&quot;conjunction&quot;</span><span class="p">,</span> <span class="s2">&quot;preposition&quot;</span><span class="p">,</span> <span class="s2">&quot;interjection&quot;</span><span class="p">)</span>
+<span class="n">english_parts_of_speech</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;noun&#39;, &#39;pronoun&#39;, &#39;verb&#39;, &#39;adverb&#39;, &#39;adjective&#39;, &#39;conjunction&#39;,
+       &#39;preposition&#39;, &#39;interjection&#39;], dtype=&#39;&lt;U12&#39;)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Returning to the temperature data, we create arrays of average daily <a href="http://berkeleyearth.lbl.gov/auto/Regional/TMAX/Text/global-land-TMAX-Trend.txt">high temperatures</a> for the decades surrounding 1850, 1900, 1950, and 2000.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baseline_high</span> <span class="o">=</span> <span class="mf">14.48</span>
+<span class="n">highs</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="n">baseline_high</span> <span class="o">-</span> <span class="mf">0.880</span><span class="p">,</span> 
+                   <span class="n">baseline_high</span> <span class="o">-</span> <span class="mf">0.093</span><span class="p">,</span>
+                   <span class="n">baseline_high</span> <span class="o">+</span> <span class="mf">0.105</span><span class="p">,</span> 
+                   <span class="n">baseline_high</span> <span class="o">+</span> <span class="mf">0.684</span><span class="p">)</span>
+<span class="n">highs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([13.6  , 14.387, 14.585, 15.164])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Arrays can be used in arithmetic expressions to compute over their contents. When an array is combined with a single number, that number is combined with each element of the array. Therefore, we can convert all of these temperatures to Fahrenheit by writing the familiar conversion formula.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="n">highs</span> <span class="o">+</span> <span class="mi">32</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([56.48  , 57.8966, 58.253 , 59.2952])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="../../../images/array_arithmetic.png" /></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Arrays also have <em>methods</em>, which are functions that operate on the array values. The <code>mean</code> of a collection of numbers is its average value: the sum divided by the length. Each pair of parentheses in the examples below is part of a call expression; it's calling a function with no arguments to perform a computation on the array called <code>highs</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">highs</span><span class="o">.</span><span class="n">size</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>4</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">highs</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>57.736000000000004</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">highs</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>14.434000000000001</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Functions-on-Arrays">Functions on Arrays<a class="anchor-link" href="#Functions-on-Arrays"> </a></h4><p>The <code>numpy</code> package, abbreviated <code>np</code> in programs, provides Python programmers with convenient and powerful functions for creating and manipulating arrays.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For example, the <code>diff</code> function computes the difference between each adjacent pair of elements in an array. The first element of the <code>diff</code> is the second element minus the first.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">highs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0.787, 0.198, 0.579])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <a href="http://docs.scipy.org/doc/numpy/reference/">full Numpy reference</a> lists these functions exhaustively, but only a small subset are used commonly for data processing applications. These are grouped into different packages within <code>np</code>. Learning this vocabulary is an important part of learning the Python language, so refer back to this list often as you work through examples and problems.</p>
+<p>However, you <strong>don't need to memorize these</strong>.  Use this as a reference.</p>
+<p>Each of these functions takes an array as an argument and returns a single value.</p>
+<table>
+<thead><tr>
+<th><strong>Function</strong></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.prod</code></td>
+<td>Multiply all elements together</td>
+</tr>
+<tr>
+<td><code>np.sum</code></td>
+<td>Add all elements together</td>
+</tr>
+<tr>
+<td><code>np.all</code></td>
+<td>Test whether all elements are true values (non-zero numbers are true)</td>
+</tr>
+<tr>
+<td><code>np.any</code></td>
+<td>Test whether any elements are true values (non-zero numbers are true)</td>
+</tr>
+<tr>
+<td><code>np.count_nonzero</code></td>
+<td>Count the number of non-zero elements</td>
+</tr>
+</tbody>
+</table>
+<p>Each of these functions takes an array as an argument and returns an array of values.</p>
+<table>
+<thead><tr>
+<th><strong>Function</strong></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.diff</code></td>
+<td>Difference between adjacent elements</td>
+</tr>
+<tr>
+<td><code>np.round</code></td>
+<td>Round each number to the nearest integer (whole number)</td>
+</tr>
+<tr>
+<td><code>np.cumprod</code></td>
+<td>A cumulative product: for each element, multiply all elements so far</td>
+</tr>
+<tr>
+<td><code>np.cumsum</code></td>
+<td>A cumulative sum: for each element, add all elements so far</td>
+</tr>
+<tr>
+<td><code>np.exp</code></td>
+<td>Exponentiate each element</td>
+</tr>
+<tr>
+<td><code>np.log</code></td>
+<td>Take the natural logarithm of each element</td>
+</tr>
+<tr>
+<td><code>np.sqrt</code></td>
+<td>Take the square root of each element</td>
+</tr>
+<tr>
+<td><code>np.sort</code></td>
+<td>Sort the elements</td>
+</tr>
+</tbody>
+</table>
+<p>Each of these functions takes an array of strings and returns an array.</p>
+<table>
+<thead><tr>
+<th><strong>Function</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.char.lower</code></td>
+<td>Lowercase each element</td>
+</tr>
+<tr>
+<td><code>np.char.upper</code></td>
+<td>Uppercase each element</td>
+</tr>
+<tr>
+<td><code>np.char.strip</code></td>
+<td>Remove spaces at the beginning or end of each element</td>
+</tr>
+<tr>
+<td><code>np.char.isalpha</code></td>
+<td>Whether each element is only letters (no numbers or symbols)</td>
+</tr>
+<tr>
+<td><code>np.char.isnumeric</code></td>
+<td>Whether each element is only numeric (no letters)  </td>
+</tr>
+</tbody>
+</table>
+<p>Each of these functions takes both an array of strings and a <em>search string</em>; each returns an array.</p>
+<table>
+<thead><tr>
+<th><strong>Function</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.char.count</code></td>
+<td>Count the number of times a search string appears among the elements of an array</td>
+</tr>
+<tr>
+<td><code>np.char.find</code></td>
+<td>The position within each element that a search string is found first</td>
+</tr>
+<tr>
+<td><code>np.char.rfind</code></td>
+<td>The position within each element that a search string is found last</td>
+</tr>
+<tr>
+<td><code>np.char.startswith</code></td>
+<td>Whether each element starts with the search string  </td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

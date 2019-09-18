@@ -1,0 +1,660 @@
+---
+redirect_from:
+  - "/chapters/08/functions-and-tables"
+interact_link: content/chapters/08/Functions_and_Tables.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Functions and Tables
+prev_page:
+  url: /chapters/07/3/Overlaid_Graphs.html
+  title: |-
+    Overlaid Graphs
+next_page:
+  url: /chapters/08/1/Applying_a_Function_to_a_Column.html
+  title: |-
+    Applying Functions to Columns
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Functions-and-Tables">Functions and Tables<a class="anchor-link" href="#Functions-and-Tables"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are building up a useful inventory of techniques for identifying patterns and themes in a data set by using functions already available in Python. We will now explore a core feature of the Python programming language: function definition.</p>
+<p>We have used functions extensively already in this text, but never defined a function of our own. The purpose of defining a function is to give a name to a computational process that may be applied multiple times. There are many situations in computing that require repeated computation. For example, it is often the case that we want to perform the same manipulation on every value in a column of a table.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Defining-a-Function">Defining a Function<a class="anchor-link" href="#Defining-a-Function"> </a></h3><p>The definition of the <code>double</code> function below simply doubles a number.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Our first function definition</span>
+
+<span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Double x &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We start any function definition by writing <code>def</code>.  Here is a breakdown of the other parts (the <em>syntax</em>) of this small function:</p>
+<p><img src="../../images/function_definition.jpg" alt=""></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When we run the cell above, no particular number is doubled, and the code inside the body of <code>double</code> is not yet evaluated.  In this respect, our function is analogous to a <em>recipe</em>.  Each time we follow the instructions in a recipe, we need to start with ingredients.  Each time we want to use our function to double a number, we need to specify a number.</p>
+<p>We can call <code>double</code> in exactly the same way we have called other functions. Each time we do that, the code in the body is executed, with the value of the argument given the name <code>x</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">double</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>34</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">double</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-0.3</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The two expressions above are both <em>call expressions</em>. In the second one, the value of the expression <code>-0.6/4</code> is computed and then passed as the argument named <code>x</code> to the <code>double</code> function. Each call expresson results in the body of <code>double</code> being executed, but with a different value of <code>x</code>.</p>
+<p>The body of <code>double</code> has only a single line:</p>
+<p><code>return 2*x</code></p>
+<p>Executing this <em><code>return</code> statement</em> completes execution of the <code>double</code> function's body and computes the value of the call expression.</p>
+<p>The argument to <code>double</code> can be any expression, as long as its value is a number.  For example, it can be a name.  The <code>double</code> function does not know or care how its argument is computed or stored; its only job is to execute its own body using the values of the arguments passed to it.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">any_name</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">double</span><span class="p">(</span><span class="n">any_name</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>84</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The argument can also be any value that can be doubled. For example, a whole array of numbers can be passed as an argument to <code>double</code>, and the result will be another array.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">double</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 6,  8, 10])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, names that are defined inside a function, including arguments like <code>double</code>'s <code>x</code>, have only a fleeting existence.  They are defined only while the function is being called, and they are only accessible inside the body of the function. We can't refer to <code>x</code> outside the body of <code>double</code>. The technical terminology is that <code>x</code> has <em>local scope</em>.</p>
+<p>Therefore the name <code>x</code> isn't recognized outside the body of the function, even though we have called <code>double</code> in the cells above.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-7-6fcf9dfbd479&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>x
+
+<span class="ansi-red-fg">NameError</span>: name &#39;x&#39; is not defined</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Docstrings.</strong> Though <code>double</code> is relatively easy to understand, many functions perform complicated tasks and are difficult to use without explanation. (You may have discovered this yourself!) Therefore, a well-composed function has a name that evokes its behavior, as well as documentation.  In Python, this is called a <em>docstring</em> — a description of its behavior and expectations about its arguments. The docstring can also show example calls to the function, where the call is preceded by <code>&gt;&gt;&gt;</code>.</p>
+<p>A docstring can be any string, as long as it is the first thing in a function's body. Docstrings are typically defined using triple quotation marks at the start and end, which allows a string to span multiple lines. The first line is conventionally a complete but short description of the function, while following lines provide further guidance to future users of the function.</p>
+<p>Here is a definition of a function called <code>percent</code> that takes two arguments. The definition includes a docstring.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># A function with more than one argument</span>
+
+<span class="k">def</span> <span class="nf">percent</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert x to a percentage of total.</span>
+<span class="sd">    </span>
+<span class="sd">    More precisely, this function divides x by total,</span>
+<span class="sd">    multiplies the result by 100, and rounds the result</span>
+<span class="sd">    to two decimal places.</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; percent(4, 16)</span>
+<span class="sd">    25.0</span>
+<span class="sd">    &gt;&gt;&gt; percent(1, 6)</span>
+<span class="sd">    16.67</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">((</span><span class="n">x</span><span class="o">/</span><span class="n">total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="mi">33</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>16.5</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Contrast the function <code>percent</code> defined above with the function <code>percents</code> defined below. The latter takes an array as its argument, and converts all the numbers in the array to percents out of the total of the values in the array. The percents are all rounded to two decimal places, this time replacing <code>round</code> by <code>np.round</code> because the argument is an array and not a number.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percents</span><span class="p">(</span><span class="n">counts</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert the values in array_x to percents out of the total of array_x.&quot;&quot;&quot;</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">counts</span><span class="o">/</span><span class="n">total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The function <code>percents</code> returns an array of percents that add up to 100 apart from rounding.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">some_array</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">percents</span><span class="p">(</span><span class="n">some_array</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([33.33, 47.62, 19.05])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is helpful to understand the steps Python takes to execute a function.  To facilitate this, we have put a function definition and a call to that function in the same cell below.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">biggest_difference</span><span class="p">(</span><span class="n">array_x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Find the biggest difference in absolute value between two adjacent elements of array_x.&quot;&quot;&quot;</span>
+    <span class="n">diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">array_x</span><span class="p">)</span>
+    <span class="n">absolute_diffs</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">diffs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">absolute_diffs</span><span class="p">)</span>
+
+<span class="n">some_numbers</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">big_diff</span> <span class="o">=</span> <span class="n">biggest_difference</span><span class="p">(</span><span class="n">some_numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The biggest difference is&quot;</span><span class="p">,</span> <span class="n">big_diff</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The biggest difference is 5
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is what happens when we run that cell:</p>
+<p><img src="../../images/function_execution.jpg" /></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Multiple-Arguments">Multiple Arguments<a class="anchor-link" href="#Multiple-Arguments"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There can be multiple ways to generalize an expression or block of code, and so a function can take multiple arguments that each determine different aspects of the result. For example, the <code>percents</code> function we defined previously rounded to two decimal places every time. The following two-argument definition allows different calls to round to different amounts.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percents</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">decimal_places</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert the values in array_x to percents out of the total of array_x.&quot;&quot;&quot;</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">counts</span><span class="o">/</span><span class="n">total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">decimal_places</span><span class="p">)</span>
+
+<span class="n">parts</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rounded to 1 decimal place: &quot;</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rounded to 2 decimal places:&quot;</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rounded to 3 decimal places:&quot;</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rounded to 1 decimal place:  [28.6 14.3 57.1]
+Rounded to 2 decimal places: [28.57 14.29 57.14]
+Rounded to 3 decimal places: [28.571 14.286 57.143]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The flexibility of this new definition comes at a small price: each time the function is called, the number of decimal places must be specified. Default argument values allow a function to be called with a variable number of arguments; any argument that isn't specified in the call expression is given its default value, which is stated in the first line of the <code>def</code> statement. For example, in this final definition of <code>percents</code>, the optional argument <code>decimal_places</code> is given a default value of 2.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">percents</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert the values in array_x to percents out of the total of array_x.&quot;&quot;&quot;</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">counts</span><span class="o">/</span><span class="n">total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">decimal_places</span><span class="p">)</span>
+
+<span class="n">parts</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rounded to 1 decimal place:&quot;</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rounded to the default number of decimal places:&quot;</span><span class="p">,</span> <span class="n">percents</span><span class="p">(</span><span class="n">parts</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rounded to 1 decimal place: [28.6 14.3 57.1]
+Rounded to the default number of decimal places: [28.57 14.29 57.14]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Note:-Methods">Note: Methods<a class="anchor-link" href="#Note:-Methods"> </a></h3><p>Functions are called by placing argument expressions in parentheses after the function name. Any function that is defined in isolation is called in this way. You have also seen examples of methods, which are like functions but are called using dot notation, such as <code>some_table.sort(some_label)</code>. The functions that you define will always be called using the function name first, passing in all of the arguments.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

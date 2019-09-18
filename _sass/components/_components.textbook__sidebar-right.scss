@@ -13,46 +13,55 @@
  */
 
 /* [2] */
-$right-sidebar-center-offset: ($page-max-width - $sidebar-width) / 2 -
-    $spacing-unit-large;
-
 .sidebar__right > * {
     direction: ltr;
 }
 
-.sidebar__right {
-    display: none;
-    overflow-x: hidden;
-    @include mq($from: desktop) {
-        display: block;
-        width: $right-sidebar-width;
-
-        position: fixed;
-        top: 3 * $spacing-unit;
-        right: 0; /* [1] */
-        padding-right: $spacing-unit;
-        overflow-y: auto;
-        max-height: 90%; // Required for scrolling to work properly
-        scrollbar-width: thin;
-        direction: rtl;
-        z-index: 1; // Keep sidebar on top of page content
-    }
-
-    @include mq($from: wide) {
-        /* [2] */
-        left: 50%;
-        transform: translateX($right-sidebar-center-offset);
-    }
-}
-
 aside.sidebar__right {
+    // Positioning
+    overflow-x: hidden;
+    background-color: $book-background-color;
+    overflow-y: auto;
+    max-height: 90vh; // Required for scrolling to work properly
+    scrollbar-width: thin;
+    direction: rtl;
+
+    // Font and look
     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI',
         'Helvetica Neue', 'Lucida Grande', Arial, sans-serif;
     color: #7a8288;
     border-left: 1px solid #c3c3c3;
     text-transform: uppercase;
     letter-spacing: 1px;
+
+    // Show/hide navbar underneath
+    nav {
+        transition: opacity .25s ease-in-out, height .25s ease-in-out;
+        -moz-transition: opacity .25s ease-in-out, height .25s ease-in-out;
+        -webkit-transition: opacity .25s ease-in-out, height .25s ease-in-out;
+        overflow-y: hidden;
+        opacity: 0;
+        height: 0px;
+
+        @include mq($from: desktop) {
+            opacity: 100;
+            height: auto;
+        }
+
+        @include mq($from: laptop) {
+            &.no_sidebar_content {
+              opacity: 100;
+              height: auto;
+            }
+        }
+    }
+
+    &:hover nav {
+        opacity: 100;
+        height: auto;
+    }
 }
+
 
 h4.nav__title {
     color: #7a8288;

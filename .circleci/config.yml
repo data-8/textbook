@@ -20,13 +20,13 @@ jobs:
     docker:
       - image: circleci/ruby:2.6
     steps:
-      # Attach the built markdown files
+      # Attach the built html files
       - checkout
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: /tmp/workspace
 
-      # Grab the the built markdown from the last step
+      # Grab the the built html from the last step
       - run:
           name: Copy over built site files
           command: |
@@ -58,11 +58,7 @@ jobs:
           path: ./_site/
           destination: html
 
-      - store_artifacts:
-          path: ./_build/
-          destination: _build
-
-  build_markdown:
+  build_html:
     docker:
       - image: circleci/python:3.6-stretch
     steps:
@@ -78,7 +74,8 @@ jobs:
 
       # Install the packages needed to build our documentation
       # This will depend on your particular package!
-      - run: pip install --user jupyter-book
+      - run: pip install --user -r requirements.txt
+      - run: pip install --user -U git+https://github.com/jupyter/jupyter-book.git
 
       # Cache some files for a speedup in subsequent builds
       - save_cache:
@@ -87,7 +84,7 @@ jobs:
             - ~/.cache/pip
 
       - run:
-          name: Build site markdown
+          name: Build site html
           command: jupyter-book build .
 
       # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
@@ -107,14 +104,14 @@ workflows:
             branches:
               only:
                 - gh-pages
-      - build_markdown:
+      - build_html:
           filters:
             branches:
               ignore:
                 - gh-pages
       - demo_site:
           requires:
-            - build_markdown
+            - build_html
           filters:
               branches:
                 ignore:

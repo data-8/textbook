@@ -1,0 +1,580 @@
+---
+redirect_from:
+  - "/chapters/15/4/least-squares-regression"
+interact_link: content/chapters/15/4/Least_Squares_Regression.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Least Squares Regression
+prev_page:
+  url: /chapters/15/3/Method_of_Least_Squares.html
+  title: |-
+    The Method of Least Squares
+next_page:
+  url: /chapters/15/5/Visual_Diagnostics.html
+  title: |-
+    Visual Diagnostics
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Least-Squares-Regression">Least Squares Regression<a class="anchor-link" href="#Least-Squares-Regression"> </a></h3><p>In an earlier section, we developed formulas for the slope and intercept of the regression line through a <em>football shaped</em> scatter diagram. It turns out that the slope and intercept of the least squares line have the same formulas as those we developed, <em>regardless of the shape of the scatter plot</em>.</p>
+<p>We saw this in the example about Little Women, but let's confirm it in an example where the scatter plot clearly isn't football shaped. For the data, we are once again indebted to the rich <a href="http://www.stat.ufl.edu/~winner/datasets.html">data archive of Prof. Larry Winner</a> of the University of Florida. A <a href="http://digitalcommons.wku.edu/ijes/vol6/iss2/10/">2013 study</a> in the International Journal of Exercise Science studied collegiate shot put athletes and examined the relation between strength and shot put distance. The population consists of 28 female collegiate athletes. Strength was measured by the the biggest amount (in kilograms) that the athlete lifted in the "1RM power clean" in the pre-season. The distance (in meters) was the athlete's personal best.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shotput</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;shotput.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shotput</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Weight Lifted</th> <th>Shot Put Distance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>37.5         </td> <td>6.4              </td>
+        </tr>
+        <tr>
+            <td>51.5         </td> <td>10.2             </td>
+        </tr>
+        <tr>
+            <td>61.3         </td> <td>12.4             </td>
+        </tr>
+        <tr>
+            <td>61.3         </td> <td>13               </td>
+        </tr>
+        <tr>
+            <td>63.6         </td> <td>13.2             </td>
+        </tr>
+        <tr>
+            <td>66.1         </td> <td>13               </td>
+        </tr>
+        <tr>
+            <td>70           </td> <td>12.7             </td>
+        </tr>
+        <tr>
+            <td>92.7         </td> <td>13.9             </td>
+        </tr>
+        <tr>
+            <td>90.5         </td> <td>15.5             </td>
+        </tr>
+        <tr>
+            <td>90.5         </td> <td>15.8             </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (18 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shotput</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Weight Lifted&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/4/Least_Squares_Regression_5_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's not a football shaped scatter plot. In fact, it seems to have a slight non-linear component. But if we insist on using a straight line to make our predictions, there is still one best straight line among all straight lines.</p>
+<p>Our formulas for the slope and intercept of the regression line, derived for football shaped scatter plots, give the following values.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slope</span><span class="p">(</span><span class="n">shotput</span><span class="p">,</span> <span class="s1">&#39;Weight Lifted&#39;</span><span class="p">,</span> <span class="s1">&#39;Shot Put Distance&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.09834382159781997</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intercept</span><span class="p">(</span><span class="n">shotput</span><span class="p">,</span> <span class="s1">&#39;Weight Lifted&#39;</span><span class="p">,</span> <span class="s1">&#39;Shot Put Distance&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5.959629098373952</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Does it still make sense to use these formulas even though the scatter plot isn't football shaped? We can answer this by finding the slope and intercept of the line that minimizes the mse.</p>
+<p>We will define the function <code>shotput_linear_mse</code> to take an arbirtary slope and intercept as arguments and return the corresponding mse. Then <code>minimize</code> applied to <code>shotput_linear_mse</code> will return the best slope and intercept.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">shotput_linear_mse</span><span class="p">(</span><span class="n">any_slope</span><span class="p">,</span> <span class="n">any_intercept</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">shotput</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Weight Lifted&#39;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">shotput</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Shot Put Distance&#39;</span><span class="p">)</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">any_slope</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">any_intercept</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">minimize</span><span class="p">(</span><span class="n">shotput_linear_mse</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0.09834382, 5.95962911])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These values are the same as those we got by using our formulas. To summarize:</p>
+<p><strong>No matter what the shape of the scatter plot, there is a unique line that minimizes the mean squared error of estimation. It is called the regression line, and its slope and intercept are given by</strong></p>
+$$
+\mathbf{\mbox{slope of the regression line}} ~=~ r \cdot
+\frac{\mbox{SD of }y}{\mbox{SD of }x}
+$$$$
+\mathbf{\mbox{intercept of the regression line}} ~=~
+\mbox{average of }y ~-~ \mbox{slope} \cdot \mbox{average of }x
+$$
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">shotput</span><span class="p">,</span> <span class="s1">&#39;Weight Lifted&#39;</span><span class="p">,</span> <span class="s1">&#39;Shot Put Distance&#39;</span><span class="p">)</span>
+<span class="n">shotput</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Best Straight Line&#39;</span><span class="p">,</span> <span class="n">fitted</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Weight Lifted&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/4/Least_Squares_Regression_13_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Nonlinear-Regression">Nonlinear Regression<a class="anchor-link" href="#Nonlinear-Regression"> </a></h3><p>The graph above reinforces our earlier observation that the scatter plot is a bit curved. So it is better to fit a curve than a straight line. The <a href="http://digitalcommons.wku.edu/ijes/vol6/iss2/10/">study</a> postulated a quadratic relation between the weight lifted and the shot put distance. So let's use quadratic functions as our predictors and see if we can find the best one.</p>
+<p>We have to find the best quadratic function among all quadratic functions, instead of the best straight line among all straight lines. The method of least squares allows us to do this.</p>
+<p>The mathematics of this minimization is complicated and not easy to see just by examining the scatter plot. But numerical minimization is just as easy as it was with linear predictors! We can get the best quadratic predictor by once again using <code>minimize</code>. Let's see how this works.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Recall that a quadratic function has the form</p>
+$$
+f(x) ~=~ ax^2 + bx + c
+$$<p>for constants $a$, $b$, and $c$.</p>
+<p>To find the best quadratic function to predict distance based on weight lifted, using the criterion of least squares, we will first write a function that takes the three constants as its arguments, calculates the fitted values by using the quadratic function above, and then returns the mean squared error.</p>
+<p>The function is called <code>shotput_quadratic_mse</code>. Notice that the definition is analogous to that of <code>lw_mse</code>, except that the fitted values are based on a quadratic function instead of linear.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">shotput_quadratic_mse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">shotput</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Weight Lifted&#39;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">shotput</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Shot Put Distance&#39;</span><span class="p">)</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can now use <code>minimize</code> just as before to find the constants that minimize the mean squared error.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">best</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">shotput_quadratic_mse</span><span class="p">)</span>
+<span class="n">best</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-1.04004838e-03,  2.82708045e-01, -1.53182115e+00])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our prediction of the shot put distance for an athlete who lifts $x$ kilograms is about
+$$
+-0.00104x^2 ~+~ 0.2827x - 1.5318
+$$
+meters. For example, if the athlete can lift 100 kilograms, the predicted distance is 16.33 meters. On the scatter plot, that's near the center of a vertical strip around 100 kilograms.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="o">-</span><span class="mf">0.00104</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">100</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2827</span><span class="o">*</span><span class="mi">100</span> <span class="o">-</span> <span class="mf">1.5318</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>16.3382</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here are the predictions for all the values of <code>Weight Lifted</code>. You can see that they go through the center of the scatter plot, to a rough approximation.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">shotput</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">shotput_fit</span> <span class="o">=</span> <span class="n">best</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">best</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">best</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shotput</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Best Quadratic Curve&#39;</span><span class="p">,</span> <span class="n">shotput_fit</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/15/4/Least_Squares_Regression_23_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+

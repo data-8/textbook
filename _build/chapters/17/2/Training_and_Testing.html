@@ -1,0 +1,352 @@
+---
+redirect_from:
+  - "/chapters/17/2/training-and-testing"
+interact_link: content/chapters/17/2/Training_and_Testing.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Training and Testing
+prev_page:
+  url: /chapters/17/1/Nearest_Neighbors.html
+  title: |-
+    Nearest Neighbors
+next_page:
+  url: /chapters/17/3/Rows_of_Tables.html
+  title: |-
+    Rows of Tables
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># HIDDEN </span>
+<span class="n">ckd</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;ckd.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="s1">&#39;Blood Glucose Random&#39;</span><span class="p">,</span> <span class="s1">&#39;Glucose&#39;</span><span class="p">)</span>
+<span class="n">ckd</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Hemoglobin&#39;</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Hemoglobin&#39;</span><span class="p">)),</span>
+    <span class="s1">&#39;Glucose&#39;</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Glucose&#39;</span><span class="p">)),</span>
+    <span class="s1">&#39;White Blood Cell Count&#39;</span><span class="p">,</span> <span class="n">standard_units</span><span class="p">(</span><span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;White Blood Cell Count&#39;</span><span class="p">)),</span>
+    <span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="n">ckd</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Class&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">color_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="s1">&#39;gold&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">ckd</span> <span class="o">=</span> <span class="n">ckd</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="n">color_table</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Training-and-Testing">Training and Testing<a class="anchor-link" href="#Training-and-Testing"> </a></h3><p>How good is our nearest neighbor classifier? To answer this we'll need to find out how frequently our classifications are correct. If a patient has chronic kidney disease, how likely is our classifier to pick that up?</p>
+<p>If the patient is in our training set, we can find out immediately. We already know what class the patient is in. So we can just compare our prediction and the patient's true class.</p>
+<p>But the point of the classifier is to make predictions for <em>new</em> patients not in our training set. We don't know what class these patients are in but we can make a prediction based on our classifier. How to find out whether the prediction is correct?</p>
+<p>One way is to wait for further medical tests on the patient and then check whether or not our prediction agrees with the test results. With that approach, by the time we can say how likely our prediction is to be accurate, it is no longer useful for helping the patient.</p>
+<p>Instead, we will try our classifier on some patients whose true classes are known.  Then, we will compute the proportion of the time our classifier was correct.  This proportion will serve as an estimate of the proportion of all new patients whose class our classifier will accurately predict.  This is called <em>testing</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Overly-Optimistic-&quot;Testing&quot;">Overly Optimistic "Testing"<a class="anchor-link" href="#Overly-Optimistic-&quot;Testing&quot;"> </a></h3><p>The training set offers a very tempting set of patients on whom to test out our classifier, because we know the class of each patient in the training set.</p>
+<p>But let's be careful ... there will be pitfalls ahead if we take this path. An example will show us why.</p>
+<p>Suppose we use a 1-nearest neighbor classifier to predict whether a patient has chronic kidney disease, based on glucose and white blood cell count.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ckd</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;White Blood Cell Count&#39;</span><span class="p">,</span> <span class="s1">&#39;Glucose&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/17/2/Training_and_Testing_7_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Earlier, we said that we expect to get some classifications wrong, because there's some intermingling of blue and gold points in the lower-left.</p>
+<p>But what about the points in the training set, that is, the points already on the scatter? Will we ever mis-classify them?</p>
+<p>The answer is no. Remember that 1-nearest neighbor classification looks for the point <em>in the training set</em> that is nearest to the point being classified. Well, if the point being classified is already in the training set, then its nearest neighbor in the training set is itself! And therefore it will be classified as its own color, which will be correct because each point in the training set is already correctly colored.</p>
+<p>In other words, <strong>if we use our training set to "test" our 1-nearest neighbor classifier, the classifier will pass the test 100% of the time.</strong></p>
+<p>Mission accomplished. What a great classifier!</p>
+<p>No, not so much. A new point in the lower-left might easily be mis-classified, as we noted earlier. "100% accuracy" was a nice dream while it lasted.</p>
+<p>The lesson of this example is <em>not</em> to use the training set to test a classifier that is based on it.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Generating-a-Test-Set">Generating a Test Set<a class="anchor-link" href="#Generating-a-Test-Set"> </a></h3><p>In earlier chapters, we saw that random sampling could be used to estimate the proportion of individuals in a population that met some criterion.  Unfortunately, we have just seen that the training set is not like a random sample from the population of all patients, in one important respect: Our classifier guesses correctly for a higher proportion of individuals in the training set than it does for individuals in the population.</p>
+<p>When we computed confidence intervals for numerical parameters, we wanted to have many new random samples from a population, but we only had access to a single sample.  We solved that problem by taking bootstrap resamples from our sample.</p>
+<p>We will use an analogous idea to test our classifier. We will <em>create two samples out of the original training set</em>, use one of the samples as our training set, and <em>the other one for testing</em>.</p>
+<p>So we will have three groups of individuals:</p>
+<ul>
+<li>a training set on which we can do any amount of exploration to build our classifier;</li>
+<li>a separate testing set on which to try out our classifier and see what fraction of times it classifies correctly;</li>
+<li>the underlying population of individuals for whom we don't know the true classes; the hope is that our classifier will succeed about as well for these individuals as it did for our testing set.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>How to generate the training and testing sets? You've guessed it – we'll select at random.</p>
+<p>There are 158 individuals in <code>ckd</code>. Let's use a random half of them for training and the other half for testing. To do this, we'll shuffle all the rows, take the first 79 as the training set, and the remaining 79 for testing.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shuffled_ckd</span> <span class="o">=</span> <span class="n">ckd</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">training</span> <span class="o">=</span> <span class="n">shuffled_ckd</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">79</span><span class="p">))</span>
+<span class="n">testing</span> <span class="o">=</span> <span class="n">shuffled_ckd</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">79</span><span class="p">,</span> <span class="mi">158</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's construct our classifier based on the points in the training sample:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;White Blood Cell Count&#39;</span><span class="p">,</span> <span class="s1">&#39;Glucose&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/17/2/Training_and_Testing_13_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We get the following classification regions and decision boundary:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/17/2/Training_and_Testing_17_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Place the <em>test</em> data on this graph and you can see at once that while the classifier got almost all the points right, there are some mistakes.  For example, some blue points of the test set fall in the gold region of the classifier.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/17/2/Training_and_Testing_19_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Some errors notwithstanding, it looks like the classifier does fairly well on the test set. Assuming that the original sample was drawn randomly from the underlying population, the hope is that the classifier will perform with similar accuracy on the overall population, since the test set was chosen randomly from the original sample.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

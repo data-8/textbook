@@ -40,24 +40,24 @@
 
     var addHideButton = function () {
         // If a hide button is already added, don't add another
-        if (document.querySelector('div.hidecode input') !== null) {
+        if (document.querySelector('div.tag_hide_input input') !== null) {
             return;
         }
 
         // Find the input cells and add a hide button
-        document.querySelectorAll('div.input_area').forEach(function (item, index) {
-            if (!item.classList.contains("hidecode")) {
+        pageElements['inputCells'].forEach(function (inputCell) {
+            if (!inputCell.classList.contains("tag_hide_input")) {
                 // Skip the cell if it doesn't have a hidecode class
                 return;
             }
 
-            const id = codeCellId(index)
-            item.setAttribute('id', id);
+            const id = inputCell.getAttribute('id')
+
             // Insert the button just inside the end of the next div
-            item.querySelector('div').insertAdjacentHTML('beforeend', hideCodeButton(id))
+            inputCell.querySelector('div.input').insertAdjacentHTML('beforeend', hideCodeButton(id))
 
             // Set up the visibility toggle
-            hideLink = document.querySelector(`#${id} div.highlight + input + label`);
+            hideLink = document.querySelector(`#${id} div.inner_cell + input + label`);
             hideLink.addEventListener('click', toggleCodeCellVisibility)
         });
     }
@@ -69,7 +69,7 @@
         addHideButton();
 
         // Toggle the code cells that should be hidden
-        document.querySelectorAll('div.hidecode input').forEach(function (item) {
+        document.querySelectorAll('div.tag_hide_input input').forEach(function (item) {
             setCodeCellVisibility(item, 'hidden');
             item.checked = true;
         })

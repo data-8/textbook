@@ -1,0 +1,1195 @@
+---
+redirect_from:
+  - "/chapters/08/1/applying-a-function-to-a-column"
+interact_link: content/chapters/08/1/Applying_a_Function_to_a_Column.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Applying Functions to Columns
+prev_page:
+  url: /chapters/08/Functions_and_Tables.html
+  title: |-
+    Functions and Tables
+next_page:
+  url: /chapters/08/2/Classifying_by_One_Variable.html
+  title: |-
+    Classifying by One Variable
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Applying-a-Function-to-a-Column">Applying a Function to a Column<a class="anchor-link" href="#Applying-a-Function-to-a-Column"> </a></h3><p>We have seen many examples of creating new columns of tables by applying functions to existing columns or to other arrays. All of those functions took arrays as their arguments. But frequently we will want to convert the entries in a column by a function that doesn't take an array as its argument. For example, it might take just one number as its argument, as in the function <code>cut_off_at_100</code> defined below.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cut_off_at_100</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The smaller of x and 100&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cut_off_at_100</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>17</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cut_off_at_100</span><span class="p">(</span><span class="mi">117</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>100</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cut_off_at_100</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>100</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The function <code>cut_off_at_100</code> simply returns its argument if the argument is less than or equal to 100. But if the argument is greater than 100, it returns 100.</p>
+<p>In our earlier examples using Census data, we saw that the variable <code>AGE</code> had a value 100 that meant "100 years old or older". Cutting off ages at 100 in this manner is exactly what <code>cut_off_at_100</code> does.</p>
+<p>To use this function on many ages at once, we will have to be able to <em>refer</em> to the function itself, without actually calling it.  Analogously, we might show a cake recipe to a chef and ask her to use it to bake 6 cakes.  In that scenario, we are not using the recipe to bake any cakes ourselves; our role is merely to refer the chef to the recipe.  Similarly, we can ask a table to call <code>cut_off_at_100</code> on 6 different numbers in a column.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First, we create the table <code>ages</code> with a column for people and one for their ages. For example, person <code>C</code> is 52 years old.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="s1">&#39;Person&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">make_array</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">117</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">ages</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Person</th> <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>A     </td> <td>17  </td>
+        </tr>
+        <tr>
+            <td>B     </td> <td>117 </td>
+        </tr>
+        <tr>
+            <td>C     </td> <td>52  </td>
+        </tr>
+        <tr>
+            <td>D     </td> <td>100 </td>
+        </tr>
+        <tr>
+            <td>E     </td> <td>6   </td>
+        </tr>
+        <tr>
+            <td>F     </td> <td>101 </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="apply"><code>apply</code><a class="anchor-link" href="#apply"> </a></h3><p>To cut off each of the ages at 100, we will use the a new Table method. The <code>apply</code> method calls a function on each element of a column, forming a new array of return values. To indicate which function to call, just name it (without quotation marks or parentheses). The name of the column of input values is a string that must still appear within quotation marks.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">cut_off_at_100</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 17, 100,  52, 100,   6, 100])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What we have done here is <code>apply</code> the function <code>cut_off_at_100</code> to each value in the <code>Age</code> column of the table <code>ages</code>. The output is the array of corresponding return values of the function. For example, 17 stayed 17, 117 became 100, 52 stayed 52, and so on.</p>
+<p>This array, which has the same length as the original <code>Age</code> column of the <code>ages</code> table, can be used as the values in a new column called <code>Cut Off Age</code> alongside the existing <code>Person</code> and <code>Age</code> columns.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Cut Off Age&#39;</span><span class="p">,</span> <span class="n">ages</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">cut_off_at_100</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Person</th> <th>Age</th> <th>Cut Off Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>A     </td> <td>17  </td> <td>17         </td>
+        </tr>
+        <tr>
+            <td>B     </td> <td>117 </td> <td>100        </td>
+        </tr>
+        <tr>
+            <td>C     </td> <td>52  </td> <td>52         </td>
+        </tr>
+        <tr>
+            <td>D     </td> <td>100 </td> <td>100        </td>
+        </tr>
+        <tr>
+            <td>E     </td> <td>6   </td> <td>6          </td>
+        </tr>
+        <tr>
+            <td>F     </td> <td>101 </td> <td>100        </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Functions-as-Values">Functions as Values<a class="anchor-link" href="#Functions-as-Values"> </a></h3><p>We've seen that Python has many kinds of values.  For example, <code>6</code> is a number value, <code>"cake"</code> is a text value, <code>Table()</code> is an empty table, and <code>ages</code> is a name for a table value (since we defined it above).</p>
+<p>In Python, every function, including <code>cut_off_at_100</code>, is also a value. It helps to think about recipes again. A recipe for cake is a real thing, distinct from cakes or ingredients, and you can give it a name like "Ani's cake recipe." When we defined <code>cut_off_at_100</code> with a <code>def</code> statement, we actually did two separate things: we created a function that cuts off numbers at 100, and we gave it the name <code>cut_off_at_100</code>.</p>
+<p>We can refer to any function by writing its name, without the parentheses or arguments necessary to actually call it. We did this when we called <code>apply</code> above.  When we write a function's name by itself as the last line in a cell, Python produces a text representation of the function, just like it would print out a number or a string value.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cut_off_at_100</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;function __main__.cut_off_at_100(x)&gt;</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that we did not write <code>"cut_off_at_100"</code> with quotes (which is just a piece of text), or <code>cut_off_at_100()</code> (which is a function call, and an invalid one at that).  We simply wrote <code>cut_off_at_100</code> to refer to the function.</p>
+<p>Just like we can define new names for other values, we can define new names for functions.  For example, suppose we want to refer to our function as <code>cut_off</code> instead of <code>cut_off_at_100</code>.  We can just write this:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cut_off</span> <span class="o">=</span> <span class="n">cut_off_at_100</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now <code>cut_off</code> is a name for a function.  It's the same function as <code>cut_off_at_100</code>, so the printed value is exactly the same.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cut_off</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;function __main__.cut_off_at_100(x)&gt;</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us see another application of <code>apply</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Prediction">Example: Prediction<a class="anchor-link" href="#Example:-Prediction"> </a></h3><p>Data Science is often used to make predictions about the future. If we are trying to predict an outcome for a particular individual – for example, how she will respond to a treatment, or whether he will buy a product – it is natural to base the prediction on the outcomes of other similar individuals.</p>
+<p>Charles Darwin's cousin <a href="https://en.wikipedia.org/wiki/Francis_Galton">Sir Francis Galton</a> was a pioneer in using this idea to make predictions based on numerical data. He studied how physical characteristics are passed down from one generation to the next.</p>
+<p>The data below are Galton's carefully collected measurements on the heights of parents and their adult children. Each row corresponds to one adult child. The variables are a numerical code for the family, the heights (in inches) of the father and mother, a "midparent height" which is a weighted average <a href="#footnotes">[1]</a> of the height of the two parents, the number of children in the family, as well as the child's birth rank (1 = oldest), gender, and height.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Galton&#39;s data on heights of parents and their adult children</span>
+<span class="n">galton</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;galton.csv&#39;</span><span class="p">)</span>
+<span class="n">galton</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>family</th> <th>father</th> <th>mother</th> <th>midparentHeight</th> <th>children</th> <th>childNum</th> <th>gender</th> <th>childHeight</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1     </td> <td>78.5  </td> <td>67    </td> <td>75.43          </td> <td>4       </td> <td>1       </td> <td>male  </td> <td>73.2       </td>
+        </tr>
+        <tr>
+            <td>1     </td> <td>78.5  </td> <td>67    </td> <td>75.43          </td> <td>4       </td> <td>2       </td> <td>female</td> <td>69.2       </td>
+        </tr>
+        <tr>
+            <td>1     </td> <td>78.5  </td> <td>67    </td> <td>75.43          </td> <td>4       </td> <td>3       </td> <td>female</td> <td>69         </td>
+        </tr>
+        <tr>
+            <td>1     </td> <td>78.5  </td> <td>67    </td> <td>75.43          </td> <td>4       </td> <td>4       </td> <td>female</td> <td>69         </td>
+        </tr>
+        <tr>
+            <td>2     </td> <td>75.5  </td> <td>66.5  </td> <td>73.66          </td> <td>4       </td> <td>1       </td> <td>male  </td> <td>73.5       </td>
+        </tr>
+        <tr>
+            <td>2     </td> <td>75.5  </td> <td>66.5  </td> <td>73.66          </td> <td>4       </td> <td>2       </td> <td>male  </td> <td>72.5       </td>
+        </tr>
+        <tr>
+            <td>2     </td> <td>75.5  </td> <td>66.5  </td> <td>73.66          </td> <td>4       </td> <td>3       </td> <td>female</td> <td>65.5       </td>
+        </tr>
+        <tr>
+            <td>2     </td> <td>75.5  </td> <td>66.5  </td> <td>73.66          </td> <td>4       </td> <td>4       </td> <td>female</td> <td>65.5       </td>
+        </tr>
+        <tr>
+            <td>3     </td> <td>75    </td> <td>64    </td> <td>72.06          </td> <td>2       </td> <td>1       </td> <td>male  </td> <td>71         </td>
+        </tr>
+        <tr>
+            <td>3     </td> <td>75    </td> <td>64    </td> <td>72.06          </td> <td>2       </td> <td>2       </td> <td>female</td> <td>68         </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (924 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A primary reason for collecting the data was to be able to predict the adult height of a child born to parents similar to those in the dataset. Let us try to do this, using midparent height as the variable on which to base our prediction. Thus midparent height is our <em>predictor</em> variable.</p>
+<p>The table <code>heights</code> consists of just the midparent heights and child's heights. The scatter plot of the two variables shows a positive association, as we would expect for these variables.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span> <span class="o">=</span> <span class="n">galton</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">relabeled</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Child&#39;</span><span class="p">)</span>
+<span class="n">heights</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>MidParent</th> <th>Child</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>75.43    </td> <td>73.2 </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69.2 </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69   </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69   </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>73.5 </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>72.5 </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>65.5 </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>65.5 </td>
+        </tr>
+        <tr>
+            <td>72.06    </td> <td>71   </td>
+        </tr>
+        <tr>
+            <td>72.06    </td> <td>68   </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (924 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/08/1/Applying_a_Function_to_a_Column_24_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now suppose Galton encountered a new couple, similar to those in his dataset, and wondered how tall their child would be. What would be a good way for him to go about predicting the child's height, given that the midparent height was, say, 68 inches?</p>
+<p>One reasonable approach would be to base the prediction on all the points that correspond to a midparent height of around 68 inches. The prediction equals the average child's height calculated from those points alone.</p>
+<p>Let's pretend we are Galton and execute this plan. For now we will just make a reasonable definition of what "around 68 inches" means, and work with that. Later in the course we will examine the consequences of such choices.</p>
+<p>We will take "close" to mean "within half an inch". The figure below shows all the points corresponding to a midparent height between 67.5 inches and 68.5 inches. These are all the points in the strip between the red lines. Each of these points corresponds to one child; our prediction of the height of the new couple's child is the average height of all the children in the strip. That's represented by the gold dot.</p>
+<p>Ignore the code, and just focus on understanding the mental process of arriving at that gold dot.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">67.5</span><span class="p">,</span> <span class="mf">67.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">85</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">68.5</span><span class="p">,</span> <span class="mf">68.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">85</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">68</span><span class="p">,</span> <span class="mf">66.24</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/08/1/Applying_a_Function_to_a_Column_26_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to calculate exactly where the gold dot should be, we first need to indentify all the points in the strip. These correspond to the rows where <code>MidParent</code> is between 67.5 inches and 68.5 inches.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">close_to_68</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mf">67.5</span><span class="p">,</span> <span class="mf">68.5</span><span class="p">))</span>
+<span class="n">close_to_68</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>MidParent</th> <th>Child</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>68.44    </td> <td>62   </td>
+        </tr>
+        <tr>
+            <td>67.94    </td> <td>71.2 </td>
+        </tr>
+        <tr>
+            <td>67.94    </td> <td>67   </td>
+        </tr>
+        <tr>
+            <td>68.33    </td> <td>62.5 </td>
+        </tr>
+        <tr>
+            <td>68.23    </td> <td>73   </td>
+        </tr>
+        <tr>
+            <td>68.23    </td> <td>72   </td>
+        </tr>
+        <tr>
+            <td>68.23    </td> <td>69   </td>
+        </tr>
+        <tr>
+            <td>67.98    </td> <td>73   </td>
+        </tr>
+        <tr>
+            <td>67.98    </td> <td>71   </td>
+        </tr>
+        <tr>
+            <td>67.98    </td> <td>71   </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (121 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The predicted height of a child who has a midparent height of 68 inches is the average height of the children in these rows. That's 66.24 inches.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">close_to_68</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Child&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>66.24045801526718</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now have a way to predict the height of a child given any value of the midparent height near those in our dataset. We can define a function <code>predict_child</code> that does this. The body of the function consists of the code in the two cells above, apart from choices of names.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict_child</span><span class="p">(</span><span class="n">mpht</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Predict the height of a child whose parents have a midparent height of mpht.</span>
+<span class="sd">    </span>
+<span class="sd">    The prediction is the average height of the children whose midparent height is</span>
+<span class="sd">    in the range mpht plus or minus 0.5.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">close_points</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">mpht</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">mpht</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">close_points</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Child&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>                       
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given a midparent height of 68 inches, the function <code>predict_child</code> returns the same prediction (66.24 inches) as we got earlier. The advantage of defining the function is that we can easily change the value of the predictor and get a new prediction.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predict_child</span><span class="p">(</span><span class="mi">68</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>66.24045801526718</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predict_child</span><span class="p">(</span><span class="mi">74</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>70.41578947368421</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>How good are these predictions? We can get a sense of this by comparing the predictions with the data that we already have. To do this, we first apply the function <code>predict_child</code> to the column of <code>Midparent</code> heights, and collect the results in a new column called <code>Prediction</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Apply predict_child to all the midparent heights</span>
+
+<span class="n">heights_with_predictions</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span>
+    <span class="s1">&#39;Prediction&#39;</span><span class="p">,</span> <span class="n">heights</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">predict_child</span><span class="p">,</span> <span class="s1">&#39;MidParent&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_with_predictions</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>MidParent</th> <th>Child</th> <th>Prediction</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>75.43    </td> <td>73.2 </td> <td>70.1      </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69.2 </td> <td>70.1      </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69   </td> <td>70.1      </td>
+        </tr>
+        <tr>
+            <td>75.43    </td> <td>69   </td> <td>70.1      </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>73.5 </td> <td>70.4158   </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>72.5 </td> <td>70.4158   </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>65.5 </td> <td>70.4158   </td>
+        </tr>
+        <tr>
+            <td>73.66    </td> <td>65.5 </td> <td>70.4158   </td>
+        </tr>
+        <tr>
+            <td>72.06    </td> <td>71   </td> <td>68.5025   </td>
+        </tr>
+        <tr>
+            <td>72.06    </td> <td>68   </td> <td>68.5025   </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (924 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To see where the predictions lie relative to the observed data, we can draw overlaid scatter plots with <code>MidParent</code> as the common horizontal axis.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights_with_predictions</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;MidParent&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../images/chapters/08/1/Applying_a_Function_to_a_Column_40_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The graph of gold dots is called a <em>graph of averages,</em> because each gold dot is the center of a vertical strip like the one we drew earlier. Each one provides a prediction of a child's height given the midparent height. For example, the scatter shows that for a midparent height of 72 inches, the predicted height of the child would be somewhere between 68 inches and 69 inches, and indeed <code>predict_child(72)</code> returns 68.5.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Galton's calculations and visualizations were very similar to ours, except that he didn't have Python. He drew the graph of averages through the scatter diagram and noticed that it roughly followed a straight line. This straight line is now called the <em>regression line</em> and is one of the most common methods of making predictions. Galton's friend, the mathematician Karl Pearson, used these analyses to formalize the notion of <em>correlation</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This example, like the one about John Snow's analysis of cholera deaths, shows how some of the fundamental concepts of modern data science have roots going back more than a century. Galton's methods such as the one we have used here are precursors to <em>nearest neighbor</em> prediction methods that now have powerful applications in diverse settings. The modern field of <em>machine learning</em> includes the automation of such methods to make predictions based on vast and rapidly evolving datasets.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id='footnotes'></a></p>
+<h5 id="Footnotes">Footnotes<a class="anchor-link" href="#Footnotes"> </a></h5><p>[1] Galton multiplied the heights of all the women by 1.08 before taking the average height of the men and the women. For a discussion of this, see <a href="http://chance.amstat.org/2013/09/1-pagano/">Chance</a>, a magazine published by the American Statistical Association.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

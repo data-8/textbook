@@ -1,0 +1,302 @@
+---
+redirect_from:
+  - "/chapters/01/3/1/literary-characters"
+interact_link: content/chapters/01/3/1/Literary_Characters.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Literary Characters
+prev_page:
+  url: /chapters/01/3/Plotting_the_Classics.html
+  title: |-
+    Plotting the Classics
+next_page:
+  url: /chapters/01/3/2/Another_Kind_Of_Character.html
+  title: |-
+    Another Kind of Character
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Literary-Characters">Literary Characters<a class="anchor-link" href="#Literary-Characters"> </a></h1><p><em>The Adventures of Huckleberry Finn</em> describes a journey that Huck and Jim take along the Mississippi River. Tom Sawyer joins them towards the end as the action heats up. Having loaded the text, we can quickly visualize how many times these characters have each been mentioned at any point in the book.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Count how many times the names Jim, Tom, and Huck appear in each chapter.</span>
+
+<span class="n">counts</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s1">&#39;Jim&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s1">&#39;Jim&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;Tom&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s1">&#39;Tom&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;Huck&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">huck_finn_chapters</span><span class="p">,</span> <span class="s1">&#39;Huck&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+
+<span class="c1"># Plot the cumulative counts:</span>
+<span class="c1"># how many times in Chapter 1, how many times in Chapters 1 and 2, and so on.</span>
+
+<span class="n">cum_counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Chapter&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">cum_counts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column_for_xticks</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cumulative Number of Times Each Name Appears&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.08</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../../images/chapters/01/3/1/Literary_Characters_3_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the plot above, the horizontal axis shows chapter numbers and the vertical axis shows how many times each character has been mentioned up to and including that chapter.</p>
+<p>You can see that Jim is a central character by the large number of times his name appears. Notice how Tom is hardly mentioned for much of the book until he arrives and joins Huck and Jim, after Chapter 30. His curve and Jim's rise sharply at that point, as the action involving both of them intensifies. As for Huck, his name hardly appears at all, because he is the narrator.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Little Women</em> is a story of four sisters growing up together during the civil war. In this book, chapter numbers are spelled out and chapter titles are written in all capital letters.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># The chapters of Little Women, in a table</span>
+
+<span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Chapters&#39;</span><span class="p">,</span> <span class="n">little_women_chapters</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Chapters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ONE
+
+PLAYING PILGRIMS
+
+"Christmas won't be Christmas wit ...</td>
+        </tr>
+        <tr>
+            <td>TWO
+
+A MERRY CHRISTMAS
+
+Jo was the first to wake in the  ...</td>
+        </tr>
+        <tr>
+            <td>THREE
+
+THE LAURENCE BOY
+
+"Jo!  Jo!  Where are you?" crie ...</td>
+        </tr>
+        <tr>
+            <td>FOUR
+
+BURDENS
+
+"Oh, dear, how hard it does seem to take  ...</td>
+        </tr>
+        <tr>
+            <td>FIVE
+
+BEING NEIGHBORLY
+
+"What in the world are you going ...</td>
+        </tr>
+        <tr>
+            <td>SIX
+
+BETH FINDS THE PALACE BEAUTIFUL
+
+The big house did  ...</td>
+        </tr>
+        <tr>
+            <td>SEVEN
+
+AMY'S VALLEY OF HUMILIATION
+
+"That boy is a perfe ...</td>
+        </tr>
+        <tr>
+            <td>EIGHT
+
+JO MEETS APOLLYON
+
+"Girls, where are you going?"  ...</td>
+        </tr>
+        <tr>
+            <td>NINE
+
+MEG GOES TO VANITY FAIR
+
+"I do think it was the mo ...</td>
+        </tr>
+        <tr>
+            <td>TEN
+
+THE P.C. AND P.O.
+
+As spring came on, a new set of  ...</td>
+        </tr>
+    </tbody>
+</table>
+<p>... (37 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can track the mentions of main characters to learn about the plot of this book as well.  The protagonist Jo interacts with her sisters Meg, Beth, and Amy regularly, up until Chapter 27 when she moves to New York alone.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Counts of names in the chapters of Little Women</span>
+
+<span class="n">counts</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+        <span class="s1">&#39;Amy&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s1">&#39;Amy&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;Beth&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s1">&#39;Beth&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;Jo&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s1">&#39;Jo&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;Meg&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s1">&#39;Meg&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;Laurie&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">little_women_chapters</span><span class="p">,</span> <span class="s1">&#39;Laurie&#39;</span><span class="p">),</span>
+
+    <span class="p">])</span>
+
+<span class="c1"># Plot the cumulative counts.</span>
+
+<span class="n">cum_counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Chapter&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">cum_counts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column_for_xticks</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cumulative Number of Times Each Name Appears&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.08</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../../../../images/chapters/01/3/1/Literary_Characters_8_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Laurie is a young man who marries one of the girls in the end. See if you can use the plots to guess which one.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

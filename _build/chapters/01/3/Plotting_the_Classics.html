@@ -1,0 +1,161 @@
+---
+redirect_from:
+  - "/chapters/01/3/plotting-the-classics"
+interact_link: content/chapters/01/3/Plotting_the_Classics.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  Plotting the Classics
+prev_page:
+  url: /chapters/01/2/why-data-science.html
+  title: |-
+    Why Data Science?
+next_page:
+  url: /chapters/01/3/1/Literary_Characters.html
+  title: |-
+    Literary Characters
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Plotting-the-classics">Plotting the classics<a class="anchor-link" href="#Plotting-the-classics"> </a></h1><p>In this example, we will explore statistics for two classic novels: <em>The Adventures of Huckleberry Finn</em> by Mark Twain, and <em>Little Women</em> by Louisa May Alcott. The text of any book can be read by a computer at great speed. Books published before 1923 are currently in the <em>public domain</em>, meaning that everyone has the right to copy or use the text in any way. <a href="http://www.gutenberg.org/">Project Gutenberg</a> is a website that publishes public domain books online. Using Python, we can load the text of these books directly from the web.</p>
+<p>This example is meant to illustrate some of the broad themes of this text. Don't worry if the details of the program don't yet make sense. Instead, focus on interpreting the images generated below. Later sections of the text will describe most of the features of the Python programming language used below.</p>
+<p>First, we read the text of both books into lists of chapters, called <code>huck_finn_chapters</code> and <code>little_women_chapters</code>. In Python, a name cannot contain any spaces, and so we will often use an underscore <code>_</code> to stand in for a space. The <code>=</code> in the lines below give a name on the left to the result of some computation described on the right. A <em>uniform resource locator</em> or <em>URL</em> is an address on the Internet for some content; in this case, the text of a book. The <code>#</code> symbol starts a comment, which is ignored by the computer but helpful for people reading the code.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Read two books, fast!</span>
+
+<span class="n">huck_finn_url</span> <span class="o">=</span> <span class="s1">&#39;https://www.inferentialthinking.com/data/huck_finn.txt&#39;</span>
+<span class="n">huck_finn_text</span> <span class="o">=</span> <span class="n">read_url</span><span class="p">(</span><span class="n">huck_finn_url</span><span class="p">)</span>
+<span class="n">huck_finn_chapters</span> <span class="o">=</span> <span class="n">huck_finn_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;CHAPTER &#39;</span><span class="p">)[</span><span class="mi">44</span><span class="p">:]</span>
+
+<span class="n">little_women_url</span> <span class="o">=</span> <span class="s1">&#39;https://www.inferentialthinking.com/data/little_women.txt&#39;</span>
+<span class="n">little_women_text</span> <span class="o">=</span> <span class="n">read_url</span><span class="p">(</span><span class="n">little_women_url</span><span class="p">)</span>
+<span class="n">little_women_chapters</span> <span class="o">=</span> <span class="n">little_women_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;CHAPTER &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>While a computer cannot understand the text of a book, it can provide us with some insight into the structure of the text. The name <code>huck_finn_chapters</code> is currently bound to a list of all the chapters in the book. We can place them into a table to see how each chapter begins.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display the chapters of Huckleberry Finn in a table.</span>
+
+<span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Chapters&#39;</span><span class="p">,</span> <span class="n">huck_finn_chapters</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>Chapters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>I. YOU don't know about me without you have read a book  ...</td>
+        </tr>
+        <tr>
+            <td>II. WE went tiptoeing along a path amongst the trees bac ...</td>
+        </tr>
+        <tr>
+            <td>III. WELL, I got a good going-over in the morning from o ...</td>
+        </tr>
+        <tr>
+            <td>IV. WELL, three or four months run along, and it was wel ...</td>
+        </tr>
+        <tr>
+            <td>V. I had shut the door to. Then I turned around and ther ...</td>
+        </tr>
+        <tr>
+            <td>VI. WELL, pretty soon the old man was up and around agai ...</td>
+        </tr>
+        <tr>
+            <td>VII. "GIT up! What you 'bout?" I opened my eyes and look ...</td>
+        </tr>
+        <tr>
+            <td>VIII. THE sun was up so high when I waked that I judged  ...</td>
+        </tr>
+        <tr>
+            <td>IX. I wanted to go and look at a place right about the m ...</td>
+        </tr>
+        <tr>
+            <td>X. AFTER breakfast I wanted to talk about the dead man a ...</td>
+        </tr>
+    </tbody>
+</table>
+<p>... (33 rows omitted)</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each chapter begins with a chapter number in Roman numerals, followed by the first sentence of the chapter. Project Gutenberg has printed the first word of each chapter in upper case.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+

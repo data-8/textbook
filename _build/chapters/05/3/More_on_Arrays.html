@@ -1,0 +1,378 @@
+---
+redirect_from:
+  - "/chapters/05/3/more-on-arrays"
+interact_link: content/chapters/05/3/More_on_Arrays.ipynb
+kernel_name: python3
+has_widgets: false
+title: |-
+  More on Arrays
+prev_page:
+  url: /chapters/05/2/Ranges.html
+  title: |-
+    Ranges
+next_page:
+  url: /chapters/06/Tables.html
+  title: |-
+    Tables
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+<div class="jb_cell tag_remove_input">
+
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="More-on-Arrays">More on Arrays<a class="anchor-link" href="#More-on-Arrays"> </a></h1><p>It's often necessary to compute something that involves data from more than one array. If two arrays are of the same size, Python makes it easy to do calculations involving both arrays.</p>
+<p>For our first example, we return once more to the temperature data.  This time, we create arrays of average daily <a href="http://berkeleyearth.lbl.gov/auto/Regional/TMAX/Text/global-land-TMAX-Trend.txt">high</a> and <a href="http://berkeleyearth.lbl.gov/auto/Regional/TMIN/Text/global-land-TMIN-Trend.txt">low</a> temperatures for the decades surrounding 1850, 1900, 1950, and 2000.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baseline_high</span> <span class="o">=</span> <span class="mf">14.48</span>
+<span class="n">highs</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="n">baseline_high</span> <span class="o">-</span> <span class="mf">0.880</span><span class="p">,</span> 
+                   <span class="n">baseline_high</span> <span class="o">-</span> <span class="mf">0.093</span><span class="p">,</span>
+                   <span class="n">baseline_high</span> <span class="o">+</span> <span class="mf">0.105</span><span class="p">,</span> 
+                   <span class="n">baseline_high</span> <span class="o">+</span> <span class="mf">0.684</span><span class="p">)</span>
+<span class="n">highs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 13.6  ,  14.387,  14.585,  15.164])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">baseline_low</span> <span class="o">=</span> <span class="mf">3.00</span>
+<span class="n">lows</span> <span class="o">=</span> <span class="n">make_array</span><span class="p">(</span><span class="n">baseline_low</span> <span class="o">-</span> <span class="mf">0.872</span><span class="p">,</span> <span class="n">baseline_low</span> <span class="o">-</span> <span class="mf">0.629</span><span class="p">,</span>
+                  <span class="n">baseline_low</span> <span class="o">-</span> <span class="mf">0.126</span><span class="p">,</span> <span class="n">baseline_low</span> <span class="o">+</span> <span class="mf">0.728</span><span class="p">)</span>
+<span class="n">lows</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 2.128,  2.371,  2.874,  3.728])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Suppose we'd like to compute the average daily <em>range</em> of temperatures for each decade.  That is, we want to subtract the average daily high in the 1850s from the average daily low in the 1850s, and the same for each other decade.</p>
+<p>We could write this laboriously using <code>.item</code>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">make_array</span><span class="p">(</span>
+    <span class="n">highs</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">lows</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">highs</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">lows</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">highs</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">lows</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">highs</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">lows</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 11.472,  12.016,  11.711,  11.436])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As when we converted an array of temperatures from Celsius to Fahrenheit, Python provides a much cleaner way to write this:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">highs</span> <span class="o">-</span> <span class="n">lows</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 11.472,  12.016,  11.711,  11.436])</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="../../../images/array_subtraction.png" /></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What we've seen in these examples are special cases of a general feature of arrays.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Elementwise-arithmetic-on-pairs-of-numerical-arrays">Elementwise arithmetic on pairs of numerical arrays<a class="anchor-link" href="#Elementwise-arithmetic-on-pairs-of-numerical-arrays"> </a></h3><p>If an arithmetic operator acts on two arrays of the same size, then the operation is performed on each corresponding pair of elements in the two arrays. The final result is an array.</p>
+<p>For example, if <code>array1</code> and <code>array2</code> have the same number of elements, then the value of <code>array1 * array2</code> is an array. Its first element is the first element of <code>array1</code> times the first element of <code>array2</code>, its second element is the second element of <code>array1</code> times the second element of <code>array2</code>, and so on.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Wallis'-Formula-for-$\pi$">Example: Wallis' Formula for $\pi$<a class="anchor-link" href="#Example:-Wallis'-Formula-for-$\pi$"> </a></h3><p>The number $\pi$ is important in many different areas of math. Centuries before computers were invented, mathematicians worked on finding simple ways to approximate the numerical value of $\pi$. We have already seen Leibniz's formula for $\pi$. About half a century before Leibniz, the English mathematician <a href="https://en.wikipedia.org/wiki/John_Wallis">John Wallis</a> (1616-1703) also expressed $\pi$ in terms of simple fractions, as an infinite product.</p>
+$$
+\pi = 2 \cdot \left( \frac{2}{1}\cdot\frac{2}{3}\cdot\frac{4}{3}\cdot\frac{4}{5}\cdot\frac{6}{5}\cdot\frac{6}{7}\dots \right)
+$$
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a product of "even/odd" fractions. Let's use arrays to multiply a million of them, and see if the product is close to $\pi$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember that multiplication can done in any order <a href="#footnotes">[1]</a>, so we can readjust our calculation to:</p>
+$$\pi \approx 2 \cdot \left( \frac{2}{1} \cdot \frac{4}{3} \cdot \frac{6}{5} \cdots \frac{1,000,000}{999999} \right) \cdot \left( \frac{2}{3} \cdot \frac{4}{5} \cdot \frac{6}{7} \cdots \frac{1,000,000}{1,000,001} \right)$$
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We're now ready to do the calculation. We start by creating an array of even numbers 2, 4, 6, and so on upto 1,000,000. Then we create two lists of odd numbers: 1, 3, 5, 7, ... upto 999,999, and 3, 5, 7, ... upto 1,000,001.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">even</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1000001</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">one_below_even</span> <span class="o">=</span> <span class="n">even</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">one_above_even</span> <span class="o">=</span> <span class="n">even</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember that <code>np.prod</code> multiplies all the elements of an array together. Now we can calculate Wallis' product, to a good approximation.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">even</span><span class="o">/</span><span class="n">one_below_even</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">even</span><span class="o">/</span><span class="n">one_above_even</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.1415910827951143</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's $\pi$ correct to five decimal places.  Wallis clearly came up with a great formula.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id='footnotes'></a></p>
+<h5 id="Footnotes">Footnotes<a class="anchor-link" href="#Footnotes"> </a></h5><p>[1] As we saw in the example about Leibniz's formula, when we add  <em>infinitely</em> many fractions, the order can matter. The same is true with multiplying fractions, as we are doing here. But our approximation to $\pi$ uses only a large finite number of fractions, so it's okay to multiply the terms in any convenient order.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
