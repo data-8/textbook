@@ -144,4 +144,4 @@ exclude:
 plugins:
 - jekyll-redirect-from
 - jekyll-scholar
-jupyter_book_version: 0.6.1dev0
+jupyter_book_version: 0.6.2

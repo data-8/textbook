@@ -1,8 +1,8 @@
-/* in-cell thebelab buttons */
-.thebebtn {
+/* Copy buttons */
+.copybtn {
   position: absolute;
   top: 0;
-  right: $spacing-unit;
+  right: 0;
 
   margin: $spacing-unit-tiny;
   width: $spacing-unit;
@@ -15,11 +15,6 @@
   }
 }
 
-.input_area .highlight {
-  position: relative;
-}
-
-// Hide code buttons
-div.jb_input div.input {
+.input_area .highlight, .text_cell_render .highlight {
   position: relative;
 }
