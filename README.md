@@ -35,7 +35,7 @@ Here are steps to get started building the textbook on your own machine:
 
 2. **Follow the build instructions on the Jupyter Book guide**. The guide
    has information for how to use the Jupyter Book CLI to build this book.
-   You can find the [Jupyter Book build instructions here](https://jupyter.org/jupyter-book/guide/03_build.html#build-the-books-markdown).
+   You can find the [Jupyter Book build instructions here](https://jupyterbook.org/start/build.html).
 
    A short summary (see the link for full details):
    If you have Ruby and bundle installed,
