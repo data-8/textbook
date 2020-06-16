@@ -103,6 +103,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# Jekyll
-_site/
-.sass-cache
+# Jupyter Book
+_build

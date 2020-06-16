@@ -1,12 +1,3 @@
-bs4
-tqdm
-notebook
-numpy
 jupyter-book
+numpy
 datascience
-pyyaml
-ruamel.yaml
-nbformat
-nbclean
-nbgitpuller
--r ./binder/requirements.txt
