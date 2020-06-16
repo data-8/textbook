@@ -26,7 +26,7 @@ So, here's how the textbook deploy works:
 ## Building the textbook
 Here are steps to get started building the textbook on your own machine:
 
-1. **Install the jupyter-book command line tool**. This allows you to create
+1. **Install jupyter-book**. This allows you to create
    and modify Jupyter Books:
 
    ```
@@ -35,19 +35,4 @@ Here are steps to get started building the textbook on your own machine:
 
 2. **Follow the build instructions on the Jupyter Book guide**. The guide
    has information for how to use the Jupyter Book CLI to build this book.
-   You can find the [Jupyter Book build instructions here](https://jupyter.org/jupyter-book/guide/03_build.html#build-the-books-markdown).
-
-   A short summary (see the link for full details):
-   If you have Ruby and bundle installed,
-   install the dependencies by running
-   `bundle install`, then running `gem pristine ...` for each warning.
-   Once the dependencies are installed, run `make book` and then `make build`.
-
-**To preview your built site** using Jekyll on your computer, follow
-the steps on the [Jupyter Book guide](https://jupyter.org/jupyter-book/guide/03_build.html#build-the-books-site-html-locally-optional).
-The short version is to run `make serve`, then visit `http://127.0.0.1:4000/chapters/intro` in your browser.
-
-## Relevant files
-
-An explanation of the various files in this textbook can be found in
-the [Jupyter Book guide](https://jupyter.org/jupyter-book/guide/01_overview.html#a-quick-tour-of-a-jupyter-book).
+   You can find the [Jupyter Book build instructions here](https://jupyterbook.org/start/build.html).
