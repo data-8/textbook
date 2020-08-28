@@ -1,5 +1,5 @@
 Snow’s “Grand Experiment”
--------------------------
+=========================
 
 Encouraged by what he had learned in Soho, Snow completed a more thorough
 analysis. For some time, he had been gathering data on cholera

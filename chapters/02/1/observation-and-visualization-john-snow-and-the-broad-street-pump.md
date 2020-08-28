@@ -1,5 +1,5 @@
 Observation and Visualization: John Snow and the Broad Street Pump
-------------------------------------------------------------------
+==================================================================
 
 One of the most powerful examples of astute observation eventually leading to the
 establishment of causality dates back more than 150 years. To get your mind into

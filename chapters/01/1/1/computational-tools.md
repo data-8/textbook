@@ -1,5 +1,5 @@
 Computational Tools
--------------------
+===================
 
 This text uses the Python 3 programming language, along with a standard set of
 numerical and data visualization tools that are used widely in commercial
