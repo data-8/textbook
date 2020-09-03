@@ -1,5 +1,6 @@
 - title: Introduction
   file: chapters/intro
+  numbered: true
 
 - title: Data Science
   file: chapters/01/what-is-data-science
