@@ -32,3 +32,7 @@ launch_buttons:
 repository:
   url                       : https://github.com/data-8/textbook  # The URL to your book's repository
   branch                    : gh-pages  # Which branch of the repository should be used when creating links
+
+sphinx:
+  config:
+    html_extra_path: ['assets']
