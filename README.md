@@ -1,38 +1,23 @@
-# The Data 8 Jekyll textbook
+# Computational and Inferential Thinking
 
-This repository holds a Jekyll-based version of the Data 8 textbook.
-
-All textbook content is primarily stored in Jupyter notebooks in the `content/` folder.
-This can be converted to Jekyll-ready markdown and served on github pages.
+This repository holds the Jupyter Book source for Computational and Inferential
+Thinking: The Foundations of Data Science.
 
 ## How this repository is deployed to `inferentialthinking.com`
-
-The Data 8 textbook has a slightly more complex deploy process. This is because
-[GitHub doesn't work well for using a custom domain name for an organization's non-root
-repository](https://help.github.com/articles/custom-domain-redirects-for-github-pages-sites/).
-
-So, here's how the textbook deploy works:
 
 * The textbook at `inferentialthinking.com` is actually being served from this repository:
 
   https://github.com/inferentialthinking/inferentialthinking.github.io
 
   **You should not ever directly edit the inferentialthinking.github.io repository**
-* Updates to the textbook should be made at **this** repository (`github.com/data-8/texbook`)
-* When you make a change to this repository and push it to the `data-8/textbook` gh-pages
+* Updates to the textbook should be made to the `main` branch of **this** repository (`github.com/data-8/texbook`).
+* When you make a change to this repository and push it to the `data-8/textbook` `main`
   branch, these changes should automatically be copied to https://github.com/inferentialthinking/inferentialthinking.github.io.
-* This is done with CircleCI, and the [configuration for this can be found](.circleci/config.yml)
 
-## Building the textbook
-Here are steps to get started building the textbook on your own machine:
+## Building the text
 
-1. **Install jupyter-book**. This allows you to create
-   and modify Jupyter Books:
+To build locally, `pip install -r requirements.txt` and then `jupyter-book build .`
 
-   ```
-   pip install jupyter-book
-   ```
-
-2. **Follow the build instructions on the Jupyter Book guide**. The guide
-   has information for how to use the Jupyter Book CLI to build this book.
-   You can find the [Jupyter Book build instructions here](https://jupyterbook.org/start/build.html).
+**Follow the build instructions on the Jupyter Book guide**. The guide has
+information for how to use the Jupyter Book CLI to build this book. You can find
+the [Jupyter Book build instructions here](https://jupyterbook.org/start/build.html).
