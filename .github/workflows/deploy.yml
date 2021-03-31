@@ -41,5 +41,5 @@ jobs:
         publish_branch: master
         publish_dir: ./_build/html
         cname: inferentialthinking.com
-        external_repository: inferentialthinking/inferentialthinking.github.io
+        external_repository: moreira2/inferentialthinking.github.io
         deploy_key: ${{ secrets.DEPLOY_DOCS }}
