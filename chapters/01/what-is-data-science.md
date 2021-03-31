@@ -1,4 +1,4 @@
-What is Data Science?
+What is Quantitative Investing?
 ====================
 
 Data Science is about drawing useful conclusions from large and diverse data
