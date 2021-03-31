@@ -1,7 +1,7 @@
 What is Quantitative Investing?
 ====================
 
-Data Science is about drawing useful conclusions from large and diverse data
+Quantitative Investing is about drawing useful conclusions from large and diverse data
 sets through exploration, prediction, and inference.  Exploration involves
 identifying patterns in information.  Prediction involves using information
 we know to make informed guesses about values we wish we knew.  Inference
