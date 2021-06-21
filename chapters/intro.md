@@ -1,7 +1,6 @@
 # Computational and Inferential Thinking: The Foundations of Data Science
 
-By [Ani Adhikari](http://statistics.berkeley.edu/people/ani-adhikari) and [John DeNero](http://denero.org)
-with contributions by [David Wagner](https://www.cs.berkeley.edu/~daw/) and Henry Milner.
+2nd Edition by [Ani Adhikari](http://statistics.berkeley.edu/people/ani-adhikari), [John DeNero](http://denero.org), [David Wagner](https://www.cs.berkeley.edu/~daw/).
 
 This text was originally developed for the UC Berkeley course [Data 8: Foundations of Data Science][data8].
 
