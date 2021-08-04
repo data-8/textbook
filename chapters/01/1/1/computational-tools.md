@@ -12,8 +12,7 @@ million-person-strong community of software developers and data scientists.
 in Python is to log into the companion site for this text,
 [datahub.berkeley.edu](https://datahub.berkeley.edu). If you have a @berkeley.edu
 email address, you already have full access to the programming environment hosted 
-on that site. If not, please 
-[complete this form](https://goo.gl/forms/saQpxdqzS2rKxjTc2) to request access.
+on that site. 
 
 You are not at all restricted to using this web-based programming environment.
 A Python program can be executed by any computer, regardless of its
