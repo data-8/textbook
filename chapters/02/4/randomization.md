@@ -40,6 +40,34 @@ to the success of this experiment, the Mexican government supported the program
 under the new name OPORTUNIDADES, as an investment in a healthy and well
 educated population.
 
+**Benefits of Randomization**
+
+In the terminology that we have developed, John Snow conducted an
+observational study, not a randomized experiment. But he called his study a
+“grand experiment” because, as he wrote, “No fewer than three hundred thousand
+people … were divided into two groups without their choice, and in most cases,
+without their knowledge …”
+
+Studies such as Snow’s are sometimes called “natural experiments.” However, true
+randomization does not simply mean that the treatment and control groups are
+selected “without their choice.” Randomization has to be carried out very carefully,
+following the laws of probability.
+
+The method of randomization can be as simple as tossing a coin. It may also be
+quite a bit more complex. But every method of randomization consists of a
+sequence of carefully defined steps that allow chances to be specified
+mathematically. This has two important consequences.
+
+1. It allows us to account—mathematically—for the possibility that randomization
+   produces treatment and control groups that are quite different from each
+   other.
+
+2. It allows us to make precise mathematical statements about differences
+   between the treatment and control groups. This in turn helps us make
+   justifiable conclusions about whether the treatment has any effect.
+
+
+**What if you can't randomize?**
 
 In some situations it might not be possible to carry out a randomized controlled
 experiment, even when the aim is to investigate causality. For example, suppose
@@ -48,3 +76,10 @@ randomly assign some pregnant women to your “alcohol” group. You should not
 expect cooperation from them if you present them with a drink. In such
 situations you will almost invariably be conducting an observational study, not
 an experiment. Be alert for confounding factors.
+
+In this course, you will learn how to conduct and analyze your own randomized
+experiments. That will involve more detail than has been presented in this
+chapter. For now, just focus on the main idea: to try to establish causality,
+run a randomized controlled experiment if possible. If you are conducting an
+observational study, you might be able to establish association but it will be harder to establish causation. Be extremely careful about confounding factors before making
+conclusions about causality based on an observational study.
