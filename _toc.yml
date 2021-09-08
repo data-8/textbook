@@ -78,10 +78,10 @@ sections:
     title: Sorting Rows
   - file: chapters/06/2/Selecting_Rows
     title: Selecting Rows
-  - file: chapters/06/3/Example_Trends_in_the_Population_of_the_United_States
+  - file: chapters/06/3/Example_Population_Trends
     title: 'Example: Population Trends'
-  - file: chapters/06/4/Example_Gender_Ratio_in_the_US_Population
-    title: 'Example: Trends in Gender'
+  - file: chapters/06/4/Example_Sex_Ratios
+    title: 'Example: Sex Ratios'
 - file: chapters/07/Visualization
   title: Visualization
   sections:
