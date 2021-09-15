@@ -22,7 +22,7 @@ becoming more commonly used in other fields such as economics.
 **Example: Welfare subsidies in Mexico.** In Mexican villages in the 1990’s,
 children in poor families were often not enrolled in school. One of the reasons
 was that the older children could go to work and thus help support the family.
-Santiago Levy , a minister in Mexican Ministry of Finance, set out to
+Santiago Levy, a minister in Mexican Ministry of Finance, set out to
 investigate whether welfare programs could be used to increase school enrollment
 and improve health conditions. He conducted an RCT on a set of villages,
 selecting some of them at random to receive a new welfare program called
