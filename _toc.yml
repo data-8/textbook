@@ -131,8 +131,8 @@ sections:
 - file: chapters/11/Testing_Hypotheses
   title: Testing Hypotheses
   sections:
-  - file: chapters/11/1/Assessing_Models
-    title: Assessing Models
+  - file: chapters/11/1/Assessing_a_Model
+    title: Assessing a Model
   - file: chapters/11/2/Multiple_Categories
     title: Multiple Categories
   - file: chapters/11/3/Decisions_and_Uncertainty
