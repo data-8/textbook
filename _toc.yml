@@ -144,10 +144,10 @@ sections:
   sections:
   - file: chapters/12/1/AB_Testing
     title: A/B Testing
-  - file: chapters/12/2/Deflategate
-    title: Deflategate
-  - file: chapters/12/3/Causality
+  - file: chapters/12/2/Causality
     title: Causality
+  - file: chapters/12/3/Deflategate
+    title: Deflategate
 - file: chapters/13/Estimation
   title: Estimation
   sections:
