@@ -1,7 +1,7 @@
 #######################################################################################
 # Book settings
 title: Computational and Inferential Thinking
-author: Ani Adhikari and John DeNero
+author: Ani Adhikari and John DeNero and David Wagner
 email: ''
 logo                        : "favicon.png"  # A path to the book logo
 exclude_patterns            : ["README.md"]  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")

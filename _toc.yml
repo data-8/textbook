@@ -126,11 +126,13 @@ sections:
     title: Sampling from a Population
   - file: chapters/10/3/Empirical_Distribution_of_a_Statistic
     title: Empirical Distibution of a Statistic
+  - file: chapters/10/4/Random_Sampling_in_Python
+    title: Random Sampling in Python
 - file: chapters/11/Testing_Hypotheses
   title: Testing Hypotheses
   sections:
-  - file: chapters/11/1/Assessing_Models
-    title: Assessing Models
+  - file: chapters/11/1/Assessing_a_Model
+    title: Assessing a Model
   - file: chapters/11/2/Multiple_Categories
     title: Multiple Categories
   - file: chapters/11/3/Decisions_and_Uncertainty
@@ -142,10 +144,10 @@ sections:
   sections:
   - file: chapters/12/1/AB_Testing
     title: A/B Testing
-  - file: chapters/12/2/Deflategate
-    title: Deflategate
-  - file: chapters/12/3/Causality
+  - file: chapters/12/2/Causality
     title: Causality
+  - file: chapters/12/3/Deflategate
+    title: Deflategate
 - file: chapters/13/Estimation
   title: Estimation
   sections:
