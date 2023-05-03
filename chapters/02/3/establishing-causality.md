@@ -2,7 +2,7 @@ Establishing Causality
 ======================
 
 In the language developed earlier in the section, you can think of the people in
-the S&V houses as the treatment group, and those in the Lambeth houses at the
+the S&V houses as the treatment group, and those in the Lambeth houses as the
 control group. A crucial element in Snow’s analysis was that the people in the
 two groups were comparable to each other, apart from the treatment.
 
