@@ -1,5 +1,5 @@
 /* Custom CSS */
 
 code {
-    color: #222
+    color: var(--pst-color-text-base)
 }
