@@ -15,7 +15,7 @@ their work, their scientific endeavors, and their personal decisions. Critical
 thinking has long been a hallmark of a rigorous education, but critiques are
 often most effective when supported by data. A critical analysis of any aspect
 of the world, may it be business or social science, involves inductive
-reasoning; conclusions can rarely been proven outright, but only supported by
+reasoning; conclusions can rarely be proven outright, but only supported by
 the available evidence. Data science provides the means to make precise,
 reliable, and quantitative arguments about any set of observations. With
 unprecedented access to information and computing, critical thinking about
