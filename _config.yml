@@ -29,6 +29,7 @@ html:
 launch_buttons:
   jupyterhub_url            : https://datahub.berkeley.edu
   binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
+  notebook_interface        : jupyterlab
 
 repository:
   url                       : https://github.com/data-8/textbook  # The URL to your book's repository
