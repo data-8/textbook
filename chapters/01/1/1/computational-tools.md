@@ -1,29 +1,16 @@
-Computational Tools
+Ferramentas computacionais
 ===================
 
-This text uses the Python 3 programming language, along with a standard set of
-numerical and data visualization tools that are used widely in commercial
-applications, scientific experiments, and open-source projects.
-Python has recruited enthusiasts from many professions that use data to draw
-conclusions. By learning the Python language, you will join a
-million-person-strong community of software developers and data scientists.
+Este texto utiliza a linguagem de programação Python 3, juntamente com um conjunto padrão de ferramentas numéricas e de visualização de dados que são amplamente utilizados em aplicações comerciais, experimentos científicos e projetos de código aberto. Python recrutou entusiastas de muitas profissões que usam dados para tirar conclusões. Ao aprender a linguagem Python, você se juntará a uma comunidade de desenvolvedores de software e cientistas de dados com milhões de pessoas.
 
-**Getting Started.** The easiest and recommended way to start writing programs
-in Python is to log into the companion site for this text,
-[datahub.berkeley.edu](https://datahub.berkeley.edu). If you have a @berkeley.edu
-email address, you already have full access to the programming environment hosted 
-on that site. 
+**Começando.** A maneira mais fácil e recomendada de começar a escrever programas em Python é fazer login no site que acompanha este texto,
+[datahub.berkeley.edu](https://datahub.berkeley.edu).  Se você possui um endereço de e-mail @berkeley.edu
+, já tem acesso total ao ambiente de programação hospedado nesse site.
 
-You are not at all restricted to using this web-based programming environment.
-A Python program can be executed by any computer, regardless of its
-manufacturer or operating system, provided that support for the language is
-installed. If you wish to install the version of Python and its accompanying
-libraries that will match this text, we recommend the [Anaconda][download]
-distribution that packages together the Python 3 language interpreter, IPython
-libraries, and the Jupyter notebook environment.
+Você não está restrito a usar este ambiente de programação baseado na web. Um programa Python pode ser executado por qualquer computador, independentemente do fabricante ou sistema operacional, desde que o suporte à linguagem esteja instalado. Se você deseja instalar a versão do Python e suas bibliotecas que correspondem a este texto, recomendamos a distribuição
+ [Anaconda][download]
+que reúne o interpretador da linguagem Python 3, as bibliotecas IPython e o ambiente de notebook Jupyter.
 
    [download]: http://continuum.io/downloads
 
-This text includes a complete introduction to all of these computational tools.
-You will learn to write programs, generate images from data, and work with
-real-world data sets that are published online.
+Este texto inclui uma introdução completa a todas essas ferramentas computacionais. Você aprenderá a escrever programas, gerar imagens a partir de dados e trabalhar com conjuntos de dados do mundo real publicados online.
