@@ -32,7 +32,7 @@ Any relation between the treatment and the outcome is called an *association*.
 If the treatment causes the outcome to occur, then the association is *causal*.
 *Causality* is at the heart of all three questions posed at the start of this
 section. For example, one of the questions was whether chocolate directly causes
-improvements in health, not just whether there there is a relation between
+improvements in health, not just whether there is a relation between
 chocolate and health.
 
 The establishment of causality often takes place in two stages. First, an
