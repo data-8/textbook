@@ -38,8 +38,6 @@ jobs:
       if: ${{ github.event_name == 'push' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: master
+        publish_branch: main
         publish_dir: ./_build/html
-        cname: inferentialthinking.com
-        external_repository: inferentialthinking/inferentialthinking.github.io
-        deploy_key: ${{ secrets.DEPLOY_DOCS }}
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
