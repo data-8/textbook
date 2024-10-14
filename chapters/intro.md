@@ -6,7 +6,7 @@ This text was developed for the Data Science Society at Berkeley's DeCal, [Data 
 
 You can [view this text online][ghpages] or [view the source][source].
 
-[data8]: http://dssdecal.org
+[data198]: http://dssdecal.org
 [ghpages]: https://dss-data198.github.io/textbook/chapters
 [source]: https://github.com/dss-data198/textbook
 

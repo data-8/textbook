@@ -1,28 +1,26 @@
-Observation and Visualization: John Snow and the Broad Street Pump
+Variables and Data Types
 ==================================================================
 
-One of the most powerful examples of astute observation eventually leading to the
-establishment of causality dates back more than 150 years. To get your mind into
-the right timeframe, try to imagine London in the 1850’s. It was the world’s
-wealthiest city but many of its people were desperately poor. Charles Dickens,
-then at the height of his fame, was writing about their plight. Disease was rife
-in the poorer parts of the city, and cholera was among the most feared. It was
-not yet known that germs cause disease; the leading theory was that “miasmas”
-were the main culprit. Miasmas manifested themselves as bad smells, and were
-thought to be invisible poisonous particles arising out of decaying matter.
-Parts of London did smell very bad, especially in hot weather. To protect
-themselves against infection, those who could afford to held sweet-smelling
-things to their noses.
+# 1. Variables
+Variables are containers for storing data values. They are essential for any computation or manipulation of data. Variables can store different types of data, including numbers, text, and more complex structures. In Python, variables are dynamically typed, meaning you don't need to declare their type explicitly.
 
-For several years, a doctor by the name of John Snow had been following the
-devastating waves of cholera that hit England from time to time. The disease
-arrived suddenly and was almost immediately deadly: people died within a day or
-two of contracting it, hundreds could die in a week, and the total death toll in
-a single wave could reach tens of thousands. Snow was skeptical of the miasma
-theory. He had noticed that while entire households were wiped out by cholera,
-the people in neighboring houses sometimes remained completely unaffected. As
-they were breathing the same air—and miasmas—as their neighbors, there was no
-compelling association between bad smells and the incidence of cholera.
+## Key Concepts of Variables:
+
+### Variable Naming Rules:
+* Names can contain letters, digits, and underscores.
+* Must start with a letter or an underscore, not a digit.
+* Case-sensitive (age is different from Age).
+* Reserved keywords (e.g., for, if, else) cannot be used as variable names.
+
+my_variable = 10  # valid
+_variable2 = "Hello"  # valid
+1variable = 5  # invalid
+
+
+Names can contain letters, digits, and underscores.
+Must start with a letter or an underscore, not a digit.
+Case-sensitive (age is different from Age).
+Reserved keywords (e.g., for, if, else) cannot be used as variable names.
 
 Snow had also noticed that the onset of the disease almost always involved
 vomiting and diarrhea. He therefore believed that the infection was carried by
