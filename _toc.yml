@@ -5,7 +5,7 @@ options:
   numbered: true
 sections:
 - file: chapters/01/what-is-data-science
-  title: Data Science
+  title: What is Data Science?
   sections:
   - file: chapters/01/1/intro
     title: Introduction
