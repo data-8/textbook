@@ -24,9 +24,9 @@ sections:
     - file: chapters/01/3/2/Another_Kind_Of_Character
       title: Another Kind of Character
 - file: chapters/02/causality-and-experiments
-  title: Causality and Experiments
+  title: Introductory Python
   sections:
-  - file: chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump
+  - file: chapters/02/1/variables
     title: Introduction to Data Types
   - file: chapters/02/2/snow-s-grand-experiment
     title: "Snow\u2019s \u201CGrand Experiment\u201D"
