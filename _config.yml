@@ -1,7 +1,7 @@
 #######################################################################################
 # Book settings
 title: Introduction to Real World Data Science
-author: Ani Adhikari and John DeNero and David Wagner
+author: Brandon Concepcion, Lynn Chien, Ryan Stevenson
 email: ''
 logo                        : "favicon.png"  # A path to the book logo
 exclude_patterns            : ["README.md"]  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
