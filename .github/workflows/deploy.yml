@@ -41,3 +41,4 @@ jobs:
         publish_branch: main
         publish_dir: ./_build/html
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        keep_files: true  # Ensures existing files are not deleted
