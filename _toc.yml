@@ -24,12 +24,12 @@ sections:
     - file: chapters/01/3/2/Another_Kind_Of_Character
       title: Another Kind of Character
 - file: chapters/02/causality-and-experiments
-  title: Introductory Python
+  title: Introduction to Python
   sections:
-  - file: chapters/02/1/variables
-    title: Introduction to Data Types
-  - file: chapters/02/2/snow-s-grand-experiment
-    title: "Snow\u2019s \u201CGrand Experiment\u201D"
+  - file: chapters/02/1/data_types
+    title: Data Types
+  - file: chapters/02/2/variables
+    title: Variables
   - file: chapters/02/3/establishing-causality
     title: Establishing Causality
   - file: chapters/02/4/randomization
