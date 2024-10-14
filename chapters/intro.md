@@ -1,14 +1,12 @@
-# Computational and Inferential Thinking: The Foundations of Data Science
+# Introduction to Real World Data Science
 
-2nd Edition by [Ani Adhikari](http://statistics.berkeley.edu/people/ani-adhikari), [John DeNero](http://denero.org), [David Wagner](https://www.cs.berkeley.edu/~daw/).
+By [Brandon Concepcion](http://brandonconcepcion.com)
 
-This text was originally developed for the UC Berkeley course [Data 8: Foundations of Data Science][data8].
+This text was developed for the Data Science Society at Berkeley's DeCal, [Data 198: Introduction to Real World Data Science][data198].
 
 You can [view this text online][ghpages] or [view the source][source].
 
-[data8]: http://data8.org/
-[ghpages]: https://inferentialthinking.com
-[source]: https://github.com/data-8/textbook
+[data8]: http://dssdecal.org
+[ghpages]: https://dss-data198.github.io/textbook/chapters
+[source]: https://github.com/dss-data198/textbook
 
-The contents of this book are licensed for free consumption under the following license:
-[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/).
