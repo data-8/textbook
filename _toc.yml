@@ -23,19 +23,17 @@ sections:
       title: Literary Characters
     - file: chapters/01/3/2/Another_Kind_Of_Character
       title: Another Kind of Character
-- file: chapters/02/causality-and-experiments
+- file: chapters/02/intro_python
   title: Introduction to Python
   sections:
-  - file: chapters/02/1/data_types
-    title: Data Types
+  - file: chapters/02/1/expressions
+    title: Simple Expressions
   - file: chapters/02/2/variables
     title: Variables
-  - file: chapters/02/3/establishing-causality
-    title: Establishing Causality
-  - file: chapters/02/4/randomization
-    title: Randomization
-  - file: chapters/02/5/endnote
-    title: Endnote
+  - file: chapters/02/3/call_expressions
+    title: Call Expressions
+  - file: chapters/02/4/data_types
+    title: Data Types
 - file: chapters/03/programming-in-python
   title: Programming in Python
   sections:
