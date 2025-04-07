@@ -33,3 +33,12 @@ To build locally, `pip install -r requirements.txt` and then `jupyter-book build
 **Follow the build instructions on the Jupyter Book guide**. The guide has
 information for how to use the Jupyter Book CLI to build this book. You can find
 the [Jupyter Book build instructions here](https://jupyterbook.org/start/build.html).
+
+**Creating a PDF of the book**
+I had already installed latex on my machine; this is needed.
+- Create Virtual Environment using environment.yaml or requirements.txt
+- python3 -m pip install packaging
+- jupyter-book build . --builder latex
+- cd _build/latex
+- make
+- It will save the pdf to _build/latex -- look for the pdf in the folder
