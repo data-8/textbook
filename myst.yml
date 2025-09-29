@@ -1,0 +1,143 @@
+version: 1 
+project:
+  title: Computational and Inferential Thinking
+  numbering:
+    title: true
+  authors:
+    - name: Ani Adhikari
+    - name: John DeNero
+    - name: David Wagner
+  license: CC-BY-NC-ND-4.0
+  exclude:
+    - README.md
+  github: data-8/textbook
+  toc:
+    - file: chapters/intro.md
+    - file: chapters/01/what-is-data-science.md
+      children:
+        - file: chapters/01/1/intro.md
+          children:
+            - file: chapters/01/1/1/computational-tools.md
+            - file: chapters/01/1/2/statistical-techniques.md
+        - file: chapters/01/2/why-data-science.md
+        - file: chapters/01/3/Plotting_the_Classics.ipynb
+          children:
+            - file: chapters/01/3/1/Literary_Characters.ipynb
+            - file: chapters/01/3/2/Another_Kind_Of_Character.ipynb
+    - file: chapters/02/causality-and-experiments.md
+      children:
+        - file: >-
+            chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump.md
+        - file: chapters/02/2/snow-s-grand-experiment.md
+        - file: chapters/02/3/establishing-causality.md
+        - file: chapters/02/4/randomization.md
+        - file: chapters/02/5/endnote.md
+    - file: chapters/03/programming-in-python.md
+      children:
+        - file: chapters/03/1/Expressions.ipynb
+        - file: chapters/03/2/Names.ipynb
+          children:
+            - file: chapters/03/2/1/Growth.ipynb
+        - file: chapters/03/3/Calls.ipynb
+        - file: chapters/03/4/Introduction_to_Tables.ipynb
+    - file: chapters/04/Data_Types.ipynb
+      children:
+        - file: chapters/04/1/Numbers.ipynb
+        - file: chapters/04/2/Strings.ipynb
+          children:
+            - file: chapters/04/2/1/String_Methods.ipynb
+        - file: chapters/04/3/Comparison.ipynb
+    - file: chapters/05/Sequences.ipynb
+      children:
+        - file: chapters/05/1/Arrays.ipynb
+        - file: chapters/05/2/Ranges.ipynb
+        - file: chapters/05/3/More_on_Arrays.ipynb
+    - file: chapters/06/Tables.ipynb
+      children:
+        - file: chapters/06/1/Sorting_Rows.ipynb
+        - file: chapters/06/2/Selecting_Rows.ipynb
+        - file: chapters/06/3/Example_Population_Trends.ipynb
+        - file: chapters/06/4/Example_Sex_Ratios.ipynb
+    - file: chapters/07/Visualization.ipynb
+      children:
+        - file: chapters/07/1/Visualizing_Categorical_Distributions.ipynb
+        - file: chapters/07/2/Visualizing_Numerical_Distributions.ipynb
+        - file: chapters/07/3/Overlaid_Graphs.ipynb
+    - file: chapters/08/Functions_and_Tables.ipynb
+      children:
+        - file: chapters/08/1/Applying_a_Function_to_a_Column.ipynb
+        - file: chapters/08/2/Classifying_by_One_Variable.ipynb
+        - file: chapters/08/3/Cross-Classifying_by_More_than_One_Variable.ipynb
+        - file: chapters/08/4/Joining_Tables_by_Columns.ipynb
+        - file: chapters/08/5/Bike_Sharing_in_the_Bay_Area.ipynb
+    - file: chapters/09/Randomness.ipynb
+      children:
+        - file: chapters/09/1/Conditional_Statements.ipynb
+        - file: chapters/09/2/Iteration.ipynb
+        - file: chapters/09/3/Simulation.ipynb
+        - file: chapters/09/4/Monty_Hall_Problem.ipynb
+        - file: chapters/09/5/Finding_Probabilities.ipynb
+    - file: chapters/10/Sampling_and_Empirical_Distributions.ipynb
+      children:
+        - file: chapters/10/1/Empirical_Distributions.ipynb
+        - file: chapters/10/2/Sampling_from_a_Population.ipynb
+        - file: chapters/10/3/Empirical_Distribution_of_a_Statistic.ipynb
+        - file: chapters/10/4/Random_Sampling_in_Python.ipynb
+    - file: chapters/11/Testing_Hypotheses.md
+      children:
+        - file: chapters/11/1/Assessing_a_Model.ipynb
+        - file: chapters/11/2/Multiple_Categories.ipynb
+        - file: chapters/11/3/Decisions_and_Uncertainty.ipynb
+        - file: chapters/11/4/Error_Probabilities.ipynb
+    - file: chapters/12/Comparing_Two_Samples.md
+      children:
+        - file: chapters/12/1/AB_Testing.ipynb
+        - file: chapters/12/2/Causality.ipynb
+        - file: chapters/12/3/Deflategate.ipynb
+    - file: chapters/13/Estimation.md
+      children:
+        - file: chapters/13/1/Percentiles.ipynb
+        - file: chapters/13/2/Bootstrap.ipynb
+        - file: chapters/13/3/Confidence_Intervals.ipynb
+        - file: chapters/13/4/Using_Confidence_Intervals.ipynb
+    - file: chapters/14/Why_the_Mean_Matters.md
+      children:
+        - file: chapters/14/1/Properties_of_the_Mean.ipynb
+        - file: chapters/14/2/Variability.ipynb
+        - file: chapters/14/3/SD_and_the_Normal_Curve.ipynb
+        - file: chapters/14/4/Central_Limit_Theorem.ipynb
+        - file: chapters/14/5/Variability_of_the_Sample_Mean.ipynb
+        - file: chapters/14/6/Choosing_a_Sample_Size.ipynb
+    - file: chapters/15/Prediction.ipynb
+      children:
+        - file: chapters/15/1/Correlation.ipynb
+        - file: chapters/15/2/Regression_Line.ipynb
+        - file: chapters/15/3/Method_of_Least_Squares.ipynb
+        - file: chapters/15/4/Least_Squares_Regression.ipynb
+        - file: chapters/15/5/Visual_Diagnostics.ipynb
+        - file: chapters/15/6/Numerical_Diagnostics.ipynb
+    - file: chapters/16/Inference_for_Regression.md
+      children:
+        - file: chapters/16/1/Regression_Model.ipynb
+        - file: chapters/16/2/Inference_for_the_True_Slope.ipynb
+        - file: chapters/16/3/Prediction_Intervals.ipynb
+    - file: chapters/17/Classification.md
+      children:
+        - file: chapters/17/1/Nearest_Neighbors.ipynb
+        - file: chapters/17/2/Training_and_Testing.ipynb
+        - file: chapters/17/3/Rows_of_Tables.ipynb
+        - file: chapters/17/4/Implementing_the_Classifier.ipynb
+        - file: chapters/17/5/Accuracy_of_the_Classifier.ipynb
+        - file: chapters/17/6/Multiple_Regression.ipynb
+    - file: chapters/18/Updating_Predictions.md
+      children:
+        - file: chapters/18/1/More_Likely_than_Not_Binary_Classifier.ipynb
+        - file: chapters/18/2/Making_Decisions.ipynb
+site:
+  options:
+    logo: data8logo.png
+    favicon: favicon.ico
+    logo_text: "Computational and Inferential Thinking"
+    analytics_google: UA-148221575-1
+    folders: true
+  template: book-theme

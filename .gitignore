@@ -1,3 +1,5 @@
+**/.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -89,6 +91,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+venv-new-jb/
 
 # Spyder project settings
 .spyderproject

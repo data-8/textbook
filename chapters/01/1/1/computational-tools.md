@@ -10,7 +10,7 @@ million-person-strong community of software developers and data scientists.
 
 **Getting Started.** The easiest and recommended way to start writing programs
 in Python is to log into the companion site for this text,
-[datahub.berkeley.edu](https://datahub.berkeley.edu). If you have a @berkeley.edu
+[datahub.berkeley.edu](https://datahub.berkeley.edu). If you have a \@berkeley.edu
 email address, you already have full access to the programming environment hosted 
 on that site. 
 
