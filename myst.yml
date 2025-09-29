@@ -13,6 +13,7 @@ project:
   github: data-8/textbook
   toc:
     - file: chapters/intro.md
+      hidden: true
     - file: chapters/01/what-is-data-science.md
       children:
         - file: chapters/01/1/intro.md
@@ -141,3 +142,5 @@ site:
     analytics_google: UA-148221575-1
     folders: true
   template: book-theme
+  parts:
+    footer: footer.md
