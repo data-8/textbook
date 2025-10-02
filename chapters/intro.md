@@ -1,4 +1,8 @@
-# Computational and Inferential Thinking: The Foundations of Data Science
+---
+title: 'Computational and Inferential Thinking: The Foundations of Data Science'
+numbering:
+  title: false
+---
 
 2nd Edition by [Ani Adhikari](http://statistics.berkeley.edu/people/ani-adhikari), [John DeNero](http://denero.org), [David Wagner](https://www.cs.berkeley.edu/~daw/).
 

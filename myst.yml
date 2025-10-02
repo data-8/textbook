@@ -13,7 +13,6 @@ project:
   github: data-8/textbook
   toc:
     - file: chapters/intro.md
-      hidden: true
     - file: chapters/01/what-is-data-science.md
       children:
         - file: chapters/01/1/intro.md
@@ -29,6 +28,7 @@ project:
       children:
         - file: >-
             chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump.md
+          title: John Snow and the Broad Street Pump
         - file: chapters/02/2/snow-s-grand-experiment.md
         - file: chapters/02/3/establishing-causality.md
         - file: chapters/02/4/randomization.md
