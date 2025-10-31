@@ -3,10 +3,11 @@ project:
   title: Computational and Inferential Thinking
   numbering:
     title: true
-  authors:
-    - name: Ani Adhikari
-    - name: John DeNero
-    - name: David Wagner
+  # authors commented out so they don't display on every page
+  # authors:
+  #   - name: Ani Adhikari
+  #   - name: John DeNero
+  #   - name: David Wagner
   license: CC-BY-NC-ND-4.0
   exclude:
     - README.md
