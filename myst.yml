@@ -4,10 +4,10 @@ project:
   numbering:
     title: true
   # authors commented out so they don't display on every page
-  # authors:
-  #   - name: Ani Adhikari
-  #   - name: John DeNero
-  #   - name: David Wagner
+  authors:
+    - name: Ani Adhikari
+    - name: John DeNero
+    - name: David Wagner
   license: CC-BY-NC-ND-4.0
   exclude:
     - README.md
@@ -142,6 +142,7 @@ site:
     logo_text: "Computational and Inferential Thinking"
     analytics_google: UA-148221575-1
     folders: true
+    hide_authors: true
   template: book-theme
   parts:
     footer: footer.md
