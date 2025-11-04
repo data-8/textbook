@@ -10,7 +10,7 @@ env:
   # `BASE_URL` determines, relative to the root of the domain, the URL that your site is served from.
   # E.g., if your site lives at `https://mydomain.org/myproject`, set `BASE_URL=/myproject`.
   # If, instead, your site lives at the root of the domain, at `https://mydomain.org`, set `BASE_URL=''`.
-  BASE_URL: /${{ github.event.repository.name }}
+  BASE_URL: ''
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -39,6 +39,12 @@ jobs:
         run: npm install -g jupyter-book
       - name: Build HTML Assets
         run: jupyter-book build --html
+      - name: Create redirects from JB1 to JB2
+        run: |
+          # Generate redirects in a separate directory
+          python3 ./scripts/jb1-linking.py "https://inferentialthinking.com/" "_build/redirects"
+          # Copy redirects over the JupyterBook build, preserving JupyterBook's existing files
+          cp -r _build/redirects/* _build/html/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
