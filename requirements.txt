@@ -1,3 +1,5 @@
-jupyter-book
+jupyter-book>=2
+mystmd
 numpy
 datascience
+matplotlib

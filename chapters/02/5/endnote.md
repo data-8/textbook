@@ -1,3 +1,7 @@
+---
+title: 'Endnote'
+---
+
 Terminology and Further Reading
 =======
 

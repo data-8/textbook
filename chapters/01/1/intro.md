@@ -1,4 +1,4 @@
-Chapter 1: Introduction
+Introduction
 =======================
 
 Data are descriptions of the world around us, collected through observation and
