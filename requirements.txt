@@ -1,4 +1,4 @@
-jupyter-book==2.0.0b3
+jupyter-book>=2
 mystmd
 numpy
 datascience
