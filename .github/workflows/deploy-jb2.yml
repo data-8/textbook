@@ -59,4 +59,4 @@ jobs:
           publish_dir: ./_build/html
           cname: inferentialthinking.com
           external_repository: inferentialthinking/inferentialthinking.github.io
-          deploy_key: ${{ secrets.DEPLOY_DOCS }}
+          deploy_key: ${{ secrets.DEPLOY_DOCS2 }}
