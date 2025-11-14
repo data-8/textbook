@@ -38,7 +38,7 @@ jobs:
       - name: Install Jupyter Book (via myst)
         run: npm install -g jupyter-book
       - name: Build HTML Assets
-        run: jupyter-book build --html --base-url "${{ env.BASE_URL }}"
+        run: jupyter-book build --html
       - name: Create redirects from JB1 to JB2
         run: |
           # Generate redirects in a separate directory
