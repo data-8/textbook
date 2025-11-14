@@ -21,24 +21,24 @@ def calculate_jb1_slugs(toc_flat):
     return [path.replace('.md', '.html').replace('.ipynb', '.html') for path in toc_flat]
 
 def calculate_jb2_slugs(toc_flat):
-    jb2_slugs = [path.replace('.md', '').replace('.ipynb', '').replace('_', '-').lower().replace('chapters/intro', '') for path in toc_flat]
     # chapters/intro.html is a special case that becomes ''
-    return jb2_slugs
+    return [path.replace('.md', '').replace('.ipynb', '').replace('_', '-').lower().replace('chapters/intro', '') for path in toc_flat]
 
 def create_redirects(jb1_slugs, jb2_slugs, base_url="https://inferentialthinking.com/", output_root="_build/redirects"):
     assert(len(jb1_slugs) == len(jb2_slugs))
     for i in range(len(jb1_slugs)):
         jb1_slug = jb1_slugs[i]
         jb2_slug = jb2_slugs[i]
-        # skip markdown files
-        # if jb2_slug.endswith('.md'):
-        #     continue 
-        # create the output directory if it doesn't exist, using a separate redirects dir
+
+        # if jb2_slug is empty (the special case for 'chapters/intro') redirect to the base URL
+         if not jb2_slug:
+            jb2_url = base_url.rstrip('/') # no double slash
+        else:
+            jb2_url = base_url.rstrip('/') + '/' + jb2_slug + "/index.html"
+        
         dir = os.path.dirname(jb1_slug)
         output_dir = os.path.join(output_root, dir)
         os.makedirs(output_dir, exist_ok=True)
-        # create the full jb2 url
-        jb2_url = base_url + jb2_slug + "/index.html"
         # html content
         # simple HTML redirect with a visible link as a fallback
         html_content = f"""<!DOCTYPE html>
