@@ -31,7 +31,7 @@ def create_redirects(jb1_slugs, jb2_slugs, base_url="https://inferentialthinking
         jb2_slug = jb2_slugs[i]
 
         # if jb2_slug is empty (the special case for 'chapters/intro') redirect to the base URL
-         if not jb2_slug:
+        if not jb2_slug:
             jb2_url = base_url.rstrip('/') # no double slash
         else:
             jb2_url = base_url.rstrip('/') + '/' + jb2_slug + "/index.html"
