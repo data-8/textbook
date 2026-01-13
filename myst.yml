@@ -8,7 +8,8 @@ project:
     - name: Ani Adhikari
     - name: John DeNero
     - name: David Wagner
-  license: CC-BY-NC-ND-4.0
+  # Don't show the license icons on every page
+  # license: CC-BY-NC-ND-4.0
   exclude:
     - README.md
   github: data-8/textbook
