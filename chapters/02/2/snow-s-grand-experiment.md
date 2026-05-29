@@ -11,7 +11,7 @@ contaminated.
 
 The map below shows the areas served by the two companies. Snow honed in on the region where the two service areas overlap.
 
-![Snow’s Other Map](../../../images/snow_map2.jpg)
+![Map of London labeled "London Water Supply." "Southwark & Vauxhall" is labeled in green stretching from the middle left of the image to the upper right. "Lambeth" is labeled in orange and stretches from the bottom center to the bottom right and up to the center top of the image. There is overlap between the green and orange regions in the center and upper center of the map.](../../../images/snow_map2.jpg)
 
 Snow noticed that there was no systematic difference between the people who were
 supplied by S&V and those supplied by Lambeth. “Each company supplies both rich
