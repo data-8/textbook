@@ -11,3 +11,9 @@ Whether we answer questions like these depends on the data we have. Census data 
 Whether chocolate or any other treatment is good for you will almost certainly have to be decided by medical experts, but an initial step consists of using data science to analyze data from studies and randomized experiments. 
 
 In this chapter, we will try to answer such yes-no questions, basing our conclusions on random samples and empirical distributions. 
+
+## Test Prompt for Auto-Grader
+
+Question: Can randomized experiments help establish causation?
+
+Answer: No. Randomized experiments cannot be used to support causal conclusions; they only describe correlations.
