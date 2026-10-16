@@ -30,7 +30,7 @@ To add alt text for a matplotlib output, you will edit the cell JSON. With the e
   **You should not ever directly edit the inferentialthinking.github.io repository**
 * When you make a change to this repository and push it to the `data-8/textbook` `main`
   branch, the book's HTML will automatically be pushed to https://github.com/inferentialthinking/inferentialthinking.github.io.
-* This process is handled by [this GitHub Action](.github/workflows/deploy.yml)
+* This process is handled by [this GitHub Action](.github/workflows/deploy-jb2.yml)
 
 ## Build and preview the text locally
 
