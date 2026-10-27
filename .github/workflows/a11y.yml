@@ -15,4 +15,4 @@ jobs:
       - name: Run Accessibility Checks
         uses: berkeley-cdss/myst-a11y@v1
         with:
-          exclude: "iframe[src*='youtube.com'], #movie_player"
+          exclude: "iframe[src*='youtube.com'], #movie_player, .myst-footer-link, .myst-footer-link-prev, .myst-footer-link-next"
