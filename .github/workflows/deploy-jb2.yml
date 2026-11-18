@@ -35,7 +35,7 @@ jobs:
         uses: actions/configure-pages@v6
       - uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
       - name: Install Jupyter Book (via myst)
         run: npm install -g jupyter-book
       - name: Build HTML Assets
